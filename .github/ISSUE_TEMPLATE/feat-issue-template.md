@@ -1,8 +1,8 @@
 ---
 name: Feat issue template
 about: Feat 개발에 대한 이슈
-title: ''
-labels: ''
+title: "[Feat] "
+labels: Feat
 assignees: ''
 
 ---

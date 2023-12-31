@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307280E2B414D4B00AA575B /* UITextField+.swift */; };
+		C30728112B414D6500AA575B /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728102B414D6500AA575B /* UILabel+.swift */; };
+		C30728152B414F5800AA575B /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728142B414F5800AA575B /* UIButton+.swift */; };
+		C30728172B414F6700AA575B /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728162B414F6700AA575B /* UIImageView+.swift */; };
+		C30728192B414FC800AA575B /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728182B414FC800AA575B /* UIStackView+.swift */; };
+		C307281B2B414FF900AA575B /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307281A2B414FF900AA575B /* adjust+.swift */; };
+		C307281D2B41500900AA575B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307281C2B41500900AA575B /* UIColor+.swift */; };
+		C307281F2B41503100AA575B /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307281E2B41503100AA575B /* UIViewController+.swift */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
 		C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602BB2B3BEE06004BB2B8 /* ViewController.swift */; };
@@ -45,6 +53,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C307280E2B414D4B00AA575B /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		C30728102B414D6500AA575B /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		C30728142B414F5800AA575B /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		C30728162B414F6700AA575B /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		C30728182B414FC800AA575B /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
+		C307281A2B414FF900AA575B /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
+		C307281C2B41500900AA575B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		C307281E2B41503100AA575B /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +169,14 @@
 			isa = PBXGroup;
 			children = (
 				C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */,
+				C307280E2B414D4B00AA575B /* UITextField+.swift */,
+				C30728102B414D6500AA575B /* UILabel+.swift */,
+				C30728142B414F5800AA575B /* UIButton+.swift */,
+				C30728162B414F6700AA575B /* UIImageView+.swift */,
+				C30728182B414FC800AA575B /* UIStackView+.swift */,
+				C307281A2B414FF900AA575B /* adjust+.swift */,
+				C307281C2B41500900AA575B /* UIColor+.swift */,
+				C307281E2B41503100AA575B /* UIViewController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -479,20 +503,28 @@
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
 				C39602FD2B3BF299004BB2B8 /* i.swift in Sources */,
+				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
+				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
 				C396030D2B3BF33F004BB2B8 /* l.swift in Sources */,
 				C396030B2B3BF33B004BB2B8 /* k.swift in Sources */,
+				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
 				C39602F92B3BF291004BB2B8 /* g.swift in Sources */,
 				C39602FB2B3BF295004BB2B8 /* h.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
+				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
+				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
 				C39602F32B3BF27D004BB2B8 /* d.swift in Sources */,
 				C39602D92B3BF190004BB2B8 /* a.swift in Sources */,
 				C39602F72B3BF28C004BB2B8 /* f.swift in Sources */,
 				C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */,
+				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C39602F02B3BF273004BB2B8 /* c.swift in Sources */,
 				C39603162B3BF369004BB2B8 /* o.swift in Sources */,
+				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
+				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
 				C396031C2B3BF374004BB2B8 /* r.swift in Sources */,
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C39603182B3BF36C004BB2B8 /* p.swift in Sources */,
@@ -646,7 +678,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 32CGJPPY5G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "PINGLE-iOS/Info.plist";
+				INFOPLIST_FILE = "PINGLE-iOS/Global/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -673,7 +705,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 32CGJPPY5G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "PINGLE-iOS/Info.plist";
+				INFOPLIST_FILE = "PINGLE-iOS/Global/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

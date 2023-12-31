@@ -15,6 +15,10 @@
 		C307281B2B414FF900AA575B /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307281A2B414FF900AA575B /* adjust+.swift */; };
 		C307281D2B41500900AA575B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307281C2B41500900AA575B /* UIColor+.swift */; };
 		C307281F2B41503100AA575B /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307281E2B41503100AA575B /* UIViewController+.swift */; };
+		C30728242B4151CF00AA575B /* SUIT-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C30728202B4151CF00AA575B /* SUIT-ExtraBold.otf */; };
+		C30728252B4151CF00AA575B /* SUIT-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C30728212B4151CF00AA575B /* SUIT-Bold.otf */; };
+		C30728262B4151CF00AA575B /* SUIT-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C30728222B4151CF00AA575B /* SUIT-Medium.otf */; };
+		C30728272B4151CF00AA575B /* SUIT-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C30728232B4151CF00AA575B /* SUIT-SemiBold.otf */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
 		C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602BB2B3BEE06004BB2B8 /* ViewController.swift */; };
@@ -23,7 +27,6 @@
 		C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D02B3BF162004BB2B8 /* ImageLiterals.swift */; };
 		C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D22B3BF169004BB2B8 /* StringLiterals.swift */; };
 		C39602D72B3BF189004BB2B8 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D62B3BF189004BB2B8 /* Font.swift */; };
-		C39602D92B3BF190004BB2B8 /* a.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D82B3BF190004BB2B8 /* a.swift */; };
 		C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DA2B3BF199004BB2B8 /* Color.swift */; };
 		C39602DD2B3BF1A8004BB2B8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */; };
 		C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DF2B3BF1CB004BB2B8 /* b.swift */; };
@@ -61,6 +64,10 @@
 		C307281A2B414FF900AA575B /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
 		C307281C2B41500900AA575B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		C307281E2B41503100AA575B /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		C30728202B4151CF00AA575B /* SUIT-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-ExtraBold.otf"; sourceTree = "<group>"; };
+		C30728212B4151CF00AA575B /* SUIT-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Bold.otf"; sourceTree = "<group>"; };
+		C30728222B4151CF00AA575B /* SUIT-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Medium.otf"; sourceTree = "<group>"; };
+		C30728232B4151CF00AA575B /* SUIT-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-SemiBold.otf"; sourceTree = "<group>"; };
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,7 +78,6 @@
 		C39602D02B3BF162004BB2B8 /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		C39602D22B3BF169004BB2B8 /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		C39602D62B3BF189004BB2B8 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		C39602D82B3BF190004BB2B8 /* a.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = a.swift; sourceTree = "<group>"; };
 		C39602DA2B3BF199004BB2B8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		C39602DF2B3BF1CB004BB2B8 /* b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = b.swift; sourceTree = "<group>"; };
@@ -207,7 +213,10 @@
 		C39602D52B3BF183004BB2B8 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				C39602D82B3BF190004BB2B8 /* a.swift */,
+				C30728212B4151CF00AA575B /* SUIT-Bold.otf */,
+				C30728202B4151CF00AA575B /* SUIT-ExtraBold.otf */,
+				C30728222B4151CF00AA575B /* SUIT-Medium.otf */,
+				C30728232B4151CF00AA575B /* SUIT-SemiBold.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -485,7 +494,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C39602C42B3BEE08004BB2B8 /* LaunchScreen.storyboard in Resources */,
+				C30728242B4151CF00AA575B /* SUIT-ExtraBold.otf in Resources */,
+				C30728262B4151CF00AA575B /* SUIT-Medium.otf in Resources */,
+				C30728272B4151CF00AA575B /* SUIT-SemiBold.otf in Resources */,
 				C39602C12B3BEE08004BB2B8 /* Assets.xcassets in Resources */,
+				C30728252B4151CF00AA575B /* SUIT-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,7 +529,6 @@
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
 				C39602F32B3BF27D004BB2B8 /* d.swift in Sources */,
-				C39602D92B3BF190004BB2B8 /* a.swift in Sources */,
 				C39602F72B3BF28C004BB2B8 /* f.swift in Sources */,
 				C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */,
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,

@@ -35,11 +35,11 @@ Temporary Items
 *.icloud
 
 ### SwiftPackageManager ###
-Packages
-.build/
-xcuserdata
-DerivedData/
-*.xcodeproj
+## Packages
+## .build/
+## xcuserdata
+## DerivedData/
+## *.xcodeproj
 
 
 ### Xcode ###

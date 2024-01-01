@@ -36,7 +36,6 @@ final class PINGLETabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight: CGFloat = 60
         tabBar.frame.size.height = tabBarHeight + safeAreaHeight
@@ -55,12 +54,12 @@ final class PINGLETabBarController: UITabBarController {
     
     // MARK: - TabBar Style
     private func setTabBarAppearance() {
-        self.view.backgroundColor = .black
         self.selectedIndex = defaultIndex
         self.tabBar.itemPositioning = .fill
         
-        let myFont = UIFont(name: "SUIT-SemiBold", size: 12.0)!
-        let fontAttributes = [NSAttributedString.Key.font: myFont, NSAttributedString.Key.foregroundColor: UIColor.grayscaleG07]
+        let myFont = UIFont.captionCapSemi12
+        let fontAttributes = [NSAttributedString.Key.font: myFont,
+                              NSAttributedString.Key.foregroundColor: UIColor.grayscaleG07]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
     }
     
@@ -90,13 +89,14 @@ final class PINGLETabBarController: UITabBarController {
                 let myFont: UIFont
                 let textColor: UIColor
                 if index == defaultIndex {
-                    myFont = UIFont(name: "SUIT-SemiBold", size: 12.0)!
+                    myFont = UIFont.captionCapSemi12
                     textColor = .white
                 } else {
-                    myFont = UIFont(name: "SUIT-SemiBold", size: 12.0)!
+                    myFont = UIFont.captionCapSemi12
                     textColor = .grayscaleG07
                 }
-                let defaultFontAttributes = [NSAttributedString.Key.font: myFont, NSAttributedString.Key.foregroundColor: textColor]
+                let defaultFontAttributes = [NSAttributedString.Key.font: myFont,
+                                             NSAttributedString.Key.foregroundColor: textColor]
                 tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)
             }
         }
@@ -106,18 +106,19 @@ final class PINGLETabBarController: UITabBarController {
 extension PINGLETabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        
         if let selectedViewController = tabBarController.selectedViewController {
-            let myFont = UIFont(name: "SUIT-SemiBold", size: 12.0)!
-            let selectedFontAttributes = [NSAttributedString.Key.font: myFont, NSAttributedString.Key.foregroundColor: UIColor.white]
+            let myFont = UIFont.captionCapSemi12
+            let selectedFontAttributes = [NSAttributedString.Key.font: myFont,
+                                          NSAttributedString.Key.foregroundColor: UIColor.white]
             selectedViewController.tabBarItem.setTitleTextAttributes(selectedFontAttributes, for: .normal)
         }
         
         for (index, controller) in tabBarController.viewControllers!.enumerated() {
             if let tabBarItem = controller.tabBarItem {
                 if index != tabBarController.selectedIndex {
-                    let myFont = UIFont(name: "SUIT-SemiBold", size: 12.0)!
-                    let defaultFontAttributes = [NSAttributedString.Key.font: myFont, NSAttributedString.Key.foregroundColor: UIColor.grayscaleG07]
+                    let myFont = UIFont.captionCapSemi12
+                    let defaultFontAttributes = [NSAttributedString.Key.font: myFont,
+                                                 NSAttributedString.Key.foregroundColor: UIColor.grayscaleG07]
                     tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)
                 }
             }

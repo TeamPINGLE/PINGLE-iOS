@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 enum ImageLiterals {
     
     // 필요한 enum을 만들어서 사용해주세요

@@ -7,8 +7,7 @@
 
 import UIKit
 
-/// 사용법
-/// label.textColor = .mainPingleGreen
+// 사용예시: label.textColor = .mainPingleGreen
 
 extension UIColor {
 

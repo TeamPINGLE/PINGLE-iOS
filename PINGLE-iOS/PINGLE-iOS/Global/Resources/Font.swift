@@ -80,5 +80,4 @@ extension UIFont {
   class var captionCapMed10: UIFont {
     return UIFont(name: "SUIT-Medium", size: 10.0)!
   }
-
 }

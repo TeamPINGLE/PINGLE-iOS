@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90476A84D658F8529383126E /* Pods_PINGLE_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4C2FEF64C9439656F53167 /* Pods_PINGLE_iOS.framework */; };
 		C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307280E2B414D4B00AA575B /* UITextField+.swift */; };
 		C30728112B414D6500AA575B /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728102B414D6500AA575B /* UILabel+.swift */; };
 		C30728152B414F5800AA575B /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728142B414F5800AA575B /* UIButton+.swift */; };
@@ -56,6 +57,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03E71CF4ACFDF0B6A8554474 /* Pods-PINGLE-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.debug.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		5D4C2FEF64C9439656F53167 /* Pods_PINGLE_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PINGLE_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99FA74A665E555FBFDA809A7 /* Pods-PINGLE-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.release.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C307280E2B414D4B00AA575B /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		C30728102B414D6500AA575B /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		C30728142B414F5800AA575B /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
@@ -111,17 +115,28 @@
 				C39603272B3BF48E004BB2B8 /* Alamofire in Frameworks */,
 				C39603212B3BF47A004BB2B8 /* Then in Frameworks */,
 				C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */,
+				90476A84D658F8529383126E /* Pods_PINGLE_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6DA39E68FB7CB811E21AAB96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5D4C2FEF64C9439656F53167 /* Pods_PINGLE_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C39602AB2B3BEE06004BB2B8 = {
 			isa = PBXGroup;
 			children = (
 				C39602B62B3BEE06004BB2B8 /* PINGLE-iOS */,
 				C39602B52B3BEE06004BB2B8 /* Products */,
+				FF1E7173A2F29B75E917C196 /* Pods */,
+				6DA39E68FB7CB811E21AAB96 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -423,6 +438,15 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		FF1E7173A2F29B75E917C196 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				03E71CF4ACFDF0B6A8554474 /* Pods-PINGLE-iOS.debug.xcconfig */,
+				99FA74A665E555FBFDA809A7 /* Pods-PINGLE-iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -430,9 +454,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C39602C82B3BEE08004BB2B8 /* Build configuration list for PBXNativeTarget "PINGLE-iOS" */;
 			buildPhases = (
+				1CA75F3B5258D5006614A784 /* [CP] Check Pods Manifest.lock */,
 				C39602B02B3BEE06004BB2B8 /* Sources */,
 				C39602B12B3BEE06004BB2B8 /* Frameworks */,
 				C39602B22B3BEE06004BB2B8 /* Resources */,
+				48BCDB9971105693A4122EDE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -504,6 +530,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1CA75F3B5258D5006614A784 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PINGLE-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48BCDB9971105693A4122EDE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C39602B02B3BEE06004BB2B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -541,6 +609,7 @@
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C39603182B3BF36C004BB2B8 /* p.swift in Sources */,
 				C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */,
+				C307282C2B4269A000AA575B /* Config.swift in Sources */,
 				C396030F2B3BF345004BB2B8 /* m.swift in Sources */,
 				C39602F52B3BF283004BB2B8 /* e.swift in Sources */,
 				C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */,
@@ -599,7 +668,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -662,7 +731,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -683,6 +752,7 @@
 		};
 		C39602C92B3BEE08004BB2B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03E71CF4ACFDF0B6A8554474 /* Pods-PINGLE-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -710,6 +780,7 @@
 		};
 		C39602CA2B3BEE08004BB2B8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99FA74A665E555FBFDA809A7 /* Pods-PINGLE-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

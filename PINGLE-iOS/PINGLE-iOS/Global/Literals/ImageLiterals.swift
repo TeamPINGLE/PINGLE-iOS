@@ -17,6 +17,15 @@ enum ImageLiterals {
     enum OnBoarding {
         static var imgExample: UIImage { .load(named: "예시이미지이름")}
     }
+    
+    enum TabBar {
+        static var imgHome: UIImage { .load(named: "imgHome")}
+        static var imgHomeSelected: UIImage { .load(named: "imgHomeSelected")}
+        static var imgAddPingle: UIImage { .load(named: "imgAddPingle")}
+        static var imgAddPingleSelected: UIImage { .load(named: "imgAddPingleSelected")}
+        static var imgSetting: UIImage { .load(named: "imgSetting")}
+        static var imgSettingSelected: UIImage { .load(named: "imgSettingSelected")}
+    }
 }
 
 extension UIImage {

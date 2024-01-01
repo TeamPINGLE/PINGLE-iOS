@@ -91,15 +91,8 @@ final class PINGLETabBarController: UITabBarController {
         
         for (index, controller) in tabs.enumerated() {
             if let tabBarItem = controller.tabBarItem {
-                let myFont: UIFont
-                let textColor: UIColor
-                if index == defaultIndex {
-                    myFont = UIFont.captionCapSemi12
-                    textColor = .white
-                } else {
-                    myFont = UIFont.captionCapSemi12
-                    textColor = .grayscaleG07
-                }
+                let myFont = UIFont.captionCapSemi12
+                let textColor = (index == defaultIndex) ? UIColor.white : UIColor.grayscaleG07
                 let defaultFontAttributes = [NSAttributedString.Key.font: myFont,
                                              NSAttributedString.Key.foregroundColor: textColor]
                 tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)
@@ -112,8 +105,9 @@ final class PINGLETabBarController: UITabBarController {
 // MARK: UITabBarControllerDelegate
 extension PINGLETabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let myFont = UIFont.captionCapSemi12
+
         if let selectedViewController = tabBarController.selectedViewController {
-            let myFont = UIFont.captionCapSemi12
             let selectedFontAttributes = [NSAttributedString.Key.font: myFont,
                                           NSAttributedString.Key.foregroundColor: UIColor.white]
             selectedViewController.tabBarItem.setTitleTextAttributes(selectedFontAttributes, for: .normal)
@@ -122,7 +116,6 @@ extension PINGLETabBarController: UITabBarControllerDelegate {
         for (index, controller) in tabBarController.viewControllers!.enumerated() {
             if let tabBarItem = controller.tabBarItem {
                 if index != tabBarController.selectedIndex {
-                    let myFont = UIFont.captionCapSemi12
                     let defaultFontAttributes = [NSAttributedString.Key.font: myFont,
                                                  NSAttributedString.Key.foregroundColor: UIColor.grayscaleG07]
                     tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)

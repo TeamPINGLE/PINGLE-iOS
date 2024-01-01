@@ -20,6 +20,7 @@
 		C30728252B4151CF00AA575B /* SUIT-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C30728212B4151CF00AA575B /* SUIT-Bold.otf */; };
 		C30728262B4151CF00AA575B /* SUIT-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C30728222B4151CF00AA575B /* SUIT-Medium.otf */; };
 		C30728272B4151CF00AA575B /* SUIT-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C30728232B4151CF00AA575B /* SUIT-SemiBold.otf */; };
+		C307282C2B4269A000AA575B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307282B2B4269A000AA575B /* Config.swift */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
 		C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602BB2B3BEE06004BB2B8 /* ViewController.swift */; };
@@ -72,6 +73,8 @@
 		C30728212B4151CF00AA575B /* SUIT-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Bold.otf"; sourceTree = "<group>"; };
 		C30728222B4151CF00AA575B /* SUIT-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Medium.otf"; sourceTree = "<group>"; };
 		C30728232B4151CF00AA575B /* SUIT-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-SemiBold.otf"; sourceTree = "<group>"; };
+		C307282A2B42695400AA575B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		C307282B2B4269A000AA575B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +136,7 @@
 		C39602AB2B3BEE06004BB2B8 = {
 			isa = PBXGroup;
 			children = (
+				C307282A2B42695400AA575B /* Config.xcconfig */,
 				C39602B62B3BEE06004BB2B8 /* PINGLE-iOS */,
 				C39602B52B3BEE06004BB2B8 /* Products */,
 				FF1E7173A2F29B75E917C196 /* Pods */,
@@ -221,6 +225,7 @@
 				C39602DA2B3BF199004BB2B8 /* Color.swift */,
 				C39602C02B3BEE08004BB2B8 /* Assets.xcassets */,
 				C39602C52B3BEE08004BB2B8 /* Info.plist */,
+				C307282B2B4269A000AA575B /* Config.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -633,6 +638,7 @@
 /* Begin XCBuildConfiguration section */
 		C39602C62B3BEE08004BB2B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C307282A2B42695400AA575B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -696,6 +702,7 @@
 		};
 		C39602C72B3BEE08004BB2B8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C307282A2B42695400AA575B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

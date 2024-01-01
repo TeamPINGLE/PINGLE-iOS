@@ -75,6 +75,7 @@
 		C30728232B4151CF00AA575B /* SUIT-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-SemiBold.otf"; sourceTree = "<group>"; };
 		C307282A2B42695400AA575B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		C307282B2B4269A000AA575B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		C307282E2B42707200AA575B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 		C39602AB2B3BEE06004BB2B8 = {
 			isa = PBXGroup;
 			children = (
+				C307282E2B42707200AA575B /* .swiftlint.yml */,
 				C307282A2B42695400AA575B /* Config.xcconfig */,
 				C39602B62B3BEE06004BB2B8 /* PINGLE-iOS */,
 				C39602B52B3BEE06004BB2B8 /* Products */,
@@ -464,6 +466,7 @@
 				C39602B12B3BEE06004BB2B8 /* Frameworks */,
 				C39602B22B3BEE06004BB2B8 /* Resources */,
 				48BCDB9971105693A4122EDE /* [CP] Embed Pods Frameworks */,
+				C307282D2B42701B00AA575B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -574,6 +577,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C307282D2B42701B00AA575B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

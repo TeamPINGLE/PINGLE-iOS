@@ -1,0 +1,28 @@
+# 코드에 비활성화 하고 싶은 룰이 있다면 해당 코드 바로 상단에
+# swiftlint:disable [룰 이름]과 같이 적어주세요
+
+# ex:
+# swiftlint:disable colon
+# let noWarning :String = ""
+ 
+# 기본 활성화된 룰 중에 비활성화할 룰들을 지정
+disabled_rules:
+- trailing_whitespace # 후행 공백
+- identifier_name # 식별자 이름
+- shorthand_operator # 속기 연산자
+- function_body_length # 함수 바디 길이
+- nesting # 중첩
+- cyclomatic_complexity # 순환 복잡도
+
+# 기본 룰이 아닌 룰들 활성화
+opt_in_rules:
+- empty_count # count보다 isEmpty 사용
+- empty_string # == 0 보다 isEmpty 사용
+- empty_collection_literal # == [] 보다 isEmpty 사용
+- collection_alignment # 정렬
+
+# 린트 과정에서 무시할 파일 경로. `included`보다 우선순위 높음
+excluded:
+- Pingle-iOS/Application
+- Pingle-iOS/Pods
+- Pods

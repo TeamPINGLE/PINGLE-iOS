@@ -22,6 +22,7 @@
 		C30728272B4151CF00AA575B /* SUIT-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C30728232B4151CF00AA575B /* SUIT-SemiBold.otf */; };
 		C307282C2B4269A000AA575B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307282B2B4269A000AA575B /* Config.swift */; };
 		C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307282F2B42CFDF00AA575B /* TabBarItem.swift */; };
+		C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728312B42D0F900AA575B /* PINGLETabBarController.swift */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
 		C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602BB2B3BEE06004BB2B8 /* ViewController.swift */; };
@@ -77,6 +78,7 @@
 		C307282B2B4269A000AA575B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C307282E2B42707200AA575B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C307282F2B42CFDF00AA575B /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		C30728312B42D0F900AA575B /* PINGLETabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLETabBarController.swift; sourceTree = "<group>"; };
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				C307282F2B42CFDF00AA575B /* TabBarItem.swift */,
+				C30728312B42D0F900AA575B /* PINGLETabBarController.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				C39602FB2B3BF295004BB2B8 /* h.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
+				C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */,
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
 				C39602F32B3BF27D004BB2B8 /* d.swift in Sources */,
 				C39602F72B3BF28C004BB2B8 /* f.swift in Sources */,

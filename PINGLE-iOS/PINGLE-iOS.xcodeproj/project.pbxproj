@@ -21,6 +21,9 @@
 		C30728262B4151CF00AA575B /* SUIT-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C30728222B4151CF00AA575B /* SUIT-Medium.otf */; };
 		C30728272B4151CF00AA575B /* SUIT-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C30728232B4151CF00AA575B /* SUIT-SemiBold.otf */; };
 		C307282C2B4269A000AA575B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307282B2B4269A000AA575B /* Config.swift */; };
+		C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307282F2B42CFDF00AA575B /* TabBarItem.swift */; };
+		C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728312B42D0F900AA575B /* PINGLETabBarController.swift */; };
+		C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728332B42E06D00AA575B /* HomeMapViewController.swift */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
 		C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602BB2B3BEE06004BB2B8 /* ViewController.swift */; };
@@ -36,8 +39,6 @@
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
 		C39602F02B3BF273004BB2B8 /* c.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602EF2B3BF273004BB2B8 /* c.swift */; };
 		C39602F32B3BF27D004BB2B8 /* d.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602F22B3BF27D004BB2B8 /* d.swift */; };
-		C39602F52B3BF283004BB2B8 /* e.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602F42B3BF283004BB2B8 /* e.swift */; };
-		C39602F72B3BF28C004BB2B8 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602F62B3BF28C004BB2B8 /* f.swift */; };
 		C39602F92B3BF291004BB2B8 /* g.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602F82B3BF291004BB2B8 /* g.swift */; };
 		C39602FB2B3BF295004BB2B8 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602FA2B3BF295004BB2B8 /* h.swift */; };
 		C39602FD2B3BF299004BB2B8 /* i.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602FC2B3BF299004BB2B8 /* i.swift */; };
@@ -76,6 +77,9 @@
 		C307282A2B42695400AA575B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		C307282B2B4269A000AA575B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C307282E2B42707200AA575B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C307282F2B42CFDF00AA575B /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		C30728312B42D0F900AA575B /* PINGLETabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLETabBarController.swift; sourceTree = "<group>"; };
+		C30728332B42E06D00AA575B /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,8 +97,6 @@
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C39602EF2B3BF273004BB2B8 /* c.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = c.swift; sourceTree = "<group>"; };
 		C39602F22B3BF27D004BB2B8 /* d.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = d.swift; sourceTree = "<group>"; };
-		C39602F42B3BF283004BB2B8 /* e.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e.swift; sourceTree = "<group>"; };
-		C39602F62B3BF28C004BB2B8 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
 		C39602F82B3BF291004BB2B8 /* g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = g.swift; sourceTree = "<group>"; };
 		C39602FA2B3BF295004BB2B8 /* h.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
 		C39602FC2B3BF299004BB2B8 /* i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i.swift; sourceTree = "<group>"; };
@@ -288,7 +290,7 @@
 		C39602E82B3BF214004BB2B8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C39602F62B3BF28C004BB2B8 /* f.swift */,
+				C30728332B42E06D00AA575B /* HomeMapViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -296,7 +298,8 @@
 		C39602E92B3BF21D004BB2B8 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				C39602F42B3BF283004BB2B8 /* e.swift */,
+				C307282F2B42CFDF00AA575B /* TabBarItem.swift */,
+				C30728312B42D0F900AA575B /* PINGLETabBarController.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -620,9 +623,9 @@
 				C39602FB2B3BF295004BB2B8 /* h.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
+				C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */,
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
 				C39602F32B3BF27D004BB2B8 /* d.swift in Sources */,
-				C39602F72B3BF28C004BB2B8 /* f.swift in Sources */,
 				C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */,
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C39602F02B3BF273004BB2B8 /* c.swift in Sources */,
@@ -634,9 +637,10 @@
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C39603182B3BF36C004BB2B8 /* p.swift in Sources */,
 				C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */,
+				C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */,
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
 				C396030F2B3BF345004BB2B8 /* m.swift in Sources */,
-				C39602F52B3BF283004BB2B8 /* e.swift in Sources */,
+				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,
 				C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */,
 				C39602DD2B3BF1A8004BB2B8 /* UIView+.swift in Sources */,
 			);
@@ -792,6 +796,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -820,6 +825,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

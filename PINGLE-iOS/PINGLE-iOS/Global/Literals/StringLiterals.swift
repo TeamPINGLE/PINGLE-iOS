@@ -13,6 +13,12 @@ enum StringLiterals {
     // 사용예시: titleLabel.text = StringLiterals.TabBar.home
     
     enum TabBar {
-        static let home = "홈"
+        enum ItemTitle {
+            static let home = "홈"
+            static let recommend = "추천"
+            static let addPingle = "추가"
+            static let myPingle = "마이핑글"
+            static let setting = "설정"
+        }
     }
 }

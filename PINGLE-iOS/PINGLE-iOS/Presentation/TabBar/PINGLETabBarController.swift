@@ -12,6 +12,8 @@ import Then
 
 final class PINGLETabBarController: UITabBarController {
     
+    // MARK: - Variables
+    // MARK: Property
     var defaultIndex = 0 {
         didSet {
             self.selectedIndex = defaultIndex
@@ -27,7 +29,9 @@ final class PINGLETabBarController: UITabBarController {
     let addPingleViewController = UIViewController()
     let myPingleViewController = UIViewController()
     let settingViewController = UIViewController()
-
+    
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
@@ -48,11 +52,12 @@ final class PINGLETabBarController: UITabBarController {
         setTabBarItems()
     }
     
+    // MARK: Delegate Function
     private func setDelegate() {
         self.delegate = self
     }
     
-    // MARK: - TabBar Style
+    // MARK: TabBar Style
     private func setTabBarAppearance() {
         self.selectedIndex = defaultIndex
         self.tabBar.itemPositioning = .fill
@@ -83,7 +88,7 @@ final class PINGLETabBarController: UITabBarController {
             tabs[$0.rawValue].tabBarItem = $0.asTabBarItem()
             tabs[$0.rawValue].tabBarItem.tag = $0.rawValue
         }
-
+        
         for (index, controller) in tabs.enumerated() {
             if let tabBarItem = controller.tabBarItem {
                 let myFont: UIFont
@@ -103,8 +108,9 @@ final class PINGLETabBarController: UITabBarController {
     }
 }
 
+// MARK: - extension
+// MARK: UITabBarControllerDelegate
 extension PINGLETabBarController: UITabBarControllerDelegate {
-    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if let selectedViewController = tabBarController.selectedViewController {
             let myFont = UIFont.captionCapSemi12

@@ -34,8 +34,7 @@ final class OnboardingViewController: BaseViewController {
             $0.text = StringLiterals.Onboarding.ExplainTitle.onboarding
             $0.font = .titleTitleSemi30
             $0.textColor = .white
-            $0.textAlignment = .left
-            $0.numberOfLines = 2
+            $0.numberOfLines = 0
         }
         
         self.existingOrganizationButton.do {
@@ -44,6 +43,11 @@ final class OnboardingViewController: BaseViewController {
             $0.setTitleColor(.white, for: .normal)
             $0.setImage(ImageLiterals.OnBoarding.imgSample, for: .normal)
             $0.alignTextBelow(spacing: 11)
+            $0.titleLabel?.numberOfLines = 0
+            $0.titleLabel?.textAlignment = .center
+            $0.titleLabel?.lineBreakMode = .byWordWrapping
+            $0.layer.cornerRadius = 12
+            $0.layer.backgroundColor = UIColor(red: 0.145, green: 0.161, blue: 0.188, alpha: 1).cgColor
         }
         
         self.makeOrganizationButton.do {
@@ -52,6 +56,11 @@ final class OnboardingViewController: BaseViewController {
             $0.setTitleColor(.white, for: .normal)
             $0.setImage(ImageLiterals.OnBoarding.imgSample, for: .normal)
             $0.alignTextBelow(spacing: 11)
+            $0.titleLabel?.numberOfLines = 0
+            $0.titleLabel?.textAlignment = .center
+            $0.titleLabel?.lineBreakMode = .byWordWrapping
+            $0.layer.cornerRadius = 12
+            $0.layer.backgroundColor = UIColor(red: 0.145, green: 0.161, blue: 0.188, alpha: 1).cgColor
         }
     }
     
@@ -95,4 +104,3 @@ final class OnboardingViewController: BaseViewController {
         present(safariVC, animated: true)
     }
 }
-

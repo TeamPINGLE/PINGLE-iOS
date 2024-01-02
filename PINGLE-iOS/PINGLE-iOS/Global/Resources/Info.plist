@@ -7,11 +7,11 @@
 	<key>NAVER_MAP_CLIENT_ID</key>
 	<string>$(NAVER_MAP_CLIENT_ID)</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>현재 위치 사용을 허용하시겠습니까?</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>현재 위치 사용을 허용하시겠습니까?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>현재 위치 사용을 허용하시겠습니까?</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SUIT-Bold.otf</string>

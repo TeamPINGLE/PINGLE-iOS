@@ -39,7 +39,6 @@ class ChipButton: UIButton {
     /// Custom Init
     init(state: ChipStatus) {
         super.init(frame: CGRect())
-        self.chipStatus = state
         self.setButtonStatus(state: state)
         setUI()
     }
@@ -51,6 +50,7 @@ extension ChipButton {
     private func setUI() {
         setStyle()
         setLayout()
+        setButtonStatus(state: chipStatus)
     }
     
     private func setStyle() {
@@ -63,6 +63,8 @@ extension ChipButton {
     private func setLayout() { }
     
     func setButtonStatus(state: ChipStatus) {
+        self.chipStatus = state
+
         if isButtonSelected {
             setButtonSelected(state: state)
         } else {
@@ -71,7 +73,6 @@ extension ChipButton {
     }
     
     func setButtonUnselected(state: ChipStatus) {
-        self.chipStatus = state
         switch state {
         case .play:
             self.setImage(ImageLiterals.Home.Chips.btnPlayChip, for: .normal)
@@ -88,7 +89,6 @@ extension ChipButton {
     }
     
     func setButtonSelected(state: ChipStatus) {
-        self.chipStatus = state
         switch state {
         case .play:
             self.setImage(ImageLiterals.Home.Chips.btnPlayChipSelected, for: .normal)

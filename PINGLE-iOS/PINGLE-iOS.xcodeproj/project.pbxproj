@@ -24,6 +24,8 @@
 		C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307282F2B42CFDF00AA575B /* TabBarItem.swift */; };
 		C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728312B42D0F900AA575B /* PINGLETabBarController.swift */; };
 		C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728332B42E06D00AA575B /* HomeMapViewController.swift */; };
+		C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */; };
+		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
 		C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602BB2B3BEE06004BB2B8 /* ViewController.swift */; };
@@ -81,6 +83,8 @@
 		C307282F2B42CFDF00AA575B /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		C30728312B42D0F900AA575B /* PINGLETabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLETabBarController.swift; sourceTree = "<group>"; };
 		C30728332B42E06D00AA575B /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
+		C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButtonStatus.swift; sourceTree = "<group>"; };
+		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -293,7 +297,9 @@
 			isa = PBXGroup;
 			children = (
 				C30728332B42E06D00AA575B /* HomeMapViewController.swift */,
+				C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */,
 				C3EC304E2B43E20600276E00 /* HomeMapView.swift */,
+				C31A47A62B44761200D3CD4B /* ChipButton.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -636,6 +642,7 @@
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
+				C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */,
 				C396031C2B3BF374004BB2B8 /* r.swift in Sources */,
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C39603182B3BF36C004BB2B8 /* p.swift in Sources */,
@@ -647,6 +654,7 @@
 				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,
 				C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */,
 				C39602DD2B3BF1A8004BB2B8 /* UIView+.swift in Sources */,
+				C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,6 +804,9 @@
 				DEVELOPMENT_TEAM = 32CGJPPY5G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PINGLE-iOS/Global/Resources/Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

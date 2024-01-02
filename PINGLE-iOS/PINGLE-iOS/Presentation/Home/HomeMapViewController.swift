@@ -12,13 +12,18 @@ import SnapKit
 import Then
 
 final class HomeMapViewController: BaseViewController {
-    let chipArray: [ChipStatus] = [.play, .study, .multi, .others]
+    
+    let chipArray: [ChipButtonStatus] = [ChipButtonStatus(chipStatus: .play, isSelected: false),
+                                         ChipButtonStatus(chipStatus: .study, isSelected: false),
+                                         ChipButtonStatus(chipStatus: .multi, isSelected: false),
+                                         ChipButtonStatus(chipStatus: .others, isSelected: false)]
     let mapsView = HomeMapView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         setLocationManager()
+        setAddTarget()
     }
     
     override func setLayout() {
@@ -33,11 +38,6 @@ final class HomeMapViewController: BaseViewController {
         }
     }
     
-    override func setDelegate() {
-        self.mapsView.chipCollectionView.delegate = self
-        self.mapsView.chipCollectionView.dataSource = self
-    }
-    
     private func setLocationManager() {
         mapsView.locationManager.delegate = self
         mapsView.locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -48,6 +48,12 @@ final class HomeMapViewController: BaseViewController {
             } else {
                 print("위치 서비스 허용 off")
             }
+        }
+    }
+    
+    private func setAddTarget() {
+        self.mapsView.chipButtons.forEach {
+            $0.addTarget(self, action: #selector(isChipButtonTapped), for: .touchUpInside)
         }
     }
 }
@@ -74,17 +80,14 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     }
 }
 
-extension HomeMapViewController: UICollectionViewDelegate {}
+extension HomeMapViewController {
+    @objc func isChipButtonTapped(sender: ChipButton) {
+        /// 태그 선택 여부 반전
+        sender.isButtonSelected.toggle()
 
-extension HomeMapViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return chipArray.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChipCollectionViewCell.identifier,
-                                                            for: indexPath) as? ChipCollectionViewCell else { return UICollectionViewCell() }
-        cell.setButtonState(state: chipArray[indexPath.row])
-        return cell
+        /// 태그 하나만 선택할 수 있도록
+        self.mapsView.chipButtons.filter { $0 != sender }.forEach {
+            $0.isButtonSelected = false
+        }
     }
 }

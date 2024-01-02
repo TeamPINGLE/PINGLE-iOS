@@ -24,9 +24,17 @@ final class HomeMapView: BaseView {
                                37.62299678698725: 126.8469346126135,
                                37.63299678698725: 126.8769346126135]
     
-    lazy var chipCollectionView = UICollectionView(frame: .zero,
-                                                           collectionViewLayout: chipFlowLayout)
-    private let chipFlowLayout = UICollectionViewFlowLayout()
+    let chipStackView = UIStackView()
+    
+    let playChipButton = ChipButton(state: .play)
+    let studyChipButton = ChipButton(state: .study)
+    let multiChipButton = ChipButton(state: .multi)
+    let othersChipButton = ChipButton(state: .others)
+    
+    lazy var chipButtons: [ChipButton] = [playChipButton,
+                                          studyChipButton,
+                                          multiChipButton,
+                                          othersChipButton]
     
     let mapsView = NMFNaverMapView()
     let locationButton = NMFLocationButton()
@@ -43,12 +51,6 @@ final class HomeMapView: BaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setMarker()
-        setCollectionViewConfig()
-    }
-    
-    private func setCollectionViewConfig() {
-        self.chipCollectionView.register(ChipCollectionViewCell.self, 
-                                         forCellWithReuseIdentifier: ChipCollectionViewCell.identifier)
     }
     
     override func setStyle() {
@@ -86,33 +88,27 @@ final class HomeMapView: BaseView {
             $0.animation = .easeIn
         }
         
-        chipCollectionView.do {
-            $0.backgroundColor = .clear
-            $0.isUserInteractionEnabled = true
-            $0.isScrollEnabled = false
-            $0.showsHorizontalScrollIndicator = false
-        }
-        
-        chipFlowLayout.do {
-            $0.estimatedItemSize = CGSize(width: 73.adjustedHeight, height: 33.adjustedHeight)
-            $0.minimumLineSpacing = 4
-            $0.scrollDirection = .horizontal
+        chipStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 4.adjustedWidth
         }
     }
     
     override func setLayout() {
-        self.addSubviews(mapsView, chipCollectionView)
+        self.addSubviews(mapsView, chipStackView)
         mapsView.addSubview(locationButton)
+        
+        chipButtons.forEach {
+            chipStackView.addArrangedSubview($0)
+        }
         
         mapsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        chipCollectionView.snp.makeConstraints {
+        chipStackView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).inset(20.adjustedHeight)
             $0.leading.equalToSuperview().inset(36.adjustedWidth)
-            $0.trailing.equalToSuperview().inset(40.adjustedWidth)
-            $0.height.equalTo(33.adjustedHeight)
         }
         
         locationButton.snp.makeConstraints {

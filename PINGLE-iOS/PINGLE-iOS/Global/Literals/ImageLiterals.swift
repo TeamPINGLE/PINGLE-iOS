@@ -27,8 +27,8 @@ enum ImageLiterals {
     
     enum Home {
         enum Chips {
-            static var btnMulitChip: UIImage { .load(named: "btnMulitChip")}
-            static var btnMulitChipSelected: UIImage { .load(named: "btnMulitChipSelected")}
+            static var btnMultiChip: UIImage { .load(named: "btnMultiChip")}
+            static var btnMultiChipSelected: UIImage { .load(named: "btnMultiChipSelected")}
             static var btnOtherChip: UIImage { .load(named: "btnOtherChip")}
             static var btnOthersChipSelected: UIImage { .load(named: "btnOthersChipSelected")}
             static var btnPlayChip: UIImage { .load(named: "btnPlayChip")}

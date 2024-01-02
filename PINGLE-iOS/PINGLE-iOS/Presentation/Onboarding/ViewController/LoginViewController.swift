@@ -11,7 +11,7 @@ import AuthenticationServices
 import SnapKit
 import Then
 
-class LoginViewController: BaseViewController {
+final class LoginViewController: BaseViewController {
     
     // MARK: Property
     private let logoImageView = UIImageView()

@@ -33,8 +33,8 @@ class LoginViewController: BaseViewController {
             $0.layer.cornerRadius = 12
             $0.backgroundColor = .white
             $0.setImage(ImageLiterals.OnBoarding.imgApplelogo, for: .normal)
-            $0.setTitle("Apple로 시작하기", for: .normal)
-            $0.setTitleColor(UIColor.black, for: .normal)
+            $0.setTitle(StringLiterals.Onboarding.ButtonTitle.appleLogin, for: .normal)
+            $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
             $0.contentHorizontalAlignment = .left
             $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 101.adjusted, bottom: 0, right: 0)

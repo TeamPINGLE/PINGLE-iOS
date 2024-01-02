@@ -24,6 +24,10 @@ final class HomeMapView: BaseView {
                                37.62299678698725: 126.8469346126135,
                                37.63299678698725: 126.8769346126135]
     
+    lazy var chipCollectionView = UICollectionView(frame: .zero,
+                                                           collectionViewLayout: chipFlowLayout)
+    private let chipFlowLayout = UICollectionViewFlowLayout()
+    
     let mapsView = NMFNaverMapView()
     let locationButton = NMFLocationButton()
     
@@ -39,6 +43,12 @@ final class HomeMapView: BaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setMarker()
+        setCollectionViewConfig()
+    }
+    
+    private func setCollectionViewConfig() {
+        self.chipCollectionView.register(ChipCollectionViewCell.self, 
+                                         forCellWithReuseIdentifier: ChipCollectionViewCell.identifier)
     }
     
     override func setStyle() {
@@ -75,14 +85,34 @@ final class HomeMapView: BaseView {
         cameraUpdate.do {
             $0.animation = .easeIn
         }
+        
+        chipCollectionView.do {
+            $0.backgroundColor = .clear
+            $0.isUserInteractionEnabled = true
+            $0.isScrollEnabled = false
+            $0.showsHorizontalScrollIndicator = false
+        }
+        
+        chipFlowLayout.do {
+            $0.estimatedItemSize = CGSize(width: 73.adjustedHeight, height: 33.adjustedHeight)
+            $0.minimumLineSpacing = 4
+            $0.scrollDirection = .horizontal
+        }
     }
     
     override func setLayout() {
-        self.addSubview(mapsView)
+        self.addSubviews(mapsView, chipCollectionView)
         mapsView.addSubview(locationButton)
         
         mapsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        chipCollectionView.snp.makeConstraints {
+            $0.top.equalTo(self.safeAreaLayoutGuide).inset(20.adjustedHeight)
+            $0.leading.equalToSuperview().inset(36.adjustedWidth)
+            $0.trailing.equalToSuperview().inset(40.adjustedWidth)
+            $0.height.equalTo(33.adjustedHeight)
         }
         
         locationButton.snp.makeConstraints {

@@ -12,10 +12,12 @@ import SnapKit
 import Then
 
 final class HomeMapViewController: BaseViewController {
+    let chipArray: [ChipStatus] = [.play, .study, .multi, .others]
     let mapsView = HomeMapView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
         setLocationManager()
     }
     
@@ -29,6 +31,11 @@ final class HomeMapViewController: BaseViewController {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(safeAreaHeight).offset(-tabBarHeight)
         }
+    }
+    
+    override func setDelegate() {
+        self.mapsView.chipCollectionView.delegate = self
+        self.mapsView.chipCollectionView.dataSource = self
     }
     
     private func setLocationManager() {
@@ -64,5 +71,20 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
         print("error")
+    }
+}
+
+extension HomeMapViewController: UICollectionViewDelegate {}
+
+extension HomeMapViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return chipArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChipCollectionViewCell.identifier,
+                                                            for: indexPath) as? ChipCollectionViewCell else { return UICollectionViewCell() }
+        cell.setButtonState(state: chipArray[indexPath.row])
+        return cell
     }
 }

@@ -24,6 +24,25 @@ enum ImageLiterals {
         static var imgSetting: UIImage { .load(named: "imgSetting")}
         static var imgSettingSelected: UIImage { .load(named: "imgSettingSelected")}
     }
+    
+    enum Home {
+        enum Chips {
+            static var btnMulitChip: UIImage { .load(named: "btnMulitChip")}
+            static var btnMulitChipSelected: UIImage { .load(named: "btnMulitChipSelected")}
+            static var btnOtherChip: UIImage { .load(named: "btnOtherChip")}
+            static var btnOthersChipSelected: UIImage { .load(named: "btnOthersChipSelected")}
+            static var btnPlayChip: UIImage { .load(named: "btnPlayChip")}
+            static var btnPlayChipSelected: UIImage { .load(named: "btnPlayChipSelected")}
+            static var btnStudyChip: UIImage { .load(named: "btnStudyChip")}
+            static var btnStudyChipSelected: UIImage { .load(named: "btnStudyChipSelected")}
+        }
+        
+        enum Button {
+            static var icMapHere: UIImage { .load(named: "icMapHere")}
+            static var icMapList: UIImage { .load(named: "icMapList")}
+            static var icMapMap: UIImage { .load(named: "icMapMap")}
+        }
+    }
 }
 
 extension UIImage {

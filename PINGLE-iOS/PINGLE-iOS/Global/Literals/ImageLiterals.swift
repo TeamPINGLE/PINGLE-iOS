@@ -13,7 +13,7 @@ enum ImageLiterals {
     // 사용예시: imageView.image = ImageLiterals.OnBoarding.imgExample
     
     enum OnBoarding {
-        static var imgExample: UIImage { .load(named: "예시이미지이름")}
+        static var imgApplelogo: UIImage { .load(named: "imgApplelogo")}
     }
     
     enum TabBar {

@@ -6,12 +6,6 @@
 	<string>$(BASE_URL)</string>
 	<key>NAVER_MAP_CLIENT_ID</key>
 	<string>$(NAVER_MAP_CLIENT_ID)</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SUIT-Bold.otf</string>

@@ -15,6 +15,12 @@ enum StringLiterals {
     enum Onboarding {
         enum ButtonTitle {
             static let appleLogin = "Apple로 시작하기"
+            static let existingOrganization = "기존 단체\n입장하기"
+            static let makeOrganization = "신규 단체\n개설하기"
+        }
+        
+        enum ExplainTitle {
+            static let onboarding = "핑글에 오신걸\n환영합니다!"
         }
     }
     

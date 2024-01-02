@@ -37,10 +37,11 @@ enum ImageLiterals {
             static var btnStudyChipSelected: UIImage { .load(named: "btnStudyChipSelected")}
         }
         
-        enum Button {
+        enum Map {
             static var icMapHere: UIImage { .load(named: "icMapHere")}
             static var icMapList: UIImage { .load(named: "icMapList")}
             static var icMapMap: UIImage { .load(named: "icMapMap")}
+            static var icLocationOverlay: UIImage { .load(named: "icLocationOverlay")}
         }
     }
 }

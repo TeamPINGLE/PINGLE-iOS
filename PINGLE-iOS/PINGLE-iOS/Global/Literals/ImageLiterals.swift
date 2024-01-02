@@ -14,6 +14,7 @@ enum ImageLiterals {
     
     enum OnBoarding {
         static var imgApplelogo: UIImage { .load(named: "imgApplelogo")}
+        static var imgSample: UIImage { .load(named: "imgSample")}
     }
     
     enum TabBar {

@@ -24,6 +24,13 @@ enum ImageLiterals {
         static var imgSetting: UIImage { .load(named: "imgSetting")}
         static var imgSettingSelected: UIImage { .load(named: "imgSettingSelected")}
     }
+    
+    enum Metting {
+        enum Guide {
+            static var imgExitButton: UIImage { .load(named: "imgExitButton")}
+            static var imgMettingGraphic: UIImage { .load(named: "imgMettingGraphic")}
+        }
+    }
 }
 
 extension UIImage {

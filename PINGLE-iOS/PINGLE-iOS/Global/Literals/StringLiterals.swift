@@ -27,4 +27,11 @@ enum StringLiterals {
             static let setting = "설정"
         }
     }
+    
+    enum Metting {
+        enum MettingGuide {
+            static let guideTitle = "새로운 핑글을\n개최해보아요!"
+            static let guideSubTitle = "어쩌구 번개를 개최하고\n어쩌구 번개를 개최하고"
+        }
+    }
 }

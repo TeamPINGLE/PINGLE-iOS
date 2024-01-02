@@ -13,10 +13,6 @@ import Then
 
 final class HomeMapViewController: BaseViewController {
     
-    let chipArray: [ChipButtonStatus] = [ChipButtonStatus(chipStatus: .play, isSelected: false),
-                                         ChipButtonStatus(chipStatus: .study, isSelected: false),
-                                         ChipButtonStatus(chipStatus: .multi, isSelected: false),
-                                         ChipButtonStatus(chipStatus: .others, isSelected: false)]
     let mapsView = HomeMapView()
     
     override func viewDidLoad() {

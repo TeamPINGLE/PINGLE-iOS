@@ -39,7 +39,6 @@
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
 		C39602F32B3BF27D004BB2B8 /* d.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602F22B3BF27D004BB2B8 /* d.swift */; };
 		C39602F92B3BF291004BB2B8 /* g.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602F82B3BF291004BB2B8 /* g.swift */; };
-		C39602FB2B3BF295004BB2B8 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602FA2B3BF295004BB2B8 /* h.swift */; };
 		C39602FD2B3BF299004BB2B8 /* i.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602FC2B3BF299004BB2B8 /* i.swift */; };
 		C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602FE2B3BF29D004BB2B8 /* j.swift */; };
 		C396030B2B3BF33B004BB2B8 /* k.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030A2B3BF33B004BB2B8 /* k.swift */; };
@@ -55,6 +54,8 @@
 		C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C39603232B3BF484004BB2B8 /* SnapKit */; };
 		C39603272B3BF48E004BB2B8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C39603262B3BF48E004BB2B8 /* Alamofire */; };
 		C396032A2B3BF497004BB2B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C39603292B3BF497004BB2B8 /* Kingfisher */; };
+		E5AD299B2B455E20005D1220 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29982B455E20005D1220 /* h.swift */; };
+		E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */; };
 		F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BB72B43CABE0072A02A /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,7 +98,6 @@
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C39602F22B3BF27D004BB2B8 /* d.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = d.swift; sourceTree = "<group>"; };
 		C39602F82B3BF291004BB2B8 /* g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = g.swift; sourceTree = "<group>"; };
-		C39602FA2B3BF295004BB2B8 /* h.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
 		C39602FC2B3BF299004BB2B8 /* i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i.swift; sourceTree = "<group>"; };
 		C39602FE2B3BF29D004BB2B8 /* j.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = j.swift; sourceTree = "<group>"; };
 		C396030A2B3BF33B004BB2B8 /* k.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = k.swift; sourceTree = "<group>"; };
@@ -109,6 +109,8 @@
 		C39603192B3BF370004BB2B8 /* q.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = q.swift; sourceTree = "<group>"; };
 		C396031B2B3BF374004BB2B8 /* r.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = r.swift; sourceTree = "<group>"; };
 		C396031D2B3BF379004BB2B8 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
+		E5AD29982B455E20005D1220 /* h.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
+		E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMettingGuideViewController.swift; sourceTree = "<group>"; };
 		F1239BB72B43CABE0072A02A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F1239BB92B43E49D0072A02A /* PINGLE-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PINGLE-iOS.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -317,7 +319,8 @@
 		C39602EB2B3BF234004BB2B8 /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
-				C39602FA2B3BF295004BB2B8 /* h.swift */,
+				E5AD29972B455E20005D1220 /* View */,
+				E5AD29992B455E20005D1220 /* ViewController */,
 			);
 			path = Meeting;
 			sourceTree = "<group>";
@@ -448,6 +451,22 @@
 				C39603132B3BF35E004BB2B8 /* n.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		E5AD29972B455E20005D1220 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5AD29982B455E20005D1220 /* h.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5AD29992B455E20005D1220 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {
@@ -618,13 +637,14 @@
 				C39602FD2B3BF299004BB2B8 /* i.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
+				E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */,
 				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
 				C396030D2B3BF33F004BB2B8 /* l.swift in Sources */,
 				C396030B2B3BF33B004BB2B8 /* k.swift in Sources */,
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
+				E5AD299B2B455E20005D1220 /* h.swift in Sources */,
 				C39602F92B3BF291004BB2B8 /* g.swift in Sources */,
-				C39602FB2B3BF295004BB2B8 /* h.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
 				C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */,

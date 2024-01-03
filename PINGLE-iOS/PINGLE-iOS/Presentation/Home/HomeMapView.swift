@@ -38,6 +38,7 @@ final class HomeMapView: BaseView {
     
     let mapsView = NMFNaverMapView()
     let locationButton = NMFLocationButton()
+    let locationOverlayIcon = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
     
     var nowLat: Double = 37.56299678698725
     var nowLng: Double = 126.8569346126135
@@ -47,6 +48,9 @@ final class HomeMapView: BaseView {
     
     let marker = NMFMarker()
     let infoWindow = NMFInfoWindow()
+    
+    let currentLocationButton = UIButton()
+    let listButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,13 +70,6 @@ final class HomeMapView: BaseView {
             $0.showScaleBar = false
             $0.showZoomControls = false
             $0.showCompass = false
-            
-            let locationOverlay = $0.mapView.locationOverlay
-            locationOverlay.circleColor = .red
-            locationOverlay.circleRadius = 20
-            locationOverlay.circleOutlineColor = .red
-            locationOverlay.circleOutlineColor.withAlphaComponent(0.3)
-            locationOverlay.circleOutlineWidth = 3
         }
         
         locationButton.do {
@@ -92,11 +89,28 @@ final class HomeMapView: BaseView {
             $0.axis = .horizontal
             $0.spacing = 4.adjustedWidth
         }
+        
+        currentLocationButton.do {
+            $0.backgroundColor = .white
+            $0.makeCornerRound(radius: 25.adjusted)
+            $0.setImage(ImageLiterals.Home.Map.icMapHere, for: .normal)
+            $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+        }
+        
+        listButton.do {
+            $0.backgroundColor = .white
+            $0.makeCornerRound(radius: 25.adjusted)
+            $0.setImage(ImageLiterals.Home.Map.icMapList, for: .normal)
+            $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+        }
+        
+        setLocationOverlay()
     }
     
     override func setLayout() {
         self.addSubviews(mapsView, chipStackView)
-        mapsView.addSubview(locationButton)
+        mapsView.addSubviews(currentLocationButton,
+                             listButton)
         
         chipButtons.forEach {
             chipStackView.addArrangedSubview($0)
@@ -111,10 +125,16 @@ final class HomeMapView: BaseView {
             $0.leading.equalToSuperview().inset(36.adjustedWidth)
         }
         
-        locationButton.snp.makeConstraints {
-            $0.width.height.equalTo(50)
-            $0.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview().inset(82)
+        listButton.snp.makeConstraints {
+            $0.width.height.equalTo(50.adjusted)
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(30.adjustedHeight)
+        }
+        
+        currentLocationButton.snp.makeConstraints {
+            $0.width.height.equalTo(50.adjusted)
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.bottom.equalTo(listButton.snp.top).offset(-8.adjustedHeight)
         }
     }
     
@@ -123,6 +143,13 @@ final class HomeMapView: BaseView {
             let marker = NMFMarker()
             marker.position = NMGLatLng(lat: $0, lng: $1)
             marker.mapView = mapsView.mapView
+        }
+    }
+    
+    private func setLocationOverlay() {
+        locationOverlayIcon.do {
+            let locationOverlay = mapsView.mapView.locationOverlay
+            locationOverlay.icon = $0
         }
     }
 }

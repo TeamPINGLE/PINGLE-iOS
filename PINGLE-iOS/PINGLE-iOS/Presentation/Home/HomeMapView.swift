@@ -54,6 +54,7 @@ final class HomeMapView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setAddTarget()
         setMarker()
     }
     
@@ -138,6 +139,13 @@ final class HomeMapView: BaseView {
         }
     }
     
+    private func setAddTarget() {
+        
+        self.currentLocationButton.addTarget(self,
+                                             action: #selector(currentLocationButtonTapped),
+                                             for: .touchUpInside)
+    }
+    
     private func setMarker() {
         markerDummy.forEach {
             let marker = NMFMarker()
@@ -151,5 +159,9 @@ final class HomeMapView: BaseView {
             let locationOverlay = mapsView.mapView.locationOverlay
             locationOverlay.icon = $0
         }
+    }
+    
+    @objc func currentLocationButtonTapped() {
+        print("현위치 버튼 탭")
     }
 }

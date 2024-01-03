@@ -51,6 +51,8 @@ final class HomeMapViewController: BaseViewController {
         self.mapsView.chipButtons.forEach {
             $0.addTarget(self, action: #selector(isChipButtonTapped), for: .touchUpInside)
         }
+        
+        self.mapsView.listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -85,5 +87,9 @@ extension HomeMapViewController {
         self.mapsView.chipButtons.filter { $0 != sender }.forEach {
             $0.isButtonSelected = false
         }
+    }
+    
+    @objc func listButtonTapped() {
+        print("리스트 버튼 탭")
     }
 }

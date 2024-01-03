@@ -67,7 +67,8 @@ final class LoginViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func handleAuthorizationAppleIDButtonPress() {
-        
+        let onboardingViewController = OnboardingViewController()
+        navigationController?.pushViewController(onboardingViewController, animated: true)
     }
     
 }

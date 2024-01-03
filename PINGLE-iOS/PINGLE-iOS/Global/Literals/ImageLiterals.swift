@@ -12,6 +12,10 @@ enum ImageLiterals {
     // 필요한 enum을 만들어서 사용해주세요
     // 사용예시: imageView.image = ImageLiterals.OnBoarding.imgExample
     
+    enum Icon {
+        static var imgArrowLeft: UIImage { .load(named: "imgArrowLeft")}
+    }
+    
     enum OnBoarding {
         static var imgApplelogo: UIImage { .load(named: "imgApplelogo")}
         static var imgSample: UIImage { .load(named: "imgSample")}

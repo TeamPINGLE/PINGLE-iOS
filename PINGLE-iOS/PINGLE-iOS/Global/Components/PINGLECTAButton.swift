@@ -28,12 +28,14 @@ class PINGLECTAButton: UIButton {
         self.setTitle(title, for: .normal)
     }
     
+// MARK: - Function
     private func commonInit() {
         self.isEnabled = false
         self.titleLabel?.font = .subtitleSubSemi16
         self.layer.cornerRadius = 10.adjusted
     }
-    
+
+// MARK: - UI
     private func setLayout() {
         self.snp.makeConstraints {
             $0.width.equalTo(UIScreen.main.bounds.width-32.adjusted)
@@ -42,6 +44,7 @@ class PINGLECTAButton: UIButton {
     }
 }
 
+// MARK: - extension
 extension PINGLECTAButton {
     func activateButton() {
         self.backgroundColor = .white

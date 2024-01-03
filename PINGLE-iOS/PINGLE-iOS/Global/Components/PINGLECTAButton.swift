@@ -18,7 +18,7 @@ class PINGLECTAButton: UIButton {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
     init(title: String, buttonColor: UIColor, textColor: UIColor) {
         super.init(frame: .zero)
         commonInit()
@@ -29,9 +29,9 @@ class PINGLECTAButton: UIButton {
     }
     
     private func commonInit() {
-        isEnabled = false
-        titleLabel?.font = .subtitleSubSemi16
-        layer.cornerRadius = 10.adjusted
+        self.isEnabled = false
+        self.titleLabel?.font = .subtitleSubSemi16
+        self.layer.cornerRadius = 10.adjusted
     }
     
     private func setLayout() {
@@ -44,14 +44,14 @@ class PINGLECTAButton: UIButton {
 
 extension PINGLECTAButton {
     func activateButton() {
-        backgroundColor = .white
-        setTitleColor(.black, for: .normal)
-        isEnabled = true
+        self.backgroundColor = .white
+        self.setTitleColor(.black, for: .normal)
+        self.isEnabled = true
     }
     
     func disabledButton() {
-        backgroundColor = .grayscaleG08
-        setTitleColor(.grayscaleG10, for: .normal)
-        isEnabled = false
+        self.backgroundColor = .grayscaleG08
+        self.setTitleColor(.grayscaleG10, for: .normal)
+        self.isEnabled = false
     }
 }

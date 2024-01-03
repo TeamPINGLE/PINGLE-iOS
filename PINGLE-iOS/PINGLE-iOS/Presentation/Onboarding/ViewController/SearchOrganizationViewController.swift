@@ -14,6 +14,7 @@ import Then
 final class SearchOrganizationViewController: BaseViewController {
     
     // MARK: Property
+    private let backButton = UIButton()
     private let titleLabel = UILabel()
     
     // MARK: Life Cycle
@@ -27,6 +28,10 @@ final class SearchOrganizationViewController: BaseViewController {
     override func setStyle() {
         self.view.do {
             $0.backgroundColor = .black
+        }
+        
+        self.backButton.do {
+            $0.setImage(ImageLiterals.Icon.imgArrowLeft, for: .normal)
         }
         
         self.titleLabel.do {
@@ -53,18 +58,13 @@ final class SearchOrganizationViewController: BaseViewController {
             .foregroundColor: UIColor.white,
             .font: UIFont.subtitleSubSemi18
         ]
-        
-        let backButton = UIButton(type: .system)
-        backButton.setImage(ImageLiterals.Icon.imgArrowLeft, for: .normal)
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        
         let customBackButton = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = customBackButton
     }
     
     // MARK: Target Function
     private func setTarget() {
-        
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Objc Function

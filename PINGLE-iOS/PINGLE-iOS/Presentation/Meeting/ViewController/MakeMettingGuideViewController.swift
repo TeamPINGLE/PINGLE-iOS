@@ -17,7 +17,7 @@ final class MakeMettingGuideViewController: BaseViewController {
     private let exitButton = UIButton()
     private let guideTitle = UILabel()
     private let guideSubTitle = UILabel()
-    private let entranceButton = UIButton()
+    private let entranceButton = PINGLECTAButton(title: "핑글 개최하러 가기", buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     // MARK: UI
     override func setStyle() {
@@ -47,6 +47,10 @@ final class MakeMettingGuideViewController: BaseViewController {
             $0.numberOfLines = 2
         }
         
+        self.entranceButton.do {
+            $0.activateButton()
+        }
+        
     }
     
     override func setLayout() {
@@ -71,5 +75,15 @@ final class MakeMettingGuideViewController: BaseViewController {
             $0.leading.equalToSuperview().offset(24.adjusted)
         }
         
+        entranceButton.snp.makeConstraints {
+            $0.bottom.equalTo(self.view.snp.bottom).inset(54.adjusted)
+            $0.leading.equalToSuperview().offset(16.adjusted)
+        }
+        
+        entranceButton.addTarget(self, action: #selector(entranceButtonPressed), for: .touchUpInside)
     }
+    // MARK: Objc Function
+    @objc func entranceButtonPressed() {
+            print("개최 시작버튼이 눌렸습니다")
+        }
 }

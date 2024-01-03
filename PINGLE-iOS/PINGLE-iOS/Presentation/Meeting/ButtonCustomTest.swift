@@ -38,7 +38,12 @@ class ButtonCustomTest: BaseViewController {
         }
         
         textField.delegate = self
+        testButton.addTarget(self, action: #selector(testButtonPressed), for: .touchUpInside)
     }
+    
+    @objc func testButtonPressed() {
+            print("버튼이 눌렸습니다")
+        }
 }
 
 // MARK: - UITextFieldDelegate Extension

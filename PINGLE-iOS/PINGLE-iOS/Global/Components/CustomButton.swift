@@ -25,6 +25,7 @@ class CustomButton: UIButton {
     }
     
     private func commonInit() {
+        isUserInteractionEnabled = false
         titleLabel?.font = .subtitleSubSemi16
         layer.cornerRadius = 10
     }
@@ -44,12 +45,14 @@ class CustomButton: UIButton {
 
 extension CustomButton {
     func activateButton() {
-            backgroundColor = .white
-            setTitleColor(.black, for: .normal)
+        backgroundColor = .white
+        setTitleColor(.black, for: .normal)
+        isUserInteractionEnabled = true
     }
     
     func disabledButton() {
         backgroundColor = .grayscaleG08
         setTitleColor(.grayscaleG10, for: .normal)
+        isUserInteractionEnabled = false
     }
 }

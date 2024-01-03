@@ -23,6 +23,10 @@ enum StringLiterals {
             static let onboarding = "핑글에 오신걸\n환영합니다!"
             static let searchOrganization = "속해있는 단체의\n이름을 알려주세요"
         }
+        
+        enum NavigationTitle {
+            static let searchOrganizationNavigation = "기존 단체 입장하기"
+        }
     }
     
     enum TabBar {

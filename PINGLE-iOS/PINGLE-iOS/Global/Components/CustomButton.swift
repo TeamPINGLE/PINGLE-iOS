@@ -9,23 +9,24 @@ import UIKit
 
 import SnapKit
 
-class MyButton: UIButton {
+class CustomButton: UIButton {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
 
-    init(title: String, color: UIColor, fontColor: UIColor) {
+    init(title: String, buttonColor: UIColor, textColor: UIColor) {
         super.init(frame: .zero)
         commonInit()
         setLayout()
+        backgroundColor = buttonColor
+        setTitleColor(textColor, for: .normal)
         setTitle(title, for: .normal)
-        setTitleColor(fontColor, for: .normal)
-        backgroundColor = color
-        layer.cornerRadius = 10
     }
     
     private func commonInit() {
         titleLabel?.font = .subtitleSubSemi16
+        layer.cornerRadius = 10
     }
     
     private func setLayout() {
@@ -38,5 +39,17 @@ class MyButton: UIButton {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
+    }
+}
+
+extension CustomButton {
+    func activateButton() {
+            backgroundColor = .white
+            setTitleColor(.black, for: .normal)
+    }
+    
+    func disabledButton() {
+        backgroundColor = .grayscaleG08
+        setTitleColor(.grayscaleG10, for: .normal)
     }
 }

@@ -14,6 +14,7 @@ enum ImageLiterals {
     
     enum Icon {
         static var imgArrowLeft: UIImage { .load(named: "imgArrowLeft").withRenderingMode(.alwaysOriginal)}
+        static var imgSearchIcon: UIImage { .load(named: "imgSearchIcon").withRenderingMode(.alwaysOriginal)}
     }
     
     enum OnBoarding {

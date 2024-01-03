@@ -58,6 +58,9 @@
 		F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BBC2B444A250072A02A /* OnboardingViewController.swift */; };
 		F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BBE2B4557810072A02A /* SearchOrganizationViewController.swift */; };
 		F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BC02B45792D0072A02A /* SearchOrganizationView.swift */; };
+		F1239BC62B458CC20072A02A /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */; };
+		F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BC82B45C3880072A02A /* SearchedModel.swift */; };
+		F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +118,9 @@
 		F1239BBC2B444A250072A02A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F1239BBE2B4557810072A02A /* SearchOrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationViewController.swift; sourceTree = "<group>"; };
 		F1239BC02B45792D0072A02A /* SearchOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationView.swift; sourceTree = "<group>"; };
+		F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		F1239BC82B45C3880072A02A /* SearchedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedModel.swift; sourceTree = "<group>"; };
+		F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +293,9 @@
 		C39602E72B3BF20D004BB2B8 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */,
+				F1239BC42B458C9F0072A02A /* Cell */,
+				F1239BC72B45C35A0072A02A /* Model */,
 				C39602EE2B3BF26D004BB2B8 /* ViewController */,
 				C39602F12B3BF276004BB2B8 /* View */,
 			);
@@ -456,6 +465,22 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		F1239BC42B458C9F0072A02A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		F1239BC72B45C35A0072A02A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F1239BC82B45C3880072A02A /* SearchedModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +647,7 @@
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
 				C39602FD2B3BF299004BB2B8 /* i.swift in Sources */,
+				F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
@@ -634,6 +660,7 @@
 				C39602FB2B3BF295004BB2B8 /* h.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
+				F1239BC62B458CC20072A02A /* SearchCollectionViewCell.swift in Sources */,
 				C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */,
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
 				C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */,
@@ -649,6 +676,7 @@
 				C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */,
 				C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */,
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
+				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,
 				C396030F2B3BF345004BB2B8 /* m.swift in Sources */,
 				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,
 				F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */,

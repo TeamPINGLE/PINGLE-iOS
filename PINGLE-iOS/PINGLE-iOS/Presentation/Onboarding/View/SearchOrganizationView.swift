@@ -16,6 +16,7 @@ final class SearchOrganizationView: BaseView {
     private let searchView = UIView()
     let searchTextField = UITextField()
     private let searchImageView = UIImageView()
+    let searchCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     
     override init(frame: CGRect) {
@@ -30,7 +31,7 @@ final class SearchOrganizationView: BaseView {
         
         self.searchView.do {
             $0.backgroundColor = .grayscaleG10
-            $0.layer.cornerRadius = 8
+            $0.layer.cornerRadius = 8.adjusted
             $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
         }
         
@@ -51,10 +52,15 @@ final class SearchOrganizationView: BaseView {
         self.searchImageView.do {
             $0.image = ImageLiterals.Icon.imgSearchIcon
         }
+        
+        self.searchCollectionView.do {
+            $0.backgroundColor = .clear
+            $0.showsVerticalScrollIndicator = false
+        }
     }
     
     override func setLayout() {
-        self.addSubviews(searchView)
+        self.addSubviews(searchView, searchCollectionView)
         self.searchView.addSubviews(searchTextField, searchImageView, searchImageView)
         
         searchView.snp.makeConstraints {
@@ -73,6 +79,12 @@ final class SearchOrganizationView: BaseView {
             $0.trailing.equalToSuperview().inset(13.adjusted)
             $0.centerY.equalToSuperview()
             $0.height.width.equalTo(24.adjusted)
+        }
+        
+        searchCollectionView.snp.makeConstraints {
+            $0.top.equalTo(self.searchView.snp.bottom).offset(21.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(25.adjusted)
+            $0.bottom.equalToSuperview()
         }
     }
 }

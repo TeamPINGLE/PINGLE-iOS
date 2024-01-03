@@ -23,6 +23,7 @@ final class SearchOrganizationViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setTarget()
+        setRegister()
     }
     
     // MARK: UI
@@ -60,6 +61,14 @@ final class SearchOrganizationViewController: BaseViewController {
     
     // MARK: Delegate
     override func setDelegate() {
+        self.searchOrganizationView.searchCollectionView.delegate = self
+        self.searchOrganizationView.searchCollectionView.dataSource = self
+    }
+    
+    // MARK: Register
+    func setRegister() {
+        self.searchOrganizationView.searchCollectionView.register(SearchCollectionViewCell.self,
+                                                                  forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
     }
     
     // MARK: Navigation Function
@@ -81,5 +90,35 @@ final class SearchOrganizationViewController: BaseViewController {
     // MARK: Objc Function
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: - extension
+// MARK: UICollectionViewDelegate
+extension SearchOrganizationViewController: UICollectionViewDelegate {}
+
+// MARK: UICollectionViewDataSource
+extension SearchOrganizationViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier,
+                                                            for: indexPath) as? SearchCollectionViewCell else {return UICollectionViewCell()}
+        return item
+    }
+}
+
+// MARK: UICollectionViewDelegateFlowLayout
+extension SearchOrganizationViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 325.adjusted , height: 88.adjusted)
     }
 }

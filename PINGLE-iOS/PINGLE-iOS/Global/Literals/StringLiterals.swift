@@ -27,6 +27,10 @@ enum StringLiterals {
         enum NavigationTitle {
             static let searchOrganizationNavigation = "기존 단체 입장하기"
         }
+        
+        enum SearchBarPlaceholder {
+            static let searchOrganizationPlaceholder = "단체 이름을 검색해보세요"
+        }
     }
     
     enum TabBar {

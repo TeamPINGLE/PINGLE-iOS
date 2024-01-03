@@ -16,6 +16,7 @@ final class SearchOrganizationViewController: BaseViewController {
     // MARK: Property
     private let backButton = UIButton()
     private let titleLabel = UILabel()
+    private let searchOrganizationView = SearchOrganizationView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -43,12 +44,22 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel)
+        self.view.addSubviews(titleLabel, searchOrganizationView)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(32.adjusted)
             $0.leading.equalTo(self.view.snp.leading).offset(26.adjusted)
         }
+        
+        searchOrganizationView.snp.makeConstraints {
+            $0.top.equalTo(self.titleLabel.snp.bottom).offset(24.adjusted)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(314.adjusted)
+        }
+    }
+    
+    // MARK: Delegate
+    override func setDelegate() {
     }
     
     // MARK: Navigation Function
@@ -72,4 +83,3 @@ final class SearchOrganizationViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
 }
-

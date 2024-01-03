@@ -57,6 +57,7 @@
 		C396032A2B3BF497004BB2B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C39603292B3BF497004BB2B8 /* Kingfisher */; };
 		F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BB72B43CABE0072A02A /* LoginViewController.swift */; };
 		F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BBC2B444A250072A02A /* OnboardingViewController.swift */; };
+		F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BBE2B4557810072A02A /* SearchOrganizationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,7 @@
 		F1239BB72B43CABE0072A02A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F1239BB92B43E49D0072A02A /* PINGLE-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PINGLE-iOS.entitlements"; sourceTree = "<group>"; };
 		F1239BBC2B444A250072A02A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		F1239BBE2B4557810072A02A /* SearchOrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +347,7 @@
 			children = (
 				F1239BB72B43CABE0072A02A /* LoginViewController.swift */,
 				F1239BBC2B444A250072A02A /* OnboardingViewController.swift */,
+				F1239BBE2B4557810072A02A /* SearchOrganizationViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C39603162B3BF369004BB2B8 /* o.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
+				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
 				C396031C2B3BF374004BB2B8 /* r.swift in Sources */,

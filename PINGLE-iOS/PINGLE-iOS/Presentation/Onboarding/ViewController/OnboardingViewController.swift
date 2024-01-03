@@ -95,7 +95,8 @@ final class OnboardingViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func existingOrganizationButtonDidTap() {
-        
+        let searchOrganizationViewController = SearchOrganizationViewController()
+        navigationController?.pushViewController(searchOrganizationViewController, animated: true)
     }
     
     @objc func makeOrganizationButtonDidTap() {

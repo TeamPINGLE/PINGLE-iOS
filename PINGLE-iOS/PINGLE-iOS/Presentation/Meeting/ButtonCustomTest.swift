@@ -11,7 +11,7 @@ import SnapKit
 
 class ButtonCustomTest: BaseViewController {
 // MARK: Property
-    let testButton = CustomButton(title: "핑글 개최하러 가기", buttonColor: .grayscaleG08, textColor: .grayscaleG10)
+    let testButton = PINGLECTAButton(title: "핑글 개최하러 가기", buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     let textField = UITextField().then {
         $0.placeholder = "아무거나 적어보셈..."

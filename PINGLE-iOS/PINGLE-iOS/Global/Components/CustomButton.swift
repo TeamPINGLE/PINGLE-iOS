@@ -9,25 +9,29 @@ import UIKit
 
 import SnapKit
 
-class CustomButton: UIButton {
+class PINGLECTAButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 
     init(title: String, buttonColor: UIColor, textColor: UIColor) {
         super.init(frame: .zero)
         commonInit()
         setLayout()
-        backgroundColor = buttonColor
-        setTitleColor(textColor, for: .normal)
-        setTitle(title, for: .normal)
+        self.backgroundColor = buttonColor
+        self.setTitleColor(textColor, for: .normal)
+        self.setTitle(title, for: .normal)
     }
     
     private func commonInit() {
-        isUserInteractionEnabled = false
+        isEnabled = false
         titleLabel?.font = .subtitleSubSemi16
-        layer.cornerRadius = 10
+        layer.cornerRadius = 10.adjusted
     }
     
     private func setLayout() {
@@ -36,23 +40,18 @@ class CustomButton: UIButton {
             $0.height.equalTo(58.adjusted)
         }
     }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
 }
 
-extension CustomButton {
+extension PINGLECTAButton {
     func activateButton() {
         backgroundColor = .white
         setTitleColor(.black, for: .normal)
-        isUserInteractionEnabled = true
+        isEnabled = true
     }
     
     func disabledButton() {
         backgroundColor = .grayscaleG08
         setTitleColor(.grayscaleG10, for: .normal)
-        isUserInteractionEnabled = false
+        isEnabled = false
     }
 }

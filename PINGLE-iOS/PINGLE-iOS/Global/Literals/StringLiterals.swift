@@ -42,7 +42,7 @@ enum StringLiterals {
         }
         
         enum MettingCategory {
-            enum CategoryTitle  {
+            enum CategoryTitle {
                 static let play = "PLAY"
                 static let study = "STUDY"
                 static let multi = "MULTI"

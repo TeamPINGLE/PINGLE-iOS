@@ -27,6 +27,11 @@ final class SearchCollectionViewCell: UICollectionViewCell {
         setLayout()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        selectImageView.image = ImageLiterals.Icon.imgCheckDefault
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -84,5 +89,10 @@ final class SearchCollectionViewCell: UICollectionViewCell {
             $0.bottom.equalToSuperview()
             $0.height.equalTo(1.adjusted)
         }
+    }
+    
+    // MARK: Custom Function
+    func changeSelectedImage() {
+        selectImageView.image = ImageLiterals.Icon.imgCheckSelected
     }
 }

@@ -13,6 +13,9 @@ import Then
 
 final class SearchOrganizationViewController: BaseViewController {
     
+    // MARK: - Variables
+    var selectedCellIndex: IndexPath?
+    
     // MARK: Property
     private let backButton = UIButton()
     private let titleLabel = UILabel()
@@ -171,9 +174,17 @@ extension SearchOrganizationViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier,
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier,
                                                             for: indexPath) as? SearchCollectionViewCell else {return UICollectionViewCell()}
-        return item
+        if indexPath == selectedCellIndex {
+            cell.changeSelectedImage()
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedCellIndex = indexPath
+        searchOrganizationView.searchCollectionView.reloadData()
     }
 }
 

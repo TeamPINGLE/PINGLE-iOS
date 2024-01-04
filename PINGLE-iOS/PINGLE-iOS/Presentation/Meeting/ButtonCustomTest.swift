@@ -17,6 +17,8 @@ class ButtonCustomTest: BaseViewController {
                                                   buttonExplainLabel: StringLiterals.Metting.MettingCategory.ExplainCategory.playExplain,
                                                   category: ImageLiterals.Metting.Category.categoryPlayImage, textColor: .mainPingleGreen)
     
+    let exitButton = MeetingExitButton()
+    
     let textField = UITextField().then {
         $0.placeholder = "아무거나 적어보셈..."
         $0.borderStyle = .roundedRect
@@ -30,6 +32,7 @@ class ButtonCustomTest: BaseViewController {
     override func setLayout() {
         view.addSubviews(testButton, textField)
         view.addSubview(categoryTestButton)
+        view.addSubview(exitButton)
         
         testButton.snp.makeConstraints {
             $0.top.equalTo(view.snp.top).offset(50)
@@ -44,6 +47,11 @@ class ButtonCustomTest: BaseViewController {
         
         categoryTestButton.snp.makeConstraints {
             $0.top.equalTo(textField.snp.bottom).offset(50)
+            $0.leading.equalToSuperview().inset(50)
+        }
+        
+        exitButton.snp.makeConstraints {
+            $0.top.equalTo(categoryTestButton.snp.bottom).offset(50)
             $0.leading.equalToSuperview().inset(50)
         }
         

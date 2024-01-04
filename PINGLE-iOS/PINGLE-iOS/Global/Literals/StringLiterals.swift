@@ -42,7 +42,7 @@ enum StringLiterals {
         }
         
         enum MettingCategory {
-            enum CategoryTitle{
+            enum CategoryTitle {
                 static let play = "PLAY"
                 static let study = "STUDY"
                 static let multi = "MULTI"
@@ -54,6 +54,11 @@ enum StringLiterals {
                 static let studyExplain = "열공, 열작업할 사람 모여라!"
                 static let multiExplain = "설명 텍스트 미정"
                 static let othersExplain = "설명 텍스트 미정"
+            }
+            
+            enum ExitButton {
+                static let exitButton = "나가기"
+                static let exitLabel = "나중에 만드시겠어요?"
             }
         }
     }

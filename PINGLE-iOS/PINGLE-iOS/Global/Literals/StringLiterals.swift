@@ -61,4 +61,9 @@ enum StringLiterals {
     enum CTAButton {
         static let buttonTitle = "다음으로"
     }
+    
+    enum ExitButton {
+        static let exitButton = "나가기"
+        static let exitLabel = "나중에 만드시겠어요?"
+    }
 }

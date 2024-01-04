@@ -12,8 +12,16 @@ enum ImageLiterals {
     // 필요한 enum을 만들어서 사용해주세요
     // 사용예시: imageView.image = ImageLiterals.OnBoarding.imgExample
     
+    enum Icon {
+        static var imgArrowLeft: UIImage { .load(named: "imgArrowLeft").withRenderingMode(.alwaysOriginal)}
+        static var imgSearchIcon: UIImage { .load(named: "imgSearchIcon").withRenderingMode(.alwaysOriginal)}
+        static var imgCheckDefault: UIImage { .load(named: "imgCheckDefault")}
+        static var imgCheckSelected: UIImage { .load(named: "imgCheckSelected")}
+    }
+    
     enum OnBoarding {
-        static var imgExample: UIImage { .load(named: "예시이미지이름")}
+        static var imgApplelogo: UIImage { .load(named: "imgApplelogo")}
+        static var imgSample: UIImage { .load(named: "imgSample")}
     }
     
     enum TabBar {
@@ -45,6 +53,20 @@ enum ImageLiterals {
             static var imgMapPinPlay: UIImage { .load(named: "imgMapPinPlay")}
             static var imgMapPinStudy: UIImage { .load(named: "imgMapPinStudy")}
             static var imgMapPinMulti: UIImage { .load(named: "imgMapPinMulti")}
+        }
+    }
+  
+    enum Metting {
+        enum Guide {
+            static var imgExitButton: UIImage { .load(named: "imgExitButton")}
+            static var imgMettingGraphic: UIImage { .load(named: "imgMettingGraphic")}
+        }
+        
+        enum Category {
+            static var categoryPlayImage: UIImage { .load(named: "imgSample")}
+            static var categoryStudyImage: UIImage { .load(named: "imgSample")}
+            static var categoryMultiImage: UIImage { .load(named: "imgSample")}
+            static var categoryOthersImage: UIImage { .load(named: "imgSample")}
         }
     }
 }

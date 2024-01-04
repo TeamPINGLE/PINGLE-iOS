@@ -73,6 +73,7 @@
 		F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BC82B45C3880072A02A /* SearchedModel.swift */; };
 		F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */; };
 		F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BCE2B468A0F0072A02A /* CALayer+.swift */; };
+		F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,7 @@
 		F1239BC82B45C3880072A02A /* SearchedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedModel.swift; sourceTree = "<group>"; };
 		F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		F1239BCE2B468A0F0072A02A /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEWarningToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,25 +546,10 @@
 			children = (
 				E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */,
 				E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */,
+				F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
-		};
-		F1239BC42B458C9F0072A02A /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		F1239BC72B45C35A0072A02A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F1239BC82B45C3880072A02A /* SearchedModel.swift */,
-			);
-			path = Model;
-      sourceTree = "<group>";
 		};
 		E5AD29972B455E20005D1220 /* View */ = {
 			isa = PBXGroup;
@@ -579,6 +566,22 @@
 				E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F1239BC42B458C9F0072A02A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		F1239BC72B45C35A0072A02A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F1239BC82B45C3880072A02A /* SearchedModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {
@@ -771,9 +774,9 @@
 				C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */,
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */,
-				C39602F02B3BF273004BB2B8 /* c.swift in Sources */,
 				C39603162B3BF369004BB2B8 /* o.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
+				F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */,
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,

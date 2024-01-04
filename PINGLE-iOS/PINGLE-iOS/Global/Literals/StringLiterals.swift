@@ -40,5 +40,25 @@ enum StringLiterals {
             static let guideSubTitle = "어쩌구 번개를 개최하고\n어쩌구 번개를 개최하고"
             static let buttonTitle = "핑글 개최하러 가기"
         }
+        
+        enum MettingCategory {
+            enum CategoryTitle{
+                static let play = "PLAY"
+                static let study = "STUDY"
+                static let multi = "MULTI"
+                static let others = "OTHERS"
+            }
+            
+            enum ExplainCategory {
+                static let playExplain = "설명 텍스트 미정"
+                static let studyExplain = "열공, 열작업할 사람 모여라!"
+                static let multiExplain = "설명 텍스트 미정"
+                static let othersExplain = "설명 텍스트 미정"
+            }
+        }
+    }
+    
+    enum CTAButton {
+        static let buttonTitle = "다음으로"
     }
 }

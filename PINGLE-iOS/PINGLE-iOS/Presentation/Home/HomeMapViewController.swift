@@ -67,7 +67,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
                 moveToCurrentLocation()
                 shouldUpdateMap = false
             }
-            
+            self.mapsView.setCurrentMarker()
         }
     }
     

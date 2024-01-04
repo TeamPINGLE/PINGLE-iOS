@@ -48,6 +48,8 @@ final class HomeMapView: BaseView {
     let marker = NMFMarker()
     let infoWindow = NMFInfoWindow()
     
+    let currentMarker = NMFMarker()
+    
     let currentLocationButton = UIButton()
     let listButton = UIButton()
     
@@ -95,7 +97,9 @@ final class HomeMapView: BaseView {
             $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
         }
         
-        setLocationOverlay()
+        currentMarker.do {
+            $0.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
+        }
     }
     
     override func setLayout() {
@@ -135,15 +139,11 @@ final class HomeMapView: BaseView {
             marker.position = NMGLatLng(lat: $0, lng: $1)
             marker.mapView = mapsView.mapView
         }
-        
-        /// 현위치 마커
-        /// 
     }
     
-    private func setLocationOverlay() {
-//        locationOverlayIcon.do {
-//            let locationOverlay = mapsView.mapView.locationOverlay
-//            locationOverlay.icon = $0
-//        }
+    func setCurrentMarker() {
+        /// 현위치 마커
+        currentMarker.position = NMGLatLng(lat: nowLat, lng: nowLng)
+        currentMarker.mapView = mapsView.mapView
     }
 }

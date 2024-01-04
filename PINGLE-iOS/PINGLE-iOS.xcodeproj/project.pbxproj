@@ -63,6 +63,7 @@
 		F1239BC62B458CC20072A02A /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */; };
 		F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BC82B45C3880072A02A /* SearchedModel.swift */; };
 		F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */; };
+		F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BCE2B468A0F0072A02A /* CALayer+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +126,7 @@
 		F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1239BC82B45C3880072A02A /* SearchedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedModel.swift; sourceTree = "<group>"; };
 		F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
+		F1239BCE2B468A0F0072A02A /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 				C307281A2B414FF900AA575B /* adjust+.swift */,
 				C307281C2B41500900AA575B /* UIColor+.swift */,
 				C307281E2B41503100AA575B /* UIViewController+.swift */,
+				F1239BCE2B468A0F0072A02A /* CALayer+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */,
 				C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */,
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
+				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,
 				C396030F2B3BF345004BB2B8 /* m.swift in Sources */,
 				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,

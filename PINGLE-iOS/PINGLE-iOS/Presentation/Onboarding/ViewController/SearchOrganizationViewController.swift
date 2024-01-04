@@ -17,6 +17,8 @@ final class SearchOrganizationViewController: BaseViewController {
     private let backButton = UIButton()
     private let titleLabel = UILabel()
     private let searchOrganizationView = SearchOrganizationView()
+    private let bottomRequestLabel = UILabel()
+    private let makeOrganizationButton = UIButton()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -42,10 +44,24 @@ final class SearchOrganizationViewController: BaseViewController {
             $0.textColor = .white
             $0.numberOfLines = 0
         }
+        
+        self.bottomRequestLabel.do {
+            $0.text = StringLiterals.Onboarding.ExplainTitle.bottomRequest
+            $0.font = .captionCapSemi12
+            $0.textColor = .white
+        }
+        
+        self.makeOrganizationButton.do {
+            $0.setTitle(StringLiterals.Onboarding.ButtonTitle.requestOrganization, for: .normal)
+            $0.titleLabel?.font = .captionCapSemi12
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.textAlignment = .center
+            $0.layer.addBorder([.bottom], color: .white, width: 1.0, frameHeight: 17.0.adjusted, framgeWidth: 121.0.adjusted)
+        }
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel, searchOrganizationView)
+        self.view.addSubviews(titleLabel, searchOrganizationView, bottomRequestLabel, makeOrganizationButton)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(32.adjusted)
@@ -56,6 +72,18 @@ final class SearchOrganizationViewController: BaseViewController {
             $0.top.equalTo(self.titleLabel.snp.bottom).offset(24.adjusted)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(314.adjusted)
+        }
+        
+        bottomRequestLabel.snp.makeConstraints {
+            $0.top.equalTo(self.searchOrganizationView.snp.bottom).offset(18.adjusted)
+            $0.leading.equalToSuperview().offset(77.adjusted)
+        }
+        
+        makeOrganizationButton.snp.makeConstraints {
+            $0.centerY.equalTo(self.bottomRequestLabel.snp.centerY)
+            $0.leading.equalTo(self.bottomRequestLabel.snp.trailing).offset(4.adjusted)
+            $0.height.equalTo(17.adjusted)
+            $0.width.equalTo(121.adjusted)
         }
     }
     
@@ -85,11 +113,18 @@ final class SearchOrganizationViewController: BaseViewController {
     // MARK: Target Function
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        makeOrganizationButton.addTarget(self, action: #selector(makeOrganizationButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Objc Function
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func makeOrganizationButtonTapped() {
+        guard let url = URL(string: "https://www.google.com") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
     }
 }
 

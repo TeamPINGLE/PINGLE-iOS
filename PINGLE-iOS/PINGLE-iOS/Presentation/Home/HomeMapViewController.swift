@@ -27,7 +27,7 @@ final class HomeMapViewController: BaseViewController {
     override func setLayout() {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
-
+        
         self.view.addSubview(mapsView)
         
         mapsView.snp.makeConstraints {
@@ -40,6 +40,7 @@ final class HomeMapViewController: BaseViewController {
         mapsView.locationManager.delegate = self
         mapsView.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         mapsView.locationManager.requestWhenInUseAuthorization()
+        self.startUpdatingLocationAndMoveToCurrentLocation()
     }
     
     private func setAddTarget() {
@@ -47,8 +48,8 @@ final class HomeMapViewController: BaseViewController {
             $0.addTarget(self, action: #selector(isChipButtonTapped), for: .touchUpInside)
         }
         self.mapsView.currentLocationButton.addTarget(self,
-                                             action: #selector(currentLocationButtonTapped),
-                                             for: .touchUpInside)
+                                                      action: #selector(currentLocationButtonTapped),
+                                                      for: .touchUpInside)
         self.mapsView.listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
     }
 }
@@ -78,44 +79,49 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-            switch manager.authorizationStatus {
-            case .authorizedWhenInUse, .authorizedAlways:
-                // 위치 권한이 허용된 경우
-                print("위치 권한이 허용되었습니다.")
-                startUpdatingLocationAndMoveToCurrentLocation()
-                self.moveToCurrentLocation()
-            case .denied, .restricted:
-                // 위치 권한이 거부된 경우
-                print("위치 권한이 거부되었습니다.")
-            case .notDetermined:
-                // 위치 권한이 아직 결정되지 않은 경우
-                print("위치 권한이 아직 결정되지 않았습니다.")
-                // 여기서 사용자에게 위치 권한을 요청하는 로직을 추가할 수 있습니다.
-                manager.requestWhenInUseAuthorization()
-            @unknown default:
-                fatalError("Unhandled authorization status")
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            // 위치 권한이 허용된 경우
+            print("위치 권한이 허용되었습니다.")
+            startUpdatingLocationAndMoveToCurrentLocation()
+            self.moveToCurrentLocation()
+        case .denied, .restricted:
+            // 위치 권한이 거부된 경우
+            print("위치 권한이 거부되었습니다.")
+        case .notDetermined:
+            // 위치 권한이 아직 결정되지 않은 경우
+            print("위치 권한이 아직 결정되지 않았습니다.")
+            // 여기서 사용자에게 위치 권한을 요청하는 로직을 추가할 수 있습니다.
+            manager.requestWhenInUseAuthorization()
+        @unknown default:
+            fatalError("Unhandled authorization status")
+        }
+    }
+    
+    private func startUpdatingLocationAndMoveToCurrentLocation() {
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                self.mapsView.locationManager.startUpdatingLocation()
+            } else {
+                print("위치 서비스 허용 off")
             }
         }
-
-        private func startUpdatingLocationAndMoveToCurrentLocation() {
-            DispatchQueue.global().async {
-                if CLLocationManager.locationServicesEnabled() {
-                    self.mapsView.locationManager.startUpdatingLocation()
-                } else {
-                    print("위치 서비스 허용 off")
-                }
-            }
-        }
+    }
 }
 
 extension HomeMapViewController {
     @objc func isChipButtonTapped(sender: ChipButton) {
         /// 태그 선택 여부 반전
         sender.isButtonSelected.toggle()
-
+        
         /// 태그 하나만 선택할 수 있도록
         self.mapsView.chipButtons.filter { $0 != sender }.forEach {
             $0.isButtonSelected = false
+        }
+        
+        // TODO: 필터링 처리 하기
+        homePinListDummy.filter { $0.category != sender.chipStatusString }.forEach {
+            print($0)
         }
     }
     

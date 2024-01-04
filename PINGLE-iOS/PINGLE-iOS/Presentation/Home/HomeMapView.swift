@@ -49,7 +49,7 @@ final class HomeMapView: BaseView {
         }
         
         mapsView.do {
-            $0.mapView.positionMode = .direction
+            $0.mapView.positionMode = .normal
             $0.mapView.isNightModeEnabled = true
             $0.mapView.mapType = .navi
             $0.mapView.moveCamera(cameraUpdate)
@@ -57,6 +57,7 @@ final class HomeMapView: BaseView {
             $0.showZoomControls = false
             $0.showCompass = false
             $0.showLocationButton = false
+            $0.mapView.locationOverlay.hidden = true
         }
         
         cameraUpdate.do {
@@ -151,4 +152,3 @@ final class HomeMapView: BaseView {
         currentMarker.mapView = mapsView.mapView
     }
 }
-

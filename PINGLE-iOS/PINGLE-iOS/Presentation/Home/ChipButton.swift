@@ -20,6 +20,7 @@ enum ChipStatus {
 class ChipButton: UIButton {
     
     var chipStatus: ChipStatus = .play
+    var chipStatusString: String = "PLAY"
     var isButtonSelected: Bool = false {
         didSet {
             setButtonStatus(state: chipStatus)
@@ -64,6 +65,17 @@ extension ChipButton {
     
     func setButtonStatus(state: ChipStatus) {
         self.chipStatus = state
+        
+        switch state {
+        case .play:
+            self.chipStatusString = "PLAY"
+        case .study:
+            self.chipStatusString = "STUDY"
+        case .multi:
+            self.chipStatusString = "MULTI"
+        case .others:
+            self.chipStatusString = "OTHERS"
+        }
 
         if isButtonSelected {
             setButtonSelected(state: state)

@@ -56,8 +56,10 @@
 		C396032A2B3BF497004BB2B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C39603292B3BF497004BB2B8 /* Kingfisher */; };
 		E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */; };
 		E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */; };
-		E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */; };
 		E5AD299B2B455E20005D1220 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29982B455E20005D1220 /* h.swift */; };
+		E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */; };
+		E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */; };
+		E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */; };
 		F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BB72B43CABE0072A02A /* LoginViewController.swift */; };
 		F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BBC2B444A250072A02A /* OnboardingViewController.swift */; };
 /* End PBXBuildFile section */
@@ -116,6 +118,8 @@
 		E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCustomTest.swift; sourceTree = "<group>"; };
 		E5AD29982B455E20005D1220 /* h.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
 		E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMettingGuideViewController.swift; sourceTree = "<group>"; };
+		E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECategoryButton.swift; sourceTree = "<group>"; };
+		E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		F1239BB72B43CABE0072A02A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F1239BB92B43E49D0072A02A /* PINGLE-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PINGLE-iOS.entitlements"; sourceTree = "<group>"; };
 		F1239BBC2B444A250072A02A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -462,6 +466,15 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		E5AD29922B454B90005D1220 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */,
+				E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		E5AD29972B455E20005D1220 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,16 +487,9 @@
 			isa = PBXGroup;
 			children = (
 				E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */,
+				E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		E5AD29922B454B90005D1220 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {
@@ -650,12 +656,14 @@
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
+				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
 				C39602FD2B3BF299004BB2B8 /* i.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
+				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
 				E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */,
 				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,

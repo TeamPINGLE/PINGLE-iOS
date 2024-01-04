@@ -9,12 +9,12 @@ import UIKit
 
 import SnapKit
 
-class PINGLECategoryButton: UIButton {
+final class PINGLECategoryButton: UIButton {
     // MARK: Property
-    let buttonTitleLabel = UILabel()
-    let buttonExplainLabel = UILabel()
-    let categoryImage = UIImageView()
-    var isSelectedButton: Bool = false
+    private let buttonTitleLabel = UILabel()
+    private let buttonExplainLabel = UILabel()
+    private let categoryImage = UIImageView()
+    private var isSelectedButton: Bool = false
     
     // MARK: LifeCycle
     override init(frame: CGRect) {
@@ -57,7 +57,7 @@ class PINGLECategoryButton: UIButton {
         self.addSubviews(categoryImage, buttonTitleLabel, buttonExplainLabel)
         
         self.snp.makeConstraints {
-            $0.width.equalTo(UIScreen.main.bounds.width-216.adjusted)
+            $0.width.equalTo(159.adjusted)
             $0.height.equalTo(135.adjusted)
         }
         

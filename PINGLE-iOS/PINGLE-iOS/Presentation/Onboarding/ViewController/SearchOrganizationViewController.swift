@@ -76,7 +76,7 @@ final class SearchOrganizationViewController: BaseViewController {
         searchOrganizationView.snp.makeConstraints {
             $0.top.equalTo(self.titleLabel.snp.bottom).offset(24.adjusted)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(314.adjusted)
+            $0.bottom.equalToSuperview().inset(154.adjusted)
         }
         
         bottomRequestLabel.snp.makeConstraints {
@@ -169,7 +169,7 @@ extension SearchOrganizationViewController: UICollectionViewDelegate {}
 // MARK: UICollectionViewDataSource
 extension SearchOrganizationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -202,6 +202,6 @@ extension SearchOrganizationViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 325.adjusted , height: 88.adjusted)
+        return CGSize(width: 325.adjustedWidth , height: 88.adjustedHeight)
     }
 }

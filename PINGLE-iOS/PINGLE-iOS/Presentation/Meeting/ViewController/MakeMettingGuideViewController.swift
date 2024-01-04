@@ -93,6 +93,7 @@ final class MakeMettingGuideViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func entranceButtonPressed() {
-            print("개최 시작버튼이 눌렸습니다")
+        let selectCategoyViewController = SelectCategoryViewController()
+        navigationController?.pushViewController(selectCategoyViewController, animated: true)
         }
 }

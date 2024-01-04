@@ -14,9 +14,15 @@ import Then
 
 final class HomeMapViewController: BaseViewController {
     
+    // MARK: - Variables
+    // MARK: Property
     var shouldUpdateMap: Bool = true
+    
+    // MARK: Component
     let mapsView = HomeMapView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
@@ -24,6 +30,7 @@ final class HomeMapViewController: BaseViewController {
         setAddTarget()
     }
     
+    // MARK: Layout Helpers
     override func setLayout() {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
@@ -54,6 +61,8 @@ final class HomeMapViewController: BaseViewController {
     }
 }
 
+// MARK: - extension
+// MARK: CLLocationManagerDelegate
 extension HomeMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
@@ -72,7 +81,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
         }
     }
     
-    // 위치 가져오기 실패
+    // 위치 가져오기 실패 시
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
         print("error")
@@ -91,7 +100,6 @@ extension HomeMapViewController: CLLocationManagerDelegate {
         case .notDetermined:
             // 위치 권한이 아직 결정되지 않은 경우
             print("위치 권한이 아직 결정되지 않았습니다.")
-            // 여기서 사용자에게 위치 권한을 요청하는 로직을 추가할 수 있습니다.
             manager.requestWhenInUseAuthorization()
         @unknown default:
             fatalError("Unhandled authorization status")
@@ -110,6 +118,15 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 }
 
 extension HomeMapViewController {
+    
+    /// 카메라를 이동하는 메소드
+    func moveToCurrentLocation() {
+        self.mapsView.cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: mapsView.nowLat, lng: mapsView.nowLng))
+        self.mapsView.cameraUpdate.animation = .easeIn
+        self.mapsView.mapsView.mapView.moveCamera(mapsView.cameraUpdate)
+    }
+    
+    // MARK: Objc Function
     @objc func isChipButtonTapped(sender: ChipButton) {
         /// 태그 선택 여부 반전
         sender.isButtonSelected.toggle()
@@ -139,8 +156,6 @@ extension HomeMapViewController {
                 $0.hidden = true
             }
         }
-        
-        print(self.mapsView.homeMarkerList)
     }
     
     @objc func listButtonTapped() {
@@ -149,12 +164,5 @@ extension HomeMapViewController {
     
     @objc func currentLocationButtonTapped() {
         moveToCurrentLocation()
-    }
-    
-    func moveToCurrentLocation() {
-        print("현위치 이동")
-        self.mapsView.cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: mapsView.nowLat, lng: mapsView.nowLng))
-        self.mapsView.cameraUpdate.animation = .easeIn
-        self.mapsView.mapsView.mapView.moveCamera(mapsView.cameraUpdate)
     }
 }

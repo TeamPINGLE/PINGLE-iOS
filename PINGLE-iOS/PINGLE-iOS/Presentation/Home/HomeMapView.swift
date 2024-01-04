@@ -13,6 +13,12 @@ import Then
 
 final class HomeMapView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Property
+    var nowLat: Double = 37.56299678698725
+    var nowLng: Double = 126.8569346126135
+    
+    // MARK: Component
     let chipStackView = UIStackView()
     
     let playChipButton = ChipButton(state: .play)
@@ -27,9 +33,6 @@ final class HomeMapView: BaseView {
     
     let mapsView = NMFNaverMapView()
     
-    var nowLat: Double = 37.56299678698725
-    var nowLng: Double = 126.8569346126135
-    
     var locationManager = CLLocationManager()
     lazy var cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: self.nowLat, lng: self.nowLng))
     
@@ -40,11 +43,14 @@ final class HomeMapView: BaseView {
     
     var homeMarkerList: [PINGLEMarker] = []
     
+    // MARK: - Function
+    // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setMarker()
     }
     
+    // MARK: Style Helpers
     override func setStyle() {
         cameraUpdate.do {
             $0.animation = .easeIn
@@ -90,6 +96,7 @@ final class HomeMapView: BaseView {
         }
     }
     
+    // MARK: Layout Helpers
     override func setLayout() {
         self.addSubviews(mapsView, chipStackView)
         mapsView.addSubviews(currentLocationButton,
@@ -121,7 +128,9 @@ final class HomeMapView: BaseView {
         }
     }
     
-     func setMarker() {
+    // MARK: Marker Function
+    /// 마커 추가 메소드
+    func setMarker() {
         homePinListDummy.forEach {
             let pingleMarker = PINGLEMarker()
             
@@ -139,6 +148,7 @@ final class HomeMapView: BaseView {
         }
     }
     
+    /// 마커 이미지 변경 메소드, 추후 이미지 변경 예쩡
     private func setMarkerColor(category: String) -> UIImage {
         switch category {
         case "PLAY":
@@ -152,8 +162,8 @@ final class HomeMapView: BaseView {
         }
     }
     
+    /// 현위치 마커 세팅 메소드
     func setCurrentMarker() {
-        /// 현위치 마커
         currentMarker.position = NMGLatLng(lat: nowLat, lng: nowLng)
         currentMarker.mapView = mapsView.mapView
     }

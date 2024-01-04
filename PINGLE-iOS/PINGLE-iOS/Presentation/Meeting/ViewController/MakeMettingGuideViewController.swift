@@ -63,7 +63,7 @@ final class MakeMettingGuideViewController: BaseViewController {
         
         exitButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16.adjusted)
-            $0.leading.equalToSuperview().offset(333.adjusted)
+            $0.leading.equalToSuperview().inset(333.adjusted)
         }
         
         mettingImageView.snp.makeConstraints {
@@ -72,17 +72,17 @@ final class MakeMettingGuideViewController: BaseViewController {
         
         guideTitle.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(88.adjusted)
-            $0.leading.equalToSuperview().offset(24.adjusted)
+            $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         guideSubTitle.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(194.adjusted)
-            $0.leading.equalToSuperview().offset(24.adjusted)
+            $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         entranceButton.snp.makeConstraints {
             $0.bottom.equalTo(self.view.snp.bottom).inset(54.adjusted)
-            $0.leading.equalToSuperview().offset(16.adjusted)
+            $0.leading.equalToSuperview().inset(16.adjusted)
         }
     }
     

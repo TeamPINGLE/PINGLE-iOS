@@ -17,6 +17,7 @@ final class SearchOrganizationView: BaseView {
     let searchTextField = UITextField()
     let searchButton = UIButton()
     let searchCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private let noResultLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,10 +58,16 @@ final class SearchOrganizationView: BaseView {
             $0.backgroundColor = .clear
             $0.showsVerticalScrollIndicator = false
         }
+        
+        self.noResultLabel.do {
+            $0.text = StringLiterals.Onboarding.ExplainTitle.noResult
+            $0.font = .subtitleSubSemi18
+            $0.textColor = .grayscaleG06
+        }
     }
     
     override func setLayout() {
-        self.addSubviews(searchView, searchCollectionView)
+        self.addSubviews(searchView, noResultLabel, searchCollectionView)
         self.searchView.addSubviews(searchTextField, searchButton)
         
         searchView.snp.makeConstraints {
@@ -86,5 +93,14 @@ final class SearchOrganizationView: BaseView {
             $0.leading.trailing.equalToSuperview().inset(25.adjusted)
             $0.bottom.equalToSuperview()
         }
+        
+        noResultLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalTo(searchCollectionView)
+        }
+    }
+    
+    // MARK: Custom Function
+    func isHiddenResultLabel(isEnabled: Bool) {
+        noResultLabel.isHidden = isEnabled
     }
 }

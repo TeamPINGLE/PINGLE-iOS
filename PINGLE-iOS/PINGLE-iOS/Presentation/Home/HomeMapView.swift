@@ -37,7 +37,6 @@ final class HomeMapView: BaseView {
                                           othersChipButton]
     
     let mapsView = NMFNaverMapView()
-    let locationButton = NMFLocationButton()
     let locationOverlayIcon = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
     
     var nowLat: Double = 37.56299678698725
@@ -54,7 +53,6 @@ final class HomeMapView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setAddTarget()
         setMarker()
     }
     
@@ -71,15 +69,7 @@ final class HomeMapView: BaseView {
             $0.showScaleBar = false
             $0.showZoomControls = false
             $0.showCompass = false
-        }
-        
-        locationButton.do {
-            // 수정 필요
-            $0.backgroundColor = .white
-            $0.mapView = mapsView.mapView
-            $0.layer.cornerRadius = 25
-            $0.clipsToBounds = true
-            $0.layer.masksToBounds = true
+            $0.showLocationButton = false
         }
         
         cameraUpdate.do {
@@ -139,29 +129,21 @@ final class HomeMapView: BaseView {
         }
     }
     
-    private func setAddTarget() {
-        
-        self.currentLocationButton.addTarget(self,
-                                             action: #selector(currentLocationButtonTapped),
-                                             for: .touchUpInside)
-    }
-    
     private func setMarker() {
         markerDummy.forEach {
             let marker = NMFMarker()
             marker.position = NMGLatLng(lat: $0, lng: $1)
             marker.mapView = mapsView.mapView
         }
+        
+        /// 현위치 마커
+        /// 
     }
     
     private func setLocationOverlay() {
-        locationOverlayIcon.do {
-            let locationOverlay = mapsView.mapView.locationOverlay
-            locationOverlay.icon = $0
-        }
-    }
-    
-    @objc func currentLocationButtonTapped() {
-        print("현위치 버튼 탭")
+//        locationOverlayIcon.do {
+//            let locationOverlay = mapsView.mapView.locationOverlay
+//            locationOverlay.icon = $0
+//        }
     }
 }

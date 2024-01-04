@@ -7,12 +7,14 @@
 
 import UIKit
 
+import CoreLocation
 import NMapsMap
 import SnapKit
 import Then
 
 final class HomeMapViewController: BaseViewController {
     
+    var shouldUpdateMap: Bool = true
     let mapsView = HomeMapView()
     
     override func viewDidLoad() {
@@ -38,20 +40,15 @@ final class HomeMapViewController: BaseViewController {
         mapsView.locationManager.delegate = self
         mapsView.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         mapsView.locationManager.requestWhenInUseAuthorization()
-        DispatchQueue.global().async {
-            if CLLocationManager.locationServicesEnabled() {
-                self.mapsView.locationManager.startUpdatingLocation()
-            } else {
-                print("위치 서비스 허용 off")
-            }
-        }
     }
     
     private func setAddTarget() {
         self.mapsView.chipButtons.forEach {
             $0.addTarget(self, action: #selector(isChipButtonTapped), for: .touchUpInside)
         }
-        
+        self.mapsView.currentLocationButton.addTarget(self,
+                                             action: #selector(currentLocationButtonTapped),
+                                             for: .touchUpInside)
         self.mapsView.listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
     }
 }
@@ -63,11 +60,14 @@ extension HomeMapViewController: CLLocationManagerDelegate {
             mapsView.nowLat = location.coordinate.latitude
             mapsView.nowLng = location.coordinate.longitude
             
-            mapsView.cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: mapsView.nowLat, lng: mapsView.nowLng))
-            mapsView.cameraUpdate.animation = .easeIn
-            self.mapsView.mapsView.mapView.moveCamera(mapsView.cameraUpdate)
             print("위도 : \(location.coordinate.latitude)")
             print("경도 : \(location.coordinate.longitude)")
+            
+            if shouldUpdateMap {
+                moveToCurrentLocation()
+                shouldUpdateMap = false
+            }
+            
         }
     }
     
@@ -76,6 +76,36 @@ extension HomeMapViewController: CLLocationManagerDelegate {
         print(error)
         print("error")
     }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+            switch manager.authorizationStatus {
+            case .authorizedWhenInUse, .authorizedAlways:
+                // 위치 권한이 허용된 경우
+                print("위치 권한이 허용되었습니다.")
+                startUpdatingLocationAndMoveToCurrentLocation()
+                self.moveToCurrentLocation()
+            case .denied, .restricted:
+                // 위치 권한이 거부된 경우
+                print("위치 권한이 거부되었습니다.")
+            case .notDetermined:
+                // 위치 권한이 아직 결정되지 않은 경우
+                print("위치 권한이 아직 결정되지 않았습니다.")
+                // 여기서 사용자에게 위치 권한을 요청하는 로직을 추가할 수 있습니다.
+                manager.requestWhenInUseAuthorization()
+            @unknown default:
+                fatalError("Unhandled authorization status")
+            }
+        }
+
+        private func startUpdatingLocationAndMoveToCurrentLocation() {
+            DispatchQueue.global().async {
+                if CLLocationManager.locationServicesEnabled() {
+                    self.mapsView.locationManager.startUpdatingLocation()
+                } else {
+                    print("위치 서비스 허용 off")
+                }
+            }
+        }
 }
 
 extension HomeMapViewController {
@@ -91,5 +121,16 @@ extension HomeMapViewController {
     
     @objc func listButtonTapped() {
         print("리스트 버튼 탭")
+    }
+    
+    @objc func currentLocationButtonTapped() {
+        moveToCurrentLocation()
+    }
+    
+    func moveToCurrentLocation() {
+        print("현위치 이동")
+        self.mapsView.cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: mapsView.nowLat, lng: mapsView.nowLng))
+        self.mapsView.cameraUpdate.animation = .easeIn
+        self.mapsView.mapsView.mapView.moveCamera(mapsView.cameraUpdate)
     }
 }

@@ -27,6 +27,10 @@ enum ImageLiterals {
     }
     
     enum Metting {
+        enum Icon {
+            static var icBack: UIImage { .load(named: "icBackButton")}
+        }
+        
         enum Guide {
             static var imgExitButton: UIImage { .load(named: "imgExitButton")}
             static var imgMettingGraphic: UIImage { .load(named: "imgMettingGraphic")}

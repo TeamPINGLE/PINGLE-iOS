@@ -17,10 +17,22 @@ enum StringLiterals {
             static let appleLogin = "Apple로 시작하기"
             static let existingOrganization = "기존 단체\n입장하기"
             static let makeOrganization = "신규 단체\n개설하기"
+            static let requestOrganization = "단체를 직접 추가해주세요"
         }
         
         enum ExplainTitle {
             static let onboarding = "핑글에 오신걸\n환영합니다!"
+            static let searchOrganization = "속해있는 단체의\n이름을 알려주세요"
+            static let bottomRequest = "찾는 단체가 없나요?"
+            static let noResult = "검색 결과가 없어요"
+        }
+        
+        enum NavigationTitle {
+            static let searchOrganizationNavigation = "기존 단체 입장하기"
+        }
+        
+        enum SearchBarPlaceholder {
+            static let searchOrganizationPlaceholder = "단체 이름을 검색해보세요"
         }
     }
     

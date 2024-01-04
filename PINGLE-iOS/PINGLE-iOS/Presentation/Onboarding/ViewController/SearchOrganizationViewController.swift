@@ -27,6 +27,7 @@ final class SearchOrganizationViewController: BaseViewController {
         setNavigation()
         setTarget()
         setRegister()
+        hideKeyboardWhenTappedAround()
     }
     
     // MARK: UI
@@ -95,6 +96,7 @@ final class SearchOrganizationViewController: BaseViewController {
     
     // MARK: Delegate
     override func setDelegate() {
+        self.searchOrganizationView.searchTextField.delegate = self
         self.searchOrganizationView.searchCollectionView.delegate = self
         self.searchOrganizationView.searchCollectionView.dataSource = self
     }
@@ -119,6 +121,8 @@ final class SearchOrganizationViewController: BaseViewController {
     // MARK: Target Function
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        searchOrganizationView.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        searchOrganizationView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         makeOrganizationButton.addTarget(self, action: #selector(makeOrganizationButtonTapped), for: .touchUpInside)
         bottomCTAButton.addTarget(self, action: #selector(bottomCTAButtonTapped), for: .touchUpInside)
     }
@@ -126,6 +130,10 @@ final class SearchOrganizationViewController: BaseViewController {
     // MARK: Objc Function
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func searchButtonTapped() {
+        self.view.endEditing(true)
     }
     
     @objc func makeOrganizationButtonTapped() {
@@ -139,6 +147,20 @@ final class SearchOrganizationViewController: BaseViewController {
 }
 
 // MARK: - extension
+
+// MARK: UITextFieldDelegate
+extension SearchOrganizationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // MARK: Objc Function
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        print("Text changed: \(textField.text ?? "")")
+    }
+}
+
 // MARK: UICollectionViewDelegate
 extension SearchOrganizationViewController: UICollectionViewDelegate {}
 

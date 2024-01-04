@@ -15,9 +15,8 @@ final class SearchOrganizationView: BaseView {
     // MARK: Property
     private let searchView = UIView()
     let searchTextField = UITextField()
-    private let searchImageView = UIImageView()
+    let searchButton = UIButton()
     let searchCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +37,7 @@ final class SearchOrganizationView: BaseView {
         self.searchTextField.do {
             $0.font = .bodyBodySemi14
             $0.textColor = .white
+            $0.tintColor = .mainPingleGreen
             $0.returnKeyType = .search
             $0.enablesReturnKeyAutomatically = true
             $0.attributedPlaceholder = NSAttributedString(
@@ -49,8 +49,8 @@ final class SearchOrganizationView: BaseView {
             )
         }
         
-        self.searchImageView.do {
-            $0.image = ImageLiterals.Icon.imgSearchIcon
+        self.searchButton.do {
+            $0.setImage(ImageLiterals.Icon.imgSearchIcon, for: .normal)
         }
         
         self.searchCollectionView.do {
@@ -61,7 +61,7 @@ final class SearchOrganizationView: BaseView {
     
     override func setLayout() {
         self.addSubviews(searchView, searchCollectionView)
-        self.searchView.addSubviews(searchTextField, searchImageView, searchImageView)
+        self.searchView.addSubviews(searchTextField, searchButton)
         
         searchView.snp.makeConstraints {
             $0.top.equalTo(self.snp.top)
@@ -75,7 +75,7 @@ final class SearchOrganizationView: BaseView {
             $0.trailing.equalToSuperview().inset(54.adjusted)
         }
         
-        searchImageView.snp.makeConstraints {
+        searchButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(13.adjusted)
             $0.centerY.equalToSuperview()
             $0.height.width.equalTo(24.adjusted)

@@ -19,6 +19,7 @@ final class SearchOrganizationViewController: BaseViewController {
     private let searchOrganizationView = SearchOrganizationView()
     private let bottomRequestLabel = UILabel()
     private let makeOrganizationButton = UIButton()
+    private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.nextCTA, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -61,7 +62,7 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel, searchOrganizationView, bottomRequestLabel, makeOrganizationButton)
+        self.view.addSubviews(titleLabel, searchOrganizationView, bottomRequestLabel, makeOrganizationButton, bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(32.adjusted)
@@ -84,6 +85,11 @@ final class SearchOrganizationViewController: BaseViewController {
             $0.leading.equalTo(self.bottomRequestLabel.snp.trailing).offset(4.adjusted)
             $0.height.equalTo(17.adjusted)
             $0.width.equalTo(121.adjusted)
+        }
+        
+        bottomCTAButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(41.adjusted)
+            $0.centerX.equalToSuperview()
         }
     }
     
@@ -114,6 +120,7 @@ final class SearchOrganizationViewController: BaseViewController {
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         makeOrganizationButton.addTarget(self, action: #selector(makeOrganizationButtonTapped), for: .touchUpInside)
+        bottomCTAButton.addTarget(self, action: #selector(bottomCTAButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Objc Function
@@ -125,6 +132,9 @@ final class SearchOrganizationViewController: BaseViewController {
         guard let url = URL(string: "https://www.google.com") else { return }
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true)
+    }
+    
+    @objc func bottomCTAButtonTapped() {
     }
 }
 

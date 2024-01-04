@@ -55,15 +55,15 @@ enum StringLiterals {
                 static let multiExplain = "설명 텍스트 미정"
                 static let othersExplain = "설명 텍스트 미정"
             }
+            
+            enum ExitButton {
+                static let exitButton = "나가기"
+                static let exitLabel = "나중에 만드시겠어요?"
+            }
         }
     }
     
     enum CTAButton {
         static let buttonTitle = "다음으로"
-    }
-    
-    enum ExitButton {
-        static let exitButton = "나가기"
-        static let exitLabel = "나중에 만드시겠어요?"
     }
 }

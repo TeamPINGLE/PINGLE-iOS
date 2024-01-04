@@ -13,6 +13,10 @@ class ButtonCustomTest: BaseViewController {
 // MARK: Property
     let testButton = PINGLECTAButton(title: "핑글 개최하러 가기", buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
+    let categoryTestButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Metting.MettingCategory.CategoryTitle.play,
+                                                  buttonExplainLabel: StringLiterals.Metting.MettingCategory.ExplainCategory.playExplain,
+                                                  category: ImageLiterals.Metting.Category.categoryPlayImage, textColor: .mainPingleGreen)
+    
     let textField = UITextField().then {
         $0.placeholder = "아무거나 적어보셈..."
         $0.borderStyle = .roundedRect
@@ -25,6 +29,7 @@ class ButtonCustomTest: BaseViewController {
     
     override func setLayout() {
         view.addSubviews(testButton, textField)
+        view.addSubview(categoryTestButton)
         
         testButton.snp.makeConstraints {
             $0.top.equalTo(view.snp.top).offset(50)
@@ -37,12 +42,23 @@ class ButtonCustomTest: BaseViewController {
             $0.width.equalTo(200)
         }
         
+        categoryTestButton.snp.makeConstraints {
+            $0.top.equalTo(textField.snp.bottom).offset(50)
+            $0.leading.equalToSuperview().inset(50)
+        }
+        
         textField.delegate = self
         testButton.addTarget(self, action: #selector(testButtonPressed), for: .touchUpInside)
+        categoryTestButton.addTarget(self, action: #selector(categorySelected), for: .touchUpInside)
+    }
+    
+    @objc func categorySelected() {
+        categoryTestButton.selectedButton()
+        print("카테고리가 선택되었습니다.")
     }
     
     @objc func testButtonPressed() {
-            print("버튼이 눌렸습니다")
+            print("버튼이 눌렸습니다.")
         }
 }
 

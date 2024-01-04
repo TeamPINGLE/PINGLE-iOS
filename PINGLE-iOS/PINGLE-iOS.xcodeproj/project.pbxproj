@@ -146,6 +146,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C33BF3462B46E85200008653 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C30728332B42E06D00AA575B /* HomeMapViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C33BF3472B46E85900008653 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */,
+				C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C33BF3482B46E87100008653 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C33BF3442B46E03400008653 /* PINGLEMarker.swift */,
+				C31A47A62B44761200D3CD4B /* ChipButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C33BF3492B46E87D00008653 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3EC304E2B43E20600276E00 /* HomeMapView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C39602AB2B3BEE06004BB2B8 = {
 			isa = PBXGroup;
 			children = (
@@ -300,12 +334,10 @@
 		C39602E82B3BF214004BB2B8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C30728332B42E06D00AA575B /* HomeMapViewController.swift */,
-				C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */,
-				C3EC304E2B43E20600276E00 /* HomeMapView.swift */,
-				C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */,
-				C31A47A62B44761200D3CD4B /* ChipButton.swift */,
-				C33BF3442B46E03400008653 /* PINGLEMarker.swift */,
+				C33BF3462B46E85200008653 /* ViewController */,
+				C33BF3492B46E87D00008653 /* View */,
+				C33BF3482B46E87100008653 /* Components */,
+				C33BF3472B46E85900008653 /* Model */,
 			);
 			path = Home;
 			sourceTree = "<group>";

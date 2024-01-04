@@ -7,6 +7,7 @@
 
 import Foundation
 
+// 추후 DTO 파일로 옮길 예정
 struct HomePinListResponseDTO: Codable {
     let id: Int
     let x: String

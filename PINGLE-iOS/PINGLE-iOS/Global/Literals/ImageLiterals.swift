@@ -42,6 +42,9 @@ enum ImageLiterals {
             static var icMapList: UIImage { .load(named: "icMapList")}
             static var icMapMap: UIImage { .load(named: "icMapMap")}
             static var icLocationOverlay: UIImage { .load(named: "icLocationOverlay")}
+            static var imgMapPinPlay: UIImage { .load(named: "imgMapPinPlay")}
+            static var imgMapPinStudy: UIImage { .load(named: "imgMapPinStudy")}
+            static var imgMapPinMulti: UIImage { .load(named: "imgMapPinMulti")}
         }
     }
 }

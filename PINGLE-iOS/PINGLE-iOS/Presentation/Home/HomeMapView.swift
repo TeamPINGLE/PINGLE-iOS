@@ -13,17 +13,6 @@ import Then
 
 final class HomeMapView: BaseView {
     
-    typealias Marker = [Double: Double]
-    
-    let markerDummy: Marker = [37.56299678698725: 126.8469346126135,
-                               37.57299678698725: 126.8569346126135,
-                               37.58299678698725: 126.8669346126135,
-                               37.59299678698725: 126.8769346126135,
-                               37.60299678698725: 126.8669346126135,
-                               37.61299678698725: 126.8369346126135,
-                               37.62299678698725: 126.8469346126135,
-                               37.63299678698725: 126.8769346126135]
-    
     let chipStackView = UIStackView()
     
     let playChipButton = ChipButton(state: .play)
@@ -37,16 +26,12 @@ final class HomeMapView: BaseView {
                                           othersChipButton]
     
     let mapsView = NMFNaverMapView()
-    let locationOverlayIcon = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
     
     var nowLat: Double = 37.56299678698725
     var nowLng: Double = 126.8569346126135
     
     var locationManager = CLLocationManager()
     lazy var cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: self.nowLat, lng: self.nowLng))
-    
-    let marker = NMFMarker()
-    let infoWindow = NMFInfoWindow()
     
     let currentMarker = NMFMarker()
     
@@ -134,10 +119,29 @@ final class HomeMapView: BaseView {
     }
     
     private func setMarker() {
-        markerDummy.forEach {
-            let marker = NMFMarker()
-            marker.position = NMGLatLng(lat: $0, lng: $1)
-            marker.mapView = mapsView.mapView
+        homePinListDummy.forEach {
+            let pinglemarker = NMFMarker()
+            
+            let x = Double($0.x) ?? 37.56299678698725
+            let y = Double($0.y) ?? 126.8569346126135
+            
+            pinglemarker.iconImage = NMFOverlayImage(image: setMarkerColor(category: $0.category))
+            
+            pinglemarker.position = NMGLatLng(lat: x, lng: y)
+            pinglemarker.mapView = mapsView.mapView
+        }
+    }
+    
+    private func setMarkerColor(category: String) -> UIImage {
+        switch category {
+        case "PLAY":
+            return ImageLiterals.Home.Map.imgMapPinPlay
+        case "STUDY":
+            return ImageLiterals.Home.Map.imgMapPinStudy
+        case "MULTI":
+            return ImageLiterals.Home.Map.imgMapPinMulti
+        default:
+            return ImageLiterals.Home.Map.imgMapPinPlay
         }
     }
     
@@ -147,3 +151,4 @@ final class HomeMapView: BaseView {
         currentMarker.mapView = mapsView.mapView
     }
 }
+

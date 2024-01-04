@@ -38,6 +38,8 @@ final class HomeMapView: BaseView {
     let currentLocationButton = UIButton()
     let listButton = UIButton()
     
+    var homeMarkerList: [PINGLEMarker] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setMarker()
@@ -119,17 +121,21 @@ final class HomeMapView: BaseView {
         }
     }
     
-    private func setMarker() {
+     func setMarker() {
         homePinListDummy.forEach {
-            let pinglemarker = NMFMarker()
+            let pingleMarker = PINGLEMarker()
+            
+            pingleMarker.changeStringToStatus(string: $0.category)
+            pingleMarker.meetingString = $0.category
             
             let x = Double($0.x) ?? 37.56299678698725
             let y = Double($0.y) ?? 126.8569346126135
             
-            pinglemarker.iconImage = NMFOverlayImage(image: setMarkerColor(category: $0.category))
+            pingleMarker.iconImage = NMFOverlayImage(image: setMarkerColor(category: $0.category))
             
-            pinglemarker.position = NMGLatLng(lat: x, lng: y)
-            pinglemarker.mapView = mapsView.mapView
+            pingleMarker.position = NMGLatLng(lat: x, lng: y)
+            pingleMarker.mapView = mapsView.mapView
+            homeMarkerList.append(pingleMarker)
         }
     }
     

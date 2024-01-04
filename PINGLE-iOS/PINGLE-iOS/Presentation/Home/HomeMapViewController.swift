@@ -119,10 +119,28 @@ extension HomeMapViewController {
             $0.isButtonSelected = false
         }
         
-        // TODO: 필터링 처리 하기
-        homePinListDummy.filter { $0.category != sender.chipStatusString }.forEach {
-            print($0)
+        /// 모든 마커 (핀) 다 보이도록
+        self.mapsView.homeMarkerList.forEach {
+            $0.hidden = false
         }
+        
+        /// 현재 선택되지 않은 버튼 개수
+        var unselectedButton: Int = 0
+        
+        self.mapsView.chipButtons.forEach {
+            if !$0.isButtonSelected {
+                unselectedButton += 1
+            }
+        }
+        
+        /// 아무 필터도 선택되지 않았다면 모두 보여주고, 선택되었다면 필터링해서 보여주기
+        if unselectedButton != 4 {
+            self.mapsView.homeMarkerList.filter { $0.meetingString != sender.chipStatusString }.forEach {
+                $0.hidden = true
+            }
+        }
+        
+        print(self.mapsView.homeMarkerList)
     }
     
     @objc func listButtonTapped() {

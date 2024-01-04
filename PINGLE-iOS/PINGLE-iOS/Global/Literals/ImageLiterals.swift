@@ -33,6 +33,29 @@ enum ImageLiterals {
         static var imgSettingSelected: UIImage { .load(named: "imgSettingSelected")}
     }
     
+    enum Home {
+        enum Chips {
+            static var btnMultiChip: UIImage { .load(named: "btnMultiChip")}
+            static var btnMultiChipSelected: UIImage { .load(named: "btnMultiChipSelected")}
+            static var btnOtherChip: UIImage { .load(named: "btnOtherChip")}
+            static var btnOthersChipSelected: UIImage { .load(named: "btnOthersChipSelected")}
+            static var btnPlayChip: UIImage { .load(named: "btnPlayChip")}
+            static var btnPlayChipSelected: UIImage { .load(named: "btnPlayChipSelected")}
+            static var btnStudyChip: UIImage { .load(named: "btnStudyChip")}
+            static var btnStudyChipSelected: UIImage { .load(named: "btnStudyChipSelected")}
+        }
+        
+        enum Map {
+            static var icMapHere: UIImage { .load(named: "icMapHere")}
+            static var icMapList: UIImage { .load(named: "icMapList")}
+            static var icMapMap: UIImage { .load(named: "icMapMap")}
+            static var icLocationOverlay: UIImage { .load(named: "icLocationOverlay")}
+            static var imgMapPinPlay: UIImage { .load(named: "imgMapPinPlay")}
+            static var imgMapPinStudy: UIImage { .load(named: "imgMapPinStudy")}
+            static var imgMapPinMulti: UIImage { .load(named: "imgMapPinMulti")}
+        }
+    }
+  
     enum Metting {
         enum Guide {
             static var imgExitButton: UIImage { .load(named: "imgExitButton")}

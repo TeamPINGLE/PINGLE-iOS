@@ -22,8 +22,6 @@ class MeetingExitButton: UIButton {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setStyle()
-        setLayout()
     }
 
     // MARK: - UI
@@ -39,12 +37,13 @@ class MeetingExitButton: UIButton {
         self.addSubview(underlineView)
         
         self.snp.makeConstraints {
-            $0.width.equalTo(32.adjusted)
-            $0.height.equalTo(17.adjusted)
+            $0.width.equalTo(32.adjustedWidth)
+            $0.height.equalTo(17.adjustedHeight)
         }
         
         underlineView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(1.adjusted)
             $0.height.equalTo(1.adjusted)
         }
     }

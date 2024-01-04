@@ -12,10 +12,6 @@ enum StringLiterals {
     // 필요한 enum을 만들어서 사용해주세요
     // 사용예시: titleLabel.text = StringLiterals.TabBar.home
     
-    enum CTAButton {
-        static let nextCTA = "다음으로"
-    }
-    
     enum Onboarding {
         enum ButtonTitle {
             static let appleLogin = "Apple로 시작하기"

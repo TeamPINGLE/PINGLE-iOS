@@ -22,7 +22,7 @@ final class SearchOrganizationViewController: BaseViewController {
     private let searchOrganizationView = SearchOrganizationView()
     private let bottomRequestLabel = UILabel()
     private let makeOrganizationButton = UIButton()
-    private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.nextCTA, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
+    private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     // MARK: Life Cycle
     override func viewDidLoad() {

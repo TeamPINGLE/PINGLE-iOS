@@ -17,11 +17,17 @@ final class MakeMettingGuideViewController: BaseViewController {
     private let exitButton = UIButton()
     private let guideTitle = UILabel()
     private let guideSubTitle = UILabel()
-    private let entranceButton = PINGLECTAButton(title: "핑글 개최하러 가기", buttonColor: .grayscaleG08, textColor: .grayscaleG10)
+    private let entranceButton = PINGLECTAButton(title: StringLiterals.Metting.MettingGuide.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
+    
+    // MARK: Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTarget()
+    }
     
     // MARK: UI
     override func setStyle() {
-        view.backgroundColor = .grayscaleG11
+        self.view.backgroundColor = .grayscaleG11
         
         self.mettingImageView.do {
             $0.image = ImageLiterals.Metting.Guide.imgMettingGraphic
@@ -37,7 +43,7 @@ final class MakeMettingGuideViewController: BaseViewController {
             $0.text = StringLiterals.Metting.MettingGuide.guideTitle
             $0.font = .titleTitleSemi32
             $0.textColor = .white
-            $0.numberOfLines = 2
+            $0.numberOfLines = 0
         }
         
         self.guideSubTitle.do {
@@ -50,7 +56,6 @@ final class MakeMettingGuideViewController: BaseViewController {
         self.entranceButton.do {
             $0.activateButton()
         }
-        
     }
     
     override func setLayout() {
@@ -79,9 +84,13 @@ final class MakeMettingGuideViewController: BaseViewController {
             $0.bottom.equalTo(self.view.snp.bottom).inset(54.adjusted)
             $0.leading.equalToSuperview().offset(16.adjusted)
         }
-        
+    }
+    
+    // MARK: Target Function
+    private func setTarget() {
         entranceButton.addTarget(self, action: #selector(entranceButtonPressed), for: .touchUpInside)
     }
+    
     // MARK: Objc Function
     @objc func entranceButtonPressed() {
             print("개최 시작버튼이 눌렸습니다")

@@ -150,7 +150,6 @@ final class SearchOrganizationViewController: BaseViewController {
 }
 
 // MARK: - extension
-
 // MARK: UITextFieldDelegate
 extension SearchOrganizationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -183,7 +182,13 @@ extension SearchOrganizationViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedCellIndex = indexPath
+        if selectedCellIndex == indexPath {
+            selectedCellIndex = nil
+            bottomCTAButton.disabledButton()
+        } else {
+            selectedCellIndex = indexPath
+            bottomCTAButton.activateButton()
+        }
         searchOrganizationView.searchCollectionView.reloadData()
     }
 }

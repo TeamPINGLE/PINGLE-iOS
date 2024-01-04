@@ -32,6 +32,20 @@ enum ImageLiterals {
         static var imgSetting: UIImage { .load(named: "imgSetting")}
         static var imgSettingSelected: UIImage { .load(named: "imgSettingSelected")}
     }
+    
+    enum Metting {
+        enum Guide {
+            static var imgExitButton: UIImage { .load(named: "imgExitButton")}
+            static var imgMettingGraphic: UIImage { .load(named: "imgMettingGraphic")}
+        }
+        
+        enum Category {
+            static var categoryPlayImage: UIImage { .load(named: "imgSample")}
+            static var categoryStudyImage: UIImage { .load(named: "imgSample")}
+            static var categoryMultiImage: UIImage { .load(named: "imgSample")}
+            static var categoryOthersImage: UIImage { .load(named: "imgSample")}
+        }
+    }
 }
 
 extension UIImage {

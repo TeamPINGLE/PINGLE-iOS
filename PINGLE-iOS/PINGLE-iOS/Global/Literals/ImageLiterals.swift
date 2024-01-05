@@ -61,7 +61,7 @@ enum ImageLiterals {
             static var imgMultiBadge: UIImage { .load(named: "imgMultiBadge")}
             static var imgOthersBadge: UIImage { .load(named: "imgOthersBadge")}
             static var icCalendar: UIImage { .load(named: "icCalendar")}
-            static var icMap: UIImage { .load(named: "icMap")}
+            static var icLocation: UIImage { .load(named: "icLocation")}
         }
     }
   

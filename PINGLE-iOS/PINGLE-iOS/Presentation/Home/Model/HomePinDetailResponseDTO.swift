@@ -23,7 +23,7 @@ struct HomePinDetailResponseDTO: Codable {
 }
 
 let homePinDetailDummy: [HomePinDetailResponseDTO] =
-[HomePinDetailResponseDTO(id: 1, category: "PLAY", name: "하루종일너란바닷속을항해하는나는아쿠아맨헤엄헤엄헤엄암롤링인더딥인사이드옵유너의어장은너무캄캄해헤엄헤엄헤엄",
+[HomePinDetailResponseDTO(id: 1, category: "PLAY", name: "하루종일너란바닷속을항해하는나는아쿠아맨헤엄헤엄헤엄",
                           ownerName: "정채은", date: "2024-01-06",
                           startAt: "12:00:00", endAt: "15:30:00",
                           maxParticipants: 10, curParticipants: 9, 

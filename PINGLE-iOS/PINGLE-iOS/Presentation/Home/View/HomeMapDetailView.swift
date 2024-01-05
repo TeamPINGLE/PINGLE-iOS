@@ -60,9 +60,12 @@ final class HomeMapDetailView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "강남 모각작팟", lineHeight: 25)
+            $0.setTextWithLineHeight(text: "강남", lineHeight: 25)
+            $0.numberOfLines = 2
             $0.textColor = badgeColor
             $0.font = .subtitleSubSemi18
+            $0.lineBreakMode = .byCharWrapping
+            $0.textAlignment = .left
         }
         
         nameLabel.do {
@@ -220,10 +223,11 @@ final class HomeMapDetailView: BaseView {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(badgeImageView.snp.bottom).offset(8)
             $0.leading.equalTo(badgeImageView)
+            $0.width.equalTo(188.adjustedWidth)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.leading.equalTo(badgeImageView)
         }
         
@@ -311,6 +315,47 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
+    func longTitle() {
+        if titleLabel.countCurrentLines() >= 2 {
+            badgeImageView.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(24.adjustedWidth)
+                $0.top.equalToSuperview().inset(15)
+            }
+            
+            titleLabel.snp.makeConstraints {
+                $0.top.equalTo(badgeImageView.snp.bottom).offset(4)
+                $0.leading.equalTo(badgeImageView)
+                $0.width.equalTo(188.adjustedWidth)
+            }
+            
+            nameLabel.snp.makeConstraints {
+                $0.top.equalTo(titleLabel.snp.bottom).offset(4)
+                $0.leading.equalTo(badgeImageView)
+            }
+            
+            titleLabel.font = .subtitleSubSemi16
+        } else {
+            badgeImageView.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(24.adjustedWidth)
+                $0.top.equalToSuperview().inset(20)
+            }
+            
+            titleLabel.snp.makeConstraints {
+                $0.top.equalTo(badgeImageView.snp.bottom).offset(8)
+                $0.leading.equalTo(badgeImageView)
+                $0.width.equalTo(188.adjustedWidth)
+            }
+            
+            nameLabel.snp.makeConstraints {
+                $0.top.equalTo(titleLabel.snp.bottom).offset(4)
+                $0.leading.equalTo(badgeImageView)
+            }
+            
+            titleLabel.font = .subtitleSubSemi18
+        }
+        print(titleLabel.countCurrentLines())
+    }
+    
     // MARK: Data Bind Func
     func dataBind(data: HomePinDetailResponseDTO) {
         titleLabel.text = data.name
@@ -376,5 +421,6 @@ final class HomeMapDetailView: BaseView {
                 $0.makeBorder(width: 1, color: .white)
             }
         }
+        self.longTitle()
     }
 }

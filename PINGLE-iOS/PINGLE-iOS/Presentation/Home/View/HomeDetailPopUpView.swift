@@ -87,13 +87,11 @@ final class HomeDetailPopUpView: BaseView {
         
         self.snp.makeConstraints {
             $0.width.equalTo(327.adjustedWidth)
-//            $0.height.equalTo(278)
         }
         
         infoBackgroundView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(24)
             $0.leading.trailing.equalToSuperview().inset(24.adjustedWidth)
-//            $0.height.equalTo(126)
         }
         
         badgeImageView.snp.makeConstraints {

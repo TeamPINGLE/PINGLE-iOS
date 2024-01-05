@@ -13,8 +13,6 @@ import NMapsMap
 import SnapKit
 import Then
 
-// TODO: MARK 주석 달기
-// TODO: 줄바꿈 경우 처리
 final class HomeMapViewController: BaseViewController {
     
     // MARK: - Variables

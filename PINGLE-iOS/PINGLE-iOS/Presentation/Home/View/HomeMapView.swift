@@ -78,17 +78,19 @@ final class HomeMapView: BaseView {
         }
         
         currentLocationButton.do {
-            $0.backgroundColor = .white
-            $0.makeCornerRound(radius: 25.adjusted)
+            $0.setBackgroundColor(.white, for: .normal)
+            $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
             $0.setImage(ImageLiterals.Home.Map.icMapHere, for: .normal)
             $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+            $0.makeCornerRound(radius: 25.adjusted)
         }
         
         listButton.do {
-            $0.backgroundColor = .white
-            $0.makeCornerRound(radius: 25.adjusted)
+            $0.setBackgroundColor(.white, for: .normal)
+            $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
             $0.setImage(ImageLiterals.Home.Map.icMapList, for: .normal)
             $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+            $0.makeCornerRound(radius: 25.adjusted)
         }
         
         currentMarker.do {

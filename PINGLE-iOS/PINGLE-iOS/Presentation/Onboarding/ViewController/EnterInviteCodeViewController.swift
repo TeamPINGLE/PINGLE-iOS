@@ -60,6 +60,10 @@ final class EnterInviteCodeViewController: BaseViewController {
             $0.font = .captionCapMed10
             $0.textColor = .grayscaleG04
         }
+        
+        self.warningToastView.do {
+            $0.alpha = 0.0
+        }
     }
     
     override func setLayout() {
@@ -125,11 +129,25 @@ final class EnterInviteCodeViewController: BaseViewController {
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         inviteCodeTextFieldView.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        bottomCTAButton.addTarget(self, action: #selector(bottomCTAButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Objc Function
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func bottomCTAButtonTapped() {
+        showWarningToastView()
+    }
+    
+    // MARK: Animation Function
+    func showWarningToastView(duration: TimeInterval = 2.0) {
+        self.warningToastView.fadeIn()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            self.warningToastView.fadeOut()
+        }
     }
 }
 

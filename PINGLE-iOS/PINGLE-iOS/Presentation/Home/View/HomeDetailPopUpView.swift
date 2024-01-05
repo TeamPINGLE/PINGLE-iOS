@@ -13,6 +13,7 @@ import Then
 final class HomeDetailPopUpView: BaseView {
     
     var badgeColor: UIColor? = .subPingleOrange
+    var isParticipating: Bool = false
     
     let infoBackgroundView = UIView()
     let badgeImageView = UIImageView()
@@ -139,5 +140,6 @@ final class HomeDetailPopUpView: BaseView {
         titleLabel.textColor = badgeColor
         titleLabel.text = data.name
         nameLabel.text = data.ownerName
+        isParticipating = data.isParticipating
     }
 }

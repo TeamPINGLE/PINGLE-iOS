@@ -14,6 +14,8 @@ final class HomeMapDetailView: BaseView {
     // MARK: - Variables
     // MARK: Property
     var badgeColor: UIColor? = .subPingleOrange
+    var isParticipating: Bool = false
+    var openChatURL: String?
     
     // MARK: Component
     let topBackgroundView = UIView()
@@ -315,6 +317,8 @@ final class HomeMapDetailView: BaseView {
         totalParticipantsLabel.text = String(data.maxParticipants)
         dateLabel.text = data.date
         timeLabel.text = data.startAt + " ~ " + data.endAt
+        isParticipating = data.isParticipating
+        openChatURL = data.chatLink
         
         switch data.category {
         case "PLAY":

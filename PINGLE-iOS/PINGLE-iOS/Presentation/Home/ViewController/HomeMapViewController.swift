@@ -7,6 +7,7 @@
 
 import UIKit
 
+import SafariServices
 import CoreLocation
 import NMapsMap
 import SnapKit
@@ -108,6 +109,9 @@ final class HomeMapViewController: BaseViewController {
         self.mapDetailView.participationButton.addTarget(self,
                                                          action: #selector(participantsButtonTapped),
                                                          for: .touchUpInside)
+        self.mapDetailView.talkButton.addTarget(self,
+                                                action: #selector(talkButtonTapped),
+                                                for: .touchUpInside)
         self.dimmedView.addGestureRecognizer(dimmedTapGesture)
         self.homeDetailPopUpView.participationButton.addTarget(self,
                                                                action: #selector(participationButtonTapped),
@@ -245,8 +249,18 @@ extension HomeMapViewController {
     }
     
     @objc func participantsButtonTapped() {
-        dimmedView.isHidden = false
-        homeDetailPopUpView.isHidden = false
+        if !mapDetailView.isParticipating {
+            dimmedView.isHidden = false
+            homeDetailPopUpView.isHidden = false
+        }
+    }
+    
+    @objc func talkButtonTapped() {
+        print("대화하기 터치됨")
+        guard let chatURL = mapDetailView.openChatURL else { return }
+        guard let url = URL(string: chatURL) else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
     }
     
     // MARK: Custom Function

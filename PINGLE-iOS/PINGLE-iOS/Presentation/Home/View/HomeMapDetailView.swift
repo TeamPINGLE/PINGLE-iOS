@@ -315,8 +315,11 @@ final class HomeMapDetailView: BaseView {
         nameLabel.text = data.ownerName
         currentParticipantsLabel.text = String(data.curParticipants)
         totalParticipantsLabel.text = String(data.maxParticipants)
-        dateLabel.text = data.date
-        timeLabel.text = data.startAt + " ~ " + data.endAt
+        dateLabel.text = data.date.convertToKoreanDate()
+        
+        let startAtString = data.startAt.convertToShortTimeFormat() ?? data.startAt
+        let endAtString = data.endAt.convertToShortTimeFormat() ?? data.endAt
+        timeLabel.text = startAtString + " ~ " + endAtString
         isParticipating = data.isParticipating
         openChatURL = data.chatLink
         

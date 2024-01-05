@@ -12,6 +12,10 @@ import NMapsMap
 import SnapKit
 import Then
 
+// TODO: 카메라 이동
+// TODO: 데이터 연결 틀 만들기
+// TODO: 참여하기 버튼 로직 연결
+
 final class HomeMapViewController: BaseViewController {
     
     // MARK: - Variables
@@ -56,9 +60,12 @@ final class HomeMapViewController: BaseViewController {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
         self.view.addSubviews(mapsView,
-                              mapDetailView,
-                              dimmedView,
-                              homeDetailPopUpView)
+                              mapDetailView)
+        
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubviews(dimmedView,
+                               homeDetailPopUpView)
+        }
         
         mapsView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -77,7 +84,7 @@ final class HomeMapViewController: BaseViewController {
         }
         
         homeDetailPopUpView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.center.equalTo(dimmedView)
         }
     }
     
@@ -105,6 +112,9 @@ final class HomeMapViewController: BaseViewController {
                                                          action: #selector(participantsButtonTapped),
                                                          for: .touchUpInside)
         self.dimmedView.addGestureRecognizer(dimmedTapGesture)
+        self.homeDetailPopUpView.participationButton.addTarget(self,
+                                                               action: #selector(participationButtonTapped),
+                                                               for: .touchUpInside)
     }
 }
 
@@ -227,6 +237,10 @@ extension HomeMapViewController {
     
     @objc func listButtonTapped() {
         print("리스트 버튼 탭")
+    }
+    
+    @objc func participationButtonTapped() {
+        print("참여하기 버튼 탭")
     }
     
     @objc func currentLocationButtonTapped() {

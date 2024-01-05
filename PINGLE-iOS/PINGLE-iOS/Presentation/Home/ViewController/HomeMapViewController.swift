@@ -25,6 +25,7 @@ final class HomeMapViewController: BaseViewController {
     let mapDetailView = HomeMapDetailView()
     let dimmedView = UIView()
     let homeDetailPopUpView = HomeDetailPopUpView()
+    let dimmedTapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -41,6 +42,7 @@ final class HomeMapViewController: BaseViewController {
             $0.backgroundColor = .black
             $0.alpha = 0.7
             $0.isHidden = true
+            $0.isUserInteractionEnabled = true
         }
         
         homeDetailPopUpView.do {
@@ -81,6 +83,7 @@ final class HomeMapViewController: BaseViewController {
     
     override func setDelegate() {
         self.mapsView.mapsView.mapView.touchDelegate = self
+        self.dimmedTapGesture.delegate = self
     }
     
     private func setLocationManager() {
@@ -98,8 +101,10 @@ final class HomeMapViewController: BaseViewController {
                                                       action: #selector(currentLocationButtonTapped),
                                                       for: .touchUpInside)
         self.mapsView.listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
-        self.mapDetailView.participationButton.addTarget(self, action: #selector(participantsButtonTapped), for: .touchUpInside)
-        self.dimmedView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(dimmedViewTapped)))
+        self.mapDetailView.participationButton.addTarget(self,
+                                                         action: #selector(participantsButtonTapped),
+                                                         for: .touchUpInside)
+        self.dimmedView.addGestureRecognizer(dimmedTapGesture)
     }
 }
 
@@ -172,6 +177,14 @@ extension HomeMapViewController: NMFMapViewTouchDelegate {
     }
 }
 
+extension HomeMapViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        dimmedView.isHidden = true
+        homeDetailPopUpView.isHidden = true
+        return true
+    }
+}
+
 extension HomeMapViewController {
     
     /// 카메라를 이동하는 메소드
@@ -223,11 +236,6 @@ extension HomeMapViewController {
     @objc func participantsButtonTapped() {
         dimmedView.isHidden = false
         homeDetailPopUpView.isHidden = false
-    }
-    
-    @objc func dimmedViewTapped() {
-        dimmedView.isHidden = true
-        homeDetailPopUpView.isHidden = true
     }
     
     // MARK: Custom Function

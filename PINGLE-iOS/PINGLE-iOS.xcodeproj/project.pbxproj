@@ -29,6 +29,7 @@
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
 		C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33084BB2B47940300380E82 /* HomeMapDetailView.swift */; };
 		C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF3442B46E03400008653 /* PINGLEMarker.swift */; };
+		C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385453B2B47C5AE0040E60D /* HomeDetailPopUpView.swift */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
 		C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602BB2B3BEE06004BB2B8 /* ViewController.swift */; };
@@ -103,6 +104,7 @@
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
 		C33084BB2B47940300380E82 /* HomeMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapDetailView.swift; sourceTree = "<group>"; };
 		C33BF3442B46E03400008653 /* PINGLEMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEMarker.swift; sourceTree = "<group>"; };
+		C385453B2B47C5AE0040E60D /* HomeDetailPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailPopUpView.swift; sourceTree = "<group>"; };
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			children = (
 				C3EC304E2B43E20600276E00 /* HomeMapView.swift */,
 				C33084BB2B47940300380E82 /* HomeMapDetailView.swift */,
+				C385453B2B47C5AE0040E60D /* HomeDetailPopUpView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -763,6 +766,7 @@
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
 				C396030D2B3BF33F004BB2B8 /* l.swift in Sources */,
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
+				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,
 				C396030B2B3BF33B004BB2B8 /* k.swift in Sources */,
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
 				E5AD299B2B455E20005D1220 /* h.swift in Sources */,

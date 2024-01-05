@@ -23,6 +23,8 @@ final class HomeMapViewController: BaseViewController {
     // MARK: Component
     let mapsView = HomeMapView()
     let mapDetailView = HomeMapDetailView()
+    let dimmedView = UIView()
+    let homeDetailPopUpView = HomeDetailPopUpView()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -34,13 +36,27 @@ final class HomeMapViewController: BaseViewController {
         setMarkerHandler()
     }
     
+    override func setStyle() {
+        dimmedView.do {
+            $0.backgroundColor = .black
+            $0.alpha = 0.7
+            $0.isHidden = true
+        }
+        
+        homeDetailPopUpView.do {
+            $0.isHidden = true
+        }
+    }
+    
     // MARK: Layout Helpers
     override func setLayout() {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
         self.view.addSubviews(mapsView,
-                             mapDetailView)
+                              mapDetailView,
+                              dimmedView,
+                              homeDetailPopUpView)
         
         mapsView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -52,6 +68,14 @@ final class HomeMapViewController: BaseViewController {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(327)
             $0.width.equalTo(327.adjustedWidth)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        homeDetailPopUpView.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
     }
     
@@ -75,6 +99,7 @@ final class HomeMapViewController: BaseViewController {
                                                       for: .touchUpInside)
         self.mapsView.listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
         self.mapDetailView.participationButton.addTarget(self, action: #selector(participantsButtonTapped), for: .touchUpInside)
+        self.dimmedView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(dimmedViewTapped)))
     }
 }
 
@@ -196,9 +221,14 @@ extension HomeMapViewController {
     }
     
     @objc func participantsButtonTapped() {
-        print("참여하기 버튼 눌림")
+        dimmedView.isHidden = false
+        homeDetailPopUpView.isHidden = false
     }
     
+    @objc func dimmedViewTapped() {
+        dimmedView.isHidden = true
+        homeDetailPopUpView.isHidden = true
+    }
     
     // MARK: Custom Function
     func setMarkerHandler() {

@@ -27,6 +27,7 @@
 		C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */; };
 		C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */; };
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
+		C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33084BB2B47940300380E82 /* HomeMapDetailView.swift */; };
 		C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF3442B46E03400008653 /* PINGLEMarker.swift */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
@@ -100,6 +101,7 @@
 		C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListResponseDTO.swift; sourceTree = "<group>"; };
 		C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButtonStatus.swift; sourceTree = "<group>"; };
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
+		C33084BB2B47940300380E82 /* HomeMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapDetailView.swift; sourceTree = "<group>"; };
 		C33BF3442B46E03400008653 /* PINGLEMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEMarker.swift; sourceTree = "<group>"; };
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				C3EC304E2B43E20600276E00 /* HomeMapView.swift */,
+				C33084BB2B47940300380E82 /* HomeMapDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -548,22 +551,6 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		F1239BC42B458C9F0072A02A /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		F1239BC72B45C35A0072A02A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F1239BC82B45C3880072A02A /* SearchedModel.swift */,
-			);
-			path = Model;
-      sourceTree = "<group>";
-		};
 		E5AD29972B455E20005D1220 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,6 +566,22 @@
 				E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F1239BC42B458C9F0072A02A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		F1239BC72B45C35A0072A02A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F1239BC82B45C3880072A02A /* SearchedModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {
@@ -754,6 +757,7 @@
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
+				C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */,
 				E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */,
 				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
@@ -771,7 +775,6 @@
 				C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */,
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */,
-				C39602F02B3BF273004BB2B8 /* c.swift in Sources */,
 				C39603162B3BF369004BB2B8 /* o.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,

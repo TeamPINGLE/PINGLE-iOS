@@ -48,7 +48,7 @@ final class HomeMapDetailView: BaseView {
     override func setStyle() {
         topBackgroundView.do {
             $0.backgroundColor = .grayscaleG11
-            $0.makeCornerRound(radius: 15.adjustedHeight)
+            $0.makeCornerRound(radius: 15)
         }
         
         badgeImageView.do {
@@ -57,20 +57,20 @@ final class HomeMapDetailView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "강남 모각작팟", lineHeight: 25.adjustedHeight)
+            $0.setTextWithLineHeight(text: "강남 모각작팟", lineHeight: 25)
             $0.textColor = badgeColor
             $0.font = .subtitleSubSemi18
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "박소현", lineHeight: 20.adjustedHeight)
+            $0.setTextWithLineHeight(text: "박소현", lineHeight: 20)
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }
         
         participantsView.do {
             $0.makeBorder(width: 1.02, color: badgeColor ?? UIColor())
-            $0.makeCornerRound(radius: 40.adjusted)
+            $0.makeCornerRound(radius: 40)
         }
         
         participantsLabel.do {
@@ -108,7 +108,7 @@ final class HomeMapDetailView: BaseView {
         
         bottomBackgroundView.do {
             $0.backgroundColor = .grayscaleG11
-            $0.makeCornerRound(radius: 15.adjustedHeight)
+            $0.makeCornerRound(radius: 15)
         }
         
         dateTimeImageView.do {
@@ -122,14 +122,13 @@ final class HomeMapDetailView: BaseView {
         }
         
         dateLabel.do {
-//            $0.setTextWithLineHeight(text: "2023년 12월 31일", lineHeight: 20.adjustedHeight)
             $0.text = "2023년 12월 31일"
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodySemi14
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "오후 01:00 ~ 오후 05:00", lineHeight: 20.adjustedHeight)
+            $0.setTextWithLineHeight(text: "오후 01:00 ~ 오후 05:00", lineHeight: 20)
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodySemi14
         }
@@ -154,7 +153,7 @@ final class HomeMapDetailView: BaseView {
             $0.setTitle(StringLiterals.Home.Detail.talkButton, for: .normal)
             $0.setTitleColor(.grayscaleG06, for: .normal)
             $0.titleLabel?.font = .bodyBodySemi14
-            $0.makeCornerRound(radius: 10.adjustedHeight)
+            $0.makeCornerRound(radius: 10)
             $0.makeBorder(width: 1, color: .grayscaleG06)
         }
         
@@ -162,7 +161,7 @@ final class HomeMapDetailView: BaseView {
             $0.setTitle(StringLiterals.Home.Detail.participationButton, for: .normal)
             $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .bodyBodySemi14
-            $0.makeCornerRound(radius: 10.adjustedHeight)
+            $0.makeCornerRound(radius: 10)
             $0.backgroundColor = .white
         }
     }
@@ -197,17 +196,17 @@ final class HomeMapDetailView: BaseView {
         
         topBackgroundView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.width.equalTo(UIScreen.main.bounds.width - 48.adjustedWidth)
-            $0.height.equalTo(121.adjustedHeight)
+            $0.width.equalTo(327.adjustedWidth)
+            $0.height.equalTo(121)
         }
         
         badgeImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24.adjustedWidth)
-            $0.top.equalToSuperview().inset(20.adjustedHeight)
+            $0.top.equalToSuperview().inset(20)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(badgeImageView.snp.bottom).offset(8.adjustedHeight)
+            $0.top.equalTo(badgeImageView.snp.bottom).offset(8)
             $0.leading.equalTo(badgeImageView)
         }
         
@@ -217,14 +216,14 @@ final class HomeMapDetailView: BaseView {
         }
         
         participantsView.snp.makeConstraints {
-            $0.width.height.equalTo(80.adjusted)
+            $0.width.height.equalTo(80)
             $0.trailing.equalToSuperview().inset(24.adjustedWidth)
             $0.centerY.equalToSuperview()
         }
         
         participantsLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(12.adjustedHeight)
+            $0.top.equalToSuperview().inset(12)
         }
         
         countStackView.snp.makeConstraints {
@@ -234,7 +233,7 @@ final class HomeMapDetailView: BaseView {
         
         separateView.snp.makeConstraints {
             $0.bottom.equalToSuperview()
-            $0.height.equalTo(1.adjustedHeight)
+            $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview().inset(23.adjustedWidth)
         }
         
@@ -242,12 +241,12 @@ final class HomeMapDetailView: BaseView {
             $0.top.equalTo(topBackgroundView.snp.bottom)
             $0.bottom.equalToSuperview()
             $0.width.equalTo(topBackgroundView)
-            $0.height.equalTo(206.adjustedHeight)
+            $0.height.equalTo(206)
         }
         
         dateTimeImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24.adjustedWidth)
-            $0.top.equalToSuperview().inset(24.adjustedHeight)
+            $0.top.equalToSuperview().inset(24)
         }
         
         dateTimeTitleLabel.snp.makeConstraints {
@@ -257,7 +256,6 @@ final class HomeMapDetailView: BaseView {
         
         dateLabel.snp.makeConstraints {
             $0.centerY.equalTo(dateTimeImageView)
-//            $0.top.equalTo(dateTimeTitleLabel).offset(-2.adjustedHeight)
             $0.leading.equalTo(dateTimeTitleLabel.snp.trailing).offset(47.adjustedWidth)
         }
         
@@ -268,7 +266,7 @@ final class HomeMapDetailView: BaseView {
         
         locationImageView.snp.makeConstraints {
             $0.leading.equalTo(dateTimeImageView)
-            $0.top.equalTo(dateTimeImageView.snp.bottom).offset(34.adjustedHeight)
+            $0.top.equalTo(dateTimeImageView.snp.bottom).offset(34)
         }
         
         locationTitleLabel.snp.makeConstraints {
@@ -282,16 +280,16 @@ final class HomeMapDetailView: BaseView {
         }
         
         talkButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(20.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(20)
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
-            $0.height.equalTo(44.adjustedHeight)
+            $0.height.equalTo(44)
             $0.width.equalTo(100.adjustedWidth)
         }
         
         participationButton.snp.makeConstraints {
             $0.bottom.equalTo(talkButton)
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
-            $0.height.equalTo(44.adjustedHeight)
+            $0.height.equalTo(44)
             $0.width.equalTo(185.adjustedWidth)
         }
     }

@@ -13,6 +13,8 @@ import NMapsMap
 import SnapKit
 import Then
 
+// TODO: MARK 주석 달기
+// TODO: 줄바꿈 경우 처리
 final class HomeMapViewController: BaseViewController {
     
     // MARK: - Variables
@@ -175,7 +177,9 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     }
 }
 
+// MARK: NMFMapViewTouchDelegate
 extension HomeMapViewController: NMFMapViewTouchDelegate {
+    /// 지도 탭 되었을 때 메소드
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
         if !self.mapDetailView.isHidden {
             self.mapDetailView.isHidden = true
@@ -188,7 +192,9 @@ extension HomeMapViewController: NMFMapViewTouchDelegate {
     }
 }
 
+// MARK: UIGestureRecognizerDelegate
 extension HomeMapViewController: UIGestureRecognizerDelegate {
+    /// 딤 뷰 탭 되었을 때 메소드
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         dimmedView.isHidden = true
         homeDetailPopUpView.isHidden = true
@@ -197,7 +203,6 @@ extension HomeMapViewController: UIGestureRecognizerDelegate {
 }
 
 extension HomeMapViewController {
-    
     /// 카메라를 이동하는 메소드
     func moveToCurrentLocation() {
         self.mapsView.cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: mapsView.nowLat, lng: mapsView.nowLng))
@@ -252,11 +257,13 @@ extension HomeMapViewController {
         if !mapDetailView.isParticipating {
             dimmedView.isHidden = false
             homeDetailPopUpView.isHidden = false
+        } else {
+            print("취소하기 버튼 탭")
         }
     }
     
     @objc func talkButtonTapped() {
-        print("대화하기 터치됨")
+        print("대화하기 버튼 탭")
         guard let chatURL = mapDetailView.openChatURL else { return }
         guard let url = URL(string: chatURL) else { return }
         let safariVC = SFSafariViewController(url: url)
@@ -264,6 +271,7 @@ extension HomeMapViewController {
     }
     
     // MARK: Custom Function
+    /// 마커에 핸들러 부여
     func setMarkerHandler() {
         mapDetailView.isHidden = true
         

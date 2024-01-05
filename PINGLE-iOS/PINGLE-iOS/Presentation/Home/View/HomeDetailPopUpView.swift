@@ -12,9 +12,12 @@ import Then
 
 final class HomeDetailPopUpView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Property
     var badgeColor: UIColor? = .subPingleOrange
     var isParticipating: Bool = false
     
+    // MARK: Component
     let infoBackgroundView = UIView()
     let badgeImageView = UIImageView()
     let titleLabel = UILabel()
@@ -23,6 +26,8 @@ final class HomeDetailPopUpView: BaseView {
     let askLabel = UILabel()
     let participationButton = UIButton()
     
+    // MARK: - Function
+    // MARK: Style Helpers
     override func setStyle() {
         self.do {
             $0.backgroundColor = .grayscaleG10
@@ -68,6 +73,7 @@ final class HomeDetailPopUpView: BaseView {
         }
     }
     
+    // MARK: Layout Helpers
     override func setLayout() {
         self.addSubviews(infoBackgroundView,
                          askLabel,
@@ -115,6 +121,7 @@ final class HomeDetailPopUpView: BaseView {
         }
     }
     
+    // MARK: Data Bind Func
     func dataBind(data: HomePinDetailResponseDTO) {
         switch data.category {
         case "PLAY":

@@ -10,10 +10,15 @@ import UIKit
 import NMapsMap
 
 class PINGLEMarker: NMFMarker {
+    
+    // MARK: - Variables
+    // MARK: Property
     var id: Int = 0
     var meetingStatus: ChipStatus = .play
     var meetingString = "PLAY"
     
+    // MARK: - Function
+    // MARK: Custom Func
     func changeStringToStatus(string: String) {
         switch string {
         case "PLAY":

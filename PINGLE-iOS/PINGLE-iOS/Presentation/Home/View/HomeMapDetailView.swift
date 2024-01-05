@@ -11,6 +11,7 @@ import SnapKit
 import Then
 
 final class HomeMapDetailView: BaseView {
+    
     // MARK: - Variables
     // MARK: Property
     var badgeColor: UIColor? = .subPingleOrange
@@ -310,6 +311,7 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
+    // MARK: Data Bind Func
     func dataBind(data: HomePinDetailResponseDTO) {
         titleLabel.text = data.name
         nameLabel.text = data.ownerName

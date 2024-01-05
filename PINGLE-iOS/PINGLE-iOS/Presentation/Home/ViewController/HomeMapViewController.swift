@@ -12,9 +12,7 @@ import NMapsMap
 import SnapKit
 import Then
 
-// TODO: 카메라 이동
 // TODO: 데이터 연결 틀 만들기
-// TODO: 참여하기 버튼 로직 연결
 
 final class HomeMapViewController: BaseViewController {
     
@@ -273,10 +271,11 @@ extension HomeMapViewController {
             $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
         }
         
-        // 바뀌는 이미지 등록
+        // 추후 바뀌는 이미지 등록
         marker.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
-        
-        let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: marker.position.lat, lng: marker.position.lng))
+        /// zoomLevel에 따라서 일정한 위치로 카메라 이동할 수 있도록 계산
+        let offsetLat = marker.position.lat - 0.003 * pow(2, 14 - self.mapsView.mapsView.mapView.zoomLevel)
+        let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: offsetLat, lng: marker.position.lng))
         newCameraPosition.animation = .easeIn
         self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
     }

@@ -193,14 +193,24 @@ extension HomeMapViewController {
     func setMarkerHandler() {
         mapDetailView.isHidden = true
         
-        self.mapsView.homeMarkerList.forEach {
-            $0.touchHandler = { (overlay: NMFOverlay) -> Bool in
+        self.mapsView.homeMarkerList.forEach { marker in
+            marker.touchHandler = { ( _: NMFOverlay) -> Bool in
                 print("오버레이 터치됨")
                 self.mapDetailView.isHidden = false
                 self.mapsView.currentLocationButton.isHidden = true
                 self.mapsView.listButton.isHidden = true
+                self.markerTapped(marker: marker)
                 return true
             }
         }
+    }
+    
+    func markerTapped(marker: PINGLEMarker) {
+        // 바뀌는 이미지 등록
+        marker.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
+        
+        let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: marker.position.lat, lng: marker.position.lng))
+        newCameraPosition.animation = .easeIn
+        self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
     }
 }

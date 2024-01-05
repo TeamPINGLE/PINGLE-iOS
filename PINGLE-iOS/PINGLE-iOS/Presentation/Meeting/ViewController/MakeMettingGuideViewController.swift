@@ -25,6 +25,10 @@ final class MakeMettingGuideViewController: BaseViewController {
         setTarget()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: UI
     override func setStyle() {
         self.view.backgroundColor = .grayscaleG11

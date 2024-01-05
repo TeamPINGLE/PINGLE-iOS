@@ -46,6 +46,10 @@ class SelectCategoryViewController: BaseViewController {
     
     // MARK: UI
     override func setStyle() {
+        self.view.do {
+            $0.backgroundColor = .black
+        }
+        
         backButton.do {
             $0.setImage(ImageLiterals.Metting.Icon.icBack, for: .normal)
         }
@@ -57,7 +61,7 @@ class SelectCategoryViewController: BaseViewController {
         PINGLECategoryTitle.do {
             $0.text = StringLiterals.Metting.MettingCategory.CategoryLabel.categoryTitleLabel
             $0.font = .titleTitleSemi24
-            $0.numberOfLines = 2
+            $0.numberOfLines = 0
             $0.textColor = .white
         }
         
@@ -74,44 +78,44 @@ class SelectCategoryViewController: BaseViewController {
                               nextButton, exitLabel, exitButton)
         
         backButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
             $0.leading.equalToSuperview().inset(18.adjusted)
             $0.trailing.equalToSuperview().inset(333.adjusted)
         }
         
         progressBar1.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(60.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(60.adjusted)
             $0.height.equalTo(19.adjustedHeight)
             $0.leading.trailing.equalToSuperview()
         }
         
         PINGLECategoryTitle.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(107.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(107.adjusted)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         playButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(202.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(202.adjusted)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         studyButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(202.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(202.adjusted)
             $0.leading.equalToSuperview().inset(192.adjusted)
         }
         
         multiButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(349.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(349.adjusted)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         othersButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(349.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(349.adjusted)
             $0.leading.equalToSuperview().inset(192.adjusted)
         }
         
         nextButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(507.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(507.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         

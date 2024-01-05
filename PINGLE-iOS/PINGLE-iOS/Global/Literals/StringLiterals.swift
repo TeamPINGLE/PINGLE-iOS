@@ -26,6 +26,8 @@ enum StringLiterals {
             static let bottomRequest = "찾는 단체가 없나요?"
             static let noResult = "검색 결과가 없어요"
             static let inviteCodeTitle = "단체 정보를 확인하고\n초대 코드를 입력해주세요"
+            static let meetingNumber = "개설된 모임 수"
+            static let memberNumber = "총 인원"
         }
         
         enum NavigationTitle {

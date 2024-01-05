@@ -76,6 +76,7 @@
 		F1239BD12B46EB160072A02A /* PINGLETextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD02B46EB160072A02A /* PINGLETextFieldView.swift */; };
 		F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */; };
 		F1239BD52B47D5530072A02A /* EnterInviteCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */; };
+		F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD62B47D8F60072A02A /* OrganizationInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +152,7 @@
 		F1239BD02B46EB160072A02A /* PINGLETextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLETextFieldView.swift; sourceTree = "<group>"; };
 		F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEWarningToastView.swift; sourceTree = "<group>"; };
 		F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInviteCodeViewController.swift; sourceTree = "<group>"; };
+		F1239BD62B47D8F60072A02A /* OrganizationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				F1239BC02B45792D0072A02A /* SearchOrganizationView.swift */,
+				F1239BD62B47D8F60072A02A /* OrganizationInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
 				C396030B2B3BF33B004BB2B8 /* k.swift in Sources */,
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
+				F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */,
 				E5AD299B2B455E20005D1220 /* h.swift in Sources */,
 				C39602F92B3BF291004BB2B8 /* g.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,

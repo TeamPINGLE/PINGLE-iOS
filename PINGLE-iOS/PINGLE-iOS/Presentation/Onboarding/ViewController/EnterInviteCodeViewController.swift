@@ -15,6 +15,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     // MARK: Property
     private let backButton = UIButton()
     private let titleLabel = UILabel()
+    private let organizationInfoView = OrganizationInfoView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -41,11 +42,17 @@ final class EnterInviteCodeViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel)
+        self.view.addSubviews(titleLabel, organizationInfoView)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32.adjusted)
             $0.leading.equalTo(self.view).offset(26.adjusted)
+        }
+        
+        organizationInfoView.snp.makeConstraints {
+            $0.top.equalTo(self.titleLabel.snp.bottom).offset(25.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(24.adjusted)
+            $0.height.equalTo(157.adjusted)
         }
     }
     

@@ -14,6 +14,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     // MARK: Property
     private let backButton = UIButton()
+    private let titleLabel = UILabel()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -30,9 +31,22 @@ final class EnterInviteCodeViewController: BaseViewController {
         self.backButton.do {
             $0.setImage(ImageLiterals.Icon.imgArrowLeft, for: .normal)
         }
+        
+        self.titleLabel.do {
+            $0.text = StringLiterals.Onboarding.ExplainTitle.inviteCodeTitle
+            $0.font = .titleTitleSemi24
+            $0.textColor = .white
+            $0.numberOfLines = 0
+        }
     }
     
     override func setLayout() {
+        self.view.addSubviews(titleLabel)
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32.adjusted)
+            $0.leading.equalTo(self.view).offset(26.adjusted)
+        }
     }
     
     // MARK: Delegate

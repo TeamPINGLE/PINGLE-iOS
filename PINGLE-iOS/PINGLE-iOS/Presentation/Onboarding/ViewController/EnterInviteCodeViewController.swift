@@ -30,6 +30,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setTarget()
+        hideKeyboardWhenTappedAround()
     }
     
     // MARK: UI
@@ -106,6 +107,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     // MARK: Delegate
     override func setDelegate() {
+        self.inviteCodeTextFieldView.searchTextField.delegate = self
     }
     
     // MARK: Navigation Function
@@ -122,10 +124,30 @@ final class EnterInviteCodeViewController: BaseViewController {
     // MARK: Target Function
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        inviteCodeTextFieldView.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     // MARK: Objc Function
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: - extension
+// MARK: UITextFieldDelegate
+extension EnterInviteCodeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // MARK: Objc Function
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if textField.text == "" {
+            bottomCTAButton.disabledButton()
+        } else {
+            bottomCTAButton.activateButton()
+        }
+        print("Text changed: \(textField.text ?? "")")
     }
 }

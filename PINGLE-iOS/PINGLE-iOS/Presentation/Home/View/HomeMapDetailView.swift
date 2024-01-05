@@ -348,31 +348,31 @@ final class HomeMapDetailView: BaseView {
         participantsView.makeBorder(width: 1.02, color: badgeColor ?? UIColor())
         currentParticipantsLabel.textColor = badgeColor
         
-        /// 모집 완료 상태 (참여 여부 상관 없이)
+        /// 모집 완료 상태
         if data.curParticipants == data.maxParticipants {
-            participationButton.do {
-                $0.setTitleColor(.grayscaleG10, for: .normal)
-                $0.backgroundColor = .grayscaleG07
-                $0.isEnabled = false
-            }
-            
             participantsView.makeBorder(width: 1.02, color: .grayscaleG06)
             completeLabel.isHidden = false
             countStackView.isHidden = true
-        } else {
-            /// 모집 미완료, 참여 신청 O
-            /// 이미 참여 신청한 경우라면 취소 버튼 활성화, 대화 버튼 활성화
-            if data.isParticipating {
-                participationButton.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
-                talkButton.do {
-                    $0.isEnabled = true
-                    $0.setTitleColor(.white, for: .normal)
-                    $0.makeBorder(width: 1, color: .white)
+            
+            /// 참여중이 아니라면 참여버튼 비활성화
+            if !data.isParticipating {
+                participationButton.do {
+                    $0.setTitleColor(.grayscaleG10, for: .normal)
+                    $0.backgroundColor = .grayscaleG07
+                    $0.isEnabled = false
                 }
             }
-            
-            /// 모집 미완료, 참여 신청 X
-            /// 참여 신청 전이라면 참여 버튼 활성화, 대화 버튼 비활성화 (기본값)
+        }
+        
+        /// 모집 미완료, 참여 신청 O
+        /// 이미 참여 신청한 경우라면 취소 버튼 활성화, 대화 버튼 활성화
+        if data.isParticipating {
+            participationButton.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
+            talkButton.do {
+                $0.isEnabled = true
+                $0.setTitleColor(.white, for: .normal)
+                $0.makeBorder(width: 1, color: .white)
+            }
         }
     }
 }

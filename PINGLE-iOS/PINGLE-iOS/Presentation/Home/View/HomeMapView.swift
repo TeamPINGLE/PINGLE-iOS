@@ -149,7 +149,7 @@ final class HomeMapView: BaseView {
     }
     
     /// 마커 이미지 변경 메소드, 추후 이미지 변경 예쩡
-    private func setMarkerColor(category: String) -> UIImage {
+    func setMarkerColor(category: String) -> UIImage {
         switch category {
         case "PLAY":
             return ImageLiterals.Home.Map.imgMapPinPlay

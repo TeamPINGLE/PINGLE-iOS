@@ -17,6 +17,8 @@ final class HomeMapViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     var shouldUpdateMap: Bool = true
+    /// 현재 선택되지 않은 필터 버튼 개수
+    var unselectedButton: Int = 0
     
     // MARK: Component
     let mapsView = HomeMapView()
@@ -137,6 +139,9 @@ extension HomeMapViewController: NMFMapViewTouchDelegate {
             self.mapDetailView.isHidden = true
             self.mapsView.currentLocationButton.isHidden = false
             self.mapsView.listButton.isHidden = false
+            self.mapsView.homeMarkerList.forEach {
+                $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
+            }
         }
     }
 }
@@ -165,8 +170,7 @@ extension HomeMapViewController {
             $0.hidden = false
         }
         
-        /// 현재 선택되지 않은 버튼 개수
-        var unselectedButton: Int = 0
+        unselectedButton = 0
         
         self.mapsView.chipButtons.forEach {
             if !$0.isButtonSelected {
@@ -207,6 +211,10 @@ extension HomeMapViewController {
     
     func markerTapped(marker: PINGLEMarker) {
         // 바뀌는 이미지 등록
+        self.mapsView.homeMarkerList.forEach {
+            $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
+        }
+        
         marker.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
         
         let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: marker.position.lat, lng: marker.position.lng))

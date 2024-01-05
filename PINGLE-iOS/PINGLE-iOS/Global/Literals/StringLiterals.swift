@@ -25,6 +25,11 @@ enum StringLiterals {
             static let searchOrganization = "속해있는 단체의\n이름을 알려주세요"
             static let bottomRequest = "찾는 단체가 없나요?"
             static let noResult = "검색 결과가 없어요"
+            static let inviteCodeTitle = "단체 정보를 확인하고\n초대 코드를 입력해주세요"
+            static let meetingNumber = "개설된 모임 수"
+            static let memberNumber = "총 인원"
+            static let inviteCodeTextFieldTitle = "초대코드"
+            static let infoMessage = "모임 개설자로부터 받은 초대 코드를 입력해주세요"
         }
         
         enum NavigationTitle {
@@ -33,6 +38,7 @@ enum StringLiterals {
         
         enum SearchBarPlaceholder {
             static let searchOrganizationPlaceholder = "단체 이름을 검색해보세요"
+            static let inviteCodePlaceholder = "영문+숫자 12자리"
         }
     }
     
@@ -82,5 +88,10 @@ enum StringLiterals {
     
     enum CTAButton {
         static let buttonTitle = "다음으로"
+        static let enterTitle = "입장하기"
+    }
+    
+    enum ToastView {
+        static let wrongCode = "잘못된 초대 코드입니다"
     }
 }

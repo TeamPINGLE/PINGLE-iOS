@@ -38,4 +38,16 @@ extension UIView {
         layer.cornerRadius = cornerRadius
         layer.maskedCorners = CACornerMask(arrayLiteral: maskedCorners)
     }
+    
+    func fadeIn(duration: TimeInterval = 0.5) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 1.0
+        })
+    }
+    
+    func fadeOut(duration: TimeInterval = 0.5) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 0.0
+        })
+    }
 }

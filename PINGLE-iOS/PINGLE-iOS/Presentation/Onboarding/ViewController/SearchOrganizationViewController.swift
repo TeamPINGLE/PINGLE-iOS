@@ -146,6 +146,8 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
+        let enterInviteCodeViewController = EnterInviteCodeViewController()
+        navigationController?.pushViewController(enterInviteCodeViewController, animated: true)
     }
 }
 

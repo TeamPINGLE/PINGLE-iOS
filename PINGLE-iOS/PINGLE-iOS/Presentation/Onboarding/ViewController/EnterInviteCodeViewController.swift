@@ -22,11 +22,13 @@ final class EnterInviteCodeViewController: BaseViewController {
     )
     private let infoImageView = UIImageView()
     private let infoMessageLabel = UILabel()
+    private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.enterTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
+        setTarget()
     }
     
     // MARK: UI
@@ -60,7 +62,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     override func setLayout() {
         self.view.addSubviews(titleLabel, organizationInfoView, inviteCodeTextFieldView,
-                              infoImageView, infoMessageLabel)
+                              infoImageView, infoMessageLabel, bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32.adjusted)
@@ -88,6 +90,11 @@ final class EnterInviteCodeViewController: BaseViewController {
             $0.centerY.equalTo(infoImageView.snp.centerY)
             $0.leading.equalTo(infoImageView.snp.trailing).offset(4.adjusted)
         }
+        
+        bottomCTAButton.snp.makeConstraints {
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(40.adjusted)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     // MARK: Delegate
@@ -107,5 +114,11 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    }
+    
+    // MARK: Objc Function
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
 }

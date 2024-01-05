@@ -10,6 +10,7 @@ import UIKit
 import NMapsMap
 
 class PINGLEMarker: NMFMarker {
+    var id: Int = 0
     var meetingStatus: ChipStatus = .play
     var meetingString = "PLAY"
     

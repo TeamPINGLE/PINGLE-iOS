@@ -11,7 +11,6 @@ import SnapKit
 import Then
 
 final class HomeMapDetailView: BaseView {
-
     // MARK: - Variables
     // MARK: Property
     var badgeColor: UIColor? = .subPingleOrange
@@ -28,6 +27,7 @@ final class HomeMapDetailView: BaseView {
     let currentParticipantsLabel = UILabel()
     let slashLabel = UILabel()
     let totalParticipantsLabel = UILabel()
+    let completeLabel = UILabel()
     
     let separateView = UIView()
     
@@ -42,7 +42,7 @@ final class HomeMapDetailView: BaseView {
     
     let talkButton = UIButton()
     let participationButton = UIButton()
-
+    
     // MARK: - Function
     // MARK: Style Helpers
     override func setStyle() {
@@ -77,6 +77,13 @@ final class HomeMapDetailView: BaseView {
             $0.text = StringLiterals.Home.Detail.participantsTitle
             $0.textColor = .white
             $0.font = .captionCapMed12
+        }
+        
+        completeLabel.do {
+            $0.text = StringLiterals.Home.Detail.complete
+            $0.textColor = .grayscaleG06
+            $0.font = .subtitleSubSemi16
+            $0.isHidden = true
         }
         
         countStackView.do {
@@ -155,6 +162,7 @@ final class HomeMapDetailView: BaseView {
             $0.titleLabel?.font = .bodyBodySemi14
             $0.makeCornerRound(radius: 10)
             $0.makeBorder(width: 1, color: .grayscaleG06)
+            $0.isEnabled = false
         }
         
         participationButton.do {
@@ -178,6 +186,7 @@ final class HomeMapDetailView: BaseView {
                                       separateView)
         
         participantsView.addSubviews(participantsLabel,
+                                     completeLabel,
                                      countStackView)
         
         countStackView.addArrangedSubviews(currentParticipantsLabel,
@@ -224,6 +233,11 @@ final class HomeMapDetailView: BaseView {
         participantsLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().inset(12)
+        }
+        
+        completeLabel.snp.makeConstraints {
+            $0.top.equalTo(participantsLabel.snp.bottom).offset(8)
+            $0.centerX.equalToSuperview()
         }
         
         countStackView.snp.makeConstraints {
@@ -291,6 +305,67 @@ final class HomeMapDetailView: BaseView {
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.height.equalTo(44)
             $0.width.equalTo(185.adjustedWidth)
+        }
+    }
+    
+    func dataBind(data: HomePinDetailResponseDTO) {
+        titleLabel.text = data.name
+        nameLabel.text = data.ownerName
+        currentParticipantsLabel.text = String(data.curParticipants)
+        totalParticipantsLabel.text = String(data.maxParticipants)
+        dateLabel.text = data.date
+        timeLabel.text = data.startAt + " ~ " + data.endAt
+        
+        switch data.category {
+        case "PLAY":
+            badgeColor = .mainPingleGreen
+            badgeImageView.image = ImageLiterals.Home.Detail.imgPlayBadge
+            
+        case "STUDY":
+            badgeColor = .subPingleOrange
+            badgeImageView.image = ImageLiterals.Home.Detail.imgStudyBadge
+            
+        case "MULTI":
+            badgeColor = .subPingleYellow
+            badgeImageView.image = ImageLiterals.Home.Detail.imgMultiBadge
+            
+        case "OTHERS":
+            badgeColor = .grayscaleG01
+            badgeImageView.image = ImageLiterals.Home.Detail.imgOthersBadge
+            
+        default:
+            return
+        }
+        
+        titleLabel.textColor = badgeColor
+        participantsView.makeBorder(width: 1.02, color: badgeColor ?? UIColor())
+        currentParticipantsLabel.textColor = badgeColor
+        
+        /// 모집 완료 상태 (참여 여부 상관 없이)
+        if data.curParticipants == data.maxParticipants {
+            participationButton.do {
+                $0.setTitleColor(.grayscaleG10, for: .normal)
+                $0.backgroundColor = .grayscaleG07
+                $0.isEnabled = false
+            }
+            
+            participantsView.makeBorder(width: 1.02, color: .grayscaleG06)
+            completeLabel.isHidden = false
+            countStackView.isHidden = true
+        } else {
+            /// 모집 미완료, 참여 신청 O
+            /// 이미 참여 신청한 경우라면 취소 버튼 활성화, 대화 버튼 활성화
+            if data.isParticipating {
+                participationButton.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
+                talkButton.do {
+                    $0.isEnabled = true
+                    $0.setTitleColor(.white, for: .normal)
+                    $0.makeBorder(width: 1, color: .white)
+                }
+            }
+            
+            /// 모집 미완료, 참여 신청 X
+            /// 참여 신청 전이라면 참여 버튼 활성화, 대화 버튼 비활성화 (기본값)
         }
     }
 }

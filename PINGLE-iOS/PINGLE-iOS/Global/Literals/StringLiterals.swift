@@ -50,10 +50,12 @@ enum StringLiterals {
         enum Detail {
             static let participantsTitle = "참여자"
             static let slash = "/"
+            static let complete = "모집완료"
             static let dateTimeTitle = "일시"
             static let locationTitle = "장소"
             static let talkButton = "대화하기"
             static let participationButton = "참여하기"
+            static let cancelButton = "취소하기"
             static let askDescription = "이 핑글에 참여할까요?"
         }
     }

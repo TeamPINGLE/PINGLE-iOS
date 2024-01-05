@@ -21,3 +21,10 @@ struct HomePinDetailResponseDTO: Codable {
     let isParticipating: Bool
     let chatLink: String
 }
+
+let homePinDetailDummy: [HomePinDetailResponseDTO] =
+[HomePinDetailResponseDTO(id: 1, category: "PLAY", name: "제목", 
+                          ownerName: "정채은", date: "2024-01-06",
+                          startAt: "12:00:00", endAt: "15:30:00",
+                          maxParticipants: 10, curParticipants: 7, 
+                          isParticipating: false, chatLink: "")]

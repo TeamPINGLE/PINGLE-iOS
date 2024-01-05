@@ -134,6 +134,7 @@ final class HomeMapView: BaseView {
         homePinListDummy.forEach {
             let pingleMarker = PINGLEMarker()
             
+            pingleMarker.id = $0.id
             pingleMarker.changeStringToStatus(string: $0.category)
             pingleMarker.meetingString = $0.category
             

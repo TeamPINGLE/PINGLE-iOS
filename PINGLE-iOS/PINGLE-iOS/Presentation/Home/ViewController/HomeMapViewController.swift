@@ -12,8 +12,6 @@ import NMapsMap
 import SnapKit
 import Then
 
-// TODO: 데이터 연결 틀 만들기
-
 final class HomeMapViewController: BaseViewController {
     
     // MARK: - Variables
@@ -39,6 +37,7 @@ final class HomeMapViewController: BaseViewController {
         setMarkerHandler()
     }
     
+    // MARK: Style Helpers
     override func setStyle() {
         dimmedView.do {
             $0.backgroundColor = .black
@@ -257,6 +256,7 @@ extension HomeMapViewController {
         self.mapsView.homeMarkerList.forEach { marker in
             marker.touchHandler = { ( _: NMFOverlay) -> Bool in
                 print("오버레이 터치됨")
+                self.bindDetailViewData(id: marker.id)
                 self.mapDetailView.isHidden = false
                 self.mapsView.currentLocationButton.isHidden = true
                 self.mapsView.listButton.isHidden = true
@@ -264,6 +264,13 @@ extension HomeMapViewController {
                 return true
             }
         }
+    }
+    
+    func bindDetailViewData(id: Int) {
+        // 해당 id값을 넣어서 서버 통신 후 data 받아오기
+        let data = homePinDetailDummy[0]
+        self.mapDetailView.dataBind(data: data)
+        self.homeDetailPopUpView.dataBind(data: data)
     }
     
     func markerTapped(marker: PINGLEMarker) {

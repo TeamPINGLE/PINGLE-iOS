@@ -113,4 +113,31 @@ final class HomeDetailPopUpView: BaseView {
             $0.bottom.equalToSuperview().inset(24)
         }
     }
+    
+    func dataBind(data: HomePinDetailResponseDTO) {
+        switch data.category {
+        case "PLAY":
+            badgeColor = .mainPingleGreen
+            badgeImageView.image = ImageLiterals.Home.Detail.imgPlayBadge
+            
+        case "STUDY":
+            badgeColor = .subPingleOrange
+            badgeImageView.image = ImageLiterals.Home.Detail.imgStudyBadge
+
+        case "MULTI":
+            badgeColor = .subPingleYellow
+            badgeImageView.image = ImageLiterals.Home.Detail.imgMultiBadge
+
+        case "OTHERS":
+            badgeColor = .grayscaleG01
+            badgeImageView.image = ImageLiterals.Home.Detail.imgOthersBadge
+
+        default:
+            return
+        }
+        
+        titleLabel.textColor = badgeColor
+        titleLabel.text = data.name
+        nameLabel.text = data.ownerName
+    }
 }

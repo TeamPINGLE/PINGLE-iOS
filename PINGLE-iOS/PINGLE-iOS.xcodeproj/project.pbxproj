@@ -31,6 +31,7 @@
 		C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF3442B46E03400008653 /* PINGLEMarker.swift */; };
 		C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385453B2B47C5AE0040E60D /* HomeDetailPopUpView.swift */; };
 		C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385453D2B4857D30040E60D /* HomePinDetailResponseDTO.swift */; };
+		C38545402B4868860040E60D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385453F2B4868860040E60D /* String+.swift */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
 		C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602BB2B3BEE06004BB2B8 /* ViewController.swift */; };
@@ -107,6 +108,7 @@
 		C33BF3442B46E03400008653 /* PINGLEMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEMarker.swift; sourceTree = "<group>"; };
 		C385453B2B47C5AE0040E60D /* HomeDetailPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailPopUpView.swift; sourceTree = "<group>"; };
 		C385453D2B4857D30040E60D /* HomePinDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinDetailResponseDTO.swift; sourceTree = "<group>"; };
+		C385453F2B4868860040E60D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				C307281C2B41500900AA575B /* UIColor+.swift */,
 				C307281E2B41503100AA575B /* UIViewController+.swift */,
 				F1239BCE2B468A0F0072A02A /* CALayer+.swift */,
+				C385453F2B4868860040E60D /* String+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -799,6 +802,7 @@
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,
+				C38545402B4868860040E60D /* String+.swift in Sources */,
 				C396030F2B3BF345004BB2B8 /* m.swift in Sources */,
 				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,
 				F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */,

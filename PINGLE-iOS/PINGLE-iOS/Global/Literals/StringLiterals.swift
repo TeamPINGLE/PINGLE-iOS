@@ -54,6 +54,11 @@ enum StringLiterals {
         }
         
         enum MettingCategory {
+            
+            enum CategoryLabel {
+                static let categoryTitleLabel = "개최할 핑글을\n선택해주세요"
+            }
+            
             enum CategoryTitle {
                 static let play = "PLAY"
                 static let study = "STUDY"

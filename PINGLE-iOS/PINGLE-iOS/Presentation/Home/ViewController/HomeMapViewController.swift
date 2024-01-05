@@ -74,6 +74,7 @@ final class HomeMapViewController: BaseViewController {
                                                       action: #selector(currentLocationButtonTapped),
                                                       for: .touchUpInside)
         self.mapsView.listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
+        self.mapDetailView.participationButton.addTarget(self, action: #selector(participantsButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -194,6 +195,12 @@ extension HomeMapViewController {
         moveToCurrentLocation()
     }
     
+    @objc func participantsButtonTapped() {
+        print("참여하기 버튼 눌림")
+    }
+    
+    
+    // MARK: Custom Function
     func setMarkerHandler() {
         mapDetailView.isHidden = true
         
@@ -210,11 +217,11 @@ extension HomeMapViewController {
     }
     
     func markerTapped(marker: PINGLEMarker) {
-        // 바뀌는 이미지 등록
         self.mapsView.homeMarkerList.forEach {
             $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
         }
         
+        // 바뀌는 이미지 등록
         marker.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
         
         let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: marker.position.lat, lng: marker.position.lng))

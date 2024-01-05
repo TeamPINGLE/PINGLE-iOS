@@ -23,6 +23,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     private let infoImageView = UIImageView()
     private let infoMessageLabel = UILabel()
     private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.enterTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
+    private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.wrongCode)
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -62,7 +63,8 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     override func setLayout() {
         self.view.addSubviews(titleLabel, organizationInfoView, inviteCodeTextFieldView,
-                              infoImageView, infoMessageLabel, bottomCTAButton)
+                              infoImageView, infoMessageLabel, bottomCTAButton,
+                              warningToastView)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32.adjusted)
@@ -93,6 +95,11 @@ final class EnterInviteCodeViewController: BaseViewController {
         
         bottomCTAButton.snp.makeConstraints {
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(40.adjusted)
+            $0.centerX.equalToSuperview()
+        }
+        
+        warningToastView.snp.makeConstraints {
+            $0.bottom.equalTo(bottomCTAButton.snp.top).offset(-16.adjusted)
             $0.centerX.equalToSuperview()
         }
     }

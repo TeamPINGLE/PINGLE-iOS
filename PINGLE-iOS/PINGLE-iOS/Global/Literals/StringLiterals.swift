@@ -85,4 +85,8 @@ enum StringLiterals {
         static let buttonTitle = "다음으로"
         static let enterTitle = "입장하기"
     }
+    
+    enum ToastView {
+        static let wrongCode = "잘못된 초대 코드입니다"
+    }
 }

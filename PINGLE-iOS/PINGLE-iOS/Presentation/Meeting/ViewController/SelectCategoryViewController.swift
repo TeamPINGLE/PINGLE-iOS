@@ -85,7 +85,7 @@ class SelectCategoryViewController: BaseViewController {
         
         progressBar1.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(60.adjusted)
-            $0.height.equalTo(19.adjustedHeight)
+            $0.height.equalTo(19)
             $0.leading.trailing.equalToSuperview()
         }
         

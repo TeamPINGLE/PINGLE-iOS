@@ -14,6 +14,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     // MARK: Property
     private let backButton = UIButton()
+    private let titleBackgroundView = UIView()
     private let titleLabel = UILabel()
     private let organizationInfoView = OrganizationInfoView()
     private let inviteCodeTextFieldView = PINGLETextFieldView(
@@ -30,6 +31,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setTarget()
+        setupKeyboardEvent()
         hideKeyboardWhenTappedAround()
     }
     
@@ -41,6 +43,10 @@ final class EnterInviteCodeViewController: BaseViewController {
         
         self.backButton.do {
             $0.setImage(ImageLiterals.Icon.imgArrowLeft, for: .normal)
+        }
+        
+        self.titleBackgroundView.do {
+            $0.backgroundColor = .black
         }
         
         self.titleLabel.do {
@@ -67,13 +73,19 @@ final class EnterInviteCodeViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel, organizationInfoView, inviteCodeTextFieldView,
-                              infoImageView, infoMessageLabel, bottomCTAButton,
-                              warningToastView)
+        self.view.addSubviews(organizationInfoView, inviteCodeTextFieldView, infoImageView,
+                              infoMessageLabel, bottomCTAButton, warningToastView, titleBackgroundView)
+        self.titleBackgroundView.addSubviews(titleLabel)
+        
+        titleBackgroundView.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(113.adjusted)
+        }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32.adjusted)
-            $0.leading.equalTo(self.view).offset(26.adjusted)
+            $0.top.equalToSuperview().offset(32.adjusted)
+            $0.leading.equalToSuperview().offset(26.adjusted)
         }
         
         organizationInfoView.snp.makeConstraints {
@@ -141,13 +153,16 @@ final class EnterInviteCodeViewController: BaseViewController {
         showWarningToastView()
     }
     
-    // MARK: Animation Function
-    func showWarningToastView(duration: TimeInterval = 2.0) {
-        self.warningToastView.fadeIn()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-            self.warningToastView.fadeOut()
-        }
+    // MARK: setupKeyboard
+    func setupKeyboardEvent() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
 }
 
@@ -167,5 +182,46 @@ extension EnterInviteCodeViewController: UITextFieldDelegate {
             bottomCTAButton.activateButton()
         }
         print("Text changed: \(textField.text ?? "")")
+    }
+}
+
+// MARK: Animation Function
+extension EnterInviteCodeViewController {
+    func showWarningToastView(duration: TimeInterval = 2.0) {
+        self.warningToastView.fadeIn()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            self.warningToastView.fadeOut()
+        }
+    }
+    // MARK: Objc Function
+    @objc func keyboardWillShow(notification: Notification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        let keyboardTopY = keyboardFrame.origin.y
+        let inviteCodeTextFieldViewBottomY = inviteCodeTextFieldView.frame.origin.y + inviteCodeTextFieldView.frame.size.height
+        
+        /// 이동량은 검색창 하단부분과 키보드 상단부분의 사이 공백이 46이 유지되도록 했습니다.
+        let moveAmount = inviteCodeTextFieldViewBottomY - keyboardTopY + 46
+        
+        /// 검색창 하단 부분과 키보드 상단 부분의 차이 값이 46보다 작을 경우에만 검색창이 잘 보이도록 움직이게 했습니다.
+        if keyboardTopY - inviteCodeTextFieldViewBottomY < 46 {
+            UIView.animate(withDuration: 0.3) {
+                self.organizationInfoView.transform = CGAffineTransform(translationX: 0, y: -moveAmount)
+                self.inviteCodeTextFieldView.transform = CGAffineTransform(translationX: 0, y: -moveAmount)
+                self.infoImageView.transform = CGAffineTransform(translationX: 0, y: -moveAmount)
+                self.infoMessageLabel.transform = CGAffineTransform(translationX: 0, y: -moveAmount)
+            }
+        }
+        
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        ///키보드가 사라질 때 화면을 원래 위치로 복원하는 작업입니다.
+        UIView.animate(withDuration: 0.3) {
+            self.organizationInfoView.transform = CGAffineTransform.identity
+            self.inviteCodeTextFieldView.transform = CGAffineTransform.identity
+            self.infoImageView.transform = CGAffineTransform.identity
+            self.infoMessageLabel.transform = CGAffineTransform.identity
+        }
     }
 }

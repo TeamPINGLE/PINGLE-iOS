@@ -73,6 +73,7 @@
 		F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BC82B45C3880072A02A /* SearchedModel.swift */; };
 		F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */; };
 		F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BCE2B468A0F0072A02A /* CALayer+.swift */; };
+		F1239BD12B46EB160072A02A /* PINGLETextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD02B46EB160072A02A /* PINGLETextFieldView.swift */; };
 		F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +147,7 @@
 		F1239BC82B45C3880072A02A /* SearchedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedModel.swift; sourceTree = "<group>"; };
 		F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		F1239BCE2B468A0F0072A02A /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		F1239BD02B46EB160072A02A /* PINGLETextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLETextFieldView.swift; sourceTree = "<group>"; };
 		F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEWarningToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -546,6 +548,7 @@
 			children = (
 				E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */,
 				E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */,
+				F1239BD02B46EB160072A02A /* PINGLETextFieldView.swift */,
 				F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */,
 			);
 			path = Components;
@@ -796,6 +799,7 @@
 				F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */,
 				C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */,
 				C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */,
+				F1239BD12B46EB160072A02A /* PINGLETextFieldView.swift in Sources */,
 				C39602DD2B3BF1A8004BB2B8 /* UIView+.swift in Sources */,
 				C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */,
 			);

@@ -20,6 +20,7 @@ final class HomeMapViewController: BaseViewController {
     
     // MARK: Component
     let mapsView = HomeMapView()
+    let mapDetailView = HomeMapDetailView()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -28,6 +29,7 @@ final class HomeMapViewController: BaseViewController {
         self.navigationController?.navigationBar.isHidden = true
         setLocationManager()
         setAddTarget()
+        setMarkerHandler()
     }
     
     // MARK: Layout Helpers
@@ -35,12 +37,24 @@ final class HomeMapViewController: BaseViewController {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
-        self.view.addSubview(mapsView)
+        self.view.addSubviews(mapsView,
+                             mapDetailView)
         
         mapsView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(safeAreaHeight).offset(-tabBarHeight)
         }
+        
+        mapDetailView.snp.makeConstraints {
+            $0.bottom.equalTo(mapsView).offset(-8.adjustedHeight)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(327)
+            $0.width.equalTo(327.adjustedWidth)
+        }
+    }
+    
+    override func setDelegate() {
+        self.mapsView.mapsView.mapView.touchDelegate = self
     }
     
     private func setLocationManager() {
@@ -117,6 +131,16 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     }
 }
 
+extension HomeMapViewController: NMFMapViewTouchDelegate {
+    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
+        if !self.mapDetailView.isHidden {
+            self.mapDetailView.isHidden = true
+            self.mapsView.currentLocationButton.isHidden = false
+            self.mapsView.listButton.isHidden = false
+        }
+    }
+}
+
 extension HomeMapViewController {
     
     /// 카메라를 이동하는 메소드
@@ -164,5 +188,19 @@ extension HomeMapViewController {
     
     @objc func currentLocationButtonTapped() {
         moveToCurrentLocation()
+    }
+    
+    func setMarkerHandler() {
+        mapDetailView.isHidden = true
+        
+        self.mapsView.homeMarkerList.forEach {
+            $0.touchHandler = { (overlay: NMFOverlay) -> Bool in
+                print("오버레이 터치됨")
+                self.mapDetailView.isHidden = false
+                self.mapsView.currentLocationButton.isHidden = true
+                self.mapsView.listButton.isHidden = true
+                return true
+            }
+        }
     }
 }

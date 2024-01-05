@@ -16,6 +16,12 @@ final class EnterInviteCodeViewController: BaseViewController {
     private let backButton = UIButton()
     private let titleLabel = UILabel()
     private let organizationInfoView = OrganizationInfoView()
+    private let inviteCodeTextFieldView = PINGLETextFieldView(
+        titleLabel: StringLiterals.Onboarding.ExplainTitle.inviteCodeTextFieldTitle,
+        explainLabel: StringLiterals.Onboarding.SearchBarPlaceholder.inviteCodePlaceholder
+    )
+    private let infoImageView = UIImageView()
+    private let infoMessageLabel = UILabel()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -39,10 +45,22 @@ final class EnterInviteCodeViewController: BaseViewController {
             $0.textColor = .white
             $0.numberOfLines = 0
         }
+        
+        self.infoImageView.do {
+            $0.image = ImageLiterals.Icon.icInfo
+            $0.tintColor = .grayscaleG04
+        }
+        
+        self.infoMessageLabel.do {
+            $0.text = StringLiterals.Onboarding.ExplainTitle.infoMessage
+            $0.font = .captionCapMed10
+            $0.textColor = .grayscaleG04
+        }
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel, organizationInfoView)
+        self.view.addSubviews(titleLabel, organizationInfoView, inviteCodeTextFieldView,
+                              infoImageView, infoMessageLabel)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32.adjusted)
@@ -53,6 +71,22 @@ final class EnterInviteCodeViewController: BaseViewController {
             $0.top.equalTo(self.titleLabel.snp.bottom).offset(25.adjusted)
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
             $0.height.equalTo(157.adjusted)
+        }
+        
+        inviteCodeTextFieldView.snp.makeConstraints {
+            $0.top.equalTo(organizationInfoView.snp.bottom).offset(16.adjusted)
+            $0.centerX.equalToSuperview()
+        }
+        
+        infoImageView.snp.makeConstraints {
+            $0.top.equalTo(inviteCodeTextFieldView.snp.bottom).offset(8.adjusted)
+            $0.leading.equalTo(inviteCodeTextFieldView)
+            $0.width.height.equalTo(10.adjusted)
+        }
+        
+        infoMessageLabel.snp.makeConstraints {
+            $0.centerY.equalTo(infoImageView.snp.centerY)
+            $0.leading.equalTo(infoImageView.snp.trailing).offset(4.adjusted)
         }
     }
     

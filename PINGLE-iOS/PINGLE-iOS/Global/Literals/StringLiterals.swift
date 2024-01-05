@@ -28,6 +28,8 @@ enum StringLiterals {
             static let inviteCodeTitle = "단체 정보를 확인하고\n초대 코드를 입력해주세요"
             static let meetingNumber = "개설된 모임 수"
             static let memberNumber = "총 인원"
+            static let inviteCodeTextFieldTitle = "초대코드"
+            static let infoMessage = "모임 개설자로부터 받은 초대 코드를 입력해주세요"
         }
         
         enum NavigationTitle {
@@ -36,6 +38,7 @@ enum StringLiterals {
         
         enum SearchBarPlaceholder {
             static let searchOrganizationPlaceholder = "단체 이름을 검색해보세요"
+            static let inviteCodePlaceholder = "영문+숫자 12자리"
         }
     }
     

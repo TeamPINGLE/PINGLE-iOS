@@ -45,10 +45,12 @@ final class HomeDetailPopUpView: BaseView {
         }
         
         titleLabel.do {
-            $0.text = "강남 모각작팟"
+            $0.setTextWithLineHeight(text: "강남", lineHeight: 25)
             $0.textColor = badgeColor
             $0.font = .subtitleSubSemi18
             $0.textAlignment = .center
+            $0.numberOfLines = 3
+            $0.lineBreakMode = .byCharWrapping
         }
         
         nameLabel.do {
@@ -85,13 +87,13 @@ final class HomeDetailPopUpView: BaseView {
         
         self.snp.makeConstraints {
             $0.width.equalTo(327.adjustedWidth)
-            $0.height.equalTo(278)
+//            $0.height.equalTo(278)
         }
         
         infoBackgroundView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(24)
             $0.leading.trailing.equalToSuperview().inset(24.adjustedWidth)
-            $0.height.equalTo(126)
+//            $0.height.equalTo(126)
         }
         
         badgeImageView.snp.makeConstraints {
@@ -102,11 +104,13 @@ final class HomeDetailPopUpView: BaseView {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(badgeImageView.snp.bottom).offset(8)
             $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(30.adjustedWidth)
         }
         
         nameLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(25)
         }
         
         askLabel.snp.makeConstraints {
@@ -118,6 +122,7 @@ final class HomeDetailPopUpView: BaseView {
             $0.top.equalTo(askLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(71.adjustedWidth)
             $0.bottom.equalToSuperview().inset(24)
+            $0.height.equalTo(44)
         }
     }
     

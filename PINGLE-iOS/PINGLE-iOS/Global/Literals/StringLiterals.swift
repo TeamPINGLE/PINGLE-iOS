@@ -99,6 +99,15 @@ enum StringLiterals {
         enum ExplainTitle {
             static let settingTitle = "설정"
             static let organizationTitle = "나의 단체"
+            static let versionTitle = "버전"
+            static let versionInfo = "0.0.0"
+        }
+        
+        enum ButtonTitle {
+            static let contactTitle = "문의하기"
+            static let noticeTitle = "공지사항"
+            static let logoutTitle = "로그아웃"
+            static let withdrawTitle = "탈퇴하기"
         }
     }
     

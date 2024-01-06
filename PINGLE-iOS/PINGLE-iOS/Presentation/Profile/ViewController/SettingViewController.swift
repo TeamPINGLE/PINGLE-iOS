@@ -16,6 +16,7 @@ final class SettingViewController: BaseViewController {
     private let settingTitleLabel = UILabel()
     private let userNameLabel = UILabel()
     private let organizationButton = OrganizationButton()
+    private let settingSelectView = SettingSelectView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -43,7 +44,8 @@ final class SettingViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(settingTitleLabel, userNameLabel, organizationButton)
+        self.view.addSubviews(settingTitleLabel, userNameLabel, organizationButton,
+                              settingSelectView)
         
         settingTitleLabel.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(15.adjusted)
@@ -57,6 +59,11 @@ final class SettingViewController: BaseViewController {
         
         organizationButton.snp.makeConstraints {
             $0.top.equalTo(self.userNameLabel.snp.bottom).offset(20.adjusted)
+            $0.centerX.equalToSuperview()
+        }
+        
+        settingSelectView.snp.makeConstraints {
+            $0.top.equalTo(self.organizationButton.snp.bottom).offset(40.adjusted)
             $0.centerX.equalToSuperview()
         }
     }

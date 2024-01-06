@@ -80,6 +80,8 @@
 		F1239BD92B486B230072A02A /* EntranceCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD82B486B230072A02A /* EntranceCompletedViewController.swift */; };
 		F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C642B4945E00049A9EE /* SettingViewController.swift */; };
 		F14F3C692B494FB10049A9EE /* OrganizationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C682B494FB10049A9EE /* OrganizationButton.swift */; };
+		F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */; };
+		F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C6D2B4988380049A9EE /* SettingSelectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +161,8 @@
 		F1239BD82B486B230072A02A /* EntranceCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceCompletedViewController.swift; sourceTree = "<group>"; };
 		F14F3C642B4945E00049A9EE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F14F3C682B494FB10049A9EE /* OrganizationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationButton.swift; sourceTree = "<group>"; };
+		F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSelectButton.swift; sourceTree = "<group>"; };
+		F14F3C6D2B4988380049A9EE /* SettingSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSelectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				F14F3C662B4946180049A9EE /* ViewController */,
+				F14F3C6C2B4988150049A9EE /* View */,
 				F14F3C672B494F6A0049A9EE /* Component */,
 			);
 			path = Profile;
@@ -614,8 +619,17 @@
 			isa = PBXGroup;
 			children = (
 				F14F3C682B494FB10049A9EE /* OrganizationButton.swift */,
+				F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		F14F3C6C2B4988150049A9EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F14F3C6D2B4988380049A9EE /* SettingSelectView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {
@@ -778,6 +792,7 @@
 			files = (
 				C39603142B3BF35E004BB2B8 /* n.swift in Sources */,
 				C396031E2B3BF379004BB2B8 /* s.swift in Sources */,
+				F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */,
 				C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
@@ -786,6 +801,7 @@
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
+				F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */,
 				C39602FD2B3BF299004BB2B8 /* i.swift in Sources */,
 				F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,

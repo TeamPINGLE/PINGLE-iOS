@@ -26,7 +26,7 @@ final class SearchOrganizationView: BaseView {
     // MARK: UI
     override func setStyle() {
         self.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .grayscaleG11
         }
         
         self.searchView.do {

@@ -30,7 +30,6 @@ class MeetingIntroductionViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
         setTarget()
         hideKeyboardWhenTappedAround()
-        self.PINGLEIntroductionTextField.searchTextField.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,7 +93,7 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(self.view.snp.bottom).inset(54.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
@@ -138,6 +137,10 @@ class MeetingIntroductionViewController: BaseViewController {
                                                               for: .editingChanged)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+    }
+    
+    override func setDelegate() {
+        self.PINGLEIntroductionTextField.searchTextField.delegate = self
     }
 }
 

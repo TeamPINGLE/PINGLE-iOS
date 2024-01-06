@@ -12,10 +12,14 @@ import Then
 
 final class FixView: BaseView {
 
+    // MARK: - Variables
+    // MARK: Component
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()
     let graphicImageView = UIImageView()
     
+    // MARK: - Function
+    // MARK: Style Helpers
     override func setStyle() {
         titleLabel.do {
             $0.text = StringLiterals.Fix.fixTitle
@@ -36,6 +40,7 @@ final class FixView: BaseView {
         }
     }
     
+    // MARK: Layout Helpers
     override func setLayout() {
         self.addSubviews(titleLabel,
                          descriptionLabel,

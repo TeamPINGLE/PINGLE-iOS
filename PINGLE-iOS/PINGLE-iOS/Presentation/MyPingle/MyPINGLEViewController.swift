@@ -11,13 +11,19 @@ import SnapKit
 import Then
 
 final class MyPINGLEViewController: BaseViewController {
+    
+    // MARK: - Variables
+    // MARK: Component
     let fixView = FixView()
     
+    // MARK: - Function
+    // MARK: Style Helpers
     override func setStyle() {
         self.navigationController?.navigationBar.isHidden = true
         self.view.backgroundColor = .grayscaleG11
     }
     
+    // MARK: Style Helpers
     override func setLayout() {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
@@ -29,5 +35,4 @@ final class MyPINGLEViewController: BaseViewController {
             $0.bottom.equalTo(safeAreaHeight).offset(-(tabBarHeight + 132.adjustedHeight))
         }
     }
-
 }

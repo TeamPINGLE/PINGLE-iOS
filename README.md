@@ -138,3 +138,10 @@ excluded:
 
 [PINGLE-iOS 기능 설계](https://pinglepingle.notion.site/c02dfaffbf3b4f6e884750399e71aee6?v=1b13977db2ff4565834ef1e2c46aafa6&pvs=4)
 
+
+---------
+![10](https://github.com/TeamPINGLE/PINGLE-iOS/assets/109775321/8289e4f1-5e39-4225-9f77-de0f402806bc)
+![리드미 9](https://github.com/TeamPINGLE/PINGLE-iOS/assets/109775321/6f49f7b6-10ab-48b6-9816-e38f6049319d)
+
+
+

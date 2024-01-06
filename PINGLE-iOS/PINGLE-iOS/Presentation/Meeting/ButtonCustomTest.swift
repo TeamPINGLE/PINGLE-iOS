@@ -19,6 +19,8 @@ class ButtonCustomTest: BaseViewController {
     
     let exitButton = MeetingExitButton()
     
+    let testView = CustomDatePickerView()
+    
     let textField = UITextField().then {
         $0.placeholder = "아무거나 적어보셈..."
         $0.borderStyle = .roundedRect
@@ -33,6 +35,7 @@ class ButtonCustomTest: BaseViewController {
         view.addSubviews(testButton, textField)
         view.addSubview(categoryTestButton)
         view.addSubview(exitButton)
+        view.addSubview(testView)
         
         testButton.snp.makeConstraints {
             $0.top.equalTo(view.snp.top).offset(50)
@@ -53,6 +56,12 @@ class ButtonCustomTest: BaseViewController {
         exitButton.snp.makeConstraints {
             $0.top.equalTo(categoryTestButton.snp.bottom).offset(50)
             $0.leading.equalToSuperview().inset(50)
+        }
+        
+        testView.snp.makeConstraints {
+            $0.top.equalTo(exitButton.snp.bottom).offset(50)
+            $0.leading.trailing.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview().inset(41)
         }
         
         textField.delegate = self

@@ -41,6 +41,10 @@ extension UIFont {
     return UIFont(name: "SUIT-SemiBold", size: 16.0)!
   }
 
+  class var subtitleSubBold16: UIFont {
+    return UIFont(name: "SUIT-Bold", size: 16.0)!
+  }
+
   class var bodyBodyMed16: UIFont {
     return UIFont(name: "SUIT-Medium", size: 16.0)!
   }
@@ -79,5 +83,13 @@ extension UIFont {
 
   class var captionCapMed10: UIFont {
     return UIFont(name: "SUIT-Medium", size: 10.0)!
+  }
+    
+  class var sfProRegular: UIFont {
+    return UIFont(name: "SFProDisplay-Regular", size: 17.0)!
+  }
+    
+  class var sfProBold: UIFont {
+    return UIFont(name: "SFProDisplay-Bold", size: 17.0)!
   }
 }

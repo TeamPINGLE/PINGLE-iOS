@@ -55,6 +55,20 @@ enum StringLiterals {
         }
     }
     
+    enum Home {
+        enum Detail {
+            static let participantsTitle = "참여자"
+            static let slash = "/"
+            static let complete = "모집완료"
+            static let dateTimeTitle = "일시"
+            static let locationTitle = "장소"
+            static let talkButton = "대화하기"
+            static let participationButton = "참여하기"
+            static let cancelButton = "취소하기"
+            static let askDescription = "이 핑글에 참여할까요?"
+        }
+    }
+    
     enum Metting {
         enum MettingGuide {
             static let guideTitle = "새로운 핑글을\n개최해보아요!"
@@ -92,6 +106,13 @@ enum StringLiterals {
             static let introductionTitle = "개최할 핑글을\n소개해주세요"
             static let PINGLETitle = "핑글제목"
             static let PINGLEExplain = "이번 핑글을 한마디로 소개한다면?"
+        }
+        
+        enum TimePicker {
+            enum PickerButton {
+                static let doneButton = "Done"
+                static let resetButton = "Reset"
+            }
         }
     }
     

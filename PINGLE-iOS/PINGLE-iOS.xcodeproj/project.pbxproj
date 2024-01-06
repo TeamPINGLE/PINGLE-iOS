@@ -43,7 +43,6 @@
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
 		C39602F92B3BF291004BB2B8 /* g.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602F82B3BF291004BB2B8 /* g.swift */; };
 		C39602FD2B3BF299004BB2B8 /* i.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602FC2B3BF299004BB2B8 /* i.swift */; };
-		C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602FE2B3BF29D004BB2B8 /* j.swift */; };
 		C396030B2B3BF33B004BB2B8 /* k.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030A2B3BF33B004BB2B8 /* k.swift */; };
 		C396030D2B3BF33F004BB2B8 /* l.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030C2B3BF33F004BB2B8 /* l.swift */; };
 		C396030F2B3BF345004BB2B8 /* m.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030E2B3BF345004BB2B8 /* m.swift */; };
@@ -78,6 +77,7 @@
 		F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */; };
 		F1239BD52B47D5530072A02A /* EnterInviteCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */; };
 		F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD62B47D8F60072A02A /* OrganizationInfoView.swift */; };
+		F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C642B4945E00049A9EE /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,7 +123,6 @@
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C39602F82B3BF291004BB2B8 /* g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = g.swift; sourceTree = "<group>"; };
 		C39602FC2B3BF299004BB2B8 /* i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i.swift; sourceTree = "<group>"; };
-		C39602FE2B3BF29D004BB2B8 /* j.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = j.swift; sourceTree = "<group>"; };
 		C396030A2B3BF33B004BB2B8 /* k.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = k.swift; sourceTree = "<group>"; };
 		C396030C2B3BF33F004BB2B8 /* l.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = l.swift; sourceTree = "<group>"; };
 		C396030E2B3BF345004BB2B8 /* m.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = m.swift; sourceTree = "<group>"; };
@@ -155,6 +154,7 @@
 		F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEWarningToastView.swift; sourceTree = "<group>"; };
 		F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInviteCodeViewController.swift; sourceTree = "<group>"; };
 		F1239BD62B47D8F60072A02A /* OrganizationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationInfoView.swift; sourceTree = "<group>"; };
+		F14F3C642B4945E00049A9EE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,7 +414,7 @@
 		C39602EC2B3BF23B004BB2B8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				C39602FE2B3BF29D004BB2B8 /* j.swift */,
+				F14F3C662B4946180049A9EE /* ViewController */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -594,6 +594,14 @@
 				F1239BC82B45C3880072A02A /* SearchedModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F14F3C662B4946180049A9EE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F14F3C642B4945E00049A9EE /* SettingViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {
@@ -786,10 +794,10 @@
 				F1239BD52B47D5530072A02A /* EnterInviteCodeViewController.swift in Sources */,
 				C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */,
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
-				C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */,
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */,
 				C39603162B3BF369004BB2B8 /* o.swift in Sources */,
+				F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
 				F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */,
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,

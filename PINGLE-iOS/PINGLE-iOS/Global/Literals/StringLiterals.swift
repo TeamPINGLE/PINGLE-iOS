@@ -78,6 +78,12 @@ enum StringLiterals {
                 static let exitLabel = "나중에 만드시겠어요?"
             }
         }
+        
+        enum MeetingIntroduction {
+            static let introductionTitle = "개최할 핑글을\n소개해주세요"
+            static let PINGLETitle = "핑글제목"
+            static let PINGLEExplain = "이번 핑글을 한마디로 소개한다면?"
+        }
     }
     
     enum CTAButton {

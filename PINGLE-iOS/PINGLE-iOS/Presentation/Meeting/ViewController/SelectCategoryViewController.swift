@@ -44,6 +44,10 @@ class SelectCategoryViewController: BaseViewController {
         setTarget()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: UI
     override func setStyle() {
         self.view.do {
@@ -55,7 +59,7 @@ class SelectCategoryViewController: BaseViewController {
         }
         progressBar1.do {
             $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage1
-            $0.contentMode = .scaleAspectFit
+            $0.contentMode = .scaleAspectFill
         }
         
         PINGLECategoryTitle.do {
@@ -115,7 +119,7 @@ class SelectCategoryViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(507.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
@@ -160,7 +164,8 @@ class SelectCategoryViewController: BaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        print("여기다가 다음 뷰컨 연결 할것임")
+        let meetingIntroductionViewController = MeetingIntroductionViewController()
+        navigationController?.pushViewController(meetingIntroductionViewController, animated: true)
     }
     
     // MARK: - Function

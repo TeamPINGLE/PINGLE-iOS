@@ -19,6 +19,8 @@ enum ChipStatus {
 
 class ChipButton: UIButton {
     
+    // MARK: - Variables
+    // MARK: Property
     var chipStatus: ChipStatus = .play
     var chipStatusString: String = "PLAY"
     var isButtonSelected: Bool = false {

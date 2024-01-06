@@ -7,6 +7,7 @@
 
 import UIKit
 
+import SafariServices
 import CoreLocation
 import NMapsMap
 import SnapKit
@@ -17,9 +18,15 @@ final class HomeMapViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     var shouldUpdateMap: Bool = true
+    /// 현재 선택되지 않은 필터 버튼 개수
+    var unselectedButton: Int = 0
     
     // MARK: Component
     let mapsView = HomeMapView()
+    let mapDetailView = HomeMapDetailView()
+    let dimmedView = UIView()
+    let homeDetailPopUpView = HomeDetailPopUpView()
+    let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -28,6 +35,21 @@ final class HomeMapViewController: BaseViewController {
         self.navigationController?.navigationBar.isHidden = true
         setLocationManager()
         setAddTarget()
+        setMarkerHandler()
+    }
+    
+    // MARK: Style Helpers
+    override func setStyle() {
+        dimmedView.do {
+            $0.backgroundColor = .black
+            $0.alpha = 0.7
+            $0.isHidden = true
+            $0.isUserInteractionEnabled = true
+        }
+        
+        homeDetailPopUpView.do {
+            $0.isHidden = true
+        }
     }
     
     // MARK: Layout Helpers
@@ -35,12 +57,38 @@ final class HomeMapViewController: BaseViewController {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
-        self.view.addSubview(mapsView)
+        self.view.addSubviews(mapsView,
+                              mapDetailView)
+        
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubviews(dimmedView,
+                               homeDetailPopUpView)
+        }
         
         mapsView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(safeAreaHeight).offset(-tabBarHeight)
         }
+        
+        mapDetailView.snp.makeConstraints {
+            $0.bottom.equalTo(mapsView).offset(-8.adjustedHeight)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(327)
+            $0.width.equalTo(327.adjustedWidth)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        homeDetailPopUpView.snp.makeConstraints {
+            $0.center.equalTo(dimmedView)
+        }
+    }
+    
+    override func setDelegate() {
+        self.mapsView.mapsView.mapView.touchDelegate = self
+        self.dimmedTapGesture.delegate = self
     }
     
     private func setLocationManager() {
@@ -58,6 +106,16 @@ final class HomeMapViewController: BaseViewController {
                                                       action: #selector(currentLocationButtonTapped),
                                                       for: .touchUpInside)
         self.mapsView.listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
+        self.mapDetailView.participationButton.addTarget(self,
+                                                         action: #selector(participantsButtonTapped),
+                                                         for: .touchUpInside)
+        self.mapDetailView.talkButton.addTarget(self,
+                                                action: #selector(talkButtonTapped),
+                                                for: .touchUpInside)
+        self.dimmedView.addGestureRecognizer(dimmedTapGesture)
+        self.homeDetailPopUpView.participationButton.addTarget(self,
+                                                               action: #selector(participationButtonTapped),
+                                                               for: .touchUpInside)
     }
 }
 
@@ -117,8 +175,32 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     }
 }
 
+// MARK: NMFMapViewTouchDelegate
+extension HomeMapViewController: NMFMapViewTouchDelegate {
+    /// 지도 탭 되었을 때 메소드
+    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
+        if !self.mapDetailView.isHidden {
+            self.mapDetailView.isHidden = true
+            self.mapsView.currentLocationButton.isHidden = false
+            self.mapsView.listButton.isHidden = false
+            self.mapsView.homeMarkerList.forEach {
+                $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
+            }
+        }
+    }
+}
+
+// MARK: UIGestureRecognizerDelegate
+extension HomeMapViewController: UIGestureRecognizerDelegate {
+    /// 딤 뷰 탭 되었을 때 메소드
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        dimmedView.isHidden = true
+        homeDetailPopUpView.isHidden = true
+        return true
+    }
+}
+
 extension HomeMapViewController {
-    
     /// 카메라를 이동하는 메소드
     func moveToCurrentLocation() {
         self.mapsView.cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: mapsView.nowLat, lng: mapsView.nowLng))
@@ -141,8 +223,7 @@ extension HomeMapViewController {
             $0.hidden = false
         }
         
-        /// 현재 선택되지 않은 버튼 개수
-        var unselectedButton: Int = 0
+        unselectedButton = 0
         
         self.mapsView.chipButtons.forEach {
             if !$0.isButtonSelected {
@@ -162,7 +243,67 @@ extension HomeMapViewController {
         print("리스트 버튼 탭")
     }
     
+    @objc func participationButtonTapped() {
+        print("참여하기 버튼 탭")
+    }
+    
     @objc func currentLocationButtonTapped() {
         moveToCurrentLocation()
+    }
+    
+    @objc func participantsButtonTapped() {
+        if !mapDetailView.isParticipating {
+            dimmedView.isHidden = false
+            homeDetailPopUpView.isHidden = false
+        } else {
+            print("취소하기 버튼 탭")
+        }
+    }
+    
+    @objc func talkButtonTapped() {
+        print("대화하기 버튼 탭")
+        guard let chatURL = mapDetailView.openChatURL else { return }
+        guard let url = URL(string: chatURL) else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
+    }
+    
+    // MARK: Custom Function
+    /// 마커에 핸들러 부여
+    func setMarkerHandler() {
+        mapDetailView.isHidden = true
+        
+        self.mapsView.homeMarkerList.forEach { marker in
+            marker.touchHandler = { ( _: NMFOverlay) -> Bool in
+                print("오버레이 터치됨")
+                self.bindDetailViewData(id: marker.id)
+                self.mapDetailView.isHidden = false
+                self.mapsView.currentLocationButton.isHidden = true
+                self.mapsView.listButton.isHidden = true
+                self.markerTapped(marker: marker)
+                return true
+            }
+        }
+    }
+    
+    func bindDetailViewData(id: Int) {
+        // 해당 id값을 넣어서 서버 통신 후 data 받아오기
+        let data = homePinDetailDummy[0]
+        self.mapDetailView.dataBind(data: data)
+        self.homeDetailPopUpView.dataBind(data: data)
+    }
+    
+    func markerTapped(marker: PINGLEMarker) {
+        self.mapsView.homeMarkerList.forEach {
+            $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
+        }
+        
+        // 추후 바뀌는 이미지 등록
+        marker.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
+        /// zoomLevel에 따라서 일정한 위치로 카메라 이동할 수 있도록 계산
+        let offsetLat = marker.position.lat - 0.003 * pow(2, 14 - self.mapsView.mapsView.mapView.zoomLevel)
+        let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: offsetLat, lng: marker.position.lng))
+        newCameraPosition.animation = .easeIn
+        self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
     }
 }

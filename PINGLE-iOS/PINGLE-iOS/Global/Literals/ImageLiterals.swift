@@ -56,6 +56,15 @@ enum ImageLiterals {
             static var imgMapPinStudy: UIImage { .load(named: "imgMapPinStudy")}
             static var imgMapPinMulti: UIImage { .load(named: "imgMapPinMulti")}
         }
+        
+        enum Detail {
+            static var imgPlayBadge: UIImage { .load(named: "imgPlayBadge")}
+            static var imgStudyBadge: UIImage { .load(named: "imgStudyBadge")}
+            static var imgMultiBadge: UIImage { .load(named: "imgMultiBadge")}
+            static var imgOthersBadge: UIImage { .load(named: "imgOthersBadge")}
+            static var icCalendar: UIImage { .load(named: "icCalendar")}
+            static var icLocation: UIImage { .load(named: "icLocation")}
+        }
     }
   
     enum Metting {

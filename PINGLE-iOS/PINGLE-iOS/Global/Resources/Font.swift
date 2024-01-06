@@ -86,6 +86,6 @@ extension UIFont {
   }
     
   class var sfProBold: UIFont {
-    return UIFont(name: "SFProDisplay-Semibold", size: 17.0)!
+    return UIFont(name: "SFProDisplay-Bold", size: 17.0)!
   }
 }

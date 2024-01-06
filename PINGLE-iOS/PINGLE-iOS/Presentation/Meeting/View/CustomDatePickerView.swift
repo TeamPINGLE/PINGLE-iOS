@@ -52,6 +52,7 @@ class CustomDatePickerView: BaseView {
     
     override func setLayout() {
         self.addSubviews(datePicker, dividerView, resetButton, doneButton)
+        
         self.snp.makeConstraints {
             $0.height.equalTo(288.adjusted)
             $0.width.equalTo(327.adjusted)

@@ -90,6 +90,13 @@ enum StringLiterals {
             static let PINGLETitle = "핑글제목"
             static let PINGLEExplain = "이번 핑글을 한마디로 소개한다면?"
         }
+        
+        enum TimePicker {
+            enum PickerButton {
+                static let doneButton = "Done"
+                static let resetButton = "Reset"
+            }
+        }
     }
     
     enum CTAButton {

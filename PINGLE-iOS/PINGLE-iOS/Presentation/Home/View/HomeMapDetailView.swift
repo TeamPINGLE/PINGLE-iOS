@@ -20,6 +20,7 @@ final class HomeMapDetailView: BaseView {
     
     // MARK: Component
     let topBackgroundView = UIView()
+    let infoGroupView = UIView()
     let badgeImageView = UIImageView()
     let titleLabel = UILabel()
     let nameLabel = UILabel()
@@ -60,17 +61,17 @@ final class HomeMapDetailView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "강남", lineHeight: 25)
+            $0.setTextWithLineHeight(text: "제목", lineHeight: 25)
             $0.numberOfLines = 2
             $0.textColor = badgeColor
-            $0.font = .subtitleSubSemi18
+            $0.font = .subtitleSubBold16
             $0.lineBreakMode = .byCharWrapping
             $0.textAlignment = .left
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "박소현", lineHeight: 20)
-            $0.textColor = .grayscaleG03
+            $0.setTextWithLineHeight(text: "이름", lineHeight: 20)
+            $0.textColor = .grayscaleG05
             $0.font = .bodyBodyMed14
         }
         
@@ -98,7 +99,7 @@ final class HomeMapDetailView: BaseView {
         }
         
         currentParticipantsLabel.do {
-            $0.text = "5"
+            $0.text = "1"
             $0.textColor = badgeColor
             $0.font = .titleTitleSemi30
         }
@@ -136,13 +137,13 @@ final class HomeMapDetailView: BaseView {
         
         dateLabel.do {
             $0.text = "2023년 12월 31일"
-            $0.textColor = .grayscaleG03
+            $0.textColor = .grayscaleG02
             $0.font = .bodyBodySemi14
         }
         
         timeLabel.do {
             $0.setTextWithLineHeight(text: "01:00 ~ 05:00", lineHeight: 20)
-            $0.textColor = .grayscaleG03
+            $0.textColor = .grayscaleG02
             $0.font = .bodyBodySemi14
         }
         
@@ -157,8 +158,8 @@ final class HomeMapDetailView: BaseView {
         }
         
         locationLabel.do {
-            $0.text = "하얀집 2호점"
-            $0.textColor = .grayscaleG03
+            $0.text = "장소"
+            $0.textColor = .grayscaleG02
             $0.font = .bodyBodyMed14
         }
         
@@ -185,11 +186,13 @@ final class HomeMapDetailView: BaseView {
         self.addSubviews(topBackgroundView,
                          bottomBackgroundView)
         
-        topBackgroundView.addSubviews(badgeImageView,
-                                      titleLabel,
-                                      nameLabel,
+        topBackgroundView.addSubviews(infoGroupView,
                                       participantsView,
                                       separateView)
+        
+        infoGroupView.addSubviews(badgeImageView,
+                                  titleLabel,
+                                  nameLabel)
         
         participantsView.addSubviews(participantsLabel,
                                      completeLabel,
@@ -215,20 +218,24 @@ final class HomeMapDetailView: BaseView {
             $0.height.equalTo(121)
         }
         
-        badgeImageView.snp.makeConstraints {
+        infoGroupView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(24.adjustedWidth)
-            $0.top.equalToSuperview().inset(20)
+        }
+        
+        badgeImageView.snp.makeConstraints {
+            $0.top.leading.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(badgeImageView.snp.bottom).offset(8 - 3.5)
-            $0.leading.equalTo(badgeImageView)
+            $0.top.equalTo(badgeImageView.snp.bottom).offset(8 - 3)
+            $0.leading.equalToSuperview()
             $0.width.equalTo(188.adjustedWidth)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(badgeImageView)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4 - 3)
+            $0.leading.bottom.equalToSuperview()
         }
         
         participantsView.snp.makeConstraints {
@@ -315,37 +322,6 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
-    func longTitleStyle() {
-        if titleLabel.countCurrentLines() >= 2 {
-            badgeImageView.snp.makeConstraints {
-                $0.leading.equalToSuperview().inset(24.adjustedWidth)
-                $0.top.equalToSuperview().inset(15)
-            }
-            
-            titleLabel.snp.makeConstraints {
-                $0.top.equalTo(badgeImageView.snp.bottom).offset(4 - 3)
-                $0.leading.equalTo(badgeImageView)
-                $0.width.equalTo(188.adjustedWidth)
-            }
-            
-            titleLabel.font = .subtitleSubSemi16
-        } else {
-            badgeImageView.snp.makeConstraints {
-                $0.leading.equalToSuperview().inset(24.adjustedWidth)
-                $0.top.equalToSuperview().inset(20)
-            }
-            
-            titleLabel.snp.makeConstraints {
-                $0.top.equalTo(badgeImageView.snp.bottom).offset(8 - 3.5)
-                $0.leading.equalTo(badgeImageView)
-                $0.width.equalTo(188.adjustedWidth)
-            }
-            
-            titleLabel.font = .subtitleSubSemi18
-        }
-        print(titleLabel.countCurrentLines())
-    }
-    
     // MARK: Data Bind Func
     func dataBind(data: HomePinDetailResponseDTO) {
         titleLabel.text = data.name
@@ -412,6 +388,5 @@ final class HomeMapDetailView: BaseView {
                 $0.makeBorder(width: 1, color: .white)
             }
         }
-        self.longTitleStyle()
     }
 }

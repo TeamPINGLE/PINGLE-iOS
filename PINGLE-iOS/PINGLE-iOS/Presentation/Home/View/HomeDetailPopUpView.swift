@@ -45,7 +45,7 @@ final class HomeDetailPopUpView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "강남", lineHeight: 25)
+            $0.setTextWithLineHeight(text: "제목", lineHeight: 25)
             $0.textColor = badgeColor
             $0.font = .subtitleSubSemi18
             $0.textAlignment = .center
@@ -54,7 +54,7 @@ final class HomeDetailPopUpView: BaseView {
         }
         
         nameLabel.do {
-            $0.text = "박소현"
+            $0.text = "이름"
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
             $0.textAlignment = .center

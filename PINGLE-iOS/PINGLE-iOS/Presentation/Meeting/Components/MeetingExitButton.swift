@@ -27,7 +27,7 @@ class MeetingExitButton: UIButton {
     // MARK: - UI
     private func setStyle() {
         self.backgroundColor = UIColor.clear
-        self.setTitle(StringLiterals.Metting.MettingCategory.ExitButton.exitButton, for: .normal)
+        self.setTitle(StringLiterals.Meeting.MeetingCategory.ExitButton.exitButton, for: .normal)
         self.setTitleColor(.grayscaleG06, for: .normal)
         self.titleLabel?.font = .captionCapSemi12
         self.underlineView.backgroundColor = .grayscaleG06

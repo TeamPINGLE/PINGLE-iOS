@@ -55,14 +55,14 @@ enum StringLiterals {
         }
     }
     
-    enum Metting {
-        enum MettingGuide {
+    enum Meeting {
+        enum MeetingGuide {
             static let guideTitle = "새로운 핑글을\n개최해보아요!"
             static let guideSubTitle = "어쩌구 번개를 개최하고\n어쩌구 번개를 개최하고"
             static let buttonTitle = "핑글 개최하러 가기"
         }
         
-        enum MettingCategory {
+        enum MeetingCategory {
             
             enum CategoryLabel {
                 static let categoryTitleLabel = "개최할 핑글을\n선택해주세요"
@@ -94,7 +94,7 @@ enum StringLiterals {
             static let PINGLEExplain = "이번 핑글을 한마디로 소개한다면?"
         }
         
-        enum TimePicker {
+        enum DatePicker {
             enum PickerButton {
                 static let doneButton = "Done"
                 static let resetButton = "Reset"

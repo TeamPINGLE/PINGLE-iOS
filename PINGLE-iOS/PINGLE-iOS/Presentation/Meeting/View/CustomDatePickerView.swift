@@ -38,13 +38,13 @@ class CustomDatePickerView: BaseView {
         }
         
         resetButton.do {
-            $0.setTitle(StringLiterals.Metting.TimePicker.PickerButton.resetButton, for: .normal)
+            $0.setTitle(StringLiterals.Meeting.DatePicker.PickerButton.resetButton, for: .normal)
             $0.titleLabel?.font = .sfProRegular
             $0.setTitleColor(.systemBlue, for: .normal)
         }
         
         doneButton.do {
-            $0.setTitle(StringLiterals.Metting.TimePicker.PickerButton.doneButton, for: .normal)
+            $0.setTitle(StringLiterals.Meeting.DatePicker.PickerButton.doneButton, for: .normal)
             $0.titleLabel?.font = .sfProBold
             $0.setTitleColor(.systemBlue, for: .normal)
         }

@@ -82,6 +82,7 @@
 		F14F3C692B494FB10049A9EE /* OrganizationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C682B494FB10049A9EE /* OrganizationButton.swift */; };
 		F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */; };
 		F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C6D2B4988380049A9EE /* SettingSelectView.swift */; };
+		F14F3C702B49BEB60049A9EE /* AccountPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C6F2B49BEB60049A9EE /* AccountPopUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +164,7 @@
 		F14F3C682B494FB10049A9EE /* OrganizationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationButton.swift; sourceTree = "<group>"; };
 		F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSelectButton.swift; sourceTree = "<group>"; };
 		F14F3C6D2B4988380049A9EE /* SettingSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSelectView.swift; sourceTree = "<group>"; };
+		F14F3C6F2B49BEB60049A9EE /* AccountPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPopUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -627,6 +629,7 @@
 		F14F3C6C2B4988150049A9EE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F14F3C6F2B49BEB60049A9EE /* AccountPopUpView.swift */,
 				F14F3C6D2B4988380049A9EE /* SettingSelectView.swift */,
 			);
 			path = View;
@@ -790,6 +793,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14F3C702B49BEB60049A9EE /* AccountPopUpView.swift in Sources */,
 				C39603142B3BF35E004BB2B8 /* n.swift in Sources */,
 				C396031E2B3BF379004BB2B8 /* s.swift in Sources */,
 				F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */,

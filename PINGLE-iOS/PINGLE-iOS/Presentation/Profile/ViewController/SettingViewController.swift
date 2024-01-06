@@ -12,16 +12,23 @@ import Then
 
 final class SettingViewController: BaseViewController {
     
+    // MARK: Variables
+    var accountState: AccountState = .logout
+    
     // MARK: Property
     private let settingTitleLabel = UILabel()
     private let userNameLabel = UILabel()
     private let organizationButton = OrganizationButton()
     private let settingSelectView = SettingSelectView()
+    private let dimmedView = UIView()
+    private let accountPopUpView = AccountPopUpView()
+    private let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
+        setTarget()
     }
     
     // MARK: UI
@@ -41,11 +48,27 @@ final class SettingViewController: BaseViewController {
             $0.font = .subtitleSubSemi18
             $0.textColor = .white
         }
+        
+        self.dimmedView.do {
+            $0.backgroundColor = .black
+            $0.alpha = 0.7
+            $0.isHidden = true
+            $0.isUserInteractionEnabled = true
+        }
+        
+        self.accountPopUpView.do {
+            $0.isHidden = true
+        }
     }
     
     override func setLayout() {
         self.view.addSubviews(settingTitleLabel, userNameLabel, organizationButton,
                               settingSelectView)
+        
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubviews(dimmedView,
+                               accountPopUpView)
+        }
         
         settingTitleLabel.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(15.adjusted)
@@ -66,11 +89,83 @@ final class SettingViewController: BaseViewController {
             $0.top.equalTo(self.organizationButton.snp.bottom).offset(40.adjusted)
             $0.centerX.equalToSuperview()
         }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        accountPopUpView.snp.makeConstraints {
+            $0.center.equalTo(dimmedView)
+        }
     }
     
     // MARK: Navigation Function
     private func setNavigation() {
         self.navigationController?.navigationBar.isHidden = true
     }
+    
+    // MARK: Delegate Function
+    override func setDelegate() {
+        self.dimmedTapGesture.delegate = self
+    }
+    
+    // MARK: Target Function
+    private func setTarget() {
+        self.organizationButton.addTarget(self, action: #selector(organizationButtonTapped), for: .touchUpInside)
+        self.settingSelectView.contactButton.addTarget(self, action: #selector(contactButtonTapped), for: .touchUpInside)
+        self.settingSelectView.noticeButton.addTarget(self, action: #selector(noticeButtonTapped), for: .touchUpInside)
+        self.settingSelectView.logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+        self.settingSelectView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        self.accountPopUpView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        self.accountPopUpView.changeStateButton.addTarget(self, action: #selector(changeStateButtonTapped), for: .touchUpInside)
+        self.dimmedView.addGestureRecognizer(dimmedTapGesture)
+    }
+    
+    // MARK: Objc Function
+    @objc func organizationButtonTapped() {
+    }
+    
+    @objc func contactButtonTapped() {
+    }
+    
+    @objc func noticeButtonTapped() {
+    }
+    
+    @objc func logoutButtonTapped() {
+        accountState = .logout
+        accountPopUpView.SetAccountStateMode(state: .logout)
+        dimmedView.isHidden = false
+        accountPopUpView.isHidden = false
+    }
+    
+    @objc func deleteButtonTapped() {
+        accountState = .delete
+        accountPopUpView.SetAccountStateMode(state: .delete)
+        dimmedView.isHidden = false
+        accountPopUpView.isHidden = false
+    }
+    
+    @objc func backButtonTapped() {
+        dimmedView.isHidden = true
+        accountPopUpView.isHidden = true
+    }
+    
+    @objc func changeStateButtonTapped() {
+        switch accountState {
+        case .logout:
+            print("로그아웃 통신")
+        case .delete:
+            print("계정탈퇴 통신")
+        }
+    }
 }
 
+
+extension SettingViewController: UIGestureRecognizerDelegate {
+    /// 딤 뷰 탭 되었을 때 메소드
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        dimmedView.isHidden = true
+        accountPopUpView.isHidden = true
+        return true
+    }
+}

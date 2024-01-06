@@ -13,14 +13,14 @@ import Then
 final class SettingSelectView: BaseView {
 
     // MARK: Property
-    private let contactButton = SettingSelectButton(settingTitle: StringLiterals.Profile.ButtonTitle.contactTitle)
-    private let noticeButton = SettingSelectButton(settingTitle: StringLiterals.Profile.ButtonTitle.noticeTitle)
+    let contactButton = SettingSelectButton(settingTitle: StringLiterals.Profile.ButtonTitle.contactTitle)
+    let noticeButton = SettingSelectButton(settingTitle: StringLiterals.Profile.ButtonTitle.noticeTitle)
     private let versionTitleLabel = UILabel()
     private let versionInfoLabel = UILabel()
     private let horizontalLineView = UIView()
-    private let logoutButton = SettingSelectButton(settingTitle: StringLiterals.Profile.ButtonTitle.logoutTitle)
-    private let withdrawButton = UIButton()
-    private let withdrawLabel = UILabel()
+    let logoutButton = SettingSelectButton(settingTitle: StringLiterals.Profile.ButtonTitle.logoutTitle)
+    let deleteButton = UIButton()
+    private let deleteLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,8 +48,8 @@ final class SettingSelectView: BaseView {
             $0.backgroundColor = .grayscaleG08
         }
         
-        self.withdrawLabel.do {
-            $0.text = StringLiterals.Profile.ButtonTitle.withdrawTitle
+        self.deleteLabel.do {
+            $0.text = StringLiterals.Profile.ButtonTitle.deleteTitle
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
             $0.layer.addBorder([.bottom], color: .grayscaleG06, width: 1.0, frameHeight: 17.0.adjusted, framgeWidth: 42.0.adjusted)
@@ -59,9 +59,9 @@ final class SettingSelectView: BaseView {
     override func setLayout() {
         self.addSubviews(contactButton, noticeButton, versionTitleLabel,
                          versionInfoLabel, horizontalLineView, logoutButton,
-                         withdrawButton)
+                         deleteButton)
         
-        self.withdrawButton.addSubview(withdrawLabel)
+        self.deleteButton.addSubview(deleteLabel)
         
         self.snp.makeConstraints {
             $0.width.equalTo(UIScreen.main.bounds.size.width - 32)
@@ -101,14 +101,14 @@ final class SettingSelectView: BaseView {
             $0.height.equalTo(50.adjusted)
         }
         
-        withdrawButton.snp.makeConstraints {
+        deleteButton.snp.makeConstraints {
             $0.top.equalTo(self.logoutButton.snp.bottom)
             $0.trailing.equalToSuperview().inset(4.adjusted)
             $0.width.equalTo(50.adjustedWidth)
             $0.height.equalTo(45)
         }
         
-        withdrawLabel.snp.makeConstraints {
+        deleteLabel.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
         }
     }

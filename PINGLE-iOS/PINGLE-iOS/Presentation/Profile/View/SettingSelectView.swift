@@ -20,6 +20,7 @@ final class SettingSelectView: BaseView {
     private let horizontalLineView = UIView()
     private let logoutButton = SettingSelectButton(settingTitle: StringLiterals.Profile.ButtonTitle.logoutTitle)
     private let withdrawButton = UIButton()
+    private let withdrawLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,11 +48,10 @@ final class SettingSelectView: BaseView {
             $0.backgroundColor = .grayscaleG08
         }
         
-        self.withdrawButton.do {
-            $0.setTitle(StringLiterals.Profile.ButtonTitle.withdrawTitle, for: .normal)
-            $0.titleLabel?.font = .captionCapSemi12
-            $0.setTitleColor(.grayscaleG06, for: .normal)
-            $0.titleLabel?.textAlignment = .center
+        self.withdrawLabel.do {
+            $0.text = StringLiterals.Profile.ButtonTitle.withdrawTitle
+            $0.font = .captionCapSemi12
+            $0.textColor = .grayscaleG06
             $0.layer.addBorder([.bottom], color: .grayscaleG06, width: 1.0, frameHeight: 17.0.adjusted, framgeWidth: 42.0.adjusted)
         }
     }
@@ -60,6 +60,8 @@ final class SettingSelectView: BaseView {
         self.addSubviews(contactButton, noticeButton, versionTitleLabel,
                          versionInfoLabel, horizontalLineView, logoutButton,
                          withdrawButton)
+        
+        self.withdrawButton.addSubview(withdrawLabel)
         
         self.snp.makeConstraints {
             $0.width.equalTo(UIScreen.main.bounds.size.width - 32)
@@ -100,10 +102,14 @@ final class SettingSelectView: BaseView {
         }
         
         withdrawButton.snp.makeConstraints {
-            $0.top.equalTo(self.logoutButton.snp.bottom).offset(14.adjusted)
+            $0.top.equalTo(self.logoutButton.snp.bottom)
             $0.trailing.equalToSuperview().inset(4.adjusted)
-            $0.height.equalTo(17.adjusted)
-            $0.width.equalTo(42.adjusted)
+            $0.width.equalTo(50.adjustedWidth)
+            $0.height.equalTo(45)
+        }
+        
+        withdrawLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
     }
 }

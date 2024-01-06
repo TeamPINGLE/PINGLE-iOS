@@ -26,7 +26,7 @@ final class HomeMapViewController: BaseViewController {
     let mapDetailView = HomeMapDetailView()
     let dimmedView = UIView()
     let homeDetailPopUpView = HomeDetailPopUpView()
-    let dimmedTapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
+    let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: - Function
     // MARK: LifeCycle

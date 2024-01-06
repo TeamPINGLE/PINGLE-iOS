@@ -150,7 +150,9 @@ final class EnterInviteCodeViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
-        showWarningToastView()
+//        showWarningToastView()
+        let entranceCompletedViewController = EntranceCompletedViewController()
+        navigationController?.pushViewController(entranceCompletedViewController, animated: true)
     }
     
     // MARK: setupKeyboard

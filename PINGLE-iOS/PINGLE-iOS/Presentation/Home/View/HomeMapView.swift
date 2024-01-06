@@ -78,17 +78,19 @@ final class HomeMapView: BaseView {
         }
         
         currentLocationButton.do {
-            $0.backgroundColor = .white
-            $0.makeCornerRound(radius: 25.adjusted)
+            $0.setBackgroundColor(.white, for: .normal)
+            $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
             $0.setImage(ImageLiterals.Home.Map.icMapHere, for: .normal)
             $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+            $0.makeCornerRound(radius: 25.adjusted)
         }
         
         listButton.do {
-            $0.backgroundColor = .white
-            $0.makeCornerRound(radius: 25.adjusted)
+            $0.setBackgroundColor(.white, for: .normal)
+            $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
             $0.setImage(ImageLiterals.Home.Map.icMapList, for: .normal)
             $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+            $0.makeCornerRound(radius: 25.adjusted)
         }
         
         currentMarker.do {
@@ -134,6 +136,7 @@ final class HomeMapView: BaseView {
         homePinListDummy.forEach {
             let pingleMarker = PINGLEMarker()
             
+            pingleMarker.id = $0.id
             pingleMarker.changeStringToStatus(string: $0.category)
             pingleMarker.meetingString = $0.category
             
@@ -149,7 +152,7 @@ final class HomeMapView: BaseView {
     }
     
     /// 마커 이미지 변경 메소드, 추후 이미지 변경 예쩡
-    private func setMarkerColor(category: String) -> UIImage {
+    func setMarkerColor(category: String) -> UIImage {
         switch category {
         case "PLAY":
             return ImageLiterals.Home.Map.imgMapPinPlay

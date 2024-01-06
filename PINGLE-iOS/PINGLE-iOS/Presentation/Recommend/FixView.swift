@@ -53,8 +53,8 @@ final class FixView: BaseView {
         graphicImageView.snp.makeConstraints {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(35.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(275.adjustedWidth)
-            $0.height.equalTo(190.adjustedHeight)
+            $0.width.equalTo(275)
+            $0.height.equalTo(190)
         }
     }
 }

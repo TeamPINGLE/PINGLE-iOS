@@ -25,6 +25,10 @@ final class MakeMettingGuideViewController: BaseViewController {
         setTarget()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: UI
     override func setStyle() {
         self.view.backgroundColor = .grayscaleG11
@@ -93,6 +97,7 @@ final class MakeMettingGuideViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func entranceButtonPressed() {
-            print("개최 시작버튼이 눌렸습니다")
+        let selectCategoyViewController = SelectCategoryViewController()
+        navigationController?.pushViewController(selectCategoyViewController, animated: true)
         }
 }

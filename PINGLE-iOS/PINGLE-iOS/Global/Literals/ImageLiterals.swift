@@ -17,6 +17,8 @@ enum ImageLiterals {
         static var imgSearchIcon: UIImage { .load(named: "imgSearchIcon").withRenderingMode(.alwaysOriginal)}
         static var imgCheckDefault: UIImage { .load(named: "imgCheckDefault")}
         static var imgCheckSelected: UIImage { .load(named: "imgCheckSelected")}
+        static var imgWarningNotice: UIImage { .load(named: "imgWarningNotice")}
+        static var icInfo: UIImage { .load(named: "icInfo")}
     }
     
     enum OnBoarding {
@@ -66,6 +68,10 @@ enum ImageLiterals {
     }
   
     enum Metting {
+        enum Icon {
+            static var icBack: UIImage { .load(named: "icBackButton")}
+        }
+        
         enum Guide {
             static var imgExitButton: UIImage { .load(named: "imgExitButton")}
             static var imgMettingGraphic: UIImage { .load(named: "imgMettingGraphic")}
@@ -76,6 +82,16 @@ enum ImageLiterals {
             static var categoryStudyImage: UIImage { .load(named: "imgSample")}
             static var categoryMultiImage: UIImage { .load(named: "imgSample")}
             static var categoryOthersImage: UIImage { .load(named: "imgSample")}
+        }
+        
+        enum ProgressBar {
+            static var progressBarImage1: UIImage { .load(named: "imgProgressBar1")}
+            static var progressBarImage2: UIImage { .load(named: "imgProgressBar2")}
+            static var progressBarImage3: UIImage { .load(named: "imgProgressBar3")}
+            static var progressBarImage4: UIImage { .load(named: "imgProgressBar4")}
+            static var progressBarImage5: UIImage { .load(named: "imgProgressBar5")}
+            static var progressBarImage6: UIImage { .load(named: "imgProgressBar6")}
+            static var progressBarImage7: UIImage { .load(named: "imgProgressBar7")}
         }
     }
 }

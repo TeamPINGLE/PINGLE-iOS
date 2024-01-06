@@ -63,6 +63,7 @@
 		C396032A2B3BF497004BB2B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C39603292B3BF497004BB2B8 /* Kingfisher */; };
 		C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC304E2B43E20600276E00 /* HomeMapView.swift */; };
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
+		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
 		E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */; };
 		E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */; };
 		E5AD299B2B455E20005D1220 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29982B455E20005D1220 /* h.swift */; };
@@ -77,6 +78,11 @@
 		F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BC82B45C3880072A02A /* SearchedModel.swift */; };
 		F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */; };
 		F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BCE2B468A0F0072A02A /* CALayer+.swift */; };
+		F1239BD12B46EB160072A02A /* PINGLETextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD02B46EB160072A02A /* PINGLETextFieldView.swift */; };
+		F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */; };
+		F1239BD52B47D5530072A02A /* EnterInviteCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */; };
+		F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD62B47D8F60072A02A /* OrganizationInfoView.swift */; };
+		F1239BD92B486B230072A02A /* EntranceCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD82B486B230072A02A /* EntranceCompletedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +144,7 @@
 		C396031D2B3BF379004BB2B8 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
 		C3EC304E2B43E20600276E00 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
+		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
 		E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECTAButton.swift; sourceTree = "<group>"; };
 		E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCustomTest.swift; sourceTree = "<group>"; };
 		E5AD29982B455E20005D1220 /* h.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
@@ -153,6 +160,11 @@
 		F1239BC82B45C3880072A02A /* SearchedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedModel.swift; sourceTree = "<group>"; };
 		F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		F1239BCE2B468A0F0072A02A /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		F1239BD02B46EB160072A02A /* PINGLETextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLETextFieldView.swift; sourceTree = "<group>"; };
+		F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEWarningToastView.swift; sourceTree = "<group>"; };
+		F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInviteCodeViewController.swift; sourceTree = "<group>"; };
+		F1239BD62B47D8F60072A02A /* OrganizationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationInfoView.swift; sourceTree = "<group>"; };
+		F1239BD82B486B230072A02A /* EntranceCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceCompletedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,6 +447,8 @@
 				F1239BB72B43CABE0072A02A /* LoginViewController.swift */,
 				F1239BBC2B444A250072A02A /* OnboardingViewController.swift */,
 				F1239BBE2B4557810072A02A /* SearchOrganizationViewController.swift */,
+				F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */,
+				F1239BD82B486B230072A02A /* EntranceCompletedViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -443,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				F1239BC02B45792D0072A02A /* SearchOrganizationView.swift */,
+				F1239BD62B47D8F60072A02A /* OrganizationInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -556,6 +571,8 @@
 			children = (
 				E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */,
 				E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */,
+				F1239BD02B46EB160072A02A /* PINGLETextFieldView.swift */,
+				F1239BD22B4724900072A02A /* PINGLEWarningToastView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -573,6 +590,7 @@
 			children = (
 				E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */,
 				E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */,
+				E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -769,6 +787,7 @@
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
 				C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */,
 				E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */,
+				E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */,
 				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
 				C396030D2B3BF33F004BB2B8 /* l.swift in Sources */,
@@ -776,11 +795,13 @@
 				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,
 				C396030B2B3BF33B004BB2B8 /* k.swift in Sources */,
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
+				F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */,
 				E5AD299B2B455E20005D1220 /* h.swift in Sources */,
 				C39602F92B3BF291004BB2B8 /* g.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
 				F1239BC62B458CC20072A02A /* SearchCollectionViewCell.swift in Sources */,
+				F1239BD52B47D5530072A02A /* EnterInviteCodeViewController.swift in Sources */,
 				C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */,
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
 				C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */,
@@ -788,6 +809,7 @@
 				C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */,
 				C39603162B3BF369004BB2B8 /* o.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
+				F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */,
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
@@ -799,6 +821,7 @@
 				C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */,
 				C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */,
 				E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */,
+				F1239BD92B486B230072A02A /* EntranceCompletedViewController.swift in Sources */,
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,
@@ -808,6 +831,7 @@
 				F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */,
 				C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */,
 				C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */,
+				F1239BD12B46EB160072A02A /* PINGLETextFieldView.swift in Sources */,
 				C39602DD2B3BF1A8004BB2B8 /* UIView+.swift in Sources */,
 				C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */,
 			);

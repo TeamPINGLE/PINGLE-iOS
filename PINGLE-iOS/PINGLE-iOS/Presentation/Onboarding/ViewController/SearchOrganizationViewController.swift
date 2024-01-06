@@ -36,7 +36,7 @@ final class SearchOrganizationViewController: BaseViewController {
     // MARK: UI
     override func setStyle() {
         self.view.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .grayscaleG11
         }
         
         self.backButton.do {
@@ -146,6 +146,8 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
+        let enterInviteCodeViewController = EnterInviteCodeViewController()
+        navigationController?.pushViewController(enterInviteCodeViewController, animated: true)
     }
 }
 

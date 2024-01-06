@@ -18,6 +18,8 @@
 		<string>SUIT-ExtraBold.otf</string>
 		<string>SUIT-Medium.otf</string>
 		<string>SUIT-SemiBold.otf</string>
+		<string>SF-Pro-Display-Bold.otf</string>
+		<string>SF-Pro-Display-Regular.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

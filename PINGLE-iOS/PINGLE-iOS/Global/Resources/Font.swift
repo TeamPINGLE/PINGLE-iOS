@@ -80,4 +80,12 @@ extension UIFont {
   class var captionCapMed10: UIFont {
     return UIFont(name: "SUIT-Medium", size: 10.0)!
   }
+    
+  class var sfProRegular: UIFont {
+    return UIFont(name: "SFProDisplay-Regular", size: 17.0)!
+  }
+    
+  class var sfProBold: UIFont {
+    return UIFont(name: "SFProDisplay-Semibold", size: 17.0)!
+  }
 }

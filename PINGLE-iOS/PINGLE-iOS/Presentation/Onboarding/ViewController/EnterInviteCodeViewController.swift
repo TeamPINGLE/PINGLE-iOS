@@ -38,7 +38,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     // MARK: UI
     override func setStyle() {
         self.view.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .grayscaleG11
         }
         
         self.backButton.do {
@@ -46,7 +46,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         self.titleBackgroundView.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .grayscaleG11
         }
         
         self.titleLabel.do {
@@ -150,7 +150,9 @@ final class EnterInviteCodeViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
-        showWarningToastView()
+        //        showWarningToastView()
+        let entranceCompletedViewController = EntranceCompletedViewController()
+        navigationController?.pushViewController(entranceCompletedViewController, animated: true)
     }
     
     // MARK: setupKeyboard
@@ -212,7 +214,6 @@ extension EnterInviteCodeViewController {
                 self.infoMessageLabel.transform = CGAffineTransform(translationX: 0, y: -moveAmount)
             }
         }
-        
     }
     
     @objc func keyboardWillHide(notification: Notification) {

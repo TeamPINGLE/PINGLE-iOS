@@ -30,6 +30,9 @@ enum StringLiterals {
             static let memberNumber = "총 인원"
             static let inviteCodeTextFieldTitle = "초대코드"
             static let infoMessage = "모임 개설자로부터 받은 초대 코드를 입력해주세요"
+            static let entranceTitle = "단체 입장\n완료!"
+            static let postposition = "에서"
+            static let welcomMessage = "핑글 여정을 함께해보세요!"
         }
         
         enum NavigationTitle {
@@ -95,6 +98,7 @@ enum StringLiterals {
     enum CTAButton {
         static let buttonTitle = "다음으로"
         static let enterTitle = "입장하기"
+        static let startTitle = "시작하기"
     }
     
     enum ToastView {

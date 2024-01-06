@@ -27,7 +27,7 @@ final class OnboardingViewController: BaseViewController {
     // MARK: UI
     override func setStyle() {
         self.view.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .grayscaleG11
         }
         
         self.titleLabel.do {

@@ -98,6 +98,7 @@ enum StringLiterals {
     enum Profile {
         enum ExplainTitle {
             static let settingTitle = "설정"
+            static let organizationTitle = "나의 단체"
         }
     }
     

@@ -27,7 +27,7 @@ final class PINGLETabBarController: UITabBarController {
     let homeViewController = HomeMapViewController()
     let recommendViewController = RecommendViewController()
     let addPingleViewController = UIViewController()
-    let myPingleViewController = UIViewController()
+    let myPingleViewController = RecommendViewController()
     let settingViewController = UIViewController()
     
     // MARK: - Function

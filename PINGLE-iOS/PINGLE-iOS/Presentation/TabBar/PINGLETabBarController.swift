@@ -24,7 +24,8 @@ final class PINGLETabBarController: UITabBarController {
     
     private var tabs: [UIViewController] = []
     
-    let homeViewController = HomeMapViewController()
+    let homeMapViewController = HomeMapViewController()
+    let homeListViewController = HomeListViewController()
     let recommendViewController = RecommendViewController()
     let addPingleViewController = UIViewController()
     let myPingleViewController = MyPINGLEViewController()
@@ -36,6 +37,7 @@ final class PINGLETabBarController: UITabBarController {
         super.viewDidLoad()
         setDelegate()
         setTabBarAppearance()
+        setAddTarget()
     }
     
     override func viewDidLayoutSubviews() {
@@ -70,7 +72,7 @@ final class PINGLETabBarController: UITabBarController {
     
     func setTabBarItems() {
         tabs = [
-            UINavigationController(rootViewController: homeViewController),
+            UINavigationController(rootViewController: homeMapViewController),
             UINavigationController(rootViewController: recommendViewController),
             UINavigationController(rootViewController: addPingleViewController),
             UINavigationController(rootViewController: myPingleViewController),
@@ -98,6 +100,21 @@ final class PINGLETabBarController: UITabBarController {
                 tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)
             }
         }
+    }
+    
+    func setAddTarget() {
+        self.homeMapViewController.mapsView.listButton.addTarget(self,
+                                                                 action: #selector(listButtonTapped),
+                                                                 for: .touchUpInside)
+        self.homeListViewController.mapButton.addTarget(self, action: #selector(mapButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func listButtonTapped() {
+        self.viewControllers?[0] = homeListViewController
+    }
+    
+    @objc private func mapButtonTapped() {
+        self.viewControllers?[0] = homeMapViewController
     }
 }
 

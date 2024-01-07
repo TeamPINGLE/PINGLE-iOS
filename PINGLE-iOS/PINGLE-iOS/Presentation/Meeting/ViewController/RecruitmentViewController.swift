@@ -184,19 +184,19 @@ class RecruitmentViewController: BaseViewController {
     }
     
     @objc func plusButtonTapped() {
+        print("눌렸어염")
         if let text = recruitTextField.text, var number = Int(text) {
             number += 1
             recruitTextField.text = "\(number)"
             if number == 99 {
                 showWarningToastView(duration: 2.0)
             }
-            else{
                 updateNextButtonState()
-            }
         }
     }
     
     @objc func minusButtonTapped() {
+        print("눌렸어염")
         if let text = recruitTextField.text, var number = Int(text) {
             number -= 1
             recruitTextField.text = "\(number)"

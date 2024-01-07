@@ -64,9 +64,9 @@
 		E50AA2012B49345A005E854B /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E50AA1FF2B493459005E854B /* SFProDisplay-Bold.otf */; };
 		E50AA2022B49345A005E854B /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E50AA2002B49345A005E854B /* SFProDisplay-Regular.otf */; };
 		E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */; };
+		E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */; };
 		E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */; };
 		E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */; };
-		E5AD299B2B455E20005D1220 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29982B455E20005D1220 /* h.swift */; };
 		E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */; };
 		E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */; };
 		E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */; };
@@ -145,9 +145,9 @@
 		E50AA1FF2B493459005E854B /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProDisplay-Bold.otf"; path = "../../../../../../../SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
 		E50AA2002B49345A005E854B /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProDisplay-Regular.otf"; path = "../../../../../../../SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
 		E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
+		E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePickerView.swift; sourceTree = "<group>"; };
 		E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECTAButton.swift; sourceTree = "<group>"; };
 		E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCustomTest.swift; sourceTree = "<group>"; };
-		E5AD29982B455E20005D1220 /* h.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
 		E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMettingGuideViewController.swift; sourceTree = "<group>"; };
 		E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECategoryButton.swift; sourceTree = "<group>"; };
 		E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
@@ -578,8 +578,8 @@
 		E5AD29972B455E20005D1220 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E5AD29982B455E20005D1220 /* h.swift */,
 				E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */,
+				E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -795,7 +795,6 @@
 				C396030B2B3BF33B004BB2B8 /* k.swift in Sources */,
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
 				F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */,
-				E5AD299B2B455E20005D1220 /* h.swift in Sources */,
 				C39602F92B3BF291004BB2B8 /* g.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
@@ -827,6 +826,7 @@
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,
 				C396030F2B3BF345004BB2B8 /* m.swift in Sources */,
 				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,
+				E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */,
 				F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */,
 				E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */,
 				C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */,

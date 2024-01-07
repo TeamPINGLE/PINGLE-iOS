@@ -14,7 +14,7 @@ class DateSelectionViewController: BaseViewController {
     // MARK: - Property
     private let backButton = UIButton()
     private let progressBar3 = UIImageView()
-    private let DateSelectionTitle = UILabel()
+    private let dateSelectionTitle = UILabel()
     private let PINGLEDateSelectionTextField = PINGLETextFieldView(
         titleLabel: StringLiterals.Meeting.DateSelection.PINGLEDateTitle,
         explainLabel: StringLiterals.Meeting.DateSelection.PINGLEDatePlaceholder)
@@ -61,7 +61,7 @@ class DateSelectionViewController: BaseViewController {
             $0.contentMode = .scaleAspectFill
         }
         
-        DateSelectionTitle.do {
+        dateSelectionTitle.do {
             $0.text = StringLiterals.Meeting.DateSelection.dateSelecionTitle
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
@@ -77,7 +77,7 @@ class DateSelectionViewController: BaseViewController {
     
     override func setLayout() {
         self.view.addSubviews(backButton, progressBar3,
-                              DateSelectionTitle, PINGLEDateSelectionTextField,
+                              dateSelectionTitle, PINGLEDateSelectionTextField,
                               PINGLETStartTimeTextField, PINGLEEndTimeTextField,
                               nextButton, exitLabel, exitButton)
         
@@ -93,7 +93,7 @@ class DateSelectionViewController: BaseViewController {
             $0.leading.trailing.equalToSuperview()
         }
         
-        DateSelectionTitle.snp.makeConstraints {
+        dateSelectionTitle.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(107.adjusted)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
@@ -239,13 +239,10 @@ class DateSelectionViewController: BaseViewController {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == PINGLEDateSelectionTextField.searchTextField {
             showDatePicker()
-            return false
         } else if textField == PINGLETStartTimeTextField.searchTextField {
             showStartTimePicker()
-            return false
         } else if textField == PINGLEEndTimeTextField.searchTextField {
             showEndTimePicker()
-            return false
         }
         return true
     }

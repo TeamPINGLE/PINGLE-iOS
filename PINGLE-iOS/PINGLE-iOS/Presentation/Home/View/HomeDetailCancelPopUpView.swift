@@ -51,8 +51,8 @@ final class HomeDetailCancelPopUpView: BaseView {
         }
         
         backButton.do { 
-            $0.setUnderline()
             $0.setTitle(StringLiterals.Home.Detail.backButton, for: .normal)
+            $0.setUnderline()
             $0.setTitleColor(.grayscaleG01, for: .normal)
             $0.titleLabel?.font = .captionCapSemi12
         }

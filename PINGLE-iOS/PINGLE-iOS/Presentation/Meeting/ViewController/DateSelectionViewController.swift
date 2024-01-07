@@ -211,6 +211,10 @@ class DateSelectionViewController: BaseViewController {
             nextButton.disabledButton()
         }
     }
+    
+    @objc func exitButtonTapped() {
+        print("여기다가 나가기 모달 띄우기")
+    }
 
     // MARK: Function
     private func setTarget() {
@@ -230,6 +234,7 @@ class DateSelectionViewController: BaseViewController {
         bottomDateView.doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         bottomStartTimeView.doneButton.addTarget(self, action: #selector(startTimeDoneButtonTapped), for: .touchUpInside)
         bottomEndTimeView.doneButton.addTarget(self, action: #selector(endTimeDoneButtonTapped), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
     }
     
     private func setNavigation() {

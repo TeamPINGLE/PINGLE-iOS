@@ -128,6 +128,12 @@ enum StringLiterals {
             static let PINGLEEndTime = "종료 시각"
             static let PINGLETimePlacsholder = "00:00"
         }
+        
+        enum ExitModalView {
+            static let exitQuestion = "잠깐! 나가실건가요?"
+            static let exitWarning = "지금까지 입력한 정보는 전부 사라져요"
+            static let continueMaking = "이어서 작성하기"
+        }
     }
     
     enum Profile {

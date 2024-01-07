@@ -70,6 +70,7 @@
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
 		E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */; };
 		E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */; };
+		E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651EB2B4A982100676ED0 /* ExitModalView.swift */; };
 		E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */; };
 		E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */; };
 		E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */; };
@@ -161,6 +162,7 @@
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
 		E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePickerView.swift; sourceTree = "<group>"; };
+		E5A651EB2B4A982100676ED0 /* ExitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitModalView.swift; sourceTree = "<group>"; };
 		E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECTAButton.swift; sourceTree = "<group>"; };
 		E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCustomTest.swift; sourceTree = "<group>"; };
 		E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMettingGuideViewController.swift; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 			children = (
 				E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */,
 				E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */,
+				E5A651EB2B4A982100676ED0 /* ExitModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
 				C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */,
 				E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */,
+				E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */,
 				E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */,
 				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,

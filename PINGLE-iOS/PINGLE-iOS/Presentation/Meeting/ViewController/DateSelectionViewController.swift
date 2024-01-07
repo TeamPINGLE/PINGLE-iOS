@@ -139,10 +139,6 @@ class DateSelectionViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func nextButtonTapped() {
-        print("여기다가 다음 뷰컨 연결 할것임")
-    }
-    
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {
             if let newText = textField.text, !newText.isEmpty {
@@ -211,6 +207,11 @@ class DateSelectionViewController: BaseViewController {
             nextButton.disabledButton()
         }
     }
+    
+    @objc func nextButtonTapped() {
+        let placeSelectionViewController = PlaceSelectionViewController()
+        navigationController?.pushViewController(placeSelectionViewController, animated: true)
+        }
     
     @objc func exitButtonTapped() {
         print("여기다가 나가기 모달 띄우기")

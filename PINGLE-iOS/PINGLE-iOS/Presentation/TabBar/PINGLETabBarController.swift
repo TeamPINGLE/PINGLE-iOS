@@ -22,13 +22,21 @@ final class PINGLETabBarController: UITabBarController {
         }
     }
     
+    var isHomeMap = true {
+        didSet {
+            self.setTabs()
+            self.setTabBarItems()
+        }
+    }
+    
     private var tabs: [UIViewController] = []
     
-    let homeViewController = HomeMapViewController()
+    let homeMapViewController = HomeMapViewController()
+    let homeListViewController = HomeListViewController()
     let recommendViewController = RecommendViewController()
     let addPingleViewController = UIViewController()
     let myPingleViewController = MyPINGLEViewController()
-    let settingViewController = UIViewController()
+    let settingViewController = SettingViewController()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -36,6 +44,7 @@ final class PINGLETabBarController: UITabBarController {
         super.viewDidLoad()
         setDelegate()
         setTabBarAppearance()
+        setAddTarget()
     }
     
     override func viewDidLayoutSubviews() {
@@ -49,6 +58,7 @@ final class PINGLETabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        self.setTabs()
         setTabBarItems()
     }
     
@@ -68,7 +78,9 @@ final class PINGLETabBarController: UITabBarController {
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
     }
     
-    func setTabBarItems() {
+    func setTabs() {
+        let homeViewController = isHomeMap ? homeMapViewController : homeListViewController
+        
         tabs = [
             UINavigationController(rootViewController: homeViewController),
             UINavigationController(rootViewController: recommendViewController),
@@ -76,7 +88,9 @@ final class PINGLETabBarController: UITabBarController {
             UINavigationController(rootViewController: myPingleViewController),
             UINavigationController(rootViewController: settingViewController)
         ]
-        
+    }
+    
+    func setTabBarItems() {
         self.setViewControllers(tabs, animated: true)
         
         let tabBar: UITabBar = self.tabBar
@@ -99,6 +113,17 @@ final class PINGLETabBarController: UITabBarController {
             }
         }
     }
+    
+    func setAddTarget() {
+        self.homeMapViewController.mapsView.listButton.addTarget(self,
+                                                                 action: #selector(mapListButtonTapped),
+                                                                 for: .touchUpInside)
+        self.homeListViewController.mapButton.addTarget(self, action: #selector(mapListButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func mapListButtonTapped() {
+        self.isHomeMap.toggle()
+    }
 }
 
 // MARK: - extension
@@ -106,7 +131,7 @@ final class PINGLETabBarController: UITabBarController {
 extension PINGLETabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let myFont = UIFont.captionCapSemi12
-
+        
         if let selectedViewController = tabBarController.selectedViewController {
             let selectedFontAttributes = [NSAttributedString.Key.font: myFont,
                                           NSAttributedString.Key.foregroundColor: UIColor.white]

@@ -54,7 +54,7 @@ enum StringLiterals {
             static let setting = "설정"
         }
     }
-
+    
     enum Fix {
         static let fixTitle = "아직 공사중!"
         static let fixDescription = "아직 구현중인 기능이에요\n조금만 기다려주세요"
@@ -76,15 +76,15 @@ enum StringLiterals {
             static let backButton = "돌아가기"
         }
     }
-    
-    enum Metting {
-        enum MettingGuide {
+          
+    enum Meeting {
+        enum MeetingGuide {
             static let guideTitle = "새로운 핑글을\n개최해보아요!"
             static let guideSubTitle = "어쩌구 번개를 개최하고\n어쩌구 번개를 개최하고"
             static let buttonTitle = "핑글 개최하러 가기"
         }
         
-        enum MettingCategory {
+        enum MeetingCategory {
             
             enum CategoryLabel {
                 static let categoryTitleLabel = "개최할 핑글을\n선택해주세요"
@@ -116,11 +116,47 @@ enum StringLiterals {
             static let PINGLEExplain = "이번 핑글을 한마디로 소개한다면?"
         }
         
-        enum TimePicker {
+        enum DatePicker {
             enum PickerButton {
                 static let doneButton = "Done"
                 static let resetButton = "Reset"
             }
+        }
+        
+        enum DateSelection {
+            static let dateSelecionTitle = "핑글러들과\n언제 만날까요?"
+            static let PINGLEDateTitle = "핑글 날짜"
+            static let PINGLEDatePlaceholder = "만날 날짜를 선택해주세요"
+            static let PINGLEStartTime = "시작 시각"
+            static let PINGLEEndTime = "종료 시각"
+            static let PINGLETimePlacsholder = "00:00"
+        }
+        
+        enum ExitModalView {
+            static let exitQuestion = "잠깐! 나가실건가요?"
+            static let exitWarning = "지금까지 입력한 정보는 전부 사라져요"
+            static let continueMaking = "이어서 작성하기"
+        }
+    }
+    
+    enum Profile {
+        enum ExplainTitle {
+            static let settingTitle = "설정"
+            static let organizationTitle = "나의 단체"
+            static let versionTitle = "버전"
+            static let versionInfo = "0.0.0"
+            static let logoutQuestionTitle = "정말로 로그아웃 하실건가요?"
+            static let deleteQuestionTitle = "정말로 탈퇴하실건가요?"
+            static let logoutExplanation = "Apple 계정을 로그아웃합니다"
+            static let deleteExplanation = "탈퇴 시 계정은 삭제되며 복구할 수 없어요"
+        }
+        
+        enum ButtonTitle {
+            static let contactTitle = "문의하기"
+            static let noticeTitle = "공지사항"
+            static let logoutTitle = "로그아웃"
+            static let deleteTitle = "탈퇴하기"
+            static let backTitle = "돌아가기"
         }
     }
     

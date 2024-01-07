@@ -30,7 +30,7 @@ enum StringLiterals {
             static let memberNumber = "참여자 수"
             static let inviteCodeTextFieldTitle = "초대코드"
             static let infoMessage = "단체 개설자로부터 받은 초대 코드를 입력해주세요"
-            static let entranceTitle = "단체 입장\n완료!"
+            static let entranceTitle = "모든 준비가\n끝났어요!"
             static let postposition = "에서"
             static let welcomMessage = "핑글 여정을 함께해보세요!"
             static let loginTitle = "Ready to\nPINGLE?"

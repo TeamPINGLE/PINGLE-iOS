@@ -138,6 +138,7 @@ enum StringLiterals {
         enum Recruitment {
             static let recruitTitle = "몇 명의 @@들과\n만날까요?"
             static let recruitCondition = "본인을 포함하여,\n최소 1명부터 참여 인원을 선택해주세요"
+            static let warningLabel = "최대 선택 가능 인원은 99명이에요!"
         }
     }
     

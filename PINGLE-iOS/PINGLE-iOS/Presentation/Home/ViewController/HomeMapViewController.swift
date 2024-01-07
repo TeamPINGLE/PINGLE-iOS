@@ -126,6 +126,12 @@ final class HomeMapViewController: BaseViewController {
         self.homeDetailPopUpView.participationButton.addTarget(self,
                                                                action: #selector(participationButtonTapped),
                                                                for: .touchUpInside)
+        self.homeDetailCancelPopUpView.cancelButton.addTarget(self,
+                                                               action: #selector(cancelButtonTapped),
+                                                               for: .touchUpInside)
+        self.homeDetailCancelPopUpView.backButton.addTarget(self,
+                                                               action: #selector(backButtonTapped),
+                                                               for: .touchUpInside)
     }
 }
 
@@ -256,6 +262,20 @@ extension HomeMapViewController {
     
     @objc func participationButtonTapped() {
         print("참여하기 버튼 탭")
+        dimmedView.isHidden = true
+        homeDetailPopUpView.isHidden = true
+    }
+    
+    @objc func cancelButtonTapped() {
+        print("취소하기 버튼 탭")
+        dimmedView.isHidden = true
+        homeDetailCancelPopUpView.isHidden = true
+    }
+    
+    @objc func backButtonTapped() {
+        print("돌아가기 버튼 탭")
+        dimmedView.isHidden = true
+        homeDetailCancelPopUpView.isHidden = true
     }
     
     @objc func currentLocationButtonTapped() {

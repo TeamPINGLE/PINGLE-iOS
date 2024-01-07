@@ -64,6 +64,7 @@
 		C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D9602B49866F00E817B5 /* FixView.swift */; };
 		C3A0D9652B49892500E817B5 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9642B49892500E817B5 /* SF-Pro-Display-Regular.otf */; };
 		C3A0D9672B49892900E817B5 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9662B49892800E817B5 /* SF-Pro-Display-Bold.otf */; };
+		C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */; };
 		C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC304E2B43E20600276E00 /* HomeMapView.swift */; };
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
 		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
@@ -149,6 +150,7 @@
 		C3A0D9602B49866F00E817B5 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
 		C3A0D9642B49892500E817B5 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		C3A0D9662B49892800E817B5 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCancelPopUpView.swift; sourceTree = "<group>"; };
 		C3EC304E2B43E20600276E00 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
 		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				C3EC304E2B43E20600276E00 /* HomeMapView.swift */,
 				C33084BB2B47940300380E82 /* HomeMapDetailView.swift */,
 				C385453B2B47C5AE0040E60D /* HomeDetailPopUpView.swift */,
+				C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -790,6 +793,7 @@
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
+				C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,

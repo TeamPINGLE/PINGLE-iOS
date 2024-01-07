@@ -26,6 +26,7 @@ final class HomeMapViewController: BaseViewController {
     let mapDetailView = HomeMapDetailView()
     let dimmedView = UIView()
     let homeDetailPopUpView = HomeDetailPopUpView()
+    let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
     let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: - Function
@@ -50,6 +51,10 @@ final class HomeMapViewController: BaseViewController {
         homeDetailPopUpView.do {
             $0.isHidden = true
         }
+        
+        homeDetailCancelPopUpView.do {
+            $0.isHidden = true
+        }
     }
     
     // MARK: Layout Helpers
@@ -62,7 +67,8 @@ final class HomeMapViewController: BaseViewController {
         
         if let window = UIApplication.shared.keyWindow {
             window.addSubviews(dimmedView,
-                               homeDetailPopUpView)
+                               homeDetailPopUpView,
+                               homeDetailCancelPopUpView)
         }
         
         mapsView.snp.makeConstraints {
@@ -82,6 +88,10 @@ final class HomeMapViewController: BaseViewController {
         }
         
         homeDetailPopUpView.snp.makeConstraints {
+            $0.center.equalTo(dimmedView)
+        }
+        
+        homeDetailCancelPopUpView.snp.makeConstraints {
             $0.center.equalTo(dimmedView)
         }
     }
@@ -196,6 +206,7 @@ extension HomeMapViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         dimmedView.isHidden = true
         homeDetailPopUpView.isHidden = true
+        homeDetailCancelPopUpView.isHidden = true
         return true
     }
 }
@@ -256,7 +267,8 @@ extension HomeMapViewController {
             dimmedView.isHidden = false
             homeDetailPopUpView.isHidden = false
         } else {
-            print("취소하기 버튼 탭")
+            dimmedView.isHidden = false
+            homeDetailCancelPopUpView.isHidden = false
         }
     }
     

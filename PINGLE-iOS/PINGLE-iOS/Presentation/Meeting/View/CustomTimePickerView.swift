@@ -1,8 +1,8 @@
 //
-//  CustomDatePickerView.swift
+//  CustomTimePickerView.swift
 //  PINGLE-iOS
 //
-//  Created by 방민지 on 1/6/24.
+//  Created by 방민지 on 1/7/24.
 //
 
 import UIKit
@@ -10,13 +10,12 @@ import UIKit
 import SnapKit
 import Then
 
-class CustomDatePickerView: BaseView {
+class CustomTimePickerView: BaseView {
     // MARK: - Property
-    let datePicker = UIDatePicker()
+    let timePicker = UIDatePicker()
     let resetButton = UIButton()
     let doneButton = UIButton()
     private let dividerView = UIView()
-    private let nowDate = Date()
     
     // MARK: - UI
     override func setStyle() {
@@ -25,11 +24,10 @@ class CustomDatePickerView: BaseView {
             $0.backgroundColor = .grayscaleG10
         }
         
-        datePicker.do {
-            $0.datePickerMode = .date
+        timePicker.do {
+            $0.datePickerMode = .time
             $0.preferredDatePickerStyle = .wheels
             $0.setValue(UIColor.white, forKey: "textColor")
-            $0.minimumDate = nowDate
         }
         
         dividerView.do {
@@ -51,14 +49,14 @@ class CustomDatePickerView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(datePicker, dividerView, resetButton, doneButton)
+        self.addSubviews(timePicker, dividerView, resetButton, doneButton)
         
         self.snp.makeConstraints {
             $0.height.equalTo(288.adjusted)
             $0.width.equalTo(327.adjusted)
         }
         
-        datePicker.snp.makeConstraints {
+        timePicker.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview().inset(15.adjusted)
             $0.bottom.equalToSuperview().inset(60.adjusted)
         }
@@ -67,7 +65,7 @@ class CustomDatePickerView: BaseView {
             $0.width.equalTo(307.adjusted)
             $0.height.equalTo(1.adjusted)
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(datePicker.snp.bottom).offset(15.adjusted)
+            $0.top.equalTo(timePicker.snp.bottom).offset(15.adjusted)
         }
         
         resetButton.snp.makeConstraints {

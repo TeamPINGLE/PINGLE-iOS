@@ -17,7 +17,7 @@ final class MakeMettingGuideViewController: BaseViewController {
     private let exitButton = UIButton()
     private let guideTitle = UILabel()
     private let guideSubTitle = UILabel()
-    private let entranceButton = PINGLECTAButton(title: StringLiterals.Metting.MettingGuide.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
+    private let entranceButton = PINGLECTAButton(title: StringLiterals.Meeting.MeetingGuide.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -44,14 +44,14 @@ final class MakeMettingGuideViewController: BaseViewController {
         }
         
         self.guideTitle.do {
-            $0.text = StringLiterals.Metting.MettingGuide.guideTitle
+            $0.text = StringLiterals.Meeting.MeetingGuide.guideTitle
             $0.font = .titleTitleSemi32
             $0.textColor = .white
             $0.numberOfLines = 0
         }
         
         self.guideSubTitle.do {
-            $0.text = StringLiterals.Metting.MettingGuide.guideSubTitle
+            $0.text = StringLiterals.Meeting.MeetingGuide.guideSubTitle
             $0.font = .subtitleSubSemi16
             $0.textColor = .white
             $0.numberOfLines = 2

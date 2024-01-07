@@ -39,7 +39,7 @@ final class SearchCollectionViewCell: UICollectionViewCell {
     // MARK: UI
     func setStyle() {
         self.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .grayscaleG11
         }
         
         self.keywordLabel.do {

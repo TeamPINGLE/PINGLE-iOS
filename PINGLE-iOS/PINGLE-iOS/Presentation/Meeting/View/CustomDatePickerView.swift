@@ -12,9 +12,9 @@ import Then
 
 class CustomDatePickerView: BaseView {
     // MARK: - Property
-    private let datePicker = UIDatePicker()
-    private let resetButton = UIButton()
-    private let doneButton = UIButton()
+    let datePicker = UIDatePicker()
+    let resetButton = UIButton()
+    let doneButton = UIButton()
     private let dividerView = UIView()
     private let nowDate = Date()
     

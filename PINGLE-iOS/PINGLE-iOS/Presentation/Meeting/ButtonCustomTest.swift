@@ -13,8 +13,8 @@ class ButtonCustomTest: BaseViewController {
 // MARK: Property
     let testButton = PINGLECTAButton(title: "핑글 개최하러 가기", buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
-    let categoryTestButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Metting.MettingCategory.CategoryTitle.play,
-                                                  buttonExplainLabel: StringLiterals.Metting.MettingCategory.ExplainCategory.playExplain,
+    let categoryTestButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.play,
+                                                  buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.playExplain,
                                                   category: ImageLiterals.Metting.Category.categoryPlayImage, textColor: .mainPingleGreen)
     
     let exitButton = MeetingExitButton()

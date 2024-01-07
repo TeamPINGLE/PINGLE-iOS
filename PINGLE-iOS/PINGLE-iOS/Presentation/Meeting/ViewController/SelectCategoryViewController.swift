@@ -15,20 +15,20 @@ class SelectCategoryViewController: BaseViewController {
     private let backButton = UIButton()
     private let progressBar1 = UIImageView()
     private let PINGLECategoryTitle = UILabel()
-    private let playButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Metting.MettingCategory.CategoryTitle.play,
-                                                  buttonExplainLabel: StringLiterals.Metting.MettingCategory.ExplainCategory.playExplain,
+    private let playButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.play,
+                                                  buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.playExplain,
                                                   category: ImageLiterals.Metting.Category.categoryPlayImage,
                                                   textColor: .mainPingleGreen)
-    private let studyButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Metting.MettingCategory.CategoryTitle.study,
-                                                   buttonExplainLabel: StringLiterals.Metting.MettingCategory.ExplainCategory.studyExplain,
+    private let studyButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.study,
+                                                   buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.studyExplain,
                                                    category: ImageLiterals.Metting.Category.categoryStudyImage,
                                                    textColor: .subPingleOrange)
-    private let multiButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Metting.MettingCategory.CategoryTitle.multi,
-                                                   buttonExplainLabel: StringLiterals.Metting.MettingCategory.ExplainCategory.multiExplain,
+    private let multiButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.multi,
+                                                   buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.multiExplain,
                                                    category: ImageLiterals.Metting.Category.categoryMultiImage,
                                                    textColor: .subPingleYellow)
-    private let othersButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Metting.MettingCategory.CategoryTitle.others,
-                                                    buttonExplainLabel: StringLiterals.Metting.MettingCategory.ExplainCategory.othersExplain,
+    private let othersButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.others,
+                                                    buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.othersExplain,
                                                     category: ImageLiterals.Metting.Category.categoryPlayImage,
                                                     textColor: .white)
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
@@ -63,14 +63,14 @@ class SelectCategoryViewController: BaseViewController {
         }
         
         PINGLECategoryTitle.do {
-            $0.text = StringLiterals.Metting.MettingCategory.CategoryLabel.categoryTitleLabel
+            $0.text = StringLiterals.Meeting.MeetingCategory.CategoryLabel.categoryTitleLabel
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
         }
         
         exitLabel.do {
-            $0.text = StringLiterals.Metting.MettingCategory.ExitButton.exitLabel
+            $0.text = StringLiterals.Meeting.MeetingCategory.ExitButton.exitLabel
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
         }

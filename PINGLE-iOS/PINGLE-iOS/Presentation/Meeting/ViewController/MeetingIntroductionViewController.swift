@@ -16,8 +16,8 @@ class MeetingIntroductionViewController: BaseViewController {
     private let progressBar2 = UIImageView()
     private let PINGLEIntroductionTitle = UILabel()
     private let PINGLEIntroductionTextField = PINGLETextFieldView(
-        titleLabel: StringLiterals.Metting.MeetingIntroduction.PINGLETitle,
-        explainLabel: StringLiterals.Metting.MeetingIntroduction.PINGLEExplain)
+        titleLabel: StringLiterals.Meeting.MeetingIntroduction.PINGLETitle,
+        explainLabel: StringLiterals.Meeting.MeetingIntroduction.PINGLEExplain)
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
                                              buttonColor: .grayscaleG08,
                                              textColor: .grayscaleG10)
@@ -52,14 +52,14 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         PINGLEIntroductionTitle.do {
-            $0.text = StringLiterals.Metting.MeetingIntroduction.introductionTitle
+            $0.text = StringLiterals.Meeting.MeetingIntroduction.introductionTitle
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
         }
         
         exitLabel.do {
-            $0.text = StringLiterals.Metting.MettingCategory.ExitButton.exitLabel
+            $0.text = StringLiterals.Meeting.MeetingCategory.ExitButton.exitLabel
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
         }

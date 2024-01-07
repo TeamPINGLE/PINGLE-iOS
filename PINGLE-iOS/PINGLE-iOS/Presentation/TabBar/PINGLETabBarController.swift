@@ -22,6 +22,13 @@ final class PINGLETabBarController: UITabBarController {
         }
     }
     
+    var isHomeMap = true {
+        didSet {
+            self.setTabs()
+            self.setTabBarItems()
+        }
+    }
+    
     private var tabs: [UIViewController] = []
     
     let homeMapViewController = HomeMapViewController()
@@ -51,6 +58,7 @@ final class PINGLETabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        self.setTabs()
         setTabBarItems()
     }
     
@@ -70,15 +78,19 @@ final class PINGLETabBarController: UITabBarController {
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
     }
     
-    func setTabBarItems() {
+    func setTabs() {
+        let homeViewController = isHomeMap ? homeMapViewController : homeListViewController
+        
         tabs = [
-            UINavigationController(rootViewController: homeMapViewController),
+            UINavigationController(rootViewController: homeViewController),
             UINavigationController(rootViewController: recommendViewController),
             UINavigationController(rootViewController: addPingleViewController),
             UINavigationController(rootViewController: myPingleViewController),
             UINavigationController(rootViewController: settingViewController)
         ]
-        
+    }
+    
+    func setTabBarItems() {
         self.setViewControllers(tabs, animated: true)
         
         let tabBar: UITabBar = self.tabBar
@@ -110,11 +122,11 @@ final class PINGLETabBarController: UITabBarController {
     }
     
     @objc func listButtonTapped() {
-        self.viewControllers?[0] = homeListViewController
+        self.isHomeMap = false
     }
     
     @objc private func mapButtonTapped() {
-        self.viewControllers?[0] = homeMapViewController
+        self.isHomeMap = true
     }
 }
 
@@ -123,7 +135,7 @@ final class PINGLETabBarController: UITabBarController {
 extension PINGLETabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let myFont = UIFont.captionCapSemi12
-
+        
         if let selectedViewController = tabBarController.selectedViewController {
             let selectedFontAttributes = [NSAttributedString.Key.font: myFont,
                                           NSAttributedString.Key.foregroundColor: UIColor.white]

@@ -134,6 +134,13 @@ enum StringLiterals {
             static let exitWarning = "지금까지 입력한 정보는 전부 사라져요"
             static let continueMaking = "이어서 작성하기"
         }
+        
+        enum SearhPlace {
+            static let placeholder = "핑글이 열릴 장소 이름을 검색해보세요"
+            static let searchPlaceTitle = "함께할 @@들과\n어디서 만날까요?"
+            static let noPlaceResult = "검색 결과가 없어요"
+            static let reSearch = "다른 장소로 검색해보세요"
+        }
     }
     
     enum Profile {

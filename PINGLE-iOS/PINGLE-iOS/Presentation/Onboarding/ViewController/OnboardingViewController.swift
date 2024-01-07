@@ -22,6 +22,7 @@ final class OnboardingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTarget()
+        setNavigation()
     }
     
     // MARK: UI
@@ -85,6 +86,11 @@ final class OnboardingViewController: BaseViewController {
             $0.height.equalTo(224.adjusted)
             $0.width.equalTo((UIScreen.main.bounds.size.width - 57) / 2)
         }
+    }
+    
+    // MARK: Navigation Function
+    private func setNavigation() {
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     // MARK: Target Function

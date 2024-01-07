@@ -114,5 +114,6 @@ final class SearchPlaceView: BaseView {
     // MARK: - Function
     func isHiddenResultLabel(isEnabled: Bool) {
         noPlaceResult.isHidden = isEnabled
+        reSearch.isHidden = isEnabled
     }
 }

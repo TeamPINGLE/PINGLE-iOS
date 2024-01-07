@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class MakeMettingGuideViewController: BaseViewController {
+final class MakeMeetingGuideViewController: BaseViewController {
     
     // MARK: Property
     private let mettingImageView = UIImageView()

@@ -72,6 +72,9 @@
 		E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */; };
 		E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651EB2B4A982100676ED0 /* ExitModalView.swift */; };
 		E5A651EE2B4ADE6000676ED0 /* PlaceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651ED2B4ADE6000676ED0 /* PlaceSelectionViewController.swift */; };
+		E5A651F22B4AE43900676ED0 /* SearchedPlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651F12B4AE43900676ED0 /* SearchedPlaceModel.swift */; };
+		E5A651F42B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651F32B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift */; };
+		E5A651F62B4AF72500676ED0 /* SearchPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651F52B4AF72500676ED0 /* SearchPlaceView.swift */; };
 		E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */; };
 		E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */; };
 		E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299A2B455E20005D1220 /* MakeMeetingGuideViewController.swift */; };
@@ -165,6 +168,9 @@
 		E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePickerView.swift; sourceTree = "<group>"; };
 		E5A651EB2B4A982100676ED0 /* ExitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitModalView.swift; sourceTree = "<group>"; };
 		E5A651ED2B4ADE6000676ED0 /* PlaceSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSelectionViewController.swift; sourceTree = "<group>"; };
+		E5A651F12B4AE43900676ED0 /* SearchedPlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedPlaceModel.swift; sourceTree = "<group>"; };
+		E5A651F32B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSelectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		E5A651F52B4AF72500676ED0 /* SearchPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceView.swift; sourceTree = "<group>"; };
 		E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECTAButton.swift; sourceTree = "<group>"; };
 		E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCustomTest.swift; sourceTree = "<group>"; };
 		E5AD299A2B455E20005D1220 /* MakeMeetingGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMeetingGuideViewController.swift; sourceTree = "<group>"; };
@@ -446,6 +452,8 @@
 		C39602EB2B3BF234004BB2B8 /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				E5A651F02B4AE41F00676ED0 /* Cell */,
+				E5A651EF2B4AE3E900676ED0 /* Model */,
 				E50AA1FA2B46D2AB005E854B /* Components */,
 				E5AD29972B455E20005D1220 /* View */,
 				E5AD29992B455E20005D1220 /* ViewController */,
@@ -604,6 +612,22 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		E5A651EF2B4AE3E900676ED0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E5A651F12B4AE43900676ED0 /* SearchedPlaceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E5A651F02B4AE41F00676ED0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E5A651F32B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		E5AD29922B454B90005D1220 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,6 +645,7 @@
 				E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */,
 				E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */,
 				E5A651EB2B4A982100676ED0 /* ExitModalView.swift */,
+				E5A651F52B4AF72500676ED0 /* SearchPlaceView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -851,6 +876,7 @@
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
+				E5A651F62B4AF72500676ED0 /* SearchPlaceView.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
 				F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */,
 				F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */,
@@ -861,6 +887,7 @@
 				C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */,
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
 				C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */,
+				E5A651F42B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift in Sources */,
 				E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */,
 				E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */,
 				E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */,
@@ -887,6 +914,7 @@
 				F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */,
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
+				E5A651F22B4AE43900676ED0 /* SearchedPlaceModel.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
 				C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */,
 				C396031C2B3BF374004BB2B8 /* r.swift in Sources */,

@@ -55,6 +55,12 @@ enum StringLiterals {
         }
     }
     
+
+    enum Fix {
+        static let fixTitle = "아직 공사중!"
+        static let fixDescription = "아직 구현중인 기능이에요\n조금만 기다려주세요"
+    }
+
     enum Home {
         enum Detail {
             static let participantsTitle = "참여자"

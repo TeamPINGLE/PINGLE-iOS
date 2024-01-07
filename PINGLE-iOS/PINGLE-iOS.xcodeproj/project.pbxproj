@@ -45,8 +45,6 @@
 		C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DF2B3BF1CB004BB2B8 /* b.swift */; };
 		C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E32B3BF203004BB2B8 /* BaseView.swift */; };
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
-		C39602F92B3BF291004BB2B8 /* g.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602F82B3BF291004BB2B8 /* g.swift */; };
-		C39602FD2B3BF299004BB2B8 /* i.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602FC2B3BF299004BB2B8 /* i.swift */; };
 		C39602FF2B3BF29D004BB2B8 /* j.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602FE2B3BF29D004BB2B8 /* j.swift */; };
 		C396030B2B3BF33B004BB2B8 /* k.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030A2B3BF33B004BB2B8 /* k.swift */; };
 		C396030D2B3BF33F004BB2B8 /* l.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030C2B3BF33F004BB2B8 /* l.swift */; };
@@ -61,12 +59,15 @@
 		C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C39603232B3BF484004BB2B8 /* SnapKit */; };
 		C39603272B3BF48E004BB2B8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C39603262B3BF48E004BB2B8 /* Alamofire */; };
 		C396032A2B3BF497004BB2B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C39603292B3BF497004BB2B8 /* Kingfisher */; };
+		C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */; };
+		C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */; };
+		C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D9602B49866F00E817B5 /* FixView.swift */; };
+		C3A0D9652B49892500E817B5 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9642B49892500E817B5 /* SF-Pro-Display-Regular.otf */; };
+		C3A0D9672B49892900E817B5 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9662B49892800E817B5 /* SF-Pro-Display-Bold.otf */; };
 		C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC304E2B43E20600276E00 /* HomeMapView.swift */; };
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
 		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
-		E50AA2012B49345A005E854B /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E50AA1FF2B493459005E854B /* SFProDisplay-Bold.otf */; };
-		E50AA2022B49345A005E854B /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E50AA2002B49345A005E854B /* SFProDisplay-Regular.otf */; };
 		E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */; };
 		E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */; };
 		E5AD299B2B455E20005D1220 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29982B455E20005D1220 /* h.swift */; };
@@ -133,8 +134,6 @@
 		C39602DF2B3BF1CB004BB2B8 /* b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = b.swift; sourceTree = "<group>"; };
 		C39602E32B3BF203004BB2B8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		C39602F82B3BF291004BB2B8 /* g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = g.swift; sourceTree = "<group>"; };
-		C39602FC2B3BF299004BB2B8 /* i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i.swift; sourceTree = "<group>"; };
 		C39602FE2B3BF29D004BB2B8 /* j.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = j.swift; sourceTree = "<group>"; };
 		C396030A2B3BF33B004BB2B8 /* k.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = k.swift; sourceTree = "<group>"; };
 		C396030C2B3BF33F004BB2B8 /* l.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = l.swift; sourceTree = "<group>"; };
@@ -145,12 +144,15 @@
 		C39603192B3BF370004BB2B8 /* q.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = q.swift; sourceTree = "<group>"; };
 		C396031B2B3BF374004BB2B8 /* r.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = r.swift; sourceTree = "<group>"; };
 		C396031D2B3BF379004BB2B8 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
+		C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEViewController.swift; sourceTree = "<group>"; };
+		C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
+		C3A0D9602B49866F00E817B5 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
+		C3A0D9642B49892500E817B5 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		C3A0D9662B49892800E817B5 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		C3EC304E2B43E20600276E00 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
 		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
-		E50AA1FF2B493459005E854B /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProDisplay-Bold.otf"; path = "../../../../../../../SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
-		E50AA2002B49345A005E854B /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProDisplay-Regular.otf"; path = "../../../../../../../SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
 		E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECTAButton.swift; sourceTree = "<group>"; };
 		E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCustomTest.swift; sourceTree = "<group>"; };
 		E5AD29982B455E20005D1220 /* h.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
@@ -339,8 +341,8 @@
 		C39602D52B3BF183004BB2B8 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				E50AA1FF2B493459005E854B /* SFProDisplay-Bold.otf */,
-				E50AA2002B49345A005E854B /* SFProDisplay-Regular.otf */,
+				C3A0D9662B49892800E817B5 /* SF-Pro-Display-Bold.otf */,
+				C3A0D9642B49892500E817B5 /* SF-Pro-Display-Regular.otf */,
 				C30728212B4151CF00AA575B /* SUIT-Bold.otf */,
 				C30728202B4151CF00AA575B /* SUIT-ExtraBold.otf */,
 				C30728222B4151CF00AA575B /* SUIT-Medium.otf */,
@@ -417,7 +419,8 @@
 		C39602EA2B3BF22F004BB2B8 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
-				C39602F82B3BF291004BB2B8 /* g.swift */,
+				C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */,
+				C3A0D9602B49866F00E817B5 /* FixView.swift */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";
@@ -444,7 +447,7 @@
 		C39602ED2B3BF244004BB2B8 /* MyPingle */ = {
 			isa = PBXGroup;
 			children = (
-				C39602FC2B3BF299004BB2B8 /* i.swift */,
+				C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */,
 			);
 			path = MyPingle;
 			sourceTree = "<group>";
@@ -704,11 +707,11 @@
 			files = (
 				C39602C42B3BEE08004BB2B8 /* LaunchScreen.storyboard in Resources */,
 				C30728242B4151CF00AA575B /* SUIT-ExtraBold.otf in Resources */,
-				E50AA2022B49345A005E854B /* SFProDisplay-Regular.otf in Resources */,
 				C30728262B4151CF00AA575B /* SUIT-Medium.otf in Resources */,
 				C30728272B4151CF00AA575B /* SUIT-SemiBold.otf in Resources */,
-				E50AA2012B49345A005E854B /* SFProDisplay-Bold.otf in Resources */,
+				C3A0D9672B49892900E817B5 /* SF-Pro-Display-Bold.otf in Resources */,
 				C39602C12B3BEE08004BB2B8 /* Assets.xcassets in Resources */,
+				C3A0D9652B49892500E817B5 /* SF-Pro-Display-Regular.otf in Resources */,
 				C30728252B4151CF00AA575B /* SUIT-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -782,6 +785,7 @@
 			files = (
 				C39603142B3BF35E004BB2B8 /* n.swift in Sources */,
 				C396031E2B3BF379004BB2B8 /* s.swift in Sources */,
+				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
 				C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
@@ -790,8 +794,8 @@
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
-				C39602FD2B3BF299004BB2B8 /* i.swift in Sources */,
 				F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */,
+				C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */,
@@ -808,7 +812,6 @@
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
 				F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */,
 				E5AD299B2B455E20005D1220 /* h.swift in Sources */,
-				C39602F92B3BF291004BB2B8 /* g.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
 				F1239BC62B458CC20072A02A /* SearchCollectionViewCell.swift in Sources */,
@@ -828,6 +831,7 @@
 				C396031C2B3BF374004BB2B8 /* r.swift in Sources */,
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C39603182B3BF36C004BB2B8 /* p.swift in Sources */,
+				C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */,
 				C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */,
 				C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */,
 				C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */,

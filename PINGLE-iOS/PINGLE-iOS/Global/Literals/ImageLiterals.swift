@@ -19,6 +19,7 @@ enum ImageLiterals {
         static var imgCheckSelected: UIImage { .load(named: "imgCheckSelected")}
         static var imgWarningNotice: UIImage { .load(named: "imgWarningNotice")}
         static var icInfo: UIImage { .load(named: "icInfo")}
+        static var icArrowRight: UIImage { .load(named: "icArrowRight")}
     }
     
     enum OnBoarding {

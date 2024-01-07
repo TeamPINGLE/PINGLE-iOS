@@ -130,6 +130,27 @@ enum StringLiterals {
         }
     }
     
+    enum Profile {
+        enum ExplainTitle {
+            static let settingTitle = "설정"
+            static let organizationTitle = "나의 단체"
+            static let versionTitle = "버전"
+            static let versionInfo = "0.0.0"
+            static let logoutQuestionTitle = "정말로 로그아웃 하실건가요?"
+            static let deleteQuestionTitle = "정말로 탈퇴하실건가요?"
+            static let logoutExplanation = "Apple 계정을 로그아웃합니다"
+            static let deleteExplanation = "탈퇴 시 계정은 삭제되며 복구할 수 없어요"
+        }
+        
+        enum ButtonTitle {
+            static let contactTitle = "문의하기"
+            static let noticeTitle = "공지사항"
+            static let logoutTitle = "로그아웃"
+            static let deleteTitle = "탈퇴하기"
+            static let backTitle = "돌아가기"
+        }
+    }
+    
     enum CTAButton {
         static let buttonTitle = "다음으로"
         static let enterTitle = "입장하기"

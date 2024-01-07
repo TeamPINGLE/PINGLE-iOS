@@ -105,7 +105,6 @@ final class HomeMapViewController: BaseViewController {
         self.mapsView.currentLocationButton.addTarget(self,
                                                       action: #selector(currentLocationButtonTapped),
                                                       for: .touchUpInside)
-        self.mapsView.listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
         self.mapDetailView.participationButton.addTarget(self,
                                                          action: #selector(participantsButtonTapped),
                                                          for: .touchUpInside)
@@ -237,10 +236,6 @@ extension HomeMapViewController {
                 $0.hidden = true
             }
         }
-    }
-    
-    @objc func listButtonTapped() {
-        print("리스트 버튼 탭")
     }
     
     @objc func participationButtonTapped() {

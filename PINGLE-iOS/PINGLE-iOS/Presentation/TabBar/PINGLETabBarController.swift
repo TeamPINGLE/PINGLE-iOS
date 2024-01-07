@@ -116,17 +116,13 @@ final class PINGLETabBarController: UITabBarController {
     
     func setAddTarget() {
         self.homeMapViewController.mapsView.listButton.addTarget(self,
-                                                                 action: #selector(listButtonTapped),
+                                                                 action: #selector(mapListButtonTapped),
                                                                  for: .touchUpInside)
-        self.homeListViewController.mapButton.addTarget(self, action: #selector(mapButtonTapped), for: .touchUpInside)
+        self.homeListViewController.mapButton.addTarget(self, action: #selector(mapListButtonTapped), for: .touchUpInside)
     }
     
-    @objc func listButtonTapped() {
-        self.isHomeMap = false
-    }
-    
-    @objc private func mapButtonTapped() {
-        self.isHomeMap = true
+    @objc func mapListButtonTapped() {
+        self.isHomeMap.toggle()
     }
 }
 

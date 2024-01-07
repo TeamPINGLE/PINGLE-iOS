@@ -134,6 +134,11 @@ enum StringLiterals {
             static let exitWarning = "지금까지 입력한 정보는 전부 사라져요"
             static let continueMaking = "이어서 작성하기"
         }
+        
+        enum Recruitment {
+            static let recruitTitle = "몇 명의 @@들과\n만날까요?"
+            static let recruitCondition = "본인을 포함하여,\n최소 1명부터 참여 인원을 선택해주세요"
+        }
     }
     
     enum Profile {

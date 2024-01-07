@@ -19,10 +19,14 @@ final class OnboardingViewController: BaseViewController {
     private let makeOrganizationButton = UIButton()
     
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTarget()
-        setNavigation()
     }
     
     // MARK: UI
@@ -91,6 +95,7 @@ final class OnboardingViewController: BaseViewController {
     // MARK: Navigation Function
     private func setNavigation() {
         self.navigationController?.navigationBar.isHidden = true
+        self.navigationItem.hidesBackButton = true
     }
     
     // MARK: Target Function

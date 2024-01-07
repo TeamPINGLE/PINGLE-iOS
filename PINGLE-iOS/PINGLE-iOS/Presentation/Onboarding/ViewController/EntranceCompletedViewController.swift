@@ -69,23 +69,23 @@ final class EntranceCompletedViewController: BaseViewController {
                               welcomLabel, backgroundImageView, bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view).offset(132.adjusted)
-            $0.leading.equalTo(self.view).offset(24.adjusted)
+            $0.top.equalToSuperview().inset(132.adjusted)
+            $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         organizationNameLabel.snp.makeConstraints {
             $0.top.equalTo(self.titleLabel.snp.bottom).offset(16.adjusted)
-            $0.leading.equalTo(self.view).offset(24.adjusted)
+            $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         postpositionLabel.snp.makeConstraints {
             $0.leading.equalTo(self.organizationNameLabel.snp.trailing)
-            $0.centerY.equalTo(self.organizationNameLabel.snp.centerY)
+            $0.centerY.equalTo(self.organizationNameLabel)
         }
         
         welcomLabel.snp.makeConstraints {
             $0.top.equalTo(self.organizationNameLabel.snp.bottom).offset(4.adjusted)
-            $0.leading.equalTo(self.view).offset(24.adjusted)
+            $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         backgroundImageView.snp.makeConstraints {
@@ -95,7 +95,7 @@ final class EntranceCompletedViewController: BaseViewController {
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(40.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(40.adjusted)
             $0.centerX.equalToSuperview()
         }
     }
@@ -103,6 +103,7 @@ final class EntranceCompletedViewController: BaseViewController {
     // MARK: Navigation Function
     private func setNavigation() {
         self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     // MARK: Target Function

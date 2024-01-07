@@ -71,7 +71,7 @@ final class SearchOrganizationView: BaseView {
         self.searchView.addSubviews(searchTextField, searchButton)
         
         searchView.snp.makeConstraints {
-            $0.top.equalTo(self.snp.top)
+            $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
             $0.height.equalTo(44.adjusted)
         }

@@ -84,8 +84,8 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(32.adjusted)
-            $0.leading.equalToSuperview().offset(26.adjusted)
+            $0.top.equalToSuperview().inset(32.adjusted)
+            $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         organizationInfoView.snp.makeConstraints {
@@ -106,12 +106,12 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         infoMessageLabel.snp.makeConstraints {
-            $0.centerY.equalTo(infoImageView.snp.centerY)
+            $0.centerY.equalTo(infoImageView)
             $0.leading.equalTo(infoImageView.snp.trailing).offset(4.adjusted)
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(40.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(40.adjusted)
             $0.centerX.equalToSuperview()
         }
         

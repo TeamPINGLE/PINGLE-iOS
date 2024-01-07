@@ -54,7 +54,6 @@ enum StringLiterals {
             static let setting = "설정"
         }
     }
-    
 
     enum Fix {
         static let fixTitle = "아직 공사중!"
@@ -72,6 +71,9 @@ enum StringLiterals {
             static let participationButton = "참여하기"
             static let cancelButton = "취소하기"
             static let askDescription = "이 핑글에 참여할까요?"
+            static let cancelTitle = "참여를 취소하시겠어요?"
+            static let cancelDescription = "취소한 모임은 언제든 다시 신청할 수 있어요"
+            static let backButton = "돌아가기"
         }
     }
     

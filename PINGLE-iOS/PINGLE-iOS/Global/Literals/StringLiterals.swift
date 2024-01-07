@@ -102,7 +102,7 @@ enum StringLiterals {
         }
         
         enum DateSelection {
-            static let dateSelecionTitle = "핑글러들과\n 언제 만날까요?"
+            static let dateSelecionTitle = "핑글러들과\n언제 만날까요?"
             static let PINGLEDateTitle = "핑글 날짜"
             static let PINGLEDatePlaceholder = "만날 날짜를 선택해주세요"
             static let PINGLEStartTime = "시작 시각"

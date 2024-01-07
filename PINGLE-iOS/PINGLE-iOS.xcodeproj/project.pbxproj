@@ -403,11 +403,11 @@
 		C39602E72B3BF20D004BB2B8 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */,
 				F1239BC42B458C9F0072A02A /* Cell */,
 				F1239BC72B45C35A0072A02A /* Model */,
 				C39602EE2B3BF26D004BB2B8 /* ViewController */,
 				C39602F12B3BF276004BB2B8 /* View */,
+				F14F3C712B4B19230049A9EE /* Component */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -674,6 +674,14 @@
 				F14F3C6D2B4988380049A9EE /* SettingSelectView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F14F3C712B4B19230049A9EE /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				F1239BCA2B45D5CD0072A02A /* BasePaddingLabel.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {

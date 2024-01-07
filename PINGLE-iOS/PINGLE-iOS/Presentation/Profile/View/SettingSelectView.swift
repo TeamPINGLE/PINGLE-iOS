@@ -90,20 +90,20 @@ final class SettingSelectView: BaseView {
         }
         
         horizontalLineView.snp.makeConstraints {
-            $0.top.equalTo(self.versionTitleLabel.snp.bottom).offset(18.5.adjusted) //디자인 기다리기
+            $0.top.equalTo(self.versionTitleLabel.snp.bottom).offset(14.adjusted)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
         }
         
         logoutButton.snp.makeConstraints {
-            $0.top.equalTo(self.versionTitleLabel.snp.bottom).offset(23.adjusted)
+            $0.top.equalTo(self.versionTitleLabel.snp.bottom).offset(15.adjusted)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50.adjusted)
         }
         
         deleteButton.snp.makeConstraints {
-            $0.top.equalTo(self.logoutButton.snp.bottom)
-            $0.trailing.equalToSuperview().inset(4.adjusted)
+            $0.top.equalTo(self.logoutButton.snp.bottom).offset(8.adjusted)
+            $0.trailing.equalToSuperview()
             $0.width.equalTo(50.adjustedWidth)
             $0.height.equalTo(45)
         }

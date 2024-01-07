@@ -46,7 +46,7 @@ final class HomeDetailCancelPopUpView: BaseView {
             $0.makeCornerRound(radius: 10)
             $0.backgroundColor = .white
             $0.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
-            $0.setTitleColor(.grayscaleG11, for: .normal)
+            $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .bodyBodySemi14
         }
         
@@ -66,8 +66,8 @@ final class HomeDetailCancelPopUpView: BaseView {
                          backButton)
         
         self.snp.makeConstraints {
-            $0.width.equalTo(312.adjustedWidth)
-            $0.height.equalTo(228)
+            $0.width.equalTo(327.adjustedWidth)
+            $0.height.equalTo(232)
         }
         
         titleLabel.snp.makeConstraints {
@@ -81,14 +81,14 @@ final class HomeDetailCancelPopUpView: BaseView {
         }
         
         cancelButton.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(33)
-            $0.leading.trailing.equalToSuperview().inset(69.adjustedWidth)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(35)
+            $0.leading.trailing.equalToSuperview().inset(71.adjustedWidth)
             $0.height.equalTo(42)
         }
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(cancelButton.snp.bottom).offset(12)
-            $0.leading.trailing.equalToSuperview().inset(135.adjustedWidth)
+            $0.leading.trailing.equalToSuperview().inset(142.5.adjustedWidth)
             $0.bottom.equalToSuperview().inset(29)
             $0.height.equalTo(17)
         }

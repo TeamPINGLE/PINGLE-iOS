@@ -33,6 +33,9 @@ enum StringLiterals {
             static let entranceTitle = "단체 입장\n완료!"
             static let postposition = "에서"
             static let welcomMessage = "핑글 여정을 함께해보세요!"
+            static let loginTitle = "Ready to\nPINGLE?"
+            static let loginIntroduce = "가볍고 재미있는 모임 문화,"
+            static let loginAdvice = "핑글과 함께 만들어요!"
         }
         
         enum NavigationTitle {

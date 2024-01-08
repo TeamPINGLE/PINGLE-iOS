@@ -17,8 +17,8 @@ class RecruitmentViewController: BaseViewController {
     private let recruitTitle = UILabel()
     private let recruitCondition = UILabel()
     private let recruitTextField = UITextField()
-    private let plusButton = RecruitButton(title: "+", buttonColor: .white, textColor: .black)
-    private let minusButton = RecruitButton(title: "-", buttonColor: .grayscaleG08, textColor: .grayscaleG09)
+    private let plusButton = RecruitButton(title: "+", buttonColor: .white, textColor: .black, touchEnable: true)
+    private let minusButton = RecruitButton(title: "-", buttonColor: .grayscaleG08, textColor: .grayscaleG09, touchEnable: false)
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
                                              buttonColor: .grayscaleG08,
                                              textColor: .grayscaleG10)
@@ -34,6 +34,9 @@ class RecruitmentViewController: BaseViewController {
         setNavigation()
         hideKeyboardWhenTappedAround()
         setInitialNum()
+        plusButton.isUserInteractionEnabled = true
+        print("plusButton isEnabled: \(plusButton.isEnabled)")
+        print("minusButton isEnabled: \(minusButton.isEnabled)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,6 +81,14 @@ class RecruitmentViewController: BaseViewController {
             $0.textColor = .white
         }
         
+        minusButton.do {
+            $0.isUserInteractionEnabled = true
+        }
+        
+        plusButton.do {
+            $0.isUserInteractionEnabled = true
+        }
+        
         exitLabel.do {
             $0.text = StringLiterals.Meeting.MeetingCategory.ExitButton.exitLabel
             $0.font = .captionCapSemi12
@@ -119,6 +130,7 @@ class RecruitmentViewController: BaseViewController {
         
         recruitTextField.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(264.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(147.adjusted)
         }
         
         minusButton.snp.makeConstraints {
@@ -169,29 +181,20 @@ class RecruitmentViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func textFieldDidChange(_ sender: Any?) {
-        if let textField = sender as? UITextField {
-            if let newText = textField.text, !newText.isEmpty {
-                nextButton.activateButton()
-            } else {
-                nextButton.disabledButton()
-            }
-            if let number = Int(newText) {
-                minusButton.isEnabled = number > 1
-                plusButton.isEnabled = number < 100
-            }
-        }
-    }
-    
     @objc func plusButtonTapped() {
         print("눌렸어염")
         if let text = recruitTextField.text, var number = Int(text) {
             number += 1
             recruitTextField.text = "\(number)"
-            if number == 99 {
-                showWarningToastView(duration: 2.0)
+            if number > 1 {
+                print("Entering minusButton.activateButton()")
+                minusButton.activateButton()
             }
                 updateNextButtonState()
+            if number > 99 {
+                showWarningToastView(duration: 2.0)
+                plusButton.disabledButton()
+            }
         }
     }
     
@@ -200,6 +203,9 @@ class RecruitmentViewController: BaseViewController {
         if let text = recruitTextField.text, var number = Int(text) {
             number -= 1
             recruitTextField.text = "\(number)"
+            if number < 2 {
+                minusButton.disabledButton()
+            }
             updateNextButtonState()
         }
     }
@@ -208,14 +214,17 @@ class RecruitmentViewController: BaseViewController {
         print("여기 누르면 오카방 어쩌구로 넘어감")
     }
     
+    @objc func exitButtonTapped() {
+        print("나가기 모달 나오세요")
+    }
+    
     // MARK: Function
     func setTarget() {
-        recruitTextField.addTarget(self, action:#selector(self.textFieldDidChange(_:)),
-                                   for: .editingChanged)
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
     }
     
     func setNavigation() {
@@ -256,4 +265,13 @@ extension RecruitmentViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")
+            let characterSet = CharacterSet(charactersIn: string)
+            let isNumeric = allowedCharacterSet.isSuperset(of: characterSet)
+            let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+            let isNumericText = Int(newText) != nil
+            return isNumeric && isNumericText
+        }
 }

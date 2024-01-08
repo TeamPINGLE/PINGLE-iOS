@@ -19,18 +19,18 @@ class RecruitButton: UIButton {
         super.init(coder: coder)
     }
     
-    init(title: String, buttonColor: UIColor, textColor: UIColor) {
+    init(title: String, buttonColor: UIColor, textColor: UIColor, touchEnable: Bool) {
         super.init(frame: .zero)
         commonInit()
         setLayout()
         self.backgroundColor = buttonColor
         self.setTitleColor(textColor, for: .normal)
         self.setTitle(title, for: .normal)
+        self.isEnabled = touchEnable
     }
     
 // MARK: - Function
     private func commonInit() {
-        self.isEnabled = false
         self.titleLabel?.font = .titleTitleSemi24
         self.layer.cornerRadius = 10.adjusted
     }

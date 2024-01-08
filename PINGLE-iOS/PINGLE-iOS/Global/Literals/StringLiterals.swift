@@ -134,6 +134,12 @@ enum StringLiterals {
             static let exitWarning = "지금까지 입력한 정보는 전부 사라져요"
             static let continueMaking = "이어서 작성하기"
         }
+        
+        enum OpenChat {
+            static let openChatTitle = "오픈채팅방 링크를\n추가해주세요!"
+            static let insertChatLinkTitle = "채팅방 링크"
+            static let insertChatLinkExplain = "링크를 입력해주세요"
+        }
     }
     
     enum Profile {

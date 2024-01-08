@@ -21,9 +21,13 @@ final class EntranceCompletedViewController: BaseViewController {
     private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.startTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigation()
         setTarget()
         changeButton()
     }

@@ -27,6 +27,11 @@ final class EnterInviteCodeViewController: BaseViewController {
     private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.wrongCode)
     
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
@@ -127,6 +132,10 @@ final class EnterInviteCodeViewController: BaseViewController {
     }
     
     // MARK: Navigation Function
+    private func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     private func setNavigation() {
         self.title = StringLiterals.Onboarding.NavigationTitle.searchOrganizationNavigation
         self.navigationController?.navigationBar.titleTextAttributes = [

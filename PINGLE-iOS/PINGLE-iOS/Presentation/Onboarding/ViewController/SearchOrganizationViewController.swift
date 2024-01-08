@@ -25,6 +25,11 @@ final class SearchOrganizationViewController: BaseViewController {
     private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
@@ -111,8 +116,11 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     // MARK: Navigation Function
-    private func setNavigation() {
+    private func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    private func setNavigation() {
         self.title = StringLiterals.Onboarding.NavigationTitle.searchOrganizationNavigation
         self.navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.white,

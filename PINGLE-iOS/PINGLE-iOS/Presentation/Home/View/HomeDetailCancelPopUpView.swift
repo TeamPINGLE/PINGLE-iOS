@@ -83,7 +83,7 @@ final class HomeDetailCancelPopUpView: BaseView {
         cancelButton.snp.makeConstraints {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(35)
             $0.leading.trailing.equalToSuperview().inset(71.adjustedWidth)
-            $0.height.equalTo(42)
+            $0.height.equalTo(44)
         }
         
         backButton.snp.makeConstraints {

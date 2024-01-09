@@ -69,7 +69,7 @@ extension ParticipantButton {
         }
         
         currentParticipantsLabel.do {
-            $0.text = "1"
+            $0.text = " "
             $0.font = .titleTitleSemi30
         }
         
@@ -80,7 +80,7 @@ extension ParticipantButton {
         }
         
         totalParticipantsLabel.do {
-            $0.text = "10"
+            $0.text = " "
             $0.textColor = .grayscaleG06
             $0.font = .titleTitleSemi20
         }

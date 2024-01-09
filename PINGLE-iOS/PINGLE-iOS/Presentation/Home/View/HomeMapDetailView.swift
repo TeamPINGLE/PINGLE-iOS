@@ -50,11 +50,10 @@ final class HomeMapDetailView: BaseView {
         
         badgeImageView.do {
             $0.contentMode = .scaleAspectFill
-            $0.image = ImageLiterals.Home.Detail.imgStudyBadge
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "제목", lineHeight: 25)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 25)
             $0.numberOfLines = 2
             $0.textColor = badgeColor
             $0.font = .subtitleSubBold16
@@ -63,7 +62,7 @@ final class HomeMapDetailView: BaseView {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "이름", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.textColor = .grayscaleG05
             $0.font = .bodyBodyMed14
         }
@@ -88,13 +87,13 @@ final class HomeMapDetailView: BaseView {
         }
         
         dateLabel.do {
-            $0.text = "2023년 12월 31일"
+            $0.text = " "
             $0.textColor = .grayscaleG02
             $0.font = .bodyBodySemi14
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "01:00 ~ 05:00", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.textColor = .grayscaleG02
             $0.font = .bodyBodySemi14
         }
@@ -110,7 +109,7 @@ final class HomeMapDetailView: BaseView {
         }
         
         locationLabel.do {
-            $0.text = "장소"
+            $0.text = " "
             $0.textColor = .grayscaleG02
             $0.font = .bodyBodyMed14
         }

@@ -11,28 +11,18 @@ import SnapKit
 
 class ButtonCustomTest: BaseViewController {
 // MARK: Property
-    let testButton = PINGLECTAButton(title: "핑글 개최하러 가기", buttonColor: .grayscaleG08, textColor: .grayscaleG10)
-    
-    let categoryTestButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.play,
-                                                  buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.playExplain,
-                                                  category: ImageLiterals.Metting.Category.categoryPlayImage, textColor: .mainPingleGreen)
-    
-    let exitButton = MeetingExitButton()
-    
-    let testView = CustomDatePickerView()
-    
-    let exitModal = ExitModalView()
+    let finalView = FinalSummaryView()
 
 // MARK: - UI
     override func setStyle() {
-        view.backgroundColor = .grayscaleG11
+        view.backgroundColor = .white
     }
     
     override func setLayout() {
-        view.addSubview(exitModal)
+        view.addSubview(finalView)
 
-        exitModal.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(60)
+        finalView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(80)
             $0.leading.trailing.equalToSuperview().inset(24)
         }
     }

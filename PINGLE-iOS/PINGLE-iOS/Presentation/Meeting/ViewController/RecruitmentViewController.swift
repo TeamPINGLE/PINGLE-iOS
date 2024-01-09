@@ -79,6 +79,7 @@ class RecruitmentViewController: BaseViewController {
             $0.textAlignment = .center
             $0.font = .titleTitleSemi32
             $0.textColor = .white
+            $0.keyboardType = .numberPad
         }
         
         minusButton.do {
@@ -128,11 +129,6 @@ class RecruitmentViewController: BaseViewController {
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
-        recruitTextField.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(264.adjusted)
-            $0.leading.trailing.equalToSuperview().inset(147.adjusted)
-        }
-        
         minusButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(295.adjusted)
             $0.leading.equalToSuperview().inset(77.adjusted)
@@ -169,11 +165,11 @@ class RecruitmentViewController: BaseViewController {
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
         }
-        
-        warningToastView.snp.makeConstraints {
-            $0.bottom.equalTo(nextButton.snp.top).offset(-16.adjusted)
-            $0.centerX.equalToSuperview()
-        }
+//        
+//        warningToastView.snp.makeConstraints {
+//            $0.bottom.equalTo(nextButton.snp.top).offset(-16.adjusted)
+//            $0.centerX.equalToSuperview()
+//        }
     }
     
     // MARK: Objc Function
@@ -191,8 +187,8 @@ class RecruitmentViewController: BaseViewController {
                 minusButton.activateButton()
             }
                 updateNextButtonState()
-            if number > 99 {
-                showWarningToastView(duration: 2.0)
+            if number > 98 {
+//                showWarningToastView(duration: 2.0)
                 plusButton.disabledButton()
             }
         }
@@ -207,6 +203,26 @@ class RecruitmentViewController: BaseViewController {
                 minusButton.disabledButton()
             }
             updateNextButtonState()
+            if number < 99 {
+                plusButton.activateButton()
+            }
+        }
+    }
+    
+    @objc func textFieldDidChange(_ sender: Any?) {
+        if let text = recruitTextField.text, var number = Int(text) {
+            if number < 2 {
+                minusButton.disabledButton()
+            }
+            if number > 1 {
+                minusButton.activateButton()
+            }
+            if number > 98 {
+                plusButton.disabledButton()
+            }
+            if number < 99 {
+                plusButton.activateButton()
+            }
         }
     }
     
@@ -220,6 +236,8 @@ class RecruitmentViewController: BaseViewController {
     
     // MARK: Function
     func setTarget() {
+        recruitTextField.addTarget(self,
+                action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
@@ -250,28 +268,18 @@ class RecruitmentViewController: BaseViewController {
 }
 
 // MARK: Extension
-extension RecruitmentViewController {
-    func showWarningToastView(duration: TimeInterval = 2.0) {
-        self.warningToastView.fadeIn()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-            self.warningToastView.fadeOut()
-        }
-    }
-}
+//extension RecruitmentViewController {
+//    func showWarningToastView(duration: TimeInterval = 2.0) {
+//        self.warningToastView.fadeIn()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+//            self.warningToastView.fadeOut()
+//        }
+//    }
+//}
 // MARK: UITextFieldDelegate
 extension RecruitmentViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")
-            let characterSet = CharacterSet(charactersIn: string)
-            let isNumeric = allowedCharacterSet.isSuperset(of: characterSet)
-            let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
-            let isNumericText = Int(newText) != nil
-            return isNumeric && isNumericText
-        }
 }

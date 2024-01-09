@@ -82,6 +82,8 @@
 		E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */; };
 		E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */; };
 		E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651EB2B4A982100676ED0 /* ExitModalView.swift */; };
+		E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651F72B4B28BF00676ED0 /* RecruitmentViewController.swift */; };
+		E5A651FA2B4B2A6F00676ED0 /* RecruitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651F92B4B2A6F00676ED0 /* RecruitButton.swift */; };
 		E5A651EE2B4ADE6000676ED0 /* PlaceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651ED2B4ADE6000676ED0 /* PlaceSelectionViewController.swift */; };
 		E5A651F22B4AE43900676ED0 /* SearchedPlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651F12B4AE43900676ED0 /* SearchedPlaceModel.swift */; };
 		E5A651F42B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651F32B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift */; };
@@ -189,6 +191,8 @@
 		E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePickerView.swift; sourceTree = "<group>"; };
 		E5A651EB2B4A982100676ED0 /* ExitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitModalView.swift; sourceTree = "<group>"; };
+		E5A651F72B4B28BF00676ED0 /* RecruitmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentViewController.swift; sourceTree = "<group>"; };
+		E5A651F92B4B2A6F00676ED0 /* RecruitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitButton.swift; sourceTree = "<group>"; };
 		E5A651ED2B4ADE6000676ED0 /* PlaceSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSelectionViewController.swift; sourceTree = "<group>"; };
 		E5A651F12B4AE43900676ED0 /* SearchedPlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedPlaceModel.swift; sourceTree = "<group>"; };
 		E5A651F32B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSelectionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -682,6 +686,7 @@
 			isa = PBXGroup;
 			children = (
 				E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */,
+				E5A651F92B4B2A6F00676ED0 /* RecruitButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */,
 				E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */,
 				E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */,
+				E5A651F72B4B28BF00676ED0 /* RecruitmentViewController.swift */,
 				E5A651ED2B4ADE6000676ED0 /* PlaceSelectionViewController.swift */,
 				E5A651FB2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift */,
 			);
@@ -1022,11 +1028,13 @@
 				F1239BD92B486B230072A02A /* EntranceCompletedViewController.swift in Sources */,
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
 				C30C91952B4CED93004EE026 /* BaseResponse.swift in Sources */,
+				E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */,
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
 				E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */,
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,
 				C38545402B4868860040E60D /* String+.swift in Sources */,
+				E5A651FA2B4B2A6F00676ED0 /* RecruitButton.swift in Sources */,
 				C396030F2B3BF345004BB2B8 /* m.swift in Sources */,
 				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,
 				E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */,

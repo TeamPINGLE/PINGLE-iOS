@@ -8,12 +8,12 @@
 import Foundation
 
 protocol HomeServiceProtocol {
-    func pinList(friendId: Int, queryDTO: HomePinListRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HomePinListResponseDTO>>) -> Void)
+    func pinList(teamId: Int, completion: @escaping (NetworkResult<BaseResponse<[HomePinListResponseDTO]>>) -> Void)
 }
 
 final class HomeService: APIRequestLoader<HomeTarget>, HomeServiceProtocol {
-    func pinList(friendId: Int, queryDTO: HomePinListRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HomePinListResponseDTO>>) -> Void) {
-        fetchData(target: .pinList(friendId, queryDTO),
-                  responseData: BaseResponse<HomePinListResponseDTO>.self, completion: completion)
+    func pinList(teamId: Int, completion: @escaping (NetworkResult<BaseResponse<[HomePinListResponseDTO]>>) -> Void) {
+        fetchData(target: .pinList(teamId),
+                  responseData: BaseResponse<[HomePinListResponseDTO]>.self, completion: completion)
     }
 }

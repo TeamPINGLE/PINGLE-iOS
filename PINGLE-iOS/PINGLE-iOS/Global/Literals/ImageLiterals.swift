@@ -22,6 +22,10 @@ enum ImageLiterals {
         static var icArrowRight: UIImage { .load(named: "icArrowRight")}
     }
     
+    enum Work {
+        static var imgWorkGraphic: UIImage { .load(named: "imgWorkGraphic")}
+    }
+    
     enum OnBoarding {
         static var imgApplelogo: UIImage { .load(named: "imgApplelogo")}
         static var imgSample: UIImage { .load(named: "imgSample")}

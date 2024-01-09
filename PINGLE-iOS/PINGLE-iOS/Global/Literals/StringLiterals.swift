@@ -65,7 +65,7 @@ enum StringLiterals {
 
     enum Home {
         enum Detail {
-            static let participantsTitle = "참여자"
+            static let participantsTitle = "참여현황"
             static let slash = "/"
             static let complete = "모집완료"
             static let dateTimeTitle = "일시"

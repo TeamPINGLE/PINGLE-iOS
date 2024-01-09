@@ -79,6 +79,8 @@ enum ImageLiterals {
             static var imgOthersBadge: UIImage { .load(named: "imgOthersBadge")}
             static var icCalendar: UIImage { .load(named: "icCalendar")}
             static var icLocation: UIImage { .load(named: "icLocation")}
+            static var icParticipantArrow: UIImage { .load(named: "icParticipantArrow")}
+            static var icParticipantArrowActivate: UIImage { .load(named: "icParticipantArrowActivate")}
         }
     }
   

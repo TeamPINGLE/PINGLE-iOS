@@ -34,12 +34,12 @@ final class MakeMeetingGuideViewController: BaseViewController {
         self.view.backgroundColor = .grayscaleG11
         
         self.mettingImageView.do {
-            $0.image = ImageLiterals.Metting.Guide.imgMettingGraphic
+            $0.image = ImageLiterals.Meeting.Guide.imgMettingGraphic
             $0.contentMode = .scaleAspectFit
         }
         
         self.exitButton.do {
-            $0.setImage(ImageLiterals.Metting.Guide.imgExitButton, for: .normal)
+            $0.setImage(ImageLiterals.Meeting.Guide.imgExitButton, for: .normal)
             $0.contentMode = .scaleAspectFit
         }
         

@@ -43,11 +43,11 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Metting.Icon.icBack, for: .normal)
+            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
         }
         
         progressBar6.do {
-            $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage6
+            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage6
             $0.contentMode = .scaleAspectFill
         }
         

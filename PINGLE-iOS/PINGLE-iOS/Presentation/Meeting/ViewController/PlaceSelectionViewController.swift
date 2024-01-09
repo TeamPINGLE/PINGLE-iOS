@@ -40,11 +40,11 @@ class PlaceSelectionViewController: BaseViewController {
         }
         
         self.backButton.do {
-            $0.setImage(ImageLiterals.Metting.Icon.icBack, for: .normal)
+            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
         }
         
         progressBar4.do {
-            $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage4
+            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage4
             $0.contentMode = .scaleAspectFill
         }
         

@@ -17,19 +17,19 @@ class SelectCategoryViewController: BaseViewController {
     private let PINGLECategoryTitle = UILabel()
     private let playButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.play,
                                                   buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.playExplain,
-                                                  category: ImageLiterals.Metting.Category.categoryPlayImage,
+                                                  category: ImageLiterals.Meeting.Category.categoryPlayImage,
                                                   textColor: .mainPingleGreen)
     private let studyButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.study,
                                                    buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.studyExplain,
-                                                   category: ImageLiterals.Metting.Category.categoryStudyImage,
+                                                   category: ImageLiterals.Meeting.Category.categoryStudyImage,
                                                    textColor: .subPingleOrange)
     private let multiButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.multi,
                                                    buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.multiExplain,
-                                                   category: ImageLiterals.Metting.Category.categoryMultiImage,
+                                                   category: ImageLiterals.Meeting.Category.categoryMultiImage,
                                                    textColor: .subPingleYellow)
     private let othersButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.others,
                                                     buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.othersExplain,
-                                                    category: ImageLiterals.Metting.Category.categoryPlayImage,
+                                                    category: ImageLiterals.Meeting.Category.categoryPlayImage,
                                                     textColor: .white)
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
                                              buttonColor: .grayscaleG08, textColor: .grayscaleG10)
@@ -55,10 +55,10 @@ class SelectCategoryViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Metting.Icon.icBack, for: .normal)
+            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
         }
         progressBar1.do {
-            $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage1
+            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage1
             $0.contentMode = .scaleAspectFill
         }
         

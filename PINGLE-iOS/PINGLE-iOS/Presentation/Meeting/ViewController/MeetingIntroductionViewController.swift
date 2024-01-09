@@ -43,11 +43,11 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Metting.Icon.icBack, for: .normal)
+            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
         }
         
         progressBar2.do {
-            $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage2
+            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage2
             $0.contentMode = .scaleAspectFill
         }
         

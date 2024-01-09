@@ -24,6 +24,7 @@
 		C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307282F2B42CFDF00AA575B /* TabBarItem.swift */; };
 		C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728312B42D0F900AA575B /* PINGLETabBarController.swift */; };
 		C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728332B42E06D00AA575B /* HomeMapViewController.swift */; };
+		C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */; };
 		C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */; };
 		C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */; };
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
@@ -45,7 +46,6 @@
 		C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DF2B3BF1CB004BB2B8 /* b.swift */; };
 		C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E32B3BF203004BB2B8 /* BaseView.swift */; };
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
-		C396030B2B3BF33B004BB2B8 /* k.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030A2B3BF33B004BB2B8 /* k.swift */; };
 		C396030D2B3BF33F004BB2B8 /* l.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030C2B3BF33F004BB2B8 /* l.swift */; };
 		C396030F2B3BF345004BB2B8 /* m.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030E2B3BF345004BB2B8 /* m.swift */; };
 		C39603142B3BF35E004BB2B8 /* n.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603132B3BF35E004BB2B8 /* n.swift */; };
@@ -118,6 +118,7 @@
 		C307282F2B42CFDF00AA575B /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		C30728312B42D0F900AA575B /* PINGLETabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLETabBarController.swift; sourceTree = "<group>"; };
 		C30728332B42E06D00AA575B /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
+		C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderFieldKey.swift; sourceTree = "<group>"; };
 		C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListResponseDTO.swift; sourceTree = "<group>"; };
 		C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButtonStatus.swift; sourceTree = "<group>"; };
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
@@ -141,7 +142,6 @@
 		C39602DF2B3BF1CB004BB2B8 /* b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = b.swift; sourceTree = "<group>"; };
 		C39602E32B3BF203004BB2B8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		C396030A2B3BF33B004BB2B8 /* k.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = k.swift; sourceTree = "<group>"; };
 		C396030C2B3BF33F004BB2B8 /* l.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = l.swift; sourceTree = "<group>"; };
 		C396030E2B3BF345004BB2B8 /* m.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = m.swift; sourceTree = "<group>"; };
 		C39603132B3BF35E004BB2B8 /* n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = n.swift; sourceTree = "<group>"; };
@@ -508,7 +508,7 @@
 		C39603012B3BF2BF004BB2B8 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				C396030A2B3BF33B004BB2B8 /* k.swift */,
+				C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -838,6 +838,7 @@
 			files = (
 				F14F3C702B49BEB60049A9EE /* AccountPopUpView.swift in Sources */,
 				C39603142B3BF35E004BB2B8 /* n.swift in Sources */,
+				C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */,
 				C396031E2B3BF379004BB2B8 /* s.swift in Sources */,
 				F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */,
 				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
@@ -865,7 +866,6 @@
 				C396030D2B3BF33F004BB2B8 /* l.swift in Sources */,
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
 				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,
-				C396030B2B3BF33B004BB2B8 /* k.swift in Sources */,
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
 				F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,

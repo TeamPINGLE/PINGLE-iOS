@@ -34,9 +34,9 @@ class RecruitmentViewController: BaseViewController {
         setNavigation()
         hideKeyboardWhenTappedAround()
         setInitialNum()
-        plusButton.isUserInteractionEnabled = true
-        print("plusButton isEnabled: \(plusButton.isEnabled)")
-        print("minusButton isEnabled: \(minusButton.isEnabled)")
+//        plusButton.isUserInteractionEnabled = true
+//        print("plusButton isEnabled: \(plusButton.isEnabled)")
+//        print("minusButton isEnabled: \(minusButton.isEnabled)")
     }
     
     override func viewDidAppear(_ animated: Bool) {

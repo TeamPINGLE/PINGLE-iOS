@@ -16,6 +16,9 @@ final class LoginViewController: BaseViewController {
     // MARK: Property
     private let logoImageView = UIImageView()
     private let authorizationButton = UIButton()
+    private let loginTitleLabel = UILabel()
+    private let introduceLabel = UILabel()
+    private let adviceLabel = UILabel()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -30,7 +33,26 @@ final class LoginViewController: BaseViewController {
         }
         
         self.logoImageView.do {
-            $0.image = ImageLiterals.TabBar.imgSetting
+            $0.image = ImageLiterals.TabBar.imgSetting //이후 디자인 변경
+        }
+        
+        self.loginTitleLabel.do {
+            $0.text = StringLiterals.Onboarding.ExplainTitle.loginTitle
+            $0.font = .titleTitleExtra40
+            $0.textColor = .white
+            $0.numberOfLines = 0
+        }
+        
+        self.introduceLabel.do {
+            $0.text = StringLiterals.Onboarding.ExplainTitle.loginIntroduce
+            $0.font = .bodyBodyMed16
+            $0.textColor = .grayscaleG02
+        }
+        
+        self.adviceLabel.do {
+            $0.text = StringLiterals.Onboarding.ExplainTitle.loginAdvice
+            $0.font = .bodyBodyMed16
+            $0.textColor = .grayscaleG02
         }
         
         self.authorizationButton.do {
@@ -47,20 +69,36 @@ final class LoginViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(logoImageView, authorizationButton)
+        self.view.addSubviews(logoImageView, loginTitleLabel, introduceLabel,
+                              adviceLabel, authorizationButton)
         
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(81.adjusted)
-            $0.centerX.equalTo(self.view.snp.centerX)
-            $0.height.equalTo(210.adjusted)
-            $0.width.equalTo(180.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(63.adjusted)
+            $0.leading.equalToSuperview().inset(32.adjusted)
+            $0.height.equalTo(73.adjusted)
+            $0.width.equalTo(73.adjusted)
+        }
+        
+        loginTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(self.logoImageView.snp.bottom).offset(12.adjusted)
+            $0.leading.equalToSuperview().inset(32.adjusted)
+        }
+        
+        introduceLabel.snp.makeConstraints {
+            $0.top.equalTo(self.loginTitleLabel.snp.bottom).offset(12.adjusted)
+            $0.leading.equalToSuperview().inset(32.adjusted)
+        }
+        
+        adviceLabel.snp.makeConstraints {
+            $0.top.equalTo(self.introduceLabel.snp.bottom).offset(3.adjusted)
+            $0.leading.equalToSuperview().inset(32.adjusted)
         }
         
         authorizationButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.snp.bottom).inset(69.adjusted)
-            $0.centerX.equalTo(self.view.snp.centerX)
-            $0.height.equalTo(58.adjusted)
-            $0.width.equalTo(343.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(69.adjusted)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(58)
+            $0.width.equalTo(UIScreen.main.bounds.size.width - 32)
         }
     }
     

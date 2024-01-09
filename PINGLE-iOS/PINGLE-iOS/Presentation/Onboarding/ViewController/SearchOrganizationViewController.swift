@@ -25,6 +25,11 @@ final class SearchOrganizationViewController: BaseViewController {
     private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
@@ -69,8 +74,8 @@ final class SearchOrganizationViewController: BaseViewController {
         self.view.addSubviews(titleLabel, searchOrganizationView, bottomRequestLabel, makeOrganizationButton, bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(32.adjusted)
-            $0.leading.equalTo(self.view.snp.leading).offset(26.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32.adjusted)
+            $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         searchOrganizationView.snp.makeConstraints {
@@ -81,11 +86,11 @@ final class SearchOrganizationViewController: BaseViewController {
         
         bottomRequestLabel.snp.makeConstraints {
             $0.top.equalTo(self.searchOrganizationView.snp.bottom).offset(18.adjusted)
-            $0.leading.equalToSuperview().offset(77.adjusted)
+            $0.leading.equalToSuperview().inset(77.adjusted)
         }
         
         makeOrganizationButton.snp.makeConstraints {
-            $0.centerY.equalTo(self.bottomRequestLabel.snp.centerY)
+            $0.centerY.equalTo(self.bottomRequestLabel)
             $0.leading.equalTo(self.bottomRequestLabel.snp.trailing).offset(4.adjusted)
             $0.height.equalTo(17.adjusted)
             $0.width.equalTo(121.adjusted)
@@ -111,6 +116,10 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     // MARK: Navigation Function
+    private func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     private func setNavigation() {
         self.title = StringLiterals.Onboarding.NavigationTitle.searchOrganizationNavigation
         self.navigationController?.navigationBar.titleTextAttributes = [

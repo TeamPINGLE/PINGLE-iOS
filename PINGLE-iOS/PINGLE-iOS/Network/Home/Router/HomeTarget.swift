@@ -16,14 +16,14 @@ enum HomeTarget {
 extension HomeTarget: TargetType {
     var authorization: Authorization {
         switch self {
-        case .pinList( _):
+        case .pinList(_):
             return .authorization
         }
     }
     
     var headerType: HTTPHeaderType {
         switch self {
-        case .pinList( _):
+        case .pinList(_):
             return .hasToken
         }
     }
@@ -44,7 +44,7 @@ extension HomeTarget: TargetType {
     
     var parameters: RequestParams {
         switch self {
-        case let .pinList(_):
+        case .pinList(_):
             return .requestPlain
         }
     }

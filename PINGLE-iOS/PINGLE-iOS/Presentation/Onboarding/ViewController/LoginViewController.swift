@@ -109,8 +109,65 @@ final class LoginViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func handleAuthorizationAppleIDButtonPress() {
-        let onboardingViewController = OnboardingViewController()
-        navigationController?.pushViewController(onboardingViewController, animated: true)
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
     
+    // MARK: Network Function
+    func login(data: LoginRequestBodyDTO) {
+        NetworkService.shared.onboardingService.login(bodyDTO: data) { response in
+            print(response)
+            switch response {
+            case .success(let data):
+                let onboardingViewController = OnboardingViewController()
+                self.navigationController?.pushViewController(onboardingViewController, animated: true)
+            default:
+                print("error")
+            }
+        }
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    ///로그인 성공했을 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let fullName = appleIDCredential.fullName
+            
+            if let familyName = fullName?.familyName, let givenName = fullName?.givenName {
+                let userName = String(describing: familyName) + String(describing: givenName)
+                KeychainHandler.shared.userName = userName
+            }
+
+            if  let identityToken = appleIDCredential.identityToken,
+                let identifyTokenString = String(data: identityToken, encoding: .utf8) {
+                KeychainHandler.shared.providerToken = identifyTokenString
+            }
+            
+            let userName = KeychainHandler.shared.userName
+            self.login(data: LoginRequestBodyDTO(provider: "APPLE", name: userName))
+            
+        default:
+            break
+        }
+    }
+    
+    /// 로그인 실패했을 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("login failed - \(error.localizedDescription)")
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    /// - Tag: provide_presentation_anchor
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
 }

@@ -25,14 +25,7 @@ final class HomeMapDetailView: BaseView {
     let titleLabel = UILabel()
     let nameLabel = UILabel()
     
-    let participantsView = UIView()
-    let participantsLabel = UILabel()
-    let countStackView = UIStackView()
-    let currentParticipantsLabel = UILabel()
-    let slashLabel = UILabel()
-    let totalParticipantsLabel = UILabel()
-    let completeLabel = UILabel()
-    
+    let participantCountButton = ParticipantButton()
     let separateView = UIView()
     
     let bottomBackgroundView = UIView()
@@ -73,47 +66,6 @@ final class HomeMapDetailView: BaseView {
             $0.setTextWithLineHeight(text: "이름", lineHeight: 20)
             $0.textColor = .grayscaleG05
             $0.font = .bodyBodyMed14
-        }
-        
-        participantsView.do {
-            $0.makeBorder(width: 1.02, color: badgeColor ?? UIColor())
-            $0.makeCornerRound(radius: 40)
-        }
-        
-        participantsLabel.do {
-            $0.text = StringLiterals.Home.Detail.participantsTitle
-            $0.textColor = .white
-            $0.font = .captionCapMed12
-        }
-        
-        completeLabel.do {
-            $0.text = StringLiterals.Home.Detail.complete
-            $0.textColor = .grayscaleG06
-            $0.font = .subtitleSubSemi16
-            $0.isHidden = true
-        }
-        
-        countStackView.do {
-            $0.axis = .horizontal
-            $0.spacing = 0
-        }
-        
-        currentParticipantsLabel.do {
-            $0.text = "1"
-            $0.textColor = badgeColor
-            $0.font = .titleTitleSemi30
-        }
-        
-        slashLabel.do {
-            $0.text = StringLiterals.Home.Detail.slash
-            $0.textColor = .grayscaleG06
-            $0.font = .titleTitleSemi30
-        }
-        
-        totalParticipantsLabel.do {
-            $0.text = "10"
-            $0.textColor = .grayscaleG06
-            $0.font = .titleTitleSemi20
         }
         
         separateView.do {
@@ -187,20 +139,12 @@ final class HomeMapDetailView: BaseView {
                          bottomBackgroundView)
         
         topBackgroundView.addSubviews(infoGroupView,
-                                      participantsView,
+                                      participantCountButton,
                                       separateView)
         
         infoGroupView.addSubviews(badgeImageView,
                                   titleLabel,
                                   nameLabel)
-        
-        participantsView.addSubviews(participantsLabel,
-                                     completeLabel,
-                                     countStackView)
-        
-        countStackView.addArrangedSubviews(currentParticipantsLabel,
-                                           slashLabel,
-                                           totalParticipantsLabel)
         
         bottomBackgroundView.addSubviews(dateTimeImageView,
                                          dateTimeTitleLabel,
@@ -238,25 +182,10 @@ final class HomeMapDetailView: BaseView {
             $0.leading.bottom.equalToSuperview()
         }
         
-        participantsView.snp.makeConstraints {
-            $0.width.height.equalTo(80)
+        participantCountButton.snp.makeConstraints {
+            $0.width.height.equalTo(81)
             $0.trailing.equalToSuperview().inset(24.adjustedWidth)
             $0.centerY.equalToSuperview()
-        }
-        
-        participantsLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(12)
-        }
-        
-        completeLabel.snp.makeConstraints {
-            $0.top.equalTo(participantsLabel.snp.bottom).offset(8)
-            $0.centerX.equalToSuperview()
-        }
-        
-        countStackView.snp.makeConstraints {
-            $0.top.equalTo(participantsLabel.snp.bottom)
-            $0.centerX.equalToSuperview()
         }
         
         separateView.snp.makeConstraints {
@@ -326,8 +255,8 @@ final class HomeMapDetailView: BaseView {
     func dataBind(data: HomePinDetailResponseDTO) {
         titleLabel.text = data.name
         nameLabel.text = data.ownerName
-        currentParticipantsLabel.text = String(data.curParticipants)
-        totalParticipantsLabel.text = String(data.maxParticipants)
+        participantCountButton.currentParticipantsLabel.text = String(data.curParticipants)
+        participantCountButton.totalParticipantsLabel.text = String(data.maxParticipants)
         dateLabel.text = data.date.convertToKoreanDate()
         locationLabel.text = data.location
         
@@ -359,14 +288,14 @@ final class HomeMapDetailView: BaseView {
         }
         
         titleLabel.textColor = badgeColor
-        participantsView.makeBorder(width: 1.02, color: badgeColor ?? UIColor())
-        currentParticipantsLabel.textColor = badgeColor
+        participantCountButton.currentParticipantsLabel.textColor = badgeColor
         
         /// 모집 완료 상태
         if data.curParticipants == data.maxParticipants {
-            participantsView.makeBorder(width: 1.02, color: .grayscaleG06)
-            completeLabel.isHidden = false
-            countStackView.isHidden = true
+            participantCountButton.completeLabel.isHidden = false
+            participantCountButton.countStackView.isHidden = true
+            participantCountButton.participantsLabel.textColor = .grayscaleG06
+            participantCountButton.rightArrowImageView.image = ImageLiterals.Home.Detail.icParticipantArrow
             
             /// 참여중이 아니라면 참여버튼 비활성화
             if !data.isParticipating {

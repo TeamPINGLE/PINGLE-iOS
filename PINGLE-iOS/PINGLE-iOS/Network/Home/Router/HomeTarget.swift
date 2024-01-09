@@ -24,7 +24,7 @@ extension HomeTarget: TargetType {
     var headerType: HTTPHeaderType {
         switch self {
         case .pinList(_, _):
-            return .plain
+            return .hasToken
         }
     }
     

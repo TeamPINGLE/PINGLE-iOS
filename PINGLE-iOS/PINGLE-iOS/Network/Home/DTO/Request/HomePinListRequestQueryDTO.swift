@@ -8,5 +8,5 @@
 import Foundation
 
 struct HomePinListRequestQueryDTO: Codable {
-    
+    let category: String?
 }

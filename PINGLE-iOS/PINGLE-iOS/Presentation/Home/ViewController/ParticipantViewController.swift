@@ -7,14 +7,19 @@
 
 import UIKit
 
-class ParticipantViewController: BaseViewController {
+final class ParticipantViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    let fixView = FixView()
+    private let fixView = FixView()
+    private let backButton = UIButton()
     
     // MARK: - Function
     // MARK: Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setAddTarget()
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
@@ -34,18 +39,35 @@ class ParticipantViewController: BaseViewController {
     override func setStyle() {
         self.navigationController?.navigationBar.isHidden = true
         self.view.backgroundColor = .grayscaleG11
+        
+        backButton.do {
+            $0.setImage(ImageLiterals.Icon.imgArrowLeft, for: .normal)
+        }
+    }
+    
+    private func setAddTarget() {
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    }
+    
+    // MARK: Objc Function
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: Style Helpers
     override func setLayout() {
-//        let safeAreaHeight = view.safeAreaInsets.bottom
-//        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
-        self.view.addSubviews(fixView)
+        self.view.addSubviews(backButton,
+                              fixView)
+        
+        backButton.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
+            $0.leading.equalToSuperview().inset(18)
+        }
+        
         fixView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).offset(117.adjustedHeight)
-            $0.leading.trailing.equalToSuperview().inset(50.adjustedWidth)
-//            $0.bottom.equalTo(safeAreaHeight).offset(-(tabBarHeight + 132.adjustedHeight))
+            $0.top.equalTo(backButton.snp.bottom).offset(77.adjustedHeight)
+            $0.centerX.equalToSuperview()
         }
     }
 }

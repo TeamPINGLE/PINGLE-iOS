@@ -20,6 +20,8 @@ final class HomeMapViewController: BaseViewController {
     var shouldUpdateMap: Bool = true
     /// 현재 선택되지 않은 필터 버튼 개수
     var unselectedButton: Int = 0
+    var homePinDetailList: HomePinDetailResponseDTO?
+    var teamId = 1
     
     // MARK: Component
     let mapsView = HomeMapView()
@@ -33,9 +35,9 @@ final class HomeMapViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.pinList(teamId: teamId)
         setLocationManager()
         setAddTarget()
-        setMarkerHandler()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +64,10 @@ final class HomeMapViewController: BaseViewController {
         }
         
         homeDetailCancelPopUpView.do {
+            $0.isHidden = true
+        }
+        
+        mapDetailView.do {
             $0.isHidden = true
         }
     }
@@ -334,6 +340,7 @@ extension HomeMapViewController {
     func bindDetailViewData(id: Int) {
         // 해당 id값을 넣어서 서버 통신 후 data 받아오기
         let data = homePinDetailDummy[0]
+        //        let data = homePinList
         self.mapDetailView.dataBind(data: data)
         self.homeDetailPopUpView.dataBind(data: data)
     }
@@ -361,5 +368,47 @@ extension HomeMapViewController {
         let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: offsetLat, lng: marker.position.lng))
         newCameraPosition.animation = .easeIn
         self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
+    }
+    
+    func pinList(teamId: Int) {
+        KeychainHandler.shared.accessToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsInJvbCI6IlVTRVIiLCJpYXQiOjE3MDQ4MjI1ODIsImV4cCI6MTcwNDgyNDM4Mn0.E3vtW-6S0Ew2WY-ziQf6KeTeZSTru7tUskadMygs0Z5y9cllWzykNRdoC_CiRPvKgPj7JY0A2H5OaK0hTi0w-Q"
+        KeychainHandler.shared.refreshToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsImlhdCI6MTcwNDgyMjU4MiwiZXhwIjoxNzA2MDMyMTgyfQ.0iRJp--ol_PA9Bf9zK7R6xY0jxWOBzP6HwJSYvbx5hgbQUwMjMDwFSCwU0nkmkAAnA-Xu_J1jxiVQNyvP-Q7Zg"
+        NetworkService.shared.homeService.pinList(teamId: teamId) { [weak self] response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                print(data)
+                DispatchQueue.main.async { [weak self] in
+                    self?.mapsView.homePinList = data
+                    self?.setMarker() // 데이터를 받은 후에 setMarker 호출
+                }
+            default:
+                print("실패")
+                return
+            }
+        }
+    }
+    
+    // MARK: Marker Function
+    /// 마커 추가 메소드
+    func setMarker() {
+        mapsView.homePinList.forEach {
+            print(mapsView.homePinList)
+            let pingleMarker = PINGLEMarker()
+            
+            pingleMarker.id = $0.id
+            pingleMarker.changeStringToStatus(string: $0.category)
+            pingleMarker.meetingString = $0.category
+            
+            let x = $0.x
+            let y = $0.y
+            
+            pingleMarker.iconImage = NMFOverlayImage(image: mapsView.setMarkerColor(category: $0.category))
+            
+            pingleMarker.position = NMGLatLng(lat: x, lng: y)
+            pingleMarker.mapView = mapsView.mapsView.mapView
+            mapsView.homeMarkerList.append(pingleMarker)
+        }
+        self.setMarkerHandler()
     }
 }

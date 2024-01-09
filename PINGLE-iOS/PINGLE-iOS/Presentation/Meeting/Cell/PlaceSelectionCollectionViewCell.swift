@@ -67,25 +67,25 @@ final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
         self.addSubviews(placeName, placeDetailedAddress, selectImageView, horizontalLineView)
         
         self.placeName.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(30.adjusted)
+            $0.top.equalToSuperview().inset(30)
             $0.leading.equalToSuperview()
         }
         
         self.placeDetailedAddress.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(59.adjusted)
+            $0.top.equalToSuperview().inset(59)
             $0.leading.equalToSuperview()
         }
         
         self.selectImageView.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(11.adjusted)
             $0.centerY.equalToSuperview()
-            $0.height.width.equalTo(24.adjusted)
+            $0.height.width.equalTo(24)
         }
         
         self.horizontalLineView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
-            $0.height.equalTo(1.adjusted)
+            $0.height.equalTo(1)
         }
     }
     

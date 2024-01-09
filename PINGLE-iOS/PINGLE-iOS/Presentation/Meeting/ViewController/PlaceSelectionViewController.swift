@@ -209,6 +209,6 @@ extension PlaceSelectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 325.adjustedWidth , height: 106.adjustedHeight)
+        return CGSize(width: 325, height: 106)
     }
 }

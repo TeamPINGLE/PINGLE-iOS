@@ -32,12 +32,17 @@ enum ImageLiterals {
     }
     
     enum TabBar {
-        static var imgHome: UIImage { .load(named: "imgHome")}
-        static var imgHomeSelected: UIImage { .load(named: "imgHomeSelected")}
-        static var imgAddPingle: UIImage { .load(named: "imgAddPingle")}
-        static var imgAddPingleSelected: UIImage { .load(named: "imgAddPingleSelected")}
+        static var icHome: UIImage { .load(named: "icHome")}
+        static var icHomeSelected: UIImage { .load(named: "icHomeSelected")}
+        static var icRanking: UIImage { .load(named: "icRanking")}
+        static var icRankingSelected: UIImage { .load(named: "icRankingSelected")}
+        static var icMeeting: UIImage { .load(named: "icMeeting")}
+        static var icMeetingSelected: UIImage { .load(named: "icMeetingSelected")}
+        static var icMyPingle: UIImage { .load(named: "icMyPingle")}
+        static var icMyPingleSelected: UIImage { .load(named: "icMyPingleSelected")}
+        static var icMore: UIImage { .load(named: "icMore")}
+        static var icMoreSelected: UIImage { .load(named: "icMoreSelected")}
         static var imgSetting: UIImage { .load(named: "imgSetting")}
-        static var imgSettingSelected: UIImage { .load(named: "imgSettingSelected")}
     }
     
     enum Home {

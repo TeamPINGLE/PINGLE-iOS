@@ -51,10 +51,10 @@ enum StringLiterals {
     enum TabBar {
         enum ItemTitle {
             static let home = "홈"
-            static let recommend = "추천"
-            static let addPingle = "추가"
+            static let recommend = "랭킹"
+            static let addPingle = "개최"
             static let myPingle = "마이핑글"
-            static let setting = "설정"
+            static let setting = "더보기"
         }
     }
     

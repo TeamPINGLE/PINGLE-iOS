@@ -135,15 +135,17 @@ final class HomeMapView: BaseView {
     // MARK: Marker Function
     /// 마커 추가 메소드
     func setMarker() {
+        print("setMarker")
         homePinList.forEach {
+            print(homePinList)
             let pingleMarker = PINGLEMarker()
             
             pingleMarker.id = $0.id
             pingleMarker.changeStringToStatus(string: $0.category)
             pingleMarker.meetingString = $0.category
             
-            let x = Double($0.x) ?? 37.56299678698725
-            let y = Double($0.y) ?? 126.8569346126135
+            let x = $0.x
+            let y = $0.y
             
             pingleMarker.iconImage = NMFOverlayImage(image: setMarkerColor(category: $0.category))
             

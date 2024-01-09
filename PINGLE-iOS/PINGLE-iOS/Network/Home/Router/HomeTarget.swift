@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 enum HomeTarget {
-    case pinList(_ teamId: String)
+    case pinList(_ teamId: Int)
 }
 
 extension HomeTarget: TargetType {

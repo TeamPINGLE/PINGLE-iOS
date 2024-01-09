@@ -8,11 +8,11 @@
 import Foundation
 
 protocol HomeServiceProtocol {
-    func pinList(teamId: String, completion: @escaping (NetworkResult<BaseResponse<[HomePinListResponseDTO]>>) -> Void)
+    func pinList(teamId: Int, completion: @escaping (NetworkResult<BaseResponse<[HomePinListResponseDTO]>>) -> Void)
 }
 
 final class HomeService: APIRequestLoader<HomeTarget>, HomeServiceProtocol {
-    func pinList(teamId: String, completion: @escaping (NetworkResult<BaseResponse<[HomePinListResponseDTO]>>) -> Void) {
+    func pinList(teamId: Int, completion: @escaping (NetworkResult<BaseResponse<[HomePinListResponseDTO]>>) -> Void) {
         fetchData(target: .pinList(teamId),
                   responseData: BaseResponse<[HomePinListResponseDTO]>.self, completion: completion)
     }

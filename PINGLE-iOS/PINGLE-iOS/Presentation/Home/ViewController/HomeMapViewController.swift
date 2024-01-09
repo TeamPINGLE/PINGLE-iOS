@@ -21,7 +21,7 @@ final class HomeMapViewController: BaseViewController {
     /// 현재 선택되지 않은 필터 버튼 개수
     var unselectedButton: Int = 0
     var homePinDetailList: HomePinDetailResponseDTO?
-    var teamId = "a"
+    var teamId = 1
     
     // MARK: Component
     let mapsView = HomeMapView()
@@ -35,10 +35,10 @@ final class HomeMapViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.pinList(teamId: teamId)
         setLocationManager()
         setAddTarget()
         setMarkerHandler()
-        pinList(teamId: teamId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -346,7 +346,7 @@ extension HomeMapViewController {
         self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
     }
     
-    func pinList(teamId: String) {
+    func pinList(teamId: Int) {
         
         NetworkService.shared.homeService.pinList(teamId: teamId) { response in
             switch response {
@@ -354,7 +354,7 @@ extension HomeMapViewController {
                 guard let data = data.data else { return }
                 print(data)
                 self.mapsView.homePinList = data
-                
+                self.mapsView.setMarker()
             default:
                 print("실패")
                 return

@@ -134,15 +134,15 @@ final class HomeDetailPopUpView: BaseView {
         case "STUDY":
             badgeColor = .subPingleOrange
             badgeImageView.image = ImageLiterals.Home.Detail.imgStudyBadge
-
+            
         case "MULTI":
             badgeColor = .subPingleYellow
             badgeImageView.image = ImageLiterals.Home.Detail.imgMultiBadge
-
+            
         case "OTHERS":
             badgeColor = .grayscaleG01
             badgeImageView.image = ImageLiterals.Home.Detail.imgOthersBadge
-
+            
         default:
             return
         }

@@ -134,11 +134,11 @@ final class HomeMapViewController: BaseViewController {
                                                                action: #selector(participationButtonTapped),
                                                                for: .touchUpInside)
         self.homeDetailCancelPopUpView.cancelButton.addTarget(self,
-                                                               action: #selector(cancelButtonTapped),
-                                                               for: .touchUpInside)
+                                                              action: #selector(cancelButtonTapped),
+                                                              for: .touchUpInside)
         self.homeDetailCancelPopUpView.backButton.addTarget(self,
-                                                               action: #selector(backButtonTapped),
-                                                               for: .touchUpInside)
+                                                            action: #selector(backButtonTapped),
+                                                            for: .touchUpInside)
     }
 }
 

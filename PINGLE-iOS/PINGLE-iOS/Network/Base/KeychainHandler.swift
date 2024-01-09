@@ -20,6 +20,8 @@ struct KeychainHandler {
     private let keychain = KeychainWrapper(serviceName: "PINGLE", accessGroup: "com.PINGLE.iOS.keychainGroup")
     private let accessTokenKey = "accessToken"
     private let refreshTokenKey = "refreshToken"
+    private let providerTokenKey = "providerToken"
+    private let userNameKey = "userName"
     
     var accessToken: String {
         get {
@@ -42,11 +44,34 @@ struct KeychainHandler {
         }
     }
     
+    var providerToken: String {
+        get {
+            return KeychainWrapper.standard.string(forKey: providerTokenKey) ?? ""
+            
+        }
+        set {
+            KeychainWrapper.standard.set(newValue, forKey: providerTokenKey)
+        }
+    }
+    
+    var userName: String {
+        get {
+            return KeychainWrapper.standard.string(forKey: userNameKey) ?? ""
+            
+        }
+        set {
+            KeychainWrapper.standard.set(newValue, forKey: userNameKey)
+        }
+    }
+    
     mutating func removeAll() {
         accessToken = ""
         refreshToken = ""
+        providerToken = ""
         KeychainWrapper.standard.removeObject(forKey: accessTokenKey)
         KeychainWrapper.standard.removeObject(forKey: refreshTokenKey)
+        KeychainWrapper.standard.removeObject(forKey: providerToken)
+        KeychainWrapper.standard.removeObject(forKey: userName)
     }
 }
 

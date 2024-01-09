@@ -1,8 +1,8 @@
 //
-//  MeetingIntroductionViewController.swift
+//  InsertOpenChatLinkViewController.swift
 //  PINGLE-iOS
 //
-//  Created by 방민지 on 1/5/24.
+//  Created by 방민지 on 1/8/24.
 //
 
 import UIKit
@@ -10,49 +10,49 @@ import UIKit
 import SnapKit
 import Then
 
-class MeetingIntroductionViewController: BaseViewController {
-    // MARK: Property
+class InsertOpenChatLinkViewController: BaseViewController {
+    
+    // MARK: - Property
     private let backButton = UIButton()
-    private let progressBar2 = UIImageView()
-    private let PINGLEIntroductionTitle = UILabel()
-    private let PINGLEIntroductionTextField = PINGLETextFieldView(
-        titleLabel: StringLiterals.Meeting.MeetingIntroduction.PINGLETitle,
-        explainLabel: StringLiterals.Meeting.MeetingIntroduction.PINGLEExplain)
+    private let progressBar6 = UIImageView()
+    private let openChatTitle = UILabel()
+    private let openChatLinkTextField = PINGLETextFieldView(titleLabel: StringLiterals.Meeting.OpenChat.openChatTitle,
+                                                            explainLabel: StringLiterals.Meeting.OpenChat.insertChatLinkExplain)
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
                                              buttonColor: .grayscaleG08,
                                              textColor: .grayscaleG10)
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
     
-    // MARK: Life Cycle
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
+        setNavigation()
         setTarget()
         hideKeyboardWhenTappedAround()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
+        setNavigation()
     }
     
-    // MARK: UI
+    // MARK: - UI
     override func setStyle() {
         self.view.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .grayscaleG11
         }
         
         backButton.do {
             $0.setImage(ImageLiterals.Metting.Icon.icBack, for: .normal)
         }
         
-        progressBar2.do {
-            $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage2
+        progressBar6.do {
+            $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage6
             $0.contentMode = .scaleAspectFill
         }
         
-        PINGLEIntroductionTitle.do {
-            $0.text = StringLiterals.Meeting.MeetingIntroduction.introductionTitle
+        openChatTitle.do {
+            $0.text = StringLiterals.Meeting.OpenChat.openChatTitle
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
@@ -66,8 +66,8 @@ class MeetingIntroductionViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, progressBar2, 
-                              PINGLEIntroductionTitle, PINGLEIntroductionTextField,
+        self.view.addSubviews(backButton, progressBar6,
+                              openChatTitle, openChatLinkTextField,
                               nextButton, exitLabel, exitButton)
         
         backButton.snp.makeConstraints {
@@ -76,18 +76,18 @@ class MeetingIntroductionViewController: BaseViewController {
             $0.trailing.equalToSuperview().inset(333.adjusted)
         }
         
-        progressBar2.snp.makeConstraints {
+        progressBar6.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(60.adjusted)
             $0.height.equalTo(19)
             $0.leading.trailing.equalToSuperview()
         }
         
-        PINGLEIntroductionTitle.snp.makeConstraints {
+        openChatTitle.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(107.adjusted)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
-        PINGLEIntroductionTextField.snp.makeConstraints {
+        openChatLinkTextField.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(200.adjusted)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
@@ -117,9 +117,12 @@ class MeetingIntroductionViewController: BaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        let dateSelectionViewController = DateSelectionViewController()
-        navigationController?.pushViewController(dateSelectionViewController, animated: true)
-        }
+        print("여기다가 다음 뷰컨 연결 할것임")
+    }
+    
+    @objc func exitButtonTapped() {
+        print("나가기 모달 출발")
+    }
 
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {
@@ -133,21 +136,26 @@ class MeetingIntroductionViewController: BaseViewController {
     
     // MARK: Function
     func setTarget() {
-        PINGLEIntroductionTextField.searchTextField.addTarget(self,
+        openChatLinkTextField.searchTextField.addTarget(self,
                                                               action:#selector(self.textFieldDidChange(_:)),
                                                               for: .editingChanged)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
+    }
+    
+    func setNavigation() {
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func setDelegate() {
-        self.PINGLEIntroductionTextField.searchTextField.delegate = self
+        self.openChatLinkTextField.searchTextField.delegate = self
     }
 }
 
-// MARK: Extension
+// MARK: - Extension
 // MARK: UITextFieldDelegate
-extension MeetingIntroductionViewController: UITextFieldDelegate {
+extension InsertOpenChatLinkViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

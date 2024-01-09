@@ -17,6 +17,16 @@ final class RecommendViewController: BaseViewController {
     let fixView = FixView()
     
     // MARK: - Function
+    // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
+    
+    private func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: Style Helpers
     override func setStyle() {
         self.navigationController?.navigationBar.isHidden = true

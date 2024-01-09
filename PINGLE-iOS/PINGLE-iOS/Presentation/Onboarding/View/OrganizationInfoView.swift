@@ -92,7 +92,7 @@ final class OrganizationInfoView: BaseView {
         
         meetingNumberLabel.snp.makeConstraints {
             $0.leading.equalTo(meetingNumberTitleLabel.snp.trailing).offset(18.adjusted)
-            $0.centerY.equalTo(meetingNumberTitleLabel.snp.centerY)
+            $0.centerY.equalTo(meetingNumberTitleLabel)
         }
         
         memberNumberTitleLabel.snp.makeConstraints {
@@ -102,7 +102,7 @@ final class OrganizationInfoView: BaseView {
         
         memberNumberLabel.snp.makeConstraints {
             $0.leading.equalTo(meetingNumberLabel)
-            $0.centerY.equalTo(memberNumberTitleLabel.snp.centerY)
+            $0.centerY.equalTo(memberNumberTitleLabel)
         }
     }
 }

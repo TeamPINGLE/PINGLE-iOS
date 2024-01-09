@@ -26,16 +26,25 @@ final class HomeMapViewController: BaseViewController {
     let mapDetailView = HomeMapDetailView()
     let dimmedView = UIView()
     let homeDetailPopUpView = HomeDetailPopUpView()
+    let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
     let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
         setLocationManager()
         setAddTarget()
         setMarkerHandler()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
+    
+    private func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     // MARK: Style Helpers
@@ -50,6 +59,10 @@ final class HomeMapViewController: BaseViewController {
         homeDetailPopUpView.do {
             $0.isHidden = true
         }
+        
+        homeDetailCancelPopUpView.do {
+            $0.isHidden = true
+        }
     }
     
     // MARK: Layout Helpers
@@ -62,7 +75,8 @@ final class HomeMapViewController: BaseViewController {
         
         if let window = UIApplication.shared.keyWindow {
             window.addSubviews(dimmedView,
-                               homeDetailPopUpView)
+                               homeDetailPopUpView,
+                               homeDetailCancelPopUpView)
         }
         
         mapsView.snp.makeConstraints {
@@ -82,6 +96,10 @@ final class HomeMapViewController: BaseViewController {
         }
         
         homeDetailPopUpView.snp.makeConstraints {
+            $0.center.equalTo(dimmedView)
+        }
+        
+        homeDetailCancelPopUpView.snp.makeConstraints {
             $0.center.equalTo(dimmedView)
         }
     }
@@ -115,6 +133,12 @@ final class HomeMapViewController: BaseViewController {
         self.homeDetailPopUpView.participationButton.addTarget(self,
                                                                action: #selector(participationButtonTapped),
                                                                for: .touchUpInside)
+        self.homeDetailCancelPopUpView.cancelButton.addTarget(self,
+                                                              action: #selector(cancelButtonTapped),
+                                                              for: .touchUpInside)
+        self.homeDetailCancelPopUpView.backButton.addTarget(self,
+                                                            action: #selector(backButtonTapped),
+                                                            for: .touchUpInside)
     }
 }
 
@@ -195,6 +219,7 @@ extension HomeMapViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         dimmedView.isHidden = true
         homeDetailPopUpView.isHidden = true
+        homeDetailCancelPopUpView.isHidden = true
         return true
     }
 }
@@ -240,6 +265,20 @@ extension HomeMapViewController {
     
     @objc func participationButtonTapped() {
         print("참여하기 버튼 탭")
+        dimmedView.isHidden = true
+        homeDetailPopUpView.isHidden = true
+    }
+    
+    @objc func cancelButtonTapped() {
+        print("취소하기 버튼 탭")
+        dimmedView.isHidden = true
+        homeDetailCancelPopUpView.isHidden = true
+    }
+    
+    @objc func backButtonTapped() {
+        print("돌아가기 버튼 탭")
+        dimmedView.isHidden = true
+        homeDetailCancelPopUpView.isHidden = true
     }
     
     @objc func currentLocationButtonTapped() {
@@ -251,7 +290,8 @@ extension HomeMapViewController {
             dimmedView.isHidden = false
             homeDetailPopUpView.isHidden = false
         } else {
-            print("취소하기 버튼 탭")
+            dimmedView.isHidden = false
+            homeDetailCancelPopUpView.isHidden = false
         }
     }
     

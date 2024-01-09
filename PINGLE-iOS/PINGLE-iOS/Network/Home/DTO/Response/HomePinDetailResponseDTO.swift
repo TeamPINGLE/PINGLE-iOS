@@ -28,4 +28,4 @@ let homePinDetailDummy: [HomePinDetailResponseDTO] =
                           date: "2024-01-06",
                           startAt: "12:00:00", endAt: "15:30:00",
                           maxParticipants: 10, curParticipants: 9,
-                          isParticipating: false, chatLink: "https://www.google.com")]
+                          isParticipating: true, chatLink: "https://www.google.com")]

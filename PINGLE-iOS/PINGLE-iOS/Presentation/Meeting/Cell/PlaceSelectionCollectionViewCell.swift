@@ -1,8 +1,8 @@
 //
-//  SearchCollectionViewCell.swift
+//  PlaceSelectionCollectionViewCell.swift
 //  PINGLE-iOS
 //
-//  Created by 강민수 on 1/3/24.
+//  Created by 방민지 on 1/7/24.
 //
 
 import UIKit
@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
-final class SearchCollectionViewCell: UICollectionViewCell {
+final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
     
-    static let identifier: String = "SearchCollectionViewCell"
+    static let identifier: String = "placeSelectionCollectionViewCell"
     
     // MARK: Properties
-    private let keywordLabel = BasePaddingLabel(padding: UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8))
-    private let groupNameLabel = UILabel()
+    private let placeName = UILabel()
+    private let placeDetailedAddress = UILabel()
     private let selectImageView = UIImageView()
     private let horizontalLineView = UIView()
     
@@ -42,18 +42,16 @@ final class SearchCollectionViewCell: UICollectionViewCell {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.keywordLabel.do {
-            $0.text = "통신 키워드"
-            $0.font = .captionCapSemi10
-            $0.textColor = .mainPingleGreen
-            $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
-            $0.layer.cornerRadius = 10.adjusted
+        self.placeName.do {
+            $0.text = "장소 이름"
+            $0.font = .subtitleSubSemi16
+            $0.textColor = .white
         }
         
-        self.groupNameLabel.do {
-            $0.text = "단체 이름"
-            $0.font = .bodyBodyMed16
-            $0.textColor = .white
+        self.placeDetailedAddress.do {
+            $0.text = "상세 주소"
+            $0.font = .captionCapMed12
+            $0.textColor = .grayscaleG06
         }
         
         self.selectImageView.do {
@@ -66,28 +64,28 @@ final class SearchCollectionViewCell: UICollectionViewCell {
     }
     
     func setLayout() {
-        self.addSubviews(keywordLabel, groupNameLabel, selectImageView, horizontalLineView)
+        self.addSubviews(placeName, placeDetailedAddress, selectImageView, horizontalLineView)
         
-        self.keywordLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+        self.placeName.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(30)
             $0.leading.equalToSuperview()
         }
         
-        self.groupNameLabel.snp.makeConstraints {
-            $0.leading.equalTo(keywordLabel.snp.trailing).offset(8.adjusted)
-            $0.centerY.equalToSuperview()
+        self.placeDetailedAddress.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(59)
+            $0.leading.equalToSuperview()
         }
         
         self.selectImageView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(10.adjusted)
+            $0.trailing.equalToSuperview().inset(11.adjusted)
             $0.centerY.equalToSuperview()
-            $0.height.width.equalTo(24.adjusted)
+            $0.height.width.equalTo(24)
         }
         
         self.horizontalLineView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
-            $0.height.equalTo(1.adjusted)
+            $0.height.equalTo(1)
         }
     }
     

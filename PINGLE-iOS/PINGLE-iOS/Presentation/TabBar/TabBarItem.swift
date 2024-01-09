@@ -40,11 +40,11 @@ extension TabBarItem {
     
     var selectedIcon: UIImage? {
         switch self {
-            case .home:            return ImageLiterals.TabBar.imgHomeSelected.withRenderingMode(.alwaysOriginal)
-            case .recommend:       return ImageLiterals.TabBar.imgHomeSelected.withRenderingMode(.alwaysOriginal)
-            case .addPingle:       return ImageLiterals.TabBar.imgAddPingleSelected.withRenderingMode(.alwaysOriginal)
-            case .myPingle:        return ImageLiterals.TabBar.imgHomeSelected.withRenderingMode(.alwaysOriginal)
-            case .setting:         return ImageLiterals.TabBar.imgSettingSelected.withRenderingMode(.alwaysOriginal)
+        case .home:            return ImageLiterals.TabBar.imgHomeSelected.withRenderingMode(.alwaysOriginal)
+        case .recommend:       return ImageLiterals.TabBar.imgHomeSelected.withRenderingMode(.alwaysOriginal)
+        case .addPingle:       return ImageLiterals.TabBar.imgAddPingleSelected.withRenderingMode(.alwaysOriginal)
+        case .myPingle:        return ImageLiterals.TabBar.imgHomeSelected.withRenderingMode(.alwaysOriginal)
+        case .setting:         return ImageLiterals.TabBar.imgSettingSelected.withRenderingMode(.alwaysOriginal)
         }
     }
 }

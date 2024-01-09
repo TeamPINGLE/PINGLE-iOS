@@ -1,8 +1,8 @@
 //
-//  SearchOrganizationView.swift
+//  SearchPlaceView.swift
 //  PINGLE-iOS
 //
-//  Created by 강민수 on 1/3/24.
+//  Created by 방민지 on 1/8/24.
 //
 
 import UIKit
@@ -10,29 +10,29 @@ import UIKit
 import SnapKit
 import Then
 
-final class SearchOrganizationView: BaseView {
+final class SearchPlaceView: BaseView {
 
-    // MARK: Property
-    private let searchView = UIView()
+    // MARK: - Property
+    private let searchPlaceView = UIView()
     let searchTextField = UITextField()
     let searchButton = UIButton()
-    let searchCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    private let noResultLabel = UILabel()
+    let searchPlaceCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private let noPlaceResult = UILabel()
+    private let reSearch = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
 
-    // MARK: UI
+    // MARK: - UI
     override func setStyle() {
         self.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.searchView.do {
+        self.searchPlaceView.do {
             $0.backgroundColor = .grayscaleG10
             $0.layer.cornerRadius = 8.adjusted
-            $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
         }
         
         self.searchTextField.do {
@@ -42,7 +42,7 @@ final class SearchOrganizationView: BaseView {
             $0.returnKeyType = .search
             $0.enablesReturnKeyAutomatically = true
             $0.attributedPlaceholder = NSAttributedString(
-                string: StringLiterals.Onboarding.SearchBarPlaceholder.searchOrganizationPlaceholder,
+                string: StringLiterals.Meeting.SearhPlace.placeholder,
                 attributes: [
                     .font: UIFont.bodyBodyMed14,
                     .foregroundColor: UIColor.grayscaleG07
@@ -54,30 +54,36 @@ final class SearchOrganizationView: BaseView {
             $0.setImage(ImageLiterals.Icon.imgSearchIcon, for: .normal)
         }
         
-        self.searchCollectionView.do {
+        self.searchPlaceCollectionView.do {
             $0.backgroundColor = .clear
             $0.showsVerticalScrollIndicator = false
         }
         
-        self.noResultLabel.do {
-            $0.text = StringLiterals.Onboarding.ExplainTitle.noResult
+        self.noPlaceResult.do {
+            $0.text = StringLiterals.Meeting.SearhPlace.noPlaceResult
             $0.font = .subtitleSubSemi18
             $0.textColor = .grayscaleG06
+        }
+        
+        self.reSearch.do {
+            $0.text = StringLiterals.Meeting.SearhPlace.reSearch
+            $0.font = .captionCapMed12
+            $0.textColor = .grayscaleG08
         }
     }
     
     override func setLayout() {
-        self.addSubviews(searchView, noResultLabel, searchCollectionView)
-        self.searchView.addSubviews(searchTextField, searchButton)
+        self.addSubviews(searchPlaceView, noPlaceResult, reSearch, searchPlaceCollectionView)
+        self.searchPlaceView.addSubviews(searchTextField, searchButton)
         
-        searchView.snp.makeConstraints {
-            $0.top.equalToSuperview()
+        searchPlaceView.snp.makeConstraints {
+            $0.top.equalTo(self.snp.top)
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
             $0.height.equalTo(44.adjusted)
         }
         
         searchTextField.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(10.adjusted)
+            $0.top.bottom.equalToSuperview().inset(12.adjusted)
             $0.leading.equalToSuperview().inset(13.adjusted)
             $0.trailing.equalToSuperview().inset(54.adjusted)
         }
@@ -88,19 +94,26 @@ final class SearchOrganizationView: BaseView {
             $0.height.width.equalTo(24.adjusted)
         }
         
-        searchCollectionView.snp.makeConstraints {
-            $0.top.equalTo(self.searchView.snp.bottom).offset(21.adjusted)
+        searchPlaceCollectionView.snp.makeConstraints {
+            $0.top.equalTo(self.searchPlaceView.snp.bottom).offset(21.adjusted)
             $0.leading.trailing.equalToSuperview().inset(25.adjusted)
             $0.bottom.equalToSuperview()
         }
         
-        noResultLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalTo(searchCollectionView)
+        noPlaceResult.snp.makeConstraints {
+            $0.centerX.equalTo(searchPlaceCollectionView)
+            $0.top.equalTo(searchPlaceView.snp.bottom).offset(92.adjusted)
+        }
+        
+        reSearch.snp.makeConstraints {
+            $0.centerX.equalTo(searchPlaceCollectionView)
+            $0.top.equalTo(noPlaceResult.snp.bottom).offset(4.adjusted)
         }
     }
     
-    // MARK: Custom Function
+    // MARK: - Function
     func isHiddenResultLabel(isEnabled: Bool) {
-        noResultLabel.isHidden = isEnabled
+        noPlaceResult.isHidden = isEnabled
+        reSearch.isHidden = isEnabled
     }
 }

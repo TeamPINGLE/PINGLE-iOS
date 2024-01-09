@@ -47,6 +47,7 @@ final class HomeMapViewController: BaseViewController {
     
     private func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Style Helpers
@@ -131,6 +132,9 @@ final class HomeMapViewController: BaseViewController {
                                                       for: .touchUpInside)
         self.mapDetailView.participationButton.addTarget(self,
                                                          action: #selector(participantsButtonTapped),
+                                                         for: .touchUpInside)
+        self.mapDetailView.participantCountButton.addTarget(self,
+                                                         action: #selector(participantCountButtonTapped),
                                                          for: .touchUpInside)
         self.mapDetailView.talkButton.addTarget(self,
                                                 action: #selector(talkButtonTapped),
@@ -291,6 +295,12 @@ extension HomeMapViewController {
         moveToCurrentLocation()
     }
     
+    @objc func participantCountButtonTapped() {
+        print("참여현황")
+        let participantViewController = ParticipantViewController()
+        self.navigationController?.pushViewController(participantViewController, animated: true)
+    }
+    
     @objc func participantsButtonTapped() {
         if !mapDetailView.isParticipating {
             dimmedView.isHidden = false
@@ -340,8 +350,19 @@ extension HomeMapViewController {
             $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
         }
         
-        // 추후 바뀌는 이미지 등록
-        marker.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
+        var activateImage: UIImage = ImageLiterals.Home.Map.imgMapPinOtherActive
+        switch marker.meetingStatus {
+        case .play:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinPlayActive
+        case .study:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinStudyActive
+        case .multi:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinMultiActive
+        default:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinOtherActive
+        }
+        
+        marker.iconImage = NMFOverlayImage(image: activateImage)
         /// zoomLevel에 따라서 일정한 위치로 카메라 이동할 수 있도록 계산
         let offsetLat = marker.position.lat - 0.003 * pow(2, 14 - self.mapsView.mapsView.mapView.zoomLevel)
         let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: offsetLat, lng: marker.position.lng))

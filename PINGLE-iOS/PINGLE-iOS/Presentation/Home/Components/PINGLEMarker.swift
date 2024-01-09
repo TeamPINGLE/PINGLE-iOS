@@ -26,10 +26,10 @@ class PINGLEMarker: NMFMarker {
             
         case "STUDY":
             meetingStatus = .study
-
+            
         case "MULTI":
             meetingStatus = .multi
-
+            
         case "OTHERS":
             meetingStatus = .others
             

@@ -78,7 +78,7 @@ extension ChipButton {
         case .others:
             self.chipStatusString = "OTHERS"
         }
-
+        
         if isButtonSelected {
             setButtonSelected(state: state)
         } else {
@@ -93,10 +93,10 @@ extension ChipButton {
             
         case .study:
             self.setImage(ImageLiterals.Home.Chips.btnStudyChip, for: .normal)
-
+            
         case .multi:
             self.setImage(ImageLiterals.Home.Chips.btnMultiChip, for: .normal)
-
+            
         case .others:
             self.setImage(ImageLiterals.Home.Chips.btnOtherChip, for: .normal)
         }
@@ -109,10 +109,10 @@ extension ChipButton {
             
         case .study:
             self.setImage(ImageLiterals.Home.Chips.btnStudyChipSelected, for: .normal)
-
+            
         case .multi:
             self.setImage(ImageLiterals.Home.Chips.btnMultiChipSelected, for: .normal)
-
+            
         case .others:
             self.setImage(ImageLiterals.Home.Chips.btnOthersChipSelected, for: .normal)
         }

@@ -41,7 +41,7 @@ extension HomeTarget: TargetType {
             return "/teams/\(teamId)/pins"
         }
     }
-
+    
     var parameters: RequestParams {
         switch self {
         case let .pinList(_, queryDTO):

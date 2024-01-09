@@ -11,10 +11,10 @@ import Alamofire
 
 final class APIEventLogger: EventMonitor {
     func requestDidFinish(_ request: Request) {
-
+        
         print("===========================🛰 NETWORK Reqeust LOG===========================")
         print(request.description)
-
+        
         print(
             "URL: " + (request.request?.url?.absoluteString ?? "")  + "\n"
             + "Method: " + (request.request?.httpMethod ?? "") + "\n"
@@ -23,7 +23,7 @@ final class APIEventLogger: EventMonitor {
         print("Authorization: " + (request.request?.headers["Authorization"] ?? ""))
         print("Body: " + (request.request?.httpBody?.toPrettyPrintedString ?? ""))
     }
-
+    
     func request<Value>(_ request: DataRequest, didParseResponse response: DataResponse<Value, AFError>) {
         print("===========================🛰 NETWORK Response LOG===========================")
         print(

@@ -31,7 +31,6 @@ class APIRequestLoader<T: TargetType> {
     ) {
         var dataRequest = session.request(target)
         
-        
         dataRequest.responseData { response in
             switch response.result {
             case .success:

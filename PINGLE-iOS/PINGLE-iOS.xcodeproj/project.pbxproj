@@ -73,6 +73,7 @@
 		E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651EB2B4A982100676ED0 /* ExitModalView.swift */; };
 		E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651F72B4B28BF00676ED0 /* RecruitmentViewController.swift */; };
 		E5A651FA2B4B2A6F00676ED0 /* RecruitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651F92B4B2A6F00676ED0 /* RecruitButton.swift */; };
+		E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651FB2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift */; };
 		E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */; };
 		E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */; };
 		E5AD299C2B455E20005D1220 /* MakeMettingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */; };
@@ -167,6 +168,7 @@
 		E5A651EB2B4A982100676ED0 /* ExitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitModalView.swift; sourceTree = "<group>"; };
 		E5A651F72B4B28BF00676ED0 /* RecruitmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitmentViewController.swift; sourceTree = "<group>"; };
 		E5A651F92B4B2A6F00676ED0 /* RecruitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitButton.swift; sourceTree = "<group>"; };
+		E5A651FB2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertOpenChatLinkViewController.swift; sourceTree = "<group>"; };
 		E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECTAButton.swift; sourceTree = "<group>"; };
 		E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCustomTest.swift; sourceTree = "<group>"; };
 		E5AD299A2B455E20005D1220 /* MakeMettingGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMettingGuideViewController.swift; sourceTree = "<group>"; };
@@ -636,6 +638,7 @@
 				E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */,
 				E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */,
 				E5A651F72B4B28BF00676ED0 /* RecruitmentViewController.swift */,
+				E5A651FB2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 				E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */,
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
+				E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */,
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,
 				C38545402B4868860040E60D /* String+.swift in Sources */,
 				E5A651FA2B4B2A6F00676ED0 /* RecruitButton.swift in Sources */,

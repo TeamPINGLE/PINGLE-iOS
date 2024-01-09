@@ -140,6 +140,12 @@ enum StringLiterals {
             static let recruitCondition = "본인을 포함하여,\n최소 1명부터 참여 인원을 선택해주세요"
             static let warningLabel = "최대 선택 가능 인원은 99명이에요!"
         }
+      
+        enum OpenChat {
+            static let openChatTitle = "오픈채팅방 링크를\n추가해주세요!"
+            static let insertChatLinkTitle = "채팅방 링크"
+            static let insertChatLinkExplain = "링크를 입력해주세요"
+        }
     }
     
     enum Profile {

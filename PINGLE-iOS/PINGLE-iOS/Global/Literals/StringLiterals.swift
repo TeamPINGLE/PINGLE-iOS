@@ -15,33 +15,36 @@ enum StringLiterals {
     enum Onboarding {
         enum ButtonTitle {
             static let appleLogin = "Apple로 시작하기"
-            static let existingOrganization = "기존 단체\n입장하기"
-            static let makeOrganization = "신규 단체\n개설하기"
+            static let existingOrganization = "이미 등록된\n단체가 있어요"
+            static let makeOrganization = "새로운 단체를\n등록하고 싶어요"
             static let requestOrganization = "단체를 직접 추가해주세요"
         }
         
         enum ExplainTitle {
-            static let onboarding = "핑글에 오신걸\n환영합니다!"
-            static let searchOrganization = "속해있는 단체의\n이름을 알려주세요"
+            static let onboarding = "입장 방식을\n선택해주세요!"
+            static let searchOrganization = "속해있는 단체의\n이름을 알려주세요!"
             static let bottomRequest = "찾는 단체가 없나요?"
             static let noResult = "검색 결과가 없어요"
-            static let inviteCodeTitle = "단체 정보를 확인하고\n초대 코드를 입력해주세요"
-            static let meetingNumber = "개설된 모임 수"
-            static let memberNumber = "총 인원"
+            static let inviteCodeTitle = "단체 정보를 확인하고\n초대 코드를 입력해주세요!"
+            static let meetingNumber = "개최된 핑글 수"
+            static let memberNumber = "참여자 수"
             static let inviteCodeTextFieldTitle = "초대코드"
-            static let infoMessage = "모임 개설자로부터 받은 초대 코드를 입력해주세요"
-            static let entranceTitle = "단체 입장\n완료!"
+            static let infoMessage = "단체 개설자로부터 받은 초대 코드를 입력해주세요"
+            static let entranceTitle = "모든 준비가\n끝났어요!"
             static let postposition = "에서"
             static let welcomMessage = "핑글 여정을 함께해보세요!"
+            static let loginTitle = "Ready to\nPINGLE?"
+            static let loginIntroduce = "가볍고 재미있는 모임 문화,"
+            static let loginAdvice = "핑글과 함께 만들어요!"
         }
         
         enum NavigationTitle {
-            static let searchOrganizationNavigation = "기존 단체 입장하기"
+            static let searchOrganizationNavigation = "단체 입장하기"
         }
         
         enum SearchBarPlaceholder {
             static let searchOrganizationPlaceholder = "단체 이름을 검색해보세요"
-            static let inviteCodePlaceholder = "영문+숫자 12자리"
+            static let inviteCodePlaceholder = "초대 코드를 입력해주세요"
         }
     }
     
@@ -170,6 +173,6 @@ enum StringLiterals {
     }
     
     enum ToastView {
-        static let wrongCode = "잘못된 초대 코드입니다"
+        static let wrongCode = "초대 코드를 다시 확인해주세요!"
     }
 }

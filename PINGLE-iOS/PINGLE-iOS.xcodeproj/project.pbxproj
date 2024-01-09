@@ -24,6 +24,15 @@
 		C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307282F2B42CFDF00AA575B /* TabBarItem.swift */; };
 		C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728312B42D0F900AA575B /* PINGLETabBarController.swift */; };
 		C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728332B42E06D00AA575B /* HomeMapViewController.swift */; };
+		C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */; };
+		C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91892B4CEC32004EE026 /* NetworkResult.swift */; };
+		C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C918B2B4CECE2004EE026 /* TargetType.swift */; };
+		C30C918E2B4CED0F004EE026 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C918D2B4CED0F004EE026 /* KeychainHandler.swift */; };
+		C30C91912B4CED43004EE026 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = C30C91902B4CED43004EE026 /* SwiftKeychainWrapper */; };
+		C30C91932B4CED84004EE026 /* APIEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91922B4CED84004EE026 /* APIEventLogger.swift */; };
+		C30C91952B4CED93004EE026 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91942B4CED93004EE026 /* BaseResponse.swift */; };
+		C30C91972B4CED9F004EE026 /* APIRequestLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91962B4CED9F004EE026 /* APIRequestLoader.swift */; };
+		C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91982B4CEDAB004EE026 /* NetworkService.swift */; };
 		C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */; };
 		C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */; };
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
@@ -45,11 +54,9 @@
 		C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DF2B3BF1CB004BB2B8 /* b.swift */; };
 		C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E32B3BF203004BB2B8 /* BaseView.swift */; };
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
-		C396030B2B3BF33B004BB2B8 /* k.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030A2B3BF33B004BB2B8 /* k.swift */; };
 		C396030D2B3BF33F004BB2B8 /* l.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030C2B3BF33F004BB2B8 /* l.swift */; };
 		C396030F2B3BF345004BB2B8 /* m.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396030E2B3BF345004BB2B8 /* m.swift */; };
 		C39603142B3BF35E004BB2B8 /* n.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603132B3BF35E004BB2B8 /* n.swift */; };
-		C39603162B3BF369004BB2B8 /* o.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603152B3BF369004BB2B8 /* o.swift */; };
 		C39603182B3BF36C004BB2B8 /* p.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603172B3BF36C004BB2B8 /* p.swift */; };
 		C396031A2B3BF370004BB2B8 /* q.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603192B3BF370004BB2B8 /* q.swift */; };
 		C396031C2B3BF374004BB2B8 /* r.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396031B2B3BF374004BB2B8 /* r.swift */; };
@@ -58,6 +65,9 @@
 		C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C39603232B3BF484004BB2B8 /* SnapKit */; };
 		C39603272B3BF48E004BB2B8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C39603262B3BF48E004BB2B8 /* Alamofire */; };
 		C396032A2B3BF497004BB2B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C39603292B3BF497004BB2B8 /* Kingfisher */; };
+		C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B8D212B4CFB68008DCAC6 /* HomeTarget.swift */; };
+		C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B8D232B4CFB70008DCAC6 /* HomeService.swift */; };
+		C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */; };
 		C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */; };
 		C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */; };
 		C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D9602B49866F00E817B5 /* FixView.swift */; };
@@ -126,6 +136,14 @@
 		C307282F2B42CFDF00AA575B /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		C30728312B42D0F900AA575B /* PINGLETabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLETabBarController.swift; sourceTree = "<group>"; };
 		C30728332B42E06D00AA575B /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
+		C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderFieldKey.swift; sourceTree = "<group>"; };
+		C30C91892B4CEC32004EE026 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		C30C918B2B4CECE2004EE026 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		C30C918D2B4CED0F004EE026 /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
+		C30C91922B4CED84004EE026 /* APIEventLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEventLogger.swift; sourceTree = "<group>"; };
+		C30C91942B4CED93004EE026 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		C30C91962B4CED9F004EE026 /* APIRequestLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestLoader.swift; sourceTree = "<group>"; };
+		C30C91982B4CEDAB004EE026 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListResponseDTO.swift; sourceTree = "<group>"; };
 		C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButtonStatus.swift; sourceTree = "<group>"; };
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
@@ -149,15 +167,16 @@
 		C39602DF2B3BF1CB004BB2B8 /* b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = b.swift; sourceTree = "<group>"; };
 		C39602E32B3BF203004BB2B8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		C396030A2B3BF33B004BB2B8 /* k.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = k.swift; sourceTree = "<group>"; };
 		C396030C2B3BF33F004BB2B8 /* l.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = l.swift; sourceTree = "<group>"; };
 		C396030E2B3BF345004BB2B8 /* m.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = m.swift; sourceTree = "<group>"; };
 		C39603132B3BF35E004BB2B8 /* n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = n.swift; sourceTree = "<group>"; };
-		C39603152B3BF369004BB2B8 /* o.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = o.swift; sourceTree = "<group>"; };
 		C39603172B3BF36C004BB2B8 /* p.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p.swift; sourceTree = "<group>"; };
 		C39603192B3BF370004BB2B8 /* q.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = q.swift; sourceTree = "<group>"; };
 		C396031B2B3BF374004BB2B8 /* r.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = r.swift; sourceTree = "<group>"; };
 		C396031D2B3BF379004BB2B8 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
+		C39B8D212B4CFB68008DCAC6 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
+		C39B8D232B4CFB70008DCAC6 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEViewController.swift; sourceTree = "<group>"; };
 		C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		C3A0D9602B49866F00E817B5 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
@@ -212,6 +231,7 @@
 			files = (
 				C396032A2B3BF497004BB2B8 /* Kingfisher in Frameworks */,
 				C39603272B3BF48E004BB2B8 /* Alamofire in Frameworks */,
+				C30C91912B4CED43004EE026 /* SwiftKeychainWrapper in Frameworks */,
 				C39603212B3BF47A004BB2B8 /* Then in Frameworks */,
 				C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */,
 				90476A84D658F8529383126E /* Pods_PINGLE_iOS.framework in Frameworks */,
@@ -242,8 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */,
-				C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */,
-				C385453D2B4857D30040E60D /* HomePinDetailResponseDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -527,7 +545,14 @@
 		C39603012B3BF2BF004BB2B8 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				C396030A2B3BF33B004BB2B8 /* k.swift */,
+				C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */,
+				C30C91892B4CEC32004EE026 /* NetworkResult.swift */,
+				C30C918B2B4CECE2004EE026 /* TargetType.swift */,
+				C30C918D2B4CED0F004EE026 /* KeychainHandler.swift */,
+				C30C91942B4CED93004EE026 /* BaseResponse.swift */,
+				C30C91922B4CED84004EE026 /* APIEventLogger.swift */,
+				C30C91962B4CED9F004EE026 /* APIRequestLoader.swift */,
+				C30C91982B4CEDAB004EE026 /* NetworkService.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -567,7 +592,9 @@
 		C39603082B3BF2F3004BB2B8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C39603152B3BF369004BB2B8 /* o.swift */,
+				C39B8D202B4CFB24008DCAC6 /* DTO */,
+				C39B8D262B4CFB7E008DCAC6 /* Router */,
+				C39B8D252B4CFB77008DCAC6 /* Service */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -604,6 +631,48 @@
 				C39603132B3BF35E004BB2B8 /* n.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		C39B8D202B4CFB24008DCAC6 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				C39B8D282B4D04C9008DCAC6 /* Request */,
+				C39B8D272B4D04C0008DCAC6 /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		C39B8D252B4CFB77008DCAC6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C39B8D232B4CFB70008DCAC6 /* HomeService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C39B8D262B4CFB7E008DCAC6 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C39B8D212B4CFB68008DCAC6 /* HomeTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		C39B8D272B4D04C0008DCAC6 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */,
+				C385453D2B4857D30040E60D /* HomePinDetailResponseDTO.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		C39B8D282B4D04C9008DCAC6 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		C3E199EB2B4A7BD0009B54B8 /* Recovered References */ = {
@@ -757,6 +826,7 @@
 				C39603232B3BF484004BB2B8 /* SnapKit */,
 				C39603262B3BF48E004BB2B8 /* Alamofire */,
 				C39603292B3BF497004BB2B8 /* Kingfisher */,
+				C30C91902B4CED43004EE026 /* SwiftKeychainWrapper */,
 			);
 			productName = "PINGLE-iOS";
 			productReference = C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */;
@@ -791,6 +861,7 @@
 				C39603222B3BF483004BB2B8 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C39603252B3BF48E004BB2B8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C39603282B3BF497004BB2B8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = C39602B52B3BEE06004BB2B8 /* Products */;
 			projectDirPath = "";
@@ -886,19 +957,24 @@
 			files = (
 				F14F3C702B49BEB60049A9EE /* AccountPopUpView.swift in Sources */,
 				C39603142B3BF35E004BB2B8 /* n.swift in Sources */,
+				C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */,
 				C396031E2B3BF379004BB2B8 /* s.swift in Sources */,
 				F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */,
 				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
 				C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
+				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
+				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
+				C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
 				E5A651F62B4AF72500676ED0 /* SearchPlaceView.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
+				C30C91932B4CED84004EE026 /* APIEventLogger.swift in Sources */,
 				F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */,
 				F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */,
 				E5A651EE2B4ADE6000676ED0 /* PlaceSelectionViewController.swift in Sources */,
@@ -907,6 +983,7 @@
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */,
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
+				C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */,
 				C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */,
 				E5A651F42B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift in Sources */,
 				E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */,
@@ -914,10 +991,10 @@
 				E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */,
 				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
+				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
 				C396030D2B3BF33F004BB2B8 /* l.swift in Sources */,
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
 				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,
-				C396030B2B3BF33B004BB2B8 /* k.swift in Sources */,
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
 				F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
@@ -928,26 +1005,29 @@
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */,
-				C39603162B3BF369004BB2B8 /* o.swift in Sources */,
 				C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */,
 				F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
 				F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */,
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
+				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,
 				E5A651F22B4AE43900676ED0 /* SearchedPlaceModel.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
 				C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */,
 				C396031C2B3BF374004BB2B8 /* r.swift in Sources */,
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
+				C30C918E2B4CED0F004EE026 /* KeychainHandler.swift in Sources */,
 				C39603182B3BF36C004BB2B8 /* p.swift in Sources */,
 				C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */,
 				C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */,
 				C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */,
+				C30C91972B4CED9F004EE026 /* APIRequestLoader.swift in Sources */,
 				C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */,
 				E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */,
 				F1239BD92B486B230072A02A /* EntranceCompletedViewController.swift in Sources */,
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
+				C30C91952B4CED93004EE026 /* BaseResponse.swift in Sources */,
 				E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */,
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
@@ -1194,6 +1274,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		C396031F2B3BF47A004BB2B8 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -1229,6 +1317,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C30C91902B4CED43004EE026 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
 		C39603202B3BF47A004BB2B8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C396031F2B3BF47A004BB2B8 /* XCRemoteSwiftPackageReference "Then" */;

@@ -133,6 +133,7 @@ enum StringLiterals {
             static let PINGLEStartTime = "시작 시각"
             static let PINGLEEndTime = "종료 시각"
             static let PINGLETimePlacsholder = "00:00"
+            static let warningMessage = "종료 시각은 시작 시각 이후로 선택해주세요!"
         }
         
         enum ExitModalView {
@@ -161,7 +162,7 @@ enum StringLiterals {
         }
         
         enum FinalResult {
-            static let finalResultTitle = "핑글할 개최할\n준비 되었나요?"
+            static let finalResultTitle = "핑글을 개최할\n준비 되었나요?"
             static let finalResultButton = "핑글 개최하기"
             enum FinalResultCard {
                 static let finalCardCalendar = "일시"

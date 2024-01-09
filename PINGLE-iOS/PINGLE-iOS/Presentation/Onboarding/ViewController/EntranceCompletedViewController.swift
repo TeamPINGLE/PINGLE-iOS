@@ -64,7 +64,7 @@ final class EntranceCompletedViewController: BaseViewController {
         }
         
         self.backgroundImageView.do {
-            $0.image = ImageLiterals.Metting.Guide.imgMettingGraphic
+            $0.image = ImageLiterals.Meeting.Guide.imgMettingGraphic
         }
     }
     

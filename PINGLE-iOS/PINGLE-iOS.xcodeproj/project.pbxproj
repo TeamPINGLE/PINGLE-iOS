@@ -26,6 +26,13 @@
 		C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728332B42E06D00AA575B /* HomeMapViewController.swift */; };
 		C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */; };
 		C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91892B4CEC32004EE026 /* NetworkResult.swift */; };
+		C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C918B2B4CECE2004EE026 /* TargetType.swift */; };
+		C30C918E2B4CED0F004EE026 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C918D2B4CED0F004EE026 /* KeychainHandler.swift */; };
+		C30C91912B4CED43004EE026 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = C30C91902B4CED43004EE026 /* SwiftKeychainWrapper */; };
+		C30C91932B4CED84004EE026 /* APIEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91922B4CED84004EE026 /* APIEventLogger.swift */; };
+		C30C91952B4CED93004EE026 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91942B4CED93004EE026 /* BaseResponse.swift */; };
+		C30C91972B4CED9F004EE026 /* APIRequestLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91962B4CED9F004EE026 /* APIRequestLoader.swift */; };
+		C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91982B4CEDAB004EE026 /* NetworkService.swift */; };
 		C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */; };
 		C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */; };
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
@@ -121,6 +128,12 @@
 		C30728332B42E06D00AA575B /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
 		C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderFieldKey.swift; sourceTree = "<group>"; };
 		C30C91892B4CEC32004EE026 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		C30C918B2B4CECE2004EE026 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		C30C918D2B4CED0F004EE026 /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
+		C30C91922B4CED84004EE026 /* APIEventLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEventLogger.swift; sourceTree = "<group>"; };
+		C30C91942B4CED93004EE026 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		C30C91962B4CED9F004EE026 /* APIRequestLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestLoader.swift; sourceTree = "<group>"; };
+		C30C91982B4CEDAB004EE026 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListResponseDTO.swift; sourceTree = "<group>"; };
 		C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButtonStatus.swift; sourceTree = "<group>"; };
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
@@ -198,6 +211,7 @@
 			files = (
 				C396032A2B3BF497004BB2B8 /* Kingfisher in Frameworks */,
 				C39603272B3BF48E004BB2B8 /* Alamofire in Frameworks */,
+				C30C91912B4CED43004EE026 /* SwiftKeychainWrapper in Frameworks */,
 				C39603212B3BF47A004BB2B8 /* Then in Frameworks */,
 				C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */,
 				90476A84D658F8529383126E /* Pods_PINGLE_iOS.framework in Frameworks */,
@@ -512,6 +526,12 @@
 			children = (
 				C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */,
 				C30C91892B4CEC32004EE026 /* NetworkResult.swift */,
+				C30C918B2B4CECE2004EE026 /* TargetType.swift */,
+				C30C918D2B4CED0F004EE026 /* KeychainHandler.swift */,
+				C30C91942B4CED93004EE026 /* BaseResponse.swift */,
+				C30C91922B4CED84004EE026 /* APIEventLogger.swift */,
+				C30C91962B4CED9F004EE026 /* APIRequestLoader.swift */,
+				C30C91982B4CEDAB004EE026 /* NetworkService.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -712,6 +732,7 @@
 				C39603232B3BF484004BB2B8 /* SnapKit */,
 				C39603262B3BF48E004BB2B8 /* Alamofire */,
 				C39603292B3BF497004BB2B8 /* Kingfisher */,
+				C30C91902B4CED43004EE026 /* SwiftKeychainWrapper */,
 			);
 			productName = "PINGLE-iOS";
 			productReference = C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */;
@@ -746,6 +767,7 @@
 				C39603222B3BF483004BB2B8 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C39603252B3BF48E004BB2B8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C39603282B3BF497004BB2B8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = C39602B52B3BEE06004BB2B8 /* Products */;
 			projectDirPath = "";
@@ -847,12 +869,15 @@
 				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
 				C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
+				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
+				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
+				C30C91932B4CED84004EE026 /* APIEventLogger.swift in Sources */,
 				F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */,
 				F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */,
 				C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */,
@@ -891,14 +916,17 @@
 				C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */,
 				C396031C2B3BF374004BB2B8 /* r.swift in Sources */,
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
+				C30C918E2B4CED0F004EE026 /* KeychainHandler.swift in Sources */,
 				C39603182B3BF36C004BB2B8 /* p.swift in Sources */,
 				C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */,
 				C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */,
 				C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */,
+				C30C91972B4CED9F004EE026 /* APIRequestLoader.swift in Sources */,
 				C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */,
 				E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */,
 				F1239BD92B486B230072A02A /* EntranceCompletedViewController.swift in Sources */,
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
+				C30C91952B4CED93004EE026 /* BaseResponse.swift in Sources */,
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,
@@ -1142,6 +1170,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		C396031F2B3BF47A004BB2B8 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -1177,6 +1213,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C30C91902B4CED43004EE026 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
 		C39603202B3BF47A004BB2B8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C396031F2B3BF47A004BB2B8 /* XCRemoteSwiftPackageReference "Then" */;

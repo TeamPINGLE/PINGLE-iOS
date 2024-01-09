@@ -33,6 +33,8 @@ class DateSelectionViewController: BaseViewController {
     private let bottomStartTimeView = CustomTimePickerView()
     private let bottomEndTimeView = CustomTimePickerView()
     private let formatter = DateFormatter()
+    private let exitModal = ExitModalView()
+    private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.Meeting.DateSelection.warningMessage)
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -73,13 +75,21 @@ class DateSelectionViewController: BaseViewController {
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
         }
+        
+        warningToastView.do {
+            $0.alpha = 0.0
+        }
+        
+        exitModal.do {
+                    $0.isHidden = true
+                }
     }
     
     override func setLayout() {
         self.view.addSubviews(backButton, progressBar3,
                               dateSelectionTitle, PINGLEDateSelectionTextField,
                               PINGLETStartTimeTextField, PINGLEEndTimeTextField,
-                              nextButton, exitLabel, exitButton)
+                              nextButton, exitLabel, exitButton, warningToastView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -116,7 +126,7 @@ class DateSelectionViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
@@ -131,6 +141,11 @@ class DateSelectionViewController: BaseViewController {
             $0.leading.equalTo(exitLabel.snp.trailing).offset(4.adjusted)
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
+        }
+        
+        warningToastView.snp.makeConstraints {
+            $0.bottom.equalTo(nextButton.snp.top).offset(-16.adjusted)
+            $0.centerX.equalToSuperview()
         }
     }
     
@@ -150,7 +165,6 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func showDatePicker() {
-        print("데이트피커 올라오셈")
         bottomDateView.frame.origin.y = view.frame.height
         setBottomSheetLayout()
         UIView.animate(withDuration: 0.5) {
@@ -159,7 +173,6 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func showStartTimePicker() {
-        print("시작타임피커 올라오셈")
         bottomStartTimeView.frame.origin.y = view.frame.height
         setStartTimeViewLayout()
         UIView.animate(withDuration: 0.5) {
@@ -168,7 +181,6 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func showEndTimePicker() {
-        print("종료타임피커 올라오셈")
         bottomEndTimeView.frame.origin.y = view.frame.height
         setEndTimeViewLayout()
         UIView.animate(withDuration: 0.5) {
@@ -195,26 +207,45 @@ class DateSelectionViewController: BaseViewController {
     @objc func endTimeDoneButtonTapped() {
         let selectedStartTime = bottomStartTimeView.timePicker.date
         let selectedEndTime = bottomEndTimeView.timePicker.date
-
+        
         if selectedEndTime > selectedStartTime {
             PINGLEEndTimeTextField.searchTextField.text = timeFormat(time: selectedEndTime)
             UIView.animate(withDuration: 0.5, animations: {
                 self.bottomEndTimeView.removeFromSuperview()
             })
-            nextButton.activateButton()
-        } else {
-            print("Error: End time should be after start time")
-            nextButton.disabledButton()
+            self.nextButton.activateButton()
+        }
+        else {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.bottomEndTimeView.removeFromSuperview()
+            }, completion: { _ in
+                self.showWarningToastView(duration: 2.0)
+                self.nextButton.disabledButton()
+            })
         }
     }
     
     @objc func nextButtonTapped() {
         let placeSelectionViewController = PlaceSelectionViewController()
         navigationController?.pushViewController(placeSelectionViewController, animated: true)
-        }
+    }
     
     @objc func exitButtonTapped() {
-        print("여기다가 나가기 모달 띄우기")
+        self.view.addSubview(exitModal)
+        exitModal.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        exitModal.isHidden = false
+    }
+    
+    @objc func exitModalKeepButtonTapped() {
+        exitModal.isHidden = true
+        exitModal.removeFromSuperview()
+    }
+    
+    @objc func exitModalExitButtonTapped() {
+        print("홈화면으로 이동")
     }
 
     // MARK: Function
@@ -236,21 +267,14 @@ class DateSelectionViewController: BaseViewController {
         bottomStartTimeView.doneButton.addTarget(self, action: #selector(startTimeDoneButtonTapped), for: .touchUpInside)
         bottomEndTimeView.doneButton.addTarget(self, action: #selector(endTimeDoneButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
+        exitModal.exitButton.addTarget(self,
+                                       action: #selector(exitModalExitButtonTapped),
+                                       for: .touchUpInside)
+        exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
     private func setNavigation() {
         navigationController?.navigationBar.isHidden = true
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == PINGLEDateSelectionTextField.searchTextField {
-            showDatePicker()
-        } else if textField == PINGLETStartTimeTextField.searchTextField {
-            showStartTimePicker()
-        } else if textField == PINGLEEndTimeTextField.searchTextField {
-            showEndTimePicker()
-        }
-        return true
     }
 
     private func dateFormat(date: Date) -> String {
@@ -269,7 +293,6 @@ class DateSelectionViewController: BaseViewController {
         
         bottomDateView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(295.adjusted)
             $0.bottom.equalToSuperview().inset(41.adjusted)
         }
     }  
@@ -279,7 +302,6 @@ class DateSelectionViewController: BaseViewController {
         
         bottomStartTimeView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(295.adjusted)
             $0.bottom.equalToSuperview().inset(41.adjusted)
         }
     }
@@ -289,7 +311,6 @@ class DateSelectionViewController: BaseViewController {
         
         bottomEndTimeView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(295.adjusted)
             $0.bottom.equalToSuperview().inset(41.adjusted)
         }
     }
@@ -303,9 +324,32 @@ class DateSelectionViewController: BaseViewController {
 
 // MARK: Extension
 // MARK: UITextFieldDelegate
+extension DateSelectionViewController {
+    func showWarningToastView(duration: TimeInterval = 2.0) {
+        self.warningToastView.fadeIn()
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            self.warningToastView.fadeOut()
+        }
+    }
+}
+
 extension DateSelectionViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == PINGLEDateSelectionTextField.searchTextField {
+            showDatePicker()
+            return false
+        } else if textField == PINGLETStartTimeTextField.searchTextField {
+            showStartTimePicker()
+            return false
+        } else if textField == PINGLEEndTimeTextField.searchTextField {
+            showEndTimePicker()
+            return false
+        }
         return true
     }
 }

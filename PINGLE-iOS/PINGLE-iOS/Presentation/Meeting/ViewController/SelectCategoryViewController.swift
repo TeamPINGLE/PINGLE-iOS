@@ -36,6 +36,7 @@ class SelectCategoryViewController: BaseViewController {
     
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
+    private let exitModal = ExitModalView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -73,6 +74,10 @@ class SelectCategoryViewController: BaseViewController {
             $0.text = StringLiterals.Meeting.MeetingCategory.ExitButton.exitLabel
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
+        }
+        
+        exitModal.do {
+            $0.isHidden = true
         }
     }
     
@@ -168,6 +173,24 @@ class SelectCategoryViewController: BaseViewController {
         navigationController?.pushViewController(meetingIntroductionViewController, animated: true)
     }
     
+    @objc func exitButtonTapped() {
+        self.view.addSubview(exitModal)
+        exitModal.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        exitModal.isHidden = false
+    }
+    
+    @objc func exitModalKeepButtonTapped() {
+        exitModal.isHidden = true
+        exitModal.removeFromSuperview()
+    }
+    
+    @objc func exitModalExitButtonTapped() {
+        print("홈화면으로 이동")
+    }
+    
     // MARK: - Function
     func unselectAllButtons() {
         playButton.nonSelectedButton()
@@ -183,5 +206,10 @@ class SelectCategoryViewController: BaseViewController {
         multiButton.addTarget(self, action: #selector(categorySelected), for: .touchUpInside)
         othersButton.addTarget(self, action: #selector(categorySelected), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
+        exitModal.exitButton.addTarget(self,
+                                                               action: #selector(exitModalExitButtonTapped),
+                                                               for: .touchUpInside)
+        exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
 }

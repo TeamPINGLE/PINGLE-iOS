@@ -176,7 +176,6 @@ final class RecruitmentViewController: BaseViewController {
     }
     
     @objc func plusButtonTapped() {
-        print("눌렸어염")
         if let text = recruitTextField.text, var number = Int(text) {
             number += 1
             recruitTextField.text = "\(number)"
@@ -193,7 +192,6 @@ final class RecruitmentViewController: BaseViewController {
     }
     
     @objc func minusButtonTapped() {
-        print("눌렸어염")
         if let text = recruitTextField.text, var number = Int(text) {
             number -= 1
             recruitTextField.text = "\(number)"
@@ -224,7 +222,8 @@ final class RecruitmentViewController: BaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        print("여기 누르면 오카방 어쩌구로 넘어감")
+        let insertOpenChatLinkViewController = InsertOpenChatLinkViewController()
+        navigationController?.pushViewController(insertOpenChatLinkViewController, animated: true)
     }
     
     @objc func exitButtonTapped() {

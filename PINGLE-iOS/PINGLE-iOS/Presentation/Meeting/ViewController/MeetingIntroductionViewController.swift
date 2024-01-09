@@ -23,6 +23,7 @@ class MeetingIntroductionViewController: BaseViewController {
                                              textColor: .grayscaleG10)
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
+    private let exitModal = ExitModalView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -39,7 +40,7 @@ class MeetingIntroductionViewController: BaseViewController {
     // MARK: UI
     override func setStyle() {
         self.view.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .grayscaleG11
         }
         
         backButton.do {
@@ -63,6 +64,10 @@ class MeetingIntroductionViewController: BaseViewController {
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
         }
+        
+        exitModal.do {
+                    $0.isHidden = true
+                }
     }
     
     override func setLayout() {
@@ -93,7 +98,7 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
@@ -131,6 +136,24 @@ class MeetingIntroductionViewController: BaseViewController {
         }
     }
     
+    @objc func exitButtonTapped() {
+        self.view.addSubview(exitModal)
+        exitModal.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        exitModal.isHidden = false
+    }
+    
+    @objc func exitModalKeepButtonTapped() {
+        exitModal.isHidden = true
+        exitModal.removeFromSuperview()
+    }
+    
+    @objc func exitModalExitButtonTapped() {
+        print("홈화면으로 이동")
+    }
+    
     // MARK: Function
     func setTarget() {
         PINGLEIntroductionTextField.searchTextField.addTarget(self,
@@ -138,6 +161,11 @@ class MeetingIntroductionViewController: BaseViewController {
                                                               for: .editingChanged)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
+        exitModal.exitButton.addTarget(self,
+                                       action: #selector(exitModalExitButtonTapped),
+                                       for: .touchUpInside)
+        exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
     override func setDelegate() {

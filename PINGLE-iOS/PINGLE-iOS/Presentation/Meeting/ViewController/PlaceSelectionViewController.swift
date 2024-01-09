@@ -23,6 +23,7 @@ class PlaceSelectionViewController: BaseViewController {
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
+    private let exitModal = ExitModalView()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -60,6 +61,10 @@ class PlaceSelectionViewController: BaseViewController {
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
         }
+        
+        exitModal.do {
+                    $0.isHidden = true
+                }
     }
     
     override func setLayout() {
@@ -89,7 +94,7 @@ class PlaceSelectionViewController: BaseViewController {
         }
 
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
@@ -134,6 +139,10 @@ class PlaceSelectionViewController: BaseViewController {
         nextButton.addTarget(self, action: #selector(nextButtonTapped),
                              for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
+        exitModal.exitButton.addTarget(self,
+                                       action: #selector(exitModalExitButtonTapped),
+                                       for: .touchUpInside)
+        exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Objc Function
@@ -146,11 +155,26 @@ class PlaceSelectionViewController: BaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        print("다음 화면 연결 !")
+        let recruitmentViewController = RecruitmentViewController()
+        navigationController?.pushViewController(recruitmentViewController, animated: true)
         }
     
     @objc func exitButtonTapped() {
-        print("여기다가 나가기 모달 띄우기")
+        self.view.addSubview(exitModal)
+        exitModal.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        exitModal.isHidden = false
+    }
+    
+    @objc func exitModalKeepButtonTapped() {
+        exitModal.isHidden = true
+        exitModal.removeFromSuperview()
+    }
+    
+    @objc func exitModalExitButtonTapped() {
+        print("홈화면으로 이동")
     }
 }
 

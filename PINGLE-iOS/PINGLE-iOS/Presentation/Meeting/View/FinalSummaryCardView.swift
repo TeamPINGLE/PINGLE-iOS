@@ -186,9 +186,8 @@ final class FinalSummaryCardView: BaseView {
         
         bottomBackgroundView.snp.makeConstraints {
             $0.top.equalTo(topBackgroundView.snp.bottom)
-            $0.bottom.equalToSuperview()
             $0.width.equalTo(topBackgroundView)
-            $0.height.equalTo(181)
+            $0.height.equalTo(181.adjusted)
         }
         
         dateTimeImageView.snp.makeConstraints {
@@ -228,7 +227,7 @@ final class FinalSummaryCardView: BaseView {
         
         recruitNumberImageView.snp.makeConstraints {
             $0.leading.equalTo(locationImageView)
-            $0.top.equalTo(locationImageView.snp.bottom).offset(30)
+            $0.top.equalTo(locationImageView.snp.bottom).offset(30.adjusted)
         }
         
         recruitNumberTitleLabel.snp.makeConstraints {

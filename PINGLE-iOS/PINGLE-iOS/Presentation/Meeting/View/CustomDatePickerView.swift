@@ -54,8 +54,8 @@ class CustomDatePickerView: BaseView {
         self.addSubviews(datePicker, dividerView, resetButton, doneButton)
         
         self.snp.makeConstraints {
-            $0.height.equalTo(288.adjusted)
-            $0.width.equalTo(327.adjusted)
+            $0.height.equalTo(288)
+            $0.width.equalTo(327)
         }
         
         datePicker.snp.makeConstraints {

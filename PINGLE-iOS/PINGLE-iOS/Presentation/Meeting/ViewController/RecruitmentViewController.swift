@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class RecruitmentViewController: BaseViewController {
+final class RecruitmentViewController: BaseViewController {
     // MARK: Property
     private let backButton = UIButton()
     private let progressBar5 = UIImageView()
@@ -36,7 +36,8 @@ class RecruitmentViewController: BaseViewController {
         setInitialNum()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setNavigation()
     }
     
@@ -210,14 +211,13 @@ class RecruitmentViewController: BaseViewController {
         if let text = recruitTextField.text, var number = Int(text) {
             if number < 2 {
                 minusButton.disabledButton()
-            }
-            if number > 1 {
+            } else if number > 1 {
                 minusButton.activateButton()
             }
+            
             if number > 98 {
                 plusButton.disabledButton()
-            }
-            if number < 99 {
+            } else if number < 99 {
                 plusButton.activateButton()
             }
         }

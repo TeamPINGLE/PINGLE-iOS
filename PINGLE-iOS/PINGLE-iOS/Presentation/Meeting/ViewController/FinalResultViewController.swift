@@ -128,10 +128,6 @@ class FinalResultViewController: BaseViewController {
         print("여기다가 다음 뷰컨 연결 할것임")
     }
     
-    @objc func exitButtonTapped() {
-        print("나가기 모달 출발")
-    }
-    
     // MARK: Function
     func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)

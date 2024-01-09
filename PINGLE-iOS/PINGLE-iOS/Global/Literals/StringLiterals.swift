@@ -141,6 +141,12 @@ enum StringLiterals {
             static let noPlaceResult = "검색 결과가 없어요"
             static let reSearch = "다른 장소로 검색해보세요"
         }
+
+        enum OpenChat {
+            static let openChatTitle = "오픈채팅방 링크를\n추가해주세요!"
+            static let insertChatLinkTitle = "채팅방 링크"
+            static let insertChatLinkExplain = "링크를 입력해주세요"
+        }
     }
     
     enum Profile {

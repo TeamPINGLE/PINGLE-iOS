@@ -45,6 +45,7 @@ final class HomeMapViewController: BaseViewController {
     
     private func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Style Helpers
@@ -125,6 +126,9 @@ final class HomeMapViewController: BaseViewController {
                                                       for: .touchUpInside)
         self.mapDetailView.participationButton.addTarget(self,
                                                          action: #selector(participantsButtonTapped),
+                                                         for: .touchUpInside)
+        self.mapDetailView.participantCountButton.addTarget(self,
+                                                         action: #selector(participantCountButtonTapped),
                                                          for: .touchUpInside)
         self.mapDetailView.talkButton.addTarget(self,
                                                 action: #selector(talkButtonTapped),
@@ -283,6 +287,12 @@ extension HomeMapViewController {
     
     @objc func currentLocationButtonTapped() {
         moveToCurrentLocation()
+    }
+    
+    @objc func participantCountButtonTapped() {
+        print("참여현황")
+        let participantViewController = ParticipantViewController()
+        self.navigationController?.pushViewController(participantViewController, animated: true)
     }
     
     @objc func participantsButtonTapped() {

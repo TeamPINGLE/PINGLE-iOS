@@ -10,20 +10,20 @@ import Foundation
 import Alamofire
 
 enum HomeTarget {
-    case pinList(_ teamId: Int, _ queryDTO: HomePinListRequestQueryDTO)
+    case pinList(_ teamId: String)
 }
 
 extension HomeTarget: TargetType {
     var authorization: Authorization {
         switch self {
-        case .pinList(_, _):
+        case .pinList( _):
             return .authorization
         }
     }
     
     var headerType: HTTPHeaderType {
         switch self {
-        case .pinList(_, _):
+        case .pinList( _):
             return .hasToken
         }
     }
@@ -37,15 +37,15 @@ extension HomeTarget: TargetType {
     
     var path: String {
         switch self {
-        case .pinList(let teamId, _):
+        case .pinList(let teamId):
             return "/teams/\(teamId)/pins"
         }
     }
     
     var parameters: RequestParams {
         switch self {
-        case let .pinList(_, queryDTO):
-            return .requestQuery(queryDTO)
+        case let .pinList(_):
+            return .requestPlain
         }
     }
 }

@@ -15,9 +15,11 @@ final class HomeMapView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    var nowLat: Double = 37.56299678698725
-    var nowLng: Double = 126.8569346126135
+    var nowLat: Double = 37.56681744520662
+    var nowLng: Double = 126.97865226075146
     
+    var homePinList: [HomePinListResponseDTO] = []
+
     // MARK: Component
     let chipStackView = UIStackView()
     
@@ -133,7 +135,7 @@ final class HomeMapView: BaseView {
     // MARK: Marker Function
     /// 마커 추가 메소드
     func setMarker() {
-        homePinListDummy.forEach {
+        homePinList.forEach {
             let pingleMarker = PINGLEMarker()
             
             pingleMarker.id = $0.id

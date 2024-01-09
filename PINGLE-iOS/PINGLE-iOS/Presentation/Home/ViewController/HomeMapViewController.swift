@@ -20,6 +20,8 @@ final class HomeMapViewController: BaseViewController {
     var shouldUpdateMap: Bool = true
     /// 현재 선택되지 않은 필터 버튼 개수
     var unselectedButton: Int = 0
+    var homePinDetailList: HomePinDetailResponseDTO?
+    var teamId = "a"
     
     // MARK: Component
     let mapsView = HomeMapView()
@@ -36,6 +38,7 @@ final class HomeMapViewController: BaseViewController {
         setLocationManager()
         setAddTarget()
         setMarkerHandler()
+        pinList(teamId: teamId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -324,6 +327,7 @@ extension HomeMapViewController {
     func bindDetailViewData(id: Int) {
         // 해당 id값을 넣어서 서버 통신 후 data 받아오기
         let data = homePinDetailDummy[0]
+//        let data = homePinList
         self.mapDetailView.dataBind(data: data)
         self.homeDetailPopUpView.dataBind(data: data)
     }
@@ -340,5 +344,21 @@ extension HomeMapViewController {
         let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: offsetLat, lng: marker.position.lng))
         newCameraPosition.animation = .easeIn
         self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
+    }
+    
+    func pinList(teamId: String) {
+        
+        NetworkService.shared.homeService.pinList(teamId: teamId) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                print(data)
+                self.mapsView.homePinList = data
+                
+            default:
+                print("실패")
+                return
+            }
+        }
     }
 }

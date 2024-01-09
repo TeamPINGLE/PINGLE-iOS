@@ -68,9 +68,12 @@ enum ImageLiterals {
         }
     }
   
-    enum Metting {
+    enum Meeting {
         enum Icon {
             static var icBack: UIImage { .load(named: "icBackButton")}
+            static var icCalendar: UIImage { .load(named: "icCalendar")}
+            static var icLocation: UIImage { .load(named: "icLoation")}
+            static var icUser: UIImage { .load(named: "icUser")}
         }
         
         enum Guide {
@@ -83,6 +86,13 @@ enum ImageLiterals {
             static var categoryStudyImage: UIImage { .load(named: "imgSample")}
             static var categoryMultiImage: UIImage { .load(named: "imgSample")}
             static var categoryOthersImage: UIImage { .load(named: "imgSample")}
+            
+            enum Badge {
+                static var playBadge: UIImage { .load(named: "imgPlayBadge")}
+                static var studyBadge: UIImage { .load(named: "imgStudyBadge")}
+                static var multiBadge: UIImage { .load(named: "imgMultiBadge")}
+                static var othersBadge: UIImage { .load(named: "imgOthersBadge")}
+            }
         }
         
         enum ProgressBar {

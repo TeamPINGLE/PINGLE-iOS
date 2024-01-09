@@ -38,7 +38,6 @@ final class HomeMapViewController: BaseViewController {
         self.pinList(teamId: teamId)
         setLocationManager()
         setAddTarget()
-        setMarkerHandler()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +63,10 @@ final class HomeMapViewController: BaseViewController {
         }
         
         homeDetailCancelPopUpView.do {
+            $0.isHidden = true
+        }
+        
+        mapDetailView.do {
             $0.isHidden = true
         }
     }
@@ -327,7 +330,7 @@ extension HomeMapViewController {
     func bindDetailViewData(id: Int) {
         // 해당 id값을 넣어서 서버 통신 후 data 받아오기
         let data = homePinDetailDummy[0]
-//        let data = homePinList
+        //        let data = homePinList
         self.mapDetailView.dataBind(data: data)
         self.homeDetailPopUpView.dataBind(data: data)
     }
@@ -348,17 +351,42 @@ extension HomeMapViewController {
     
     func pinList(teamId: Int) {
         
-        NetworkService.shared.homeService.pinList(teamId: teamId) { response in
+        NetworkService.shared.homeService.pinList(teamId: teamId) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
                 print(data)
-                self.mapsView.homePinList = data
-                self.mapsView.setMarker()
+                DispatchQueue.main.async { [weak self] in
+                    self?.mapsView.homePinList = data
+                    self?.setMarker() // 데이터를 받은 후에 setMarker 호출
+                }
             default:
                 print("실패")
                 return
             }
         }
+    }
+    
+    // MARK: Marker Function
+    /// 마커 추가 메소드
+    func setMarker() {
+        mapsView.homePinList.forEach {
+            print(mapsView.homePinList)
+            let pingleMarker = PINGLEMarker()
+            
+            pingleMarker.id = $0.id
+            pingleMarker.changeStringToStatus(string: $0.category)
+            pingleMarker.meetingString = $0.category
+            
+            let x = $0.x
+            let y = $0.y
+            
+            pingleMarker.iconImage = NMFOverlayImage(image: mapsView.setMarkerColor(category: $0.category))
+            
+            pingleMarker.position = NMGLatLng(lat: x, lng: y)
+            pingleMarker.mapView = mapsView.mapsView.mapView
+            mapsView.homeMarkerList.append(pingleMarker)
+        }
+        self.setMarkerHandler()
     }
 }

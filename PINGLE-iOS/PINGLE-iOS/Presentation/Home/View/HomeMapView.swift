@@ -49,7 +49,6 @@ final class HomeMapView: BaseView {
     // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setMarker()
     }
     
     // MARK: Style Helpers
@@ -133,28 +132,6 @@ final class HomeMapView: BaseView {
     }
     
     // MARK: Marker Function
-    /// 마커 추가 메소드
-    func setMarker() {
-        print("setMarker")
-        homePinList.forEach {
-            print(homePinList)
-            let pingleMarker = PINGLEMarker()
-            
-            pingleMarker.id = $0.id
-            pingleMarker.changeStringToStatus(string: $0.category)
-            pingleMarker.meetingString = $0.category
-            
-            let x = $0.x
-            let y = $0.y
-            
-            pingleMarker.iconImage = NMFOverlayImage(image: setMarkerColor(category: $0.category))
-            
-            pingleMarker.position = NMGLatLng(lat: x, lng: y)
-            pingleMarker.mapView = mapsView.mapView
-            homeMarkerList.append(pingleMarker)
-        }
-    }
-    
     /// 마커 이미지 변경 메소드, 추후 이미지 변경 예쩡
     func setMarkerColor(category: String) -> UIImage {
         switch category {

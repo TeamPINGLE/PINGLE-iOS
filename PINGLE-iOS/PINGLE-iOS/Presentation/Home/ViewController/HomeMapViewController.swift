@@ -333,8 +333,19 @@ extension HomeMapViewController {
             $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
         }
         
-        // 추후 바뀌는 이미지 등록
-        marker.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
+        var activateImage: UIImage = ImageLiterals.Home.Map.imgMapPinOtherActive
+        switch marker.meetingStatus {
+        case .play:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinPlayActive
+        case .study:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinStudyActive
+        case .multi:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinMultiActive
+        default:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinOtherActive
+        }
+        
+        marker.iconImage = NMFOverlayImage(image: activateImage)
         /// zoomLevel에 따라서 일정한 위치로 카메라 이동할 수 있도록 계산
         let offsetLat = marker.position.lat - 0.003 * pow(2, 14 - self.mapsView.mapsView.mapView.zoomLevel)
         let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: offsetLat, lng: marker.position.lng))

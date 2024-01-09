@@ -117,8 +117,9 @@ class MeetingIntroductionViewController: BaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        print("여기다가 다음 뷰컨 연결 할것임")
-    }
+        let dateSelectionViewController = DateSelectionViewController()
+        navigationController?.pushViewController(dateSelectionViewController, animated: true)
+        }
 
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {

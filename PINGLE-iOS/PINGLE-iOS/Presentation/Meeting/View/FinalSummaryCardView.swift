@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class FinalSummaryView: BaseView {
+final class FinalSummaryCardView: BaseView {
     
     // MARK: - Variables
     // MARK: Property

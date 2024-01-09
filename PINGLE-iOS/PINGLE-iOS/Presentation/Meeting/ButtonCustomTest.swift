@@ -11,7 +11,7 @@ import SnapKit
 
 class ButtonCustomTest: BaseViewController {
 // MARK: Property
-    let finalView = FinalSummaryView()
+    let finalView = FinalSummaryCardView()
 
 // MARK: - UI
     override func setStyle() {

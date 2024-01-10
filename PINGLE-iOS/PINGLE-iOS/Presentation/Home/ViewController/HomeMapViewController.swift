@@ -277,18 +277,21 @@ extension HomeMapViewController {
         print("참여하기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailPopUpView.isHidden = true
+        reloadDetailView()
     }
     
     @objc func cancelButtonTapped() {
         print("취소하기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
+        reloadDetailView()
     }
     
     @objc func backButtonTapped() {
         print("돌아가기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
+        reloadDetailView()
     }
     
     @objc func currentLocationButtonTapped() {
@@ -320,6 +323,11 @@ extension HomeMapViewController {
     }
     
     // MARK: Custom Function
+    func reloadDetailView() {
+        self.mapDetailView.dataBind(data: self.homePinDetailList ?? homePinDetailDummy[0])
+        self.homeDetailPopUpView.dataBind(data: self.homePinDetailList ?? homePinDetailDummy[0])
+    }
+    
     /// 마커에 핸들러 부여
     func setMarkerHandler() {
         mapDetailView.isHidden = true
@@ -374,6 +382,8 @@ extension HomeMapViewController {
                 guard let data = data.data else { return }
                 print(data)
                 DispatchQueue.main.async { [weak self] in
+                    self?.homePinDetailList = data[0]
+                    // 추후 아래 부분 불러와주며 업데이트
                     self?.mapDetailView.dataBind(data: data[0])
                     self?.homeDetailPopUpView.dataBind(data: data[0])
                 }

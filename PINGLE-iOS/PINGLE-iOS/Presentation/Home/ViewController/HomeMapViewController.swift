@@ -136,8 +136,8 @@ final class HomeMapViewController: BaseViewController {
                                                          action: #selector(participantsButtonTapped),
                                                          for: .touchUpInside)
         self.mapDetailView.participantCountButton.addTarget(self,
-                                                         action: #selector(participantCountButtonTapped),
-                                                         for: .touchUpInside)
+                                                            action: #selector(participantCountButtonTapped),
+                                                            for: .touchUpInside)
         self.mapDetailView.talkButton.addTarget(self,
                                                 action: #selector(talkButtonTapped),
                                                 for: .touchUpInside)
@@ -330,10 +330,6 @@ extension HomeMapViewController {
     }
     
     // MARK: Custom Function
-//    func reloadDetailView() {
-//        self.bindDetailViewData(id: self.markerId)
-//    }
-    
     /// 마커에 핸들러 부여
     func setMarkerHandler() {
         mapDetailView.isHidden = true
@@ -353,6 +349,7 @@ extension HomeMapViewController {
     }
     
     func bindDetailViewData(id: Int) {
+        // 추후 바뀐 그룹 받아오는 로직 작성 예정
         self.pinDetail(pinId: id, teamId: self.teamId)
     }
     
@@ -381,6 +378,25 @@ extension HomeMapViewController {
         self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
     }
     
+    
+    // MARK: Server Function
+    func pinList(teamId: Int) {
+        NetworkService.shared.homeService.pinList(teamId: teamId) { [weak self] response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                print(data)
+                DispatchQueue.main.async { [weak self] in
+                    self?.mapsView.homePinList = data
+                    self?.setMarker() // 데이터를 받은 후에 setMarker 호출
+                }
+            default:
+                print("실패")
+                return
+            }
+        }
+    }
+    
     func pinDetail(pinId: Int, teamId: Int) {
         NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: teamId) { [weak self] response in
             switch response {
@@ -392,23 +408,6 @@ extension HomeMapViewController {
                     self?.mapDetailView.dataBind(data: data[0])
                     self?.homeDetailPopUpView.dataBind(data: data[0])
                     self?.meetingId = data[0].id
-                }
-            default:
-                print("실패")
-                return
-            }
-        }
-    }
-    
-    func pinList(teamId: Int) {
-        NetworkService.shared.homeService.pinList(teamId: teamId) { [weak self] response in
-            switch response {
-            case .success(let data):
-                guard let data = data.data else { return }
-                print(data)
-                DispatchQueue.main.async { [weak self] in
-                    self?.mapsView.homePinList = data
-                    self?.setMarker() // 데이터를 받은 후에 setMarker 호출
                 }
             default:
                 print("실패")

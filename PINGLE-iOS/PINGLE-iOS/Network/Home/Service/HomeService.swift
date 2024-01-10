@@ -24,13 +24,11 @@ final class HomeService: APIRequestLoader<HomeTarget>, HomeServiceProtocol {
         fetchData(target: .pinDetail(teamId, pinId),
                   responseData: BaseResponse<[HomePinDetailResponseDTO]>.self, completion: completion)
     }
-
     
     func meetingJoin(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
         fetchData(target: .meetingJoin(meetingId),
                   responseData: BaseResponse<String?>.self, completion: completion)
     }
-
     
     func meetingCancel(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
         fetchData(target: .meetingCancel(meetingId),

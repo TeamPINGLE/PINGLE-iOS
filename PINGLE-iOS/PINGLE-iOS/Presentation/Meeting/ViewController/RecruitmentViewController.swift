@@ -188,6 +188,7 @@ final class RecruitmentViewController: BaseViewController {
             if number > 98 {
                 plusButton.disabledButton()
             }
+            updateNextButtonState()
         }
     }
     
@@ -209,6 +210,7 @@ final class RecruitmentViewController: BaseViewController {
         if let text = recruitTextField.text, var number = Int(text) {
             if number < 2 {
                 minusButton.disabledButton()
+                nextButton.disabledButton()
             } else if number > 1 {
                 minusButton.activateButton()
             }

@@ -22,6 +22,7 @@ struct KeychainHandler {
     private let refreshTokenKey = "refreshToken"
     private let providerTokenKey = "providerToken"
     private let userNameKey = "userName"
+    private let userGroupKey = "userGroup"
     
     var accessToken: String {
         get {
@@ -29,25 +30,21 @@ struct KeychainHandler {
         }
         set {
             KeychainWrapper.standard.set(newValue, forKey: accessTokenKey)
-            setAcessToken(accessToken: newValue)
         }
     }
     
     var refreshToken: String {
         get {
             return KeychainWrapper.standard.string(forKey: refreshTokenKey) ?? ""
-            
         }
         set {
             KeychainWrapper.standard.set(newValue, forKey: refreshTokenKey)
-            setRefreshToken(refreshToken: newValue)
         }
     }
     
     var providerToken: String {
         get {
             return KeychainWrapper.standard.string(forKey: providerTokenKey) ?? ""
-            
         }
         set {
             KeychainWrapper.standard.set(newValue, forKey: providerTokenKey)
@@ -57,10 +54,18 @@ struct KeychainHandler {
     var userName: String {
         get {
             return KeychainWrapper.standard.string(forKey: userNameKey) ?? ""
-            
         }
         set {
             KeychainWrapper.standard.set(newValue, forKey: userNameKey)
+        }
+    }
+    
+    var userGroup: [UserGroup] {
+        get {
+            return loadUserGroup()
+        }
+        set {
+            saveUserGroup(newValue)
         }
     }
     
@@ -68,113 +73,27 @@ struct KeychainHandler {
         accessToken = ""
         refreshToken = ""
         providerToken = ""
+        userGroup = []
         KeychainWrapper.standard.removeObject(forKey: accessTokenKey)
         KeychainWrapper.standard.removeObject(forKey: refreshTokenKey)
-        KeychainWrapper.standard.removeObject(forKey: providerToken)
-        KeychainWrapper.standard.removeObject(forKey: userName)
-    }
-}
-
-func addUserTokenOnKeyChain(tokenName: String, tokenContent: String) {
-    let credentials = Credentials(tokenName: tokenName, tokenContent: tokenContent)
-    let secretContent = credentials.tokenContent.data(using: String.Encoding.utf8)!
-    let query: [CFString: Any] = [kSecClass: kSecClassGenericPassword, kSecAttrAccount: credentials.tokenName, kSecValueData: secretContent]
-    
-    let status = SecItemAdd(query as CFDictionary, nil)
-    if status == errSecSuccess {
-        print("Create Keychain Success")
-    } else if status == errSecDuplicateItem {
-        updateUserTokenOnKeyChain(tokenName: tokenName, tokenContent: tokenContent)
-    } else {
-        print("Create Keychain Fail")
-    }
-}
-
-func updateUserTokenOnKeyChain(tokenName: String, tokenContent: String) {
-    let previousQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword, kSecAttrAccount: tokenName]
-    let updateQuery: [CFString: Any] = [kSecValueData: tokenContent.data(using: String.Encoding.utf8)!]
-    let status = SecItemUpdate(previousQuery as CFDictionary, updateQuery as CFDictionary)
-    
-    if status == errSecSuccess {
-        print("Update Keychain Success")
-    } else {
-        print("Update Keychain Fail")
-    }
-}
-
-func readUserTokenOnKeyChain(tokenName: String) -> String {
-    let query: [CFString: Any] = [kSecClass: kSecClassGenericPassword, kSecAttrAccount: tokenName, kSecReturnAttributes: true, kSecReturnData: true]
-    
-    var item: CFTypeRef?
-    if SecItemCopyMatching(query as CFDictionary, &item) != errSecSuccess {
-        print("Read Keychain Fail")
-        return ""
+        KeychainWrapper.standard.removeObject(forKey: providerTokenKey)
+        UserDefaults.standard.removeObject(forKey: userGroupKey)
     }
     
-    guard let existingToken = item as? [String: Any] else { return "" }
-    guard let data = existingToken[kSecValueData as String] as? Data else { return "" }
-    guard let content = String(data: data, encoding: .utf8) else { return "" }
-    
-    return content
-}
-
-func deleteUserTokenOnKeyChain(tokenName: String) {
-    let deleteQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword, kSecAttrAccount: tokenName]
-    let status = SecItemDelete(deleteQuery as CFDictionary)
-    if status == errSecSuccess {
-        print("Delete Keychain Success")
-    } else {
-        print("Delete Keychain Fail")
+    func saveUserGroup(_ userGroups: [UserGroup]) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(userGroups) {
+            UserDefaults.standard.set(encoded, forKey: "userGroup")
+        }
     }
-}
 
-func isUserTokenOnKeyChain(tokenName: String) -> Bool {
-    let query: [CFString: Any] = [kSecClass: kSecClassGenericPassword, kSecAttrAccount: tokenName, kSecReturnAttributes: true, kSecReturnData: true]
-    
-    var item: CFTypeRef?
-    if SecItemCopyMatching(query as CFDictionary, &item) != errSecSuccess {
-        print("Read Keychain Fail")
-        return false
-    }
-    
-    guard let existingToken = item as? [String: Any] else { return false }
-    guard let data = existingToken[kSecValueData as String] as? Data else { return false }
-    guard let _ = String(data: data, encoding: .utf8) else { return false }
-    
-    return true
-}
-
-func setUsername(username: String) {
-    UserDefaults.standard.setValue(username, forKey: "username")
-}
-
-func setAcessToken(accessToken: String) {
-    UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
-}
-
-func setRefreshToken(refreshToken: String) {
-    UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
-}
-
-func getUsername() -> String {
-    if let username = UserDefaults.standard.string(forKey: "username") {
-        print("username: \(username)")
-        return username
-    } else {
-        return ""
-    }
-}
-
-func deleteUsername() {
-    UserDefaults.standard.removeObject(forKey: "username")
-}
-
-func isFirstTime() -> Bool {
-    let defaults = UserDefaults.standard
-    if defaults.object(forKey: "isFirstTime") == nil {
-        defaults.set("No", forKey: "isFirstTime")
-        return true
-    } else {
-        return false
+    func loadUserGroup() -> [UserGroup] {
+        if let data = UserDefaults.standard.data(forKey: "userGroup") {
+            let decoder = JSONDecoder()
+            if let userGroups = try? decoder.decode([UserGroup].self, from: data) {
+                return userGroups
+            }
+        }
+        return []
     }
 }

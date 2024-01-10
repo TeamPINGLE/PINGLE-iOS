@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct UserInfoResponseDTO: Codable {
+    let id: Int
+    let name, email, provider: String
+    let groups: [UserGroup]
+}
+
+struct UserGroup: Codable {
+    let id: Int
+    let name: String
+}

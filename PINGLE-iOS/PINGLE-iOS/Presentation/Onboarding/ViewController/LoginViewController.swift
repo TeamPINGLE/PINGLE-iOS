@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Alamofire
 import AuthenticationServices
 import SnapKit
 import Then
@@ -111,7 +112,7 @@ final class LoginViewController: BaseViewController {
     @objc func handleAuthorizationAppleIDButtonPress() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
+        request.requestedScopes = [.fullName]
         
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
@@ -121,14 +122,37 @@ final class LoginViewController: BaseViewController {
     
     // MARK: Network Function
     func login(data: LoginRequestBodyDTO) {
-        NetworkService.shared.onboardingService.login(bodyDTO: data) { response in
-            print(response)
+        NetworkService.shared.onboardingService.login(bodyDTO: data) { [weak self] response in
+            guard let self = self else { return }
             switch response {
             case .success(let data):
-                let onboardingViewController = OnboardingViewController()
-                self.navigationController?.pushViewController(onboardingViewController, animated: true)
+                guard let data = data.data else { return }
+                KeychainHandler.shared.accessToken = data.accessToken
+                KeychainHandler.shared.refreshToken = data.refreshToken
+                
+                /// 사용자가 단체가 있는지 검사
+                self.getUserInfo()
             default:
-                print("error")
+                print("login error")
+            }
+        }
+    }
+    
+    func getUserInfo() {
+        NetworkService.shared.onboardingService.userInfo { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                KeychainHandler.shared.userGroup = data.groups
+                if KeychainHandler.shared.userGroup.isEmpty {
+                    let onboardingViewController = OnboardingViewController()
+                    self.navigationController?.pushViewController(onboardingViewController, animated: true)
+                } else {
+                    let PINGLETabBarController = PINGLETabBarController()
+                    self.navigationController?.pushViewController(PINGLETabBarController, animated: true)
+                }
+            default:
+                print("getUserInfo error")
             }
         }
     }

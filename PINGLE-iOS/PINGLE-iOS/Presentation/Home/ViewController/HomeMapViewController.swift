@@ -277,18 +277,21 @@ extension HomeMapViewController {
         print("참여하기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailPopUpView.isHidden = true
+        reloadDetailView()
     }
     
     @objc func cancelButtonTapped() {
         print("취소하기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
+        reloadDetailView()
     }
     
     @objc func backButtonTapped() {
         print("돌아가기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
+        reloadDetailView()
     }
     
     @objc func currentLocationButtonTapped() {
@@ -320,6 +323,11 @@ extension HomeMapViewController {
     }
     
     // MARK: Custom Function
+    func reloadDetailView() {
+        self.mapDetailView.dataBind(data: self.homePinDetailList ?? homePinDetailDummy[0])
+        self.homeDetailPopUpView.dataBind(data: self.homePinDetailList ?? homePinDetailDummy[0])
+    }
+    
     /// 마커에 핸들러 부여
     func setMarkerHandler() {
         mapDetailView.isHidden = true
@@ -339,10 +347,7 @@ extension HomeMapViewController {
     
     func bindDetailViewData(id: Int) {
         // 해당 id값을 넣어서 서버 통신 후 data 받아오기
-        let data = homePinDetailDummy[0]
-        //        let data = homePinList
-        self.mapDetailView.dataBind(data: data)
-        self.homeDetailPopUpView.dataBind(data: data)
+        self.pinDetail(pinId: id, teamId: self.teamId)
     }
     
     func markerTapped(marker: PINGLEMarker) {
@@ -370,9 +375,26 @@ extension HomeMapViewController {
         self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
     }
     
+    func pinDetail(pinId: Int, teamId: Int) {
+        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: teamId) { [weak self] response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                print(data)
+                DispatchQueue.main.async { [weak self] in
+                    self?.homePinDetailList = data[0]
+                    // 추후 아래 부분 불러와주며 업데이트
+                    self?.mapDetailView.dataBind(data: data[0])
+                    self?.homeDetailPopUpView.dataBind(data: data[0])
+                }
+            default:
+                print("실패")
+                return
+            }
+        }
+    }
+    
     func pinList(teamId: Int) {
-        KeychainHandler.shared.accessToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsInJvbCI6IlVTRVIiLCJpYXQiOjE3MDQ4MjI1ODIsImV4cCI6MTcwNDgyNDM4Mn0.E3vtW-6S0Ew2WY-ziQf6KeTeZSTru7tUskadMygs0Z5y9cllWzykNRdoC_CiRPvKgPj7JY0A2H5OaK0hTi0w-Q"
-        KeychainHandler.shared.refreshToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsImlhdCI6MTcwNDgyMjU4MiwiZXhwIjoxNzA2MDMyMTgyfQ.0iRJp--ol_PA9Bf9zK7R6xY0jxWOBzP6HwJSYvbx5hgbQUwMjMDwFSCwU0nkmkAAnA-Xu_J1jxiVQNyvP-Q7Zg"
         NetworkService.shared.homeService.pinList(teamId: teamId) { [weak self] response in
             switch response {
             case .success(let data):

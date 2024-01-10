@@ -50,11 +50,10 @@ final class HomeMapDetailView: BaseView {
         
         badgeImageView.do {
             $0.contentMode = .scaleAspectFill
-            $0.image = ImageLiterals.Home.Detail.imgStudyBadge
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "제목", lineHeight: 25)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 25)
             $0.numberOfLines = 2
             $0.textColor = badgeColor
             $0.font = .subtitleSubBold16
@@ -63,7 +62,7 @@ final class HomeMapDetailView: BaseView {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "이름", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.textColor = .grayscaleG05
             $0.font = .bodyBodyMed14
         }
@@ -88,13 +87,13 @@ final class HomeMapDetailView: BaseView {
         }
         
         dateLabel.do {
-            $0.text = "2023년 12월 31일"
+            $0.text = " "
             $0.textColor = .grayscaleG02
             $0.font = .bodyBodySemi14
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "01:00 ~ 05:00", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.textColor = .grayscaleG02
             $0.font = .bodyBodySemi14
         }
@@ -110,7 +109,7 @@ final class HomeMapDetailView: BaseView {
         }
         
         locationLabel.do {
-            $0.text = "장소"
+            $0.text = " "
             $0.textColor = .grayscaleG02
             $0.font = .bodyBodyMed14
         }
@@ -304,7 +303,18 @@ final class HomeMapDetailView: BaseView {
                     $0.backgroundColor = .grayscaleG07
                     $0.isEnabled = false
                 }
+            } else {
+                participationButton.do {
+                    $0.setTitleColor(.white, for: .normal)
+                    $0.backgroundColor = .white
+                    $0.isEnabled = true
+                }
             }
+        } else {
+            participantCountButton.completeLabel.isHidden = true
+            participantCountButton.countStackView.isHidden = false
+            participantCountButton.participantsLabel.textColor = .white
+            participantCountButton.rightArrowImageView.image = ImageLiterals.Home.Detail.icParticipantArrowActivate
         }
         
         /// 모집 미완료, 참여 신청 O
@@ -315,6 +325,13 @@ final class HomeMapDetailView: BaseView {
                 $0.isEnabled = true
                 $0.setTitleColor(.white, for: .normal)
                 $0.makeBorder(width: 1, color: .white)
+            }
+        } else {
+            participationButton.setTitle(StringLiterals.Home.Detail.participationButton, for: .normal)
+            talkButton.do {
+                $0.isEnabled = false
+                $0.setTitleColor(.grayscaleG06, for: .normal)
+                $0.makeBorder(width: 1, color: .grayscaleG06)
             }
         }
     }

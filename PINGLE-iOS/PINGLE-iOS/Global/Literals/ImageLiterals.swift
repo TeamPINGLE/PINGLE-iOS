@@ -27,6 +27,7 @@ enum ImageLiterals {
     }
     
     enum OnBoarding {
+        static var imgPINGLELogo: UIImage { .load(named: "imgPINGLELogo")}
         static var imgApplelogo: UIImage { .load(named: "imgApplelogo")}
         static var imgSample: UIImage { .load(named: "imgSample")}
     }

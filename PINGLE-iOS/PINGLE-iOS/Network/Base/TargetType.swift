@@ -40,6 +40,12 @@ extension TargetType {
                 HTTPHeaderFieldKey.xAccessAuth.rawValue: "Bearer \(KeychainHandler.shared.accessToken)",
                 HTTPHeaderFieldKey.xRefreshAuth.rawValue: "Bearer \(KeychainHandler.shared.refreshToken)"
             ]
+            
+        case .providerToken:
+            return [
+                HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
+                HTTPHeaderFieldKey.providerToken.rawValue: KeychainHandler.shared.providerToken
+            ]
         }
     }
 }
@@ -57,6 +63,8 @@ extension TargetType {
             urlRequest.setValue("Bearer \(KeychainHandler.shared.accessToken)", forHTTPHeaderField: HTTPHeaderFieldKey.authentication.rawValue)
         case .unauthorization:
             break
+        case .socialAuthorization:
+            urlRequest.setValue(KeychainHandler.shared.providerToken, forHTTPHeaderField: HTTPHeaderFieldKey.providerToken.rawValue)
         }
         
         switch headerType {
@@ -70,6 +78,9 @@ extension TargetType {
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
             urlRequest.setValue("Bearer \(KeychainHandler.shared.accessToken)", forHTTPHeaderField: HTTPHeaderFieldKey.xAccessAuth.rawValue)
             urlRequest.setValue("Bearer \(KeychainHandler.shared.refreshToken)", forHTTPHeaderField: HTTPHeaderFieldKey.xRefreshAuth.rawValue)
+        case .providerToken:
+            urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
+            urlRequest.setValue(KeychainHandler.shared.providerToken, forHTTPHeaderField: HTTPHeaderFieldKey.providerToken.rawValue)
         }
         
         switch parameters {

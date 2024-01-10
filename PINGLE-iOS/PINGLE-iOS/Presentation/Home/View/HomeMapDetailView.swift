@@ -303,7 +303,18 @@ final class HomeMapDetailView: BaseView {
                     $0.backgroundColor = .grayscaleG07
                     $0.isEnabled = false
                 }
+            } else {
+                participationButton.do {
+                    $0.setTitleColor(.white, for: .normal)
+                    $0.backgroundColor = .white
+                    $0.isEnabled = true
+                }
             }
+        } else {
+            participantCountButton.completeLabel.isHidden = true
+            participantCountButton.countStackView.isHidden = false
+            participantCountButton.participantsLabel.textColor = .white
+            participantCountButton.rightArrowImageView.image = ImageLiterals.Home.Detail.icParticipantArrowActivate
         }
         
         /// 모집 미완료, 참여 신청 O
@@ -314,6 +325,13 @@ final class HomeMapDetailView: BaseView {
                 $0.isEnabled = true
                 $0.setTitleColor(.white, for: .normal)
                 $0.makeBorder(width: 1, color: .white)
+            }
+        } else {
+            participationButton.setTitle(StringLiterals.Home.Detail.participationButton, for: .normal)
+            talkButton.do {
+                $0.isEnabled = false
+                $0.setTitleColor(.grayscaleG06, for: .normal)
+                $0.makeBorder(width: 1, color: .grayscaleG06)
             }
         }
     }

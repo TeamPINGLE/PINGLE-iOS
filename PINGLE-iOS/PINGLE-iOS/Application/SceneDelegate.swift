@@ -14,26 +14,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        let networkManager = NetworkManager()
+        
         let splashViewController = SplashViewController()
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = splashViewController
         window.makeKeyAndVisible()
         
         var rootViewController = UIViewController()
-        print("스플래쉬 화면이 시작해요")
+        /// 스플래쉬 화면이 시작
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-            ///어세스 토큰이 있는가? | 있는 경우 - 애플로그인 회원가입 한 경우, 없는 경우 - 없는 경우 - 애플로그인 회원가입 안한경우
             if KeychainHandler.shared.accessToken.isEmpty {
-                print("어세스 토큰 없어요 이양반")
+                /// 어세스 토큰 없는 경우 - 애플 계정을 통한 회원가입을 한 적이 없는 경우
                 rootViewController = LoginViewController()
-                /// 유저 그룹이 있는가? | 있는 경우 - 온보딩에서 그룹을 선택한 경우, 없는 경우 - 온보딩에서 그룹을 선택한 적 없는 경우
             } else {
-                print("어세스 토큰이 있어요 이사람")
+                /// 어세스 토큰이 있는 경우 - 애플 계정을 통한 회원가입을 한 적이 있는 경우 : 가입한 단체가 있는지 확인하는 통신 코드 구현
+                networkManager.getUserInfo()
                 if KeychainHandler.shared.userGroup.isEmpty {
-                    print("가입한 단체가 없어요")
+                    /// 가입한 단체가 없는 경우 - 온보딩 화면에서 단체를 선택한 경험이 없는 경우
                     rootViewController = OnboardingViewController()
                 } else {
-                    print("가입한 단체가 있어요")
+                    /// 가입한 단체가 있는 경우 - 온보딩 화면에서 단체를 선택한 경험이 있는 경우
                     rootViewController = PINGLETabBarController()
                 }
             }

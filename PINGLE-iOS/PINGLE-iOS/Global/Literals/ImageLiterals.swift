@@ -78,14 +78,14 @@ enum ImageLiterals {
         
         enum Guide {
             static var imgExitButton: UIImage { .load(named: "imgExitButton")}
-            static var imgMettingGraphic: UIImage { .load(named: "imgMettingGraphic")}
+            static var imgMettingGraphic: UIImage { .load(named: "graphicIntro")}
         }
         
         enum Category {
-            static var categoryPlayImage: UIImage { .load(named: "imgSample")}
-            static var categoryStudyImage: UIImage { .load(named: "imgSample")}
-            static var categoryMultiImage: UIImage { .load(named: "imgSample")}
-            static var categoryOthersImage: UIImage { .load(named: "imgSample")}
+            static var categoryPlayImage: UIImage { .load(named: "graphicPlay")}
+            static var categoryStudyImage: UIImage { .load(named: "graphicStudy")}
+            static var categoryMultiImage: UIImage { .load(named: "graphicMulti")}
+            static var categoryOthersImage: UIImage { .load(named: "graphicOthers")}
             
             enum Badge {
                 static var playBadge: UIImage { .load(named: "imgPlayBadge")}

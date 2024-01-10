@@ -11,24 +11,34 @@ import Alamofire
 
 enum HomeTarget {
     case pinList(_ teamId: Int)
-    case pinDetail(_ teamId: Int,_ pinId: Int)
+    case pinDetail(_ teamId: Int, _ pinId: Int)
+    case meetingJoin(_ meetingId: Int)
+    case meetingCancel(_ meetingId: Int)
 }
 
 extension HomeTarget: TargetType {
     var authorization: Authorization {
         switch self {
-        case .pinList(_):
+        case .pinList:
             return .authorization
-        case .pinDetail(_, _):
+        case .pinDetail:
+            return .authorization
+        case .meetingJoin:
+            return .authorization
+        case .meetingCancel:
             return .authorization
         }
     }
     
     var headerType: HTTPHeaderType {
         switch self {
-        case .pinList(_):
+        case .pinList:
             return .hasToken
-        case .pinDetail(_, _):
+        case .pinDetail:
+            return .hasToken
+        case .meetingJoin:
+            return .hasToken
+        case .meetingCancel:
             return .hasToken
         }
     }
@@ -39,6 +49,10 @@ extension HomeTarget: TargetType {
             return .get
         case .pinDetail:
             return .get
+        case .meetingJoin:
+            return .post
+        case .meetingCancel:
+            return .delete
         }
     }
     
@@ -48,14 +62,22 @@ extension HomeTarget: TargetType {
             return "/teams/\(teamId)/pins"
         case .pinDetail(let teamId, let pinId):
             return "/teams/\(teamId)/pins/\(pinId)/meetings"
+        case .meetingJoin(let meetingId):
+            return "/meetings/\(meetingId)/join"
+        case .meetingCancel(let meetingId):
+            return "/meetings/\(meetingId)/cancel"
         }
     }
     
     var parameters: RequestParams {
         switch self {
-        case .pinList(_):
+        case .pinList:
             return .requestPlain
-        case .pinDetail(_, _):
+        case .pinDetail:
+            return .requestPlain
+        case .meetingJoin:
+            return .requestPlain
+        case .meetingCancel:
             return .requestPlain
         }
     }

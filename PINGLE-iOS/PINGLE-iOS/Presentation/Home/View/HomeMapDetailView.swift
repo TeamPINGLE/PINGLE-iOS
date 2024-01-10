@@ -262,7 +262,7 @@ final class HomeMapDetailView: BaseView {
         let startAtString = data.startAt.convertToShortTimeFormat() ?? data.startAt
         let endAtString = data.endAt.convertToShortTimeFormat() ?? data.endAt
         timeLabel.text = startAtString + " ~ " + endAtString
-        isParticipating = data.isParticipating
+        self.isParticipating = data.isParticipating
         openChatURL = data.chatLink
         
         switch data.category {
@@ -319,7 +319,13 @@ final class HomeMapDetailView: BaseView {
         
         /// 모집 미완료, 참여 신청 O
         /// 이미 참여 신청한 경우라면 취소 버튼 활성화, 대화 버튼 활성화
-        if data.isParticipating {
+        self.updateStyle()
+        print("💛💛💛💛💛")
+        print(self.isParticipating)
+    }
+    
+    func updateStyle() {
+        if isParticipating {
             participationButton.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
             talkButton.do {
                 $0.isEnabled = true

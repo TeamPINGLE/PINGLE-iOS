@@ -62,6 +62,7 @@ final class HomeMapView: BaseView {
             $0.mapView.isNightModeEnabled = true
             $0.mapView.mapType = .navi
             $0.mapView.moveCamera(cameraUpdate)
+            $0.mapView.minZoomLevel = 5.5
             $0.showScaleBar = false
             $0.showZoomControls = false
             $0.showCompass = false

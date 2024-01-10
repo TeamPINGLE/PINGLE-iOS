@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class FixView: BaseView {
-
+    
     // MARK: - Variables
     // MARK: Component
     let titleLabel = UILabel()

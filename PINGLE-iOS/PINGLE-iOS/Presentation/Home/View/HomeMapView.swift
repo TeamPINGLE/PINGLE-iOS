@@ -15,9 +15,11 @@ final class HomeMapView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    var nowLat: Double = 37.56299678698725
-    var nowLng: Double = 126.8569346126135
+    var nowLat: Double = 37.56681744520662
+    var nowLng: Double = 126.97865226075146
     
+    var homePinList: [HomePinListResponseDTO] = []
+
     // MARK: Component
     let chipStackView = UIStackView()
     
@@ -47,7 +49,6 @@ final class HomeMapView: BaseView {
     // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setMarker()
     }
     
     // MARK: Style Helpers
@@ -131,27 +132,6 @@ final class HomeMapView: BaseView {
     }
     
     // MARK: Marker Function
-    /// 마커 추가 메소드
-    func setMarker() {
-        homePinListDummy.forEach {
-            let pingleMarker = PINGLEMarker()
-            
-            pingleMarker.id = $0.id
-            pingleMarker.changeStringToStatus(string: $0.category)
-            pingleMarker.meetingString = $0.category
-            
-            let x = Double($0.x) ?? 37.56299678698725
-            let y = Double($0.y) ?? 126.8569346126135
-            
-            pingleMarker.iconImage = NMFOverlayImage(image: setMarkerColor(category: $0.category))
-            
-            pingleMarker.position = NMGLatLng(lat: x, lng: y)
-            pingleMarker.mapView = mapsView.mapView
-            homeMarkerList.append(pingleMarker)
-        }
-    }
-    
-    /// 마커 이미지 변경 메소드, 추후 이미지 변경 예쩡
     func setMarkerColor(category: String) -> UIImage {
         switch category {
         case "PLAY":
@@ -161,7 +141,7 @@ final class HomeMapView: BaseView {
         case "MULTI":
             return ImageLiterals.Home.Map.imgMapPinMulti
         default:
-            return ImageLiterals.Home.Map.imgMapPinPlay
+            return ImageLiterals.Home.Map.imgMapPinOther
         }
     }
     

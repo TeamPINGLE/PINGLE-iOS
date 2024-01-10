@@ -30,21 +30,21 @@ extension TabBarItem {
 extension TabBarItem {
     var Icon: UIImage? {
         switch self {
-        case .home:            return ImageLiterals.TabBar.imgHome
-        case .recommend:       return ImageLiterals.TabBar.imgHome
-        case .addPingle:       return ImageLiterals.TabBar.imgAddPingle
-        case .myPingle:        return ImageLiterals.TabBar.imgHome
-        case .setting:         return ImageLiterals.TabBar.imgSetting
+        case .home:            return ImageLiterals.TabBar.icHome
+        case .recommend:       return ImageLiterals.TabBar.icRanking
+        case .addPingle:       return ImageLiterals.TabBar.icMeeting
+        case .myPingle:        return ImageLiterals.TabBar.icMyPingle
+        case .setting:         return ImageLiterals.TabBar.icMore
         }
     }
     
     var selectedIcon: UIImage? {
         switch self {
-        case .home:            return ImageLiterals.TabBar.imgHomeSelected.withRenderingMode(.alwaysOriginal)
-        case .recommend:       return ImageLiterals.TabBar.imgHomeSelected.withRenderingMode(.alwaysOriginal)
-        case .addPingle:       return ImageLiterals.TabBar.imgAddPingleSelected.withRenderingMode(.alwaysOriginal)
-        case .myPingle:        return ImageLiterals.TabBar.imgHomeSelected.withRenderingMode(.alwaysOriginal)
-        case .setting:         return ImageLiterals.TabBar.imgSettingSelected.withRenderingMode(.alwaysOriginal)
+        case .home:            return ImageLiterals.TabBar.icHomeSelected.withRenderingMode(.alwaysOriginal)
+        case .recommend:       return ImageLiterals.TabBar.icRankingSelected.withRenderingMode(.alwaysOriginal)
+        case .addPingle:       return ImageLiterals.TabBar.icMeetingSelected.withRenderingMode(.alwaysOriginal)
+        case .myPingle:        return ImageLiterals.TabBar.icMyPingleSelected.withRenderingMode(.alwaysOriginal)
+        case .setting:         return ImageLiterals.TabBar.icMoreSelected.withRenderingMode(.alwaysOriginal)
         }
     }
 }

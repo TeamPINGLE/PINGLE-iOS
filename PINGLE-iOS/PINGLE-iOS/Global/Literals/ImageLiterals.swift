@@ -22,6 +22,10 @@ enum ImageLiterals {
         static var icArrowRight: UIImage { .load(named: "icArrowRight")}
     }
     
+    enum Work {
+        static var imgWorkGraphic: UIImage { .load(named: "imgWorkGraphic")}
+    }
+    
     enum OnBoarding {
         static var imgPINGLELogo: UIImage { .load(named: "imgPINGLELogo")}
         static var imgApplelogo: UIImage { .load(named: "imgApplelogo")}
@@ -29,12 +33,17 @@ enum ImageLiterals {
     }
     
     enum TabBar {
-        static var imgHome: UIImage { .load(named: "imgHome")}
-        static var imgHomeSelected: UIImage { .load(named: "imgHomeSelected")}
-        static var imgAddPingle: UIImage { .load(named: "imgAddPingle")}
-        static var imgAddPingleSelected: UIImage { .load(named: "imgAddPingleSelected")}
+        static var icHome: UIImage { .load(named: "icHome")}
+        static var icHomeSelected: UIImage { .load(named: "icHomeSelected")}
+        static var icRanking: UIImage { .load(named: "icRanking")}
+        static var icRankingSelected: UIImage { .load(named: "icRankingSelected")}
+        static var icMeeting: UIImage { .load(named: "icMeeting")}
+        static var icMeetingSelected: UIImage { .load(named: "icMeetingSelected")}
+        static var icMyPingle: UIImage { .load(named: "icMyPingle")}
+        static var icMyPingleSelected: UIImage { .load(named: "icMyPingleSelected")}
+        static var icMore: UIImage { .load(named: "icMore")}
+        static var icMoreSelected: UIImage { .load(named: "icMoreSelected")}
         static var imgSetting: UIImage { .load(named: "imgSetting")}
-        static var imgSettingSelected: UIImage { .load(named: "imgSettingSelected")}
     }
     
     enum Home {
@@ -55,8 +64,13 @@ enum ImageLiterals {
             static var icMapMap: UIImage { .load(named: "icMapMap")}
             static var icLocationOverlay: UIImage { .load(named: "icLocationOverlay")}
             static var imgMapPinPlay: UIImage { .load(named: "imgMapPinPlay")}
+            static var imgMapPinPlayActive: UIImage { .load(named: "imgMapPinPlayActive")}
             static var imgMapPinStudy: UIImage { .load(named: "imgMapPinStudy")}
+            static var imgMapPinStudyActive: UIImage { .load(named: "imgMapPinStudyActive")}
             static var imgMapPinMulti: UIImage { .load(named: "imgMapPinMulti")}
+            static var imgMapPinMultiActive: UIImage { .load(named: "imgMapPinMultiActive")}
+            static var imgMapPinOther: UIImage { .load(named: "imgMapPinOther")}
+            static var imgMapPinOtherActive: UIImage { .load(named: "imgMapPinOtherActive")}
         }
         
         enum Detail {
@@ -66,6 +80,8 @@ enum ImageLiterals {
             static var imgOthersBadge: UIImage { .load(named: "imgOthersBadge")}
             static var icCalendar: UIImage { .load(named: "icCalendar")}
             static var icLocation: UIImage { .load(named: "icLocation")}
+            static var icParticipantArrow: UIImage { .load(named: "icParticipantArrow")}
+            static var icParticipantArrowActivate: UIImage { .load(named: "icParticipantArrowActivate")}
         }
     }
   

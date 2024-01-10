@@ -20,6 +20,8 @@ final class HomeMapViewController: BaseViewController {
     var shouldUpdateMap: Bool = true
     /// 현재 선택되지 않은 필터 버튼 개수
     var unselectedButton: Int = 0
+    var homePinDetailList: HomePinDetailResponseDTO?
+    var teamId = 1
     
     // MARK: Component
     let mapsView = HomeMapView()
@@ -33,9 +35,9 @@ final class HomeMapViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.pinList(teamId: teamId)
         setLocationManager()
         setAddTarget()
-        setMarkerHandler()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +47,7 @@ final class HomeMapViewController: BaseViewController {
     
     private func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Style Helpers
@@ -61,6 +64,10 @@ final class HomeMapViewController: BaseViewController {
         }
         
         homeDetailCancelPopUpView.do {
+            $0.isHidden = true
+        }
+        
+        mapDetailView.do {
             $0.isHidden = true
         }
     }
@@ -125,6 +132,9 @@ final class HomeMapViewController: BaseViewController {
                                                       for: .touchUpInside)
         self.mapDetailView.participationButton.addTarget(self,
                                                          action: #selector(participantsButtonTapped),
+                                                         for: .touchUpInside)
+        self.mapDetailView.participantCountButton.addTarget(self,
+                                                         action: #selector(participantCountButtonTapped),
                                                          for: .touchUpInside)
         self.mapDetailView.talkButton.addTarget(self,
                                                 action: #selector(talkButtonTapped),
@@ -267,22 +277,31 @@ extension HomeMapViewController {
         print("참여하기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailPopUpView.isHidden = true
+        reloadDetailView()
     }
     
     @objc func cancelButtonTapped() {
         print("취소하기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
+        reloadDetailView()
     }
     
     @objc func backButtonTapped() {
         print("돌아가기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
+        reloadDetailView()
     }
     
     @objc func currentLocationButtonTapped() {
         moveToCurrentLocation()
+    }
+    
+    @objc func participantCountButtonTapped() {
+        print("참여현황")
+        let participantViewController = ParticipantViewController()
+        self.navigationController?.pushViewController(participantViewController, animated: true)
     }
     
     @objc func participantsButtonTapped() {
@@ -304,6 +323,11 @@ extension HomeMapViewController {
     }
     
     // MARK: Custom Function
+    func reloadDetailView() {
+        self.mapDetailView.dataBind(data: self.homePinDetailList ?? homePinDetailDummy[0])
+        self.homeDetailPopUpView.dataBind(data: self.homePinDetailList ?? homePinDetailDummy[0])
+    }
+    
     /// 마커에 핸들러 부여
     func setMarkerHandler() {
         mapDetailView.isHidden = true
@@ -323,9 +347,7 @@ extension HomeMapViewController {
     
     func bindDetailViewData(id: Int) {
         // 해당 id값을 넣어서 서버 통신 후 data 받아오기
-        let data = homePinDetailDummy[0]
-        self.mapDetailView.dataBind(data: data)
-        self.homeDetailPopUpView.dataBind(data: data)
+        self.pinDetail(pinId: id, teamId: self.teamId)
     }
     
     func markerTapped(marker: PINGLEMarker) {
@@ -333,12 +355,82 @@ extension HomeMapViewController {
             $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
         }
         
-        // 추후 바뀌는 이미지 등록
-        marker.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
+        var activateImage: UIImage = ImageLiterals.Home.Map.imgMapPinOtherActive
+        switch marker.meetingStatus {
+        case .play:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinPlayActive
+        case .study:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinStudyActive
+        case .multi:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinMultiActive
+        default:
+            activateImage =  ImageLiterals.Home.Map.imgMapPinOtherActive
+        }
+        
+        marker.iconImage = NMFOverlayImage(image: activateImage)
         /// zoomLevel에 따라서 일정한 위치로 카메라 이동할 수 있도록 계산
         let offsetLat = marker.position.lat - 0.003 * pow(2, 14 - self.mapsView.mapsView.mapView.zoomLevel)
         let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: offsetLat, lng: marker.position.lng))
         newCameraPosition.animation = .easeIn
         self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
+    }
+    
+    func pinDetail(pinId: Int, teamId: Int) {
+        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: teamId) { [weak self] response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                print(data)
+                DispatchQueue.main.async { [weak self] in
+                    self?.homePinDetailList = data[0]
+                    // 추후 아래 부분 불러와주며 업데이트
+                    self?.mapDetailView.dataBind(data: data[0])
+                    self?.homeDetailPopUpView.dataBind(data: data[0])
+                }
+            default:
+                print("실패")
+                return
+            }
+        }
+    }
+    
+    func pinList(teamId: Int) {
+        NetworkService.shared.homeService.pinList(teamId: teamId) { [weak self] response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                print(data)
+                DispatchQueue.main.async { [weak self] in
+                    self?.mapsView.homePinList = data
+                    self?.setMarker() // 데이터를 받은 후에 setMarker 호출
+                }
+            default:
+                print("실패")
+                return
+            }
+        }
+    }
+    
+    // MARK: Marker Function
+    /// 마커 추가 메소드
+    func setMarker() {
+        mapsView.homePinList.forEach {
+            print(mapsView.homePinList)
+            let pingleMarker = PINGLEMarker()
+            
+            pingleMarker.id = $0.id
+            pingleMarker.changeStringToStatus(string: $0.category)
+            pingleMarker.meetingString = $0.category
+            
+            let x = $0.x
+            let y = $0.y
+            
+            pingleMarker.iconImage = NMFOverlayImage(image: mapsView.setMarkerColor(category: $0.category))
+            
+            pingleMarker.position = NMGLatLng(lat: x, lng: y)
+            pingleMarker.mapView = mapsView.mapsView.mapView
+            mapsView.homeMarkerList.append(pingleMarker)
+        }
+        self.setMarkerHandler()
     }
 }

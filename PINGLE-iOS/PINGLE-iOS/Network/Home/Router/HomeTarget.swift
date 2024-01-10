@@ -10,21 +10,26 @@ import Foundation
 import Alamofire
 
 enum HomeTarget {
-    case pinList(_ teamId: Int, _ queryDTO: HomePinListRequestQueryDTO)
+    case pinList(_ teamId: Int)
+    case pinDetail(_ teamId: Int,_ pinId: Int)
 }
 
 extension HomeTarget: TargetType {
     var authorization: Authorization {
         switch self {
-        case .pinList(_, _):
+        case .pinList(_):
+            return .authorization
+        case .pinDetail(_, _):
             return .authorization
         }
     }
     
     var headerType: HTTPHeaderType {
         switch self {
-        case .pinList(_, _):
-            return .plain
+        case .pinList(_):
+            return .hasToken
+        case .pinDetail(_, _):
+            return .hasToken
         }
     }
     
@@ -32,20 +37,26 @@ extension HomeTarget: TargetType {
         switch self {
         case .pinList:
             return .get
+        case .pinDetail:
+            return .get
         }
     }
     
     var path: String {
         switch self {
-        case .pinList(let teamId, _):
+        case .pinList(let teamId):
             return "/teams/\(teamId)/pins"
+        case .pinDetail(let teamId, let pinId):
+            return "/teams/\(teamId)/pins/\(pinId)/meetings"
         }
     }
     
     var parameters: RequestParams {
         switch self {
-        case let .pinList(_, queryDTO):
-            return .requestQuery(queryDTO)
+        case .pinList(_):
+            return .requestPlain
+        case .pinDetail(_, _):
+            return .requestPlain
         }
     }
 }

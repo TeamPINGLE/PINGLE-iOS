@@ -27,5 +27,5 @@ let homePinDetailDummy: [HomePinDetailResponseDTO] =
                           ownerName: "정채은", location: "우리집ㅋ",
                           date: "2024-01-06",
                           startAt: "12:00:00", endAt: "15:30:00",
-                          maxParticipants: 10, curParticipants: 9,
+                          maxParticipants: 99, curParticipants: 99,
                           isParticipating: true, chatLink: "https://www.google.com")]

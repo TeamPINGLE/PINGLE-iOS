@@ -18,7 +18,7 @@ class DateSelectionViewController: BaseViewController {
     private let PINGLEDateSelectionTextField = PINGLETextFieldView(
         titleLabel: StringLiterals.Meeting.DateSelection.PINGLEDateTitle,
         explainLabel: StringLiterals.Meeting.DateSelection.PINGLEDatePlaceholder)
-    private let PINGLETStartTimeTextField = PINGLETextFieldView(
+    private let PINGLEStartTimeTextField = PINGLETextFieldView(
         titleLabel: StringLiterals.Meeting.DateSelection.PINGLEStartTime,
         explainLabel: StringLiterals.Meeting.DateSelection.PINGLETimePlacsholder)
     private let PINGLEEndTimeTextField = PINGLETextFieldView(
@@ -34,7 +34,12 @@ class DateSelectionViewController: BaseViewController {
     private let bottomEndTimeView = CustomTimePickerView()
     private let formatter = DateFormatter()
     private let exitModal = ExitModalView()
+    private let deemedView = UIView()
     private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.Meeting.DateSelection.warningMessage)
+    private var nowDate = Date()
+    private var isDateSelected :Bool = false
+    private var isStartTimeSelected :Bool = false
+    private var isEndTimeSelected :Bool = false
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -42,6 +47,7 @@ class DateSelectionViewController: BaseViewController {
         setNavigation()
         setDelegate()
         setTarget()
+        setupDeemedView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,14 +87,19 @@ class DateSelectionViewController: BaseViewController {
         }
         
         exitModal.do {
-                    $0.isHidden = true
-                }
+            $0.isHidden = true
+        }
+        
+        deemedView.do {
+            $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
+            $0.isHidden = true
+        }
     }
     
     override func setLayout() {
         self.view.addSubviews(backButton, progressBar3,
                               dateSelectionTitle, PINGLEDateSelectionTextField,
-                              PINGLETStartTimeTextField, PINGLEEndTimeTextField,
+                              PINGLEStartTimeTextField, PINGLEEndTimeTextField,
                               nextButton, exitLabel, exitButton, warningToastView)
         
         backButton.snp.makeConstraints {
@@ -113,7 +124,7 @@ class DateSelectionViewController: BaseViewController {
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
-        PINGLETStartTimeTextField.snp.remakeConstraints {
+        PINGLEStartTimeTextField.snp.remakeConstraints {
             $0.top.equalTo(PINGLEDateSelectionTextField.snp.bottom).offset(16.adjusted)
             $0.leading.equalToSuperview().inset(24.adjusted)
             $0.trailing.equalToSuperview().inset(192.adjusted)
@@ -154,18 +165,9 @@ class DateSelectionViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func textFieldDidChange(_ sender: Any?) {
-        if let textField = sender as? UITextField {
-            if let newText = textField.text, !newText.isEmpty {
-                nextButton.activateButton()
-            } else {
-                nextButton.disabledButton()
-            }
-        }
-    }
-    
     @objc func showDatePicker() {
-        bottomDateView.frame.origin.y = view.frame.height
+        deemedView.isHidden = false
+        bottomDateView.frame.origin.y = view.frame.height + 41.adjusted
         setBottomSheetLayout()
         UIView.animate(withDuration: 0.5) {
             self.bottomDateView.frame.origin.y = self.view.frame.height - self.bottomDateView.frame.height
@@ -173,7 +175,8 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func showStartTimePicker() {
-        bottomStartTimeView.frame.origin.y = view.frame.height
+        bottomStartTimeView.frame.origin.y = view.frame.height + 41.adjusted
+        deemedView.isHidden = false
         setStartTimeViewLayout()
         UIView.animate(withDuration: 0.5) {
             self.bottomStartTimeView.frame.origin.y = self.view.frame.height - self.bottomStartTimeView.frame.height
@@ -181,7 +184,8 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func showEndTimePicker() {
-        bottomEndTimeView.frame.origin.y = view.frame.height
+        deemedView.isHidden = false
+        bottomEndTimeView.frame.origin.y = view.frame.height + 41.adjusted
         setEndTimeViewLayout()
         UIView.animate(withDuration: 0.5) {
             self.bottomEndTimeView.frame.origin.y = self.view.frame.height - self.bottomEndTimeView.frame.height
@@ -189,6 +193,7 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func doneButtonTapped() {
+        deemedView.isHidden = true
         PINGLEDateSelectionTextField.searchTextField.text =
         dateFormat(date: bottomDateView.datePicker.date)
         UIView.animate(withDuration: 0.5, animations: {
@@ -197,32 +202,27 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func startTimeDoneButtonTapped() {
-        PINGLETStartTimeTextField.searchTextField.text =
-        timeFormat(time: bottomStartTimeView.timePicker.date)
-        UIView.animate(withDuration: 0.5, animations: {
-            self.bottomStartTimeView.removeFromSuperview()
-        })
+        deemedView.isHidden = true
+        let selectedStartTime = bottomStartTimeView.timePicker.date
+        let selectedEndTime = bottomEndTimeView.timePicker.date
+        print(selectedStartTime, selectedEndTime)
+            PINGLEStartTimeTextField.searchTextField.text = timeFormat(time: selectedStartTime)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.bottomStartTimeView.removeFromSuperview()
+            })
+        isStartTimeSelected = true
+        fuckingTimePicker()
     }
     
     @objc func endTimeDoneButtonTapped() {
-        let selectedStartTime = bottomStartTimeView.timePicker.date
-        let selectedEndTime = bottomEndTimeView.timePicker.date
-        
-        if selectedEndTime > selectedStartTime {
-            PINGLEEndTimeTextField.searchTextField.text = timeFormat(time: selectedEndTime)
-            UIView.animate(withDuration: 0.5, animations: {
-                self.bottomEndTimeView.removeFromSuperview()
-            })
-            self.nextButton.activateButton()
-        }
-        else {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.bottomEndTimeView.removeFromSuperview()
-            }, completion: { _ in
-                self.showWarningToastView(duration: 2.0)
-                self.nextButton.disabledButton()
-            })
-        }
+        deemedView.isHidden = true
+        PINGLEEndTimeTextField.searchTextField.text =
+        timeFormat(time: bottomEndTimeView.timePicker.date)
+        UIView.animate(withDuration: 0.5, animations: {
+            self.bottomEndTimeView.removeFromSuperview()
+        })
+        isEndTimeSelected = true
+        fuckingTimePicker()
     }
     
     @objc func nextButtonTapped() {
@@ -231,6 +231,7 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func exitButtonTapped() {
+        deemedView.isHidden = false
         self.view.addSubview(exitModal)
         exitModal.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -242,26 +243,27 @@ class DateSelectionViewController: BaseViewController {
     @objc func exitModalKeepButtonTapped() {
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
+        deemedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
         print("홈화면으로 이동")
     }
-
+    
+    @objc func deemedViewTapped() {
+        hideDeemedViewWhenTapped()
+    }
+    
     // MARK: Function
     private func setTarget() {
-        PINGLEDateSelectionTextField.searchTextField.addTarget(self,
-                action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
         PINGLEDateSelectionTextField.searchTextField.addTarget(self, action: #selector(showDatePicker), for: .touchUpInside)
-        PINGLETStartTimeTextField.searchTextField.addTarget(self,
-                action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        PINGLETStartTimeTextField.searchTextField.addTarget(self, action: #selector(showStartTimePicker), for: .touchUpInside)
+        PINGLEStartTimeTextField.searchTextField.addTarget(self,
+                                                           action: #selector(showStartTimePicker), for: .touchUpInside)
         PINGLEEndTimeTextField.searchTextField.addTarget(self,
-                action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        PINGLEEndTimeTextField.searchTextField.addTarget(self, action: #selector(showEndTimePicker), for: .touchUpInside)
+                                                         action: #selector(showEndTimePicker), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(backButtonTapped),
                              for: .touchUpInside)
-        nextButton.addTarget(self, action: #selector(nextButtonTapped), 
+        nextButton.addTarget(self, action: #selector(nextButtonTapped),
                              for: .touchUpInside)
         bottomDateView.doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         bottomStartTimeView.doneButton.addTarget(self, action: #selector(startTimeDoneButtonTapped), for: .touchUpInside)
@@ -273,10 +275,20 @@ class DateSelectionViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
+    private func setupDeemedView() {
+        self.view.addSubview(deemedView)
+        deemedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deemedViewTapped))
+        deemedView.addGestureRecognizer(tapGesture)
+        deemedView.isUserInteractionEnabled = true
+    }
+    
     private func setNavigation() {
         navigationController?.navigationBar.isHidden = true
     }
-
+    
     private func dateFormat(date: Date) -> String {
         formatter.dateFormat = "yyyy / MM / dd"
         return formatter.string(from: date)
@@ -284,18 +296,33 @@ class DateSelectionViewController: BaseViewController {
     
     private func timeFormat(time: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a"
+        formatter.dateFormat = "H:mm"
         return formatter.string(from: time)
     }
     
+    private func fuckingTimePicker() {
+        let fromString: String = timeFormat(time: bottomStartTimeView.timePicker.date)
+        let targetString: String = timeFormat(time: bottomEndTimeView.timePicker.date)
+        switch targetString.compare(fromString) {
+        case .orderedSame:
+            nextButton.disabledButton()
+            showWarningToastView(duration: 2.0)
+        case .orderedDescending: if(isEndTimeSelected) { nextButton.activateButton()
+        }
+        case .orderedAscending: if(isEndTimeSelected) { nextButton.disabledButton()
+            showWarningToastView(duration: 2.0)
+        }
+        }
+    }
+    
     private func setBottomSheetLayout() {
-        view.addSubview(bottomDateView)
+        self.view.addSubview(bottomDateView)
         
         bottomDateView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
             $0.bottom.equalToSuperview().inset(41.adjusted)
         }
-    }  
+    }
     
     private func setStartTimeViewLayout() {
         view.addSubview(bottomStartTimeView)
@@ -314,10 +341,19 @@ class DateSelectionViewController: BaseViewController {
             $0.bottom.equalToSuperview().inset(41.adjusted)
         }
     }
-
+    
+    private func hideDeemedViewWhenTapped() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.deemedView.isHidden = true
+            self.bottomDateView.removeFromSuperview()
+            self.bottomStartTimeView.removeFromSuperview()
+            self.bottomEndTimeView.removeFromSuperview()
+        })
+    }
+    
     override func setDelegate() {
         self.PINGLEDateSelectionTextField.searchTextField.delegate = self
-        self.PINGLETStartTimeTextField.searchTextField.delegate = self
+        self.PINGLEStartTimeTextField.searchTextField.delegate = self
         self.PINGLEEndTimeTextField.searchTextField.delegate = self
     }
 }
@@ -343,10 +379,16 @@ extension DateSelectionViewController: UITextFieldDelegate {
         if textField == PINGLEDateSelectionTextField.searchTextField {
             showDatePicker()
             return false
-        } else if textField == PINGLETStartTimeTextField.searchTextField {
+        } else if textField == PINGLEStartTimeTextField.searchTextField {
+            if PINGLEDateSelectionTextField.searchTextField.text!.isEmpty {
+                return false
+            }
             showStartTimePicker()
             return false
         } else if textField == PINGLEEndTimeTextField.searchTextField {
+            if PINGLEStartTimeTextField.searchTextField.text!.isEmpty {
+                return false
+            }
             showEndTimePicker()
             return false
         }

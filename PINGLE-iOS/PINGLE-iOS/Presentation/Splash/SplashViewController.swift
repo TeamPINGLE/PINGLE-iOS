@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class SplashViewController: BaseViewController {
+final class SplashViewController: BaseViewController {
     
     // MARK: Component
     private let PINGLELogoImageView = UIImageView()

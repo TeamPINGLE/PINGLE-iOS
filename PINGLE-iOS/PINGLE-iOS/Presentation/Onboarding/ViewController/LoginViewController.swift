@@ -149,7 +149,8 @@ final class LoginViewController: BaseViewController {
                     self.navigationController?.pushViewController(onboardingViewController, animated: true)
                 } else {
                     let PINGLETabBarController = PINGLETabBarController()
-                    self.navigationController?.pushViewController(PINGLETabBarController, animated: true)
+                    self.view.window?.rootViewController = PINGLETabBarController
+                    self.view.window?.makeKeyAndVisible()
                 }
             default:
                 print("getUserInfo error")

@@ -5,4 +5,30 @@
 //  Created by 강민수 on 1/10/24.
 //
 
-import Foundation
+import UIKit
+
+import SnapKit
+import Then
+
+class SplashViewController: BaseViewController {
+    
+    // MARK: Component
+    private let PINGLELogoImageView = UIImageView()
+    
+    override func setStyle() {
+        PINGLELogoImageView.do {
+            $0.image = ImageLiterals.OnBoarding.imgPINGLELogo
+        }
+    }
+    
+    override func setLayout() {
+        view.addSubview(PINGLELogoImageView)
+        
+        PINGLELogoImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(212)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(153)
+            $0.height.equalTo(191)
+        }
+    }
+}

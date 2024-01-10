@@ -13,14 +13,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-
-        let viewController = ViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-
+        
+        let splashViewController = SplashViewController()
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = navigationController
+        window.rootViewController = splashViewController
         window.makeKeyAndVisible()
-        self.window = window
+        
+        var rootViewController = UIViewController()
+        print("스플래쉬 화면이 시작해요")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            ///어세스 토큰이 있는가? | 있는 경우 - 애플로그인 회원가입 한 경우, 없는 경우 - 없는 경우 - 애플로그인 회원가입 안한경우
+            if KeychainHandler.shared.accessToken.isEmpty {
+                print("어세스 토큰 없어요 이양반")
+                rootViewController = LoginViewController()
+                /// 유저 그룹이 있는가? | 있는 경우 - 온보딩에서 그룹을 선택한 경우, 없는 경우 - 온보딩에서 그룹을 선택한 적 없는 경우
+            } else {
+                print("어세스 토큰이 있어요 이사람")
+                if KeychainHandler.shared.userGroup.isEmpty {
+                    print("가입한 단체가 없어요")
+                    rootViewController = OnboardingViewController()
+                } else {
+                    print("가입한 단체가 있어요")
+                    rootViewController = PINGLETabBarController()
+                }
+            }
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+            self.window = window
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

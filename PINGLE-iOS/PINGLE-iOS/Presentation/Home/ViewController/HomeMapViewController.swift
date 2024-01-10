@@ -24,6 +24,7 @@ final class HomeMapViewController: BaseViewController {
     var teamId = 1
     var meetingId = 0
     var markerId = 0
+    var allowLocation = false
     
     // MARK: Component
     let mapsView = HomeMapView()
@@ -169,6 +170,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
             if shouldUpdateMap {
                 moveToCurrentLocation()
                 shouldUpdateMap = false
+                allowLocation = true
             }
             self.mapsView.setCurrentMarker()
         }
@@ -187,9 +189,11 @@ extension HomeMapViewController: CLLocationManagerDelegate {
             print("위치 권한이 허용되었습니다.")
             startUpdatingLocationAndMoveToCurrentLocation()
             self.moveToCurrentLocation()
+            self.allowLocation = true
         case .denied, .restricted:
             // 위치 권한이 거부된 경우
             print("위치 권한이 거부되었습니다.")
+            self.allowLocation = false
         case .notDetermined:
             // 위치 권한이 아직 결정되지 않은 경우
             print("위치 권한이 아직 결정되지 않았습니다.")
@@ -302,7 +306,9 @@ extension HomeMapViewController {
     }
     
     @objc func currentLocationButtonTapped() {
-        moveToCurrentLocation()
+        if allowLocation {
+            moveToCurrentLocation()
+        }
     }
     
     @objc func participantCountButtonTapped() {
@@ -377,7 +383,6 @@ extension HomeMapViewController {
         newCameraPosition.animation = .easeIn
         self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
     }
-    
     
     // MARK: Server Function
     func pinList(teamId: Int) {

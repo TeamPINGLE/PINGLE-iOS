@@ -39,7 +39,6 @@ disabled_rules:
 - line_length # 줄 길이
 - type_name # 타입 이름
 - function_parameter_count # 함수 매개변수 개수
-- function_body_length # 함수 바디 길이
 
 # 기본 룰이 아닌 룰들 활성화
 opt_in_rules:

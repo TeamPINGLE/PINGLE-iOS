@@ -124,6 +124,12 @@ final class PINGLETabBarController: UITabBarController {
     @objc func mapListButtonTapped() {
         self.isHomeMap.toggle()
     }
+    
+    @objc func goToAddPinge() {
+        let navigationController = UINavigationController(rootViewController: MakeMeetingGuideViewController())
+        modalTransitionStyle = .coverVertical
+        self.present(navigationController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - extension
@@ -146,6 +152,10 @@ extension PINGLETabBarController: UITabBarControllerDelegate {
                     tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)
                 }
             }
+        }
+        
+        if tabBarController.selectedIndex == 2 {
+            goToAddPinge()
         }
     }
 }

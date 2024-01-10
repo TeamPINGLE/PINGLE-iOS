@@ -18,7 +18,8 @@ final class MakeMeetingGuideViewController: BaseViewController {
     private let guideTitle = UILabel()
     private let guideSubTitle = UILabel()
     private let entranceButton = PINGLECTAButton(title: StringLiterals.Meeting.MeetingGuide.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
-    
+    let selectCategoryViewController = SelectCategoryViewController()
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,9 @@ final class MakeMeetingGuideViewController: BaseViewController {
         }
         
         mettingImageView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(353)
+            $0.width.equalTo(375)
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(133.adjusted)
         }
         
@@ -93,11 +97,19 @@ final class MakeMeetingGuideViewController: BaseViewController {
     // MARK: Target Function
     private func setTarget() {
         entranceButton.addTarget(self, action: #selector(entranceButtonPressed), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
     }
+    
+    private func configureNavigationController() {
+        navigationController?.setViewControllers([self], animated: true)
+        }
     
     // MARK: Objc Function
     @objc func entranceButtonPressed() {
-        let selectCategoyViewController = SelectCategoryViewController()
-        navigationController?.pushViewController(selectCategoyViewController, animated: true)
+        navigationController?.pushViewController(selectCategoryViewController, animated: true)
         }
+    
+    @objc func exitButtonTapped() {
+        self.presentingViewController?.dismiss(animated: true)
+    }
 }

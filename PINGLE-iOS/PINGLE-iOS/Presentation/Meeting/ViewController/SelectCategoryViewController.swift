@@ -29,7 +29,7 @@ class SelectCategoryViewController: BaseViewController {
                                                    textColor: .subPingleYellow)
     private let othersButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.others,
                                                     buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.othersExplain,
-                                                    category: ImageLiterals.Meeting.Category.categoryPlayImage,
+                                                    category: ImageLiterals.Meeting.Category.categoryOthersImage,
                                                     textColor: .white)
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
                                              buttonColor: .grayscaleG08, textColor: .grayscaleG10)
@@ -37,10 +37,12 @@ class SelectCategoryViewController: BaseViewController {
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
     private let exitModal = ExitModalView()
+    private let dimmedView = UIView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDeemedView()
         navigationController?.navigationBar.isHidden = true
         setTarget()
     }
@@ -77,6 +79,11 @@ class SelectCategoryViewController: BaseViewController {
         }
         
         exitModal.do {
+            $0.isHidden = true
+        }
+        
+        dimmedView.do {
+            $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
             $0.isHidden = true
         }
     }
@@ -180,17 +187,27 @@ class SelectCategoryViewController: BaseViewController {
             $0.centerY.equalToSuperview()
         }
         exitModal.isHidden = false
+        dimmedView.isHidden = false
     }
     
     @objc func exitModalKeepButtonTapped() {
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
+        dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
-        print("홈화면으로 이동")
+        print("exitModalExitButtonTapped called")
+        self.dismiss(animated: true) {
+            print("Dismiss completion closure executed")
+            if let tabBarController = self.tabBarController {
+                if tabBarController.viewControllers?.count ?? 0 >= 2 {
+                    tabBarController.selectedIndex = 0
+                }
+            }
+        }
     }
-    
+
     // MARK: - Function
     func unselectAllButtons() {
         playButton.nonSelectedButton()
@@ -198,6 +215,13 @@ class SelectCategoryViewController: BaseViewController {
         multiButton.nonSelectedButton()
         othersButton.nonSelectedButton()
     }
+    
+    private func setupDeemedView() {
+            self.view.addSubview(dimmedView)
+            dimmedView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
     
     func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)

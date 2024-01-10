@@ -24,8 +24,9 @@ final class RecruitmentViewController: BaseViewController {
                                              textColor: .grayscaleG10)
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
-    private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.Meeting.Recruitment.warningLabel)
     var newText: String = ""
+    private let exitModal = ExitModalView()
+    private let deemedView = UIView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -34,6 +35,7 @@ final class RecruitmentViewController: BaseViewController {
         setNavigation()
         hideKeyboardWhenTappedAround()
         setInitialNum()
+        setupDeemedView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,8 +96,13 @@ final class RecruitmentViewController: BaseViewController {
             $0.textColor = .grayscaleG06
         }
         
-        warningToastView.do {
-            $0.alpha = 0.0
+        exitModal.do {
+            $0.isHidden = true
+        }
+        
+        deemedView.do {
+            $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
+            $0.isHidden = true
         }
     }
     
@@ -103,7 +110,7 @@ final class RecruitmentViewController: BaseViewController {
         self.view.addSubviews(backButton, progressBar5,
                               recruitTitle, recruitCondition, recruitTextField,
                               plusButton, minusButton,
-                              nextButton, exitLabel, exitButton, warningToastView)
+                              nextButton, exitLabel, exitButton)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -163,11 +170,6 @@ final class RecruitmentViewController: BaseViewController {
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
         }
-//        
-//        warningToastView.snp.makeConstraints {
-//            $0.bottom.equalTo(nextButton.snp.top).offset(-16.adjusted)
-//            $0.centerX.equalToSuperview()
-//        }
     }
     
     // MARK: Objc Function
@@ -180,12 +182,10 @@ final class RecruitmentViewController: BaseViewController {
             number += 1
             recruitTextField.text = "\(number)"
             if number > 1 {
-                print("Entering minusButton.activateButton()")
                 minusButton.activateButton()
             }
                 updateNextButtonState()
             if number > 98 {
-//                showWarningToastView(duration: 2.0)
                 plusButton.disabledButton()
             }
         }
@@ -199,7 +199,7 @@ final class RecruitmentViewController: BaseViewController {
                 minusButton.disabledButton()
             }
             updateNextButtonState()
-            if number < 99 {
+            if number < 100 {
                 plusButton.activateButton()
             }
         }
@@ -218,6 +218,10 @@ final class RecruitmentViewController: BaseViewController {
             } else if number < 99 {
                 plusButton.activateButton()
             }
+            
+            if number > 1 && number < 100 {
+                nextButton.activateButton()
+            }
         }
     }
     
@@ -227,18 +231,46 @@ final class RecruitmentViewController: BaseViewController {
     }
     
     @objc func exitButtonTapped() {
-        print("나가기 모달 나오세요")
+        deemedView.isHidden = false
+        self.view.addSubview(exitModal)
+        exitModal.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        exitModal.isHidden = false
+    }
+    
+    @objc func exitModalKeepButtonTapped() {
+        exitModal.isHidden = true
+        exitModal.removeFromSuperview()
+        deemedView.isHidden = true
+    }
+    
+    @objc func exitModalExitButtonTapped() {
+        print("홈화면으로 이동")
     }
     
     // MARK: Function
     func setTarget() {
         recruitTextField.addTarget(self,
-                action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
+                                   action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
+        exitModal.exitButton.addTarget(self,
+                                       action: #selector(exitModalExitButtonTapped),
+                                       for: .touchUpInside)
+        exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
+    }
+    
+    private func setupDeemedView() {
+        self.view.addSubview(deemedView)
+        
+        deemedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     func setNavigation() {
@@ -251,7 +283,7 @@ final class RecruitmentViewController: BaseViewController {
     }
     
     func updateNextButtonState() {
-        if let text = recruitTextField.text, let number = Int(text), number > 1 {
+        if let text = recruitTextField.text, let number = Int(text), number > 1, number < 100 {
             nextButton.activateButton()
         } else {
             nextButton.disabledButton()
@@ -264,14 +296,6 @@ final class RecruitmentViewController: BaseViewController {
 }
 
 // MARK: Extension
-//extension RecruitmentViewController {
-//    func showWarningToastView(duration: TimeInterval = 2.0) {
-//        self.warningToastView.fadeIn()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-//            self.warningToastView.fadeOut()
-//        }
-//    }
-//}
 // MARK: UITextFieldDelegate
 extension RecruitmentViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

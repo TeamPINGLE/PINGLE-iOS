@@ -24,6 +24,7 @@ class PlaceSelectionViewController: BaseViewController {
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
     private let exitModal = ExitModalView()
+    private let deemedView = UIView()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -31,6 +32,7 @@ class PlaceSelectionViewController: BaseViewController {
         setNavigation()
         setTarget()
         setRegister()
+        setupDeemedView()
         hideKeyboardWhenTappedAround()
     }
     
@@ -65,6 +67,11 @@ class PlaceSelectionViewController: BaseViewController {
         exitModal.do {
                     $0.isHidden = true
                 }
+        
+        deemedView.do {
+            $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
+            $0.isHidden = true
+        }
     }
     
     override func setLayout() {
@@ -90,7 +97,7 @@ class PlaceSelectionViewController: BaseViewController {
         searchPlaceView.snp.makeConstraints {
             $0.top.equalTo(self.placeSelectionTitle.snp.bottom).offset(24.adjusted)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(130.adjusted)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-15.adjusted)
         }
 
         nextButton.snp.makeConstraints {
@@ -145,6 +152,14 @@ class PlaceSelectionViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
+    private func setupDeemedView() {
+        self.view.addSubview(deemedView)
+        
+        deemedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
     // MARK: Objc Function
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
@@ -160,6 +175,7 @@ class PlaceSelectionViewController: BaseViewController {
         }
     
     @objc func exitButtonTapped() {
+        deemedView.isHidden = false
         self.view.addSubview(exitModal)
         exitModal.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -171,6 +187,7 @@ class PlaceSelectionViewController: BaseViewController {
     @objc func exitModalKeepButtonTapped() {
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
+        deemedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {

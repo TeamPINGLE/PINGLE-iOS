@@ -24,12 +24,14 @@ class InsertOpenChatLinkViewController: BaseViewController {
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
     private let exitModal = ExitModalView()
+    private let deemedView = UIView()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
         setTarget()
+        setupDeemedView()
         hideKeyboardWhenTappedAround()
     }
     
@@ -68,6 +70,11 @@ class InsertOpenChatLinkViewController: BaseViewController {
         exitModal.do {
                     $0.isHidden = true
                 }
+        
+        deemedView.do {
+            $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
+            $0.isHidden = true
+        }
     }
     
     override func setLayout() {
@@ -127,6 +134,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     @objc func exitButtonTapped() {
+        deemedView.isHidden = false
         self.view.addSubview(exitModal)
         exitModal.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -136,6 +144,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     @objc func exitModalKeepButtonTapped() {
+        deemedView.isHidden = true
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
     }
@@ -170,6 +179,14 @@ class InsertOpenChatLinkViewController: BaseViewController {
     
     func setNavigation() {
         navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func setupDeemedView() {
+        self.view.addSubview(deemedView)
+        
+        deemedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     override func setDelegate() {

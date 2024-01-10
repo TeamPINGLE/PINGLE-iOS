@@ -24,10 +24,12 @@ class MeetingIntroductionViewController: BaseViewController {
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
     private let exitModal = ExitModalView()
+    private let deemedView = UIView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDeemedView()
         navigationController?.navigationBar.isHidden = true
         setTarget()
         hideKeyboardWhenTappedAround()
@@ -68,6 +70,11 @@ class MeetingIntroductionViewController: BaseViewController {
         exitModal.do {
                     $0.isHidden = true
                 }
+        
+        deemedView.do {
+            $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
+            $0.isHidden = true
+        }
     }
     
     override func setLayout() {
@@ -143,11 +150,13 @@ class MeetingIntroductionViewController: BaseViewController {
             $0.centerY.equalToSuperview()
         }
         exitModal.isHidden = false
+        deemedView.isHidden = false
     }
     
     @objc func exitModalKeepButtonTapped() {
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
+        deemedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
@@ -166,6 +175,13 @@ class MeetingIntroductionViewController: BaseViewController {
                                        action: #selector(exitModalExitButtonTapped),
                                        for: .touchUpInside)
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
+    }
+    
+    private func setupDeemedView() {
+        self.view.addSubview(deemedView)
+        deemedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     override func setDelegate() {

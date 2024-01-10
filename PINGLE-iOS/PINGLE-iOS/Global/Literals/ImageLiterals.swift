@@ -29,7 +29,10 @@ enum ImageLiterals {
     enum OnBoarding {
         static var imgPINGLELogo: UIImage { .load(named: "imgPINGLELogo")}
         static var imgApplelogo: UIImage { .load(named: "imgApplelogo")}
-        static var imgSample: UIImage { .load(named: "imgSample")}
+        static var imgApplogo: UIImage { .load(named: "imgApplogo")}
+        static var imgSearchGraphic: UIImage { .load(named: "imgSearchGraphic")}
+        static var imgCreateGraphic: UIImage { .load(named: "imgCreateGraphic")}
+        static var imgGraphic1: UIImage { .load(named: "imgGraphic1")}
     }
     
     enum TabBar {

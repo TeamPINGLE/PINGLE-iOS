@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Alamofire
 import AuthenticationServices
 import SnapKit
 import Then
@@ -109,8 +110,89 @@ final class LoginViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func handleAuthorizationAppleIDButtonPress() {
-        let onboardingViewController = OnboardingViewController()
-        navigationController?.pushViewController(onboardingViewController, animated: true)
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
     
+    // MARK: Network Function
+    func login(data: LoginRequestBodyDTO) {
+        NetworkService.shared.onboardingService.login(bodyDTO: data) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                KeychainHandler.shared.accessToken = data.accessToken
+                KeychainHandler.shared.refreshToken = data.refreshToken
+                
+                /// 사용자가 단체가 있는지 검사
+                self.getUserInfo()
+            default:
+                print("login error")
+            }
+        }
+    }
+    
+    func getUserInfo() {
+        NetworkService.shared.onboardingService.userInfo { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                KeychainHandler.shared.userGroup = data.groups
+                if KeychainHandler.shared.userGroup.isEmpty {
+                    let onboardingViewController = OnboardingViewController()
+                    self.navigationController?.pushViewController(onboardingViewController, animated: true)
+                } else {
+                    let PINGLETabBarController = PINGLETabBarController()
+                    self.view.window?.rootViewController = PINGLETabBarController
+                    self.view.window?.makeKeyAndVisible()
+                }
+            default:
+                print("getUserInfo error")
+            }
+        }
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    ///로그인 성공했을 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let fullName = appleIDCredential.fullName
+            
+            if let familyName = fullName?.familyName, let givenName = fullName?.givenName {
+                let userName = String(describing: familyName) + String(describing: givenName)
+                KeychainHandler.shared.userName = userName
+            }
+
+            if  let identityToken = appleIDCredential.identityToken,
+                let identifyTokenString = String(data: identityToken, encoding: .utf8) {
+                KeychainHandler.shared.providerToken = identifyTokenString
+            }
+            
+            let userName = KeychainHandler.shared.userName
+            self.login(data: LoginRequestBodyDTO(provider: "APPLE", name: userName))
+            
+        default:
+            break
+        }
+    }
+    
+    /// 로그인 실패했을 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("login failed - \(error.localizedDescription)")
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    /// - Tag: provide_presentation_anchor
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
 }

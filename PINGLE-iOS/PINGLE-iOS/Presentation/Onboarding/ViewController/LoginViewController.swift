@@ -34,7 +34,7 @@ final class LoginViewController: BaseViewController {
         }
         
         self.logoImageView.do {
-            $0.image = ImageLiterals.TabBar.imgSetting //이후 디자인 변경
+            $0.image = ImageLiterals.OnBoarding.imgApplogo
         }
         
         self.loginTitleLabel.do {

@@ -46,7 +46,7 @@ final class OnboardingViewController: BaseViewController {
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.existingOrganization, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
             $0.setTitleColor(.white, for: .normal)
-            $0.setImage(ImageLiterals.OnBoarding.imgSample, for: .normal)
+            $0.setImage(ImageLiterals.OnBoarding.imgSearchGraphic, for: .normal)
             $0.alignTextBelow(spacing: 26)
             $0.titleLabel?.numberOfLines = 0
             $0.titleLabel?.textAlignment = .center
@@ -59,7 +59,7 @@ final class OnboardingViewController: BaseViewController {
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.makeOrganization, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
             $0.setTitleColor(.white, for: .normal)
-            $0.setImage(ImageLiterals.OnBoarding.imgSample, for: .normal)
+            $0.setImage(ImageLiterals.OnBoarding.imgCreateGraphic, for: .normal)
             $0.alignTextBelow(spacing: 26)
             $0.titleLabel?.numberOfLines = 0
             $0.titleLabel?.textAlignment = .center
@@ -111,7 +111,7 @@ final class OnboardingViewController: BaseViewController {
     }
     
     @objc func makeOrganizationButtonDidTap() {
-        guard let url = URL(string: "https://www.google.com") else { return }
+        guard let url = URL(string: "https://docs.google.com/forms/d/10WxvEzSVRrRvRGXsYf9Z5oXv4HsNuAwG2QicB4bY0aY/edit") else { return }
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true)
     }

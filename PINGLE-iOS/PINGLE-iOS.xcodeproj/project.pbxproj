@@ -91,6 +91,8 @@
 		E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299A2B455E20005D1220 /* MakeMeetingGuideViewController.swift */; };
 		E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */; };
 		E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */; };
+		F111BE662B4E8606001D116C /* UserInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */; };
+		F111BE682B4E8CEB001D116C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111BE672B4E8CEB001D116C /* NetworkManager.swift */; };
 		F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BB72B43CABE0072A02A /* LoginViewController.swift */; };
 		F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BBC2B444A250072A02A /* OnboardingViewController.swift */; };
 		F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BBE2B4557810072A02A /* SearchOrganizationViewController.swift */; };
@@ -113,6 +115,7 @@
 		F14F3C772B4D37080049A9EE /* LoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C762B4D37080049A9EE /* LoginResponseDTO.swift */; };
 		F14F3C792B4D389E0049A9EE /* OnboardingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C782B4D389E0049A9EE /* OnboardingTarget.swift */; };
 		F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C7A2B4D38AD0049A9EE /* OnboardingService.swift */; };
+		F16BCA392B4E62760096A62F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16BCA382B4E62760096A62F /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,6 +204,8 @@
 		E5AD299A2B455E20005D1220 /* MakeMeetingGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMeetingGuideViewController.swift; sourceTree = "<group>"; };
 		E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECategoryButton.swift; sourceTree = "<group>"; };
 		E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
+		F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponseDTO.swift; sourceTree = "<group>"; };
+		F111BE672B4E8CEB001D116C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		F1239BB72B43CABE0072A02A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F1239BB92B43E49D0072A02A /* PINGLE-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PINGLE-iOS.entitlements"; sourceTree = "<group>"; };
 		F1239BBC2B444A250072A02A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +229,7 @@
 		F14F3C762B4D37080049A9EE /* LoginResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseDTO.swift; sourceTree = "<group>"; };
 		F14F3C782B4D389E0049A9EE /* OnboardingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTarget.swift; sourceTree = "<group>"; };
 		F14F3C7A2B4D38AD0049A9EE /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
+		F16BCA382B4E62760096A62F /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +341,7 @@
 			children = (
 				C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */,
 				C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */,
+				F111BE672B4E8CEB001D116C /* NetworkManager.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -424,6 +431,7 @@
 				C39602EB2B3BF234004BB2B8 /* Meeting */,
 				C39602ED2B3BF244004BB2B8 /* MyPingle */,
 				C39602EC2B3BF23B004BB2B8 /* Profile */,
+				F16BCA362B4E62380096A62F /* Splash */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -808,8 +816,17 @@
 			isa = PBXGroup;
 			children = (
 				F14F3C762B4D37080049A9EE /* LoginResponseDTO.swift */,
+				F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		F16BCA362B4E62380096A62F /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				F16BCA382B4E62760096A62F /* SplashViewController.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {
@@ -1003,6 +1020,7 @@
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */,
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
+				F111BE662B4E8606001D116C /* UserInfoResponseDTO.swift in Sources */,
 				C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */,
 				C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */,
 				E5A651F42B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift in Sources */,
@@ -1030,7 +1048,9 @@
 				F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */,
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
+				F111BE682B4E8CEB001D116C /* NetworkManager.swift in Sources */,
 				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,
+				F16BCA392B4E62760096A62F /* SplashViewController.swift in Sources */,
 				E5A651F22B4AE43900676ED0 /* SearchedPlaceModel.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
 				C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */,

@@ -117,6 +117,9 @@ final class EntranceCompletedViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func bottomCTAButtonTapped() {
+        let PINGLETabBarController = PINGLETabBarController()
+        self.view.window?.rootViewController = PINGLETabBarController
+        self.view.window?.makeKeyAndVisible()
     }
     
     // MARK: SetButton

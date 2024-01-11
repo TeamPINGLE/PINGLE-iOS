@@ -41,7 +41,7 @@ class OrganizationButton: UIButton {
         }
         
         self.organizationNameLabel.do {
-            $0.text = "SOPT" // 온보딩 화면에서 유저디폴트로 구현할 예정
+            $0.text = KeychainHandler.shared.userGroup[0].name
             $0.font = .subtitleSubBold18
             $0.textColor = .grayscaleG01
         }

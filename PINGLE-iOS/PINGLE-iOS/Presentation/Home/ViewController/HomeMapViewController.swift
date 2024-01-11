@@ -242,12 +242,13 @@ extension HomeMapViewController: UICollectionViewDataSource {
             self.showPopUp(isParticipating: self.homePinDetailList[indexPath.row].isParticipating)
         }
         
+        cell.mapDetailView.talkButtonAction = {
+            self.connectTalkLink(url: self.homePinDetailList[indexPath.row].chatLink)
+        }
+        
         cell.mapDetailView.participantCountButton.addTarget(self,
                                                             action: #selector(participantCountButtonTapped),
                                                             for: .touchUpInside)
-        cell.mapDetailView.talkButton.addTarget(self,
-                                                action: #selector(talkButtonTapped),
-                                                for: .touchUpInside)
         return cell
     }
 }
@@ -350,12 +351,12 @@ extension HomeMapViewController {
         }
     }
     
-    @objc func talkButtonTapped() {
+    func connectTalkLink(url: String?) {
         print("대화하기 버튼 탭")
-        //        guard let chatURL = mapDetailView.openChatURL else { return }
-        //        guard let url = URL(string: chatURL) else { return }
-        //        let safariVC = SFSafariViewController(url: url)
-        //        present(safariVC, animated: true)
+        guard let chatURL = url else { return }
+        guard let url = URL(string: chatURL) else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
     }
     
     // MARK: Custom Function

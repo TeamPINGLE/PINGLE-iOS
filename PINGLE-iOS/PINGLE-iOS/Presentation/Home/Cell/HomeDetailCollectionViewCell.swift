@@ -32,6 +32,7 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         mapDetailView.participantsButtonAction = {}
+        mapDetailView.talkButtonAction = {}
     }
     
     // MARK: Layout Helpers

@@ -18,6 +18,7 @@ final class HomeMapDetailView: BaseView {
     var isParticipating: Bool = false
     var openChatURL: String?
     var participantsButtonAction: (() -> Void) = {}
+    var talkButtonAction: (() -> Void) = {}
     
     // MARK: Component
     let topBackgroundView = UIView()
@@ -260,10 +261,15 @@ final class HomeMapDetailView: BaseView {
     
     func setAddTarget() {
         self.participationButton.addTarget(self, action: #selector(participationButtonTapped), for: .touchUpInside)
+        self.talkButton.addTarget(self, action: #selector(talkButtonTapped), for: .touchUpInside)
     }
     
     @objc func participationButtonTapped() {
         participantsButtonAction()
+    }
+    
+    @objc func talkButtonTapped() {
+        talkButtonAction()
     }
     
     // MARK: Data Bind Func

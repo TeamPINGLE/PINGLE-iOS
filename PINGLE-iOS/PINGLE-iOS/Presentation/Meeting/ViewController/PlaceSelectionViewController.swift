@@ -23,6 +23,8 @@ class PlaceSelectionViewController: BaseViewController {
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
+    private let exitModal = ExitModalView()
+    private let dimmedView = UIView()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -30,7 +32,16 @@ class PlaceSelectionViewController: BaseViewController {
         setNavigation()
         setTarget()
         setRegister()
+        setUpDimmedView()
         hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setNavigation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        setNavigation()
     }
     
     // MARK: UI
@@ -40,11 +51,11 @@ class PlaceSelectionViewController: BaseViewController {
         }
         
         self.backButton.do {
-            $0.setImage(ImageLiterals.Metting.Icon.icBack, for: .normal)
+            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
         }
         
         progressBar4.do {
-            $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage4
+            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage4
             $0.contentMode = .scaleAspectFill
         }
         
@@ -59,6 +70,15 @@ class PlaceSelectionViewController: BaseViewController {
             $0.text = StringLiterals.Meeting.MeetingCategory.ExitButton.exitLabel
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
+        }
+        
+        exitModal.do {
+                    $0.isHidden = true
+                }
+        
+        dimmedView.do {
+            $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
+            $0.isHidden = true
         }
     }
     
@@ -85,11 +105,11 @@ class PlaceSelectionViewController: BaseViewController {
         searchPlaceView.snp.makeConstraints {
             $0.top.equalTo(self.placeSelectionTitle.snp.bottom).offset(24.adjusted)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(130.adjusted)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-15.adjusted)
         }
 
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
@@ -134,6 +154,18 @@ class PlaceSelectionViewController: BaseViewController {
         nextButton.addTarget(self, action: #selector(nextButtonTapped),
                              for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
+        exitModal.exitButton.addTarget(self,
+                                       action: #selector(exitModalExitButtonTapped),
+                                       for: .touchUpInside)
+        exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
+    }
+    
+    private func setUpDimmedView() {
+        self.view.addSubview(dimmedView)
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     // MARK: Objc Function
@@ -146,11 +178,36 @@ class PlaceSelectionViewController: BaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        print("다음 화면 연결 !")
+        let recruitmentViewController = RecruitmentViewController()
+        navigationController?.pushViewController(recruitmentViewController, animated: true)
         }
     
     @objc func exitButtonTapped() {
-        print("여기다가 나가기 모달 띄우기")
+        self.view.addSubview(exitModal)
+        exitModal.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        exitModal.isHidden = false
+        dimmedView.isHidden = false
+    }
+    
+    @objc func exitModalKeepButtonTapped() {
+        exitModal.isHidden = true
+        exitModal.removeFromSuperview()
+        dimmedView.isHidden = true
+    }
+    
+    @objc func exitModalExitButtonTapped() {
+        exitModal.isHidden = true
+        dimmedView.isHidden = true
+        self.dismiss(animated: true) {
+            if let tabBarController = self.tabBarController {
+                if tabBarController.viewControllers?.count ?? 0 >= 2 {
+                    tabBarController.selectedIndex = 0
+                }
+            }
+        }
     }
 }
 

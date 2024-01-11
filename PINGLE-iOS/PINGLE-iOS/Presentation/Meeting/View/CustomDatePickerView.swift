@@ -13,7 +13,6 @@ import Then
 class CustomDatePickerView: BaseView {
     // MARK: - Property
     let datePicker = UIDatePicker()
-    let resetButton = UIButton()
     let doneButton = UIButton()
     private let dividerView = UIView()
     private let nowDate = Date()
@@ -37,12 +36,6 @@ class CustomDatePickerView: BaseView {
             $0.alpha = 0.3
         }
         
-        resetButton.do {
-            $0.setTitle(StringLiterals.Meeting.DatePicker.PickerButton.resetButton, for: .normal)
-            $0.titleLabel?.font = .sfProRegular
-            $0.setTitleColor(.systemBlue, for: .normal)
-        }
-        
         doneButton.do {
             $0.setTitle(StringLiterals.Meeting.DatePicker.PickerButton.doneButton, for: .normal)
             $0.titleLabel?.font = .sfProBold
@@ -51,11 +44,11 @@ class CustomDatePickerView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(datePicker, dividerView, resetButton, doneButton)
+        self.addSubviews(datePicker, dividerView, doneButton)
         
         self.snp.makeConstraints {
-            $0.height.equalTo(288.adjusted)
-            $0.width.equalTo(327.adjusted)
+            $0.height.equalTo(288)
+            $0.width.equalTo(327)
         }
         
         datePicker.snp.makeConstraints {
@@ -68,13 +61,6 @@ class CustomDatePickerView: BaseView {
             $0.height.equalTo(1.adjusted)
             $0.centerX.equalToSuperview()
             $0.top.equalTo(datePicker.snp.bottom).offset(15.adjusted)
-        }
-        
-        resetButton.snp.makeConstraints {
-            $0.width.equalTo(43.adjusted)
-            $0.height.equalTo(24.adjusted)
-            $0.leading.equalToSuperview().inset(23.adjusted)
-            $0.top.equalTo(dividerView.snp.bottom).offset(10.adjusted)
         }
         
         doneButton.snp.makeConstraints {

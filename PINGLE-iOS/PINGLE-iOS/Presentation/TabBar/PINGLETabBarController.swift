@@ -124,6 +124,12 @@ final class PINGLETabBarController: UITabBarController {
     @objc func mapListButtonTapped() {
         self.isHomeMap.toggle()
     }
+    
+    @objc func goToAddPingle() {
+        let navigationController = UINavigationController(rootViewController: MakeMeetingGuideViewController())
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - extension
@@ -147,5 +153,18 @@ extension PINGLETabBarController: UITabBarControllerDelegate {
                 }
             }
         }
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
+            return false
+        }
+        
+        if selectedIndex != 2 {
+            return true
+        }
+        
+        goToAddPingle()
+        return false
     }
 }

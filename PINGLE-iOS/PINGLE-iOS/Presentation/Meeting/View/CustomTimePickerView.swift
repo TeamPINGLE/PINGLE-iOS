@@ -13,7 +13,6 @@ import Then
 class CustomTimePickerView: BaseView {
     // MARK: - Property
     let timePicker = UIDatePicker()
-    let resetButton = UIButton()
     let doneButton = UIButton()
     private let dividerView = UIView()
     
@@ -35,12 +34,6 @@ class CustomTimePickerView: BaseView {
             $0.alpha = 0.3
         }
         
-        resetButton.do {
-            $0.setTitle(StringLiterals.Meeting.DatePicker.PickerButton.resetButton, for: .normal)
-            $0.titleLabel?.font = .sfProRegular
-            $0.setTitleColor(.systemBlue, for: .normal)
-        }
-        
         doneButton.do {
             $0.setTitle(StringLiterals.Meeting.DatePicker.PickerButton.doneButton, for: .normal)
             $0.titleLabel?.font = .sfProBold
@@ -49,7 +42,7 @@ class CustomTimePickerView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(timePicker, dividerView, resetButton, doneButton)
+        self.addSubviews(timePicker, dividerView, doneButton)
         
         self.snp.makeConstraints {
             $0.height.equalTo(288.adjusted)
@@ -66,13 +59,6 @@ class CustomTimePickerView: BaseView {
             $0.height.equalTo(1.adjusted)
             $0.centerX.equalToSuperview()
             $0.top.equalTo(timePicker.snp.bottom).offset(15.adjusted)
-        }
-        
-        resetButton.snp.makeConstraints {
-            $0.width.equalTo(43.adjusted)
-            $0.height.equalTo(24.adjusted)
-            $0.leading.equalToSuperview().inset(23.adjusted)
-            $0.top.equalTo(dividerView.snp.bottom).offset(10.adjusted)
         }
         
         doneButton.snp.makeConstraints {

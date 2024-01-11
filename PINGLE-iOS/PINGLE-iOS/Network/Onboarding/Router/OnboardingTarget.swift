@@ -14,7 +14,7 @@ enum OnboardingTarget {
     case userInfo
     case searchOrganization(_ queryDTO: SearchOrganizationRequestQueryDTO)
     case organizationDetail(_ teamId: Int)
-    case enterInviteCode(_ teamId: Int, bodyDTO: EnterInviteCodeRequestBodyDTO)
+    case enterInviteCode(_ teamId: Int, _ bodyDTO: EnterInviteCodeRequestBodyDTO)
 }
 
 extension OnboardingTarget: TargetType {

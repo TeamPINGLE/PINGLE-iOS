@@ -34,7 +34,7 @@ final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingSer
     }
     
     func enterInviteCode(teamId: Int, bodyDTO: EnterInviteCodeRequestBodyDTO, completion: @escaping (NetworkResult<BaseResponse<EnterInviteCodeResponseDTO>>) -> Void) {
-        fetchData(target: .organizationDetail(teamId),
+        fetchData(target: .enterInviteCode(teamId, bodyDTO),
                   responseData: BaseResponse<EnterInviteCodeResponseDTO>.self, completion: completion)
     }
 }

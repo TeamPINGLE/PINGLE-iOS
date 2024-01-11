@@ -25,6 +25,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     private let infoMessageLabel = UILabel()
     private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.enterTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.wrongCode)
+    var teamId: Int?
     
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +35,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getOrganizationDetail()
         setNavigation()
         setTarget()
         setupKeyboardEvent()
@@ -52,6 +54,10 @@ final class EnterInviteCodeViewController: BaseViewController {
         
         self.titleBackgroundView.do {
             $0.backgroundColor = .grayscaleG11
+        }
+        
+        self.organizationInfoView.do {
+            $0.isHidden = true
         }
         
         self.titleLabel.do {
@@ -159,9 +165,8 @@ final class EnterInviteCodeViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
-        //        showWarningToastView()
-        let entranceCompletedViewController = EntranceCompletedViewController()
-        navigationController?.pushViewController(entranceCompletedViewController, animated: true)
+        guard let inviteCodeText = inviteCodeTextFieldView.searchTextField.text else { return }
+        postEnterInviteCode(code: EnterInviteCodeRequestBodyDTO(code: inviteCodeText))
     }
     
     // MARK: setupKeyboard
@@ -174,6 +179,45 @@ final class EnterInviteCodeViewController: BaseViewController {
                                                selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+    }
+    
+    // MARK: Network Function
+    func getOrganizationDetail() {
+        guard let teamId = teamId else { return }
+        NetworkService.shared.onboardingService.organizationDetail(teamId: teamId) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                organizationInfoView.bindData(data: data)
+                organizationInfoView.isHidden = false
+            default:
+                print("login error")
+            }
+        }
+    }
+    
+    func postEnterInviteCode(code: EnterInviteCodeRequestBodyDTO) {
+        guard let teamId = teamId else { return }
+        NetworkService.shared.onboardingService.enterInviteCode(teamId: teamId, bodyDTO: code) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                /// data가 있다는 것은 초대코드가 유효하다는 뜻이다. 없다는 것은 초대코드가 유효하지 않아 그룹 정보를 보내지 않는다는 뜻이다.
+                if let data = data.data {
+                    /// 이후 여러단체에 가입할 경우에 대비하여 사용자가 가입한 팀명과 팀번호를 배열의 첫번째에 저장한다.
+                    var userGroup: [UserGroup] = []
+                    userGroup.append(UserGroup(id: data.id, name: data.name))
+                    KeychainHandler.shared.userGroup = userGroup
+                    let entranceCompletedViewController = EntranceCompletedViewController()
+                    navigationController?.pushViewController(entranceCompletedViewController, animated: true)
+                } else {
+                    showWarningToastView()
+                }
+            default:
+                print("error")
+            }
+        }
     }
 }
 
@@ -192,7 +236,6 @@ extension EnterInviteCodeViewController: UITextFieldDelegate {
         } else {
             bottomCTAButton.activateButton()
         }
-        print("Text changed: \(textField.text ?? "")")
     }
 }
 

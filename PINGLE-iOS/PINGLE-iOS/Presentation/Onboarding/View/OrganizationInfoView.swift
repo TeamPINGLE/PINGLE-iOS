@@ -32,7 +32,6 @@ final class OrganizationInfoView: BaseView {
         }
         
         self.keywordLabel.do {
-            $0.text = "통신키워드"
             $0.font = .captionCapSemi12
             $0.textColor = .mainPingleGreen
             $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
@@ -40,7 +39,6 @@ final class OrganizationInfoView: BaseView {
         }
         
         self.organizationNameLabel.do {
-            $0.text = "HTTP"
             $0.font = .titleTitleSemi24
             $0.textColor = .black
         }
@@ -52,7 +50,6 @@ final class OrganizationInfoView: BaseView {
         }
         
         self.meetingNumberLabel.do {
-            $0.text = "n개"
             $0.font = .bodyBodyMed14
             $0.textColor = .grayscaleG08
         }
@@ -64,7 +61,6 @@ final class OrganizationInfoView: BaseView {
         }
         
         self.memberNumberLabel.do {
-            $0.text = "n명"
             $0.font = .bodyBodyMed14
             $0.textColor = .grayscaleG08
         }
@@ -104,5 +100,12 @@ final class OrganizationInfoView: BaseView {
             $0.leading.equalTo(meetingNumberLabel)
             $0.centerY.equalTo(memberNumberTitleLabel)
         }
+    }
+    
+    func bindData(data: OrganizationDetailResponseDTO) {
+        keywordLabel.text = data.keyword
+        organizationNameLabel.text = data.name
+        meetingNumberLabel.text = "\(data.meetingCount)개"
+        memberNumberLabel.text = "\(data.participantCount)명"
     }
 }

@@ -325,12 +325,14 @@ final class HomeMapDetailView: BaseView {
                     $0.backgroundColor = .grayscaleG07
                     $0.isEnabled = false
                 }
+                participationButton.setTitleColor(.grayscaleG10, for: .normal)
             } else {
                 participationButton.do {
                     $0.setTitleColor(.white, for: .normal)
                     $0.backgroundColor = .white
                     $0.isEnabled = true
                 }
+                participationButton.setTitleColor(.black, for: .normal)
             }
         } else {
             participantCountButton.completeLabel.isHidden = true

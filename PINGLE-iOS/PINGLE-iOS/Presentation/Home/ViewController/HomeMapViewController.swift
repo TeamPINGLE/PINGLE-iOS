@@ -28,10 +28,6 @@ final class HomeMapViewController: BaseViewController {
     
     // MARK: Component
     let mapsView = HomeMapView()
-    let dimmedView = UIView()
-    let homeDetailPopUpView = HomeDetailPopUpView()
-    let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
-    let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -55,20 +51,6 @@ final class HomeMapViewController: BaseViewController {
     
     // MARK: Style Helpers
     override func setStyle() {
-        dimmedView.do {
-            $0.backgroundColor = .black
-            $0.alpha = 0.7
-            $0.isHidden = true
-            $0.isUserInteractionEnabled = true
-        }
-        
-        homeDetailPopUpView.do {
-            $0.isHidden = true
-        }
-        
-        homeDetailCancelPopUpView.do {
-            $0.isHidden = true
-        }
     }
     
     // MARK: Layout Helpers
@@ -78,33 +60,14 @@ final class HomeMapViewController: BaseViewController {
         
         self.view.addSubviews(mapsView)
         
-        if let window = UIApplication.shared.keyWindow {
-            window.addSubviews(dimmedView,
-                               homeDetailPopUpView,
-                               homeDetailCancelPopUpView)
-        }
-        
         mapsView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(safeAreaHeight).offset(-tabBarHeight)
-        }
-        
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        homeDetailPopUpView.snp.makeConstraints {
-            $0.center.equalTo(dimmedView)
-        }
-        
-        homeDetailCancelPopUpView.snp.makeConstraints {
-            $0.center.equalTo(dimmedView)
         }
     }
     
     override func setDelegate() {
         self.mapsView.mapsView.mapView.touchDelegate = self
-        self.dimmedTapGesture.delegate = self
         self.mapsView.homeDetailCollectionView.delegate = self
         self.mapsView.homeDetailCollectionView.dataSource = self
     }
@@ -127,16 +90,6 @@ final class HomeMapViewController: BaseViewController {
         self.mapsView.currentLocationButton.addTarget(self,
                                                       action: #selector(currentLocationButtonTapped),
                                                       for: .touchUpInside)
-        self.dimmedView.addGestureRecognizer(dimmedTapGesture)
-        self.homeDetailPopUpView.participationButton.addTarget(self,
-                                                               action: #selector(participationButtonTapped),
-                                                               for: .touchUpInside)
-        self.homeDetailCancelPopUpView.cancelButton.addTarget(self,
-                                                              action: #selector(cancelButtonTapped),
-                                                              for: .touchUpInside)
-        self.homeDetailCancelPopUpView.backButton.addTarget(self,
-                                                            action: #selector(backButtonTapped),
-                                                            for: .touchUpInside)
     }
 }
 
@@ -214,17 +167,6 @@ extension HomeMapViewController: NMFMapViewTouchDelegate {
     }
 }
 
-// MARK: UIGestureRecognizerDelegate
-extension HomeMapViewController: UIGestureRecognizerDelegate {
-    /// 딤 뷰 탭 되었을 때 메소드
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        dimmedView.isHidden = true
-        homeDetailPopUpView.isHidden = true
-        homeDetailCancelPopUpView.isHidden = true
-        return true
-    }
-}
-
 // MARK: UICollectionViewDelegate
 extension HomeMapViewController: UICollectionViewDelegate { }
 
@@ -237,15 +179,35 @@ extension HomeMapViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailCollectionViewCell.identifier, for: indexPath) as? HomeDetailCollectionViewCell else { return UICollectionViewCell() }
         cell.mapDetailView.dataBind(data: homePinDetailList[indexPath.row])
-
+        cell.mapDetailView.updateStyle()
+        
         cell.mapDetailView.participantsButtonAction = {
-            self.showPopUp(isParticipating: self.homePinDetailList[indexPath.row].isParticipating)
+            cell.showPopUp(isParticipating: self.homePinDetailList[indexPath.row].isParticipating)
         }
         
         cell.mapDetailView.talkButtonAction = {
             self.connectTalkLink(url: self.homePinDetailList[indexPath.row].chatLink)
         }
         
+        cell.homeDetailPopUpView.participantionButtonAction = {
+            self.meetingJoin(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] in
+                guard let self = self else { return }
+                print("참여하기 버튼 탭")
+                cell.mapDetailView.isParticipating = true
+                self.bindDetailViewData(id: self.markerId)
+            }
+        }
+        
+        cell.homeDetailCancelPopUpView.cancelButtonAction = {
+            self.meetingCancel(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] in
+                guard let self = self else { return }
+                print("취소하기 버튼 탭")
+                cell.mapDetailView.isParticipating = false
+                self.bindDetailViewData(id: self.markerId)
+            }
+        }
+        
+        cell.homeDetailPopUpView.dataBind(data: self.homePinDetailList[indexPath.row])
         cell.mapDetailView.participantCountButton.addTarget(self,
                                                             action: #selector(participantCountButtonTapped),
                                                             for: .touchUpInside)
@@ -302,32 +264,6 @@ extension HomeMapViewController {
         }
     }
     
-    @objc func participationButtonTapped() {
-        self.meetingJoin(meetingId: self.meetingId[0]) { [weak self] in
-            guard let self = self else { return }
-            print("참여하기 버튼 탭")
-            dimmedView.isHidden = true
-            homeDetailPopUpView.isHidden = true
-            self.bindDetailViewData(id: self.markerId)
-        }
-    }
-    
-    @objc func cancelButtonTapped() {
-        self.meetingCancel(meetingId: self.meetingId[0]) { [weak self] in
-            guard let self = self else { return }
-            print("취소하기 버튼 탭")
-            dimmedView.isHidden = true
-            homeDetailCancelPopUpView.isHidden = true
-            self.bindDetailViewData(id: self.markerId)
-        }
-    }
-    
-    @objc func backButtonTapped() {
-        print("돌아가기 버튼 탭")
-        dimmedView.isHidden = true
-        homeDetailCancelPopUpView.isHidden = true
-    }
-    
     @objc func currentLocationButtonTapped() {
         if allowLocation {
             moveToCurrentLocation()
@@ -338,17 +274,6 @@ extension HomeMapViewController {
         print("참여현황")
         let participantViewController = ParticipantViewController()
         self.navigationController?.pushViewController(participantViewController, animated: true)
-    }
-    
-    func showPopUp(isParticipating: Bool) {
-        dimmedView.isHidden = false
-        if !isParticipating {
-            homeDetailPopUpView.isHidden = false
-            print("참여 팝업 보여주기")
-        } else {
-            homeDetailCancelPopUpView.isHidden = false
-            print("참여취소 팝업 보여주기")
-        }
     }
     
     func connectTalkLink(url: String?) {

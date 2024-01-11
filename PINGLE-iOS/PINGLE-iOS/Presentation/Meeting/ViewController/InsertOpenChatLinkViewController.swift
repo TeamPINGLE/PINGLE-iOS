@@ -13,6 +13,7 @@ import Then
 class InsertOpenChatLinkViewController: BaseViewController {
     
     // MARK: - Property
+    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar6 = UIImageView()
     private let openChatTitle = UILabel()
@@ -23,16 +24,25 @@ class InsertOpenChatLinkViewController: BaseViewController {
                                              textColor: .grayscaleG10)
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
+    private let exitModal = ExitModalView()
+    private let dimmedView = UIView()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
         setTarget()
+        setUpDimmedView()
         hideKeyboardWhenTappedAround()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setNavigation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         setNavigation()
     }
     
@@ -43,11 +53,11 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Metting.Icon.icBack, for: .normal)
+            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
         }
         
         progressBar6.do {
-            $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage6
+            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage6
             $0.contentMode = .scaleAspectFill
         }
         
@@ -58,10 +68,23 @@ class InsertOpenChatLinkViewController: BaseViewController {
             $0.textColor = .white
         }
         
+        openChatLinkTextField.do {
+            $0.searchTextField.keyboardType = .URL
+        }
+        
         exitLabel.do {
             $0.text = StringLiterals.Meeting.MeetingCategory.ExitButton.exitLabel
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
+        }
+        
+        exitModal.do {
+                    $0.isHidden = true
+                }
+        
+        dimmedView.do {
+            $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
+            $0.isHidden = true
         }
     }
     
@@ -93,7 +116,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
@@ -117,11 +140,36 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        print("여기다가 다음 뷰컨 연결 할것임")
+        let finalResultViewController = FinalResultViewController()
+        navigationController?.pushViewController(finalResultViewController, animated: true)
     }
     
     @objc func exitButtonTapped() {
-        print("나가기 모달 출발")
+        self.view.addSubview(exitModal)
+        exitModal.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        exitModal.isHidden = false
+        dimmedView.isHidden = false
+    }
+    
+    @objc func exitModalKeepButtonTapped() {
+        exitModal.isHidden = true
+        exitModal.removeFromSuperview()
+        dimmedView.isHidden = true
+    }
+    
+    @objc func exitModalExitButtonTapped() {
+        exitModal.isHidden = true
+        dimmedView.isHidden = true
+        self.dismiss(animated: true) {
+            if let tabBarController = self.tabBarController {
+                if tabBarController.viewControllers?.count ?? 0 >= 2 {
+                    tabBarController.selectedIndex = 0
+                }
+            }
+        }
     }
 
     @objc func textFieldDidChange(_ sender: Any?) {
@@ -136,18 +184,26 @@ class InsertOpenChatLinkViewController: BaseViewController {
     
     // MARK: Function
     func setTarget() {
-        openChatLinkTextField.searchTextField.addTarget(self,
-                                                              action:#selector(self.textFieldDidChange(_:)),
-                                                              for: .editingChanged)
+        openChatLinkTextField.searchTextField.addTarget(self, action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
+        exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
+        exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
     func setNavigation() {
         navigationController?.navigationBar.isHidden = true
     }
     
+    private func setUpDimmedView() {
+        self.view.addSubview(dimmedView)
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+
     override func setDelegate() {
         self.openChatLinkTextField.searchTextField.delegate = self
     }

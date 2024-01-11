@@ -13,7 +13,7 @@ enum HTTPHeaderFieldKey: String {
     case acceptType = "Accept"
     case accessToken = "accessToken"
     case refreshtoken = "refreshtoken"
-    case providerToken = "Provider-Token"
+    case providerToken = "X-Provider-Token"
     case xAccessAuth = "X-ACCESS-AUTH"
     case xRefreshAuth = "X-REFRESH-AUTH"
 }

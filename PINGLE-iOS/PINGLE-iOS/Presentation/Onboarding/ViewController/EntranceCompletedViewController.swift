@@ -64,7 +64,7 @@ final class EntranceCompletedViewController: BaseViewController {
         }
         
         self.backgroundImageView.do {
-            $0.image = ImageLiterals.Metting.Guide.imgMettingGraphic
+            $0.image = ImageLiterals.OnBoarding.imgGraphic1
         }
     }
     
@@ -117,6 +117,9 @@ final class EntranceCompletedViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func bottomCTAButtonTapped() {
+        let PINGLETabBarController = PINGLETabBarController()
+        self.view.window?.rootViewController = PINGLETabBarController
+        self.view.window?.makeKeyAndVisible()
     }
     
     // MARK: SetButton

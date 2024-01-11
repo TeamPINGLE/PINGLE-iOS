@@ -17,7 +17,7 @@ final class SearchOrganizationView: BaseView {
     let searchTextField = UITextField()
     let searchButton = UIButton()
     let searchCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    private let noResultLabel = UILabel()
+    let noResultLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,6 +63,7 @@ final class SearchOrganizationView: BaseView {
             $0.text = StringLiterals.Onboarding.ExplainTitle.noResult
             $0.font = .subtitleSubSemi18
             $0.textColor = .grayscaleG06
+            $0.isHidden = true
         }
     }
     

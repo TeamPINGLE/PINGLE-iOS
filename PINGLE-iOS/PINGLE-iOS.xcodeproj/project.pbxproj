@@ -45,7 +45,6 @@
 		C38545402B4868860040E60D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385453F2B4868860040E60D /* String+.swift */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
-		C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602BB2B3BEE06004BB2B8 /* ViewController.swift */; };
 		C39602C12B3BEE08004BB2B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C39602C02B3BEE08004BB2B8 /* Assets.xcassets */; };
 		C39602C42B3BEE08004BB2B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39602C22B3BEE08004BB2B8 /* LaunchScreen.storyboard */; };
 		C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D02B3BF162004BB2B8 /* ImageLiterals.swift */; };
@@ -79,6 +78,9 @@
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
 		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
+		E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */; };
+		E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */; };
+		E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565EB562B4FC9B80001758C /* MeetingManager.swift */; };
 		E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */; };
 		E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */; };
 		E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651EB2B4A982100676ED0 /* ExitModalView.swift */; };
@@ -109,6 +111,9 @@
 		F1239BD52B47D5530072A02A /* EnterInviteCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */; };
 		F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD62B47D8F60072A02A /* OrganizationInfoView.swift */; };
 		F1239BD92B486B230072A02A /* EntranceCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BD82B486B230072A02A /* EntranceCompletedViewController.swift */; };
+		F125A1842B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F125A1832B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift */; };
+		F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F125A1852B4FC77800739C34 /* OrganizationDetailResponseDTO.swift */; };
+		F125A1882B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */; };
 		F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C642B4945E00049A9EE /* SettingViewController.swift */; };
 		F14F3C692B494FB10049A9EE /* OrganizationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C682B494FB10049A9EE /* OrganizationButton.swift */; };
 		F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */; };
@@ -119,6 +124,8 @@
 		F14F3C792B4D389E0049A9EE /* OnboardingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C782B4D389E0049A9EE /* OnboardingTarget.swift */; };
 		F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C7A2B4D38AD0049A9EE /* OnboardingService.swift */; };
 		F16BCA392B4E62760096A62F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16BCA382B4E62760096A62F /* SplashViewController.swift */; };
+		F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */; };
+		F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,7 +171,6 @@
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C39602BB2B3BEE06004BB2B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C39602C02B3BEE08004BB2B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C39602C32B3BEE08004BB2B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C39602C52B3BEE08004BB2B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -195,6 +201,9 @@
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
 		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
+		E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryCardView.swift; sourceTree = "<group>"; };
+		E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultViewController.swift; sourceTree = "<group>"; };
+		E565EB562B4FC9B80001758C /* MeetingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManager.swift; sourceTree = "<group>"; };
 		E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePickerView.swift; sourceTree = "<group>"; };
 		E5A651EB2B4A982100676ED0 /* ExitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitModalView.swift; sourceTree = "<group>"; };
@@ -226,6 +235,9 @@
 		F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInviteCodeViewController.swift; sourceTree = "<group>"; };
 		F1239BD62B47D8F60072A02A /* OrganizationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationInfoView.swift; sourceTree = "<group>"; };
 		F1239BD82B486B230072A02A /* EntranceCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceCompletedViewController.swift; sourceTree = "<group>"; };
+		F125A1832B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInviteCodeRequestBodyDTO.swift; sourceTree = "<group>"; };
+		F125A1852B4FC77800739C34 /* OrganizationDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationDetailResponseDTO.swift; sourceTree = "<group>"; };
+		F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInviteCodeResponseDTO.swift; sourceTree = "<group>"; };
 		F14F3C642B4945E00049A9EE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F14F3C682B494FB10049A9EE /* OrganizationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationButton.swift; sourceTree = "<group>"; };
 		F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSelectButton.swift; sourceTree = "<group>"; };
@@ -236,6 +248,8 @@
 		F14F3C782B4D389E0049A9EE /* OnboardingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTarget.swift; sourceTree = "<group>"; };
 		F14F3C7A2B4D38AD0049A9EE /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
 		F16BCA382B4E62760096A62F /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationResponseDTO.swift; sourceTree = "<group>"; };
+		F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationRequestQueryDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,7 +444,6 @@
 		C39602E12B3BF1CF004BB2B8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				C39602BB2B3BEE06004BB2B8 /* ViewController.swift */,
 				C39602E22B3BF1FA004BB2B8 /* Base */,
 				C39602E72B3BF20D004BB2B8 /* Onboarding */,
 				C39602E92B3BF21D004BB2B8 /* TabBar */,
@@ -498,6 +511,7 @@
 		C39602EB2B3BF234004BB2B8 /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				E565EB552B4FC9550001758C /* MeetingManager */,
 				E5A651F02B4AE41F00676ED0 /* Cell */,
 				E5A651EF2B4AE3E900676ED0 /* Model */,
 				E50AA1FA2B46D2AB005E854B /* Components */,
@@ -719,6 +733,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		E565EB552B4FC9550001758C /* MeetingManager */ = {
+			isa = PBXGroup;
+			children = (
+				E565EB562B4FC9B80001758C /* MeetingManager.swift */,
+			);
+			path = MeetingManager;
+			sourceTree = "<group>";
+		};
 		E5A651EF2B4AE3E900676ED0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,6 +775,7 @@
 				E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */,
 				E5A651EB2B4A982100676ED0 /* ExitModalView.swift */,
 				E5A651F52B4AF72500676ED0 /* SearchPlaceView.swift */,
+				E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -763,6 +786,7 @@
 				E5AD299A2B455E20005D1220 /* MakeMeetingGuideViewController.swift */,
 				E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */,
 				E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */,
+				E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */,
 				E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */,
 				E5A651F72B4B28BF00676ED0 /* RecruitmentViewController.swift */,
 				E5A651ED2B4ADE6000676ED0 /* PlaceSelectionViewController.swift */,
@@ -825,6 +849,8 @@
 			isa = PBXGroup;
 			children = (
 				F14F3C732B4D36BB0049A9EE /* LoginRequestBodyDTO.swift */,
+				F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */,
+				F125A1832B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -834,6 +860,9 @@
 			children = (
 				F14F3C762B4D37080049A9EE /* LoginResponseDTO.swift */,
 				F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */,
+				F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */,
+				F125A1852B4FC77800739C34 /* OrganizationDetailResponseDTO.swift */,
+				F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1009,19 +1038,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				F14F3C702B49BEB60049A9EE /* AccountPopUpView.swift in Sources */,
+				F125A1882B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift in Sources */,
 				C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */,
 				C396031E2B3BF379004BB2B8 /* s.swift in Sources */,
 				F14F3C772B4D37080049A9EE /* LoginResponseDTO.swift in Sources */,
 				F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */,
 				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
 				F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */,
-				C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
 				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
 				C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */,
+				F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */,
+				E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
@@ -1046,6 +1077,7 @@
 				E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */,
 				E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */,
 				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
+				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
 				C32A2DE72B4D934C0063F84A /* ParticipantViewController.swift in Sources */,
@@ -1061,11 +1093,13 @@
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */,
+				F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */,
 				C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */,
 				F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
 				F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */,
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,
+				F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
 				F111BE682B4E8CEB001D116C /* NetworkManager.swift in Sources */,
 				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,
@@ -1088,9 +1122,11 @@
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
 				C30C91952B4CED93004EE026 /* BaseResponse.swift in Sources */,
 				E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */,
+				E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */,
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
 				E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */,
+				F125A1842B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift in Sources */,
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,
 				C38545402B4868860040E60D /* String+.swift in Sources */,
 				E5A651FA2B4B2A6F00676ED0 /* RecruitButton.swift in Sources */,

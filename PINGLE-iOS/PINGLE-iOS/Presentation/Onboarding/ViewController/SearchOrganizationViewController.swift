@@ -15,6 +15,7 @@ final class SearchOrganizationViewController: BaseViewController {
     
     // MARK: - Variables
     var selectedCellIndex: IndexPath?
+    var searchOrganizationResponseDTO: [SearchOrganizationResponseDTO] = []
     
     // MARK: Property
     private let backButton = UIButton()
@@ -133,7 +134,6 @@ final class SearchOrganizationViewController: BaseViewController {
     // MARK: Target Function
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        searchOrganizationView.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         searchOrganizationView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         makeOrganizationButton.addTarget(self, action: #selector(makeOrganizationButtonTapped), for: .touchUpInside)
         bottomCTAButton.addTarget(self, action: #selector(bottomCTAButtonTapped), for: .touchUpInside)
@@ -145,18 +145,54 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     @objc func searchButtonTapped() {
+        /// 검색 결과가 없는 경우 "검색 결과가 없어요" 라벨이 나옵니다. 검색결과가 있는 경우 "검색 결과가 없어요" 라벨이 사라집니다.
+        if let searchText = searchOrganizationView.searchTextField.text {
+            if searchText.isEmpty {
+                searchOrganizationResponseDTO = []
+                searchOrganizationView.searchCollectionView.reloadData()
+                searchOrganizationView.noResultLabel.isHidden = false
+            } else {
+                searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
+            }
+        }
+        /// 선택된 행 해제한 뒤, 다음으로 버튼 비활성화
+        selectedCellIndex = nil
+        bottomCTAButton.disabledButton()
         self.view.endEditing(true)
     }
     
     @objc func makeOrganizationButtonTapped() {
-        guard let url = URL(string: "https://www.google.com") else { return }
+        guard let url = URL(string: "https://docs.google.com/forms/d/10WxvEzSVRrRvRGXsYf9Z5oXv4HsNuAwG2QicB4bY0aY/edit") else { return }
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true)
     }
     
     @objc func bottomCTAButtonTapped() {
+        guard let selectedCellIndowRow = selectedCellIndex?.row else { return }
         let enterInviteCodeViewController = EnterInviteCodeViewController()
+        enterInviteCodeViewController.teamId = searchOrganizationResponseDTO[selectedCellIndowRow].id
         navigationController?.pushViewController(enterInviteCodeViewController, animated: true)
+    }
+    
+    // MARK: Network Function
+    func searchOrganization(data: SearchOrganizationRequestQueryDTO) {
+        NetworkService.shared.onboardingService.searchOrganization(queryDTO: data) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                /// 검색 결과가 없는 경우 "검색 결과가 없어요" 라벨이 나옵니다. 검색결과가 있는 경우 "검색 결과가 없어요" 라벨이 사라집니다.
+                if data.isEmpty {
+                    searchOrganizationView.noResultLabel.isHidden = false
+                } else {
+                    searchOrganizationView.noResultLabel.isHidden = true
+                }
+                self.searchOrganizationResponseDTO = data
+                self.searchOrganizationView.searchCollectionView.reloadData()
+            default:
+                print("login error")
+            }
+        }
     }
 }
 
@@ -165,12 +201,20 @@ final class SearchOrganizationViewController: BaseViewController {
 extension SearchOrganizationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        /// 검색 결과가 없는 경우 "검색 결과가 없어요" 라벨이 나옵니다. 검색결과가 있는 경우 "검색 결과가 없어요" 라벨이 사라집니다.
+        if let searchText = textField.text {
+            if searchText.isEmpty {
+                searchOrganizationResponseDTO = []
+                searchOrganizationView.searchCollectionView.reloadData()
+                searchOrganizationView.noResultLabel.isHidden = false
+            } else {
+                searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
+            }
+        }
+        /// 선택된 행 해제한 뒤, 다음으로 버튼 비활성화
+        selectedCellIndex = nil
+        bottomCTAButton.disabledButton()
         return true
-    }
-    
-    // MARK: Objc Function
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        print("Text changed: \(textField.text ?? "")")
     }
 }
 
@@ -180,12 +224,13 @@ extension SearchOrganizationViewController: UICollectionViewDelegate {}
 // MARK: UICollectionViewDataSource
 extension SearchOrganizationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return searchOrganizationResponseDTO.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier,
                                                             for: indexPath) as? SearchCollectionViewCell else {return UICollectionViewCell()}
+        cell.bindData(data: searchOrganizationResponseDTO[indexPath.row])
         if indexPath == selectedCellIndex {
             cell.changeSelectedImage()
         }
@@ -215,6 +260,6 @@ extension SearchOrganizationViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 325.adjustedWidth , height: 88.adjustedHeight)
+        return CGSize(width: UIScreen.main.bounds.size.width - 50.adjusted , height: 88)
     }
 }

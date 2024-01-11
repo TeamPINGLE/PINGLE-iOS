@@ -11,41 +11,51 @@ import SnapKit
 import Then
 
 class SelectCategoryViewController: BaseViewController {
-    // MARK: Property
+    
+    // MARK: - Property
     private let backButton = UIButton()
     private let progressBar1 = UIImageView()
     private let PINGLECategoryTitle = UILabel()
     private let playButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.play,
                                                   buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.playExplain,
-                                                  category: ImageLiterals.Metting.Category.categoryPlayImage,
+                                                  category: ImageLiterals.Meeting.Category.categoryPlayImage,
                                                   textColor: .mainPingleGreen)
     private let studyButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.study,
                                                    buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.studyExplain,
-                                                   category: ImageLiterals.Metting.Category.categoryStudyImage,
+                                                   category: ImageLiterals.Meeting.Category.categoryStudyImage,
                                                    textColor: .subPingleOrange)
     private let multiButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.multi,
                                                    buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.multiExplain,
-                                                   category: ImageLiterals.Metting.Category.categoryMultiImage,
+                                                   category: ImageLiterals.Meeting.Category.categoryMultiImage,
                                                    textColor: .subPingleYellow)
     private let othersButton = PINGLECategoryButton(buttonTitleLabel: StringLiterals.Meeting.MeetingCategory.CategoryTitle.others,
                                                     buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.othersExplain,
-                                                    category: ImageLiterals.Metting.Category.categoryPlayImage,
+                                                    category: ImageLiterals.Meeting.Category.categoryOthersImage,
                                                     textColor: .white)
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
                                              buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
+    private let exitModal = ExitModalView()
+    private let dimmedView = UIView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
+        setUpDimmedView()
+        setNavigation()
         setTarget()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
+        setNavigation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setNavigation()
     }
     
     // MARK: UI
@@ -55,10 +65,10 @@ class SelectCategoryViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Metting.Icon.icBack, for: .normal)
+            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
         }
         progressBar1.do {
-            $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage1
+            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage1
             $0.contentMode = .scaleAspectFill
         }
         
@@ -73,6 +83,15 @@ class SelectCategoryViewController: BaseViewController {
             $0.text = StringLiterals.Meeting.MeetingCategory.ExitButton.exitLabel
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
+        }
+        
+        exitModal.do {
+            $0.isHidden = true
+        }
+        
+        dimmedView.do {
+            $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
+            $0.isHidden = true
         }
     }
     
@@ -143,17 +162,17 @@ class SelectCategoryViewController: BaseViewController {
         sender.selectedButton()
         switch sender {
         case playButton:
-            print("playButton이 선택되었습니다.")
             nextButton.activateButton()
+            MeetingManager.shared.category = StringLiterals.Meeting.MeetingCategory.CategoryTitle.play
         case studyButton:
-            print("studyButton가 선택되었습니다.")
             nextButton.activateButton()
+            MeetingManager.shared.category = StringLiterals.Meeting.MeetingCategory.CategoryTitle.study
         case multiButton:
-            print("multiButton이 선택되었습니다.")
             nextButton.activateButton()
+            MeetingManager.shared.category = StringLiterals.Meeting.MeetingCategory.CategoryTitle.multi
         case othersButton:
-            print("othersButton가 선택되었습니다.")
             nextButton.activateButton()
+            MeetingManager.shared.category = StringLiterals.Meeting.MeetingCategory.CategoryTitle.others
         default:
             break
         }
@@ -168,6 +187,34 @@ class SelectCategoryViewController: BaseViewController {
         navigationController?.pushViewController(meetingIntroductionViewController, animated: true)
     }
     
+    @objc func exitButtonTapped() {
+        self.view.addSubview(exitModal)
+        exitModal.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        exitModal.isHidden = false
+        dimmedView.isHidden = false
+    }
+    
+    @objc func exitModalKeepButtonTapped() {
+        exitModal.isHidden = true
+        exitModal.removeFromSuperview()
+        dimmedView.isHidden = true
+    }
+    
+    @objc func exitModalExitButtonTapped() {
+        exitModal.isHidden = true
+        dimmedView.isHidden = true
+        self.dismiss(animated: true) {
+            if let tabBarController = self.tabBarController {
+                if tabBarController.viewControllers?.count ?? 0 >= 2 {
+                    tabBarController.selectedIndex = 0
+                }
+            }
+        }
+    }
+
     // MARK: - Function
     func unselectAllButtons() {
         playButton.nonSelectedButton()
@@ -176,6 +223,17 @@ class SelectCategoryViewController: BaseViewController {
         othersButton.nonSelectedButton()
     }
     
+    private func setUpDimmedView() {
+            self.view.addSubview(dimmedView)
+            dimmedView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
+    
+    private func setNavigation() {
+        navigationController?.navigationBar.isHidden = true
+    }
+
     func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         playButton.addTarget(self, action: #selector(categorySelected), for: .touchUpInside)
@@ -183,5 +241,8 @@ class SelectCategoryViewController: BaseViewController {
         multiButton.addTarget(self, action: #selector(categorySelected), for: .touchUpInside)
         othersButton.addTarget(self, action: #selector(categorySelected), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
+        exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
+        exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
 }

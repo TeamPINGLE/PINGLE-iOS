@@ -11,7 +11,8 @@ import SnapKit
 import Then
 
 class MeetingIntroductionViewController: BaseViewController {
-    // MARK: Property
+    
+    // MARK: - Property
     private let backButton = UIButton()
     private let progressBar2 = UIImageView()
     private let PINGLEIntroductionTitle = UILabel()
@@ -23,31 +24,40 @@ class MeetingIntroductionViewController: BaseViewController {
                                              textColor: .grayscaleG10)
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
+    private let exitModal = ExitModalView()
+    private let dimmedView = UIView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpDimmedView()
         navigationController?.navigationBar.isHidden = true
         setTarget()
         hideKeyboardWhenTappedAround()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
+        super.viewDidAppear(animated)
+        setNavigation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigation()
     }
     
     // MARK: UI
     override func setStyle() {
         self.view.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .grayscaleG11
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Metting.Icon.icBack, for: .normal)
+            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
         }
         
         progressBar2.do {
-            $0.image = ImageLiterals.Metting.ProgressBar.progressBarImage2
+            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage2
             $0.contentMode = .scaleAspectFill
         }
         
@@ -62,6 +72,15 @@ class MeetingIntroductionViewController: BaseViewController {
             $0.text = StringLiterals.Meeting.MeetingCategory.ExitButton.exitLabel
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
+        }
+        
+        exitModal.do {
+                    $0.isHidden = true
+                }
+        
+        dimmedView.do {
+            $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
+            $0.isHidden = true
         }
     }
     
@@ -93,7 +112,7 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
@@ -124,6 +143,7 @@ class MeetingIntroductionViewController: BaseViewController {
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {
             if let newText = textField.text, !newText.isEmpty {
+                MeetingManager.shared.name = newText
                 nextButton.activateButton()
             } else {
                 nextButton.disabledButton()
@@ -131,13 +151,50 @@ class MeetingIntroductionViewController: BaseViewController {
         }
     }
     
+    @objc func exitButtonTapped() {
+        self.view.addSubview(exitModal)
+        exitModal.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        exitModal.isHidden = false
+        dimmedView.isHidden = false
+    }
+    
+    @objc func exitModalKeepButtonTapped() {
+        exitModal.isHidden = true
+        exitModal.removeFromSuperview()
+        dimmedView.isHidden = true
+    }
+    
+    @objc func exitModalExitButtonTapped() {
+        exitModal.isHidden = true
+        dimmedView.isHidden = true
+        self.dismiss(animated: true)
+    }
+    
     // MARK: Function
     func setTarget() {
-        PINGLEIntroductionTextField.searchTextField.addTarget(self,
-                                                              action:#selector(self.textFieldDidChange(_:)),
+        PINGLEIntroductionTextField.searchTextField.addTarget(self, action:#selector(self.textFieldDidChange(_:)),
                                                               for: .editingChanged)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
+        exitModal.exitButton.addTarget(self,
+                                       action: #selector(exitModalExitButtonTapped),
+                                       for: .touchUpInside)
+        exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
+    }
+    
+    private func setUpDimmedView() {
+        self.view.addSubview(dimmedView)
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    private func setNavigation() {
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func setDelegate() {

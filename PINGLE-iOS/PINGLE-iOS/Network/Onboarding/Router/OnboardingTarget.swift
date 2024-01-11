@@ -12,6 +12,9 @@ import Alamofire
 enum OnboardingTarget {
     case login(_ bodyDTO: LoginRequestBodyDTO)
     case userInfo
+    case searchOrganization(_ queryDTO: SearchOrganizationRequestQueryDTO)
+    case organizationDetail(_ teamId: Int)
+    case enterInviteCode(_ teamId: Int, _ bodyDTO: EnterInviteCodeRequestBodyDTO)
 }
 
 extension OnboardingTarget: TargetType {
@@ -20,6 +23,12 @@ extension OnboardingTarget: TargetType {
         case .login:
             return .socialAuthorization
         case .userInfo:
+            return .authorization
+        case .searchOrganization:
+            return .authorization
+        case .organizationDetail:
+            return .authorization
+        case .enterInviteCode:
             return .authorization
         }
     }
@@ -30,6 +39,12 @@ extension OnboardingTarget: TargetType {
             return .providerToken
         case .userInfo:
             return .hasToken
+        case .searchOrganization:
+            return .hasToken
+        case .organizationDetail:
+            return .hasToken
+        case .enterInviteCode:
+            return .hasToken
         }
     }
     
@@ -39,6 +54,12 @@ extension OnboardingTarget: TargetType {
             return .post
         case .userInfo:
             return .get
+        case .searchOrganization:
+            return .get
+        case .organizationDetail:
+            return .get
+        case .enterInviteCode:
+            return .post
         }
     }
     
@@ -48,6 +69,12 @@ extension OnboardingTarget: TargetType {
             return "/auth/login"
         case .userInfo:
             return "/users/me"
+        case .searchOrganization:
+            return "/teams"
+        case .organizationDetail(let teamId):
+            return "/teams/\(teamId)"
+        case .enterInviteCode(let teamId, _):
+            return "/teams/\(teamId)/register"
         }
     }
     
@@ -57,6 +84,12 @@ extension OnboardingTarget: TargetType {
             return .requestWithBody(bodyDTO)
         case .userInfo:
             return .requestPlain
+        case .searchOrganization(let queryDTO):
+            return .requestQuery(queryDTO)
+        case .organizationDetail:
+            return .requestPlain
+        case .enterInviteCode(_, let bodyDTO):
+            return .requestWithBody(bodyDTO)
         }
     }
 }

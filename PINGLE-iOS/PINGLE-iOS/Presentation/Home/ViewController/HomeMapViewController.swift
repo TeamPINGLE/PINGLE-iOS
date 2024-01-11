@@ -357,7 +357,9 @@ extension HomeMapViewController {
                 guard let data = data.data else { return }
                 print(data)
                 DispatchQueue.main.async { [weak self] in
-                    self?.homePinDetailList = data
+                    // 2, 3차 스프린트 시에 전체 data 받아올 예정
+                    // self?.homePinDetailList = data
+                    self?.homePinDetailList.append(data[0])
                     data.forEach {
                         self?.meetingId.append($0.id)
                     }

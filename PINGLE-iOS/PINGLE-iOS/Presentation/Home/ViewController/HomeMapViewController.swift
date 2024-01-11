@@ -48,10 +48,6 @@ final class HomeMapViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    // MARK: Style Helpers
-    override func setStyle() {
-    }
-    
     // MARK: Layout Helpers
     override func setLayout() {
         let safeAreaHeight = view.safeAreaInsets.bottom
@@ -155,14 +151,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 extension HomeMapViewController: NMFMapViewTouchDelegate {
     /// 지도 탭 되었을 때 메소드
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        if !self.mapsView.homeDetailCollectionView.isHidden {
-            self.mapsView.homeDetailCollectionView.isHidden = true
-            self.mapsView.currentLocationButton.isHidden = false
-            self.mapsView.listButton.isHidden = false
-            self.mapsView.homeMarkerList.forEach {
-                $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
-            }
-        }
+        self.hideSelectedPin()
     }
 }
 
@@ -225,6 +214,18 @@ extension HomeMapViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension HomeMapViewController {
+    
+    func hideSelectedPin() {
+        if !self.mapsView.homeDetailCollectionView.isHidden {
+            self.mapsView.homeDetailCollectionView.isHidden = true
+            self.mapsView.currentLocationButton.isHidden = false
+            self.mapsView.listButton.isHidden = false
+            self.mapsView.homeMarkerList.forEach {
+                $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
+            }
+        }
+    }
+    
     /// 카메라를 이동하는 메소드
     func moveToCurrentLocation() {
         self.mapsView.cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: mapsView.nowLat, lng: mapsView.nowLng))
@@ -261,6 +262,8 @@ extension HomeMapViewController {
                 $0.hidden = true
             }
         }
+       
+        self.hideSelectedPin()
     }
     
     @objc func currentLocationButtonTapped() {

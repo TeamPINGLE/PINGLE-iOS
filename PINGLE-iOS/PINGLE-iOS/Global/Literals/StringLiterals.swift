@@ -62,7 +62,7 @@ enum StringLiterals {
         static let fixTitle = "아직 공사중!"
         static let fixDescription = "아직 구현중인 기능이에요\n조금만 기다려주세요"
     }
-
+    
     enum Home {
         enum Detail {
             static let participantsTitle = "참여현황"
@@ -79,11 +79,11 @@ enum StringLiterals {
             static let backButton = "돌아가기"
         }
     }
-          
+    
     enum Meeting {
         enum MeetingGuide {
-            static let guideTitle = "새로운 핑글을\n개최해보아요!"
-            static let guideSubTitle = "어쩌구 번개를 개최하고\n어쩌구 번개를 개최하고"
+            static let guideTitle = "What is\nPINGLE?"
+            static let guideSubTitle = "PIN 과 MINGLE의 합성어로,\n원하는 장소에서 사람들과 갖는 모임을 뜻해요"
             static let buttonTitle = "핑글 개최하러 가기"
         }
         
@@ -101,10 +101,10 @@ enum StringLiterals {
             }
             
             enum ExplainCategory {
-                static let playExplain = "설명 텍스트 미정"
+                static let playExplain = "노는게 제일 좋아!"
                 static let studyExplain = "열공, 열작업할 사람 모여라!"
-                static let multiExplain = "설명 텍스트 미정"
-                static let othersExplain = "설명 텍스트 미정"
+                static let multiExplain = "놀 땐 놀고, 일할 땐 일하자!"
+                static let othersExplain = "다른 활동이 하고싶다면?"
             }
             
             enum ExitButton {
@@ -115,8 +115,8 @@ enum StringLiterals {
         
         enum MeetingIntroduction {
             static let introductionTitle = "개최할 핑글을\n소개해주세요"
-            static let PINGLETitle = "핑글제목"
-            static let PINGLEExplain = "이번 핑글을 한마디로 소개한다면?"
+            static let PINGLETitle = "한줄 소개"
+            static let PINGLEExplain = "ex. 강남역에서 각잡고 공부할 사람?"
         }
         
         enum DatePicker {
@@ -127,12 +127,13 @@ enum StringLiterals {
         }
         
         enum DateSelection {
-            static let dateSelecionTitle = "핑글러들과\n언제 만날까요?"
+            static let dateSelecionTitle = "함께할 친구들과\n언제 만날까요?"
             static let PINGLEDateTitle = "핑글 날짜"
             static let PINGLEDatePlaceholder = "만날 날짜를 선택해주세요"
             static let PINGLEStartTime = "시작 시각"
             static let PINGLEEndTime = "종료 시각"
             static let PINGLETimePlacsholder = "00:00"
+            static let warningMessage = "종료 시각은 시작 시각 이후로 선택해주세요!"
         }
         
         enum ExitModalView {
@@ -142,53 +143,62 @@ enum StringLiterals {
         }
         
         enum Recruitment {
-            static let recruitTitle = "몇 명의 @@들과\n만날까요?"
+            static let recruitTitle = "몇 명의 친구들과\n만날까요?"
             static let recruitCondition = "본인을 포함하여,\n최소 1명부터 참여 인원을 선택해주세요"
-            static let warningLabel = "최대 선택 가능 인원은 99명이에요!"
         }
-      
+        
         enum SearhPlace {
             static let placeholder = "핑글이 열릴 장소 이름을 검색해보세요"
-            static let searchPlaceTitle = "함께할 @@들과\n어디서 만날까요?"
+            static let searchPlaceTitle = "함께할 친구들과\n어디서 만날까요?"
             static let noPlaceResult = "검색 결과가 없어요"
             static let reSearch = "다른 장소로 검색해보세요"
         }
-
+        
         enum OpenChat {
             static let openChatTitle = "오픈채팅방 링크를\n추가해주세요!"
             static let insertChatLinkTitle = "채팅방 링크"
             static let insertChatLinkExplain = "링크를 입력해주세요"
         }
+        
+        enum FinalResult {
+            static let finalResultTitle = "핑글을 개최할\n준비 되었나요?"
+            static let finalResultButton = "핑글 개최하기"
+            enum FinalResultCard {
+                static let finalCardCalendar = "일시"
+                static let fincalCardPlace = "장소"
+                static let finalCardRecruitNumber = "모집인원"
+            }
+        }
     }
-    
-    enum Profile {
-        enum ExplainTitle {
-            static let settingTitle = "설정"
-            static let organizationTitle = "나의 단체"
-            static let versionTitle = "버전"
-            static let versionInfo = "0.0.0"
-            static let logoutQuestionTitle = "정말로 로그아웃 하실건가요?"
-            static let deleteQuestionTitle = "정말로 탈퇴하실건가요?"
-            static let logoutExplanation = "Apple 계정을 로그아웃합니다"
-            static let deleteExplanation = "탈퇴 시 계정은 삭제되며 복구할 수 없어요"
+        
+        enum Profile {
+            enum ExplainTitle {
+                static let settingTitle = "설정"
+                static let organizationTitle = "나의 단체"
+                static let versionTitle = "버전"
+                static let versionInfo = "0.0.0"
+                static let logoutQuestionTitle = "정말로 로그아웃 하실건가요?"
+                static let deleteQuestionTitle = "정말로 탈퇴하실건가요?"
+                static let logoutExplanation = "Apple 계정을 로그아웃합니다"
+                static let deleteExplanation = "탈퇴 시 계정은 삭제되며 복구할 수 없어요"
+            }
+            
+            enum ButtonTitle {
+                static let contactTitle = "문의하기"
+                static let noticeTitle = "공지사항"
+                static let logoutTitle = "로그아웃"
+                static let deleteTitle = "탈퇴하기"
+                static let backTitle = "돌아가기"
+            }
         }
         
-        enum ButtonTitle {
-            static let contactTitle = "문의하기"
-            static let noticeTitle = "공지사항"
-            static let logoutTitle = "로그아웃"
-            static let deleteTitle = "탈퇴하기"
-            static let backTitle = "돌아가기"
+        enum CTAButton {
+            static let buttonTitle = "다음으로"
+            static let enterTitle = "입장하기"
+            static let startTitle = "시작하기"
+        }
+        
+        enum ToastView {
+            static let wrongCode = "초대 코드를 다시 확인해주세요!"
         }
     }
-    
-    enum CTAButton {
-        static let buttonTitle = "다음으로"
-        static let enterTitle = "입장하기"
-        static let startTitle = "시작하기"
-    }
-    
-    enum ToastView {
-        static let wrongCode = "초대 코드를 다시 확인해주세요!"
-    }
-}

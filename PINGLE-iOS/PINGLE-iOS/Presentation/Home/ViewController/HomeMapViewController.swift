@@ -21,7 +21,6 @@ final class HomeMapViewController: BaseViewController {
     /// 현재 선택되지 않은 필터 버튼 개수
     var unselectedButton: Int = 0
     var homePinDetailList: [HomePinDetailResponseDTO] = []
-    var teamId = 1
     var meetingId: [Int] = []
     var markerId = 0
     var allowLocation = false
@@ -33,7 +32,7 @@ final class HomeMapViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.pinList(teamId: teamId)
+        self.pinList()
         setLocationManager()
         setAddTarget()
         setCollectionView()
@@ -305,7 +304,7 @@ extension HomeMapViewController {
     
     func bindDetailViewData(id: Int) {
         // 추후 바뀐 그룹 받아오는 로직 작성 예정
-        self.pinDetail(pinId: id, teamId: self.teamId)
+        self.pinDetail(pinId: id)
     }
     
     func markerTapped(marker: PINGLEMarker) {
@@ -334,8 +333,8 @@ extension HomeMapViewController {
     }
     
     // MARK: Server Function
-    func pinList(teamId: Int) {
-        NetworkService.shared.homeService.pinList(teamId: teamId) { [weak self] response in
+    func pinList() {
+        NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
@@ -351,8 +350,8 @@ extension HomeMapViewController {
         }
     }
     
-    func pinDetail(pinId: Int, teamId: Int) {
-        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: teamId) { [weak self] response in
+    func pinDetail(pinId: Int) {
+        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }

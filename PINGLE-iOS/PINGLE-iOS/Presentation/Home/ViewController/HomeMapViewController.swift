@@ -28,7 +28,6 @@ final class HomeMapViewController: BaseViewController {
     
     // MARK: Component
     let mapsView = HomeMapView()
-//    let mapDetailView = HomeMapDetailView()
     let dimmedView = UIView()
     let homeDetailPopUpView = HomeDetailPopUpView()
     let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
@@ -365,7 +364,6 @@ extension HomeMapViewController {
             marker.touchHandler = { ( _: NMFOverlay) -> Bool in
                 print("오버레이 터치됨")
                 self.bindDetailViewData(id: marker.id)
-                self.mapsView.homeDetailCollectionView.reloadData()
                 self.mapsView.homeDetailCollectionView.isHidden = false
                 self.mapsView.currentLocationButton.isHidden = true
                 self.mapsView.listButton.isHidden = true
@@ -408,8 +406,8 @@ extension HomeMapViewController {
     
     // MARK: Server Function
     func pinList(teamId: Int) {
-        KeychainHandler.shared.accessToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsInJvbCI6IlVTRVIiLCJpYXQiOjE3MDQ5MTczMzksImV4cCI6MTcwNjEyNjkzOX0.0ac1EmANJ_R0kSJs5MNT3WBCA94seLv-zj0UY7IKSoLwYCmnoBBsrfF30aLuNfprBUv1x1QSa8F-Hzb456GexA"
-        KeychainHandler.shared.refreshToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsImlhdCI6MTcwNDkxNzMzOSwiZXhwIjoxNzA2MTI2OTM5fQ.06yHXE4knYfAg2pER6aLfnANmmtW6un2XwFRVLHAfmEG-b_SKpmuq3C8pbo9Z3DkMVlt_TuwR7aldG9NrMWIFQ"
+        KeychainHandler.shared.accessToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsInJvbCI6IlVTRVIiLCJpYXQiOjE3MDQ5NjMwMDQsImV4cCI6MTcwNjE3MjYwNH0.a9_0k7IuW3Yzhsn9UBVr8K8qT6GdDANE3jumPVz_EM32hMXCeNLGaz745e2XUgtWkbeXR74ySvK7cXXqcTYpBg"
+        KeychainHandler.shared.refreshToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsImlhdCI6MTcwNDk2MzAwNCwiZXhwIjoxNzA2MTcyNjA0fQ.A8bhgTAfH8DAheLot2ocgQJhTZfacpnpij_mN29kAMRuERyzuowaWicX6tZxg951hpo0j6McfU14oD_NxTS0VA"
         NetworkService.shared.homeService.pinList(teamId: teamId) { [weak self] response in
             switch response {
             case .success(let data):
@@ -435,6 +433,7 @@ extension HomeMapViewController {
                 DispatchQueue.main.async { [weak self] in
                     self?.homePinDetailList = data
                     self?.meetingId = data[0].id
+                    self?.mapsView.homeDetailCollectionView.reloadData()
                 }
             default:
                 print("실패")

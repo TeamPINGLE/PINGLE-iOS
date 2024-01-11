@@ -25,6 +25,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     private let infoMessageLabel = UILabel()
     private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.enterTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.wrongCode)
+    var teamId: Int?
     
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +35,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getOrganizationDetail()
         setNavigation()
         setTarget()
         setupKeyboardEvent()
@@ -52,6 +54,10 @@ final class EnterInviteCodeViewController: BaseViewController {
         
         self.titleBackgroundView.do {
             $0.backgroundColor = .grayscaleG11
+        }
+        
+        self.organizationInfoView.do {
+            $0.isHidden = true
         }
         
         self.titleLabel.do {
@@ -174,6 +180,22 @@ final class EnterInviteCodeViewController: BaseViewController {
                                                selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+    }
+    
+    // MARK: Network Function
+    func getOrganizationDetail() {
+        guard let teamId = teamId else { return }
+        NetworkService.shared.onboardingService.organizationDetail(teamId: teamId) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                organizationInfoView.bindData(data: data)
+                organizationInfoView.isHidden = false
+            default:
+                print("login error")
+            }
+        }
     }
 }
 

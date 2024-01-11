@@ -155,6 +155,9 @@ final class SearchOrganizationViewController: BaseViewController {
                 searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
             }
         }
+        /// 선택된 행 해제한 뒤, 다음으로 버튼 비활성화
+        selectedCellIndex = nil
+        bottomCTAButton.disabledButton()
         self.view.endEditing(true)
     }
     
@@ -165,7 +168,9 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
+        guard let selectedCellIndowRow = selectedCellIndex?.row else { return }
         let enterInviteCodeViewController = EnterInviteCodeViewController()
+        enterInviteCodeViewController.teamId = searchOrganizationResponseDTO[selectedCellIndowRow].id
         navigationController?.pushViewController(enterInviteCodeViewController, animated: true)
     }
     
@@ -206,6 +211,9 @@ extension SearchOrganizationViewController: UITextFieldDelegate {
                 searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
             }
         }
+        /// 선택된 행 해제한 뒤, 다음으로 버튼 비활성화
+        selectedCellIndex = nil
+        bottomCTAButton.disabledButton()
         return true
     }
 }

@@ -12,6 +12,8 @@ import Then
 
 final class FinalSummaryCardView: BaseView {
     
+    let meetingManager = MeetingManager.shared
+    
     // MARK: - Variables
     // MARK: Property
     var badgeColor: UIColor? = .subPingleOrange
@@ -47,20 +49,58 @@ final class FinalSummaryCardView: BaseView {
         
         badgeImageView.do {
             $0.contentMode = .scaleAspectFill
-            $0.image = ImageLiterals.Meeting.Category.Badge.studyBadge
+            switch meetingManager.category {
+            case "PLAY":
+                badgeImageView.image =
+                ImageLiterals.Meeting.Category.Badge.playBadge
+                
+            case "STUDY":
+                badgeColor = .subPingleOrange
+                badgeImageView.image =
+                ImageLiterals.Meeting.Category.Badge.studyBadge
+                
+            case "MULTI":
+                badgeColor = .subPingleYellow
+                badgeImageView.image =
+                ImageLiterals.Meeting.Category.Badge.multiBadge
+                
+            case "OTHERS":
+                badgeColor = .grayscaleG01
+                badgeImageView.image =
+                ImageLiterals.Meeting.Category.Badge.othersBadge
+                
+            default:
+                return
+            }
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "핑글 제목", lineHeight: 22)
+            $0.setTextWithLineHeight(text: meetingManager.category,
+                                     lineHeight: 22)
             $0.numberOfLines = 2
-            $0.textColor = badgeColor
+            switch  meetingManager.category {
+            case "PLAY":
+                $0.textColor = .mainPingleGreen
+                
+            case "STUDY":
+                $0.textColor = .subPingleOrange
+                
+            case "MULTI":
+                $0.textColor = .subPingleYellow
+                
+            case "OTHERS":
+                $0.textColor = .grayscaleG01
+                
+            default:
+                return
+            }
             $0.font = .subtitleSubBold16
             $0.lineBreakMode = .byCharWrapping
             $0.textAlignment = .left
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "개최자", lineHeight: 20)
+            $0.setTextWithLineHeight(text: "뱅민지ㅋ", lineHeight: 20)
             $0.textColor = .grayscaleG05
             $0.font = .bodyBodyMed14
         }
@@ -85,13 +125,17 @@ final class FinalSummaryCardView: BaseView {
         }
         
         dateLabel.do {
-            $0.text = "0000년 00월 00일"
+            $0.text = meetingManager.date
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "오후 00:00 ~ 오후 00:00", lineHeight: 20)
+            guard let startAt = meetingManager.startAt, let endAt = meetingManager.endAt else {
+                print("언제만날건디용")
+                return
+            }
+            $0.setTextWithLineHeight(text: "\(startAt) ~ \(endAt)", lineHeight: 20)
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }
@@ -123,7 +167,11 @@ final class FinalSummaryCardView: BaseView {
         }
         
         recruitNumberLabel.do {
-            $0.text = "99명"
+            guard let maxParticipants = meetingManager.maxParticipants else {
+                print("언제만날건디용")
+                return
+            }
+            $0.text = "\(maxParticipants)"
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }

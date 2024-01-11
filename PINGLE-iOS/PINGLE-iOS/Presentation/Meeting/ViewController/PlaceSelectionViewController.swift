@@ -16,6 +16,7 @@ class PlaceSelectionViewController: BaseViewController {
     var selectedPlace: IndexPath?
     
     // MARK: Property
+    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar4 = UIImageView()
     private let placeSelectionTitle = UILabel()

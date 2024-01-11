@@ -12,6 +12,7 @@ import Then
 
 class SelectCategoryViewController: BaseViewController {
     // MARK: Property
+    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar1 = UIImageView()
     private let PINGLECategoryTitle = UILabel()
@@ -161,17 +162,21 @@ class SelectCategoryViewController: BaseViewController {
         sender.selectedButton()
         switch sender {
         case playButton:
-            print("playButton이 선택되었습니다.")
             nextButton.activateButton()
+            meetingManager.category =
+            StringLiterals.Meeting.MeetingCategory.CategoryTitle.play
         case studyButton:
-            print("studyButton가 선택되었습니다.")
             nextButton.activateButton()
+            meetingManager.category =
+            StringLiterals.Meeting.MeetingCategory.CategoryTitle.study
         case multiButton:
-            print("multiButton이 선택되었습니다.")
             nextButton.activateButton()
+            meetingManager.category =
+            StringLiterals.Meeting.MeetingCategory.CategoryTitle.multi
         case othersButton:
-            print("othersButton가 선택되었습니다.")
             nextButton.activateButton()
+            meetingManager.category =
+            StringLiterals.Meeting.MeetingCategory.CategoryTitle.others
         default:
             break
         }

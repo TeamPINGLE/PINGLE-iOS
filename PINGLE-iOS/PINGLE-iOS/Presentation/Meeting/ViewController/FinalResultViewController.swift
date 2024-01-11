@@ -13,6 +13,7 @@ import Then
 final class FinalResultViewController: BaseViewController {
     
     // MARK: - Property
+    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar7 = UIImageView()
     private let finalResultTitle = UILabel()

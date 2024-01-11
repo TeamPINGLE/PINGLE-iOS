@@ -12,6 +12,7 @@ import Then
 
 class DateSelectionViewController: BaseViewController {
     // MARK: - Property
+    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar3 = UIImageView()
     private let dateSelectionTitle = UILabel()
@@ -34,7 +35,7 @@ class DateSelectionViewController: BaseViewController {
     private let bottomEndTimeView = CustomTimePickerView()
     private let formatter = DateFormatter()
     private let exitModal = ExitModalView()
-    private let deemedView = UIView()
+    private let dimmedView = UIView()
     private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.Meeting.DateSelection.warningMessage)
     private var nowDate = Date()
     private var isDateSelected :Bool = false
@@ -96,7 +97,7 @@ class DateSelectionViewController: BaseViewController {
             $0.isHidden = true
         }
         
-        deemedView.do {
+        dimmedView.do {
             $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
             $0.isHidden = true
         }
@@ -172,7 +173,7 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func showDatePicker() {
-        deemedView.isHidden = false
+        dimmedView.isHidden = false
         bottomDateView.frame.origin.y = view.frame.height + 41.adjusted
         setBottomSheetLayout()
         UIView.animate(withDuration: 0.5) {
@@ -182,7 +183,7 @@ class DateSelectionViewController: BaseViewController {
     
     @objc func showStartTimePicker() {
         bottomStartTimeView.frame.origin.y = view.frame.height + 41.adjusted
-        deemedView.isHidden = false
+        dimmedView.isHidden = false
         setStartTimeViewLayout()
         UIView.animate(withDuration: 0.5) {
             self.bottomStartTimeView.frame.origin.y = self.view.frame.height - self.bottomStartTimeView.frame.height
@@ -190,7 +191,7 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func showEndTimePicker() {
-        deemedView.isHidden = false
+        dimmedView.isHidden = false
         bottomEndTimeView.frame.origin.y = view.frame.height + 41.adjusted
         setEndTimeViewLayout()
         UIView.animate(withDuration: 0.5) {
@@ -199,16 +200,17 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func doneButtonTapped() {
-        deemedView.isHidden = true
+        dimmedView.isHidden = true
         PINGLEDateSelectionTextField.searchTextField.text =
         dateFormat(date: bottomDateView.datePicker.date)
         UIView.animate(withDuration: 0.5, animations: {
             self.bottomDateView.removeFromSuperview()
         })
+        meetingManager.date = PINGLEDateSelectionTextField.searchTextField.text
     }
     
     @objc func startTimeDoneButtonTapped() {
-        deemedView.isHidden = true
+        dimmedView.isHidden = true
         let selectedStartTime = bottomStartTimeView.timePicker.date
         let selectedEndTime = bottomEndTimeView.timePicker.date
         print(selectedStartTime, selectedEndTime)
@@ -217,18 +219,20 @@ class DateSelectionViewController: BaseViewController {
                 self.bottomStartTimeView.removeFromSuperview()
             })
         isStartTimeSelected = true
-        fuckingTimePicker()
+        settingTimePicker()
+        meetingManager.startAt = PINGLEStartTimeTextField.searchTextField.text
     }
     
     @objc func endTimeDoneButtonTapped() {
-        deemedView.isHidden = true
+        dimmedView.isHidden = true
         PINGLEEndTimeTextField.searchTextField.text =
         timeFormat(time: bottomEndTimeView.timePicker.date)
         UIView.animate(withDuration: 0.5, animations: {
             self.bottomEndTimeView.removeFromSuperview()
         })
         isEndTimeSelected = true
-        fuckingTimePicker()
+        settingTimePicker()
+        meetingManager.endAt = PINGLEEndTimeTextField.searchTextField.text
     }
     
     @objc func nextButtonTapped() {
@@ -237,23 +241,31 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func exitButtonTapped() {
-        deemedView.isHidden = false
         self.view.addSubview(exitModal)
         exitModal.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
         exitModal.isHidden = false
+        dimmedView.isHidden = false
     }
     
     @objc func exitModalKeepButtonTapped() {
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
-        deemedView.isHidden = true
+        dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
-        print("홈화면으로 이동")
+        exitModal.isHidden = true
+        dimmedView.isHidden = true
+        self.dismiss(animated: true) {
+            if let tabBarController = self.tabBarController {
+                if tabBarController.viewControllers?.count ?? 0 >= 2 {
+                    tabBarController.selectedIndex = 0
+                }
+            }
+        }
     }
     
     @objc func deemedViewTapped() {
@@ -282,13 +294,13 @@ class DateSelectionViewController: BaseViewController {
     }
     
     private func setUpDimmedView() {
-        self.view.addSubview(deemedView)
-        deemedView.snp.makeConstraints {
+        self.view.addSubview(dimmedView)
+        dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deemedViewTapped))
-        deemedView.addGestureRecognizer(tapGesture)
-        deemedView.isUserInteractionEnabled = true
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
     }
     
     private func setNavigation() {
@@ -296,7 +308,7 @@ class DateSelectionViewController: BaseViewController {
     }
     
     private func dateFormat(date: Date) -> String {
-        formatter.dateFormat = "yyyy / MM / dd"
+        formatter.dateFormat = "yyyy년  MM월  dd일"
         return formatter.string(from: date)
     }
     
@@ -306,7 +318,7 @@ class DateSelectionViewController: BaseViewController {
         return formatter.string(from: time)
     }
     
-    private func fuckingTimePicker() {
+    private func settingTimePicker() {
         let targetString: String = timeFormat(time: bottomStartTimeView.timePicker.date)
         let fromString: String = timeFormat(time: bottomEndTimeView.timePicker.date)
         switch fromString.compare(targetString) {
@@ -357,7 +369,7 @@ class DateSelectionViewController: BaseViewController {
     
     private func hideDeemedViewWhenTapped() {
         UIView.animate(withDuration: 0.5, animations: {
-            self.deemedView.isHidden = true
+            self.dimmedView.isHidden = true
             self.bottomDateView.removeFromSuperview()
             self.bottomStartTimeView.removeFromSuperview()
             self.bottomEndTimeView.removeFromSuperview()

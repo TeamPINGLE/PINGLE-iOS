@@ -13,6 +13,7 @@ import Then
 class InsertOpenChatLinkViewController: BaseViewController {
     
     // MARK: - Property
+    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar6 = UIImageView()
     private let openChatTitle = UILabel()

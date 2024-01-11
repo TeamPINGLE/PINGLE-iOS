@@ -12,6 +12,7 @@ import Then
 
 class MeetingIntroductionViewController: BaseViewController {
     // MARK: Property
+    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar2 = UIImageView()
     private let PINGLEIntroductionTitle = UILabel()
@@ -142,6 +143,7 @@ class MeetingIntroductionViewController: BaseViewController {
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {
             if let newText = textField.text, !newText.isEmpty {
+                meetingManager.name = newText
                 nextButton.activateButton()
             } else {
                 nextButton.disabledButton()

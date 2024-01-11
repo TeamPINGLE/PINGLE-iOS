@@ -43,7 +43,6 @@ final class SearchCollectionViewCell: UICollectionViewCell {
         }
         
         self.keywordLabel.do {
-            $0.text = "통신 키워드"
             $0.font = .captionCapSemi10
             $0.textColor = .mainPingleGreen
             $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
@@ -51,7 +50,6 @@ final class SearchCollectionViewCell: UICollectionViewCell {
         }
         
         self.groupNameLabel.do {
-            $0.text = "단체 이름"
             $0.font = .bodyBodyMed16
             $0.textColor = .white
         }

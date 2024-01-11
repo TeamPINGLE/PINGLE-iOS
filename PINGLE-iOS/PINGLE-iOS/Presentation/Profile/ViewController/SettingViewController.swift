@@ -44,7 +44,7 @@ final class SettingViewController: BaseViewController {
         }
         
         self.userNameLabel.do {
-            $0.text = "김핑글"
+            $0.text = KeychainHandler.shared.userName
             $0.font = .subtitleSubSemi18
             $0.textColor = .white
         }
@@ -153,13 +153,30 @@ final class SettingViewController: BaseViewController {
     @objc func changeStateButtonTapped() {
         switch accountState {
         case .logout:
-            print("로그아웃 통신")
+            postLogout()
         case .delete:
             print("계정탈퇴 통신")
         }
     }
+    
+    // MARK: Network Function
+    func postLogout() {
+        NetworkService.shared.profileService.logout() { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                if data.code == 200 {
+                    KeychainHandler.shared.logout()
+                    let loginViewController = LoginViewController()
+                    self.view.window?.rootViewController = loginViewController
+                    self.view.window?.makeKeyAndVisible()
+                }
+            default:
+                print("login error")
+            }
+        }
+    }
 }
-
 
 extension SettingViewController: UIGestureRecognizerDelegate {
     /// 딤 뷰 탭 되었을 때 메소드

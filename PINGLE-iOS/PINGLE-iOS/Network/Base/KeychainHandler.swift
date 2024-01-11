@@ -69,7 +69,16 @@ struct KeychainHandler {
         }
     }
     
-    mutating func removeAll() {
+    mutating func logout() {
+        accessToken = ""
+        refreshToken = ""
+        userGroup = []
+        KeychainWrapper.standard.removeObject(forKey: accessTokenKey)
+        KeychainWrapper.standard.removeObject(forKey: refreshTokenKey)
+        UserDefaults.standard.removeObject(forKey: userGroupKey)
+    }
+    
+    mutating func deleteID() {
         accessToken = ""
         refreshToken = ""
         providerToken = ""

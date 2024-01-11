@@ -8,16 +8,9 @@
 import Foundation
 
 struct SearchPlaceResponseDTO: Codable {
-    let id: Int
-    let name: String
-    let keyword: String
+    let x: Double
+    let y: Double
+    let location: String
+    let address: String
+    let roadAddress: String
 }
-
-
-//
-//
-//"x":double,
-//        "y":double,
-//        "location":String,
-//        "address":String,
-//        "roadAddress":String

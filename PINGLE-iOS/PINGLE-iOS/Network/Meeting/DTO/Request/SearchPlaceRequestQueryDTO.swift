@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct SearchPlaceRequestQueryDTO: Codable {
+    let search: String
+}

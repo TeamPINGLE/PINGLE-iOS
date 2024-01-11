@@ -43,12 +43,16 @@ class SelectCategoryViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDeemedView()
-        navigationController?.navigationBar.isHidden = true
+        setNavigation()
         setTarget()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
+        setNavigation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        setNavigation()
     }
     
     // MARK: UI
@@ -197,9 +201,9 @@ class SelectCategoryViewController: BaseViewController {
     }
     
     @objc func exitModalExitButtonTapped() {
-        print("exitModalExitButtonTapped called")
+        exitModal.isHidden = true
+        dimmedView.isHidden = true
         self.dismiss(animated: true) {
-            print("Dismiss completion closure executed")
             if let tabBarController = self.tabBarController {
                 if tabBarController.viewControllers?.count ?? 0 >= 2 {
                     tabBarController.selectedIndex = 0
@@ -223,6 +227,10 @@ class SelectCategoryViewController: BaseViewController {
             }
         }
     
+    private func setNavigation() {
+        navigationController?.navigationBar.isHidden = true
+    }
+
     func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         playButton.addTarget(self, action: #selector(categorySelected), for: .touchUpInside)

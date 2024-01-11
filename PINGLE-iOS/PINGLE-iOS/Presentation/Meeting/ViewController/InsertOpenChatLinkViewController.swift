@@ -24,7 +24,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
     private let exitModal = ExitModalView()
-    private let deemedView = UIView()
+    private let dimmedView = UIView()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -36,6 +36,10 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        setNavigation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
         setNavigation()
     }
     
@@ -71,7 +75,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
                     $0.isHidden = true
                 }
         
-        deemedView.do {
+        dimmedView.do {
             $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
             $0.isHidden = true
         }
@@ -134,23 +138,31 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     @objc func exitButtonTapped() {
-        deemedView.isHidden = false
         self.view.addSubview(exitModal)
         exitModal.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
         exitModal.isHidden = false
+        dimmedView.isHidden = false
     }
     
     @objc func exitModalKeepButtonTapped() {
-        deemedView.isHidden = true
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
+        dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
-        print("홈화면으로 이동")
+        exitModal.isHidden = true
+        dimmedView.isHidden = true
+        self.dismiss(animated: true) {
+            if let tabBarController = self.tabBarController {
+                if tabBarController.viewControllers?.count ?? 0 >= 2 {
+                    tabBarController.selectedIndex = 0
+                }
+            }
+        }
     }
 
     @objc func textFieldDidChange(_ sender: Any?) {
@@ -182,12 +194,14 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     private func setupDeemedView() {
-        self.view.addSubview(deemedView)
+        self.view.addSubview(dimmedView)
         
-        deemedView.snp.makeConstraints {
+        dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
+    
+    
     
     override func setDelegate() {
         self.openChatLinkTextField.searchTextField.delegate = self

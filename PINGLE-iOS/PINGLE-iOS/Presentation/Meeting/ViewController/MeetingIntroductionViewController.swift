@@ -24,7 +24,7 @@ class MeetingIntroductionViewController: BaseViewController {
     private let exitLabel = UILabel()
     private let exitButton = MeetingExitButton()
     private let exitModal = ExitModalView()
-    private let deemedView = UIView()
+    private let dimmedView = UIView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -36,7 +36,11 @@ class MeetingIntroductionViewController: BaseViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
+        setNavigation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        setNavigation()
     }
     
     // MARK: UI
@@ -71,7 +75,7 @@ class MeetingIntroductionViewController: BaseViewController {
                     $0.isHidden = true
                 }
         
-        deemedView.do {
+        dimmedView.do {
             $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
             $0.isHidden = true
         }
@@ -150,17 +154,25 @@ class MeetingIntroductionViewController: BaseViewController {
             $0.centerY.equalToSuperview()
         }
         exitModal.isHidden = false
-        deemedView.isHidden = false
+        dimmedView.isHidden = false
     }
     
     @objc func exitModalKeepButtonTapped() {
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
-        deemedView.isHidden = true
+        dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
-        print("홈화면으로 이동")
+        exitModal.isHidden = true
+        dimmedView.isHidden = true
+        self.dismiss(animated: true) {
+            if let tabBarController = self.tabBarController {
+                if tabBarController.viewControllers?.count ?? 0 >= 2 {
+                    tabBarController.selectedIndex = 0
+                }
+            }
+        }
     }
     
     // MARK: Function
@@ -178,10 +190,14 @@ class MeetingIntroductionViewController: BaseViewController {
     }
     
     private func setupDeemedView() {
-        self.view.addSubview(deemedView)
-        deemedView.snp.makeConstraints {
+        self.view.addSubview(dimmedView)
+        dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    private func setNavigation() {
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func setDelegate() {

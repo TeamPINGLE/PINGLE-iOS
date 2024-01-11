@@ -26,7 +26,7 @@ final class RecruitmentViewController: BaseViewController {
     private let exitButton = MeetingExitButton()
     var newText: String = ""
     private let exitModal = ExitModalView()
-    private let deemedView = UIView()
+    private let dimmedView = UIView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -40,6 +40,10 @@ final class RecruitmentViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setNavigation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
         setNavigation()
     }
     
@@ -100,7 +104,7 @@ final class RecruitmentViewController: BaseViewController {
             $0.isHidden = true
         }
         
-        deemedView.do {
+        dimmedView.do {
             $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
             $0.isHidden = true
         }
@@ -233,23 +237,31 @@ final class RecruitmentViewController: BaseViewController {
     }
     
     @objc func exitButtonTapped() {
-        deemedView.isHidden = false
         self.view.addSubview(exitModal)
         exitModal.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
         exitModal.isHidden = false
+        dimmedView.isHidden = false
     }
     
     @objc func exitModalKeepButtonTapped() {
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
-        deemedView.isHidden = true
+        dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
-        print("홈화면으로 이동")
+        exitModal.isHidden = true
+        dimmedView.isHidden = true
+        self.dismiss(animated: true) {
+            if let tabBarController = self.tabBarController {
+                if tabBarController.viewControllers?.count ?? 0 >= 2 {
+                    tabBarController.selectedIndex = 0
+                }
+            }
+        }
     }
     
     // MARK: Function
@@ -268,9 +280,9 @@ final class RecruitmentViewController: BaseViewController {
     }
     
     private func setupDeemedView() {
-        self.view.addSubview(deemedView)
+        self.view.addSubview(dimmedView)
         
-        deemedView.snp.makeConstraints {
+        dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }

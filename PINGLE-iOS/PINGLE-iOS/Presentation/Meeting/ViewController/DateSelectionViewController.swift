@@ -54,6 +54,10 @@ class DateSelectionViewController: BaseViewController {
         setNavigation()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        setNavigation()
+    }
+    
     // MARK: - UI
     override func setStyle() {
         self.view.do {
@@ -296,23 +300,30 @@ class DateSelectionViewController: BaseViewController {
     
     private func timeFormat(time: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "H:mm"
+        formatter.dateFormat = "HH:mm"
         return formatter.string(from: time)
     }
     
     private func fuckingTimePicker() {
-        let fromString: String = timeFormat(time: bottomStartTimeView.timePicker.date)
-        let targetString: String = timeFormat(time: bottomEndTimeView.timePicker.date)
-        switch targetString.compare(fromString) {
+        let targetString: String = timeFormat(time: bottomStartTimeView.timePicker.date)
+        let fromString: String = timeFormat(time: bottomEndTimeView.timePicker.date)
+        switch fromString.compare(targetString) {
         case .orderedSame:
-            nextButton.disabledButton()
-            showWarningToastView(duration: 2.0)
-        case .orderedDescending: if(isEndTimeSelected) { nextButton.activateButton()
+            if isEndTimeSelected {
+                nextButton.disabledButton()
+                showWarningToastView(duration: 2.0)
+            }
+        case .orderedDescending:
+            if isEndTimeSelected {
+                nextButton.activateButton()
+            }
+        case .orderedAscending:
+            if isEndTimeSelected {
+                nextButton.disabledButton()
+                showWarningToastView(duration: 2.0)
+            }
         }
-        case .orderedAscending: if(isEndTimeSelected) { nextButton.disabledButton()
-            showWarningToastView(duration: 2.0)
-        }
-        }
+
     }
     
     private func setBottomSheetLayout() {

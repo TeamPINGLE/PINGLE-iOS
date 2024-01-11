@@ -127,7 +127,7 @@ final class PINGLETabBarController: UITabBarController {
     
     @objc func goToAddPinge() {
         let navigationController = UINavigationController(rootViewController: MakeMeetingGuideViewController())
-        modalTransitionStyle = .coverVertical
+        navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true, completion: nil)
     }
 }
@@ -153,9 +153,18 @@ extension PINGLETabBarController: UITabBarControllerDelegate {
                 }
             }
         }
-        
-        if tabBarController.selectedIndex == 2 {
-            goToAddPinge()
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
+            return false
         }
+        
+        if selectedIndex != 2 {
+            return true
+        }
+        
+        goToAddPinge()
+        return false
     }
 }

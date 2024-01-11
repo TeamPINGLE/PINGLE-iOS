@@ -35,6 +35,10 @@ class FinalResultViewController: BaseViewController {
         setNavigation()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        setNavigation()
+    }
+    
     // MARK: - UI
     override func setStyle() {
         self.view.do {

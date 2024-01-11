@@ -259,13 +259,7 @@ class DateSelectionViewController: BaseViewController {
     @objc func exitModalExitButtonTapped() {
         exitModal.isHidden = true
         dimmedView.isHidden = true
-        self.dismiss(animated: true) {
-            if let tabBarController = self.tabBarController {
-                if tabBarController.viewControllers?.count ?? 0 >= 2 {
-                    tabBarController.selectedIndex = 0
-                }
-            }
-        }
+        self.dismiss(animated: true)
     }
     
     @objc func deemedViewTapped() {

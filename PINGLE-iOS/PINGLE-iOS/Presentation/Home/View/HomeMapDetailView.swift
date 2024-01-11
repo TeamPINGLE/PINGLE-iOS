@@ -17,6 +17,7 @@ final class HomeMapDetailView: BaseView {
     var badgeColor: UIColor? = .subPingleOrange
     var isParticipating: Bool = false
     var openChatURL: String?
+    var participantsButtonAction: (() -> Void) = {}
     
     // MARK: Component
     let topBackgroundView = UIView()
@@ -41,6 +42,13 @@ final class HomeMapDetailView: BaseView {
     let participationButton = UIButton()
     
     // MARK: - Function
+    // MARK: init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUI()
+        setAddTarget()
+    }
+    
     // MARK: Style Helpers
     override func setStyle() {
         topBackgroundView.do {
@@ -248,6 +256,14 @@ final class HomeMapDetailView: BaseView {
             $0.height.equalTo(44)
             $0.width.equalTo(185.adjustedWidth)
         }
+    }
+    
+    func setAddTarget() {
+        self.participationButton.addTarget(self, action: #selector(participationButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func participationButtonTapped() {
+        participantsButtonAction()
     }
     
     // MARK: Data Bind Func

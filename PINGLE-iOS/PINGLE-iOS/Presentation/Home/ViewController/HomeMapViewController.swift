@@ -22,7 +22,7 @@ final class HomeMapViewController: BaseViewController {
     var unselectedButton: Int = 0
     var homePinDetailList: [HomePinDetailResponseDTO] = []
     var teamId = 1
-    var meetingId = 0
+    var meetingId: [Int] = []
     var markerId = 0
     var allowLocation = false
     
@@ -236,16 +236,18 @@ extension HomeMapViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailCollectionViewCell.identifier, for: indexPath) as? HomeDetailCollectionViewCell else { return UICollectionViewCell() }
-        cell.mapDetailView.participationButton.addTarget(self,
-                                                         action: #selector(participantsButtonTapped),
-                                                         for: .touchUpInside)
+        cell.mapDetailView.dataBind(data: homePinDetailList[indexPath.row])
+
+        cell.mapDetailView.participantsButtonAction = {
+            self.showPopUp(isParticipating: self.homePinDetailList[indexPath.row].isParticipating)
+        }
+        
         cell.mapDetailView.participantCountButton.addTarget(self,
                                                             action: #selector(participantCountButtonTapped),
                                                             for: .touchUpInside)
         cell.mapDetailView.talkButton.addTarget(self,
                                                 action: #selector(talkButtonTapped),
                                                 for: .touchUpInside)
-        cell.mapDetailView.dataBind(data: homePinDetailList[indexPath.row])
         return cell
     }
 }
@@ -300,7 +302,7 @@ extension HomeMapViewController {
     }
     
     @objc func participationButtonTapped() {
-        self.meetingJoin(meetingId: self.meetingId) { [weak self] in
+        self.meetingJoin(meetingId: self.meetingId[0]) { [weak self] in
             guard let self = self else { return }
             print("참여하기 버튼 탭")
             dimmedView.isHidden = true
@@ -310,7 +312,7 @@ extension HomeMapViewController {
     }
     
     @objc func cancelButtonTapped() {
-        self.meetingCancel(meetingId: self.meetingId) { [weak self] in
+        self.meetingCancel(meetingId: self.meetingId[0]) { [weak self] in
             guard let self = self else { return }
             print("취소하기 버튼 탭")
             dimmedView.isHidden = true
@@ -337,14 +339,15 @@ extension HomeMapViewController {
         self.navigationController?.pushViewController(participantViewController, animated: true)
     }
     
-    @objc func participantsButtonTapped() {
-        //        if !mapDetailView.isParticipating {
+    func showPopUp(isParticipating: Bool) {
         dimmedView.isHidden = false
-        homeDetailPopUpView.isHidden = false
-        //        } else {
-        //            dimmedView.isHidden = false
-        //            homeDetailCancelPopUpView.isHidden = false
-        //        }
+        if !isParticipating {
+            homeDetailPopUpView.isHidden = false
+            print("참여 팝업 보여주기")
+        } else {
+            homeDetailCancelPopUpView.isHidden = false
+            print("참여취소 팝업 보여주기")
+        }
     }
     
     @objc func talkButtonTapped() {
@@ -430,7 +433,9 @@ extension HomeMapViewController {
                 print(data)
                 DispatchQueue.main.async { [weak self] in
                     self?.homePinDetailList = data
-                    self?.meetingId = data[0].id
+                    data.forEach {
+                        self?.meetingId.append($0.id)
+                    }
                     self?.mapsView.homeDetailCollectionView.reloadData()
                 }
             default:

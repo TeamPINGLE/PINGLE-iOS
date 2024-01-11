@@ -29,6 +29,11 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        mapDetailView.participantsButtonAction = {}
+    }
+    
     // MARK: Layout Helpers
     private func setUI() {
         setStyle()

@@ -16,7 +16,6 @@ class PlaceSelectionViewController: BaseViewController {
     var selectedPlace: IndexPath?
     
     // MARK: Property
-    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar4 = UIImageView()
     private let placeSelectionTitle = UILabel()
@@ -152,12 +151,9 @@ class PlaceSelectionViewController: BaseViewController {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         searchPlaceView.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         searchPlaceView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-        nextButton.addTarget(self, action: #selector(nextButtonTapped),
-                             for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
-        exitModal.exitButton.addTarget(self,
-                                       action: #selector(exitModalExitButtonTapped),
-                                       for: .touchUpInside)
+        exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     

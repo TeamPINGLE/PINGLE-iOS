@@ -68,6 +68,10 @@ class InsertOpenChatLinkViewController: BaseViewController {
             $0.textColor = .white
         }
         
+        openChatLinkTextField.do {
+            $0.searchTextField.keyboardType = .URL
+        }
+        
         exitLabel.do {
             $0.text = StringLiterals.Meeting.MeetingCategory.ExitButton.exitLabel
             $0.font = .captionCapSemi12
@@ -180,15 +184,11 @@ class InsertOpenChatLinkViewController: BaseViewController {
     
     // MARK: Function
     func setTarget() {
-        openChatLinkTextField.searchTextField.addTarget(self,
-                                                              action:#selector(self.textFieldDidChange(_:)),
-                                                              for: .editingChanged)
+        openChatLinkTextField.searchTextField.addTarget(self, action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
-        exitModal.exitButton.addTarget(self,
-                                       action: #selector(exitModalExitButtonTapped),
-                                       for: .touchUpInside)
+        exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
@@ -203,9 +203,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
     }
-    
-    
-    
+
     override func setDelegate() {
         self.openChatLinkTextField.searchTextField.delegate = self
     }

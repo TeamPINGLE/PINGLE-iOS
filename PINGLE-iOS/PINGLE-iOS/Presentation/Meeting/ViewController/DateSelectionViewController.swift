@@ -11,8 +11,8 @@ import SnapKit
 import Then
 
 class DateSelectionViewController: BaseViewController {
+    
     // MARK: - Property
-    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar3 = UIImageView()
     private let dateSelectionTitle = UILabel()
@@ -38,9 +38,9 @@ class DateSelectionViewController: BaseViewController {
     private let dimmedView = UIView()
     private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.Meeting.DateSelection.warningMessage)
     private var nowDate = Date()
-    private var isDateSelected :Bool = false
-    private var isStartTimeSelected :Bool = false
-    private var isEndTimeSelected :Bool = false
+    private var isDateSelected: Bool = false
+    private var isStartTimeSelected: Bool = false
+    private var isEndTimeSelected: Bool = false
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -206,7 +206,7 @@ class DateSelectionViewController: BaseViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.bottomDateView.removeFromSuperview()
         })
-        meetingManager.date = PINGLEDateSelectionTextField.searchTextField.text
+        MeetingManager.shared.date = PINGLEDateSelectionTextField.searchTextField.text
     }
     
     @objc func startTimeDoneButtonTapped() {
@@ -220,7 +220,7 @@ class DateSelectionViewController: BaseViewController {
             })
         isStartTimeSelected = true
         settingTimePicker()
-        meetingManager.startAt = PINGLEStartTimeTextField.searchTextField.text
+        MeetingManager.shared.startAt = PINGLEStartTimeTextField.searchTextField.text
     }
     
     @objc func endTimeDoneButtonTapped() {
@@ -232,7 +232,7 @@ class DateSelectionViewController: BaseViewController {
         })
         isEndTimeSelected = true
         settingTimePicker()
-        meetingManager.endAt = PINGLEEndTimeTextField.searchTextField.text
+        MeetingManager.shared.endAt = PINGLEEndTimeTextField.searchTextField.text
     }
     
     @objc func nextButtonTapped() {
@@ -269,21 +269,15 @@ class DateSelectionViewController: BaseViewController {
     // MARK: Function
     private func setTarget() {
         PINGLEDateSelectionTextField.searchTextField.addTarget(self, action: #selector(showDatePicker), for: .touchUpInside)
-        PINGLEStartTimeTextField.searchTextField.addTarget(self,
-                                                           action: #selector(showStartTimePicker), for: .touchUpInside)
-        PINGLEEndTimeTextField.searchTextField.addTarget(self,
-                                                         action: #selector(showEndTimePicker), for: .touchUpInside)
-        backButton.addTarget(self, action: #selector(backButtonTapped),
-                             for: .touchUpInside)
-        nextButton.addTarget(self, action: #selector(nextButtonTapped),
-                             for: .touchUpInside)
+        PINGLEStartTimeTextField.searchTextField.addTarget(self, action: #selector(showStartTimePicker), for: .touchUpInside)
+        PINGLEEndTimeTextField.searchTextField.addTarget(self, action: #selector(showEndTimePicker), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         bottomDateView.doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         bottomStartTimeView.doneButton.addTarget(self, action: #selector(startTimeDoneButtonTapped), for: .touchUpInside)
         bottomEndTimeView.doneButton.addTarget(self, action: #selector(endTimeDoneButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
-        exitModal.exitButton.addTarget(self,
-                                       action: #selector(exitModalExitButtonTapped),
-                                       for: .touchUpInside)
+        exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     

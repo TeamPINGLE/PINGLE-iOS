@@ -11,8 +11,8 @@ import SnapKit
 import Then
 
 class SelectCategoryViewController: BaseViewController {
-    // MARK: Property
-    let meetingManager = MeetingManager.shared
+    
+    // MARK: - Property
     private let backButton = UIButton()
     private let progressBar1 = UIImageView()
     private let PINGLECategoryTitle = UILabel()
@@ -163,20 +163,16 @@ class SelectCategoryViewController: BaseViewController {
         switch sender {
         case playButton:
             nextButton.activateButton()
-            meetingManager.category =
-            StringLiterals.Meeting.MeetingCategory.CategoryTitle.play
+            MeetingManager.shared.category = StringLiterals.Meeting.MeetingCategory.CategoryTitle.play
         case studyButton:
             nextButton.activateButton()
-            meetingManager.category =
-            StringLiterals.Meeting.MeetingCategory.CategoryTitle.study
+            MeetingManager.shared.category = StringLiterals.Meeting.MeetingCategory.CategoryTitle.study
         case multiButton:
             nextButton.activateButton()
-            meetingManager.category =
-            StringLiterals.Meeting.MeetingCategory.CategoryTitle.multi
+            MeetingManager.shared.category = StringLiterals.Meeting.MeetingCategory.CategoryTitle.multi
         case othersButton:
             nextButton.activateButton()
-            meetingManager.category =
-            StringLiterals.Meeting.MeetingCategory.CategoryTitle.others
+            MeetingManager.shared.category = StringLiterals.Meeting.MeetingCategory.CategoryTitle.others
         default:
             break
         }
@@ -246,9 +242,7 @@ class SelectCategoryViewController: BaseViewController {
         othersButton.addTarget(self, action: #selector(categorySelected), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
-        exitModal.exitButton.addTarget(self,
-                                                               action: #selector(exitModalExitButtonTapped),
-                                                               for: .touchUpInside)
+        exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
 }

@@ -13,7 +13,6 @@ import Then
 final class FinalResultViewController: BaseViewController {
     
     // MARK: - Property
-    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar7 = UIImageView()
     private let finalResultTitle = UILabel()
@@ -79,8 +78,7 @@ final class FinalResultViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, progressBar7, finalResultTitle, cardScrollView,
-                              nextButton)
+        self.view.addSubviews(backButton, progressBar7, finalResultTitle, cardScrollView, nextButton)
         cardScrollView.addSubview(contentsView)
         contentsView.addSubview(finalResultCard)
         

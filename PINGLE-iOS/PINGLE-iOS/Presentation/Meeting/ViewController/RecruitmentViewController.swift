@@ -11,8 +11,8 @@ import SnapKit
 import Then
 
 final class RecruitmentViewController: BaseViewController {
-    // MARK: Property
-    let meetingManager = MeetingManager.shared
+    
+    // MARK: - Property
     private let backButton = UIButton()
     private let progressBar5 = UIImageView()
     private let recruitTitle = UILabel()
@@ -298,7 +298,7 @@ final class RecruitmentViewController: BaseViewController {
     func updateNextButtonState() {
         if let text = recruitTextField.text, let number = Int(text), number > 1, number < 100 {
             nextButton.activateButton()
-            meetingManager.maxParticipants = number
+            MeetingManager.shared.maxParticipants = number
         } else {
             nextButton.disabledButton()
         }

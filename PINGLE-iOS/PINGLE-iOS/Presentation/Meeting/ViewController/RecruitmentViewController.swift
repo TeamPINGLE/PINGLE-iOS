@@ -11,7 +11,8 @@ import SnapKit
 import Then
 
 final class RecruitmentViewController: BaseViewController {
-    // MARK: Property
+    
+    // MARK: - Property
     private let backButton = UIButton()
     private let progressBar5 = UIImageView()
     private let recruitTitle = UILabel()
@@ -189,7 +190,6 @@ final class RecruitmentViewController: BaseViewController {
             if number > 1 {
                 minusButton.activateButton()
             }
-                updateNextButtonState()
             if number > 98 {
                 plusButton.disabledButton()
             }
@@ -204,31 +204,38 @@ final class RecruitmentViewController: BaseViewController {
             if number < 2 {
                 minusButton.disabledButton()
             }
-            updateNextButtonState()
             if number < 100 {
                 plusButton.activateButton()
             }
+            updateNextButtonState()
         }
     }
     
     @objc func textFieldDidChange(_ sender: Any?) {
         if let text = recruitTextField.text, var number = Int(text) {
+            if number < 1 {
+                number = 1
+                recruitTextField.text = "1"
+            }
+            if number > 99 {
+                number = 99
+                recruitTextField.text = "99"
+            }
             if number < 2 {
                 minusButton.disabledButton()
                 nextButton.disabledButton()
             } else if number > 1 {
                 minusButton.activateButton()
             }
-            
             if number > 98 {
                 plusButton.disabledButton()
             } else if number < 99 {
                 plusButton.activateButton()
             }
-            
             if number > 1 && number < 100 {
                 nextButton.activateButton()
             }
+            updateNextButtonState()
         }
     }
     
@@ -256,27 +263,18 @@ final class RecruitmentViewController: BaseViewController {
     @objc func exitModalExitButtonTapped() {
         exitModal.isHidden = true
         dimmedView.isHidden = true
-        self.dismiss(animated: true) {
-            if let tabBarController = self.tabBarController {
-                if tabBarController.viewControllers?.count ?? 0 >= 2 {
-                    tabBarController.selectedIndex = 0
-                }
-            }
-        }
+        self.dismiss(animated: true)
     }
     
     // MARK: Function
     func setTarget() {
-        recruitTextField.addTarget(self,
-                                   action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        recruitTextField.addTarget(self, action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
-        exitModal.exitButton.addTarget(self,
-                                       action: #selector(exitModalExitButtonTapped),
-                                       for: .touchUpInside)
+        exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
@@ -300,6 +298,7 @@ final class RecruitmentViewController: BaseViewController {
     func updateNextButtonState() {
         if let text = recruitTextField.text, let number = Int(text), number > 1, number < 100 {
             nextButton.activateButton()
+            MeetingManager.shared.maxParticipants = number
         } else {
             nextButton.disabledButton()
         }

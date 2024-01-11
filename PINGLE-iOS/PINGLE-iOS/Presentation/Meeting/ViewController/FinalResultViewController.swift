@@ -78,8 +78,7 @@ final class FinalResultViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, progressBar7, finalResultTitle, cardScrollView,
-                              nextButton)
+        self.view.addSubviews(backButton, progressBar7, finalResultTitle, cardScrollView, nextButton)
         cardScrollView.addSubview(contentsView)
         contentsView.addSubview(finalResultCard)
         

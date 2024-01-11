@@ -10,6 +10,7 @@ import Foundation
 protocol OnboardingServiceProtocol {
     func login(bodyDTO: LoginRequestBodyDTO, completion: @escaping (NetworkResult<BaseResponse<LoginResponseDTO>>) -> Void)
     func userInfo(completion: @escaping (NetworkResult<BaseResponse<UserInfoResponseDTO>>) -> Void)
+    func searchOrganization(queryDTO: SearchOrganizationRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<[SearchOrganizationResponseDTO]>>) -> Void)
 }
 
 final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingServiceProtocol {
@@ -20,5 +21,9 @@ final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingSer
     func userInfo(completion: @escaping (NetworkResult<BaseResponse<UserInfoResponseDTO>>) -> Void) {
         fetchData(target: .userInfo,
                   responseData: BaseResponse<UserInfoResponseDTO>.self, completion: completion)
+    }
+    func searchOrganization(queryDTO: SearchOrganizationRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<[SearchOrganizationResponseDTO]>>) -> Void) {
+        fetchData(target: .searchOrganization(queryDTO),
+                  responseData: BaseResponse<[SearchOrganizationResponseDTO]>.self, completion: completion)
     }
 }

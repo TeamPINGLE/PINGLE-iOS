@@ -45,7 +45,6 @@
 		C38545402B4868860040E60D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385453F2B4868860040E60D /* String+.swift */; };
 		C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */; };
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
-		C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602BB2B3BEE06004BB2B8 /* ViewController.swift */; };
 		C39602C12B3BEE08004BB2B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C39602C02B3BEE08004BB2B8 /* Assets.xcassets */; };
 		C39602C42B3BEE08004BB2B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39602C22B3BEE08004BB2B8 /* LaunchScreen.storyboard */; };
 		C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D02B3BF162004BB2B8 /* ImageLiterals.swift */; };
@@ -120,6 +119,8 @@
 		F14F3C792B4D389E0049A9EE /* OnboardingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C782B4D389E0049A9EE /* OnboardingTarget.swift */; };
 		F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C7A2B4D38AD0049A9EE /* OnboardingService.swift */; };
 		F16BCA392B4E62760096A62F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16BCA382B4E62760096A62F /* SplashViewController.swift */; };
+		F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */; };
+		F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,7 +166,6 @@
 		C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PINGLE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C39602BB2B3BEE06004BB2B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C39602C02B3BEE08004BB2B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C39602C32B3BEE08004BB2B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C39602C52B3BEE08004BB2B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -238,6 +238,8 @@
 		F14F3C782B4D389E0049A9EE /* OnboardingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTarget.swift; sourceTree = "<group>"; };
 		F14F3C7A2B4D38AD0049A9EE /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
 		F16BCA382B4E62760096A62F /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationResponseDTO.swift; sourceTree = "<group>"; };
+		F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationRequestQueryDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,7 +434,6 @@
 		C39602E12B3BF1CF004BB2B8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				C39602BB2B3BEE06004BB2B8 /* ViewController.swift */,
 				C39602E22B3BF1FA004BB2B8 /* Base */,
 				C39602E72B3BF20D004BB2B8 /* Onboarding */,
 				C39602E92B3BF21D004BB2B8 /* TabBar */,
@@ -820,6 +821,7 @@
 			isa = PBXGroup;
 			children = (
 				F14F3C732B4D36BB0049A9EE /* LoginRequestBodyDTO.swift */,
+				F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -829,6 +831,7 @@
 			children = (
 				F14F3C762B4D37080049A9EE /* LoginResponseDTO.swift */,
 				F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */,
+				F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1010,12 +1013,12 @@
 				F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */,
 				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
 				F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */,
-				C39602BC2B3BEE06004BB2B8 /* ViewController.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
 				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */,
+				F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
@@ -1043,7 +1046,6 @@
 				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
-				C396030D2B3BF33F004BB2B8 /* l.swift in Sources */,
 				C32A2DE72B4D934C0063F84A /* ParticipantViewController.swift in Sources */,
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
 				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,
@@ -1057,6 +1059,7 @@
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */,
+				F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */,
 				C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */,
 				F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,

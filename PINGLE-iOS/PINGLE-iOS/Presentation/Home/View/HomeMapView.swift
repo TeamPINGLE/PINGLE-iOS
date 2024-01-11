@@ -113,7 +113,8 @@ final class HomeMapView: BaseView {
         }
         
         chipStackView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide).inset(20.adjustedHeight)
+//            $0.top.equalTo(self.safeAreaLayoutGuide).inset(20.adjustedHeight)
+            $0.top.equalToSuperview().inset(66.adjustedHeight)
             $0.leading.equalToSuperview().inset(36.adjustedWidth)
         }
         

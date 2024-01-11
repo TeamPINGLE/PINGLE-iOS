@@ -95,4 +95,9 @@ final class SearchCollectionViewCell: UICollectionViewCell {
     func changeSelectedImage() {
         selectImageView.image = ImageLiterals.Icon.imgCheckSelected
     }
+    
+    func bindData(data: SearchOrganizationResponseDTO) {
+        keywordLabel.text = data.keyword
+        groupNameLabel.text = data.name
+    }
 }

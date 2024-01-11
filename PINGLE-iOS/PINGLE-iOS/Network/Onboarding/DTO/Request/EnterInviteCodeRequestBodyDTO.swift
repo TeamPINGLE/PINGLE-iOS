@@ -1,5 +1,5 @@
 //
-//  EnterInviteCodeBodyDTO.swift
+//  EnterInviteCodeRequestBodyDTO.swift
 //  PINGLE-iOS
 //
 //  Created by 강민수 on 1/11/24.

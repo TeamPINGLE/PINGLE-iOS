@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct EnterInviteCodeResponseDTO: Codable {
+    let id: Int
+    let name: String
+}

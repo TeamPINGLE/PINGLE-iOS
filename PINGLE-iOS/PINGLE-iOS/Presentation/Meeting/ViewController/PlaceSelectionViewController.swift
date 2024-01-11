@@ -32,7 +32,7 @@ class PlaceSelectionViewController: BaseViewController {
         setNavigation()
         setTarget()
         setRegister()
-        setupDeemedView()
+        setUpDimmedView()
         hideKeyboardWhenTappedAround()
     }
     
@@ -160,7 +160,7 @@ class PlaceSelectionViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
-    private func setupDeemedView() {
+    private func setUpDimmedView() {
         self.view.addSubview(dimmedView)
         
         dimmedView.snp.makeConstraints {

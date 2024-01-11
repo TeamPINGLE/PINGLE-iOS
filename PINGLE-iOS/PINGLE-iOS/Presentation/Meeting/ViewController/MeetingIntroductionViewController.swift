@@ -29,17 +29,19 @@ class MeetingIntroductionViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDeemedView()
+        setUpDimmedView()
         navigationController?.navigationBar.isHidden = true
         setTarget()
         hideKeyboardWhenTappedAround()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setNavigation()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setNavigation()
     }
     
@@ -166,13 +168,7 @@ class MeetingIntroductionViewController: BaseViewController {
     @objc func exitModalExitButtonTapped() {
         exitModal.isHidden = true
         dimmedView.isHidden = true
-        self.dismiss(animated: true) {
-            if let tabBarController = self.tabBarController {
-                if tabBarController.viewControllers?.count ?? 0 >= 2 {
-                    tabBarController.selectedIndex = 0
-                }
-            }
-        }
+        self.dismiss(animated: true)
     }
     
     // MARK: Function
@@ -189,7 +185,7 @@ class MeetingIntroductionViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
-    private func setupDeemedView() {
+    private func setUpDimmedView() {
         self.view.addSubview(dimmedView)
         dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()

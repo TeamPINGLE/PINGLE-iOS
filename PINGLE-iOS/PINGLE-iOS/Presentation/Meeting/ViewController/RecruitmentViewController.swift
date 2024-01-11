@@ -35,7 +35,7 @@ final class RecruitmentViewController: BaseViewController {
         setNavigation()
         hideKeyboardWhenTappedAround()
         setInitialNum()
-        setupDeemedView()
+        setUpDimmedView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +44,7 @@ final class RecruitmentViewController: BaseViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         setNavigation()
     }
     
@@ -279,7 +280,7 @@ final class RecruitmentViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
-    private func setupDeemedView() {
+    private func setUpDimmedView() {
         self.view.addSubview(dimmedView)
         
         dimmedView.snp.makeConstraints {

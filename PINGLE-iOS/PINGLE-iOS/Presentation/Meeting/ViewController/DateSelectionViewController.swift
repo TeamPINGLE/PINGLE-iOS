@@ -47,14 +47,16 @@ class DateSelectionViewController: BaseViewController {
         setNavigation()
         setDelegate()
         setTarget()
-        setupDeemedView()
+        setUpDimmedView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setNavigation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         setNavigation()
     }
     
@@ -279,7 +281,7 @@ class DateSelectionViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
-    private func setupDeemedView() {
+    private func setUpDimmedView() {
         self.view.addSubview(deemedView)
         deemedView.snp.makeConstraints {
             $0.edges.equalToSuperview()

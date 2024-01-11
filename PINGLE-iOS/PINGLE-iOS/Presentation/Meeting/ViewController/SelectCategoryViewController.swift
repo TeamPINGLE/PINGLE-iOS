@@ -42,16 +42,18 @@ class SelectCategoryViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDeemedView()
+        setUpDimmedView()
         setNavigation()
         setTarget()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setNavigation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         setNavigation()
     }
     
@@ -220,7 +222,7 @@ class SelectCategoryViewController: BaseViewController {
         othersButton.nonSelectedButton()
     }
     
-    private func setupDeemedView() {
+    private func setUpDimmedView() {
             self.view.addSubview(dimmedView)
             dimmedView.snp.makeConstraints {
                 $0.edges.equalToSuperview()

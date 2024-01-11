@@ -31,15 +31,17 @@ class InsertOpenChatLinkViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setTarget()
-        setupDeemedView()
+        setUpDimmedView()
         hideKeyboardWhenTappedAround()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setNavigation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         setNavigation()
     }
     
@@ -193,7 +195,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    private func setupDeemedView() {
+    private func setUpDimmedView() {
         self.view.addSubview(dimmedView)
         
         dimmedView.snp.makeConstraints {

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class FinalResultViewController: BaseViewController {
+final class FinalResultViewController: BaseViewController {
     
     // MARK: - Property
     private let backButton = UIButton()
@@ -32,10 +32,12 @@ class FinalResultViewController: BaseViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setNavigation()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         setNavigation()
     }
     
@@ -129,7 +131,7 @@ class FinalResultViewController: BaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        print("여기다가 다음 뷰컨 연결 할것임")
+        self.dismiss(animated: true)
     }
     
     // MARK: Function

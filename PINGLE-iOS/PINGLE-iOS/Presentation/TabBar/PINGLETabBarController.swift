@@ -125,7 +125,7 @@ final class PINGLETabBarController: UITabBarController {
         self.isHomeMap.toggle()
     }
     
-    @objc func goToAddPinge() {
+    @objc func goToAddPingle() {
         let navigationController = UINavigationController(rootViewController: MakeMeetingGuideViewController())
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true, completion: nil)
@@ -164,7 +164,7 @@ extension PINGLETabBarController: UITabBarControllerDelegate {
             return true
         }
         
-        goToAddPinge()
+        goToAddPingle()
         return false
     }
 }

@@ -56,7 +56,7 @@ extension OnboardingTarget: TargetType {
         case .userInfo:
             return "/users/me"
         case .searchOrganization:
-            return "teams"
+            return "/teams"
         }
     }
     

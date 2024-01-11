@@ -110,6 +110,7 @@ final class HomeMapView: BaseView {
             $0.contentInsetAdjustmentBehavior = .never
             $0.contentInset = UIEdgeInsets(top: 0, left: 24.adjustedWidth, bottom: 0, right: 24.adjustedWidth)
             $0.decelerationRate = .fast
+            $0.isHidden = true
         }
         
         homeDetailFlowLayout.do {

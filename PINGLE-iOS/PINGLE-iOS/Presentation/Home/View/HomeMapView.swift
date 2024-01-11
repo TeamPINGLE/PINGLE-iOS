@@ -19,7 +19,7 @@ final class HomeMapView: BaseView {
     var nowLng: Double = 126.97865226075146
     
     var homePinList: [HomePinListResponseDTO] = []
-
+    
     // MARK: Component
     let chipStackView = UIStackView()
     

@@ -17,7 +17,7 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
     static let identifier = "HomeDetailCollectionViewCell"
     
     let mapDetailView = HomeMapDetailView()
-
+    
     // MARK: - Function
     // MARK: LifeCycle
     override init(frame: CGRect) {

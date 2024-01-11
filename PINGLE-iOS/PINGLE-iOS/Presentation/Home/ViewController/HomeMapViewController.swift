@@ -338,28 +338,28 @@ extension HomeMapViewController {
     }
     
     @objc func participantsButtonTapped() {
-//        if !mapDetailView.isParticipating {
-            dimmedView.isHidden = false
-            homeDetailPopUpView.isHidden = false
-//        } else {
-//            dimmedView.isHidden = false
-//            homeDetailCancelPopUpView.isHidden = false
-//        }
+        //        if !mapDetailView.isParticipating {
+        dimmedView.isHidden = false
+        homeDetailPopUpView.isHidden = false
+        //        } else {
+        //            dimmedView.isHidden = false
+        //            homeDetailCancelPopUpView.isHidden = false
+        //        }
     }
     
     @objc func talkButtonTapped() {
         print("대화하기 버튼 탭")
-//        guard let chatURL = mapDetailView.openChatURL else { return }
-//        guard let url = URL(string: chatURL) else { return }
-//        let safariVC = SFSafariViewController(url: url)
-//        present(safariVC, animated: true)
+        //        guard let chatURL = mapDetailView.openChatURL else { return }
+        //        guard let url = URL(string: chatURL) else { return }
+        //        let safariVC = SFSafariViewController(url: url)
+        //        present(safariVC, animated: true)
     }
     
     // MARK: Custom Function
     /// 마커에 핸들러 부여
     func setMarkerHandler() {
         self.mapsView.homeDetailCollectionView.isHidden = true
-
+        
         self.mapsView.homeMarkerList.forEach { marker in
             marker.touchHandler = { ( _: NMFOverlay) -> Bool in
                 print("오버레이 터치됨")
@@ -406,8 +406,6 @@ extension HomeMapViewController {
     
     // MARK: Server Function
     func pinList(teamId: Int) {
-        KeychainHandler.shared.accessToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsInJvbCI6IlVTRVIiLCJpYXQiOjE3MDQ5NjMwMDQsImV4cCI6MTcwNjE3MjYwNH0.a9_0k7IuW3Yzhsn9UBVr8K8qT6GdDANE3jumPVz_EM32hMXCeNLGaz745e2XUgtWkbeXR74ySvK7cXXqcTYpBg"
-        KeychainHandler.shared.refreshToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsImlhdCI6MTcwNDk2MzAwNCwiZXhwIjoxNzA2MTcyNjA0fQ.A8bhgTAfH8DAheLot2ocgQJhTZfacpnpij_mN29kAMRuERyzuowaWicX6tZxg951hpo0j6McfU14oD_NxTS0VA"
         NetworkService.shared.homeService.pinList(teamId: teamId) { [weak self] response in
             switch response {
             case .success(let data):

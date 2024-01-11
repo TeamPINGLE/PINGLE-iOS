@@ -34,6 +34,9 @@ final class HomeMapView: BaseView {
                                           othersChipButton]
     
     let mapsView = NMFNaverMapView()
+    lazy var homeDetailCollectionView = UICollectionView(frame: .zero,
+                                                         collectionViewLayout: homeDetailFlowLayout)
+    let homeDetailFlowLayout = UICollectionViewFlowLayout()
     
     var locationManager = CLLocationManager()
     lazy var cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: self.nowLat, lng: self.nowLng))
@@ -98,12 +101,29 @@ final class HomeMapView: BaseView {
         currentMarker.do {
             $0.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
         }
+        
+        homeDetailCollectionView.do {
+            $0.backgroundColor = .clear
+            $0.showsHorizontalScrollIndicator = false
+            $0.isPagingEnabled = false
+            $0.decelerationRate = .fast
+            $0.contentInsetAdjustmentBehavior = .never
+            $0.contentInset = UIEdgeInsets(top: 0, left: 24.adjustedWidth, bottom: 0, right: 24.adjustedWidth)
+            $0.decelerationRate = .fast
+        }
+        
+        homeDetailFlowLayout.do {
+            $0.scrollDirection = .horizontal
+            $0.minimumLineSpacing = 8.adjustedWidth
+            $0.itemSize = CGSize(width: UIScreen.main.bounds.width - 48.adjustedWidth, height: 327)
+        }
     }
     
     // MARK: Layout Helpers
     override func setLayout() {
         self.addSubviews(mapsView, chipStackView)
-        mapsView.addSubviews(currentLocationButton,
+        mapsView.addSubviews(homeDetailCollectionView,
+                             currentLocationButton,
                              listButton)
         
         chipButtons.forEach {
@@ -117,6 +137,12 @@ final class HomeMapView: BaseView {
         chipStackView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).inset(20.adjustedHeight)
             $0.leading.equalToSuperview().inset(36.adjustedWidth)
+        }
+        
+        homeDetailCollectionView.snp.makeConstraints {
+            $0.bottom.equalTo(mapsView).offset(-8.adjustedHeight)
+            $0.centerX.width.equalToSuperview()
+            $0.height.equalTo(327)
         }
         
         listButton.snp.makeConstraints {

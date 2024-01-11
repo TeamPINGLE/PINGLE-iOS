@@ -41,6 +41,7 @@ final class HomeMapViewController: BaseViewController {
         self.pinList(teamId: teamId)
         setLocationManager()
         setAddTarget()
+        setCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +118,12 @@ final class HomeMapViewController: BaseViewController {
     override func setDelegate() {
         self.mapsView.mapsView.mapView.touchDelegate = self
         self.dimmedTapGesture.delegate = self
+        self.mapsView.homeDetailCollectionView.delegate = self
+        self.mapsView.homeDetailCollectionView.dataSource = self
+    }
+    
+    private func setCollectionView() {
+        self.mapsView.homeDetailCollectionView.register(HomeDetailCollectionViewCell.self, forCellWithReuseIdentifier: HomeDetailCollectionViewCell.identifier)
     }
     
     private func setLocationManager() {
@@ -237,6 +244,29 @@ extension HomeMapViewController: UIGestureRecognizerDelegate {
         homeDetailPopUpView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
         return true
+    }
+}
+
+extension HomeMapViewController: UICollectionViewDelegate { }
+
+extension HomeMapViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailCollectionViewCell.identifier, for: indexPath) as? HomeDetailCollectionViewCell else { return UICollectionViewCell() }
+//        cell.bindOpenNoteData(data: openNoteDummy[indexPath.row])
+        return cell
+    }
+}
+
+extension HomeMapViewController: UICollectionViewDelegateFlowLayout {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let scrolledOffsetX = targetContentOffset.pointee.x + scrollView.contentInset.left
+        let cellWidth = (UIScreen.main.bounds.width - 48.adjustedWidth) + 8.adjustedWidth
+        let index = round(scrolledOffsetX / cellWidth)
+        targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left, y: scrollView.contentInset.top)
     }
 }
 
@@ -386,6 +416,8 @@ extension HomeMapViewController {
     
     // MARK: Server Function
     func pinList(teamId: Int) {
+        KeychainHandler.shared.accessToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsInJvbCI6IlVTRVIiLCJpYXQiOjE3MDQ5MTczMzksImV4cCI6MTcwNjEyNjkzOX0.0ac1EmANJ_R0kSJs5MNT3WBCA94seLv-zj0UY7IKSoLwYCmnoBBsrfF30aLuNfprBUv1x1QSa8F-Hzb456GexA"
+        KeychainHandler.shared.refreshToken = "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjYsImlhdCI6MTcwNDkxNzMzOSwiZXhwIjoxNzA2MTI2OTM5fQ.06yHXE4knYfAg2pER6aLfnANmmtW6un2XwFRVLHAfmEG-b_SKpmuq3C8pbo9Z3DkMVlt_TuwR7aldG9NrMWIFQ"
         NetworkService.shared.homeService.pinList(teamId: teamId) { [weak self] response in
             switch response {
             case .success(let data):

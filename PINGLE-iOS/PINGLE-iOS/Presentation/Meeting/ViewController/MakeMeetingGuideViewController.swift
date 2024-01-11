@@ -27,23 +27,8 @@ final class MakeMeetingGuideViewController: BaseViewController {
         setTarget()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNavigation()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        setNavigation()
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        setNavigation()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         setNavigation()
     }
     
@@ -120,10 +105,6 @@ final class MakeMeetingGuideViewController: BaseViewController {
     private func setNavigation() {
         navigationController?.navigationBar.isHidden = true
     }
-    
-    private func configureNavigationController() {
-        navigationController?.setViewControllers([self], animated: true)
-        }
     
     // MARK: Objc Function
     @objc func entranceButtonPressed() {

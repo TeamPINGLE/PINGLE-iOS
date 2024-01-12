@@ -22,9 +22,8 @@ final class FinalSummaryCardView: BaseView {
     let badgeImageView = UIImageView()
     let titleLabel = UILabel()
     let nameLabel = UILabel()
-    
+    let formatter = DateFormatter()
     let separateView = UIView()
-    
     let bottomBackgroundView = UIView()
     let dateTimeImageView = UIImageView()
     let dateTimeTitleLabel = UILabel()
@@ -118,13 +117,15 @@ final class FinalSummaryCardView: BaseView {
         }
         
         dateLabel.do {
-            $0.text = MeetingManager.shared.date
+            let selectedDate = dateFormat(date: MeetingManager.shared.date)
+            $0.text = "\(selectedDate)"
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }
         
         timeLabel.do {
-            guard let startAt = MeetingManager.shared.startAt, let endAt = MeetingManager.shared.endAt else { return }
+            let startAt = timeFormat(time: MeetingManager.shared.startAt)
+            let endAt = timeFormat(time: MeetingManager.shared.endAt)
             $0.setTextWithLineHeight(text: "\(startAt) ~ \(endAt)", lineHeight: 20)
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
@@ -157,7 +158,7 @@ final class FinalSummaryCardView: BaseView {
         }
         
         recruitNumberLabel.do {
-            guard let maxParticipants = MeetingManager.shared.maxParticipants else { return }
+            let maxParticipants = MeetingManager.shared.maxParticipants
             $0.text = "\(maxParticipants)"
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
@@ -272,38 +273,16 @@ final class FinalSummaryCardView: BaseView {
         }
     }
     
-    // MARK: Data Bind Func
-    func dataBind(data: HomePinDetailResponseDTO) {
-        titleLabel.text = data.name
-        nameLabel.text = data.ownerName
-        dateLabel.text = data.date.convertToKoreanDate()
-        locationLabel.text = data.location
-        
-        let startAtString = data.startAt.convertToShortTimeFormat() ?? data.startAt
-        let endAtString = data.endAt.convertToShortTimeFormat() ?? data.endAt
-        timeLabel.text = startAtString + " ~ " + endAtString
-        
-        switch data.category {
-        case "PLAY":
-            badgeColor = .mainPingleGreen
-            badgeImageView.image = ImageLiterals.Home.Detail.imgPlayBadge
-            
-        case "STUDY":
-            badgeColor = .subPingleOrange
-            badgeImageView.image = ImageLiterals.Home.Detail.imgStudyBadge
-            
-        case "MULTI":
-            badgeColor = .subPingleYellow
-            badgeImageView.image = ImageLiterals.Home.Detail.imgMultiBadge
-            
-        case "OTHERS":
-            badgeColor = .grayscaleG01
-            badgeImageView.image = ImageLiterals.Home.Detail.imgOthersBadge
-            
-        default:
-            return
-        }
-        
-        titleLabel.textColor = badgeColor
+    // MARK: - Function
+    private func dateFormat(date: Date) -> String {
+        formatter.dateFormat = "yyyy년  MM월  dd일"
+        return formatter.string(from: date)
     }
+    
+    private func timeFormat(time: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: time)
+    }
+    
 }

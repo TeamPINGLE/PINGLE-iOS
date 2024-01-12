@@ -10,13 +10,15 @@ import Foundation
 import Alamofire
 
 enum MeetingTarget {
+    case makeMeeting(_ bodyDTO: MakeMeetingRequestBodyDTO)
     case searchPlace(_ queryDTO: SearchPlaceRequestQueryDTO)
-
 }
 
 extension MeetingTarget: TargetType {
     var authorization: Authorization {
         switch self {
+        case .makeMeeting:
+            return .authorization
         case .searchPlace:
             return .authorization
         }
@@ -24,6 +26,8 @@ extension MeetingTarget: TargetType {
     
     var headerType: HTTPHeaderType {
         switch self {
+        case .makeMeeting:
+            return .teamId
         case .searchPlace:
             return .hasToken
         }
@@ -31,6 +35,8 @@ extension MeetingTarget: TargetType {
     
     var method: HTTPMethod {
         switch self {
+        case .makeMeeting:
+            return .post
         case .searchPlace:
             return .get
         }
@@ -38,6 +44,8 @@ extension MeetingTarget: TargetType {
     
     var path: String {
         switch self {
+        case .makeMeeting:
+            return "/meetings"
         case .searchPlace(let location):
             return "/location"
         }
@@ -45,6 +53,8 @@ extension MeetingTarget: TargetType {
     
     var parameters: RequestParams {
         switch self {
+        case .makeMeeting(let bodyDTO):
+            return .requestWithBody(bodyDTO)
         case .searchPlace(let queryDTO):
             return .requestQuery(queryDTO)
         }

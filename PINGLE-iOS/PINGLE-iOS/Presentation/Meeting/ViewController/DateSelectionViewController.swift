@@ -201,12 +201,12 @@ class DateSelectionViewController: BaseViewController {
     
     @objc func doneButtonTapped() {
         dimmedView.isHidden = true
-        PINGLEDateSelectionTextField.searchTextField.text =
-        dateFormat(date: bottomDateView.datePicker.date)
+        let selectedDate = bottomDateView.datePicker.date
+        PINGLEDateSelectionTextField.searchTextField.text = dateFormat(date: bottomDateView.datePicker.date)
         UIView.animate(withDuration: 0.5, animations: {
             self.bottomDateView.removeFromSuperview()
         })
-        MeetingManager.shared.date = PINGLEDateSelectionTextField.searchTextField.text
+        MeetingManager.shared.date = selectedDate
     }
     
     @objc func startTimeDoneButtonTapped() {
@@ -220,11 +220,12 @@ class DateSelectionViewController: BaseViewController {
             })
         isStartTimeSelected = true
         settingTimePicker()
-        MeetingManager.shared.startAt = PINGLEStartTimeTextField.searchTextField.text
+        MeetingManager.shared.startAt = selectedStartTime
     }
     
     @objc func endTimeDoneButtonTapped() {
         dimmedView.isHidden = true
+        let selectedEndTime = bottomEndTimeView.timePicker.date
         PINGLEEndTimeTextField.searchTextField.text =
         timeFormat(time: bottomEndTimeView.timePicker.date)
         UIView.animate(withDuration: 0.5, animations: {
@@ -232,7 +233,7 @@ class DateSelectionViewController: BaseViewController {
         })
         isEndTimeSelected = true
         settingTimePicker()
-        MeetingManager.shared.endAt = PINGLEEndTimeTextField.searchTextField.text
+        MeetingManager.shared.endAt = selectedEndTime
     }
     
     @objc func nextButtonTapped() {

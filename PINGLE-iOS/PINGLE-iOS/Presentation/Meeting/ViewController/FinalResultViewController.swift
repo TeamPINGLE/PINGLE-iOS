@@ -22,6 +22,7 @@ final class FinalResultViewController: BaseViewController {
     private let nextButton = PINGLECTAButton(title: StringLiterals.Meeting.FinalResult.finalResultButton,
                                              buttonColor: .grayscaleG08,
                                              textColor: .grayscaleG10)
+    private let formatter = DateFormatter()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -130,6 +131,37 @@ final class FinalResultViewController: BaseViewController {
     }
     
     @objc func nextButtonTapped() {
+        
+        let selectedDate = dateFormat(date: MeetingManager.shared.date)
+        let selectedStart = timeFormat(time: MeetingManager.shared.startAt)
+        let selectedEnd = timeFormat(time: MeetingManager.shared.endAt)
+        
+        let category = MeetingManager.shared.category
+        let name = MeetingManager.shared.name
+        let startAt = selectedDate + " " + selectedStart
+        let endAt = selectedDate + " " + selectedEnd
+        let x = MeetingManager.shared.x
+        let y = MeetingManager.shared.y
+        let address = MeetingManager.shared.address
+        let location = MeetingManager.shared.location
+        let maxParticipants = MeetingManager.shared.maxParticipants
+        let chatLink = MeetingManager.shared.chatLink
+
+        let meetingData = MakeMeetingRequestBodyDTO(
+            category: category,
+            name: name,
+            startAt: startAt,
+            endAt: endAt,
+            x: x,
+            y: y,
+            adress: address,
+            location: location,
+            maxParticipants: maxParticipants,
+            chatLink: chatLink
+        )
+        
+        print(meetingData)
+        makeMeeting(data: meetingData)
         self.dismiss(animated: true)
     }
     
@@ -142,4 +174,27 @@ final class FinalResultViewController: BaseViewController {
     func setNavigation() {
         navigationController?.navigationBar.isHidden = true
     }
-}
+    
+    func makeMeeting(data: MakeMeetingRequestBodyDTO) {
+           NetworkService.shared.meetingService.makeMeeting(bodyDTO: data) { [weak self] response in
+               guard let self = self else { return }
+               switch response {
+               case .success(let result):
+                   print("Meeting created successfully. Result: \(result)")
+               default:
+                   print("not Created")
+               }
+           }
+       }
+    
+    private func dateFormat(date: Date) -> String {
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
+    }
+    
+    private func timeFormat(time: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter.string(from: time)
+    }
+   }

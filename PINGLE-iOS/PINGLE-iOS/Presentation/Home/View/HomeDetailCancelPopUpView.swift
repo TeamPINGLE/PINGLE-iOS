@@ -20,6 +20,8 @@ final class HomeDetailCancelPopUpView: BaseView {
     let cancelButton = UIButton()
     let backButton = UIButton()
     
+    var cancelButtonAction: (() -> Void) = {}
+    
     // MARK: - Function
     // MARK: Style Helpers
     override func setStyle() {

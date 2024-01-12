@@ -76,6 +76,7 @@
 		E50333522B50517B0005AC0E /* MeetingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333512B50517A0005AC0E /* MeetingTarget.swift */; };
 		E50333542B5051890005AC0E /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333532B5051890005AC0E /* MeetingService.swift */; };
 		E50333572B5052DA0005AC0E /* SearchPlaceRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333562B5052DA0005AC0E /* SearchPlaceRequestQueryDTO.swift */; };
+		C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */; };
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
 		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
@@ -201,6 +202,7 @@
 		E50333512B50517A0005AC0E /* MeetingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTarget.swift; sourceTree = "<group>"; };
 		E50333532B5051890005AC0E /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		E50333562B5052DA0005AC0E /* SearchPlaceRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceRequestQueryDTO.swift; sourceTree = "<group>"; };
+		C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
 		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				C33BF3492B46E87D00008653 /* View */,
 				C33BF3482B46E87100008653 /* Components */,
 				C33BF3472B46E85900008653 /* Model */,
+				C3FE9F612B4FBE1800BC53DE /* Cell */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -727,6 +730,14 @@
 				E50333562B5052DA0005AC0E /* SearchPlaceRequestQueryDTO.swift */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		C3FE9F612B4FBE1800BC53DE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		E50AA1FA2B46D2AB005E854B /* Components */ = {
@@ -1085,6 +1096,7 @@
 				F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
 				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
+				C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */,

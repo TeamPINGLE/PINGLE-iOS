@@ -14,6 +14,7 @@ class PlaceSelectionViewController: BaseViewController {
     
     // MARK: - Variables
     var selectedPlace: IndexPath?
+    var searchPlaceResponseDTO: [SearchPlaceResponseDTO] = []
     
     // MARK: Property
     private let backButton = UIButton()
@@ -32,6 +33,7 @@ class PlaceSelectionViewController: BaseViewController {
         setNavigation()
         setTarget()
         setRegister()
+        setUpLabel()
         setUpDimmedView()
         hideKeyboardWhenTappedAround()
     }
@@ -146,10 +148,13 @@ class PlaceSelectionViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
+    private func setUpLabel() {
+        searchPlaceView.isHiddenResultLabel(isEnabled: true)
+    }
+    
     // MARK: Target Function
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        searchPlaceView.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         searchPlaceView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
@@ -171,10 +176,24 @@ class PlaceSelectionViewController: BaseViewController {
     }
     
     @objc func searchButtonTapped() {
+        if let search = searchPlaceView.searchTextField.text {
+            if search.isEmpty {
+                searchPlaceResponseDTO = []
+                searchPlaceView.searchPlaceCollectionView.reloadData()
+                searchPlaceView.isHiddenResultLabel(isEnabled: false)
+            } else {
+                searchPlace(data: SearchPlaceRequestQueryDTO(search: search))
+            }
+        }
         self.view.endEditing(true)
     }
     
     @objc func nextButtonTapped() {
+        guard let selectedPlaceRow = selectedPlace?.row else { return }
+        MeetingManager.shared.address = searchPlaceResponseDTO[selectedPlaceRow].address
+        MeetingManager.shared.location = searchPlaceResponseDTO[selectedPlaceRow].location
+        MeetingManager.shared.x = searchPlaceResponseDTO[selectedPlaceRow].x
+        MeetingManager.shared.y = searchPlaceResponseDTO[selectedPlaceRow].y
         let recruitmentViewController = RecruitmentViewController()
         navigationController?.pushViewController(recruitmentViewController, animated: true)
         }
@@ -198,13 +217,28 @@ class PlaceSelectionViewController: BaseViewController {
     @objc func exitModalExitButtonTapped() {
         exitModal.isHidden = true
         dimmedView.isHidden = true
-        self.dismiss(animated: true) {
-            if let tabBarController = self.tabBarController {
-                if tabBarController.viewControllers?.count ?? 0 >= 2 {
-                    tabBarController.selectedIndex = 0
+        self.dismiss(animated: true)
+    }
+    
+    // MARK: Network Function
+    func searchPlace(data: SearchPlaceRequestQueryDTO) {
+        NetworkService.shared.meetingService.searchPlace(queryDTO: data) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                if data.isEmpty {
+                    searchPlaceView.noPlaceResult.isHidden = false
+                } else {
+                    searchPlaceView.noPlaceResult.isHidden = true
                 }
+                self.searchPlaceResponseDTO = data
+                self.searchPlaceView.searchPlaceCollectionView.reloadData()
+            default:
+                return
             }
         }
+
     }
 }
 
@@ -213,12 +247,19 @@ class PlaceSelectionViewController: BaseViewController {
 extension PlaceSelectionViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        if let search = textField.text {
+            if search.isEmpty {
+                searchPlaceResponseDTO = []
+                searchPlaceView.searchPlaceCollectionView.reloadData()
+                searchPlaceView.noPlaceResult.isHidden = false
+                searchPlaceView.reSearch.isHidden = false
+            } else {
+                searchPlace(data: SearchPlaceRequestQueryDTO(search: search))
+            }
+        }
+        selectedPlace = nil
+        nextButton.disabledButton()
         return true
-    }
-    
-    // MARK: Objc Function
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        print("Text changed: \(textField.text ?? "")")
     }
 }
 
@@ -228,12 +269,13 @@ extension PlaceSelectionViewController: UICollectionViewDelegate {}
 // MARK: UICollectionViewDataSource
 extension PlaceSelectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return searchPlaceResponseDTO.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaceSelectionCollectionViewCell.identifier,
                                                             for: indexPath) as? PlaceSelectionCollectionViewCell else {return UICollectionViewCell()}
+        cell.bindData(data: searchPlaceResponseDTO[indexPath.row])
         if indexPath == selectedPlace {
             cell.changeSelectedImage()
         }

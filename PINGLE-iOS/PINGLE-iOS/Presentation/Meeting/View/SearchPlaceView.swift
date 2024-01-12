@@ -17,8 +17,8 @@ final class SearchPlaceView: BaseView {
     let searchTextField = UITextField()
     let searchButton = UIButton()
     let searchPlaceCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    private let noPlaceResult = UILabel()
-    private let reSearch = UILabel()
+    let noPlaceResult = UILabel()
+    let reSearch = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -93,4 +93,9 @@ final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
     func changeSelectedImage() {
         selectImageView.image = ImageLiterals.Icon.imgCheckSelected
     }
+    
+    func bindData(data: SearchPlaceResponseDTO) {
+        placeName.text = data.location
+        placeDetailedAddress.text = data.address
+    }
 }

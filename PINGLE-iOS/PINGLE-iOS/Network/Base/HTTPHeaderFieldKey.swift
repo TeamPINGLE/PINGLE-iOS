@@ -14,6 +14,7 @@ enum HTTPHeaderFieldKey: String {
     case accessToken = "accessToken"
     case refreshtoken = "refreshtoken"
     case providerToken = "X-Provider-Token"
+    case teamId = "X-Team-Id"
 }
 
 enum HTTPHeaderFieldValue: String {
@@ -26,6 +27,7 @@ enum HTTPHeaderType {
     case providerToken
     case hasToken
     case refreshToken
+    case teamId
 }
 
 @frozen

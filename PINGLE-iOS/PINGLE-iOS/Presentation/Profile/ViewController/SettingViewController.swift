@@ -8,6 +8,7 @@
 import UIKit
 
 import Alamofire
+import AuthenticationServices
 import SnapKit
 import Then
 
@@ -30,6 +31,7 @@ final class SettingViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setTarget()
+        organizationButton.changeOrganizationName()
     }
     
     // MARK: UI
@@ -156,7 +158,14 @@ final class SettingViewController: BaseViewController {
         case .logout:
             postLogout()
         case .delete:
-            print("계정탈퇴 통신")
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
         }
     }
     
@@ -178,28 +187,22 @@ final class SettingViewController: BaseViewController {
         }
     }
     
-//    func revokeAppleToken(clientSecret: String, token: String, completionHandler: @escaping () -> Void) {
-//        let url = "https://appleid.apple.com/auth/revoke"
-//        let header: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
-//        let parameters: Parameters = [
-//            "client_id": "com.PINGLE.iOS",
-//            "client_secret": clientSecret,
-//            "token": token
-//        ]
-//
-//        AF.request(url,
-//                   method: .post,
-//                   parameters: parameters,
-//                   headers: header)
-//        .validate(statusCode: 200..<300)
-//        .responseData { response in
-//            guard let statusCode = response.response?.statusCode else { return }
-//            if statusCode == 200 {
-//                print("애플 토큰 삭제 성공!")
-//                completionHandler()
-//            }
-//        }
-//    }
+    func deleteAppleID() {
+        NetworkService.shared.profileService.deleteID { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                if data.code == 200 {
+                    KeychainHandler.shared.deleteID()
+                    let loginViewController = LoginViewController()
+                    self.view.window?.rootViewController = loginViewController
+                    self.view.window?.makeKeyAndVisible()
+                }
+            default:
+                print("login error")
+            }
+        }
+    }
 }
 
 extension SettingViewController: UIGestureRecognizerDelegate {
@@ -208,5 +211,36 @@ extension SettingViewController: UIGestureRecognizerDelegate {
         dimmedView.isHidden = true
         accountPopUpView.isHidden = true
         return true
+    }
+}
+
+extension SettingViewController: ASAuthorizationControllerDelegate {
+    ///로그인 성공했을 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let fullName = appleIDCredential.fullName
+            
+            if let authorizationCode = appleIDCredential.authorizationCode {
+                guard let authorizationCodeString = String(data: authorizationCode, encoding: .utf8) else { return }
+                KeychainHandler.shared.authorizationCode = authorizationCodeString
+                deleteAppleID()
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    /// 로그인 실패했을 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("login failed - \(error.localizedDescription)")
+    }
+}
+
+extension SettingViewController: ASAuthorizationControllerPresentationContextProviding {
+    /// - Tag: provide_presentation_anchor
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }

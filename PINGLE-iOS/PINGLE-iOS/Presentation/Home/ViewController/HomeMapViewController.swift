@@ -362,6 +362,7 @@ extension HomeMapViewController {
                 DispatchQueue.main.async { [weak self] in
                     // 2, 3차 스프린트 시에 전체 data 받아올 예정
                     // self?.homePinDetailList = data
+                    self?.homePinDetailList = []
                     self?.homePinDetailList.append(data[0])
                     data.forEach {
                         self?.meetingId.append($0.id)

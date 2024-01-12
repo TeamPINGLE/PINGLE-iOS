@@ -14,7 +14,7 @@ class OrganizationButton: UIButton {
     
     // MARK: Property
     private let organizationTitleLabel = UILabel()
-    private let organizationNameLabel = UILabel()
+    var organizationNameLabel = UILabel()
     private let arrowRightImageView = UIImageView()
     
     // MARK: LifeCycle
@@ -41,7 +41,6 @@ class OrganizationButton: UIButton {
         }
         
         self.organizationNameLabel.do {
-            $0.text = KeychainHandler.shared.userGroup[0].name
             $0.font = .subtitleSubBold18
             $0.textColor = .grayscaleG01
         }
@@ -75,6 +74,11 @@ class OrganizationButton: UIButton {
             $0.height.equalTo(22.adjusted)
             $0.width.equalTo(24.adjusted)
         }
+    }
+    
+    // MARK: SetOrganizationName
+    func changeOrganizationName() {
+        organizationNameLabel.text = KeychainHandler.shared.userGroup[0].name
     }
 }
 

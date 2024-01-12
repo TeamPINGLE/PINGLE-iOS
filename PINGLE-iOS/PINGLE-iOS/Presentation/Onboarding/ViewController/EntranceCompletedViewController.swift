@@ -30,6 +30,7 @@ final class EntranceCompletedViewController: BaseViewController {
         super.viewDidLoad()
         setTarget()
         changeButton()
+        changeOrganizationName()
     }
     
     // MARK: UI
@@ -125,5 +126,10 @@ final class EntranceCompletedViewController: BaseViewController {
     // MARK: SetButton
     func changeButton() {
         self.bottomCTAButton.activateButton()
+    }
+    
+    // MARK: SetOrganizationName
+    func changeOrganizationName() {
+        organizationNameLabel.text = KeychainHandler.shared.userGroup[0].name
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 import Alamofire
 import AuthenticationServices
+import SafariServices
 import SnapKit
 import Then
 
@@ -129,9 +130,15 @@ final class SettingViewController: BaseViewController {
     }
     
     @objc func contactButtonTapped() {
+        guard let url = URL(string: "https://pinglepingle.notion.site/585c13c92e1842c7ada334e78b731303?pvs=4") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
     }
     
     @objc func noticeButtonTapped() {
+        guard let url = URL(string: "https://pinglepingle.notion.site/38d504b943a4479695b7ca9206c7b732?pvs=4") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
     }
     
     @objc func logoutButtonTapped() {

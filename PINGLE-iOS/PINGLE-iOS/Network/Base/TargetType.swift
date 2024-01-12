@@ -22,7 +22,7 @@ extension TargetType {
     var baseURL: String {
         return Config.baseURL
     }
-    var headers: [String: Any]? {
+    var headers: [String: String]? {
         switch headerType {
         case .plain:
             return [
@@ -49,7 +49,7 @@ extension TargetType {
         case .teamId:
             return [
                 HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
-                HTTPHeaderFieldKey.teamId.rawValue: KeychainHandler.shared.userGroup[0].id
+                HTTPHeaderFieldKey.teamId.rawValue: "\(KeychainHandler.shared.userGroup[0].id)"
             ]
         }
     }

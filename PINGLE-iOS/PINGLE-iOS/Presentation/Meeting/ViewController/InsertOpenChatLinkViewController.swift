@@ -13,7 +13,6 @@ import Then
 class InsertOpenChatLinkViewController: BaseViewController {
     
     // MARK: - Property
-    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar6 = UIImageView()
     private let openChatTitle = UILabel()
@@ -69,7 +68,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
         
         openChatLinkTextField.do {
-            $0.searchTextField.keyboardType = .URL
+            $0.searchTextField.keyboardType = .alphabet
         }
         
         exitLabel.do {
@@ -163,18 +162,13 @@ class InsertOpenChatLinkViewController: BaseViewController {
     @objc func exitModalExitButtonTapped() {
         exitModal.isHidden = true
         dimmedView.isHidden = true
-        self.dismiss(animated: true) {
-            if let tabBarController = self.tabBarController {
-                if tabBarController.viewControllers?.count ?? 0 >= 2 {
-                    tabBarController.selectedIndex = 0
-                }
-            }
-        }
+        self.dismiss(animated: true)
     }
 
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {
             if let newText = textField.text, !newText.isEmpty {
+                MeetingManager.shared.chatLink = newText
                 nextButton.activateButton()
             } else {
                 nextButton.disabledButton()

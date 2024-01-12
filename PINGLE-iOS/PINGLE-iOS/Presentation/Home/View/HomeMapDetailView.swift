@@ -288,8 +288,7 @@ final class HomeMapDetailView: BaseView {
         timeLabel.text = startAtString + " ~ " + endAtString
         self.isParticipating = data.isParticipating
         openChatURL = data.chatLink
-//        추후 서버 업데이트 후 추가 예정
-//        self.isOwner = data.isOwner
+        self.isOwner = data.isOwner
         
         switch data.category {
         case "PLAY":
@@ -333,7 +332,7 @@ final class HomeMapDetailView: BaseView {
         self.updateStyle()
         print("💛💛💛💛💛")
         print(self.isParticipating)
-        print(self.isOwner)
+        print(data.isOwner)
     }
     
     func updateStyle() {

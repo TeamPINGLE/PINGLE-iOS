@@ -38,7 +38,7 @@ final class HomeMapViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.pinList(category: "")
+        self.pinList(category: self.markerCategory)
         setNavigationBar()
     }
     
@@ -239,8 +239,10 @@ extension HomeMapViewController {
         /// 서버 통신
         if sender.isButtonSelected {
             self.pinList(category: sender.chipStatusString)
+            self.markerCategory = sender.chipStatusString
         } else {
             self.pinList(category: "")
+            self.markerCategory = ""
         }
         
         /// 태그 하나만 선택할 수 있도록
@@ -309,13 +311,13 @@ extension HomeMapViewController {
         var activateImage: UIImage = ImageLiterals.Home.Map.imgMapPinOtherActive
         switch marker.meetingStatus {
         case .play:
-            activateImage =  ImageLiterals.Home.Map.imgMapPinPlayActive
+            activateImage = ImageLiterals.Home.Map.imgMapPinPlayActive
         case .study:
-            activateImage =  ImageLiterals.Home.Map.imgMapPinStudyActive
+            activateImage = ImageLiterals.Home.Map.imgMapPinStudyActive
         case .multi:
-            activateImage =  ImageLiterals.Home.Map.imgMapPinMultiActive
+            activateImage = ImageLiterals.Home.Map.imgMapPinMultiActive
         default:
-            activateImage =  ImageLiterals.Home.Map.imgMapPinOtherActive
+            activateImage = ImageLiterals.Home.Map.imgMapPinOtherActive
         }
         
         marker.iconImage = NMFOverlayImage(image: activateImage)

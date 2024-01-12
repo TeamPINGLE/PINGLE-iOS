@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 enum HomeTarget {
-    case pinList(_ teamId: Int)
+    case pinList(_ teamId: Int, queryDTO: HomePinListRequestQueryDTO)
     case pinDetail(_ teamId: Int, _ pinId: Int)
     case meetingJoin(_ meetingId: Int)
     case meetingCancel(_ meetingId: Int)
@@ -58,7 +58,7 @@ extension HomeTarget: TargetType {
     
     var path: String {
         switch self {
-        case .pinList(let teamId):
+        case .pinList(let teamId, _):
             return "/teams/\(teamId)/pins"
         case .pinDetail(let teamId, let pinId):
             return "/teams/\(teamId)/pins/\(pinId)/meetings"
@@ -71,8 +71,8 @@ extension HomeTarget: TargetType {
     
     var parameters: RequestParams {
         switch self {
-        case .pinList:
-            return .requestPlain
+        case .pinList(_, let queryDTO):
+            return .requestQuery(queryDTO)
         case .pinDetail:
             return .requestPlain
         case .meetingJoin:

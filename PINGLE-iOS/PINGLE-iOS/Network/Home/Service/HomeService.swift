@@ -8,15 +8,15 @@
 import Foundation
 
 protocol HomeServiceProtocol {
-    func pinList(teamId: Int, completion: @escaping (NetworkResult<BaseResponse<[HomePinListResponseDTO]>>) -> Void)
+    func pinList(teamId: Int, queryDTO: HomePinListRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<[HomePinListResponseDTO]>>) -> Void)
     func pinDetail(pinId: Int, teamId: Int, completion: @escaping (NetworkResult<BaseResponse<[HomePinDetailResponseDTO]>>) -> Void)
     func meetingJoin(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
     func meetingCancel(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
 }
 
 final class HomeService: APIRequestLoader<HomeTarget>, HomeServiceProtocol {
-    func pinList(teamId: Int, completion: @escaping (NetworkResult<BaseResponse<[HomePinListResponseDTO]>>) -> Void) {
-        fetchData(target: .pinList(teamId),
+    func pinList(teamId: Int, queryDTO: HomePinListRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<[HomePinListResponseDTO]>>) -> Void) {
+        fetchData(target: .pinList(teamId, queryDTO: queryDTO),
                   responseData: BaseResponse<[HomePinListResponseDTO]>.self, completion: completion)
     }
     

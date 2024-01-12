@@ -18,8 +18,6 @@ final class HomeMapViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     var shouldUpdateMap: Bool = true
-    /// 현재 선택되지 않은 필터 버튼 개수
-    var unselectedButton: Int = 0
     var homePinDetailList: [HomePinDetailResponseDTO] = []
     var meetingId: [Int] = []
     var markerId = 0
@@ -32,7 +30,6 @@ final class HomeMapViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.pinList()
         setLocationManager()
         setAddTarget()
         setCollectionView()
@@ -40,6 +37,7 @@ final class HomeMapViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.pinList(category: "")
         setNavigationBar()
     }
     
@@ -112,7 +110,6 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     // 위치 가져오기 실패 시
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
-        print("error")
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -238,6 +235,13 @@ extension HomeMapViewController {
         /// 태그 선택 여부 반전
         sender.isButtonSelected.toggle()
         
+        /// 서버 통신
+        if sender.isButtonSelected {
+            self.pinList(category: sender.chipStatusString)
+        } else {
+            self.pinList(category: "")
+        }
+        
         /// 태그 하나만 선택할 수 있도록
         self.mapsView.chipButtons.filter { $0 != sender }.forEach {
             $0.isButtonSelected = false
@@ -247,22 +251,7 @@ extension HomeMapViewController {
         self.mapsView.homeMarkerList.forEach {
             $0.hidden = false
         }
-        
-        unselectedButton = 0
-        
-        self.mapsView.chipButtons.forEach {
-            if !$0.isButtonSelected {
-                unselectedButton += 1
-            }
-        }
-        
-        /// 아무 필터도 선택되지 않았다면 모두 보여주고, 선택되었다면 필터링해서 보여주기
-        if unselectedButton != 4 {
-            self.mapsView.homeMarkerList.filter { $0.meetingString != sender.chipStatusString }.forEach {
-                $0.hidden = true
-            }
-        }
-       
+
         self.hideSelectedPin()
     }
     
@@ -336,8 +325,8 @@ extension HomeMapViewController {
     }
     
     // MARK: Server Function
-    func pinList() {
-        NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id) { [weak self] response in
+    func pinList(category: String?) {
+        NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
@@ -405,8 +394,13 @@ extension HomeMapViewController {
     // MARK: Marker Function
     /// 마커 추가 메소드
     func setMarker() {
+        /// 마커 다 지우기
+        self.mapsView.homeMarkerList.forEach {
+            $0.hidden = true
+        }
+        mapsView.homeMarkerList = []
+        
         mapsView.homePinList.forEach {
-            print(mapsView.homePinList)
             let pingleMarker = PINGLEMarker()
             
             pingleMarker.id = $0.id

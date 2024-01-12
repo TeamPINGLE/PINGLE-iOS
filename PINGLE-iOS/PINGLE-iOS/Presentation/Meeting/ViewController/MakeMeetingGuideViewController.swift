@@ -56,8 +56,9 @@ final class MakeMeetingGuideViewController: BaseViewController {
         self.guideSubTitle.do {
             $0.text = StringLiterals.Meeting.MeetingGuide.guideSubTitle
             $0.font = .subtitleSubSemi16
-            $0.textColor = .white
             $0.numberOfLines = 2
+            $0.textColor = .grayscaleG04
+            $0.asColorArray(targetStringList: ["PIN", "MINGLE"], color: .mainPingleGreen)
         }
         
         self.entranceButton.do {

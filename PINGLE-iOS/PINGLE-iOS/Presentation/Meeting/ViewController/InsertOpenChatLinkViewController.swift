@@ -17,7 +17,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
     private let backButton = UIButton()
     private let progressBar6 = UIImageView()
     private let openChatTitle = UILabel()
-    private let openChatLinkTextField = PINGLETextFieldView(titleLabel: StringLiterals.Meeting.OpenChat.openChatTitle,
+    private let openChatLinkTextField = PINGLETextFieldView(titleLabel: StringLiterals.Meeting.OpenChat.insertChatLinkTitle,
                                                             explainLabel: StringLiterals.Meeting.OpenChat.insertChatLinkExplain)
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
                                              buttonColor: .grayscaleG08,

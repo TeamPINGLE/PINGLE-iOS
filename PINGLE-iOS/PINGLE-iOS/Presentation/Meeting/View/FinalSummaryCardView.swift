@@ -51,15 +51,12 @@ final class FinalSummaryCardView: BaseView {
                 badgeImageView.image = ImageLiterals.Meeting.Category.Badge.playBadge
                 
             case "STUDY":
-                badgeColor = .subPingleOrange
                 badgeImageView.image = ImageLiterals.Meeting.Category.Badge.studyBadge
                 
             case "MULTI":
-                badgeColor = .subPingleYellow
                 badgeImageView.image = ImageLiterals.Meeting.Category.Badge.multiBadge
                 
             case "OTHERS":
-                badgeColor = .grayscaleG01
                 badgeImageView.image = ImageLiterals.Meeting.Category.Badge.othersBadge
                 
             default:
@@ -68,7 +65,7 @@ final class FinalSummaryCardView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: MeetingManager.shared.category, lineHeight: 22)
+            $0.setTextWithLineHeight(text: MeetingManager.shared.name, lineHeight: 22)
             $0.numberOfLines = 2
             switch  MeetingManager.shared.category {
             case "PLAY":
@@ -92,7 +89,7 @@ final class FinalSummaryCardView: BaseView {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: KeychainHandler.shared.userName, lineHeight: 20)
             $0.textColor = .grayscaleG05
             $0.font = .bodyBodyMed14
         }
@@ -142,7 +139,7 @@ final class FinalSummaryCardView: BaseView {
         }
         
         locationLabel.do {
-            $0.text = "장소 이름"
+            $0.text = MeetingManager.shared.location
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }
@@ -158,8 +155,8 @@ final class FinalSummaryCardView: BaseView {
         }
         
         recruitNumberLabel.do {
-            let maxParticipants = MeetingManager.shared.maxParticipants
-            $0.text = "\(maxParticipants)"
+            guard let maxParticipants = MeetingManager.shared.maxParticipants else { return }
+            $0.text = "\(maxParticipants)명"
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }

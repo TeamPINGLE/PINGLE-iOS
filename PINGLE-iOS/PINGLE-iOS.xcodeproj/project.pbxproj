@@ -56,7 +56,6 @@
 		C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E32B3BF203004BB2B8 /* BaseView.swift */; };
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
 		C39603182B3BF36C004BB2B8 /* p.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603172B3BF36C004BB2B8 /* p.swift */; };
-		C396031A2B3BF370004BB2B8 /* q.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603192B3BF370004BB2B8 /* q.swift */; };
 		C396031C2B3BF374004BB2B8 /* r.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396031B2B3BF374004BB2B8 /* r.swift */; };
 		C396031E2B3BF379004BB2B8 /* s.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396031D2B3BF379004BB2B8 /* s.swift */; };
 		C39603212B3BF47A004BB2B8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C39603202B3BF47A004BB2B8 /* Then */; };
@@ -77,12 +76,15 @@
 		E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */; };
 		E50333632B50A64F0005AC0E /* MeetingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333622B50A64F0005AC0E /* MeetingTarget.swift */; };
 		E50333652B50A65D0005AC0E /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333642B50A65D0005AC0E /* MeetingService.swift */; };
+		E50333572B5052DA0005AC0E /* SearchPlaceRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333562B5052DA0005AC0E /* SearchPlaceRequestQueryDTO.swift */; };
+		C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */; };
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
 		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
 		E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */; };
 		E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */; };
 		E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565EB562B4FC9B80001758C /* MeetingManager.swift */; };
+		E565EB5D2B504F950001758C /* SearchPlaceResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565EB5C2B504F950001758C /* SearchPlaceResponseDTO.swift */; };
 		E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */; };
 		E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */; };
 		E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651EB2B4A982100676ED0 /* ExitModalView.swift */; };
@@ -185,7 +187,6 @@
 		C39602E32B3BF203004BB2B8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C39603172B3BF36C004BB2B8 /* p.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p.swift; sourceTree = "<group>"; };
-		C39603192B3BF370004BB2B8 /* q.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = q.swift; sourceTree = "<group>"; };
 		C396031B2B3BF374004BB2B8 /* r.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = r.swift; sourceTree = "<group>"; };
 		C396031D2B3BF379004BB2B8 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
 		C39B8D212B4CFB68008DCAC6 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
@@ -202,12 +203,15 @@
 		E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMeetingRequestBodyDTO.swift; sourceTree = "<group>"; };
 		E50333622B50A64F0005AC0E /* MeetingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTarget.swift; sourceTree = "<group>"; };
 		E50333642B50A65D0005AC0E /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
+		E50333562B5052DA0005AC0E /* SearchPlaceRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceRequestQueryDTO.swift; sourceTree = "<group>"; };
+		C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
 		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
 		E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryCardView.swift; sourceTree = "<group>"; };
 		E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultViewController.swift; sourceTree = "<group>"; };
 		E565EB562B4FC9B80001758C /* MeetingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManager.swift; sourceTree = "<group>"; };
+		E565EB5C2B504F950001758C /* SearchPlaceResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceResponseDTO.swift; sourceTree = "<group>"; };
 		E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePickerView.swift; sourceTree = "<group>"; };
 		E5A651EB2B4A982100676ED0 /* ExitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitModalView.swift; sourceTree = "<group>"; };
@@ -489,6 +493,7 @@
 				C33BF3492B46E87D00008653 /* View */,
 				C33BF3482B46E87100008653 /* Components */,
 				C33BF3472B46E85900008653 /* Model */,
+				C3FE9F612B4FBE1800BC53DE /* Cell */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -615,7 +620,6 @@
 				E50333582B50A54B0005AC0E /* DTO */,
 				E50333592B50A5520005AC0E /* Router */,
 				E503335A2B50A5580005AC0E /* Service */,
-				C39603192B3BF370004BB2B8 /* q.swift */,
 			);
 			path = Meeting;
 			sourceTree = "<group>";
@@ -754,6 +758,22 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		E50333552B5052B80005AC0E /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				E50333562B5052DA0005AC0E /* SearchPlaceRequestQueryDTO.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		C3FE9F612B4FBE1800BC53DE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		E50AA1FA2B46D2AB005E854B /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -769,6 +789,39 @@
 				E565EB562B4FC9B80001758C /* MeetingManager.swift */,
 			);
 			path = MeetingManager;
+			sourceTree = "<group>";
+		};
+		E565EB582B504F450001758C /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				E50333552B5052B80005AC0E /* Request */,
+				E565EB592B504F4C0001758C /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		E565EB592B504F4C0001758C /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				E565EB5C2B504F950001758C /* SearchPlaceResponseDTO.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		E565EB5A2B504F530001758C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E50333512B50517A0005AC0E /* MeetingTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		E565EB5B2B504F5C0001758C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E50333532B5051890005AC0E /* MeetingService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		E5A651EF2B4AE3E900676ED0 /* Model */ = {
@@ -1078,11 +1131,13 @@
 				F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
 				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
+				C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */,
 				F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */,
 				E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */,
+				E565EB5D2B504F950001758C /* SearchPlaceResponseDTO.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
@@ -1107,7 +1162,6 @@
 				E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */,
 				E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */,
 				E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */,
-				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
 				E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */,
 				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
@@ -1126,6 +1180,7 @@
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */,
 				F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */,
+				E50333522B50517B0005AC0E /* MeetingTarget.swift in Sources */,
 				C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */,
 				F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
@@ -1164,11 +1219,13 @@
 				E5A651FA2B4B2A6F00676ED0 /* RecruitButton.swift in Sources */,
 				F14F3C792B4D389E0049A9EE /* OnboardingTarget.swift in Sources */,
 				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,
+				E50333542B5051890005AC0E /* MeetingService.swift in Sources */,
 				E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */,
 				F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */,
 				E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */,
 				C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */,
 				C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */,
+				E50333572B5052DA0005AC0E /* SearchPlaceRequestQueryDTO.swift in Sources */,
 				F14F3C692B494FB10049A9EE /* OrganizationButton.swift in Sources */,
 				F1239BD12B46EB160072A02A /* PINGLETextFieldView.swift in Sources */,
 				C39602DD2B3BF1A8004BB2B8 /* UIView+.swift in Sources */,

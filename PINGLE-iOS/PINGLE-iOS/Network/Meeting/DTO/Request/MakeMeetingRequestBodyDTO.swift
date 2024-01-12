@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+struct MakeMeetingRequestBodyDTO: Codable {
+    let category: String
+    let name: String
+    let startAt: String
+    let endAt: String
+    let x: Double
+    let y: Double
+    let adress: String
+    let location: String
+    let maxParticipants: Int
+    let chatLink: String
+}

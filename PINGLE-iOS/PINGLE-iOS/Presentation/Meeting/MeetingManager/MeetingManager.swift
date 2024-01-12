@@ -12,16 +12,16 @@ class MeetingManager {
     
     private init() {}
     
-    var category: String?
-    var name: String?
-    var date: String?
-    var startAt: String?
-    var endAt: String?
-    var x: Double?
-    var y: Double?
-    var address: String?
-    var location: String?
-    var maxParticipants: Int?
-    var chatLink: String?
+    var category: String = ""
+    var name: String = ""
+    var date: Date = Date()
+    var startAt: Date = Date()
+    var endAt: Date = Date()
+    var x: Double = 0.0
+    var y: Double = 0.0
+    var address: String = ""
+    var location: String = ""
+    var maxParticipants: Int = 0
+    var chatLink: String = ""
 
 }

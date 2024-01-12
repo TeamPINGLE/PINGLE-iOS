@@ -417,7 +417,7 @@ extension HomeMapViewController {
             
             pingleMarker.iconImage = NMFOverlayImage(image: mapsView.setMarkerColor(category: $0.category))
             
-            pingleMarker.position = NMGLatLng(lat: x, lng: y)
+            pingleMarker.position = NMGLatLng(lat: y, lng: x)
             pingleMarker.mapView = mapsView.mapsView.mapView
             mapsView.homeMarkerList.append(pingleMarker)
         }

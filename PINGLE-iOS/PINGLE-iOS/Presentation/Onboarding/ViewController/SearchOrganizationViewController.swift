@@ -119,6 +119,7 @@ final class SearchOrganizationViewController: BaseViewController {
     // MARK: Navigation Function
     private func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     private func setNavigation() {
@@ -262,4 +263,10 @@ extension SearchOrganizationViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: UIScreen.main.bounds.size.width - 50.adjusted , height: 88)
     }
+}
+
+extension SearchOrganizationViewController: UIGestureRecognizerDelegate {
+  func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    return true
+  }
 }

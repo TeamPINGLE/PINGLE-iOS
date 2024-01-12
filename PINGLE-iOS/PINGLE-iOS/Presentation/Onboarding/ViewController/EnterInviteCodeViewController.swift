@@ -140,6 +140,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     // MARK: Navigation Function
     private func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     private func setNavigation() {
@@ -279,4 +280,10 @@ extension EnterInviteCodeViewController {
             self.infoMessageLabel.transform = CGAffineTransform.identity
         }
     }
+}
+
+extension EnterInviteCodeViewController: UIGestureRecognizerDelegate {
+  func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    return true
+  }
 }

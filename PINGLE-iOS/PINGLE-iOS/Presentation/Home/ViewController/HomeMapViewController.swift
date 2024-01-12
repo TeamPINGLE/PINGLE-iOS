@@ -21,6 +21,7 @@ final class HomeMapViewController: BaseViewController {
     var homePinDetailList: [HomePinDetailResponseDTO] = []
     var meetingId: [Int] = []
     var markerId = 0
+    var markerCategory: String = ""
     var allowLocation = false
     
     // MARK: Component
@@ -179,7 +180,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 guard let self = self else { return }
                 print("참여하기 버튼 탭")
                 cell.mapDetailView.isParticipating = true
-                self.bindDetailViewData(id: self.markerId)
+                self.bindDetailViewData(id: self.markerId, category: self.markerCategory)
             }
         }
         
@@ -188,7 +189,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 guard let self = self else { return }
                 print("취소하기 버튼 탭")
                 cell.mapDetailView.isParticipating = false
-                self.bindDetailViewData(id: self.markerId)
+                self.bindDetailViewData(id: self.markerId, category: self.markerCategory)
             }
         }
         
@@ -283,20 +284,21 @@ extension HomeMapViewController {
         self.mapsView.homeMarkerList.forEach { marker in
             marker.touchHandler = { ( _: NMFOverlay) -> Bool in
                 print("오버레이 터치됨")
-                self.bindDetailViewData(id: marker.id)
+                self.bindDetailViewData(id: marker.id, category: marker.meetingString)
                 self.mapsView.homeDetailCollectionView.isHidden = false
                 self.mapsView.currentLocationButton.isHidden = true
                 self.mapsView.listButton.isHidden = true
                 self.markerTapped(marker: marker)
                 self.markerId = marker.id
+                self.markerCategory = marker.meetingString
                 return true
             }
         }
     }
     
-    func bindDetailViewData(id: Int) {
+    func bindDetailViewData(id: Int, category: String?) {
         // 추후 바뀐 그룹 받아오는 로직 작성 예정
-        self.pinDetail(pinId: id)
+        self.pinDetail(pinId: id, category: category)
     }
     
     func markerTapped(marker: PINGLEMarker) {
@@ -342,8 +344,8 @@ extension HomeMapViewController {
         }
     }
     
-    func pinDetail(pinId: Int) {
-        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id) { [weak self] response in
+    func pinDetail(pinId: Int, category: String?) {
+        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id,  queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }

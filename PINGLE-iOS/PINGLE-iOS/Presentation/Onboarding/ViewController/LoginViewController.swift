@@ -171,10 +171,18 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 KeychainHandler.shared.userName = userName
             }
 
-            if  let identityToken = appleIDCredential.identityToken,
+            if let identityToken = appleIDCredential.identityToken,
                 let identifyTokenString = String(data: identityToken, encoding: .utf8) {
                 KeychainHandler.shared.providerToken = identifyTokenString
             }
+            
+//            if let authorizationCode = appleIDCredential.authorizationCode,
+//                let authCodeString = String(data: authorizationCode, encoding: .utf8) {
+//                /// authorizationCode값은 받은 이후 5분만 유효하기 때문에 이를 이용하여 refesh토큰을 발급받아서 키체인에 저장하기 위함.
+//                getAppleRefreshToken(code: authCodeString) { data in
+//                    KeychainHandler.shared.appleRefreshToken = data.refreshToken
+//                }
+//            }
             
             let userName = KeychainHandler.shared.userName
             self.login(data: LoginRequestBodyDTO(provider: "APPLE", name: userName))
@@ -188,6 +196,41 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("login failed - \(error.localizedDescription)")
     }
+    
+    /// 애플의 리프레쉬
+//    func getAppleRefreshToken(code: String, completionHandler: @escaping (AppleTokenResponse) -> Void) {
+//        let url = "https://appleid.apple.com/auth/token"
+//        let header: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
+//        let parameters: Parameters = [
+//            "client_id": "com.PINGLE.iOS",
+//            "client_secret": "1번의jwt토큰",
+//            "code": code,
+//            "grant_type": "authorization_code"
+//        ]
+//
+//        AF.request(url,
+//                   method: .post,
+//                   parameters: parameters,
+//                   headers: header)
+//        .validate(statusCode: 200..<300)
+//        .responseData { response in
+//            switch response.result {
+//            case .success:
+//                guard let data = response.data else { return }
+//                let responseData = JSON(data)
+//                print(responseData)
+//
+//                guard let output = try? JSONDecoder().decode(AppleTokenResponse.self, from: data) else {
+//                    print("Error: JSON Data Parsing failed")
+//                    return
+//                }
+//
+//                completionHandler(output)
+//            case .failure:
+//                print("애플 토큰 발급 실패 - \(response.error.debugDescription)")
+//            }
+//        }
+//    }
 }
 
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {

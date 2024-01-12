@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Alamofire
 import SnapKit
 import Then
 
@@ -176,6 +177,29 @@ final class SettingViewController: BaseViewController {
             }
         }
     }
+    
+//    func revokeAppleToken(clientSecret: String, token: String, completionHandler: @escaping () -> Void) {
+//        let url = "https://appleid.apple.com/auth/revoke"
+//        let header: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
+//        let parameters: Parameters = [
+//            "client_id": "com.PINGLE.iOS",
+//            "client_secret": clientSecret,
+//            "token": token
+//        ]
+//
+//        AF.request(url,
+//                   method: .post,
+//                   parameters: parameters,
+//                   headers: header)
+//        .validate(statusCode: 200..<300)
+//        .responseData { response in
+//            guard let statusCode = response.response?.statusCode else { return }
+//            if statusCode == 200 {
+//                print("애플 토큰 삭제 성공!")
+//                completionHandler()
+//            }
+//        }
+//    }
 }
 
 extension SettingViewController: UIGestureRecognizerDelegate {

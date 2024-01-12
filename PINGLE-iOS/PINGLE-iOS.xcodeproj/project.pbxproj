@@ -74,6 +74,9 @@
 		C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */; };
 		C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */; };
 		C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC304E2B43E20600276E00 /* HomeMapView.swift */; };
+		E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */; };
+		E50333632B50A64F0005AC0E /* MeetingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333622B50A64F0005AC0E /* MeetingTarget.swift */; };
+		E50333652B50A65D0005AC0E /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333642B50A65D0005AC0E /* MeetingService.swift */; };
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
 		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
@@ -196,6 +199,9 @@
 		C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewController.swift; sourceTree = "<group>"; };
 		C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCancelPopUpView.swift; sourceTree = "<group>"; };
 		C3EC304E2B43E20600276E00 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
+		E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMeetingRequestBodyDTO.swift; sourceTree = "<group>"; };
+		E50333622B50A64F0005AC0E /* MeetingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTarget.swift; sourceTree = "<group>"; };
+		E50333642B50A65D0005AC0E /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
 		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
@@ -606,6 +612,9 @@
 		C39603062B3BF2DC004BB2B8 /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				E50333582B50A54B0005AC0E /* DTO */,
+				E50333592B50A5520005AC0E /* Router */,
+				E503335A2B50A5580005AC0E /* Service */,
 				C39603192B3BF370004BB2B8 /* q.swift */,
 			);
 			path = Meeting;
@@ -711,6 +720,38 @@
 			children = (
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		E50333582B50A54B0005AC0E /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				E503335B2B50A5BB0005AC0E /* Request */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		E50333592B50A5520005AC0E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E50333622B50A64F0005AC0E /* MeetingTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		E503335A2B50A5580005AC0E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E50333642B50A65D0005AC0E /* MeetingService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E503335B2B50A5BB0005AC0E /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		E50AA1FA2B46D2AB005E854B /* Components */ = {
@@ -1026,6 +1067,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E50333632B50A64F0005AC0E /* MeetingTarget.swift in Sources */,
 				F14F3C702B49BEB60049A9EE /* AccountPopUpView.swift in Sources */,
 				F125A1882B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift in Sources */,
 				C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */,
@@ -1058,6 +1100,7 @@
 				C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */,
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
 				F111BE662B4E8606001D116C /* UserInfoResponseDTO.swift in Sources */,
+				E50333652B50A65D0005AC0E /* MeetingService.swift in Sources */,
 				C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */,
 				C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */,
 				E5A651F42B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift in Sources */,
@@ -1065,6 +1108,7 @@
 				E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */,
 				E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */,
 				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
+				E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */,
 				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,

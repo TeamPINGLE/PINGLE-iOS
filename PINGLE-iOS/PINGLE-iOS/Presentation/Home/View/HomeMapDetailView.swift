@@ -17,6 +17,8 @@ final class HomeMapDetailView: BaseView {
     var badgeColor: UIColor? = .subPingleOrange
     var isParticipating: Bool = false
     var openChatURL: String?
+    var participantsButtonAction: (() -> Void) = {}
+    var talkButtonAction: (() -> Void) = {}
     
     // MARK: Component
     let topBackgroundView = UIView()
@@ -41,6 +43,13 @@ final class HomeMapDetailView: BaseView {
     let participationButton = UIButton()
     
     // MARK: - Function
+    // MARK: init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUI()
+        setAddTarget()
+    }
+    
     // MARK: Style Helpers
     override func setStyle() {
         topBackgroundView.do {
@@ -250,6 +259,19 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
+    func setAddTarget() {
+        self.participationButton.addTarget(self, action: #selector(participationButtonTapped), for: .touchUpInside)
+        self.talkButton.addTarget(self, action: #selector(talkButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func participationButtonTapped() {
+        participantsButtonAction()
+    }
+    
+    @objc func talkButtonTapped() {
+        talkButtonAction()
+    }
+    
     // MARK: Data Bind Func
     func dataBind(data: HomePinDetailResponseDTO) {
         titleLabel.text = data.name
@@ -303,12 +325,14 @@ final class HomeMapDetailView: BaseView {
                     $0.backgroundColor = .grayscaleG07
                     $0.isEnabled = false
                 }
+                participationButton.setTitleColor(.grayscaleG10, for: .normal)
             } else {
                 participationButton.do {
                     $0.setTitleColor(.white, for: .normal)
                     $0.backgroundColor = .white
                     $0.isEnabled = true
                 }
+                participationButton.setTitleColor(.black, for: .normal)
             }
         } else {
             participantCountButton.completeLabel.isHidden = true

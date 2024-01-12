@@ -155,7 +155,7 @@ final class FinalSummaryCardView: BaseView {
         }
         
         recruitNumberLabel.do {
-            guard let maxParticipants = MeetingManager.shared.maxParticipants else { return }
+            let maxParticipants = MeetingManager.shared.maxParticipants
             $0.text = "\(maxParticipants)명"
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14

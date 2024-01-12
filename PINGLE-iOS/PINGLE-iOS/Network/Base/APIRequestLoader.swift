@@ -13,6 +13,8 @@ class APIRequestLoader<T: TargetType> {
     private let configuration: URLSessionConfiguration
     private let apiLogger: APIEventLogger
     private let session: Session
+    private let interceptorSession: Session
+    let interceptor = PINGLERequestInterceptor()
     
     init(
         configuration: URLSessionConfiguration = .default,
@@ -22,6 +24,7 @@ class APIRequestLoader<T: TargetType> {
         self.apiLogger = apiLogger
         
         self.session = Session(configuration: configuration, eventMonitors: [apiLogger])
+        self.interceptorSession = Session(configuration: configuration, interceptor: interceptor, eventMonitors: [apiLogger])
     }
     
     func fetchData<M: Decodable>(
@@ -30,6 +33,10 @@ class APIRequestLoader<T: TargetType> {
         completion: @escaping (NetworkResult<M>) -> Void
     ) {
         var dataRequest = session.request(target)
+        
+        if target.authorization == .authorization {
+            dataRequest = interceptorSession.request(target).validate()
+        }
         
         dataRequest.responseData { response in
             switch response.result {

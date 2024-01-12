@@ -15,6 +15,7 @@ enum OnboardingTarget {
     case searchOrganization(_ queryDTO: SearchOrganizationRequestQueryDTO)
     case organizationDetail(_ teamId: Int)
     case enterInviteCode(_ teamId: Int, _ bodyDTO: EnterInviteCodeRequestBodyDTO)
+    case postRefreshToken
 }
 
 extension OnboardingTarget: TargetType {
@@ -30,6 +31,8 @@ extension OnboardingTarget: TargetType {
             return .authorization
         case .enterInviteCode:
             return .authorization
+        case .postRefreshToken:
+            return .reAuthorization
         }
     }
     
@@ -45,6 +48,8 @@ extension OnboardingTarget: TargetType {
             return .hasToken
         case .enterInviteCode:
             return .hasToken
+        case .postRefreshToken:
+            return .refreshToken
         }
     }
     
@@ -59,6 +64,8 @@ extension OnboardingTarget: TargetType {
         case .organizationDetail:
             return .get
         case .enterInviteCode:
+            return .post
+        case .postRefreshToken:
             return .post
         }
     }
@@ -75,6 +82,8 @@ extension OnboardingTarget: TargetType {
             return "/teams/\(teamId)"
         case .enterInviteCode(let teamId, _):
             return "/teams/\(teamId)/register"
+        case .postRefreshToken:
+            return "/auth/reissue"
         }
     }
     
@@ -90,6 +99,8 @@ extension OnboardingTarget: TargetType {
             return .requestPlain
         case .enterInviteCode(_, let bodyDTO):
             return .requestWithBody(bodyDTO)
+        case .postRefreshToken:
+            return .requestPlain
         }
     }
 }

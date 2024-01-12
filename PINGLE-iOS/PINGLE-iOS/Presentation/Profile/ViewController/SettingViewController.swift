@@ -7,6 +7,9 @@
 
 import UIKit
 
+import Alamofire
+import AuthenticationServices
+import SafariServices
 import SnapKit
 import Then
 
@@ -29,6 +32,7 @@ final class SettingViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setTarget()
+        organizationButton.changeOrganizationName()
     }
     
     // MARK: UI
@@ -44,7 +48,7 @@ final class SettingViewController: BaseViewController {
         }
         
         self.userNameLabel.do {
-            $0.text = "김핑글"
+            $0.text = KeychainHandler.shared.userName
             $0.font = .subtitleSubSemi18
             $0.textColor = .white
         }
@@ -126,9 +130,15 @@ final class SettingViewController: BaseViewController {
     }
     
     @objc func contactButtonTapped() {
+        guard let url = URL(string: "https://pinglepingle.notion.site/585c13c92e1842c7ada334e78b731303?pvs=4") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
     }
     
     @objc func noticeButtonTapped() {
+        guard let url = URL(string: "https://pinglepingle.notion.site/38d504b943a4479695b7ca9206c7b732?pvs=4") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
     }
     
     @objc func logoutButtonTapped() {
@@ -153,13 +163,55 @@ final class SettingViewController: BaseViewController {
     @objc func changeStateButtonTapped() {
         switch accountState {
         case .logout:
-            print("로그아웃 통신")
+            postLogout()
         case .delete:
-            print("계정탈퇴 통신")
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+        }
+    }
+    
+    // MARK: Network Function
+    func postLogout() {
+        NetworkService.shared.profileService.logout() { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                if data.code == 200 {
+                    KeychainHandler.shared.logout()
+                    let loginViewController = LoginViewController()
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            default:
+                print("login error")
+            }
+        }
+    }
+    
+    func deleteAppleID() {
+        NetworkService.shared.profileService.deleteID { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                if data.code == 200 {
+                    KeychainHandler.shared.deleteID()
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            default:
+                print("login error")
+            }
         }
     }
 }
-
 
 extension SettingViewController: UIGestureRecognizerDelegate {
     /// 딤 뷰 탭 되었을 때 메소드
@@ -167,5 +219,36 @@ extension SettingViewController: UIGestureRecognizerDelegate {
         dimmedView.isHidden = true
         accountPopUpView.isHidden = true
         return true
+    }
+}
+
+extension SettingViewController: ASAuthorizationControllerDelegate {
+    ///로그인 성공했을 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let fullName = appleIDCredential.fullName
+            
+            if let authorizationCode = appleIDCredential.authorizationCode {
+                guard let authorizationCodeString = String(data: authorizationCode, encoding: .utf8) else { return }
+                KeychainHandler.shared.authorizationCode = authorizationCodeString
+                deleteAppleID()
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    /// 로그인 실패했을 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("login failed - \(error.localizedDescription)")
+    }
+}
+
+extension SettingViewController: ASAuthorizationControllerPresentationContextProviding {
+    /// - Tag: provide_presentation_anchor
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }

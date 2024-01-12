@@ -39,7 +39,7 @@ final class SettingSelectView: BaseView {
         }
         
         self.versionInfoLabel.do {
-            $0.text = StringLiterals.Profile.ExplainTitle.versionInfo
+            $0.text = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
             $0.font = .bodyBodyMed14
             $0.textColor = .grayscaleG03
         }

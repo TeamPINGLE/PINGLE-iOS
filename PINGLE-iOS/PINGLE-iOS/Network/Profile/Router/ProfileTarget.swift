@@ -20,7 +20,7 @@ extension ProfileTarget: TargetType {
         case .logout:
             return .authorization
         case .deleteID:
-            return .authorization
+            return .deleteAppleId
         }
     }
     

@@ -178,8 +178,9 @@ final class SettingViewController: BaseViewController {
                 if data.code == 200 {
                     KeychainHandler.shared.logout()
                     let loginViewController = LoginViewController()
-                    self.view.window?.rootViewController = loginViewController
-                    self.view.window?.makeKeyAndVisible()
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             default:
                 print("login error")
@@ -194,9 +195,9 @@ final class SettingViewController: BaseViewController {
             case .success(let data):
                 if data.code == 200 {
                     KeychainHandler.shared.deleteID()
-                    let loginViewController = LoginViewController()
-                    self.view.window?.rootViewController = loginViewController
-                    self.view.window?.makeKeyAndVisible()
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             default:
                 print("login error")

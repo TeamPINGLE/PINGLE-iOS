@@ -215,6 +215,8 @@ final class EnterInviteCodeViewController: BaseViewController {
                     showWarningToastView()
                 }
             default:
+                /// 코드 틀렸을 경우 오류 메시지 창 출력
+                showWarningToastView()
                 print("error")
             }
         }

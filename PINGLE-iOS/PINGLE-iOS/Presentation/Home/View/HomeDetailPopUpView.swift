@@ -26,6 +26,8 @@ final class HomeDetailPopUpView: BaseView {
     let askLabel = UILabel()
     let participationButton = UIButton()
     
+    var participantionButtonAction: (() -> Void) = {}
+    
     // MARK: - Function
     // MARK: Style Helpers
     override func setStyle() {

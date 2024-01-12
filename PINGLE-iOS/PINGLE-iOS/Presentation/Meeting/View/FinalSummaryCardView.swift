@@ -22,9 +22,8 @@ final class FinalSummaryCardView: BaseView {
     let badgeImageView = UIImageView()
     let titleLabel = UILabel()
     let nameLabel = UILabel()
-    
+    let formatter = DateFormatter()
     let separateView = UIView()
-    
     let bottomBackgroundView = UIView()
     let dateTimeImageView = UIImageView()
     let dateTimeTitleLabel = UILabel()
@@ -47,20 +46,50 @@ final class FinalSummaryCardView: BaseView {
         
         badgeImageView.do {
             $0.contentMode = .scaleAspectFill
-            $0.image = ImageLiterals.Meeting.Category.Badge.studyBadge
+            switch MeetingManager.shared.category {
+            case "PLAY":
+                badgeImageView.image = ImageLiterals.Meeting.Category.Badge.playBadge
+                
+            case "STUDY":
+                badgeImageView.image = ImageLiterals.Meeting.Category.Badge.studyBadge
+                
+            case "MULTI":
+                badgeImageView.image = ImageLiterals.Meeting.Category.Badge.multiBadge
+                
+            case "OTHERS":
+                badgeImageView.image = ImageLiterals.Meeting.Category.Badge.othersBadge
+                
+            default:
+                return
+            }
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "핑글 제목", lineHeight: 22)
+            $0.setTextWithLineHeight(text: MeetingManager.shared.name, lineHeight: 22)
             $0.numberOfLines = 2
-            $0.textColor = badgeColor
+            switch  MeetingManager.shared.category {
+            case "PLAY":
+                $0.textColor = .mainPingleGreen
+                
+            case "STUDY":
+                $0.textColor = .subPingleOrange
+                
+            case "MULTI":
+                $0.textColor = .subPingleYellow
+                
+            case "OTHERS":
+                $0.textColor = .grayscaleG01
+                
+            default:
+                return
+            }
             $0.font = .subtitleSubBold16
             $0.lineBreakMode = .byCharWrapping
             $0.textAlignment = .left
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "개최자", lineHeight: 20)
+            $0.setTextWithLineHeight(text: KeychainHandler.shared.userName, lineHeight: 20)
             $0.textColor = .grayscaleG05
             $0.font = .bodyBodyMed14
         }
@@ -85,13 +114,16 @@ final class FinalSummaryCardView: BaseView {
         }
         
         dateLabel.do {
-            $0.text = "0000년 00월 00일"
+            let selectedDate = dateFormat(date: MeetingManager.shared.date)
+            $0.text = "\(selectedDate)"
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "오후 00:00 ~ 오후 00:00", lineHeight: 20)
+            let startAt = timeFormat(time: MeetingManager.shared.startAt)
+            let endAt = timeFormat(time: MeetingManager.shared.endAt)
+            $0.setTextWithLineHeight(text: "\(startAt) ~ \(endAt)", lineHeight: 20)
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }
@@ -107,7 +139,7 @@ final class FinalSummaryCardView: BaseView {
         }
         
         locationLabel.do {
-            $0.text = "장소 이름"
+            $0.text = MeetingManager.shared.location
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }
@@ -123,7 +155,8 @@ final class FinalSummaryCardView: BaseView {
         }
         
         recruitNumberLabel.do {
-            $0.text = "99명"
+            let maxParticipants = MeetingManager.shared.maxParticipants
+            $0.text = "\(maxParticipants)명"
             $0.textColor = .grayscaleG03
             $0.font = .bodyBodyMed14
         }
@@ -131,15 +164,11 @@ final class FinalSummaryCardView: BaseView {
     
     // MARK: Layout Helpers
     override func setLayout() {
-        self.addSubviews(topBackgroundView,
-                         bottomBackgroundView)
+        self.addSubviews(topBackgroundView, bottomBackgroundView)
         
-        topBackgroundView.addSubviews(infoGroupView,
-                                      separateView)
+        topBackgroundView.addSubviews(infoGroupView, separateView)
         
-        infoGroupView.addSubviews(badgeImageView,
-                                  titleLabel,
-                                  nameLabel)
+        infoGroupView.addSubviews(badgeImageView, titleLabel, nameLabel)
         
         bottomBackgroundView.addSubviews(dateTimeImageView,
                                          dateTimeTitleLabel,
@@ -241,39 +270,16 @@ final class FinalSummaryCardView: BaseView {
         }
     }
     
-    // MARK: Data Bind Func
-    func dataBind(data: HomePinDetailResponseDTO) {
-        titleLabel.text = data.name
-        nameLabel.text = data.ownerName
-        dateLabel.text = data.date.convertToKoreanDate()
-        locationLabel.text = data.location
-        
-        let startAtString = data.startAt.convertToShortTimeFormat() ?? data.startAt
-        let endAtString = data.endAt.convertToShortTimeFormat() ?? data.endAt
-        timeLabel.text = startAtString + " ~ " + endAtString
-        
-        switch data.category {
-        case "PLAY":
-            badgeColor = .mainPingleGreen
-            badgeImageView.image = ImageLiterals.Home.Detail.imgPlayBadge
-            
-        case "STUDY":
-            badgeColor = .subPingleOrange
-            badgeImageView.image = ImageLiterals.Home.Detail.imgStudyBadge
-            
-        case "MULTI":
-            badgeColor = .subPingleYellow
-            badgeImageView.image = ImageLiterals.Home.Detail.imgMultiBadge
-            
-        case "OTHERS":
-            badgeColor = .grayscaleG01
-            badgeImageView.image = ImageLiterals.Home.Detail.imgOthersBadge
-            
-        default:
-            return
-        }
-        
-        titleLabel.textColor = badgeColor
+    // MARK: - Function
+    private func dateFormat(date: Date) -> String {
+        formatter.dateFormat = "yyyy년  MM월  dd일"
+        return formatter.string(from: date)
     }
+    
+    private func timeFormat(time: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: time)
+    }
+    
 }
-

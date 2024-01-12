@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		90476A84D658F8529383126E /* Pods_PINGLE_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4C2FEF64C9439656F53167 /* Pods_PINGLE_iOS.framework */; };
+		C305D5992B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305D5982B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift */; };
+		C305D59B2B5176D3008993C3 /* SearchPlaceResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305D59A2B5176D3008993C3 /* SearchPlaceResponseDTO.swift */; };
 		C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307280E2B414D4B00AA575B /* UITextField+.swift */; };
 		C30728112B414D6500AA575B /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728102B414D6500AA575B /* UILabel+.swift */; };
 		C30728152B414F5800AA575B /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728142B414F5800AA575B /* UIButton+.swift */; };
@@ -56,7 +58,6 @@
 		C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E32B3BF203004BB2B8 /* BaseView.swift */; };
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
 		C39603182B3BF36C004BB2B8 /* p.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603172B3BF36C004BB2B8 /* p.swift */; };
-		C396031A2B3BF370004BB2B8 /* q.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603192B3BF370004BB2B8 /* q.swift */; };
 		C396031C2B3BF374004BB2B8 /* r.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396031B2B3BF374004BB2B8 /* r.swift */; };
 		C39603212B3BF47A004BB2B8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C39603202B3BF47A004BB2B8 /* Then */; };
 		C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C39603232B3BF484004BB2B8 /* SnapKit */; };
@@ -73,11 +74,16 @@
 		C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */; };
 		C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */; };
 		C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC304E2B43E20600276E00 /* HomeMapView.swift */; };
+		C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */; };
+		E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */; };
+		E50333632B50A64F0005AC0E /* MeetingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333622B50A64F0005AC0E /* MeetingTarget.swift */; };
+		E50333652B50A65D0005AC0E /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333642B50A65D0005AC0E /* MeetingService.swift */; };
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
 		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
 		E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */; };
 		E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */; };
+		E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565EB562B4FC9B80001758C /* MeetingManager.swift */; };
 		E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */; };
 		E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */; };
 		E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651EB2B4A982100676ED0 /* ExitModalView.swift */; };
@@ -95,6 +101,8 @@
 		E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */; };
 		F111BE662B4E8606001D116C /* UserInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */; };
 		F111BE682B4E8CEB001D116C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111BE672B4E8CEB001D116C /* NetworkManager.swift */; };
+		F12181BF2B510EFB00D22F55 /* PINGLERequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181BE2B510EFB00D22F55 /* PINGLERequestInterceptor.swift */; };
+		F12181C12B5110F500D22F55 /* TokenRefreshResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181C02B5110F500D22F55 /* TokenRefreshResponseDTO.swift */; };
 		F12181BD2B505F5800D22F55 /* AppleTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181BC2B505F5800D22F55 /* AppleTokenResponse.swift */; };
 		F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BB72B43CABE0072A02A /* LoginViewController.swift */; };
 		F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1239BBC2B444A250072A02A /* OnboardingViewController.swift */; };
@@ -132,6 +140,8 @@
 		03E71CF4ACFDF0B6A8554474 /* Pods-PINGLE-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.debug.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5D4C2FEF64C9439656F53167 /* Pods_PINGLE_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PINGLE_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99FA74A665E555FBFDA809A7 /* Pods-PINGLE-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.release.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C305D5982B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaceRequestQueryDTO.swift; sourceTree = "<group>"; };
+		C305D59A2B5176D3008993C3 /* SearchPlaceResponseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchPlaceResponseDTO.swift; path = "PINGLE-iOS/Network/Meeting/DTO/Request/SearchPlaceResponseDTO.swift"; sourceTree = SOURCE_ROOT; };
 		C307280E2B414D4B00AA575B /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		C30728102B414D6500AA575B /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		C30728142B414F5800AA575B /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
@@ -183,7 +193,6 @@
 		C39602E32B3BF203004BB2B8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C39603172B3BF36C004BB2B8 /* p.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p.swift; sourceTree = "<group>"; };
-		C39603192B3BF370004BB2B8 /* q.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = q.swift; sourceTree = "<group>"; };
 		C396031B2B3BF374004BB2B8 /* r.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = r.swift; sourceTree = "<group>"; };
 		C39B8D212B4CFB68008DCAC6 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
 		C39B8D232B4CFB70008DCAC6 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
@@ -196,11 +205,16 @@
 		C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewController.swift; sourceTree = "<group>"; };
 		C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCancelPopUpView.swift; sourceTree = "<group>"; };
 		C3EC304E2B43E20600276E00 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
+		C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMeetingRequestBodyDTO.swift; sourceTree = "<group>"; };
+		E50333622B50A64F0005AC0E /* MeetingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTarget.swift; sourceTree = "<group>"; };
+		E50333642B50A65D0005AC0E /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
 		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
 		E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryCardView.swift; sourceTree = "<group>"; };
 		E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultViewController.swift; sourceTree = "<group>"; };
+		E565EB562B4FC9B80001758C /* MeetingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManager.swift; sourceTree = "<group>"; };
 		E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePickerView.swift; sourceTree = "<group>"; };
 		E5A651EB2B4A982100676ED0 /* ExitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitModalView.swift; sourceTree = "<group>"; };
@@ -218,6 +232,8 @@
 		E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponseDTO.swift; sourceTree = "<group>"; };
 		F111BE672B4E8CEB001D116C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F12181BE2B510EFB00D22F55 /* PINGLERequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLERequestInterceptor.swift; sourceTree = "<group>"; };
+		F12181C02B5110F500D22F55 /* TokenRefreshResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshResponseDTO.swift; sourceTree = "<group>"; };
 		F12181BC2B505F5800D22F55 /* AppleTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTokenResponse.swift; sourceTree = "<group>"; };
 		F1239BB72B43CABE0072A02A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F1239BB92B43E49D0072A02A /* PINGLE-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PINGLE-iOS.entitlements"; sourceTree = "<group>"; };
@@ -275,6 +291,15 @@
 				5D4C2FEF64C9439656F53167 /* Pods_PINGLE_iOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C305D59C2B5176D6008993C3 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				C305D59A2B5176D3008993C3 /* SearchPlaceResponseDTO.swift */,
+			);
+			name = Response;
+			path = Request;
 			sourceTree = "<group>";
 		};
 		C33BF3462B46E85200008653 /* ViewController */ = {
@@ -485,6 +510,7 @@
 				C33BF3492B46E87D00008653 /* View */,
 				C33BF3482B46E87100008653 /* Components */,
 				C33BF3472B46E85900008653 /* Model */,
+				C3FE9F612B4FBE1800BC53DE /* Cell */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -510,6 +536,7 @@
 		C39602EB2B3BF234004BB2B8 /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				E565EB552B4FC9550001758C /* MeetingManager */,
 				E5A651F02B4AE41F00676ED0 /* Cell */,
 				E5A651EF2B4AE3E900676ED0 /* Model */,
 				E50AA1FA2B46D2AB005E854B /* Components */,
@@ -584,6 +611,7 @@
 				C30C91922B4CED84004EE026 /* APIEventLogger.swift */,
 				C30C91962B4CED9F004EE026 /* APIRequestLoader.swift */,
 				C30C91982B4CEDAB004EE026 /* NetworkService.swift */,
+				F12181BE2B510EFB00D22F55 /* PINGLERequestInterceptor.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -609,7 +637,9 @@
 		C39603062B3BF2DC004BB2B8 /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
-				C39603192B3BF370004BB2B8 /* q.swift */,
+				E50333582B50A54B0005AC0E /* DTO */,
+				E50333592B50A5520005AC0E /* Router */,
+				E503335A2B50A5580005AC0E /* Service */,
 			);
 			path = Meeting;
 			sourceTree = "<group>";
@@ -716,6 +746,48 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		C3FE9F612B4FBE1800BC53DE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E50333582B50A54B0005AC0E /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				E503335B2B50A5BB0005AC0E /* Request */,
+				C305D59C2B5176D6008993C3 /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		E50333592B50A5520005AC0E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E50333622B50A64F0005AC0E /* MeetingTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		E503335A2B50A5580005AC0E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E50333642B50A65D0005AC0E /* MeetingService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E503335B2B50A5BB0005AC0E /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */,
+				C305D5982B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		E50AA1FA2B46D2AB005E854B /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -723,6 +795,14 @@
 				E5A651F92B4B2A6F00676ED0 /* RecruitButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		E565EB552B4FC9550001758C /* MeetingManager */ = {
+			isa = PBXGroup;
+			children = (
+				E565EB562B4FC9B80001758C /* MeetingManager.swift */,
+			);
+			path = MeetingManager;
 			sourceTree = "<group>";
 		};
 		E5A651EF2B4AE3E900676ED0 /* Model */ = {
@@ -863,6 +943,7 @@
 				F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */,
 				F125A1852B4FC77800739C34 /* OrganizationDetailResponseDTO.swift */,
 				F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */,
+				F12181C02B5110F500D22F55 /* TokenRefreshResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1053,8 +1134,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E50333632B50A64F0005AC0E /* MeetingTarget.swift in Sources */,
 				F14F3C702B49BEB60049A9EE /* AccountPopUpView.swift in Sources */,
 				F125A1882B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift in Sources */,
+				F12181C12B5110F500D22F55 /* TokenRefreshResponseDTO.swift in Sources */,
 				C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */,
 				F14F3C772B4D37080049A9EE /* LoginResponseDTO.swift in Sources */,
 				F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */,
@@ -1062,10 +1145,12 @@
 				F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
 				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
+				C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */,
 				F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */,
+				E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
@@ -1078,11 +1163,13 @@
 				F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */,
 				E5A651EE2B4ADE6000676ED0 /* PlaceSelectionViewController.swift in Sources */,
 				C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */,
+				F12181BF2B510EFB00D22F55 /* PINGLERequestInterceptor.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */,
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
 				F111BE662B4E8606001D116C /* UserInfoResponseDTO.swift in Sources */,
+				E50333652B50A65D0005AC0E /* MeetingService.swift in Sources */,
 				C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */,
 				F12181BD2B505F5800D22F55 /* AppleTokenResponse.swift in Sources */,
 				C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */,
@@ -1090,7 +1177,7 @@
 				E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */,
 				E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */,
 				E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */,
-				C396031A2B3BF370004BB2B8 /* q.swift in Sources */,
+				E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */,
 				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				F14F44AD2B50413400871E5A /* ProfileTarget.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
@@ -1115,6 +1202,7 @@
 				F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */,
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,
 				F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */,
+				C305D59B2B5176D3008993C3 /* SearchPlaceResponseDTO.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
 				F111BE682B4E8CEB001D116C /* NetworkManager.swift in Sources */,
 				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,
@@ -1125,6 +1213,7 @@
 				C396031C2B3BF374004BB2B8 /* r.swift in Sources */,
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C30C918E2B4CED0F004EE026 /* KeychainHandler.swift in Sources */,
+				C305D5992B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift in Sources */,
 				C39603182B3BF36C004BB2B8 /* p.swift in Sources */,
 				C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */,
 				C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */,
@@ -1228,6 +1317,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PINGLE;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1286,6 +1376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PINGLE;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1313,14 +1404,14 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PINGLE.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1346,14 +1437,14 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PINGLE.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

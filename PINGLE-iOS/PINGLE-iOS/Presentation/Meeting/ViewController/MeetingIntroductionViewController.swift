@@ -11,7 +11,8 @@ import SnapKit
 import Then
 
 class MeetingIntroductionViewController: BaseViewController {
-    // MARK: Property
+    
+    // MARK: - Property
     private let backButton = UIButton()
     private let progressBar2 = UIImageView()
     private let PINGLEIntroductionTitle = UILabel()
@@ -142,6 +143,7 @@ class MeetingIntroductionViewController: BaseViewController {
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {
             if let newText = textField.text, !newText.isEmpty {
+                MeetingManager.shared.name = newText
                 nextButton.activateButton()
             } else {
                 nextButton.disabledButton()
@@ -173,8 +175,7 @@ class MeetingIntroductionViewController: BaseViewController {
     
     // MARK: Function
     func setTarget() {
-        PINGLEIntroductionTextField.searchTextField.addTarget(self,
-                                                              action:#selector(self.textFieldDidChange(_:)),
+        PINGLEIntroductionTextField.searchTextField.addTarget(self, action:#selector(self.textFieldDidChange(_:)),
                                                               for: .editingChanged)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)

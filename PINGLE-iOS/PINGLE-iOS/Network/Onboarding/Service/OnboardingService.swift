@@ -13,6 +13,7 @@ protocol OnboardingServiceProtocol {
     func searchOrganization(queryDTO: SearchOrganizationRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<[SearchOrganizationResponseDTO]>>) -> Void)
     func organizationDetail(teamId: Int, completion: @escaping (NetworkResult<BaseResponse<OrganizationDetailResponseDTO>>) -> Void)
     func enterInviteCode(teamId: Int, bodyDTO: EnterInviteCodeRequestBodyDTO, completion: @escaping (NetworkResult<BaseResponse<EnterInviteCodeResponseDTO>>) -> Void)
+    func postRefreshToken(completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>) -> Void)
 }
 
 final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingServiceProtocol {
@@ -36,5 +37,8 @@ final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingSer
     func enterInviteCode(teamId: Int, bodyDTO: EnterInviteCodeRequestBodyDTO, completion: @escaping (NetworkResult<BaseResponse<EnterInviteCodeResponseDTO>>) -> Void) {
         fetchData(target: .enterInviteCode(teamId, bodyDTO),
                   responseData: BaseResponse<EnterInviteCodeResponseDTO>.self, completion: completion)
+    }
+    func postRefreshToken(completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>) -> Void) {
+        fetchData(target: .postRefreshToken, responseData: BaseResponse<TokenRefreshResponseDTO>.self, completion: completion)
     }
 }

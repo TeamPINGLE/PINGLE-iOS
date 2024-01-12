@@ -13,10 +13,11 @@ import Then
 class InsertOpenChatLinkViewController: BaseViewController {
     
     // MARK: - Property
+    let meetingManager = MeetingManager.shared
     private let backButton = UIButton()
     private let progressBar6 = UIImageView()
     private let openChatTitle = UILabel()
-    private let openChatLinkTextField = PINGLETextFieldView(titleLabel: StringLiterals.Meeting.OpenChat.openChatTitle,
+    private let openChatLinkTextField = PINGLETextFieldView(titleLabel: StringLiterals.Meeting.OpenChat.insertChatLinkTitle,
                                                             explainLabel: StringLiterals.Meeting.OpenChat.insertChatLinkExplain)
     private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
                                              buttonColor: .grayscaleG08,
@@ -65,6 +66,10 @@ class InsertOpenChatLinkViewController: BaseViewController {
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
+        }
+        
+        openChatLinkTextField.do {
+            $0.searchTextField.keyboardType = .URL
         }
         
         exitLabel.do {
@@ -179,15 +184,11 @@ class InsertOpenChatLinkViewController: BaseViewController {
     
     // MARK: Function
     func setTarget() {
-        openChatLinkTextField.searchTextField.addTarget(self,
-                                                              action:#selector(self.textFieldDidChange(_:)),
-                                                              for: .editingChanged)
+        openChatLinkTextField.searchTextField.addTarget(self, action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
-        exitModal.exitButton.addTarget(self,
-                                       action: #selector(exitModalExitButtonTapped),
-                                       for: .touchUpInside)
+        exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
@@ -202,9 +203,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
     }
-    
-    
-    
+
     override func setDelegate() {
         self.openChatLinkTextField.searchTextField.delegate = self
     }

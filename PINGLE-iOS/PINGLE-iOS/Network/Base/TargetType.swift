@@ -31,20 +31,23 @@ extension TargetType {
         case .hasToken:
             return [
                 HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
-                HTTPHeaderFieldKey.accessToken.rawValue: "Bearer \(KeychainHandler.shared.accessToken)",
-                HTTPHeaderFieldKey.refreshtoken.rawValue: "Bearer \(KeychainHandler.shared.refreshToken)"
+                HTTPHeaderFieldKey.authentication.rawValue: "Bearer \(KeychainHandler.shared.accessToken)"
             ]
         case .refreshToken:
             return [
                 HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
-                HTTPHeaderFieldKey.xAccessAuth.rawValue: "Bearer \(KeychainHandler.shared.accessToken)",
-                HTTPHeaderFieldKey.xRefreshAuth.rawValue: "Bearer \(KeychainHandler.shared.refreshToken)"
+                HTTPHeaderFieldKey.authentication.rawValue: "Bearer \(KeychainHandler.shared.refreshToken)"
             ]
             
         case .providerToken:
             return [
                 HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
                 HTTPHeaderFieldKey.providerToken.rawValue: KeychainHandler.shared.providerToken
+            ]
+        case .teamId:
+            return [
+                HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
+                HTTPHeaderFieldKey.teamId.rawValue: "\(KeychainHandler.shared.userGroup[0].id)"
             ]
         }
     }
@@ -65,6 +68,8 @@ extension TargetType {
             break
         case .socialAuthorization:
             urlRequest.setValue(KeychainHandler.shared.providerToken, forHTTPHeaderField: HTTPHeaderFieldKey.providerToken.rawValue)
+        case .reAuthorization:
+            urlRequest.setValue(KeychainHandler.shared.refreshToken, forHTTPHeaderField: HTTPHeaderFieldKey.authentication.rawValue)
         }
         
         switch headerType {
@@ -73,14 +78,15 @@ extension TargetType {
         case .hasToken:
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
             urlRequest.setValue(KeychainHandler.shared.accessToken, forHTTPHeaderField: HTTPHeaderFieldKey.accessToken.rawValue)
-            urlRequest.setValue(KeychainHandler.shared.refreshToken, forHTTPHeaderField: HTTPHeaderFieldKey.refreshtoken.rawValue)
         case.refreshToken:
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
-            urlRequest.setValue("Bearer \(KeychainHandler.shared.accessToken)", forHTTPHeaderField: HTTPHeaderFieldKey.xAccessAuth.rawValue)
-            urlRequest.setValue("Bearer \(KeychainHandler.shared.refreshToken)", forHTTPHeaderField: HTTPHeaderFieldKey.xRefreshAuth.rawValue)
+            urlRequest.setValue("Bearer \(KeychainHandler.shared.refreshToken)", forHTTPHeaderField: HTTPHeaderFieldKey.authentication.rawValue)
         case .providerToken:
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
             urlRequest.setValue(KeychainHandler.shared.providerToken, forHTTPHeaderField: HTTPHeaderFieldKey.providerToken.rawValue)
+        case .teamId:
+            urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
+            urlRequest.setValue("\(KeychainHandler.shared.userGroup[0].id)", forHTTPHeaderField: HTTPHeaderFieldKey.teamId.rawValue)
         }
         
         switch parameters {

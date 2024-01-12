@@ -33,6 +33,7 @@ class PlaceSelectionViewController: BaseViewController {
         setNavigation()
         setTarget()
         setRegister()
+        setUpLabel()
         setUpDimmedView()
         hideKeyboardWhenTappedAround()
     }
@@ -147,6 +148,10 @@ class PlaceSelectionViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
+    private func setUpLabel() {
+        searchPlaceView.isHiddenResultLabel(isEnabled: true)
+    }
+    
     // MARK: Target Function
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
@@ -175,14 +180,11 @@ class PlaceSelectionViewController: BaseViewController {
             if search.isEmpty {
                 searchPlaceResponseDTO = []
                 searchPlaceView.searchPlaceCollectionView.reloadData()
-                searchPlaceView.noPlaceResult.isHidden = false
-                searchPlaceView.reSearch.isHidden = false
+                searchPlaceView.isHiddenResultLabel(isEnabled: false)
             } else {
                 searchPlace(data: SearchPlaceRequestQueryDTO(search: search))
             }
         }
-        selectedPlace = nil
-        nextButton.disabledButton()
         self.view.endEditing(true)
     }
     
@@ -250,6 +252,7 @@ extension PlaceSelectionViewController: UITextFieldDelegate {
                 searchPlaceResponseDTO = []
                 searchPlaceView.searchPlaceCollectionView.reloadData()
                 searchPlaceView.noPlaceResult.isHidden = false
+                searchPlaceView.reSearch.isHidden = false
             } else {
                 searchPlace(data: SearchPlaceRequestQueryDTO(search: search))
             }
@@ -285,7 +288,6 @@ extension PlaceSelectionViewController: UICollectionViewDataSource {
             nextButton.disabledButton()
         } else {
             selectedPlace = indexPath
-            
             nextButton.activateButton()
         }
         searchPlaceView.searchPlaceCollectionView.reloadData()

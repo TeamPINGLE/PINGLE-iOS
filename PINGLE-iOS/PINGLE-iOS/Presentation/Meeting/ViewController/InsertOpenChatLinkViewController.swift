@@ -69,7 +69,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
         
         openChatLinkTextField.do {
-            $0.searchTextField.keyboardType = .URL
+            $0.searchTextField.keyboardType = .alphabet
         }
         
         exitLabel.do {

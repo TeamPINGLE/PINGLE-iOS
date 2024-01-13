@@ -16,6 +16,17 @@ extension UILabel {
         attributedText = attributedString
     }
     
+        func asColorArray(targetStringList: [String], color: UIColor?) {
+            let fullText = text ?? ""
+            let attributedString = NSMutableAttributedString(string: fullText)
+
+            targetStringList.forEach {
+                let range = (fullText as NSString).range(of: $0)
+                attributedString.addAttributes([.font: font as Any, .foregroundColor: color as Any], range: range)
+            }
+            attributedText = attributedString
+        }
+    
     func asUnderLine(_ targetString: String?) {
         guard let targetString else { return }
         let attributedString = NSAttributedString(string: targetString,

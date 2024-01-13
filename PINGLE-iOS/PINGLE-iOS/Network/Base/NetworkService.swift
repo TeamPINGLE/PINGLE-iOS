@@ -17,5 +17,5 @@ final class NetworkService {
 //    let recommendService: RecommendServiceProtocol = RecommendService(apiLogger: APIEventLogger())
     let meetingService: MeetingServiceProtocol = MeetingService(apiLogger: APIEventLogger())
 //    let myPingleService: MyPingleServiceProtocol = MyPingleService(apiLogger: APIEventLogger())
-//    let profileService: ProfileServiceProtocol = ProfileService(apiLogger: APIEventLogger())
+    let profileService: ProfileServiceProtocol = ProfileService(apiLogger: APIEventLogger())
 }

@@ -171,7 +171,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 KeychainHandler.shared.userName = userName
             }
 
-            if  let identityToken = appleIDCredential.identityToken,
+            if let identityToken = appleIDCredential.identityToken,
                 let identifyTokenString = String(data: identityToken, encoding: .utf8) {
                 KeychainHandler.shared.providerToken = identifyTokenString
             }

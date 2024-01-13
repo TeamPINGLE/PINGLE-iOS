@@ -50,7 +50,8 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                 completion(.doNotRetry)
             }
         } else {
-            //네트워크 에러입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함.
+            //네트워크 에러입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함. + 로그아웃 시키겠습니다.
+            self.postLogout()
             completion(.doNotRetry)
         }
         
@@ -63,8 +64,7 @@ final class PINGLERequestInterceptor: RequestInterceptor {
             case .success(let data):
                 if data.code == 401 {
                     ///재발행에 실패하여 로그아웃 처리.
-                    // 로그아웃 함수 이후 추가해야함.
-//                    self.postLogout()
+                    self.postLogout()
                 }
                 if data.code == 200 {
                     /// 토큰 재발급에 성공하여 다시 저장.
@@ -80,25 +80,25 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                 completion(false)
                 ///재발행에 실패하여 로그아웃 처리.
                 // 로그아웃 함수 이후 추가해야함.
-//                self.postLogout()
+                self.postLogout()
             }
         }
     }
     
-//    func postLogout() {
-//        NetworkService.shared.profileService.logout() { [weak self] response in
-//            guard let self = self else { return }
-//            switch response {
-//            case .success(let data):
-//                if data.code == 200 {
-//                    KeychainHandler.shared.logout()
-//                    let loginViewController = LoginViewController()
-//                    self.view.window?.rootViewController = loginViewController
-//                    self.view.window?.makeKeyAndVisible()
-//                }
-//            default:
-//                print("login error")
-//            }
-//        }
-//    }
+    func postLogout() {
+        NetworkService.shared.profileService.logout() { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                if data.code == 200 {
+                    KeychainHandler.shared.logout()
+                    let loginViewController = LoginViewController()
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: loginViewController)
+                }
+            default:
+                print("login error")
+            }
+        }
+    }
 }

@@ -39,7 +39,7 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                     completion(.doNotRetry)
                 }
             case 401: // unauthorized
-                refreshToken { [weak self] isSuccess in
+                refreshToken { isSuccess in
                     if isSuccess {
                         completion(.retry)
                     } else {
@@ -51,21 +51,18 @@ final class PINGLERequestInterceptor: RequestInterceptor {
             }
         } else {
             // 네트워크 에러입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함. + 로그아웃 시키겠습니다.
-            self.postLogout()
             completion(.doNotRetry)
+            self.logout()
         }
         
     }
     
     func refreshToken(completion: @escaping (Bool) -> Void) {
         print("토큰 재발급 시작")
-        NetworkService.shared.onboardingService.postRefreshToken() { result in
+        NetworkService.shared.onboardingService.postRefreshToken() { [weak self] result in
+            guard let self else {return}
             switch result {
             case .success(let data):
-                if data.code == 401 {
-                    /// 재발행에 실패하여 로그아웃 처리.
-                    self.postLogout()
-                }
                 if data.code == 200 {
                     /// 토큰 재발급에 성공하여 다시 저장.
                     guard let data = data.data else { return }
@@ -76,29 +73,18 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                     completion(true)
                     return
                 }
+            case .failure:
+                self.logout()
             default:
                 completion(false)
                 /// 재발행에 실패하여 로그아웃 처리.
-                // 로그아웃 함수 이후 추가해야함.
-                self.postLogout()
             }
         }
     }
     
-    func postLogout() {
-        NetworkService.shared.profileService.logout() { [weak self] response in
-            guard let self = self else { return }
-            switch response {
-            case .success(let data):
-                if data.code == 200 {
-                    KeychainHandler.shared.logout()
-                    let loginViewController = LoginViewController()
-                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: loginViewController)
-                }
-            default:
-                print("login error")
-            }
-        }
+    func logout() {
+        KeychainHandler.shared.logout()
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
     }
 }

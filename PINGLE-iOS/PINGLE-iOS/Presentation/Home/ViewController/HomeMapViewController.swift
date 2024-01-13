@@ -259,7 +259,7 @@ extension HomeMapViewController {
         self.mapsView.homeMarkerList.forEach {
             $0.hidden = false
         }
-
+        
         self.hideSelectedPin()
     }
     
@@ -281,7 +281,7 @@ extension HomeMapViewController {
             print("url error")
             return
         }
-
+        
         if ["http", "https"].contains(url.scheme?.lowercased() ?? "") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
@@ -359,11 +359,11 @@ extension HomeMapViewController {
     }
     
     func loadPinList() {
-        self.pinList(category: self.markerCategory) {
-            if self.firstLoad {
+        if self.firstLoad {
+            self.pinList(category: self.markerCategory) {
                 self.setMarker()
-                self.firstLoad = false
             }
+            self.firstLoad = false
         }
     }
     

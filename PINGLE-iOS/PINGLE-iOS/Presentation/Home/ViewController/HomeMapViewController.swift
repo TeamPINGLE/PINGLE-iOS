@@ -33,12 +33,12 @@ final class HomeMapViewController: BaseViewController {
         super.viewDidLoad()
         setLocationManager()
         setAddTarget()
+        self.pinList(category: self.markerCategory)
         setCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.pinList(category: self.markerCategory)
         setNavigationBar()
     }
     
@@ -292,7 +292,6 @@ extension HomeMapViewController {
                 self.mapsView.listButton.isHidden = true
                 self.markerTapped(marker: marker)
                 self.markerId = marker.id
-                self.markerCategory = marker.meetingString
                 return true
             }
         }

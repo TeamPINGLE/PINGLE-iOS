@@ -272,7 +272,7 @@ extension EnterInviteCodeViewController {
     }
     
     @objc func keyboardWillHide(notification: Notification) {
-        ///키보드가 사라질 때 화면을 원래 위치로 복원하는 작업입니다.
+        /// 키보드가 사라질 때 화면을 원래 위치로 복원하는 작업입니다.
         UIView.animate(withDuration: 0.3) {
             self.organizationInfoView.transform = CGAffineTransform.identity
             self.inviteCodeTextFieldView.transform = CGAffineTransform.identity

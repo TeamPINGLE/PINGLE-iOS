@@ -268,7 +268,7 @@ final class RecruitmentViewController: BaseViewController {
     
     // MARK: Function
     func setTarget() {
-        recruitTextField.addTarget(self, action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        recruitTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)

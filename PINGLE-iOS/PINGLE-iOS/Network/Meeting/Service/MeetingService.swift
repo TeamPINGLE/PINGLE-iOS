@@ -22,4 +22,3 @@ final class MeetingService: APIRequestLoader<MeetingTarget>, MeetingServiceProto
         fetchData(target: .searchPlace(queryDTO), responseData: BaseResponse<[SearchPlaceResponseDTO]>.self, completion: completion)
     }
 }
-

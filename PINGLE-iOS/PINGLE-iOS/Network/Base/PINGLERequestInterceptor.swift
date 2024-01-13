@@ -35,7 +35,7 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                 if request.retryCount < maxRetryCount {
                     completion(.retry)
                 } else {
-                    //서버 점검 중 입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함.
+                    // 서버 점검 중 입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함.
                     completion(.doNotRetry)
                 }
             case 401: // unauthorized
@@ -50,7 +50,7 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                 completion(.doNotRetry)
             }
         } else {
-            //네트워크 에러입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함. + 로그아웃 시키겠습니다.
+            // 네트워크 에러입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함. + 로그아웃 시키겠습니다.
             self.postLogout()
             completion(.doNotRetry)
         }
@@ -63,7 +63,7 @@ final class PINGLERequestInterceptor: RequestInterceptor {
             switch result {
             case .success(let data):
                 if data.code == 401 {
-                    ///재발행에 실패하여 로그아웃 처리.
+                    /// 재발행에 실패하여 로그아웃 처리.
                     self.postLogout()
                 }
                 if data.code == 200 {
@@ -78,7 +78,7 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                 }
             default:
                 completion(false)
-                ///재발행에 실패하여 로그아웃 처리.
+                /// 재발행에 실패하여 로그아웃 처리.
                 // 로그아웃 함수 이후 추가해야함.
                 self.postLogout()
             }
@@ -93,7 +93,7 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                 if data.code == 200 {
                     KeychainHandler.shared.logout()
                     let loginViewController = LoginViewController()
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                     sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: loginViewController)
                 }
             default:

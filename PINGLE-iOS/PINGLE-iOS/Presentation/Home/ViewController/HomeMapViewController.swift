@@ -346,7 +346,7 @@ extension HomeMapViewController {
     }
     
     func pinDetail(pinId: Int, category: String?) {
-        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id,  queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
+        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }

@@ -184,8 +184,7 @@ final class SettingViewController: BaseViewController {
             case .success(let data):
                 if data.code == 200 {
                     KeychainHandler.shared.logout()
-                    let loginViewController = LoginViewController()
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                     sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
                     self.navigationController?.popToRootViewController(animated: true)
                 }
@@ -202,7 +201,7 @@ final class SettingViewController: BaseViewController {
             case .success(let data):
                 if data.code == 200 {
                     KeychainHandler.shared.deleteID()
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                     sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
                     self.navigationController?.popToRootViewController(animated: true)
                 }

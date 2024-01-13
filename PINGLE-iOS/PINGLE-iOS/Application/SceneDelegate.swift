@@ -33,23 +33,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 rootViewController = loginViewController
             } else {
                 /// 어세스 토큰이 있는 경우 - 애플 계정을 통한 회원가입을 한 적이 있는 경우 : 가입한 단체가 있는지 확인하는 통신 코드 구현
-                networkManager.getUserInfo()
-                if KeychainHandler.shared.userGroup.isEmpty {
-                    /// 가입한 단체가 없는 경우 - 온보딩 화면에서 단체를 선택한 경험이 없는 경우
-                    rootViewController = onboardingViewController
-                } else {
-                    /// 가입한 단체가 있는 경우 - 온보딩 화면에서 단체를 선택한 경험이 있는 경우
-                    rootViewController = PINGLETabBarController
+                networkManager.getUserInfo { [weak self] state in
+                    guard let self else { return }
+                    if KeychainHandler.shared.userGroup.isEmpty {
+                        /// 가입한 단체가 없는 경우 - 온보딩 화면에서 단체를 선택한 경험이 없는 경우
+                        rootViewController = onboardingViewController
+                    } else {
+                        /// 가입한 단체가 있는 경우 - 온보딩 화면에서 단체를 선택한 경험이 있는 경우
+                        rootViewController = PINGLETabBarController
+                    }
+                    let navigationController = UINavigationController(rootViewController: rootViewController)
+                    
+                    window.rootViewController = navigationController
+                    window.makeKeyAndVisible()
+                    self.window = window
                 }
             }
-            let navigationController = UINavigationController(rootViewController: rootViewController)
-            
-            window.rootViewController = navigationController
-            window.makeKeyAndVisible()
-            self.window = window
         }
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

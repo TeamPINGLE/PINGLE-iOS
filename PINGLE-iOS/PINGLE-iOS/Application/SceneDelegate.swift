@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+                
         let networkManager = NetworkManager()
         
         let splashViewController = SplashViewController()
@@ -42,13 +42,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         /// 가입한 단체가 있는 경우 - 온보딩 화면에서 단체를 선택한 경험이 있는 경우
                         rootViewController = PINGLETabBarController
                     }
-                    let navigationController = UINavigationController(rootViewController: rootViewController)
-                    
-                    window.rootViewController = navigationController
-                    window.makeKeyAndVisible()
-                    self.window = window
                 }
             }
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+            self.window = window
         }
     }
     

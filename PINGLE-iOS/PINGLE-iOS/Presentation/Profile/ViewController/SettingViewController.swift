@@ -163,7 +163,8 @@ final class SettingViewController: BaseViewController {
     @objc func changeStateButtonTapped() {
         switch accountState {
         case .logout:
-            postLogout()
+            return 
+//            postLogout()
         case .delete:
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             let request = appleIDProvider.createRequest()
@@ -177,40 +178,41 @@ final class SettingViewController: BaseViewController {
     }
     
     // MARK: Network Function
-    func postLogout() {
-        NetworkService.shared.profileService.logout() { [weak self] response in
-            guard let self = self else { return }
-            switch response {
-            case .success(let data):
-                if data.code == 200 {
-                    KeychainHandler.shared.logout()
-                    let loginViewController = LoginViewController()
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
-            default:
-                print("login error")
-            }
-        }
-    }
+//    func postLogout() {
+//        NetworkService.shared.profileService.logout() { [weak self] response in
+//            guard let self = self else { return }
+//            switch response {
+//            case .success(let data):
+//                if data.code == 200 {
+//                    KeychainHandler.shared.logout()
+//                    let loginViewController = LoginViewController()
+//                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+//                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: loginViewController)
+//                    self.navigationController?.popToRootViewController(animated: true)
+//                }
+//            default:
+//                print("login error")
+//            }
+//        }
+//    }
     
-    func deleteAppleID() {
-        NetworkService.shared.profileService.deleteID { [weak self] response in
-            guard let self = self else { return }
-            switch response {
-            case .success(let data):
-                if data.code == 200 {
-                    KeychainHandler.shared.deleteID()
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
-            default:
-                print("login error")
-            }
-        }
-    }
+//    func deleteAppleID() {
+//        NetworkService.shared.profileService.deleteID { [weak self] response in
+//            guard let self = self else { return }
+//            switch response {
+//            case .success(let data):
+//                if data.code == 200 {
+//                    KeychainHandler.shared.deleteID()
+//                    let loginViewController = LoginViewController()
+//                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+//                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: loginViewController)
+//                    self.navigationController?.popToRootViewController(animated: true)
+//                }
+//            default:
+//                print("login error")
+//            }
+//        }
+//    }
 }
 
 extension SettingViewController: UIGestureRecognizerDelegate {
@@ -232,7 +234,7 @@ extension SettingViewController: ASAuthorizationControllerDelegate {
             if let authorizationCode = appleIDCredential.authorizationCode {
                 guard let authorizationCodeString = String(data: authorizationCode, encoding: .utf8) else { return }
                 KeychainHandler.shared.authorizationCode = authorizationCodeString
-                deleteAppleID()
+//                deleteAppleID()
             }
             
         default:

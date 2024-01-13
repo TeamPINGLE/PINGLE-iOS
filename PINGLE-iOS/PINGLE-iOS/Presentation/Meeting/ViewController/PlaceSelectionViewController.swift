@@ -191,6 +191,7 @@ class PlaceSelectionViewController: BaseViewController {
     @objc func nextButtonTapped() {
         guard let selectedPlaceRow = selectedPlace?.row else { return }
         MeetingManager.shared.address = searchPlaceResponseDTO[selectedPlaceRow].address
+        MeetingManager.shared.roadAddress = searchPlaceResponseDTO[selectedPlaceRow].roadAddress
         MeetingManager.shared.location = searchPlaceResponseDTO[selectedPlaceRow].location
         MeetingManager.shared.x = searchPlaceResponseDTO[selectedPlaceRow].x
         MeetingManager.shared.y = searchPlaceResponseDTO[selectedPlaceRow].y

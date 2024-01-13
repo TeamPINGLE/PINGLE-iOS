@@ -20,6 +20,7 @@ class MeetingManager {
     var x: Double = 0.0
     var y: Double = 0.0
     var address: String = ""
+    var roadAddress: String = " "
     var location: String = ""
     var maxParticipants: Int = 0
     var chatLink: String = ""

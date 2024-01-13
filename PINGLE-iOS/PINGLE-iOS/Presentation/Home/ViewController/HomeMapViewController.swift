@@ -172,7 +172,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
         }
         
         cell.mapDetailView.talkButtonAction = {
-            self.connectTalkLink(url: self.homePinDetailList[indexPath.row].chatLink)
+            self.connectTalkLink(urlString: self.homePinDetailList[indexPath.row].chatLink)
         }
         
         cell.homeDetailPopUpView.participantionButtonAction = {
@@ -270,12 +270,22 @@ extension HomeMapViewController {
         self.navigationController?.pushViewController(participantViewController, animated: true)
     }
     
-    func connectTalkLink(url: String?) {
+    func connectTalkLink(urlString: String) {
         print("대화하기 버튼 탭")
-        guard let chatURL = url else { return }
-        guard let url = URL(string: chatURL) else { return }
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true)
+        guard let url = URL(string: urlString) else {
+            print("url error")
+            return
+        }
+
+        if ["http", "https"].contains(url.scheme?.lowercased() ?? "") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            guard let chatURL = URL(string: "https://" + urlString) else {
+                print("chatURL error")
+                return
+            }
+            UIApplication.shared.open(chatURL, options: [:], completionHandler: nil)
+        }
     }
     
     // MARK: Custom Function

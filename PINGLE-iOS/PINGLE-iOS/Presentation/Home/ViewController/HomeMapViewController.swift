@@ -18,6 +18,7 @@ final class HomeMapViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     var shouldUpdateMap: Bool = true
+    var firstLoad: Bool = true
     var homePinDetailList: [HomePinDetailResponseDTO] = []
     var meetingId: [Int] = []
     var markerId = 0
@@ -33,13 +34,13 @@ final class HomeMapViewController: BaseViewController {
         super.viewDidLoad()
         setLocationManager()
         setAddTarget()
-        self.pinList(category: self.markerCategory)
         setCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
+        self.loadPinList()
     }
     
     private func setNavigationBar() {
@@ -238,10 +239,14 @@ extension HomeMapViewController {
         
         /// 서버 통신
         if sender.isButtonSelected {
-            self.pinList(category: sender.chipStatusString)
+            self.pinList(category: sender.chipStatusString) {
+                self.setMarker()
+            }
             self.markerCategory = sender.chipStatusString
         } else {
-            self.pinList(category: "")
+            self.pinList(category: "") {
+                self.setMarker()
+            }
             self.markerCategory = ""
         }
         
@@ -338,19 +343,26 @@ extension HomeMapViewController {
     }
     
     // MARK: Server Function
-    func pinList(category: String?) {
+    func pinList(category: String?, completion: @escaping () -> Void) {
         NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
                 print(data)
-                DispatchQueue.main.async { [weak self] in
-                    self?.mapsView.homePinList = data
-                    self?.setMarker() // 데이터를 받은 후에 setMarker 호출
-                }
+                self?.mapsView.homePinList = data
+                completion()
             default:
                 print("실패")
                 return
+            }
+        }
+    }
+    
+    func loadPinList() {
+        self.pinList(category: self.markerCategory) {
+            if self.firstLoad {
+                self.setMarker()
+                self.firstLoad = false
             }
         }
     }

@@ -18,11 +18,11 @@ final class HomeMapViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     var shouldUpdateMap: Bool = true
-    /// 현재 선택되지 않은 필터 버튼 개수
-    var unselectedButton: Int = 0
+    var firstLoad: Bool = true
     var homePinDetailList: [HomePinDetailResponseDTO] = []
     var meetingId: [Int] = []
     var markerId = 0
+    var markerCategory: String = ""
     var allowLocation = false
     
     // MARK: Component
@@ -32,7 +32,6 @@ final class HomeMapViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.pinList()
         setLocationManager()
         setAddTarget()
         setCollectionView()
@@ -41,6 +40,7 @@ final class HomeMapViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
+        self.loadPinList()
     }
     
     private func setNavigationBar() {
@@ -112,7 +112,6 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     // 위치 가져오기 실패 시
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
-        print("error")
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -174,7 +173,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
         }
         
         cell.mapDetailView.talkButtonAction = {
-            self.connectTalkLink(url: self.homePinDetailList[indexPath.row].chatLink)
+            self.connectTalkLink(urlString: self.homePinDetailList[indexPath.row].chatLink)
         }
         
         cell.homeDetailPopUpView.participantionButtonAction = {
@@ -182,7 +181,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 guard let self = self else { return }
                 print("참여하기 버튼 탭")
                 cell.mapDetailView.isParticipating = true
-                self.bindDetailViewData(id: self.markerId)
+                self.bindDetailViewData(id: self.markerId, category: self.markerCategory)
             }
         }
         
@@ -191,7 +190,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 guard let self = self else { return }
                 print("취소하기 버튼 탭")
                 cell.mapDetailView.isParticipating = false
-                self.bindDetailViewData(id: self.markerId)
+                self.bindDetailViewData(id: self.markerId, category: self.markerCategory)
             }
         }
         
@@ -238,6 +237,19 @@ extension HomeMapViewController {
         /// 태그 선택 여부 반전
         sender.isButtonSelected.toggle()
         
+        /// 서버 통신
+        if sender.isButtonSelected {
+            self.pinList(category: sender.chipStatusString) {
+                self.setMarker()
+            }
+            self.markerCategory = sender.chipStatusString
+        } else {
+            self.pinList(category: "") {
+                self.setMarker()
+            }
+            self.markerCategory = ""
+        }
+        
         /// 태그 하나만 선택할 수 있도록
         self.mapsView.chipButtons.filter { $0 != sender }.forEach {
             $0.isButtonSelected = false
@@ -248,21 +260,6 @@ extension HomeMapViewController {
             $0.hidden = false
         }
         
-        unselectedButton = 0
-        
-        self.mapsView.chipButtons.forEach {
-            if !$0.isButtonSelected {
-                unselectedButton += 1
-            }
-        }
-        
-        /// 아무 필터도 선택되지 않았다면 모두 보여주고, 선택되었다면 필터링해서 보여주기
-        if unselectedButton != 4 {
-            self.mapsView.homeMarkerList.filter { $0.meetingString != sender.chipStatusString }.forEach {
-                $0.hidden = true
-            }
-        }
-       
         self.hideSelectedPin()
     }
     
@@ -278,12 +275,22 @@ extension HomeMapViewController {
         self.navigationController?.pushViewController(participantViewController, animated: true)
     }
     
-    func connectTalkLink(url: String?) {
+    func connectTalkLink(urlString: String) {
         print("대화하기 버튼 탭")
-        guard let chatURL = url else { return }
-        guard let url = URL(string: chatURL) else { return }
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true)
+        guard let url = URL(string: urlString) else {
+            print("url error")
+            return
+        }
+        
+        if ["http", "https"].contains(url.scheme?.lowercased() ?? "") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            guard let chatURL = URL(string: "https://" + urlString) else {
+                print("chatURL error")
+                return
+            }
+            UIApplication.shared.open(chatURL, options: [:], completionHandler: nil)
+        }
     }
     
     // MARK: Custom Function
@@ -294,7 +301,7 @@ extension HomeMapViewController {
         self.mapsView.homeMarkerList.forEach { marker in
             marker.touchHandler = { ( _: NMFOverlay) -> Bool in
                 print("오버레이 터치됨")
-                self.bindDetailViewData(id: marker.id)
+                self.bindDetailViewData(id: marker.id, category: marker.meetingString)
                 self.mapsView.homeDetailCollectionView.isHidden = false
                 self.mapsView.currentLocationButton.isHidden = true
                 self.mapsView.listButton.isHidden = true
@@ -305,9 +312,9 @@ extension HomeMapViewController {
         }
     }
     
-    func bindDetailViewData(id: Int) {
+    func bindDetailViewData(id: Int, category: String?) {
         // 추후 바뀐 그룹 받아오는 로직 작성 예정
-        self.pinDetail(pinId: id)
+        self.pinDetail(pinId: id, category: category)
     }
     
     func markerTapped(marker: PINGLEMarker) {
@@ -318,13 +325,13 @@ extension HomeMapViewController {
         var activateImage: UIImage = ImageLiterals.Home.Map.imgMapPinOtherActive
         switch marker.meetingStatus {
         case .play:
-            activateImage =  ImageLiterals.Home.Map.imgMapPinPlayActive
+            activateImage = ImageLiterals.Home.Map.imgMapPinPlayActive
         case .study:
-            activateImage =  ImageLiterals.Home.Map.imgMapPinStudyActive
+            activateImage = ImageLiterals.Home.Map.imgMapPinStudyActive
         case .multi:
-            activateImage =  ImageLiterals.Home.Map.imgMapPinMultiActive
+            activateImage = ImageLiterals.Home.Map.imgMapPinMultiActive
         default:
-            activateImage =  ImageLiterals.Home.Map.imgMapPinOtherActive
+            activateImage = ImageLiterals.Home.Map.imgMapPinOtherActive
         }
         
         marker.iconImage = NMFOverlayImage(image: activateImage)
@@ -336,16 +343,14 @@ extension HomeMapViewController {
     }
     
     // MARK: Server Function
-    func pinList() {
-        NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id) { [weak self] response in
+    func pinList(category: String?, completion: @escaping () -> Void) {
+        NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
                 print(data)
-                DispatchQueue.main.async { [weak self] in
-                    self?.mapsView.homePinList = data
-                    self?.setMarker() // 데이터를 받은 후에 setMarker 호출
-                }
+                self?.mapsView.homePinList = data
+                completion()
             default:
                 print("실패")
                 return
@@ -353,8 +358,17 @@ extension HomeMapViewController {
         }
     }
     
-    func pinDetail(pinId: Int) {
-        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id) { [weak self] response in
+    func loadPinList() {
+        if self.firstLoad {
+            self.pinList(category: self.markerCategory) {
+                self.setMarker()
+            }
+            self.firstLoad = false
+        }
+    }
+    
+    func pinDetail(pinId: Int, category: String?) {
+        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
@@ -405,8 +419,13 @@ extension HomeMapViewController {
     // MARK: Marker Function
     /// 마커 추가 메소드
     func setMarker() {
+        /// 마커 다 지우기
+        self.mapsView.homeMarkerList.forEach {
+            $0.hidden = true
+        }
+        mapsView.homeMarkerList = []
+        
         mapsView.homePinList.forEach {
-            print(mapsView.homePinList)
             let pingleMarker = PINGLEMarker()
             
             pingleMarker.id = $0.id

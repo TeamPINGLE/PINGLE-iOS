@@ -175,7 +175,7 @@ class MeetingIntroductionViewController: BaseViewController {
     
     // MARK: Function
     func setTarget() {
-        PINGLEIntroductionTextField.searchTextField.addTarget(self, action:#selector(self.textFieldDidChange(_:)),
+        PINGLEIntroductionTextField.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)),
                                                               for: .editingChanged)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)

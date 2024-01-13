@@ -177,5 +177,6 @@ final class HomeMapView: BaseView {
     func setCurrentMarker() {
         currentMarker.position = NMGLatLng(lat: nowLat, lng: nowLng)
         currentMarker.mapView = mapsView.mapView
+        currentMarker.zIndex = 100
     }
 }

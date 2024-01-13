@@ -160,7 +160,7 @@ final class LoginViewController: BaseViewController {
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
-    ///로그인 성공했을 시
+    /// 로그인 성공했을 시
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:

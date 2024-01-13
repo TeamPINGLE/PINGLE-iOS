@@ -16,6 +16,8 @@ final class HomeMapDetailView: BaseView {
     // MARK: Property
     var badgeColor: UIColor? = .subPingleOrange
     var isParticipating: Bool = false
+    var isOwner: Bool = false
+    var isFull: Bool = false
     var openChatURL: String?
     var participantsButtonAction: (() -> Void) = {}
     var talkButtonAction: (() -> Void) = {}
@@ -286,6 +288,7 @@ final class HomeMapDetailView: BaseView {
         timeLabel.text = startAtString + " ~ " + endAtString
         self.isParticipating = data.isParticipating
         openChatURL = data.chatLink
+        self.isOwner = data.isOwner
         
         switch data.category {
         case "PLAY":
@@ -317,52 +320,99 @@ final class HomeMapDetailView: BaseView {
             participantCountButton.countStackView.isHidden = true
             participantCountButton.participantsLabel.textColor = .grayscaleG06
             participantCountButton.rightArrowImageView.image = ImageLiterals.Home.Detail.icParticipantArrow
-            
-            /// 참여중이 아니라면 참여버튼 비활성화
-            if !data.isParticipating {
-                participationButton.do {
-                    $0.setTitleColor(.grayscaleG10, for: .normal)
-                    $0.backgroundColor = .grayscaleG07
-                    $0.isEnabled = false
-                }
-                participationButton.setTitleColor(.grayscaleG10, for: .normal)
-            } else {
-                participationButton.do {
-                    $0.setTitleColor(.white, for: .normal)
-                    $0.backgroundColor = .white
-                    $0.isEnabled = true
-                }
-                participationButton.setTitleColor(.black, for: .normal)
-            }
+            self.isFull = true
         } else {
             participantCountButton.completeLabel.isHidden = true
             participantCountButton.countStackView.isHidden = false
             participantCountButton.participantsLabel.textColor = .white
             participantCountButton.rightArrowImageView.image = ImageLiterals.Home.Detail.icParticipantArrowActivate
+            self.isFull = false
         }
         
-        /// 모집 미완료, 참여 신청 O
-        /// 이미 참여 신청한 경우라면 취소 버튼 활성화, 대화 버튼 활성화
         self.updateStyle()
         print("💛💛💛💛💛")
         print(self.isParticipating)
+        print(data.isOwner)
     }
     
     func updateStyle() {
-        if isParticipating {
-            participationButton.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
-            talkButton.do {
-                $0.isEnabled = true
-                $0.setTitleColor(.white, for: .normal)
-                $0.makeBorder(width: 1, color: .white)
-            }
+        /// 대화하기 버튼 상태
+        if isOwner {
+            activateTalkButton()
         } else {
-            participationButton.setTitle(StringLiterals.Home.Detail.participationButton, for: .normal)
-            talkButton.do {
-                $0.isEnabled = false
-                $0.setTitleColor(.grayscaleG06, for: .normal)
-                $0.makeBorder(width: 1, color: .grayscaleG06)
+            if isParticipating {
+                activateTalkButton()
+            } else {
+                disabledTalkButton()
             }
+        }
+        
+        /// 챰여하기 버튼 상태
+        if isOwner {
+            disabledCancelButton()
+        } else {
+            if isParticipating {
+                activateCancelButton()
+            } else {
+                if isFull {
+                    disabledParticipationButton()
+                } else {
+                    activateParticipationButton()
+                }
+            }
+        }
+        
+    }
+    
+    func activateTalkButton() {
+        talkButton.do {
+            $0.isEnabled = true
+            $0.setTitleColor(.white, for: .normal)
+            $0.makeBorder(width: 1, color: .white)
+        }
+    }
+    
+    func disabledTalkButton() {
+        talkButton.do {
+            $0.isEnabled = false
+            $0.setTitleColor(.grayscaleG06, for: .normal)
+            $0.makeBorder(width: 1, color: .grayscaleG06)
+        }
+    }
+    
+    func activateParticipationButton() {
+        participationButton.do {
+            $0.setTitle(StringLiterals.Home.Detail.participationButton, for: .normal)
+            $0.setTitleColor(.black, for: .normal)
+            $0.backgroundColor = .white
+            $0.isEnabled = true
+        }
+    }
+    
+    func disabledParticipationButton() {
+        participationButton.do {
+            $0.setTitle(StringLiterals.Home.Detail.participationButton, for: .normal)
+            $0.setTitleColor(.grayscaleG10, for: .normal)
+            $0.backgroundColor = .grayscaleG07
+            $0.isEnabled = false
+        }
+    }
+    
+    func activateCancelButton() {
+        participationButton.do {
+            $0.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
+            $0.setTitleColor(.black, for: .normal)
+            $0.backgroundColor = .white
+            $0.isEnabled = true
+        }
+    }
+    
+    func disabledCancelButton() {
+        participationButton.do {
+            $0.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
+            $0.setTitleColor(.grayscaleG10, for: .normal)
+            $0.backgroundColor = .grayscaleG07
+            $0.isEnabled = false
         }
     }
 }

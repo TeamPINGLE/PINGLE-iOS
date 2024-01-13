@@ -178,41 +178,39 @@ final class SettingViewController: BaseViewController {
     }
     
     // MARK: Network Function
-//    func postLogout() {
-//        NetworkService.shared.profileService.logout() { [weak self] response in
-//            guard let self = self else { return }
-//            switch response {
-//            case .success(let data):
-//                if data.code == 200 {
-//                    KeychainHandler.shared.logout()
-//                    let loginViewController = LoginViewController()
-//                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-//                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: loginViewController)
-//                    self.navigationController?.popToRootViewController(animated: true)
-//                }
-//            default:
-//                print("login error")
-//            }
-//        }
-//    }
+    func postLogout() {
+        NetworkService.shared.profileService.logout() { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                if data.code == 200 {
+                    KeychainHandler.shared.logout()
+                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            default:
+                print("login error")
+            }
+        }
+    }
     
-//    func deleteAppleID() {
-//        NetworkService.shared.profileService.deleteID { [weak self] response in
-//            guard let self = self else { return }
-//            switch response {
-//            case .success(let data):
-//                if data.code == 200 {
-//                    KeychainHandler.shared.deleteID()
-//                    let loginViewController = LoginViewController()
-//                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-//                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: loginViewController)
-//                    self.navigationController?.popToRootViewController(animated: true)
-//                }
-//            default:
-//                print("login error")
-//            }
-//        }
-//    }
+    func deleteAppleID() {
+        NetworkService.shared.profileService.deleteID { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                if data.code == 200 {
+                    KeychainHandler.shared.deleteID()
+                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            default:
+                print("login error")
+            }
+        }
+    }
 }
 
 extension SettingViewController: UIGestureRecognizerDelegate {

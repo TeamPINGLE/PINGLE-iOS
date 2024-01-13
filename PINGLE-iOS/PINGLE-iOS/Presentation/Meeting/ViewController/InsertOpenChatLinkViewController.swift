@@ -178,7 +178,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
     
     // MARK: Function
     func setTarget() {
-        openChatLinkTextField.searchTextField.addTarget(self, action:#selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        openChatLinkTextField.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)

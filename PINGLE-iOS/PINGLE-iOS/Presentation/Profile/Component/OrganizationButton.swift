@@ -81,4 +81,3 @@ class OrganizationButton: UIButton {
         organizationNameLabel.text = KeychainHandler.shared.userGroup[0].name
     }
 }
-

@@ -14,7 +14,8 @@ struct MakeMeetingRequestBodyDTO: Codable {
     let endAt: String
     let x: Double
     let y: Double
-    let adress: String
+    let address: String
+    let roadAddress: String
     let location: String
     let maxParticipants: Int
     let chatLink: String

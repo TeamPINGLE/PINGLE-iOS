@@ -143,6 +143,7 @@ final class FinalResultViewController: BaseViewController {
         let x = MeetingManager.shared.x
         let y = MeetingManager.shared.y
         let address = MeetingManager.shared.address
+        let roadAddress = MeetingManager.shared.roadAddress
         let location = MeetingManager.shared.location
         let maxParticipants = MeetingManager.shared.maxParticipants
         let chatLink = MeetingManager.shared.chatLink
@@ -154,7 +155,8 @@ final class FinalResultViewController: BaseViewController {
             endAt: endAt,
             x: x,
             y: y,
-            adress: address,
+            address: address,
+            roadAddress: roadAddress,
             location: location,
             maxParticipants: maxParticipants,
             chatLink: chatLink

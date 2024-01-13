@@ -163,7 +163,8 @@ final class SettingViewController: BaseViewController {
     @objc func changeStateButtonTapped() {
         switch accountState {
         case .logout:
-            postLogout()
+            return 
+//            postLogout()
         case .delete:
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             let request = appleIDProvider.createRequest()
@@ -231,7 +232,7 @@ extension SettingViewController: ASAuthorizationControllerDelegate {
             if let authorizationCode = appleIDCredential.authorizationCode {
                 guard let authorizationCodeString = String(data: authorizationCode, encoding: .utf8) else { return }
                 KeychainHandler.shared.authorizationCode = authorizationCodeString
-                deleteAppleID()
+//                deleteAppleID()
             }
             
         default:

@@ -80,7 +80,7 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                 completion(false)
                 /// 재발행에 실패하여 로그아웃 처리.
                 // 로그아웃 함수 이후 추가해야함.
-                self.postLogout()
+//                self.postLogout()
             }
         }
     }

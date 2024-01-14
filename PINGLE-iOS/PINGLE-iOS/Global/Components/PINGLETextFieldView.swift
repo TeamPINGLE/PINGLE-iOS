@@ -26,7 +26,7 @@ final class PINGLETextFieldView: BaseView {
         self.searchTextField.attributedPlaceholder = NSAttributedString(
             string: explainLabel,
             attributes: [
-                .font: UIFont.bodyBodyMed14,
+                .font: UIFont.bodyBodyMed16,
                 .foregroundColor: UIColor.grayscaleG07
             ]
         )

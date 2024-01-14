@@ -62,7 +62,8 @@ class PlaceSelectionViewController: BaseViewController {
         }
         
         placeSelectionTitle.do {
-            $0.text = StringLiterals.Meeting.SearhPlace.searchPlaceTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.SearhPlace.searchPlaceTitle, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
@@ -177,6 +178,8 @@ class PlaceSelectionViewController: BaseViewController {
     
     @objc func searchButtonTapped() {
         if let search = searchPlaceView.searchTextField.text {
+            selectedPlace = nil
+            nextButton.disabledButton()
             if search.isEmpty {
                 searchPlaceResponseDTO = []
                 searchPlaceView.searchPlaceCollectionView.reloadData()
@@ -229,9 +232,9 @@ class PlaceSelectionViewController: BaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 if data.isEmpty {
-                    searchPlaceView.noPlaceResult.isHidden = false
+                    searchPlaceView.isHiddenResultLabel(isEnabled: false)
                 } else {
-                    searchPlaceView.noPlaceResult.isHidden = true
+                    searchPlaceView.isHiddenResultLabel(isEnabled: true)
                 }
                 self.searchPlaceResponseDTO = data
                 self.searchPlaceView.searchPlaceCollectionView.reloadData()
@@ -252,8 +255,7 @@ extension PlaceSelectionViewController: UITextFieldDelegate {
             if search.isEmpty {
                 searchPlaceResponseDTO = []
                 searchPlaceView.searchPlaceCollectionView.reloadData()
-                searchPlaceView.noPlaceResult.isHidden = false
-                searchPlaceView.reSearch.isHidden = false
+                searchPlaceView.isHiddenResultLabel(isEnabled: false)
             } else {
                 searchPlace(data: SearchPlaceRequestQueryDTO(search: search))
             }

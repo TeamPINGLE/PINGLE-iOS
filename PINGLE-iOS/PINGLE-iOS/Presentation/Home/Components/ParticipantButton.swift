@@ -112,7 +112,7 @@ extension ParticipantButton {
         }
         
         completeLabel.snp.makeConstraints {
-            $0.top.equalTo(participantsLabel.snp.bottom).offset(8)
+            $0.bottom.equalToSuperview().inset(21)
             $0.centerX.equalToSuperview()
         }
         

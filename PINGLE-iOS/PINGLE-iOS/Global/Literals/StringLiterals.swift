@@ -173,10 +173,9 @@ enum StringLiterals {
         
         enum Profile {
             enum ExplainTitle {
-                static let settingTitle = "설정"
+                static let settingTitle = "더보기"
                 static let organizationTitle = "나의 단체"
                 static let versionTitle = "버전"
-                static let versionInfo = "0.0.0"
                 static let logoutQuestionTitle = "정말로 로그아웃 하실건가요?"
                 static let deleteQuestionTitle = "정말로 탈퇴하실건가요?"
                 static let logoutExplanation = "Apple 계정을 로그아웃합니다"

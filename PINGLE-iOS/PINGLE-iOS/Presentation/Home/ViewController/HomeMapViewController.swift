@@ -177,20 +177,24 @@ extension HomeMapViewController: UICollectionViewDataSource {
         }
         
         cell.homeDetailPopUpView.participantionButtonAction = {
-            self.meetingJoin(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] in
-                guard let self = self else { return }
-                print("참여하기 버튼 탭")
-                cell.mapDetailView.isParticipating = true
-                self.bindDetailViewData(id: self.markerId, category: self.markerCategory)
+            self.meetingJoin(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
+                guard let self else { return }
+                if result {
+                    print("참여하기 버튼 탭")
+                    cell.mapDetailView.isParticipating = true
+                    self.bindDetailViewData(id: self.markerId, category: self.markerCategory)
+                }
             }
         }
         
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
-            self.meetingCancel(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] in
-                guard let self = self else { return }
-                print("취소하기 버튼 탭")
-                cell.mapDetailView.isParticipating = false
-                self.bindDetailViewData(id: self.markerId, category: self.markerCategory)
+            self.meetingCancel(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
+                guard let self else { return }
+                if result {
+                    print("취소하기 버튼 탭")
+                    cell.mapDetailView.isParticipating = false
+                    self.bindDetailViewData(id: self.markerId, category: self.markerCategory)
+                }
             }
         }
         
@@ -239,13 +243,19 @@ extension HomeMapViewController {
         
         /// 서버 통신
         if sender.isButtonSelected {
-            self.pinList(category: sender.chipStatusString) {
-                self.setMarker()
+            self.pinList(category: sender.chipStatusString) { [weak self] result in
+                guard let self else { return }
+                if result {
+                    self.setMarker()
+                }
             }
             self.markerCategory = sender.chipStatusString
         } else {
-            self.pinList(category: "") {
-                self.setMarker()
+            self.pinList(category: "") { [weak self] result in
+                guard let self else { return }
+                if result {
+                    self.setMarker()
+                }
             }
             self.markerCategory = ""
         }
@@ -302,7 +312,6 @@ extension HomeMapViewController {
             marker.touchHandler = { ( _: NMFOverlay) -> Bool in
                 print("오버레이 터치됨")
                 self.bindDetailViewData(id: marker.id, category: marker.meetingString)
-                self.mapsView.homeDetailCollectionView.isHidden = false
                 self.mapsView.currentLocationButton.isHidden = true
                 self.mapsView.listButton.isHidden = true
                 self.markerTapped(marker: marker)
@@ -314,7 +323,13 @@ extension HomeMapViewController {
     
     func bindDetailViewData(id: Int, category: String?) {
         // 추후 바뀐 그룹 받아오는 로직 작성 예정
-        self.pinDetail(pinId: id, category: category)
+        self.pinDetail(pinId: id, category: category) { [weak self] result in
+            guard let self else { return }
+            if result {
+                self.mapsView.homeDetailCollectionView.reloadData()
+                self.mapsView.homeDetailCollectionView.isHidden = false
+            }
+        }
     }
     
     func markerTapped(marker: PINGLEMarker) {
@@ -349,16 +364,17 @@ extension HomeMapViewController {
     }
     
     // MARK: Server Function
-    func pinList(category: String?, completion: @escaping () -> Void) {
+    func pinList(category: String?, completion: @escaping (Bool) -> Void) {
         NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
                 print(data)
                 self?.mapsView.homePinList = data
-                completion()
+                completion(true)
             default:
                 print("실패")
+                completion(false)
                 return
             }
         }
@@ -366,14 +382,14 @@ extension HomeMapViewController {
     
     func loadPinList() {
         if self.firstLoad {
-            self.pinList(category: self.markerCategory) {
+            self.pinList(category: self.markerCategory) {_ in 
                 self.setMarker()
             }
             self.firstLoad = false
         }
     }
     
-    func pinDetail(pinId: Int, category: String?) {
+    func pinDetail(pinId: Int, category: String?, completion: @escaping (Bool) -> Void) {
         NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
             switch response {
             case .success(let data):
@@ -387,36 +403,39 @@ extension HomeMapViewController {
                     data.forEach {
                         self?.meetingId.append($0.id)
                     }
-                    self?.mapsView.homeDetailCollectionView.reloadData()
+                    completion(true)
                 }
             default:
                 print("실패")
+                completion(false)
                 return
             }
         }
     }
     
-    func meetingJoin(meetingId: Int, completion: @escaping () -> Void) {
+    func meetingJoin(meetingId: Int, completion: @escaping (Bool) -> Void) {
         NetworkService.shared.homeService.meetingJoin(meetingId: meetingId) { response in
             switch response {
             case .success:
                 print("신청 완료")
-                completion()
+                completion(true)
             default:
                 print("실패")
+                completion(false)
                 return
             }
         }
     }
     
-    func meetingCancel(meetingId: Int, completion: @escaping () -> Void) {
+    func meetingCancel(meetingId: Int, completion: @escaping (Bool) -> Void) {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
             switch response {
             case .success:
                 print("신청 취소 완료")
-                completion()
+                completion(true)
             default:
                 print("실패")
+                completion(false)
                 return
             }
         }

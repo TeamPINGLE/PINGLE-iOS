@@ -13,7 +13,7 @@ import Then
 final class MakeMeetingGuideViewController: BaseViewController {
     
     // MARK: Property
-    private let mettingImageView = UIImageView()
+    private let meetingImageView = UIImageView()
     private let exitButton = UIButton()
     private let guideTitle = UILabel()
     private let guideSubTitle = UILabel()
@@ -36,26 +36,28 @@ final class MakeMeetingGuideViewController: BaseViewController {
     override func setStyle() {
         self.view.backgroundColor = .grayscaleG11
         
-        self.mettingImageView.do {
-            $0.image = ImageLiterals.Meeting.Guide.imgMettingGraphic
-            $0.contentMode = .scaleAspectFit
+        self.meetingImageView.do {
+            $0.image = ImageLiterals.Meeting.Guide.imgMeetingGrphic
+            $0.contentMode = .scaleAspectFill
         }
         
         self.exitButton.do {
             $0.setImage(ImageLiterals.Meeting.Guide.imgExitButton, for: .normal)
-            $0.contentMode = .scaleAspectFit
+            $0.contentMode = .scaleAspectFill
         }
         
         self.guideTitle.do {
-            $0.text = StringLiterals.Meeting.MeetingGuide.guideTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.MeetingGuide.guideTitle, lineHeight: 45)
             $0.font = .titleTitleSemi32
+            $0.textAlignment = .left
             $0.textColor = .white
             $0.numberOfLines = 0
         }
         
         self.guideSubTitle.do {
-            $0.text = StringLiterals.Meeting.MeetingGuide.guideSubTitle
-            $0.font = .subtitleSubSemi16
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.MeetingGuide.guideSubTitle, lineHeight: 22)
+            $0.font = .bodyBodyMed16
+            $0.textAlignment = .left
             $0.numberOfLines = 2
             $0.textColor = .grayscaleG04
             $0.asColorArray(targetStringList: ["PIN", "MINGLE"], color: .mainPingleGreen)
@@ -67,28 +69,28 @@ final class MakeMeetingGuideViewController: BaseViewController {
     }
     
     override func setLayout() {
-        view.addSubviews(exitButton, mettingImageView, guideTitle, guideSubTitle, entranceButton)
+        view.addSubviews(exitButton, meetingImageView, guideTitle, guideSubTitle, entranceButton)
         
         exitButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16.adjusted)
+            $0.top.equalToSuperview().offset(60.adjusted)
             $0.leading.equalToSuperview().inset(333.adjusted)
         }
         
-        mettingImageView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(353)
-            $0.width.equalTo(375)
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(133.adjusted)
-        }
-        
         guideTitle.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(88.adjusted)
+            $0.top.equalTo(exitButton.snp.bottom).offset(48)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         guideSubTitle.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(194.adjusted)
+            $0.top.equalToSuperview().offset(238)
             $0.leading.equalToSuperview().inset(24.adjusted)
+        }
+        
+        meetingImageView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview().inset(177.adjusted)
+            $0.height.equalTo(353)
+            $0.bottom.equalTo(entranceButton.snp.top).offset(-25)
         }
         
         entranceButton.snp.makeConstraints {

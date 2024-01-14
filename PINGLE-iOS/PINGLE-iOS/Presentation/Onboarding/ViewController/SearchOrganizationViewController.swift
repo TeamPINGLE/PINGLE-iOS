@@ -75,30 +75,30 @@ final class SearchOrganizationViewController: BaseViewController {
         self.view.addSubviews(titleLabel, searchOrganizationView, bottomRequestLabel, makeOrganizationButton, bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         searchOrganizationView.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(24.adjusted)
+            $0.top.equalTo(self.titleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(154.adjusted)
+            $0.bottom.equalTo(self.bottomRequestLabel.snp.top).offset(-18)
         }
         
         bottomRequestLabel.snp.makeConstraints {
-            $0.top.equalTo(self.searchOrganizationView.snp.bottom).offset(18.adjusted)
+            $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-20)
             $0.leading.equalToSuperview().inset(77.adjusted)
         }
         
         makeOrganizationButton.snp.makeConstraints {
             $0.centerY.equalTo(self.bottomRequestLabel)
             $0.leading.equalTo(self.bottomRequestLabel.snp.trailing).offset(4.adjusted)
-            $0.height.equalTo(17.adjusted)
+            $0.height.equalTo(17)
             $0.width.equalTo(121.adjusted)
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(41.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(41)
             $0.centerX.equalToSuperview()
         }
     }

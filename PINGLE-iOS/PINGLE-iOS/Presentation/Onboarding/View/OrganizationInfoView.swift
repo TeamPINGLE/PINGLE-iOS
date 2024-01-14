@@ -71,18 +71,18 @@ final class OrganizationInfoView: BaseView {
                          meetingNumberLabel, memberNumberTitleLabel, memberNumberLabel)
         
         keywordLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(20.adjusted)
+            $0.top.equalToSuperview().inset(20)
             $0.leading.equalToSuperview().inset(23.adjusted)
         }
         
         organizationNameLabel.snp.makeConstraints {
-            $0.top.equalTo(keywordLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(keywordLabel.snp.bottom).offset(4)
             $0.leading.trailing.equalToSuperview().inset(23.adjusted)
-            $0.height.equalTo(34.adjusted)
+            $0.height.equalTo(34)
         }
         
         meetingNumberTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(organizationNameLabel.snp.bottom).offset(10.adjusted)
+            $0.top.equalTo(organizationNameLabel.snp.bottom).offset(10)
             $0.leading.equalToSuperview().inset(23.adjusted)
         }
         
@@ -92,7 +92,7 @@ final class OrganizationInfoView: BaseView {
         }
         
         memberNumberTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(meetingNumberTitleLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(meetingNumberTitleLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().inset(23.adjusted)
         }
         

@@ -41,13 +41,14 @@ final class EntranceCompletedViewController: BaseViewController {
         
         self.titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.entranceTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Onboarding.ExplainTitle.entranceTitle, lineHeight: 45)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi32
             $0.textColor = .white
             $0.numberOfLines = 0
         }
         
         self.organizationNameLabel.do {
-            $0.text = "단체명"
             $0.font = .subtitleSubSemi16
             $0.textColor = .grayscaleG01
         }
@@ -74,12 +75,12 @@ final class EntranceCompletedViewController: BaseViewController {
                               welcomLabel, backgroundImageView, bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(132.adjusted)
+            $0.top.equalToSuperview().inset(126)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         organizationNameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(16.adjusted)
+            $0.top.equalTo(self.titleLabel.snp.bottom).offset(16)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
@@ -89,18 +90,18 @@ final class EntranceCompletedViewController: BaseViewController {
         }
         
         welcomLabel.snp.makeConstraints {
-            $0.top.equalTo(self.organizationNameLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(self.organizationNameLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         backgroundImageView.snp.makeConstraints {
-            $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-16.adjusted)
+            $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-16)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(353.adjusted)
+            $0.height.equalTo(353)
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(40.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(41)
             $0.centerX.equalToSuperview()
         }
     }

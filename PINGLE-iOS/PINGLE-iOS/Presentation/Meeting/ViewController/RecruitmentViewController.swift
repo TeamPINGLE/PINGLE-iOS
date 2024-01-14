@@ -65,14 +65,16 @@ final class RecruitmentViewController: BaseViewController {
         }
         
         recruitTitle.do {
-            $0.text = StringLiterals.Meeting.Recruitment.recruitTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.Recruitment.recruitTitle, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
         }
         
         recruitCondition.do {
-            $0.text = StringLiterals.Meeting.Recruitment.recruitCondition
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.Recruitment.recruitCondition, lineHeight: 20)
+            $0.textAlignment = .left
             $0.font = .bodyBodyMed14
             $0.numberOfLines = 0
             $0.textColor = .grayscaleG05
@@ -137,7 +139,7 @@ final class RecruitmentViewController: BaseViewController {
         }
         
         recruitCondition.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(187.adjusted)
+            $0.top.equalTo(recruitTitle.snp.bottom).offset(12.adjusted)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         

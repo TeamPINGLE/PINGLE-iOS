@@ -62,7 +62,8 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         PINGLEIntroductionTitle.do {
-            $0.text = StringLiterals.Meeting.MeetingIntroduction.introductionTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.MeetingIntroduction.introductionTitle, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white

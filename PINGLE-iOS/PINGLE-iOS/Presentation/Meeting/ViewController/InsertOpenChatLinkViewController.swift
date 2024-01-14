@@ -61,7 +61,8 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
         
         openChatTitle.do {
-            $0.text = StringLiterals.Meeting.OpenChat.openChatTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.OpenChat.openChatTitle, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white

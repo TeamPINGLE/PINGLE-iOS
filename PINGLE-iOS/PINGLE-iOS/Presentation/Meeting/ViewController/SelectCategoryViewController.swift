@@ -89,7 +89,8 @@ class SelectCategoryViewController: BaseViewController {
         }
         
         PINGLECategoryTitle.do {
-            $0.text = StringLiterals.Meeting.MeetingCategory.CategoryLabel.categoryTitleLabel
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.MeetingCategory.CategoryLabel.categoryTitleLabel, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white

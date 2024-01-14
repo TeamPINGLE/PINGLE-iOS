@@ -77,7 +77,8 @@ class DateSelectionViewController: BaseViewController {
         }
         
         dateSelectionTitle.do {
-            $0.text = StringLiterals.Meeting.DateSelection.dateSelecionTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.DateSelection.dateSelecionTitle, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white

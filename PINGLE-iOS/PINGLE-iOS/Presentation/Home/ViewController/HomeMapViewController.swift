@@ -337,9 +337,15 @@ extension HomeMapViewController {
         marker.iconImage = NMFOverlayImage(image: activateImage)
         /// zoomLevel에 따라서 일정한 위치로 카메라 이동할 수 있도록 계산
         let offsetLat = marker.position.lat - 0.003 * pow(2, 14 - self.mapsView.mapsView.mapView.zoomLevel)
-        let newCameraPosition = NMFCameraUpdate(scrollTo: NMGLatLng(lat: offsetLat, lng: marker.position.lng))
-        newCameraPosition.animation = .easeIn
-        self.mapsView.mapsView.mapView.moveCamera(newCameraPosition)
+        
+        let newCameraPosition = NMFCameraPosition(NMGLatLng(lat: offsetLat, lng: marker.position.lng),
+                                                  zoom: self.mapsView.mapsView.mapView.zoomLevel,
+                                                  tilt: 0,
+                                                  heading: 0)
+
+        let newCameraUpdate = NMFCameraUpdate(position: newCameraPosition)
+        newCameraUpdate.animation = .easeIn
+        self.mapsView.mapsView.mapView.moveCamera(newCameraUpdate)
     }
     
     // MARK: Server Function

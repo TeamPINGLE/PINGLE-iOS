@@ -160,7 +160,7 @@ final class RecruitmentViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(54.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         

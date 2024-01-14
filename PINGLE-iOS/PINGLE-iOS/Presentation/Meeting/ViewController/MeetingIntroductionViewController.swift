@@ -75,8 +75,8 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         exitModal.do {
-                    $0.isHidden = true
-                }
+            $0.isHidden = true
+        }
         
         dimmedView.do {
             $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
@@ -85,7 +85,7 @@ class MeetingIntroductionViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, progressBar2, 
+        self.view.addSubviews(backButton, progressBar2,
                               PINGLEIntroductionTitle, PINGLEIntroductionTextField,
                               nextButton, exitLabel, exitButton)
         
@@ -138,8 +138,8 @@ class MeetingIntroductionViewController: BaseViewController {
     @objc func nextButtonTapped() {
         let dateSelectionViewController = DateSelectionViewController()
         navigationController?.pushViewController(dateSelectionViewController, animated: true)
-        }
-
+    }
+    
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {
             if let newText = textField.text, !newText.isEmpty {
@@ -202,11 +202,79 @@ class MeetingIntroductionViewController: BaseViewController {
     }
 }
 
-// MARK: Extension
+// MARK: - Extension
 // MARK: UITextFieldDelegate
 extension MeetingIntroductionViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            let maxLength = 26 // 제한된 글자수
+            let oldText = textField.text ?? ""
+            let addedText = string
+
+            // 붙여넣기할때 분기처리
+            if let textRange = textField.selectedTextRange {
+                let start = textRange.start
+                let cursorPosition = textField.offset(from: textField.beginningOfDocument, to: start)
+                let prefix = oldText.prefix(cursorPosition)
+                let suffix = oldText.suffix(from: oldText.index(oldText.startIndex, offsetBy: cursorPosition))
+                let newText = prefix + addedText + suffix
+
+                if newText.count <= maxLength {
+                    return true
+                } else {
+                    return false
+                }
+            } else {
+                let newText = oldText + addedText
+                if newText.count <= maxLength {
+                    return true
+                }
+
+                let lastWordOfOldText = String(oldText[oldText.index(before: oldText.endIndex)])
+                let separatedCharacters = lastWordOfOldText.decomposedStringWithCanonicalMapping.unicodeScalars.map{ String($0) }
+                let separatedCharactersCount = separatedCharacters.count
+
+                if separatedCharactersCount == 1 && !addedText.isConsonant {
+                    return true
+                }
+
+                if separatedCharactersCount == 2 && addedText.isConsonant {
+                    return true
+                }
+
+                if separatedCharactersCount == 3 && addedText.isConsonant {
+                    return true
+                }
+
+                return false
+            }
+        }
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            var text = textField.text ?? ""
+            let maxLength = 26
+            if text.count > maxLength {
+                let startIndex = text.startIndex
+                let endIndex = text.index(startIndex, offsetBy: maxLength - 1)
+                let fixedText = String(text[startIndex...endIndex])
+                textField.text = fixedText
+            }
+        }
+}
+
+extension String {
+    // 글자가 자음인지 체크
+    var isConsonant: Bool {
+        guard let scalar = UnicodeScalar(self)?.value else {
+            return false
+        }
+        
+        let consonantScalarRange: ClosedRange<UInt32> = 12593...12622
+        
+        return consonantScalarRange ~= scalar
     }
 }

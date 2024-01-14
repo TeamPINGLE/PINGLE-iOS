@@ -72,6 +72,22 @@ class SelectCategoryViewController: BaseViewController {
             $0.contentMode = .scaleAspectFill
         }
         
+        playButton.do {
+            $0.contentMode = .scaleAspectFill
+        }
+        
+        studyButton.do {
+            $0.contentMode = .scaleAspectFill
+        }
+        
+        multiButton.do {
+            $0.contentMode = .scaleAspectFill
+        }
+        
+        othersButton.do {
+            $0.contentMode = .scaleAspectFill
+        }
+        
         PINGLECategoryTitle.do {
             $0.text = StringLiterals.Meeting.MeetingCategory.CategoryLabel.categoryTitleLabel
             $0.font = .titleTitleSemi24
@@ -113,27 +129,27 @@ class SelectCategoryViewController: BaseViewController {
         }
         
         PINGLECategoryTitle.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(107.adjusted)
+            $0.top.equalTo(progressBar1.snp.bottom).offset(28.adjusted)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         playButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(202.adjusted)
+            $0.top.equalTo(PINGLECategoryTitle.snp.bottom).offset(28.adjusted)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         studyButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(202.adjusted)
+            $0.top.equalTo(PINGLECategoryTitle.snp.bottom).offset(28.adjusted)
             $0.leading.equalToSuperview().inset(192.adjusted)
         }
         
         multiButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(349.adjusted)
+            $0.top.equalTo(playButton.snp.bottom).offset(12.adjusted)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         othersButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(349.adjusted)
+            $0.top.equalTo(studyButton.snp.bottom).offset(12.adjusted)
             $0.leading.equalToSuperview().inset(192.adjusted)
         }
         

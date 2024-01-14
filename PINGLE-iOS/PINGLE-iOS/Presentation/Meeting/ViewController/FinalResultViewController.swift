@@ -165,6 +165,10 @@ final class FinalResultViewController: BaseViewController {
         print(meetingData)
         makeMeeting(data: meetingData)
         self.dismiss(animated: true)
+        
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: PINGLETabBarController())
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     // MARK: Function

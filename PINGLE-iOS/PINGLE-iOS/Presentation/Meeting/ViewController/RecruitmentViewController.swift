@@ -85,6 +85,7 @@ final class RecruitmentViewController: BaseViewController {
             $0.textAlignment = .center
             $0.font = .titleTitleSemi32
             $0.textColor = .white
+            $0.tintColor = .mainPingleGreen
             $0.keyboardType = .numberPad
         }
         

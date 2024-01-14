@@ -127,6 +127,8 @@ final class SettingViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func organizationButtonTapped() {
+        let myOrganizationViewController = MyOrganizationViewController()
+        self.navigationController?.pushViewController(myOrganizationViewController, animated: true)
     }
     
     @objc func contactButtonTapped() {

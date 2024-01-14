@@ -73,19 +73,19 @@ class SelectCategoryViewController: BaseViewController {
         }
         
         playButton.do {
-            $0.contentMode = .scaleAspectFill
+            $0.contentMode = .scaleAspectFit
         }
         
         studyButton.do {
-            $0.contentMode = .scaleAspectFill
+            $0.contentMode = .scaleAspectFit
         }
         
         multiButton.do {
-            $0.contentMode = .scaleAspectFill
+            $0.contentMode = .scaleAspectFit
         }
         
         othersButton.do {
-            $0.contentMode = .scaleAspectFill
+            $0.contentMode = .scaleAspectFit
         }
         
         PINGLECategoryTitle.do {

@@ -46,8 +46,8 @@ class SettingSelectButton: UIButton {
         self.addSubviews(settingTitleLabel)
         
         self.snp.makeConstraints {
-            $0.width.equalTo(UIScreen.main.bounds.size.width - 32)
-            $0.height.equalTo(50.adjusted)
+            $0.width.equalTo(UIScreen.main.bounds.size.width - 32.adjusted)
+            $0.height.equalTo(50)
         }
         
         settingTitleLabel.snp.makeConstraints {

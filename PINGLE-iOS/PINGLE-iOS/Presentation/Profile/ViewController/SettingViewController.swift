@@ -75,22 +75,22 @@ final class SettingViewController: BaseViewController {
         }
         
         settingTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(15.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(15)
             $0.leading.equalTo(self.view).offset(16.adjusted)
         }
         
         userNameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.settingTitleLabel.snp.bottom).offset(36.adjusted)
+            $0.top.equalTo(self.settingTitleLabel.snp.bottom).offset(36)
             $0.leading.equalTo(self.view).offset(16.adjusted)
         }
         
         organizationButton.snp.makeConstraints {
-            $0.top.equalTo(self.userNameLabel.snp.bottom).offset(20.adjusted)
+            $0.top.equalTo(self.userNameLabel.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
         }
         
         settingSelectView.snp.makeConstraints {
-            $0.top.equalTo(self.organizationButton.snp.bottom).offset(40.adjusted)
+            $0.top.equalTo(self.organizationButton.snp.bottom).offset(40)
             $0.centerX.equalToSuperview()
         }
         

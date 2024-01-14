@@ -53,11 +53,10 @@ final class AccountPopUpView: BaseView {
         }
         
         self.changeStateButton.do {
-            //            $changeStateButton.setTitle(StringLiterals.Profile.ButtonTitle.logoutTitle, for: .normal)
             $0.titleLabel?.font = .captionCapSemi12
             $0.setTitleColor(.grayscaleG01, for: .normal)
             $0.titleLabel?.textAlignment = .center
-            $0.layer.addBorder([.bottom], color: .grayscaleG01, width: 1.0, frameHeight: 17.0.adjusted, framgeWidth: 42.0.adjusted)
+            $0.layer.addBorder([.bottom], color: .grayscaleG01, width: 1.0, frameHeight: 17.0, framgeWidth: 42.0.adjusted)
         }
     }
     
@@ -66,31 +65,31 @@ final class AccountPopUpView: BaseView {
                          changeStateButton)
         
         self.snp.makeConstraints {
-            $0.width.equalTo(UIScreen.main.bounds.size.width - 48)
-            $0.height.equalTo(232.adjusted)
+            $0.width.equalTo(UIScreen.main.bounds.size.width - 48.adjusted)
+            $0.height.equalTo(232)
         }
         
         questionLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(46.adjusted)
+            $0.top.equalToSuperview().inset(46)
             $0.centerX.equalToSuperview()
         }
         
         explanationLabel.snp.makeConstraints {
-            $0.top.equalTo(self.questionLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(self.questionLabel.snp.bottom).offset(4)
             $0.centerX.equalToSuperview()
         }
         
         backButton.snp.makeConstraints {
-            $0.top.equalTo(self.explanationLabel.snp.bottom).offset(35.adjusted)
+            $0.top.equalTo(self.explanationLabel.snp.bottom).offset(35)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(185.adjustedWidth)
-            $0.height.equalTo(44.adjusted)
+            $0.height.equalTo(44)
         }
         
         changeStateButton.snp.makeConstraints {
-            $0.top.equalTo(self.backButton.snp.bottom).offset(12.adjusted)
+            $0.top.equalTo(self.backButton.snp.bottom).offset(12)
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(17.adjusted)
+            $0.height.equalTo(17)
             $0.width.equalTo(42.adjusted)
         }
     }

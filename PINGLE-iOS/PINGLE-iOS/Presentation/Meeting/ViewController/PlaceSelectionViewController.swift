@@ -185,22 +185,11 @@ class PlaceSelectionViewController: BaseViewController {
     
     @objc func searchButtonTapped() {
         if let search = searchPlaceView.searchTextField.text {
-            if search != "" {
-                selectedPlace = nil
-                nextButton.disabledButton()
-                if search.isEmpty {
-                    searchPlaceResponseDTO = []
-                    searchPlaceView.searchPlaceCollectionView.reloadData()
-                    searchPlaceView.isHiddenResultLabel(isEnabled: false)
-                } else {
-                    searchPlace(data: SearchPlaceRequestQueryDTO(search: search))
-                }
+            if !search.isEmpty {
+                searchPlace(data: SearchPlaceRequestQueryDTO(search: search))
             }
-            else {
-                searchPlaceView.searchButton.isEnabled = true
-            }
+            self.view.endEditing(true)
         }
-        self.view.endEditing(true)
     }
     
     @objc func nextButtonTapped() {
@@ -253,6 +242,8 @@ class PlaceSelectionViewController: BaseViewController {
                     searchPlaceView.isHiddenResultLabel(isEnabled: true)
                 }
                 self.searchPlaceResponseDTO = data
+                selectedPlace = nil
+                nextButton.disabledButton()
                 self.searchPlaceView.searchPlaceCollectionView.reloadData()
             default:
                 return
@@ -329,7 +320,29 @@ extension PlaceSelectionViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }
     
+    // UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 325, height: 106)
+        let labelHeight = calculateDynamicHeight(placeNameText: searchPlaceResponseDTO[indexPath.row].location, placeAddresText: searchPlaceResponseDTO[indexPath.row].address)
+        return CGSize(width: 325.adjusted, height: labelHeight + 67)
     }
+    
+    func calculateDynamicHeight(placeNameText: String, placeAddresText: String) -> CGFloat {
+        let placeName = UILabel()
+        placeName.text = placeNameText
+        placeName.numberOfLines = 2
+        placeName.preferredMaxLayoutWidth = 252.adjusted
+        placeName.font = .subtitleSubSemi16
+        
+        let placeAddress = UILabel()
+        placeAddress.text = placeAddresText
+        placeAddress.numberOfLines = 2
+        placeAddress.preferredMaxLayoutWidth = 252.adjusted
+        placeAddress.font = .captionCapMed12
+        
+        let placeNameSize = placeName.sizeThatFits(CGSize(width: 252.adjusted, height: CGFloat.greatestFiniteMagnitude))
+        let placeAddressSize = placeAddress.sizeThatFits(CGSize(width: 252.adjusted, height: CGFloat.greatestFiniteMagnitude))
+        
+        return placeNameSize.height + placeAddressSize.height
+    }
+
 }

@@ -328,6 +328,12 @@ extension HomeMapViewController {
             if result {
                 self.mapsView.homeDetailCollectionView.reloadData()
                 self.mapsView.homeDetailCollectionView.isHidden = false
+
+                /// 맨 처음 인덱스로 돌아오도록 스크롤
+                if !self.homePinDetailList.isEmpty {
+                    let indexPath = IndexPath(item: 0, section: 0)
+                    self.mapsView.homeDetailCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+                }
             }
         }
     }

@@ -364,6 +364,7 @@ class DateSelectionViewController: BaseViewController {
             self.bottomStartTimeView.removeFromSuperview()
             self.bottomEndTimeView.removeFromSuperview()
         })
+        exitModal.isHidden = true
     }
     
     override func setDelegate() {

@@ -231,6 +231,10 @@ class SelectCategoryViewController: BaseViewController {
             }
         }
     }
+    
+    @objc func deemedViewTapped() {
+        hideDeemedViewWhenTapped()
+    }
 
     // MARK: - Function
     func unselectAllButtons() {
@@ -241,11 +245,14 @@ class SelectCategoryViewController: BaseViewController {
     }
     
     private func setUpDimmedView() {
-            self.view.addSubview(dimmedView)
-            dimmedView.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
+        self.view.addSubview(dimmedView)
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deemedViewTapped))
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
+    }
     
     private func setNavigation() {
         navigationController?.navigationBar.isHidden = true
@@ -261,5 +268,12 @@ class SelectCategoryViewController: BaseViewController {
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
         exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
+    }
+    
+    private func hideDeemedViewWhenTapped() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.dimmedView.isHidden = true
+        })
+        exitModal.isHidden = true
     }
 }

@@ -174,6 +174,10 @@ class MeetingIntroductionViewController: BaseViewController {
         self.dismiss(animated: true)
     }
     
+    @objc func deemedViewTapped() {
+        hideDeemedViewWhenTapped()
+    }
+    
     // MARK: Function
     func setTarget() {
         PINGLEIntroductionTextField.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)),
@@ -192,6 +196,9 @@ class MeetingIntroductionViewController: BaseViewController {
         dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deemedViewTapped))
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
     }
     
     private func setNavigation() {
@@ -200,6 +207,13 @@ class MeetingIntroductionViewController: BaseViewController {
     
     override func setDelegate() {
         self.PINGLEIntroductionTextField.searchTextField.delegate = self
+    }
+    
+    private func hideDeemedViewWhenTapped() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.dimmedView.isHidden = true
+        })
+        exitModal.isHidden = true
     }
 }
 

@@ -177,6 +177,10 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
     }
     
+    @objc func deemedViewTapped() {
+        hideDeemedViewWhenTapped()
+    }
+    
     // MARK: Function
     func setTarget() {
         openChatLinkTextField.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
@@ -193,10 +197,19 @@ class InsertOpenChatLinkViewController: BaseViewController {
     
     private func setUpDimmedView() {
         self.view.addSubview(dimmedView)
-        
         dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deemedViewTapped))
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
+    }
+    
+    private func hideDeemedViewWhenTapped() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.dimmedView.isHidden = true
+        })
+        exitModal.isHidden = true
     }
 
     override func setDelegate() {

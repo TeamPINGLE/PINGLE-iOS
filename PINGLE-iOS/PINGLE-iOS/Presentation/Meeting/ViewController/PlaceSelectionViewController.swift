@@ -165,10 +165,12 @@ class PlaceSelectionViewController: BaseViewController {
     
     private func setUpDimmedView() {
         self.view.addSubview(dimmedView)
-        
         dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deemedViewTapped))
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
     }
     
     // MARK: Objc Function
@@ -224,6 +226,10 @@ class PlaceSelectionViewController: BaseViewController {
         self.dismiss(animated: true)
     }
     
+    @objc func deemedViewTapped() {
+        hideDeemedViewWhenTapped()
+    }
+    
     // MARK: Network Function
     func searchPlace(data: SearchPlaceRequestQueryDTO) {
         NetworkService.shared.meetingService.searchPlace(queryDTO: data) { [weak self] response in
@@ -242,7 +248,13 @@ class PlaceSelectionViewController: BaseViewController {
                 return
             }
         }
-
+    }
+    
+    private func hideDeemedViewWhenTapped() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.dimmedView.isHidden = true
+        })
+        exitModal.isHidden = true
     }
 }
 

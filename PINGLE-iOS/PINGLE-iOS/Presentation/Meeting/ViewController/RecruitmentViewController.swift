@@ -37,6 +37,7 @@ final class RecruitmentViewController: BaseViewController {
         hideKeyboardWhenTappedAround()
         setInitialNum()
         setUpDimmedView()
+        setGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,7 +120,7 @@ final class RecruitmentViewController: BaseViewController {
         self.view.addSubviews(backButton, progressBar5,
                               recruitTitle, recruitCondition, recruitTextField,
                               plusButton, minusButton,
-                              nextButton, exitLabel, exitButton)
+                              nextButton, exitLabel, exitButton, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -178,6 +179,10 @@ final class RecruitmentViewController: BaseViewController {
             $0.leading.equalTo(exitLabel.snp.trailing).offset(4.adjusted)
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -285,14 +290,14 @@ final class RecruitmentViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
-    private func setUpDimmedView() {
-        self.view.addSubview(dimmedView)
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+    func setGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
         dimmedView.addGestureRecognizer(tapGesture)
         dimmedView.isUserInteractionEnabled = true
+    }
+    
+    private func setUpDimmedView() {
+        dimmedView.isHidden = true
     }
     
     private func hideDimmedViewWhenTapped() {

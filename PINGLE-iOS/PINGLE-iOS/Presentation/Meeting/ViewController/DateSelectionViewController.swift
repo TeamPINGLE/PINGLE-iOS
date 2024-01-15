@@ -49,6 +49,7 @@ class DateSelectionViewController: BaseViewController {
         setDelegate()
         setTarget()
         setUpDimmedView()
+        setGesture()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -108,7 +109,7 @@ class DateSelectionViewController: BaseViewController {
         self.view.addSubviews(backButton, progressBar3,
                               dateSelectionTitle, PINGLEDateSelectionTextField,
                               PINGLEStartTimeTextField, PINGLEEndTimeTextField,
-                              nextButton, exitLabel, exitButton, warningToastView)
+                              nextButton, exitLabel, exitButton, warningToastView, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -165,6 +166,10 @@ class DateSelectionViewController: BaseViewController {
         warningToastView.snp.makeConstraints {
             $0.bottom.equalTo(nextButton.snp.top).offset(-16.adjusted)
             $0.centerX.equalToSuperview()
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -283,14 +288,14 @@ class DateSelectionViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
-    private func setUpDimmedView() {
-        self.view.addSubview(dimmedView)
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+    private func setGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
         dimmedView.addGestureRecognizer(tapGesture)
         dimmedView.isUserInteractionEnabled = true
+    }
+    
+    private func setUpDimmedView() {
+        dimmedView.isHidden = true
     }
     
     private func setNavigation() {

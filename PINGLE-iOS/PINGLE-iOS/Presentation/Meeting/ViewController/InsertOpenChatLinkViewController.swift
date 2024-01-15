@@ -91,7 +91,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
     override func setLayout() {
         self.view.addSubviews(backButton, progressBar6,
                               openChatTitle, openChatLinkTextField,
-                              nextButton, exitLabel, exitButton)
+                              nextButton, exitLabel, exitButton, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -131,6 +131,10 @@ class InsertOpenChatLinkViewController: BaseViewController {
             $0.leading.equalTo(exitLabel.snp.trailing).offset(4.adjusted)
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -196,10 +200,10 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     private func setUpDimmedView() {
-        self.view.addSubview(dimmedView)
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        dimmedView.isHidden = true
+    }
+    
+    private func setGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
         dimmedView.addGestureRecognizer(tapGesture)
         dimmedView.isUserInteractionEnabled = true

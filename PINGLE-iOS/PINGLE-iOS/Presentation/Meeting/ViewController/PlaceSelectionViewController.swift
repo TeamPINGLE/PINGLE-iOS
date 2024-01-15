@@ -36,6 +36,7 @@ class PlaceSelectionViewController: BaseViewController {
         setUpLabel()
         setUpDimmedView()
         hideKeyboardWhenTappedAround()
+        setGesture()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,7 +87,7 @@ class PlaceSelectionViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, progressBar4, placeSelectionTitle, searchPlaceView, nextButton, exitLabel, exitButton)
+        self.view.addSubviews(backButton, progressBar4, placeSelectionTitle, searchPlaceView, nextButton, exitLabel, exitButton, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -128,6 +129,10 @@ class PlaceSelectionViewController: BaseViewController {
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
         }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     // MARK: - Func
@@ -163,14 +168,14 @@ class PlaceSelectionViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
-    private func setUpDimmedView() {
-        self.view.addSubview(dimmedView)
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+    private func setGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
         dimmedView.addGestureRecognizer(tapGesture)
         dimmedView.isUserInteractionEnabled = true
+    }
+    
+    private func setUpDimmedView() {
+        dimmedView.isHidden = true
     }
     
     // MARK: Objc Function

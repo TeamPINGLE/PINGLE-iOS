@@ -226,7 +226,7 @@ extension MeetingIntroductionViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            let maxLength = 26 // 제한된 글자수
+            let maxLength = 27 
             let oldText = textField.text ?? ""
             let addedText = string
 
@@ -253,7 +253,7 @@ extension MeetingIntroductionViewController: UITextFieldDelegate {
                 let separatedCharacters = lastWordOfOldText.decomposedStringWithCanonicalMapping.unicodeScalars.map{ String($0) }
                 let separatedCharactersCount = separatedCharacters.count
 
-                if separatedCharactersCount == 1 && !addedText.isConsonant {
+                if separatedCharactersCount == 1 && addedText.isConsonant {
                     return true
                 }
 
@@ -264,7 +264,7 @@ extension MeetingIntroductionViewController: UITextFieldDelegate {
                 if separatedCharactersCount == 3 && addedText.isConsonant {
                     return true
                 }
-
+                
                 return false
             }
         }

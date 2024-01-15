@@ -197,6 +197,8 @@ class SelectCategoryViewController: BaseViewController {
     
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+        unselectAllButtons()
+        nextButton.disabledButton()
     }
     
     @objc func nextButtonTapped() {

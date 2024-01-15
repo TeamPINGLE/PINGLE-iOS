@@ -25,8 +25,7 @@ final class SplashViewController: BaseViewController {
         view.addSubview(PINGLELogoImageView)
         
         PINGLELogoImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(212)
-            $0.centerX.equalToSuperview()
+            $0.center.equalToSuperview()
             $0.width.equalTo(153)
             $0.height.equalTo(191)
         }

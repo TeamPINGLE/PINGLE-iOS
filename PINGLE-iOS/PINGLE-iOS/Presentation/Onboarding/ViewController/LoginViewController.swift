@@ -74,29 +74,29 @@ final class LoginViewController: BaseViewController {
                               adviceLabel, authorizationButton)
         
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(63.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(63)
             $0.leading.equalToSuperview().inset(32.adjusted)
-            $0.height.equalTo(73.adjusted)
-            $0.width.equalTo(73.adjusted)
+            $0.height.equalTo(73)
+            $0.width.equalTo(73)
         }
         
         loginTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.logoImageView.snp.bottom).offset(12.adjusted)
+            $0.top.equalTo(self.logoImageView.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(32.adjusted)
         }
         
         introduceLabel.snp.makeConstraints {
-            $0.top.equalTo(self.loginTitleLabel.snp.bottom).offset(12.adjusted)
+            $0.top.equalTo(self.loginTitleLabel.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(32.adjusted)
         }
         
         adviceLabel.snp.makeConstraints {
-            $0.top.equalTo(self.introduceLabel.snp.bottom).offset(3.adjusted)
+            $0.top.equalTo(self.introduceLabel.snp.bottom).offset(3)
             $0.leading.equalToSuperview().inset(32.adjusted)
         }
         
         authorizationButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(69.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(69)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(58)
             $0.width.equalTo(UIScreen.main.bounds.size.width - 32)
@@ -143,7 +143,9 @@ final class LoginViewController: BaseViewController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                KeychainHandler.shared.userGroup = data.groups
+                if let groups = data.groups {
+                    KeychainHandler.shared.userGroup = groups
+                }
                 if KeychainHandler.shared.userGroup.isEmpty {
                     let onboardingViewController = OnboardingViewController()
                     self.navigationController?.pushViewController(onboardingViewController, animated: true)

@@ -74,11 +74,11 @@ final class SearchOrganizationView: BaseView {
         searchView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
-            $0.height.equalTo(44.adjusted)
+            $0.height.equalTo(44)
         }
         
         searchTextField.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(10.adjusted)
+            $0.top.bottom.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().inset(13.adjusted)
             $0.trailing.equalToSuperview().inset(54.adjusted)
         }
@@ -86,11 +86,11 @@ final class SearchOrganizationView: BaseView {
         searchButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(13.adjusted)
             $0.centerY.equalToSuperview()
-            $0.height.width.equalTo(24.adjusted)
+            $0.height.width.equalTo(24)
         }
         
         searchCollectionView.snp.makeConstraints {
-            $0.top.equalTo(self.searchView.snp.bottom).offset(21.adjusted)
+            $0.top.equalTo(self.searchView.snp.bottom).offset(21)
             $0.leading.trailing.equalToSuperview().inset(25.adjusted)
             $0.bottom.equalToSuperview()
         }

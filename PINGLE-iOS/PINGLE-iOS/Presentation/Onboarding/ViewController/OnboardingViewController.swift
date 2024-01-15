@@ -73,22 +73,22 @@ final class OnboardingViewController: BaseViewController {
         self.view.addSubviews(titleLabel, existingOrganizationButton, makeOrganizationButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(105.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(105)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         existingOrganizationButton.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(34.adjusted)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(34)
             $0.leading.equalToSuperview().inset(24.adjusted)
-            $0.height.equalTo(224.adjusted)
-            $0.width.equalTo((UIScreen.main.bounds.size.width - 57) / 2)
+            $0.height.equalTo(224)
+            $0.width.equalTo((UIScreen.main.bounds.size.width - 57.adjusted) / 2)
         }
         
         makeOrganizationButton.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(34.adjusted)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(34)
             $0.trailing.equalToSuperview().inset(24.adjusted)
-            $0.height.equalTo(224.adjusted)
-            $0.width.equalTo((UIScreen.main.bounds.size.width - 57) / 2)
+            $0.height.equalTo(224)
+            $0.width.equalTo((UIScreen.main.bounds.size.width - 57.adjusted) / 2)
         }
     }
     

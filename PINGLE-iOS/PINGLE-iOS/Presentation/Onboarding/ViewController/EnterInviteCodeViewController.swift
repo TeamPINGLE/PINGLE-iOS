@@ -91,27 +91,27 @@ final class EnterInviteCodeViewController: BaseViewController {
         titleBackgroundView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(113.adjusted)
+            $0.height.equalTo(113)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(32.adjusted)
+            $0.top.equalToSuperview().inset(32)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         organizationInfoView.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(25.adjusted)
+            $0.top.equalTo(self.titleLabel.snp.bottom).offset(25)
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
-            $0.height.equalTo(157.adjusted)
+            $0.height.equalTo(157)
         }
         
         inviteCodeTextFieldView.snp.makeConstraints {
-            $0.top.equalTo(organizationInfoView.snp.bottom).offset(16.adjusted)
+            $0.top.equalTo(organizationInfoView.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
         
         infoImageView.snp.makeConstraints {
-            $0.top.equalTo(inviteCodeTextFieldView.snp.bottom).offset(8.adjusted)
+            $0.top.equalTo(inviteCodeTextFieldView.snp.bottom).offset(8)
             $0.leading.equalTo(inviteCodeTextFieldView)
             $0.width.height.equalTo(10.adjusted)
         }
@@ -122,12 +122,12 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(40.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(41.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         warningToastView.snp.makeConstraints {
-            $0.bottom.equalTo(bottomCTAButton.snp.top).offset(-16.adjusted)
+            $0.bottom.equalTo(bottomCTAButton.snp.top).offset(-16)
             $0.centerX.equalToSuperview()
         }
     }

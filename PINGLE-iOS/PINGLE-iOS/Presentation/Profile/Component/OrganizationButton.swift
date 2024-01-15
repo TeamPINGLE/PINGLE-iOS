@@ -55,23 +55,23 @@ class OrganizationButton: UIButton {
         
         self.snp.makeConstraints {
             $0.width.equalTo(343.adjustedWidth)
-            $0.height.equalTo(74.adjusted)
+            $0.height.equalTo(74)
         }
         
         organizationTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(14.adjusted)
+            $0.top.equalToSuperview().inset(14)
             $0.leading.equalToSuperview().inset(21.adjusted)
         }
         
         organizationNameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.organizationTitleLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(self.organizationTitleLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().inset(21.adjusted)
         }
         
         arrowRightImageView.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16.adjusted)
             $0.centerY.equalToSuperview()
-            $0.height.equalTo(22.adjusted)
+            $0.height.equalTo(22)
             $0.width.equalTo(24.adjusted)
         }
     }

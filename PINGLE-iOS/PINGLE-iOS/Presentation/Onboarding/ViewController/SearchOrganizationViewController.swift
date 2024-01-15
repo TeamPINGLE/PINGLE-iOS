@@ -75,30 +75,30 @@ final class SearchOrganizationViewController: BaseViewController {
         self.view.addSubviews(titleLabel, searchOrganizationView, bottomRequestLabel, makeOrganizationButton, bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32.adjusted)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         searchOrganizationView.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(24.adjusted)
+            $0.top.equalTo(self.titleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(154.adjusted)
+            $0.bottom.equalTo(self.bottomRequestLabel.snp.top).offset(-18)
         }
         
         bottomRequestLabel.snp.makeConstraints {
-            $0.top.equalTo(self.searchOrganizationView.snp.bottom).offset(18.adjusted)
+            $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-20)
             $0.leading.equalToSuperview().inset(77.adjusted)
         }
         
         makeOrganizationButton.snp.makeConstraints {
             $0.centerY.equalTo(self.bottomRequestLabel)
             $0.leading.equalTo(self.bottomRequestLabel.snp.trailing).offset(4.adjusted)
-            $0.height.equalTo(17.adjusted)
+            $0.height.equalTo(17)
             $0.width.equalTo(121.adjusted)
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(41.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(41)
             $0.centerX.equalToSuperview()
         }
     }
@@ -146,19 +146,14 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     @objc func searchButtonTapped() {
-        /// 검색 결과가 없는 경우 "검색 결과가 없어요" 라벨이 나옵니다. 검색결과가 있는 경우 "검색 결과가 없어요" 라벨이 사라집니다.
+        /// 검색하는 내용이 없을 경우 아무런 통신도 하지 않고 이전 상태를 유지합니다.
         if let searchText = searchOrganizationView.searchTextField.text {
-            if searchText.isEmpty {
-                searchOrganizationResponseDTO = []
-                searchOrganizationView.searchCollectionView.reloadData()
-                searchOrganizationView.noResultLabel.isHidden = false
-            } else {
+            if !searchText.isEmpty {
                 searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
+                selectedCellIndex = nil
+                bottomCTAButton.disabledButton()
             }
         }
-        /// 선택된 행 해제한 뒤, 다음으로 버튼 비활성화
-        selectedCellIndex = nil
-        bottomCTAButton.disabledButton()
         self.view.endEditing(true)
     }
     

@@ -131,6 +131,7 @@
 		F14F44AB2B50411700871E5A /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F44AA2B50411700871E5A /* ProfileService.swift */; };
 		F14F44AD2B50413400871E5A /* ProfileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F44AC2B50413400871E5A /* ProfileTarget.swift */; };
 		F16BCA392B4E62760096A62F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16BCA382B4E62760096A62F /* SplashViewController.swift */; };
+		F19CE2C02B5417C500B8F9D0 /* MyOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CE2BF2B5417C500B8F9D0 /* MyOrganizationViewController.swift */; };
 		F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */; };
 		F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */; };
 /* End PBXBuildFile section */
@@ -263,6 +264,7 @@
 		F14F44AA2B50411700871E5A /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		F14F44AC2B50413400871E5A /* ProfileTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTarget.swift; sourceTree = "<group>"; };
 		F16BCA382B4E62760096A62F /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		F19CE2BF2B5417C500B8F9D0 /* MyOrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrganizationViewController.swift; sourceTree = "<group>"; };
 		F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationResponseDTO.swift; sourceTree = "<group>"; };
 		F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationRequestQueryDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -893,6 +895,7 @@
 			isa = PBXGroup;
 			children = (
 				F14F3C642B4945E00049A9EE /* SettingViewController.swift */,
+				F19CE2BF2B5417C500B8F9D0 /* MyOrganizationViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1195,6 +1198,7 @@
 				C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */,
 				F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */,
 				C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */,
+				F19CE2C02B5417C500B8F9D0 /* MyOrganizationViewController.swift in Sources */,
 				F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
 				F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */,

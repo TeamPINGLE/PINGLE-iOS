@@ -87,9 +87,9 @@ final class MakeMeetingGuideViewController: BaseViewController {
         }
         
         meetingImageView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.equalToSuperview()
             $0.top.equalToSuperview().inset(177.adjusted)
-            $0.height.equalTo(353)
+            $0.height.equalTo(353.adjusted)
             $0.bottom.equalTo(entranceButton.snp.top).offset(-25)
         }
         

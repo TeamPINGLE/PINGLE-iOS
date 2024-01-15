@@ -121,6 +121,8 @@ final class HomeMapDetailView: BaseView {
         
         locationLabel.do {
             $0.text = " "
+            $0.numberOfLines = 2
+            $0.lineBreakMode = .byCharWrapping
             $0.textColor = .grayscaleG02
             $0.font = .bodyBodyMed14
         }
@@ -244,6 +246,7 @@ final class HomeMapDetailView: BaseView {
         locationLabel.snp.makeConstraints {
             $0.leading.equalTo(dateLabel)
             $0.centerY.equalTo(locationImageView)
+            $0.trailing.equalToSuperview().inset(24.adjustedWidth)
         }
         
         talkButton.snp.makeConstraints {

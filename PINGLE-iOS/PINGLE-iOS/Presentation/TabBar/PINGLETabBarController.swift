@@ -14,14 +14,6 @@ final class PINGLETabBarController: UITabBarController {
     
     // MARK: - Variables
     // MARK: Property
-    var defaultIndex = 0 {
-        didSet {
-            self.selectedIndex = defaultIndex
-            self.setTabBarItems()
-            self.setTabBarAppearance()
-        }
-    }
-    
     var isHomeMap = true {
         didSet {
             self.setTabs()
@@ -69,7 +61,7 @@ final class PINGLETabBarController: UITabBarController {
     
     // MARK: TabBar Style
     private func setTabBarAppearance() {
-        self.selectedIndex = defaultIndex
+//        self.selectedIndex = defaultIndex
         self.tabBar.itemPositioning = .fill
         
         let myFont = UIFont.captionCapSemi12
@@ -106,7 +98,7 @@ final class PINGLETabBarController: UITabBarController {
         for (index, controller) in tabs.enumerated() {
             if let tabBarItem = controller.tabBarItem {
                 let myFont = UIFont.captionCapSemi12
-                let textColor = (index == defaultIndex) ? UIColor.white : UIColor.grayscaleG07
+                let textColor = (index == self.selectedIndex) ? UIColor.white : UIColor.grayscaleG07
                 let defaultFontAttributes = [NSAttributedString.Key.font: myFont,
                                              NSAttributedString.Key.foregroundColor: textColor]
                 tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)

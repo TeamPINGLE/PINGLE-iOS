@@ -66,23 +66,24 @@ extension ParticipantButton {
         countStackView.do {
             $0.axis = .horizontal
             $0.spacing = 0
+            $0.isUserInteractionEnabled = false
         }
         
         currentParticipantsLabel.do {
             $0.text = " "
-            $0.font = .titleTitleSemi30
+            $0.font = .titleTitleSemi24
         }
         
         slashLabel.do {
             $0.text = StringLiterals.Home.Detail.slash
             $0.textColor = .grayscaleG06
-            $0.font = .titleTitleSemi30
+            $0.font = .titleTitleSemi24
         }
         
         totalParticipantsLabel.do {
             $0.text = " "
             $0.textColor = .grayscaleG06
-            $0.font = .titleTitleSemi20
+            $0.font = .subtitleSubSemi16
         }
     }
     
@@ -111,7 +112,7 @@ extension ParticipantButton {
         }
         
         completeLabel.snp.makeConstraints {
-            $0.top.equalTo(participantsLabel.snp.bottom).offset(8)
+            $0.bottom.equalToSuperview().inset(21)
             $0.centerX.equalToSuperview()
         }
         

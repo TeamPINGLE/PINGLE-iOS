@@ -67,6 +67,7 @@ final class EntranceCompletedViewController: BaseViewController {
         
         self.backgroundImageView.do {
             $0.image = ImageLiterals.OnBoarding.imgGraphic1
+            $0.contentMode = .scaleAspectFit
         }
     }
     
@@ -94,15 +95,24 @@ final class EntranceCompletedViewController: BaseViewController {
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
-        backgroundImageView.snp.makeConstraints {
-            $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-16)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(353)
-        }
-        
         bottomCTAButton.snp.makeConstraints {
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(41)
             $0.centerX.equalToSuperview()
+        }
+        
+        if UIScreen.main.bounds.height > 667 {
+            backgroundImageView.snp.makeConstraints {
+                $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-16)
+                $0.trailing.equalToSuperview()
+                $0.height.equalTo(447)
+                $0.width.equalTo(475)
+            }
+        } else {
+            backgroundImageView.snp.makeConstraints {
+                $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-16)
+                $0.leading.trailing.equalToSuperview()
+                $0.height.equalTo(353)
+            }
         }
     }
     

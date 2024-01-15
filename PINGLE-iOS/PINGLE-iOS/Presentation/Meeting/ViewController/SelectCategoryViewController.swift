@@ -46,6 +46,7 @@ class SelectCategoryViewController: BaseViewController {
         setUpDimmedView()
         setNavigation()
         setTarget()
+        setGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,8 +73,25 @@ class SelectCategoryViewController: BaseViewController {
             $0.contentMode = .scaleAspectFill
         }
         
+        playButton.do {
+            $0.contentMode = .scaleAspectFit
+        }
+        
+        studyButton.do {
+            $0.contentMode = .scaleAspectFit
+        }
+        
+        multiButton.do {
+            $0.contentMode = .scaleAspectFit
+        }
+        
+        othersButton.do {
+            $0.contentMode = .scaleAspectFit
+        }
+        
         PINGLECategoryTitle.do {
-            $0.text = StringLiterals.Meeting.MeetingCategory.CategoryLabel.categoryTitleLabel
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.MeetingCategory.CategoryLabel.categoryTitleLabel, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
@@ -98,7 +116,7 @@ class SelectCategoryViewController: BaseViewController {
     override func setLayout() {
         self.view.addSubviews(backButton, progressBar1, PINGLECategoryTitle, 
                               playButton, studyButton, multiButton, othersButton,
-                              nextButton, exitLabel, exitButton)
+                              nextButton, exitLabel, exitButton, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -113,46 +131,50 @@ class SelectCategoryViewController: BaseViewController {
         }
         
         PINGLECategoryTitle.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(107.adjusted)
+            $0.top.equalTo(progressBar1.snp.bottom).offset(28.adjusted)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         playButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(202.adjusted)
+            $0.top.equalTo(PINGLECategoryTitle.snp.bottom).offset(28.adjusted)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         studyButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(202.adjusted)
+            $0.top.equalTo(PINGLECategoryTitle.snp.bottom).offset(28.adjusted)
             $0.leading.equalToSuperview().inset(192.adjusted)
         }
         
         multiButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(349.adjusted)
+            $0.top.equalTo(playButton.snp.bottom).offset(12.adjusted)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         othersButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(349.adjusted)
+            $0.top.equalTo(studyButton.snp.bottom).offset(12.adjusted)
             $0.leading.equalToSuperview().inset(192.adjusted)
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(exitLabel.snp.top).offset(-14.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
         exitLabel.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalToSuperview().inset(118.adjusted)
             $0.trailing.equalToSuperview().inset(153.adjusted)
         }
         
         exitButton.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalTo(exitLabel.snp.trailing).offset(4.adjusted)
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -180,6 +202,9 @@ class SelectCategoryViewController: BaseViewController {
     
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        unselectAllButtons()
+        nextButton.disabledButton()
     }
     
     @objc func nextButtonTapped() {
@@ -214,7 +239,11 @@ class SelectCategoryViewController: BaseViewController {
             }
         }
     }
-
+    
+    @objc func dimmedViewTapped() {
+        hideDimmedViewWhenTapped()
+    }
+    
     // MARK: - Function
     func unselectAllButtons() {
         playButton.nonSelectedButton()
@@ -224,16 +253,13 @@ class SelectCategoryViewController: BaseViewController {
     }
     
     private func setUpDimmedView() {
-            self.view.addSubview(dimmedView)
-            dimmedView.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
-        }
+        dimmedView.isHidden = true
+    }
     
     private func setNavigation() {
         navigationController?.navigationBar.isHidden = true
     }
-
+    
     func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         playButton.addTarget(self, action: #selector(categorySelected), for: .touchUpInside)
@@ -244,5 +270,28 @@ class SelectCategoryViewController: BaseViewController {
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
         exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
+        
+    }
+    
+    func setGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
+    }
+    
+    private func hideDimmedViewWhenTapped() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.dimmedView.isHidden = true
+        })
+        exitModal.isHidden = true
+    }
+}
+
+// MARK: - Extension
+extension SelectCategoryViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        unselectAllButtons()
+        nextButton.disabledButton()
+        return true
     }
 }

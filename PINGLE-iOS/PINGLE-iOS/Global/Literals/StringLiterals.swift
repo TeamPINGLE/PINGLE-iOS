@@ -83,14 +83,14 @@ enum StringLiterals {
     enum Meeting {
         enum MeetingGuide {
             static let guideTitle = "What is\nPINGLE?"
-            static let guideSubTitle = "PIN 과 MINGLE의 합성어로,\n원하는 장소에서 사람들과 갖는 모임을 뜻해요"
+            static let guideSubTitle = "PIN과 MINGLE의 합성어로,\n원하는 장소에서 사람들과 갖는 모임을 뜻해요"
             static let buttonTitle = "핑글 개최하러 가기"
         }
         
         enum MeetingCategory {
             
             enum CategoryLabel {
-                static let categoryTitleLabel = "개최할 핑글을\n선택해주세요"
+                static let categoryTitleLabel = "개최할 핑글을\n선택해주세요!"
             }
             
             enum CategoryTitle {
@@ -114,7 +114,7 @@ enum StringLiterals {
         }
         
         enum MeetingIntroduction {
-            static let introductionTitle = "개최할 핑글을\n소개해주세요"
+            static let introductionTitle = "개최할 핑글을\n소개해주세요!"
             static let PINGLETitle = "한줄 소개"
             static let PINGLEExplain = "ex. 강남역에서 각잡고 공부할 사람?"
         }

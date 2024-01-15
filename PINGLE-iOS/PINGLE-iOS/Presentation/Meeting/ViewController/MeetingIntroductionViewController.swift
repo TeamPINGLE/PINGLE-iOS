@@ -34,6 +34,7 @@ class MeetingIntroductionViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
         setTarget()
         hideKeyboardWhenTappedAround()
+        setGesture()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,7 +63,8 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         PINGLEIntroductionTitle.do {
-            $0.text = StringLiterals.Meeting.MeetingIntroduction.introductionTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.MeetingIntroduction.introductionTitle, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
@@ -75,8 +77,8 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         exitModal.do {
-                    $0.isHidden = true
-                }
+            $0.isHidden = true
+        }
         
         dimmedView.do {
             $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
@@ -85,9 +87,9 @@ class MeetingIntroductionViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, progressBar2, 
+        self.view.addSubviews(backButton, progressBar2,
                               PINGLEIntroductionTitle, PINGLEIntroductionTextField,
-                              nextButton, exitLabel, exitButton)
+                              nextButton, exitLabel, exitButton, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -112,21 +114,25 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(exitLabel.snp.top).offset(-14.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
         exitLabel.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalToSuperview().inset(118.adjusted)
             $0.trailing.equalToSuperview().inset(153.adjusted)
         }
         
         exitButton.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalTo(exitLabel.snp.trailing).offset(4.adjusted)
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -138,8 +144,8 @@ class MeetingIntroductionViewController: BaseViewController {
     @objc func nextButtonTapped() {
         let dateSelectionViewController = DateSelectionViewController()
         navigationController?.pushViewController(dateSelectionViewController, animated: true)
-        }
-
+    }
+    
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {
             if let newText = textField.text, !newText.isEmpty {
@@ -173,6 +179,10 @@ class MeetingIntroductionViewController: BaseViewController {
         self.dismiss(animated: true)
     }
     
+    @objc func dimmedViewTapped() {
+        hideDimmedViewWhenTapped()
+    }
+    
     // MARK: Function
     func setTarget() {
         PINGLEIntroductionTextField.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)),
@@ -187,10 +197,13 @@ class MeetingIntroductionViewController: BaseViewController {
     }
     
     private func setUpDimmedView() {
-        self.view.addSubview(dimmedView)
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        dimmedView.isHidden = true
+    }
+    
+    func setGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
     }
     
     private func setNavigation() {
@@ -200,13 +213,65 @@ class MeetingIntroductionViewController: BaseViewController {
     override func setDelegate() {
         self.PINGLEIntroductionTextField.searchTextField.delegate = self
     }
+    
+    private func hideDimmedViewWhenTapped() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.dimmedView.isHidden = true
+        })
+        exitModal.isHidden = true
+    }
 }
 
-// MARK: Extension
+// MARK: - Extension
 // MARK: UITextFieldDelegate
 extension MeetingIntroductionViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            let maxLength = 27 
+            let oldText = textField.text ?? ""
+            let addedText = string
+
+            // 붙여넣기할때 분기처리
+            if let textRange = textField.selectedTextRange {
+                let start = textRange.start
+                let cursorPosition = textField.offset(from: textField.beginningOfDocument, to: start)
+                let prefix = oldText.prefix(cursorPosition)
+                let suffix = oldText.suffix(from: oldText.index(oldText.startIndex, offsetBy: cursorPosition))
+                let newText = prefix + addedText + suffix
+
+                if newText.count <= maxLength {
+                    return true
+                } else {
+                    return false
+                }
+            } else {
+                let newText = oldText + addedText
+                if newText.count <= maxLength {
+                    return true
+                }
+
+                let lastWordOfOldText = String(oldText[oldText.index(before: oldText.endIndex)])
+                let separatedCharacters = lastWordOfOldText.decomposedStringWithCanonicalMapping.unicodeScalars.map{ String($0) }
+                var separatedCharactersCount = separatedCharacters.count
+                if separatedCharactersCount >= 1 && separatedCharactersCount <= 3 && addedText.isConsonant {
+                    return true
+                }
+                return false
+            }
+        }
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            var text = textField.text ?? ""
+            let maxLength = 26
+            if text.count > maxLength {
+                let startIndex = text.startIndex
+                let endIndex = text.index(startIndex, offsetBy: maxLength - 1)
+                let fixedText = String(text[startIndex...endIndex])
+                textField.text = fixedText
+            }
+        }
 }

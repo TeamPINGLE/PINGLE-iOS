@@ -37,6 +37,7 @@ final class RecruitmentViewController: BaseViewController {
         hideKeyboardWhenTappedAround()
         setInitialNum()
         setUpDimmedView()
+        setGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,14 +66,16 @@ final class RecruitmentViewController: BaseViewController {
         }
         
         recruitTitle.do {
-            $0.text = StringLiterals.Meeting.Recruitment.recruitTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.Recruitment.recruitTitle, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
         }
         
         recruitCondition.do {
-            $0.text = StringLiterals.Meeting.Recruitment.recruitCondition
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.Recruitment.recruitCondition, lineHeight: 20)
+            $0.textAlignment = .left
             $0.font = .bodyBodyMed14
             $0.numberOfLines = 0
             $0.textColor = .grayscaleG05
@@ -85,6 +88,7 @@ final class RecruitmentViewController: BaseViewController {
             $0.textAlignment = .center
             $0.font = .titleTitleSemi32
             $0.textColor = .white
+            $0.tintColor = .mainPingleGreen
             $0.keyboardType = .numberPad
         }
         
@@ -116,7 +120,7 @@ final class RecruitmentViewController: BaseViewController {
         self.view.addSubviews(backButton, progressBar5,
                               recruitTitle, recruitCondition, recruitTextField,
                               plusButton, minusButton,
-                              nextButton, exitLabel, exitButton)
+                              nextButton, exitLabel, exitButton, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -136,7 +140,7 @@ final class RecruitmentViewController: BaseViewController {
         }
         
         recruitCondition.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(187.adjusted)
+            $0.top.equalTo(recruitTitle.snp.bottom).offset(12.adjusted)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
@@ -160,21 +164,25 @@ final class RecruitmentViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(54.adjusted)
+            $0.bottom.equalTo(exitLabel.snp.top).offset(-14.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
         exitLabel.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalToSuperview().inset(118.adjusted)
             $0.trailing.equalToSuperview().inset(153.adjusted)
         }
         
         exitButton.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalTo(exitLabel.snp.trailing).offset(4.adjusted)
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -266,6 +274,10 @@ final class RecruitmentViewController: BaseViewController {
         self.dismiss(animated: true)
     }
     
+    @objc func dimmedViewTapped() {
+        hideDimmedViewWhenTapped()
+    }
+    
     // MARK: Function
     func setTarget() {
         recruitTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
@@ -278,12 +290,21 @@ final class RecruitmentViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
+    func setGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
+    }
+    
     private func setUpDimmedView() {
-        self.view.addSubview(dimmedView)
-        
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        dimmedView.isHidden = true
+    }
+    
+    private func hideDimmedViewWhenTapped() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.dimmedView.isHidden = true
+        })
+        exitModal.isHidden = true
     }
     
     func setNavigation() {

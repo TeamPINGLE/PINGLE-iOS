@@ -61,7 +61,8 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
         
         openChatTitle.do {
-            $0.text = StringLiterals.Meeting.OpenChat.openChatTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.OpenChat.openChatTitle, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
@@ -90,7 +91,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
     override func setLayout() {
         self.view.addSubviews(backButton, progressBar6,
                               openChatTitle, openChatLinkTextField,
-                              nextButton, exitLabel, exitButton)
+                              nextButton, exitLabel, exitButton, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -115,21 +116,25 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(exitLabel.snp.top).offset(-14.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
         exitLabel.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalToSuperview().inset(118.adjusted)
             $0.trailing.equalToSuperview().inset(153.adjusted)
         }
         
         exitButton.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalTo(exitLabel.snp.trailing).offset(4.adjusted)
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -176,6 +181,10 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
     }
     
+    @objc func dimmedViewTapped() {
+        hideDimmedViewWhenTapped()
+    }
+    
     // MARK: Function
     func setTarget() {
         openChatLinkTextField.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
@@ -191,11 +200,20 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     private func setUpDimmedView() {
-        self.view.addSubview(dimmedView)
-        
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        dimmedView.isHidden = true
+    }
+    
+    private func setGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
+    }
+    
+    private func hideDimmedViewWhenTapped() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.dimmedView.isHidden = true
+        })
+        exitModal.isHidden = true
     }
 
     override func setDelegate() {

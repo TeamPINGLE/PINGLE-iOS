@@ -36,6 +36,7 @@ class PlaceSelectionViewController: BaseViewController {
         setUpLabel()
         setUpDimmedView()
         hideKeyboardWhenTappedAround()
+        setGesture()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,7 +63,8 @@ class PlaceSelectionViewController: BaseViewController {
         }
         
         placeSelectionTitle.do {
-            $0.text = StringLiterals.Meeting.SearhPlace.searchPlaceTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.SearhPlace.searchPlaceTitle, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
@@ -85,7 +87,7 @@ class PlaceSelectionViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, progressBar4, placeSelectionTitle, searchPlaceView, nextButton, exitLabel, exitButton)
+        self.view.addSubviews(backButton, progressBar4, placeSelectionTitle, searchPlaceView, nextButton, exitLabel, exitButton, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -111,21 +113,25 @@ class PlaceSelectionViewController: BaseViewController {
         }
 
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(exitLabel.snp.top).offset(-14.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
         exitLabel.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalToSuperview().inset(118.adjusted)
             $0.trailing.equalToSuperview().inset(153.adjusted)
         }
         
         exitButton.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalTo(exitLabel.snp.trailing).offset(4.adjusted)
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -162,12 +168,14 @@ class PlaceSelectionViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
+    private func setGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
+    }
+    
     private func setUpDimmedView() {
-        self.view.addSubview(dimmedView)
-        
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        dimmedView.isHidden = true
     }
     
     // MARK: Objc Function
@@ -177,6 +185,8 @@ class PlaceSelectionViewController: BaseViewController {
     
     @objc func searchButtonTapped() {
         if let search = searchPlaceView.searchTextField.text {
+            selectedPlace = nil
+            nextButton.disabledButton()
             if search.isEmpty {
                 searchPlaceResponseDTO = []
                 searchPlaceView.searchPlaceCollectionView.reloadData()
@@ -221,6 +231,10 @@ class PlaceSelectionViewController: BaseViewController {
         self.dismiss(animated: true)
     }
     
+    @objc func dimmedViewTapped() {
+        hideDimmedViewWhenTapped()
+    }
+    
     // MARK: Network Function
     func searchPlace(data: SearchPlaceRequestQueryDTO) {
         NetworkService.shared.meetingService.searchPlace(queryDTO: data) { [weak self] response in
@@ -229,9 +243,9 @@ class PlaceSelectionViewController: BaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 if data.isEmpty {
-                    searchPlaceView.noPlaceResult.isHidden = false
+                    searchPlaceView.isHiddenResultLabel(isEnabled: false)
                 } else {
-                    searchPlaceView.noPlaceResult.isHidden = true
+                    searchPlaceView.isHiddenResultLabel(isEnabled: true)
                 }
                 self.searchPlaceResponseDTO = data
                 self.searchPlaceView.searchPlaceCollectionView.reloadData()
@@ -239,7 +253,13 @@ class PlaceSelectionViewController: BaseViewController {
                 return
             }
         }
-
+    }
+    
+    private func hideDimmedViewWhenTapped() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.dimmedView.isHidden = true
+        })
+        exitModal.isHidden = true
     }
 }
 
@@ -252,8 +272,7 @@ extension PlaceSelectionViewController: UITextFieldDelegate {
             if search.isEmpty {
                 searchPlaceResponseDTO = []
                 searchPlaceView.searchPlaceCollectionView.reloadData()
-                searchPlaceView.noPlaceResult.isHidden = false
-                searchPlaceView.reSearch.isHidden = false
+                searchPlaceView.isHiddenResultLabel(isEnabled: false)
             } else {
                 searchPlace(data: SearchPlaceRequestQueryDTO(search: search))
             }

@@ -95,7 +95,6 @@
 		E5A651FA2B4B2A6F00676ED0 /* RecruitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651F92B4B2A6F00676ED0 /* RecruitButton.swift */; };
 		E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651FB2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift */; };
 		E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */; };
-		E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */; };
 		E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299A2B455E20005D1220 /* MakeMeetingGuideViewController.swift */; };
 		E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */; };
 		E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */; };
@@ -227,7 +226,6 @@
 		E5A651F92B4B2A6F00676ED0 /* RecruitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitButton.swift; sourceTree = "<group>"; };
 		E5A651FB2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertOpenChatLinkViewController.swift; sourceTree = "<group>"; };
 		E5AD29932B454BB3005D1220 /* PINGLECTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECTAButton.swift; sourceTree = "<group>"; };
-		E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCustomTest.swift; sourceTree = "<group>"; };
 		E5AD299A2B455E20005D1220 /* MakeMeetingGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMeetingGuideViewController.swift; sourceTree = "<group>"; };
 		E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECategoryButton.swift; sourceTree = "<group>"; };
 		E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
@@ -543,7 +541,6 @@
 				E50AA1FA2B46D2AB005E854B /* Components */,
 				E5AD29972B455E20005D1220 /* View */,
 				E5AD29992B455E20005D1220 /* ViewController */,
-				E5AD29952B454F84005D1220 /* ButtonCustomTest.swift */,
 			);
 			path = Meeting;
 			sourceTree = "<group>";
@@ -1154,7 +1151,6 @@
 				F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */,
 				E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
-				E5AD29962B454F84005D1220 /* ButtonCustomTest.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
 				C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,

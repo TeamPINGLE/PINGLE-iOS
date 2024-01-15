@@ -43,6 +43,10 @@ final class PINGLECategoryButton: UIButton {
             $0.makeBorder(width: 1.adjusted, color: .grayscaleG10)
         }
         
+        categoryImage.do {
+            $0.contentMode = .scaleAspectFill
+        }
+        
         buttonTitleLabel.do {
             $0.font = .subtitleSubBold18
         }
@@ -57,25 +61,24 @@ final class PINGLECategoryButton: UIButton {
         self.addSubviews(categoryImage, buttonTitleLabel, buttonExplainLabel)
         
         self.snp.makeConstraints {
-            $0.width.equalTo(159.adjusted)
-            $0.height.equalTo(135.adjusted)
+            $0.width.equalTo(159)
+            $0.height.equalTo(135.adjustedHeight)
         }
         
         categoryImage.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(53.adjusted)
-            $0.trailing.equalToSuperview().inset(52.adjusted)
-            $0.top.equalToSuperview().inset(14.adjusted)
-            $0.bottom.equalToSuperview().inset(67.adjusted)
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().inset(14)
+            $0.bottom.equalToSuperview().inset(67)
         }
         
         buttonTitleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(categoryImage.snp.bottom).offset(2.adjusted)
+            $0.top.equalTo(categoryImage.snp.bottom).offset(2)
         }
         
         buttonExplainLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(buttonTitleLabel.snp.bottom).offset(3.adjusted)
+            $0.top.equalTo(buttonTitleLabel.snp.bottom).offset(3)
         }
     }
 }

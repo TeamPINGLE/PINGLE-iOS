@@ -49,6 +49,7 @@ class DateSelectionViewController: BaseViewController {
         setDelegate()
         setTarget()
         setUpDimmedView()
+        setGesture()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,7 +78,8 @@ class DateSelectionViewController: BaseViewController {
         }
         
         dateSelectionTitle.do {
-            $0.text = StringLiterals.Meeting.DateSelection.dateSelecionTitle
+            $0.setTextWithLineHeight(text: StringLiterals.Meeting.DateSelection.dateSelecionTitle, lineHeight: 34)
+            $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
             $0.textColor = .white
@@ -107,7 +109,7 @@ class DateSelectionViewController: BaseViewController {
         self.view.addSubviews(backButton, progressBar3,
                               dateSelectionTitle, PINGLEDateSelectionTextField,
                               PINGLEStartTimeTextField, PINGLEEndTimeTextField,
-                              nextButton, exitLabel, exitButton, warningToastView)
+                              nextButton, exitLabel, exitButton, warningToastView, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -144,18 +146,18 @@ class DateSelectionViewController: BaseViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(54.adjusted)
+            $0.bottom.equalTo(exitLabel.snp.top).offset(-14.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
         exitLabel.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalToSuperview().inset(118.adjusted)
             $0.trailing.equalToSuperview().inset(153.adjusted)
         }
         
         exitButton.snp.makeConstraints {
-            $0.top.equalTo(nextButton.snp.bottom).offset(14.adjusted)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-23.adjusted)
             $0.leading.equalTo(exitLabel.snp.trailing).offset(4.adjusted)
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
@@ -164,6 +166,10 @@ class DateSelectionViewController: BaseViewController {
         warningToastView.snp.makeConstraints {
             $0.bottom.equalTo(nextButton.snp.top).offset(-16.adjusted)
             $0.centerX.equalToSuperview()
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -263,8 +269,8 @@ class DateSelectionViewController: BaseViewController {
         self.dismiss(animated: true)
     }
     
-    @objc func deemedViewTapped() {
-        hideDeemedViewWhenTapped()
+    @objc func dimmedViewTapped() {
+        hideDimmedViewWhenTapped()
     }
     
     // MARK: Function
@@ -282,14 +288,14 @@ class DateSelectionViewController: BaseViewController {
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
     }
     
-    private func setUpDimmedView() {
-        self.view.addSubview(dimmedView)
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deemedViewTapped))
+    private func setGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
         dimmedView.addGestureRecognizer(tapGesture)
         dimmedView.isUserInteractionEnabled = true
+    }
+    
+    private func setUpDimmedView() {
+        dimmedView.isHidden = true
     }
     
     private func setNavigation() {
@@ -356,13 +362,14 @@ class DateSelectionViewController: BaseViewController {
         }
     }
     
-    private func hideDeemedViewWhenTapped() {
+    private func hideDimmedViewWhenTapped() {
         UIView.animate(withDuration: 0.5, animations: {
             self.dimmedView.isHidden = true
             self.bottomDateView.removeFromSuperview()
             self.bottomStartTimeView.removeFromSuperview()
             self.bottomEndTimeView.removeFromSuperview()
         })
+        exitModal.isHidden = true
     }
     
     override func setDelegate() {

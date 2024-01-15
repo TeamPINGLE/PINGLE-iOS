@@ -98,7 +98,7 @@ enum ImageLiterals {
         
         enum Guide {
             static var imgExitButton: UIImage { .load(named: "imgExitButton")}
-            static var imgMettingGraphic: UIImage { .load(named: "graphicIntro")}
+            static var imgMeetingGrphic: UIImage { .load(named: "graphicIntro")}
         }
         
         enum Category {

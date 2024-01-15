@@ -43,7 +43,7 @@ final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
         }
         
         self.placeName.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 22)
+//            $0.setTextWithLineHeight(text: " ", lineHeight: 22)
             $0.lineBreakMode = .byCharWrapping
             $0.numberOfLines = 2
             $0.textAlignment = .left
@@ -52,7 +52,7 @@ final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
         }
         
         self.placeDetailedAddress.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 17)
+//            $0.setTextWithLineHeight(text: " ", lineHeight: 17)
             $0.lineBreakMode = .byCharWrapping
             $0.numberOfLines = 2
             $0.textAlignment = .left
@@ -73,15 +73,15 @@ final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
         self.addSubviews(placeName, placeDetailedAddress, selectImageView, horizontalLineView)
         
         self.placeName.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(28 - 3)
+            $0.top.equalToSuperview().inset(30)
             $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(73.adjusted)
+            $0.width.equalTo(252.adjusted)
         }
         
         self.placeDetailedAddress.snp.makeConstraints {
-            $0.top.equalTo(placeName.snp.bottom).offset(8 - 3)
+            $0.top.equalTo(placeName.snp.bottom).offset(7)
             $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(73.adjusted)
+            $0.width.equalTo(252.adjusted)
         }
         
         self.selectImageView.snp.makeConstraints {

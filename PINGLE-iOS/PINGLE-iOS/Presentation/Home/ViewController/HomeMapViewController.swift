@@ -310,7 +310,8 @@ extension HomeMapViewController {
         self.mapsView.homeMarkerList.forEach { marker in
             marker.touchHandler = { ( _: NMFOverlay) -> Bool in
                 print("오버레이 터치됨")
-                self.bindDetailViewData(id: marker.id, category: marker.meetingString)
+                let category = self.markerCategory.isEmpty ? "" : marker.meetingString
+                self.bindDetailViewData(id: marker.id, category: category)
                 self.mapsView.currentLocationButton.isHidden = true
                 self.mapsView.listButton.isHidden = true
                 self.markerTapped(marker: marker)
@@ -392,10 +393,8 @@ extension HomeMapViewController {
                 guard let data = data.data else { return }
                 print(data)
                 DispatchQueue.main.async { [weak self] in
-                    // 2, 3차 스프린트 시에 전체 data 받아올 예정
-                    // self?.homePinDetailList = data
                     self?.homePinDetailList = []
-                    self?.homePinDetailList.append(data[0])
+                    self?.homePinDetailList = data
                     data.forEach {
                         self?.meetingId.append($0.id)
                     }

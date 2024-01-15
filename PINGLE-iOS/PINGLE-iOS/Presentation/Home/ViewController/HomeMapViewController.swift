@@ -18,7 +18,6 @@ final class HomeMapViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     var shouldUpdateMap: Bool = true
-    var firstLoad: Bool = true
     var homePinDetailList: [HomePinDetailResponseDTO] = []
     var meetingId: [Int] = []
     var markerId = 0
@@ -35,12 +34,12 @@ final class HomeMapViewController: BaseViewController {
         setLocationManager()
         setAddTarget()
         setCollectionView()
+        self.loadPinList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
-        self.loadPinList()
     }
     
     private func setNavigationBar() {
@@ -381,11 +380,8 @@ extension HomeMapViewController {
     }
     
     func loadPinList() {
-        if self.firstLoad {
-            self.pinList(category: self.markerCategory) {_ in 
-                self.setMarker()
-            }
-            self.firstLoad = false
+        self.pinList(category: self.markerCategory) {_ in
+            self.setMarker()
         }
     }
     

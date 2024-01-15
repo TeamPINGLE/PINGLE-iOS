@@ -141,6 +141,8 @@ final class FinalSummaryCardView: BaseView {
         locationLabel.do {
             $0.text = MeetingManager.shared.location
             $0.textColor = .grayscaleG03
+            $0.numberOfLines = 2
+            $0.lineBreakMode = .byCharWrapping
             $0.font = .bodyBodyMed14
         }
         
@@ -252,6 +254,7 @@ final class FinalSummaryCardView: BaseView {
         locationLabel.snp.makeConstraints {
             $0.leading.equalTo(dateLabel)
             $0.centerY.equalTo(locationImageView)
+            $0.trailing.equalToSuperview().inset(26.adjusted)
         }
         
         recruitNumberImageView.snp.makeConstraints {

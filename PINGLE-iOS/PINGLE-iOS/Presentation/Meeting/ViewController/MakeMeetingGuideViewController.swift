@@ -82,7 +82,7 @@ final class MakeMeetingGuideViewController: BaseViewController {
         }
         
         guideSubTitle.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(238)
+            $0.top.equalToSuperview().inset(238)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         

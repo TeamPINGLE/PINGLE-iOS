@@ -168,7 +168,7 @@ class PlaceSelectionViewController: BaseViewController {
         dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deemedViewTapped))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
         dimmedView.addGestureRecognizer(tapGesture)
         dimmedView.isUserInteractionEnabled = true
     }
@@ -226,8 +226,8 @@ class PlaceSelectionViewController: BaseViewController {
         self.dismiss(animated: true)
     }
     
-    @objc func deemedViewTapped() {
-        hideDeemedViewWhenTapped()
+    @objc func dimmedViewTapped() {
+        hideDimmedViewWhenTapped()
     }
     
     // MARK: Network Function
@@ -250,7 +250,7 @@ class PlaceSelectionViewController: BaseViewController {
         }
     }
     
-    private func hideDeemedViewWhenTapped() {
+    private func hideDimmedViewWhenTapped() {
         UIView.animate(withDuration: 0.5, animations: {
             self.dimmedView.isHidden = true
         })

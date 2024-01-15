@@ -174,8 +174,8 @@ class MeetingIntroductionViewController: BaseViewController {
         self.dismiss(animated: true)
     }
     
-    @objc func deemedViewTapped() {
-        hideDeemedViewWhenTapped()
+    @objc func dimmedViewTapped() {
+        hideDimmedViewWhenTapped()
     }
     
     // MARK: Function
@@ -196,7 +196,7 @@ class MeetingIntroductionViewController: BaseViewController {
         dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deemedViewTapped))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
         dimmedView.addGestureRecognizer(tapGesture)
         dimmedView.isUserInteractionEnabled = true
     }
@@ -209,7 +209,7 @@ class MeetingIntroductionViewController: BaseViewController {
         self.PINGLEIntroductionTextField.searchTextField.delegate = self
     }
     
-    private func hideDeemedViewWhenTapped() {
+    private func hideDimmedViewWhenTapped() {
         UIView.animate(withDuration: 0.5, animations: {
             self.dimmedView.isHidden = true
         })
@@ -251,20 +251,10 @@ extension MeetingIntroductionViewController: UITextFieldDelegate {
 
                 let lastWordOfOldText = String(oldText[oldText.index(before: oldText.endIndex)])
                 let separatedCharacters = lastWordOfOldText.decomposedStringWithCanonicalMapping.unicodeScalars.map{ String($0) }
-                let separatedCharactersCount = separatedCharacters.count
-
-                if separatedCharactersCount == 1 && addedText.isConsonant {
+                var separatedCharactersCount = separatedCharacters.count
+                if separatedCharactersCount >= 1 && separatedCharactersCount <= 3 && addedText.isConsonant {
                     return true
                 }
-
-                if separatedCharactersCount == 2 && addedText.isConsonant {
-                    return true
-                }
-
-                if separatedCharactersCount == 3 && addedText.isConsonant {
-                    return true
-                }
-                
                 return false
             }
         }
@@ -279,17 +269,4 @@ extension MeetingIntroductionViewController: UITextFieldDelegate {
                 textField.text = fixedText
             }
         }
-}
-
-extension String {
-    // 글자가 자음인지 체크
-    var isConsonant: Bool {
-        guard let scalar = UnicodeScalar(self)?.value else {
-            return false
-        }
-        
-        let consonantScalarRange: ClosedRange<UInt32> = 12593...12622
-        
-        return consonantScalarRange ~= scalar
-    }
 }

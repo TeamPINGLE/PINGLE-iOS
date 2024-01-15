@@ -177,8 +177,8 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
     }
     
-    @objc func deemedViewTapped() {
-        hideDeemedViewWhenTapped()
+    @objc func dimmedViewTapped() {
+        hideDimmedViewWhenTapped()
     }
     
     // MARK: Function
@@ -200,12 +200,12 @@ class InsertOpenChatLinkViewController: BaseViewController {
         dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(deemedViewTapped))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
         dimmedView.addGestureRecognizer(tapGesture)
         dimmedView.isUserInteractionEnabled = true
     }
     
-    private func hideDeemedViewWhenTapped() {
+    private func hideDimmedViewWhenTapped() {
         UIView.animate(withDuration: 0.5, animations: {
             self.dimmedView.isHidden = true
         })

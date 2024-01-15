@@ -67,6 +67,7 @@ final class FinalResultViewController: BaseViewController {
         
         cardScrollView.do {
             $0.isScrollEnabled = true
+            $0.showsVerticalScrollIndicator = false
         }
         
         nextButton.do {

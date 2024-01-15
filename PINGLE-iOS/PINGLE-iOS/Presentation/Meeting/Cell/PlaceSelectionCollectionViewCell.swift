@@ -43,15 +43,19 @@ final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
         }
         
         self.placeName.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 46)
-            $0.numberOfLines = 0
+            $0.setTextWithLineHeight(text: " ", lineHeight: 22)
+            $0.lineBreakMode = .byCharWrapping
+            $0.numberOfLines = 2
             $0.textAlignment = .left
             $0.font = .subtitleSubSemi16
             $0.textColor = .white
         }
         
         self.placeDetailedAddress.do {
-            $0.text = "상세 주소"
+            $0.setTextWithLineHeight(text: " ", lineHeight: 17)
+            $0.lineBreakMode = .byCharWrapping
+            $0.numberOfLines = 2
+            $0.textAlignment = .left
             $0.font = .captionCapMed12
             $0.textColor = .grayscaleG06
         }
@@ -71,12 +75,13 @@ final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
         self.placeName.snp.makeConstraints {
             $0.top.equalToSuperview().offset(28 - 3)
             $0.leading.equalToSuperview()
-            $0.width.equalTo(252.adjustedWidth)
+            $0.trailing.equalToSuperview().inset(73.adjusted)
         }
         
         self.placeDetailedAddress.snp.makeConstraints {
             $0.top.equalTo(placeName.snp.bottom).offset(8 - 3)
             $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(73.adjusted)
         }
         
         self.selectImageView.snp.makeConstraints {

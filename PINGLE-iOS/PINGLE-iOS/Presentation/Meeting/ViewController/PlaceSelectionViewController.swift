@@ -185,14 +185,19 @@ class PlaceSelectionViewController: BaseViewController {
     
     @objc func searchButtonTapped() {
         if let search = searchPlaceView.searchTextField.text {
-            selectedPlace = nil
-            nextButton.disabledButton()
-            if search.isEmpty {
-                searchPlaceResponseDTO = []
-                searchPlaceView.searchPlaceCollectionView.reloadData()
-                searchPlaceView.isHiddenResultLabel(isEnabled: false)
-            } else {
-                searchPlace(data: SearchPlaceRequestQueryDTO(search: search))
+            if search != "" {
+                selectedPlace = nil
+                nextButton.disabledButton()
+                if search.isEmpty {
+                    searchPlaceResponseDTO = []
+                    searchPlaceView.searchPlaceCollectionView.reloadData()
+                    searchPlaceView.isHiddenResultLabel(isEnabled: false)
+                } else {
+                    searchPlace(data: SearchPlaceRequestQueryDTO(search: search))
+                }
+            }
+            else {
+                searchPlaceView.searchButton.isEnabled = true
             }
         }
         self.view.endEditing(true)

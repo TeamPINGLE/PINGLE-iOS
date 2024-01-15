@@ -46,6 +46,7 @@ class SelectCategoryViewController: BaseViewController {
         setUpDimmedView()
         setNavigation()
         setTarget()
+        setGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,7 +116,7 @@ class SelectCategoryViewController: BaseViewController {
     override func setLayout() {
         self.view.addSubviews(backButton, progressBar1, PINGLECategoryTitle, 
                               playButton, studyButton, multiButton, othersButton,
-                              nextButton, exitLabel, exitButton)
+                              nextButton, exitLabel, exitButton, dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -170,6 +171,10 @@ class SelectCategoryViewController: BaseViewController {
             $0.leading.equalTo(exitLabel.snp.trailing).offset(4.adjusted)
             $0.centerY.equalTo(exitLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(117.adjusted)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -247,13 +252,7 @@ class SelectCategoryViewController: BaseViewController {
     }
     
     private func setUpDimmedView() {
-        self.view.addSubview(dimmedView)
-        dimmedView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
-        dimmedView.addGestureRecognizer(tapGesture)
-        dimmedView.isUserInteractionEnabled = true
+        dimmedView.isHidden = true
     }
     
     private func setNavigation() {
@@ -270,6 +269,13 @@ class SelectCategoryViewController: BaseViewController {
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
         exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
         exitModal.keepMaking.addTarget(self, action: #selector(exitModalKeepButtonTapped), for: .touchUpInside)
+        
+    }
+    
+    func setGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped))
+        dimmedView.addGestureRecognizer(tapGesture)
+        dimmedView.isUserInteractionEnabled = true
     }
     
     private func hideDimmedViewWhenTapped() {

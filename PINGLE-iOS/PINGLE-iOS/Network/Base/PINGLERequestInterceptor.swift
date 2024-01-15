@@ -77,7 +77,7 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                 self.logout()
             default:
                 completion(false)
-                /// 재발행에 실패하여 로그아웃 처리.
+                self.logout()
             }
         }
     }

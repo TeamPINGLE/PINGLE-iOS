@@ -20,7 +20,7 @@ extension ProfileTarget: TargetType {
         case .logout:
             return .authorization
         case .deleteID:
-            return .deleteAppleId
+            return .authorization
         }
     }
     
@@ -29,7 +29,7 @@ extension ProfileTarget: TargetType {
         case .logout:
             return .hasToken
         case .deleteID:
-            return .hasToken
+            return .deleteAppleId
         }
     }
     

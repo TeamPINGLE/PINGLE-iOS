@@ -29,6 +29,7 @@ enum HTTPHeaderType {
     case hasToken
     case refreshToken
     case teamId
+    case deleteAppleId
 }
 
 @frozen
@@ -37,5 +38,4 @@ enum Authorization {
     case unauthorization
     case socialAuthorization
     case reAuthorization
-    case deleteAppleId
 }

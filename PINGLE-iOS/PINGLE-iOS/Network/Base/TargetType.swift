@@ -49,6 +49,11 @@ extension TargetType {
                 HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
                 HTTPHeaderFieldKey.teamId.rawValue: "\(KeychainHandler.shared.userGroup[0].id)"
             ]
+        case .deleteAppleId:
+            return [
+                HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
+                HTTPHeaderFieldKey.deleteAppleId.rawValue: KeychainHandler.shared.authorizationCode
+            ]
         }
     }
 }
@@ -70,8 +75,6 @@ extension TargetType {
             urlRequest.setValue(KeychainHandler.shared.providerToken, forHTTPHeaderField: HTTPHeaderFieldKey.providerToken.rawValue)
         case .reAuthorization:
             urlRequest.setValue(KeychainHandler.shared.refreshToken, forHTTPHeaderField: HTTPHeaderFieldKey.authentication.rawValue)
-        case .deleteAppleId:
-            urlRequest.setValue(KeychainHandler.shared.authorizationCode, forHTTPHeaderField: HTTPHeaderFieldKey.deleteAppleId.rawValue)
         }
         
         switch headerType {
@@ -89,6 +92,9 @@ extension TargetType {
         case .teamId:
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
             urlRequest.setValue("\(KeychainHandler.shared.userGroup[0].id)", forHTTPHeaderField: HTTPHeaderFieldKey.teamId.rawValue)
+        case .deleteAppleId:
+            urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
+            urlRequest.setValue(KeychainHandler.shared.authorizationCode, forHTTPHeaderField: HTTPHeaderFieldKey.deleteAppleId.rawValue)
         }
         
         switch parameters {

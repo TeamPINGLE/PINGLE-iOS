@@ -202,6 +202,7 @@ class SelectCategoryViewController: BaseViewController {
     
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         unselectAllButtons()
         nextButton.disabledButton()
     }

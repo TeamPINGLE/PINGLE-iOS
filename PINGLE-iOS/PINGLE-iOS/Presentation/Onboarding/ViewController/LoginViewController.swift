@@ -143,7 +143,9 @@ final class LoginViewController: BaseViewController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                KeychainHandler.shared.userGroup = data.groups
+                if let groups = data.groups {
+                    KeychainHandler.shared.userGroup = groups
+                }
                 if KeychainHandler.shared.userGroup.isEmpty {
                     let onboardingViewController = OnboardingViewController()
                     self.navigationController?.pushViewController(onboardingViewController, animated: true)

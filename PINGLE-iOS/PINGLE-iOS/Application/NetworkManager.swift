@@ -16,7 +16,9 @@ class NetworkManager {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                KeychainHandler.shared.userGroup = data.groups
+                if let groups = data.groups {
+                    KeychainHandler.shared.userGroup = groups
+                }
                 resultCompletion(true)
             case .failure:
                 resultCompletion(false)

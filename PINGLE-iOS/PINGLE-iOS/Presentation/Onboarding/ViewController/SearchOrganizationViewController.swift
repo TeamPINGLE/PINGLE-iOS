@@ -146,19 +146,14 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     @objc func searchButtonTapped() {
-        /// 검색 결과가 없는 경우 "검색 결과가 없어요" 라벨이 나옵니다. 검색결과가 있는 경우 "검색 결과가 없어요" 라벨이 사라집니다.
+        /// 검색하는 내용이 없을 경우 아무런 통신도 하지 않고 이전 상태를 유지합니다.
         if let searchText = searchOrganizationView.searchTextField.text {
-            if searchText.isEmpty {
-                searchOrganizationResponseDTO = []
-                searchOrganizationView.searchCollectionView.reloadData()
-                searchOrganizationView.noResultLabel.isHidden = false
-            } else {
+            if !searchText.isEmpty {
                 searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
+                selectedCellIndex = nil
+                bottomCTAButton.disabledButton()
             }
         }
-        /// 선택된 행 해제한 뒤, 다음으로 버튼 비활성화
-        selectedCellIndex = nil
-        bottomCTAButton.disabledButton()
         self.view.endEditing(true)
     }
     

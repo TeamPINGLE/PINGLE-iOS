@@ -12,6 +12,10 @@ import Then
 
 final class MyPINGLECollectionViewCell: UICollectionViewCell {
 
+    static let identifier = "MyPINGLECollectionViewCell"
+    
+    let myPINGLECardView = MyPINGLECardView()
+    
     // MARK: - Function
     // MARK: LifeCycle
     override init(frame: CGRect) {
@@ -28,12 +32,13 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
         setLayout()
     }
     
-    private func setStyle() {
-        
-        
-    }
+    private func setStyle() { }
     
     private func setLayout() {
+        self.addSubviews(myPINGLECardView)
         
+        myPINGLECardView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }

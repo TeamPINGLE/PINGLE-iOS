@@ -7,23 +7,67 @@
 
 import UIKit
 
-class SoonViewController: UIViewController {
+import SnapKit
+import Then
 
+final class SoonViewController: BaseViewController {
+    
+    lazy var myPINGLECollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLEFlowLayout)
+    let myPINGLEFlowLayout = UICollectionViewFlowLayout()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setCollectionView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func setDelegate() {
+        self.myPINGLECollectionView.delegate = self
+        self.myPINGLECollectionView.dataSource = self
     }
-    */
+    
+    private func setCollectionView() {
+        self.myPINGLECollectionView.register(MyPINGLECollectionViewCell.self, forCellWithReuseIdentifier: MyPINGLECollectionViewCell.identifier)
+    }
+    
+    override func setStyle() {
+        view.backgroundColor = .grayscaleG11
+        
+        myPINGLEFlowLayout.do {
+            $0.scrollDirection = .vertical
+            $0.minimumLineSpacing = 16
+            $0.itemSize = CGSize(width: UIScreen.main.bounds.width - 48, height: 229)
+        }
+        
+        myPINGLECollectionView.do {
+            $0.backgroundColor = .grayscaleG11
+            $0.showsVerticalScrollIndicator = false
+            $0.showsVerticalScrollIndicator = false
+        }
+    }
+    
+    override func setLayout() {
+        let safeAreaHeight = view.safeAreaInsets.bottom
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
+        
+        view.addSubview(myPINGLECollectionView)
+        
+        myPINGLECollectionView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(safeAreaHeight).offset(-tabBarHeight)
+        }
+    }
+}
 
+extension SoonViewController: UICollectionViewDelegate { }
+
+extension SoonViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyPINGLECollectionViewCell.identifier, for: indexPath) as? MyPINGLECollectionViewCell else { return UICollectionViewCell() }
+        return cell
+    }
 }

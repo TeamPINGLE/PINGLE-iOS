@@ -25,7 +25,7 @@ final class MyPINGLECardView: BaseView {
     let badgeImageView = UIImageView()
     let dDayLabel = UILabel()
     let dDayBackground = UIView()
-    let badgeStackView = UIStackView()
+    let badgeGroupView = UIView()
     let titleLabel = UILabel()
     let nameLabel = UILabel()
     let topStackView = UIStackView()
@@ -75,11 +75,6 @@ final class MyPINGLECardView: BaseView {
         dDayBackground.do {
             $0.makeCornerRound(radius: 10)
             $0.backgroundColor = .white
-        }
-        
-        badgeStackView.do {
-            $0.axis = .horizontal
-            $0.spacing = 4
         }
         
         titleLabel.do {
@@ -175,12 +170,12 @@ final class MyPINGLECardView: BaseView {
                                       moreButton,
                                       seperateView)
         
-        topStackView.addArrangedSubviews(badgeStackView,
+        topStackView.addArrangedSubviews(badgeGroupView,
                                          titleLabel,
                                          nameLabel)
         
-        badgeStackView.addArrangedSubviews(badgeImageView,
-                                           dDayBackground)
+        badgeGroupView.addSubviews(badgeImageView,
+                                   dDayBackground)
         
         dDayBackground.addSubview(dDayLabel)
         
@@ -209,6 +204,16 @@ final class MyPINGLECardView: BaseView {
         
         titleLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(25.adjustedWidth)
+        }
+        
+        badgeImageView.snp.makeConstraints {
+            $0.leading.top.bottom.equalToSuperview()
+            $0.height.equalTo(19)
+        }
+        
+        dDayBackground.snp.makeConstraints {
+            $0.trailing.top.bottom.equalToSuperview()
+            $0.leading.equalTo(badgeImageView.snp.trailing).offset(4)
         }
         
         dDayLabel.snp.makeConstraints {

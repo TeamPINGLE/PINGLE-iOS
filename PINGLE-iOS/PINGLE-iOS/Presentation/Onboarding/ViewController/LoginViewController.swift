@@ -91,7 +91,7 @@ final class LoginViewController: BaseViewController {
         }
         
         adviceLabel.snp.makeConstraints {
-            $0.top.equalTo(self.introduceLabel.snp.bottom).offset(3)
+            $0.top.equalTo(self.introduceLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().inset(32.adjusted)
         }
         

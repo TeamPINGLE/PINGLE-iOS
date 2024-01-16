@@ -41,7 +41,7 @@ final class EntranceCompletedViewController: BaseViewController {
         
         self.titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.entranceTitle
-            $0.setTextWithLineHeight(text: StringLiterals.Onboarding.ExplainTitle.entranceTitle, lineHeight: 45)
+            $0.setLineSpacing(spacing: 5)
             $0.textAlignment = .left
             $0.font = .titleTitleSemi32
             $0.textColor = .white

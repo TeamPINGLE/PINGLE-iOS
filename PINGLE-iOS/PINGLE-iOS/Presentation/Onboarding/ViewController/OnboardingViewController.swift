@@ -37,6 +37,7 @@ final class OnboardingViewController: BaseViewController {
         
         self.titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.onboarding
+            $0.setLineSpacing(spacing: 4)
             $0.font = .titleTitleSemi30
             $0.textColor = .white
             $0.numberOfLines = 0

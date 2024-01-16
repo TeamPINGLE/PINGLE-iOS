@@ -51,6 +51,7 @@ final class SearchOrganizationViewController: BaseViewController {
         
         self.titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.searchOrganization
+            $0.setLineSpacing(spacing: 4)
             $0.font = .titleTitleSemi24
             $0.textColor = .white
             $0.numberOfLines = 0

@@ -58,7 +58,8 @@ final class FinalResultViewController: BaseViewController {
         }
         
         finalResultTitle.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Meeting.FinalResult.finalResultTitle, lineHeight: 34)
+            $0.text = StringLiterals.Meeting.FinalResult.finalResultTitle
+            $0.setLineSpacing(spacing: 4)
             $0.font = .titleTitleSemi24
             $0.textAlignment = .left
             $0.numberOfLines = 0

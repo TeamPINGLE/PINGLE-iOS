@@ -66,7 +66,8 @@ final class RecruitmentViewController: BaseViewController {
         }
         
         recruitTitle.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Meeting.Recruitment.recruitTitle, lineHeight: 34)
+            $0.text = StringLiterals.Meeting.Recruitment.recruitTitle
+            $0.setLineSpacing(spacing: 4)
             $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0

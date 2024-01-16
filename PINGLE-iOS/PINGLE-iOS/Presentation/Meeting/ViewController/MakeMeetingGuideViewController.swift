@@ -47,7 +47,8 @@ final class MakeMeetingGuideViewController: BaseViewController {
         }
         
         self.guideTitle.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Meeting.MeetingGuide.guideTitle, lineHeight: 45)
+            $0.text = StringLiterals.Meeting.MeetingGuide.guideTitle
+            $0.setLineSpacing(spacing: 5)
             $0.font = .titleTitleSemi32
             $0.textAlignment = .left
             $0.textColor = .white
@@ -55,7 +56,8 @@ final class MakeMeetingGuideViewController: BaseViewController {
         }
         
         self.guideSubTitle.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Meeting.MeetingGuide.guideSubTitle, lineHeight: 22)
+            $0.text = StringLiterals.Meeting.MeetingGuide.guideSubTitle
+            $0.setLineSpacing(spacing: 5)
             $0.font = .bodyBodyMed16
             $0.textAlignment = .left
             $0.numberOfLines = 2

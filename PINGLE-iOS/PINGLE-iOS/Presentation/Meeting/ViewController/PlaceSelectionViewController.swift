@@ -63,7 +63,8 @@ class PlaceSelectionViewController: BaseViewController {
         }
         
         placeSelectionTitle.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Meeting.SearhPlace.searchPlaceTitle, lineHeight: 34)
+            $0.text = StringLiterals.Meeting.SearhPlace.searchPlaceTitle
+            $0.setLineSpacing(spacing: 4)
             $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0

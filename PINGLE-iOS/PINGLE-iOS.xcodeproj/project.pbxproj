@@ -1405,9 +1405,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PINGLE-iOS/Global/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = PINGLE;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
@@ -1443,9 +1444,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PINGLE-iOS/Global/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = PINGLE;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 사용을 허용하시겠습니까?";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;

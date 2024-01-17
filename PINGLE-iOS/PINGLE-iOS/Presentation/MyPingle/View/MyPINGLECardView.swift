@@ -17,8 +17,6 @@ final class MyPINGLECardView: BaseView {
     var badgeColor: UIColor? = .subPingleOrange
     var isOwner: Bool = false
     var openChatURL: String?
-    var participantsButtonAction: (() -> Void) = {}
-    var talkButtonAction: (() -> Void) = {}
     
     // MARK: Component
     let topBackgroundView = UIView()
@@ -31,7 +29,7 @@ final class MyPINGLECardView: BaseView {
     let topStackView = UIStackView()
     let moreButton = UIButton()
     
-    let seperateView = UIView()
+    let separateView = UIView()
     let bottomBackgroundView = UIView()
     let dateImageView = UIImageView()
     let dateLabel = UILabel()
@@ -46,14 +44,9 @@ final class MyPINGLECardView: BaseView {
     let memberLabel = UILabel()
     let memberArrow = UIImageView()
     
-    // MARK: - Function
-    // MARK: init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-        setAddTarget()
-    }
+    let moreView = MoreView()
     
+    // MARK: - Function
     // MARK: Style Helpers
     override func setStyle() {
         topBackgroundView.do {
@@ -102,7 +95,7 @@ final class MyPINGLECardView: BaseView {
             $0.setImage(ImageLiterals.MyPingle.Icon.btnMyPingleMore, for: .normal)
         }
         
-        seperateView.do {
+        separateView.do {
             $0.backgroundColor = .grayscaleG07
         }
         
@@ -161,15 +154,20 @@ final class MyPINGLECardView: BaseView {
             $0.image = ImageLiterals.MyPingle.Icon.icRightArrow
             $0.isUserInteractionEnabled = false
         }
+        
+        moreView.do {
+            $0.isHidden = true
+        }
     }
     
     override func setLayout() {
         self.addSubviews(topBackgroundView,
-                         bottomBackgroundView)
+                         bottomBackgroundView,
+                         moreView)
         
         topBackgroundView.addSubviews(topStackView,
                                       moreButton,
-                                      seperateView)
+                                      separateView)
         
         topStackView.addArrangedSubviews(badgeGroupView,
                                          titleLabel,
@@ -231,7 +229,7 @@ final class MyPINGLECardView: BaseView {
             $0.trailing.equalToSuperview()
         }
         
-        seperateView.snp.makeConstraints {
+        separateView.snp.makeConstraints {
             $0.bottom.equalToSuperview()
             $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview().inset(22.adjustedWidth)
@@ -287,9 +285,10 @@ final class MyPINGLECardView: BaseView {
             $0.centerY.trailing.equalToSuperview()
             $0.leading.equalTo(memberLabel.snp.trailing).offset(4.adjustedWidth)
         }
-    }
-    
-    func setAddTarget() {
         
+        moreView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(51)
+            $0.trailing.equalToSuperview().inset(24)
+        }
     }
 }

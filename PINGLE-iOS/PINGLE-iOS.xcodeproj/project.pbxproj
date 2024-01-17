@@ -76,6 +76,7 @@
 		C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D9602B49866F00E817B5 /* FixView.swift */; };
 		C3A0D9652B49892500E817B5 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9642B49892500E817B5 /* SFProDisplay-Regular.otf */; };
 		C3A0D9672B49892900E817B5 /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9662B49892800E817B5 /* SFProDisplay-Bold.otf */; };
+		C3BCA86F2B57D0FC003C6996 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCA86E2B57D0FB003C6996 /* MoreView.swift */; };
 		C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */; };
 		C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */; };
 		C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC304E2B43E20600276E00 /* HomeMapView.swift */; };
@@ -213,6 +214,7 @@
 		C3A0D9602B49866F00E817B5 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
 		C3A0D9642B49892500E817B5 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
 		C3A0D9662B49892800E817B5 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
+		C3BCA86E2B57D0FB003C6996 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewController.swift; sourceTree = "<group>"; };
 		C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCancelPopUpView.swift; sourceTree = "<group>"; };
 		C3EC304E2B43E20600276E00 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				C30D1E102B57033800879258 /* MyPINGLECardView.swift */,
+				C3BCA86E2B57D0FB003C6996 /* MoreView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1281,6 +1284,7 @@
 				E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */,
 				E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */,
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,
+				C3BCA86F2B57D0FC003C6996 /* MoreView.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
 				C30D1E082B56FB7300879258 /* SoonViewController.swift in Sources */,
 				E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */,

@@ -183,6 +183,7 @@ enum StringLiterals {
         
         enum List {
             static let empty = "아직 예정된 핑글이 없어요\n첫 핑글에 참여해보세요!"
+            static let talk = "대화하기"
             static let cancel = "참여 취소하기"
             static let delete = "핑글 삭제하기"
             static let popUpTitle = "참여를 취소하시겠어요?"

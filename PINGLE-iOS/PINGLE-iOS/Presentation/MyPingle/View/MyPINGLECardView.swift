@@ -95,6 +95,7 @@ final class MyPINGLECardView: BaseView {
         topStackView.do {
             $0.axis = .vertical
             $0.spacing = 6
+            $0.alignment = .leading
         }
         
         moreButton.do {
@@ -208,7 +209,6 @@ final class MyPINGLECardView: BaseView {
         
         badgeImageView.snp.makeConstraints {
             $0.leading.top.bottom.equalToSuperview()
-            $0.height.equalTo(19)
         }
         
         dDayBackground.snp.makeConstraints {

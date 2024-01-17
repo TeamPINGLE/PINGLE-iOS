@@ -11,9 +11,9 @@ import SnapKit
 import Then
 
 final class MyPINGLECollectionViewCell: UICollectionViewCell {
-
+    
     static let identifier = "MyPINGLECollectionViewCell"
-        
+    
     var memberButtonAction: (() -> Void) = {}
     var talkButtonAction: (() -> Void) = {}
     var cancelButtonAction: (() -> Void) = {}
@@ -75,7 +75,7 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
             window.addSubviews(dimmedView,
                                homeDetailCancelPopUpView)
         }
-            
+        
         myPINGLECardView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -93,7 +93,7 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
         self.myPINGLECardView.moreView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         self.homeDetailCancelPopUpView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         self.homeDetailCancelPopUpView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-
+        
         self.myPINGLECardView.moreButton.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
         self.myPINGLECardView.moreView.talkButton.addTarget(self, action: #selector(talkButtonTapped), for: .touchUpInside)
         self.myPINGLECardView.moreView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
@@ -153,7 +153,6 @@ extension MyPINGLECollectionViewCell {
         } else {
             myPINGLECardView.myPingleImageView.isHidden = true
         }
-        
         
         switch data.category {
         case "PLAY":

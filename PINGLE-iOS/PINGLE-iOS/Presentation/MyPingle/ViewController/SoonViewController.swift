@@ -14,7 +14,9 @@ final class SoonViewController: BaseViewController {
     
     lazy var myPINGLECollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLEFlowLayout)
     let myPINGLEFlowLayout = UICollectionViewFlowLayout()
-        
+    
+    var pushToMemberAction: (() -> Void) = {}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setCollectionView()
@@ -43,7 +45,6 @@ final class SoonViewController: BaseViewController {
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
             $0.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 40, right: 0)
-
         }
     }
     
@@ -53,6 +54,28 @@ final class SoonViewController: BaseViewController {
         
         myPINGLECollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+    }
+    
+    private func pushToMemberViewController() {
+        pushToMemberAction()
+    }
+    
+    func connectTalkLink(urlString: String) {
+        print("대화하기 버튼 탭")
+        guard let url = URL(string: urlString) else {
+            print("url error")
+            return
+        }
+        
+        if ["http", "https"].contains(url.scheme?.lowercased() ?? "") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            guard let chatURL = URL(string: "https://" + urlString) else {
+                print("chatURL error")
+                return
+            }
+            UIApplication.shared.open(chatURL, options: [:], completionHandler: nil)
         }
     }
 }
@@ -67,6 +90,18 @@ extension SoonViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyPINGLECollectionViewCell.identifier, for: indexPath) as? MyPINGLECollectionViewCell else { return UICollectionViewCell() }
         cell.dataBind(data: myPingleDummy[indexPath.row])
+        
+        cell.memberButtonAction = {
+            self.pushToMemberViewController()
+        }
+        
+        cell.cancelButtonAction = {
+            print("추후 취소 서버통신 연결")
+        }
+        
+        cell.talkButtonAction = {
+            self.connectTalkLink(urlString: cell.myPINGLECardView.openChatURL ?? "https://www.naver.com")
+        }
         return cell
     }
 }

@@ -26,15 +26,15 @@ final class MyPINGLEViewController: BaseViewController {
     }
     
     var currentPage: Int = 0 {
-      didSet {
-        let direction: UIPageViewController.NavigationDirection = oldValue <= self.currentPage ? .forward : .reverse
-        self.pageViewController.setViewControllers(
-          [dataViewControllers[self.currentPage]],
-          direction: direction,
-          animated: true,
-          completion: nil
-        )
-      }
+        didSet {
+            let direction: UIPageViewController.NavigationDirection = oldValue <= self.currentPage ? .forward : .reverse
+            self.pageViewController.setViewControllers(
+                [dataViewControllers[self.currentPage]],
+                direction: direction,
+                animated: true,
+                completion: nil
+            )
+        }
     }
     
     // MARK: - Function
@@ -95,6 +95,10 @@ final class MyPINGLEViewController: BaseViewController {
     override func setDelegate() {
         pageViewController.delegate = self
         pageViewController.dataSource = self
+        soonViewController.pushToMemberAction = {
+            let participantViewController = ParticipantViewController()
+            self.navigationController?.pushViewController(participantViewController, animated: true)
+        }
     }
     
     private func setSegmentedControl() {
@@ -124,21 +128,21 @@ extension MyPINGLEViewController: UIPageViewControllerDataSource {
         viewControllerBefore viewController: UIViewController
     ) -> UIViewController? {
         guard let index = self.dataViewControllers.firstIndex(of: viewController),
-            index - 1 >= 0
+              index - 1 >= 0
         else { return nil }
         return self.dataViewControllers[index - 1]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let index = self.dataViewControllers.firstIndex(of: viewController),
-            index + 1 < self.dataViewControllers.count
+              index + 1 < self.dataViewControllers.count
         else { return nil }
         return self.dataViewControllers[index + 1]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let viewController = pageViewController.viewControllers?[0],
-            let index = self.dataViewControllers.firstIndex(of: viewController)
+              let index = self.dataViewControllers.firstIndex(of: viewController)
         else { return }
         self.currentPage = index
         self.segmentedControl.selectedSegmentIndex = index

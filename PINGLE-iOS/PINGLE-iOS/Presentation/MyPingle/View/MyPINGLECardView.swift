@@ -284,8 +284,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         memberLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview()
+            $0.centerY.leading.equalToSuperview()
         }
         
         memberArrow.snp.makeConstraints {

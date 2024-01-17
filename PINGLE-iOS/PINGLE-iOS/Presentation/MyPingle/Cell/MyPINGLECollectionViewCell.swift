@@ -135,6 +135,49 @@ extension MyPINGLECollectionViewCell {
         homeDetailCancelPopUpView.isHidden = false
         print("참여 취소하기")
     }
+    
+    func dataBind(data: MyPINGLEResponseDTO) {
+        myPINGLECardView.dDayLabel.text = data.dDay
+        myPINGLECardView.titleLabel.text = data.name
+        myPINGLECardView.nameLabel.text = data.ownerName
+        myPINGLECardView.dateLabel.text = data.date.convertToKoreanDate()
+        
+        let startAtString = data.startAt.convertToShortTimeFormat() ?? data.startAt
+        let endAtString = data.endAt.convertToShortTimeFormat() ?? data.endAt
+        myPINGLECardView.timeLabel.text = startAtString + " ~ " + endAtString
+        myPINGLECardView.locationLabel.text = data.location
+        myPINGLECardView.memberLabel.text = String(data.curParticipants) + "/" + String(data.maxParticipants) + "명"
+        
+        if data.isOwner {
+            myPINGLECardView.myPingleImageView.isHidden = false
+        } else {
+            myPINGLECardView.myPingleImageView.isHidden = true
+        }
+        
+        
+        switch data.category {
+        case "PLAY":
+            myPINGLECardView.badgeColor = .mainPingleGreen
+            myPINGLECardView.badgeImageView.image = ImageLiterals.Home.Detail.imgPlayBadge
+            
+        case "STUDY":
+            myPINGLECardView.badgeColor = .subPingleOrange
+            myPINGLECardView.badgeImageView.image = ImageLiterals.Home.Detail.imgStudyBadge
+            
+        case "MULTI":
+            myPINGLECardView.badgeColor = .subPingleYellow
+            myPINGLECardView.badgeImageView.image = ImageLiterals.Home.Detail.imgMultiBadge
+            
+        case "OTHERS":
+            myPINGLECardView.badgeColor = .grayscaleG01
+            myPINGLECardView.badgeImageView.image = ImageLiterals.Home.Detail.imgOthersBadge
+            
+        default:
+            return
+        }
+        
+        myPINGLECardView.titleLabel.textColor = myPINGLECardView.badgeColor
+    }
 }
 
 // MARK: UIGestureRecognizerDelegate

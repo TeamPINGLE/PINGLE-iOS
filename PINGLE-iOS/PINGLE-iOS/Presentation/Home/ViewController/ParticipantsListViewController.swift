@@ -36,6 +36,7 @@ class ParticipantsListViewController: BaseViewController {
         self.participantsListCollectionView.do {
             $0.backgroundColor = .clear
             $0.showsVerticalScrollIndicator = false
+            $0.contentInset = .init(top: 0, left: 0, bottom: 40, right: 0)
         }
         
         self.backButton.do {
@@ -66,7 +67,7 @@ class ParticipantsListViewController: BaseViewController {
         participantsListCollectionView.snp.makeConstraints {
             $0.top.equalTo(participantsListTitle.snp.bottom).offset(35.adjusted)
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
-            $0.bottom.equalToSuperview().inset(40.adjusted)
+            $0.bottom.equalToSuperview()
         }
     }
     

@@ -78,6 +78,11 @@ enum StringLiterals {
             static let cancelDescription = "취소한 모임은 언제든 다시 신청할 수 있어요"
             static let backButton = "돌아가기"
         }
+        
+        enum Participants {
+            static let participationTitle = "참여현황"
+            static let meetingOwner = "개최자"
+        }
     }
     
     enum Meeting {

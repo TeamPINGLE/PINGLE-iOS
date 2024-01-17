@@ -17,7 +17,6 @@ final class ParticipantsListView: BaseView {
     let organizer = UILabel()
     var userName = UILabel()
     let cellBackgroundView = UIView()
-    var isOwner = Bool()
     
     // MARK: - Function
     // MARK: LifeCycle

@@ -14,14 +14,21 @@ final class SoonViewController: BaseViewController {
     
     lazy var myPINGLECollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLEFlowLayout)
     let myPINGLEFlowLayout = UICollectionViewFlowLayout()
-    
+    let emptyLabel = UILabel()
     let refreshControl = UIRefreshControl()
     
     var pushToMemberAction: (() -> Void) = {}
     
+    var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateCollectionView()
     }
     
     override func setDelegate() {
@@ -49,6 +56,15 @@ final class SoonViewController: BaseViewController {
             $0.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 40, right: 0)
         }
         
+        emptyLabel.do {
+            $0.text = StringLiterals.MyPingle.List.soonEmpty
+            $0.numberOfLines = 2
+            $0.font = .subtitleSubSemi18
+            $0.textColor = .grayscaleG06
+            $0.setLineSpacing(spacing: 2)
+            $0.textAlignment = .center
+        }
+        
         refreshControl.do {
             myPINGLECollectionView.refreshControl = $0
             $0.addTarget(self, action: #selector(refreshCollection(refresh:)), for: .valueChanged)
@@ -56,7 +72,12 @@ final class SoonViewController: BaseViewController {
     }
     
     override func setLayout() {
-        view.addSubview(myPINGLECollectionView)
+        view.addSubviews(myPINGLECollectionView,
+                         emptyLabel)
+        
+        emptyLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
         
         myPINGLECollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -90,6 +111,10 @@ final class SoonViewController: BaseViewController {
             }
             UIApplication.shared.open(chatURL, options: [:], completionHandler: nil)
         }
+    }
+    
+    private func updateCollectionView() {
+        emptyLabel.isHidden = !soonMyPINGLEData.isEmpty
     }
 }
 

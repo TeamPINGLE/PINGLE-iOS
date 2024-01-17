@@ -36,6 +36,7 @@ final class MyPINGLECardView: BaseView {
     let dateSeparateView = UIView()
     let timeLabel = UILabel()
     let dateStackView = UIStackView()
+    let myPingleImageView = UIImageView()
     
     let locationImageView = UIImageView()
     let locationLabel = UILabel()
@@ -158,6 +159,11 @@ final class MyPINGLECardView: BaseView {
         moreView.do {
             $0.isHidden = true
         }
+        
+        myPingleImageView.do {
+            $0.image = ImageLiterals.MyPingle.Icon.imgMyPingle
+            $0.isHidden = false
+        }
     }
     
     override func setLayout() {
@@ -183,7 +189,8 @@ final class MyPINGLECardView: BaseView {
                                          locationImageView,
                                          locationLabel,
                                          memberImageView,
-                                         memberButton)
+                                         memberButton,
+                                         myPingleImageView)
         
         dateStackView.addArrangedSubviews(dateLabel,
                                           dateSeparateView,
@@ -289,6 +296,10 @@ final class MyPINGLECardView: BaseView {
         moreView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(51)
             $0.trailing.equalToSuperview().inset(24)
+        }
+        
+        myPingleImageView.snp.makeConstraints {
+            $0.trailing.bottom.equalToSuperview()
         }
     }
 }

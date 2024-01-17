@@ -136,6 +136,7 @@ enum ImageLiterals {
             static var icLocation: UIImage { .load(named: "icLocation")}
             static var icUser: UIImage { .load(named: "icUser")}
             static var icRightArrow: UIImage { .load(named: "icParticipantArrowActivate")}
+            static var imgMyPingle: UIImage { .load(named: "imgMyPingle")}
         }
     }
 }

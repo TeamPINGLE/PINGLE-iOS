@@ -63,7 +63,6 @@
 		C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E32B3BF203004BB2B8 /* BaseView.swift */; };
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
 		C39603182B3BF36C004BB2B8 /* p.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603172B3BF36C004BB2B8 /* p.swift */; };
-		C396031C2B3BF374004BB2B8 /* r.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396031B2B3BF374004BB2B8 /* r.swift */; };
 		C39603212B3BF47A004BB2B8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C39603202B3BF47A004BB2B8 /* Then */; };
 		C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C39603232B3BF484004BB2B8 /* SnapKit */; };
 		C39603272B3BF48E004BB2B8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C39603262B3BF48E004BB2B8 /* Alamofire */; };
@@ -206,7 +205,6 @@
 		C39602E32B3BF203004BB2B8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C39603172B3BF36C004BB2B8 /* p.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p.swift; sourceTree = "<group>"; };
-		C396031B2B3BF374004BB2B8 /* r.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = r.swift; sourceTree = "<group>"; };
 		C39B8D212B4CFB68008DCAC6 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
 		C39B8D232B4CFB70008DCAC6 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListRequestQueryDTO.swift; sourceTree = "<group>"; };
@@ -681,7 +679,6 @@
 		C39603052B3BF2D8004BB2B8 /* MyPingle */ = {
 			isa = PBXGroup;
 			children = (
-				C396031B2B3BF374004BB2B8 /* r.swift */,
 				C3BCA8702B57E293003C6996 /* MyPINGLEResponseDTO.swift */,
 			);
 			path = MyPingle;
@@ -1270,7 +1267,6 @@
 				E5A651F22B4AE43900676ED0 /* SearchedPlaceModel.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
 				C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */,
-				C396031C2B3BF374004BB2B8 /* r.swift in Sources */,
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C30C918E2B4CED0F004EE026 /* KeychainHandler.swift in Sources */,
 				C305D5992B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift in Sources */,

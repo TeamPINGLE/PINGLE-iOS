@@ -66,7 +66,7 @@ final class ParticipantsListView: BaseView {
         
         userName.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(15.adjusted)
-                $0.top.bottom.equalToSuperview().inset(23)
+            $0.top.bottom.equalToSuperview().inset(23)
         }
         
         organizer.snp.makeConstraints {

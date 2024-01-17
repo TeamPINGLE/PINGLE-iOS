@@ -48,8 +48,6 @@ final class SoonViewController: BaseViewController {
     }
     
     override func setLayout() {
-        let safeAreaHeight = view.safeAreaInsets.bottom
-        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
         view.addSubview(myPINGLECollectionView)
         

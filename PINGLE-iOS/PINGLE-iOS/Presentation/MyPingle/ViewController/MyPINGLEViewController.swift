@@ -64,8 +64,6 @@ final class MyPINGLEViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.navigationController?.navigationBar.isHidden = true
-        
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         

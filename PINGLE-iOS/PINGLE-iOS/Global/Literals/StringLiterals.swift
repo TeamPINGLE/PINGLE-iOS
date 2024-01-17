@@ -199,5 +199,6 @@ enum StringLiterals {
         
         enum ToastView {
             static let wrongCode = "초대 코드를 다시 확인해주세요!"
+            static let rejectDelete = "단체 개설자는 탈퇴할 수 없어요!"
         }
     }

@@ -26,6 +26,11 @@ final class ParticipantsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        participantsListView.organizer.isHidden = true
+    }
+    
     private func setLayout() {
         self.addSubviews(participantsListView)
         

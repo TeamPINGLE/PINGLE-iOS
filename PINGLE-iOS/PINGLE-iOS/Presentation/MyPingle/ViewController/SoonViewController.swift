@@ -15,6 +15,8 @@ final class SoonViewController: BaseViewController {
     lazy var myPINGLECollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLEFlowLayout)
     let myPINGLEFlowLayout = UICollectionViewFlowLayout()
     
+    let refreshControl = UIRefreshControl()
+    
     var pushToMemberAction: (() -> Void) = {}
     
     override func viewDidLoad() {
@@ -46,15 +48,26 @@ final class SoonViewController: BaseViewController {
             $0.showsHorizontalScrollIndicator = false
             $0.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 40, right: 0)
         }
+        
+        refreshControl.do {
+            myPINGLECollectionView.refreshControl = $0
+            $0.addTarget(self, action: #selector(refreshCollection(refresh:)), for: .valueChanged)
+        }
     }
     
     override func setLayout() {
-        
         view.addSubview(myPINGLECollectionView)
         
         myPINGLECollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    // MARK: Objc Function
+    @objc func refreshCollection(refresh: UIRefreshControl) {
+        refresh.beginRefreshing()
+        print("새로고침 하는 동안 서버통신")
+        refresh.endRefreshing()
     }
     
     private func pushToMemberViewController() {

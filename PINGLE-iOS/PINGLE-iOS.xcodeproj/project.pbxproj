@@ -99,7 +99,6 @@
 		E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */; };
 		E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */; };
 		F111BE662B4E8606001D116C /* UserInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */; };
-		F111BE682B4E8CEB001D116C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111BE672B4E8CEB001D116C /* NetworkManager.swift */; };
 		F12181BD2B505F5800D22F55 /* AppleTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181BC2B505F5800D22F55 /* AppleTokenResponse.swift */; };
 		F12181BF2B510EFB00D22F55 /* PINGLERequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181BE2B510EFB00D22F55 /* PINGLERequestInterceptor.swift */; };
 		F12181C12B5110F500D22F55 /* TokenRefreshResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181C02B5110F500D22F55 /* TokenRefreshResponseDTO.swift */; };
@@ -231,7 +230,6 @@
 		E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECategoryButton.swift; sourceTree = "<group>"; };
 		E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponseDTO.swift; sourceTree = "<group>"; };
-		F111BE672B4E8CEB001D116C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		F12181BC2B505F5800D22F55 /* AppleTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTokenResponse.swift; sourceTree = "<group>"; };
 		F12181BE2B510EFB00D22F55 /* PINGLERequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLERequestInterceptor.swift; sourceTree = "<group>"; };
 		F12181C02B5110F500D22F55 /* TokenRefreshResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshResponseDTO.swift; sourceTree = "<group>"; };
@@ -389,7 +387,6 @@
 			children = (
 				C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */,
 				C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */,
-				F111BE672B4E8CEB001D116C /* NetworkManager.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1206,7 +1203,6 @@
 				F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */,
 				C305D59B2B5176D3008993C3 /* SearchPlaceResponseDTO.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
-				F111BE682B4E8CEB001D116C /* NetworkManager.swift in Sources */,
 				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,
 				F16BCA392B4E62760096A62F /* SplashViewController.swift in Sources */,
 				E5A651F22B4AE43900676ED0 /* SearchedPlaceModel.swift in Sources */,

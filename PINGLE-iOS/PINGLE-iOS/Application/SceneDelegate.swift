@@ -13,44 +13,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-                
-        let networkManager = NetworkManager()
         
         let splashViewController = SplashViewController()
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = splashViewController
+        
+        let navigationController = UINavigationController(rootViewController: splashViewController)
+        
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
-        
-        let loginViewController = LoginViewController()
-        let onboardingViewController = OnboardingViewController()
-        let PINGLETabBarController = PINGLETabBarController()
-        
-        var rootViewController: UIViewController = loginViewController
-        
-        if KeychainHandler.shared.accessToken.isEmpty {
-            /// 어세스 토큰 없는 경우 - 애플 계정을 통한 회원가입을 한 적이 없는 경우
-            rootViewController = loginViewController
-        } else {
-            /// 어세스 토큰이 있는 경우 - 애플 계정을 통한 회원가입을 한 적이 있는 경우 : 가입한 단체가 있는지 확인하는 통신 코드 구현
-            networkManager.getUserInfo { [weak self] state in
-                guard let self else { return }
-                if KeychainHandler.shared.userGroup.isEmpty {
-                    /// 가입한 단체가 없는 경우 - 온보딩 화면에서 단체를 선택한 경험이 없는 경우
-                    rootViewController = onboardingViewController
-                } else {
-                    /// 가입한 단체가 있는 경우 - 온보딩 화면에서 단체를 선택한 경험이 있는 경우
-                    rootViewController = PINGLETabBarController
-                }
-            }
-        }
-        /// 스플래쉬 화면이 시작
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-            let navigationController = UINavigationController(rootViewController: rootViewController)
-            
-            window.rootViewController = navigationController
-            window.makeKeyAndVisible()
-            self.window = window
-        }
+        self.window = window
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

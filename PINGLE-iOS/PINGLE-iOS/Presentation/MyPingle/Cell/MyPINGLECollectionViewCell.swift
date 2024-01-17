@@ -43,6 +43,7 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
         self.talkButtonAction = {}
         self.cancelButtonAction = {}
         self.memberButtonAction = {}
+        self.homeDetailCancelPopUpView.cancelButtonAction = {}
     }
     
     private func setDimmedView() {
@@ -176,6 +177,7 @@ extension MyPINGLECollectionViewCell {
         }
         
         myPINGLECardView.titleLabel.textColor = myPINGLECardView.badgeColor
+        updateMoreView(isOwner: data.isOwner, isActivate: !data.isOwner)
     }
 }
 

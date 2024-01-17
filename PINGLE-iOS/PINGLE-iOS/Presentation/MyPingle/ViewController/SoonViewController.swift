@@ -108,7 +108,7 @@ extension SoonViewController: UICollectionViewDataSource {
             self.pushToMemberViewController()
         }
         
-        cell.cancelButtonAction = {
+        cell.homeDetailCancelPopUpView.cancelButtonAction = {
             print("추후 취소 서버통신 연결")
         }
         

@@ -45,8 +45,6 @@ final class MyPINGLECardView: BaseView {
     let memberLabel = UILabel()
     let memberArrow = UIImageView()
     
-    let moreView = MoreView()
-    
     // MARK: - Function
     // MARK: Style Helpers
     override func setStyle() {
@@ -156,10 +154,6 @@ final class MyPINGLECardView: BaseView {
             $0.isUserInteractionEnabled = false
         }
         
-        moreView.do {
-            $0.isHidden = true
-        }
-        
         myPingleImageView.do {
             $0.image = ImageLiterals.MyPingle.Icon.imgMyPingle
             $0.isHidden = false
@@ -168,8 +162,7 @@ final class MyPINGLECardView: BaseView {
     
     override func setLayout() {
         self.addSubviews(topBackgroundView,
-                         bottomBackgroundView,
-                         moreView)
+                         bottomBackgroundView)
         
         topBackgroundView.addSubviews(topStackView,
                                       moreButton,
@@ -290,11 +283,6 @@ final class MyPINGLECardView: BaseView {
         memberArrow.snp.makeConstraints {
             $0.centerY.trailing.equalToSuperview()
             $0.leading.equalTo(memberLabel.snp.trailing).offset(4.adjustedWidth)
-        }
-        
-        moreView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(51)
-            $0.trailing.equalToSuperview().inset(24)
         }
         
         myPingleImageView.snp.makeConstraints {

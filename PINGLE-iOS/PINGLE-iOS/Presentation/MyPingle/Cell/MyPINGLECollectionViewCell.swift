@@ -18,9 +18,16 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
     var talkButtonAction: (() -> Void) = {}
     var cancelButtonAction: (() -> Void) = {}
     
+    var isMoreViewAppear = false {
+        didSet {
+            moreView.isHidden = !isMoreViewAppear
+        }
+    }
+    
     let myPINGLECardView = MyPINGLECardView()
     let dimmedView = UIView()
     let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
+    let moreView = MoreView()
     
     let dimmedTapGesture = UITapGestureRecognizer()
     
@@ -35,7 +42,6 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        
     }
     
     override func prepareForReuse() {
@@ -48,6 +54,7 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
     
     private func setDimmedView() {
         self.dimmedView.addGestureRecognizer(dimmedTapGesture)
+//        self.addGestureRecognizer(dimmedTapGesture)
         self.dimmedTapGesture.delegate = self
     }
     
@@ -67,10 +74,15 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
         homeDetailCancelPopUpView.do {
             $0.isHidden = true
         }
+        
+        moreView.do {
+            $0.isHidden = true
+        }
     }
     
     private func setLayout() {
-        self.addSubviews(myPINGLECardView)
+        self.addSubviews(myPINGLECardView,
+                         moreView)
         
         if let window = UIApplication.shared.keyWindow {
             window.addSubviews(dimmedView,
@@ -88,16 +100,21 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
         homeDetailCancelPopUpView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+        
+        moreView.snp.makeConstraints {
+            $0.top.equalTo(myPINGLECardView).inset(51)
+            $0.trailing.equalTo(myPINGLECardView).inset(24)
+        }
     }
     
     private func setAddTarget() {
-        self.myPINGLECardView.moreView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        self.moreView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         self.homeDetailCancelPopUpView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         self.homeDetailCancelPopUpView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         
         self.myPINGLECardView.moreButton.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
-        self.myPINGLECardView.moreView.talkButton.addTarget(self, action: #selector(talkButtonTapped), for: .touchUpInside)
-        self.myPINGLECardView.moreView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        self.moreView.talkButton.addTarget(self, action: #selector(talkButtonTapped), for: .touchUpInside)
+        self.moreView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         self.myPINGLECardView.memberButton.addTarget(self, action: #selector(memberButtonTapped), for: .touchUpInside)
     }
 }
@@ -106,11 +123,10 @@ extension MyPINGLECollectionViewCell {
     
     @objc func memberButtonTapped() {
         memberButtonAction()
-        print("참여자목록")
     }
     
     @objc func moreButtonTapped() {
-        myPINGLECardView.moreView.isHidden.toggle()
+        isMoreViewAppear.toggle()
     }
     
     @objc func talkButtonTapped() {
@@ -179,14 +195,26 @@ extension MyPINGLECollectionViewCell {
         myPINGLECardView.titleLabel.textColor = myPINGLECardView.badgeColor
         updateMoreView(isOwner: data.isOwner, isActivate: !data.isOwner)
     }
+    
+    func updateMoreView(isOwner: Bool, isActivate: Bool) {
+        moreView.deleteTitleLabel.text = isOwner ? StringLiterals.MyPingle.List.delete : StringLiterals.MyPingle.List.cancel
+        moreView.deleteImageView.image = isActivate ? ImageLiterals.MyPingle.Icon.icTrash : ImageLiterals.MyPingle.Icon.icTrashDisabled
+        moreView.deleteTitleLabel.textColor = isActivate ? .grayscaleG03 : .grayscaleG08
+        moreView.deleteButton.isEnabled = isActivate
+    }
 }
 
 // MARK: UIGestureRecognizerDelegate
 extension MyPINGLECollectionViewCell: UIGestureRecognizerDelegate {
     /// 딤 뷰 탭 되었을 때 메소드
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        dimmedView.isHidden = true
-        homeDetailCancelPopUpView.isHidden = true
+//        if !homeDetailCancelPopUpView.isHidden {
+            dimmedView.isHidden = true
+            homeDetailCancelPopUpView.isHidden = true
+//        } else {
+//            moreView.isHidden = true
+//            print("하이염")
+//        }
         return true
     }
 }

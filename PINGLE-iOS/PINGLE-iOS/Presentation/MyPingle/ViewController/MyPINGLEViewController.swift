@@ -66,6 +66,9 @@ final class MyPINGLEViewController: BaseViewController {
     override func setLayout() {
         self.navigationController?.navigationBar.isHidden = true
         
+        let safeAreaHeight = view.safeAreaInsets.bottom
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
+        
         view.addSubviews(
             titleLabel,
             segmentedControl,
@@ -86,7 +89,7 @@ final class MyPINGLEViewController: BaseViewController {
         pageViewController.view.snp.makeConstraints {
             $0.top.equalTo(segmentedControl.snp.bottom)
             $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(safeAreaHeight).offset(-tabBarHeight)
         }
     }
     

@@ -41,7 +41,9 @@ final class SoonViewController: BaseViewController {
         myPINGLECollectionView.do {
             $0.backgroundColor = .grayscaleG11
             $0.showsVerticalScrollIndicator = false
-            $0.showsVerticalScrollIndicator = false
+            $0.showsHorizontalScrollIndicator = false
+            $0.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 40, right: 0)
+
         }
     }
     
@@ -52,9 +54,7 @@ final class SoonViewController: BaseViewController {
         view.addSubview(myPINGLECollectionView)
         
         myPINGLECollectionView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(20)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(safeAreaHeight).offset(-tabBarHeight)
+            $0.edges.equalToSuperview()
         }
     }
 }

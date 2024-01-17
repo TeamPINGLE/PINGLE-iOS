@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class ParticipantsListViewController: BaseViewController {
+final class ParticipantsListViewController: BaseViewController {
     
     // MARK: Property
     private let backButton = UIButton()
@@ -126,6 +126,6 @@ extension ParticipantsListViewController: UICollectionViewDelegateFlowLayout {
     
     // UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 158.adjusted, height: 69.adjusted)
+        return CGSize(width: 158.adjusted, height: 69)
     }
 }

@@ -61,17 +61,17 @@ final class ParticipantsListView: BaseView {
         cellBackgroundView.addSubviews(userName, organizer)
         
         cellBackgroundView.snp.makeConstraints {
-            $0.leading.trailing.height.width.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         
         userName.snp.makeConstraints {
-                $0.leading.trailing.equalToSuperview().inset(15)
+            $0.leading.trailing.equalToSuperview().inset(15.adjusted)
                 $0.top.bottom.equalToSuperview().inset(23)
         }
         
         organizer.snp.makeConstraints {
             $0.top.equalToSuperview().inset(15)
-            $0.leading.trailing.equalToSuperview().inset(59)
+            $0.leading.trailing.equalToSuperview().inset(59.adjusted)
         }
     }
     
@@ -79,7 +79,7 @@ final class ParticipantsListView: BaseView {
         organizer.isHidden = false
         userName.snp.remakeConstraints {
             $0.top.equalToSuperview().inset(32)
-            $0.leading.trailing.bottom.equalToSuperview().inset(15)
+            $0.leading.trailing.bottom.equalToSuperview().inset(15.adjusted)
         }
     }
 }

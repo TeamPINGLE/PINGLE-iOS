@@ -16,6 +16,7 @@ final class MyPINGLEViewController: BaseViewController {
     // MARK: Component
     private let titleLabel = UILabel()
     private let segmentedControl = MyPINGLESegmentControl(items: [StringLiterals.MyPingle.SegmentControl.soon, StringLiterals.MyPingle.SegmentControl.complete])
+    private let separateView = UIView()
     private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     let soonViewController = SoonViewController()
     let completeViewController = CompleteViewController()
@@ -58,6 +59,10 @@ final class MyPINGLEViewController: BaseViewController {
             $0.textColor = .white
         }
         
+        separateView.do {
+            $0.backgroundColor = .grayscaleG09
+        }
+        
         pageViewController.do {
             $0.setViewControllers([self.dataViewControllers[0]], direction: .forward, animated: true)
         }
@@ -70,6 +75,7 @@ final class MyPINGLEViewController: BaseViewController {
         view.addSubviews(
             titleLabel,
             segmentedControl,
+            separateView,
             pageViewController.view
         )
         
@@ -80,12 +86,18 @@ final class MyPINGLEViewController: BaseViewController {
         
         segmentedControl.snp.makeConstraints {
             $0.height.equalTo(41)
-            $0.width.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(19.5)
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
         }
         
-        pageViewController.view.snp.makeConstraints {
+        separateView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.height.equalTo(1)
             $0.top.equalTo(segmentedControl.snp.bottom)
+        }
+        
+        pageViewController.view.snp.makeConstraints {
+            $0.top.equalTo(separateView.snp.bottom)
             $0.width.equalToSuperview()
             $0.bottom.equalTo(safeAreaHeight).offset(-tabBarHeight)
         }

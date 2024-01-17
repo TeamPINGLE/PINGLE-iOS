@@ -14,25 +14,7 @@ final class MyPINGLESegmentControl: UISegmentedControl {
     
     // MARK: - Variables
     // MARK: Component
-    private lazy var selectedUnderlineView: UIView = {
-        let width = self.bounds.size.width / 2
-        let height = 2.0
-        let xPosition = 0.0
-        let yPosition = self.bounds.size.height - height
-        let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
-        let view = UIView(frame: frame)
-        return view
-    }()
-    
-    private lazy var defaultUnderLineView: UIView = {
-        let width = self.bounds.size.width
-        let height = 1.0
-        let xPosition = 0.0
-        let yPosition = self.bounds.size.height - height
-        let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
-        let view = UIView(frame: frame)
-        return view
-    }()
+    private lazy var selectedUnderlineView = UIView()
     
     // MARK: - Function
     // MARK: init
@@ -68,22 +50,19 @@ extension MyPINGLESegmentControl {
     private func setStyle() {
         selectedUnderlineView.do {
             $0.backgroundColor = .white
-        }
-        
-        defaultUnderLineView.do {
-            $0.backgroundColor = .grayscaleG09
+            $0.makeCornerRound(radius: 1)
         }
     }
     
     private func setLayout() {
         self.addSubviews(
-            defaultUnderLineView,
             selectedUnderlineView
         )
         
-        self.defaultUnderLineView.frame.origin.x = 0.0
-        let underlineFinalXPosition = (self.bounds.width / 2) * CGFloat(self.selectedSegmentIndex) - 40.adjustedWidth
-        UIView.animate(withDuration: 0.1, animations: {self.selectedUnderlineView.frame.origin.x = underlineFinalXPosition})
+        let segmentWidth = self.bounds.width / CGFloat(self.numberOfSegments)
+        let underlineFinalXPosition = segmentWidth * CGFloat(self.selectedSegmentIndex)
+        selectedUnderlineView.frame = CGRect(x: underlineFinalXPosition + 25.5.adjustedWidth, y: self.bounds.size.height - 2.0, width: 117.adjustedWidth, height: 2.0)
+        
         self.layer.cornerRadius = 0
     }
     

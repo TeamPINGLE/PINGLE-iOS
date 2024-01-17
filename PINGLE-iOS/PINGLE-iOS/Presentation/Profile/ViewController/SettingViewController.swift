@@ -228,10 +228,12 @@ final class SettingViewController: BaseViewController {
                     guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                     sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
                     self.navigationController?.popToRootViewController(animated: true)
-                } else if data.code == 400 {
-                    /// 탈퇴하는 사용자가 단체장일 경우 경고장 띄우고 탈퇴시키지 않음.
-                    showWarningToastView()
                 }
+            case .networkErr:
+                /// 탈퇴하는 사용자가 단체장일 경우 경고장 띄우고 탈퇴시키지 않음.
+                dimmedView.isHidden = true
+                accountPopUpView.isHidden = true
+                showWarningToastView()
             default:
                 print("login error")
             }

@@ -147,12 +147,13 @@ final class LoginViewController: BaseViewController {
                     KeychainHandler.shared.userGroup = groups
                 }
                 if KeychainHandler.shared.userGroup.isEmpty {
-                    let onboardingViewController = OnboardingViewController()
-                    self.navigationController?.pushViewController(onboardingViewController, animated: true)
+                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+                    self.navigationController?.popToRootViewController(animated: true)
                 } else {
-                    let PINGLETabBarController = PINGLETabBarController()
-                    self.view.window?.rootViewController = PINGLETabBarController
-                    self.view.window?.makeKeyAndVisible()
+                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: PINGLETabBarController())
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             default:
                 print("getUserInfo error")

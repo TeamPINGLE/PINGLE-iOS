@@ -53,6 +53,13 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
         self.cancelButtonAction = {}
         self.memberButtonAction = {}
         self.homeDetailCancelPopUpView.cancelButtonAction = {}
+        self.myPINGLECardView.dDayLabel.text = ""
+        self.myPINGLECardView.titleLabel.text = ""
+        self.myPINGLECardView.nameLabel.text = ""
+        self.myPINGLECardView.dateLabel.text = ""
+        self.myPINGLECardView.timeLabel.text = ""
+        self.myPINGLECardView.locationLabel.text = ""
+        self.myPINGLECardView.memberLabel.text = ""
     }
     
     private func setDimmedView() {

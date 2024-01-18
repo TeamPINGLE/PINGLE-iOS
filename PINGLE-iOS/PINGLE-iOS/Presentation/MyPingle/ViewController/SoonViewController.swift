@@ -18,14 +18,15 @@ final class SoonViewController: BaseViewController {
     let refreshControl = UIRefreshControl()
     
     var pushToMemberAction: (() -> Void) = {}
-    let dimmedTapGesture = UITapGestureRecognizer()
+    let homeDimmedTapGesture = UITapGestureRecognizer()
     
     var soonMyPINGLEData: [MyPINGLEResponseDTO] = myPingleDummy
-//    var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
+    //    var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setCollectionView()
+        setAddTarget()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +37,7 @@ final class SoonViewController: BaseViewController {
     override func setDelegate() {
         self.myPINGLECollectionView.delegate = self
         self.myPINGLECollectionView.dataSource = self
-//        self.dimmedTapGesture.delegate = self
+        self.homeDimmedTapGesture.delegate = self
     }
     
     private func setCollectionView() {
@@ -88,6 +89,10 @@ final class SoonViewController: BaseViewController {
         }
     }
     
+    private func setAddTarget() {
+        self.view.addGestureRecognizer(homeDimmedTapGesture)
+    }
+    
     // MARK: Objc Function
     @objc func refreshCollection(refresh: UIRefreshControl) {
         refresh.beginRefreshing()
@@ -132,12 +137,13 @@ extension SoonViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyPINGLECollectionViewCell.identifier, for: indexPath) as? MyPINGLECollectionViewCell else { return UICollectionViewCell() }
         cell.dataBind(data: soonMyPINGLEData[indexPath.row])
+        cell.isMoreViewAppear = false
         
         cell.memberButtonAction = {
             self.pushToMemberViewController()
         }
         
-        cell.moreView.addGestureRecognizer(dimmedTapGesture)
+        //        cell.moreView.addGestureRecognizer(homeDimmedTapGesture)
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
             print("추후 취소 서버통신 연결")
         }
@@ -151,11 +157,21 @@ extension SoonViewController: UICollectionViewDataSource {
 
 // MARK: UIGestureRecognizerDelegate
 extension SoonViewController: UIGestureRecognizerDelegate {
-    /// 다른. 뷰 탭 되었을 때 메소드
+    /// 다른 뷰 탭 되었을 때 메소드
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-
-        self.myPINGLECollectionView.reloadData()
+        guard let touchView = touch.view else {
+            return true
+        }
+        
+        for cell in myPINGLECollectionView.visibleCells {
+            if let myPINGLECell = cell as? MyPINGLECollectionViewCell, !myPINGLECell.moreView.isHidden {
+                if touchView == myPINGLECell.moreView || touchView.isDescendant(of: myPINGLECell.moreView) {
+                    return false
+                } else {
+                    myPINGLECell.isMoreViewAppear = false
+                }
+            }
+        }
         return true
     }
 }
-

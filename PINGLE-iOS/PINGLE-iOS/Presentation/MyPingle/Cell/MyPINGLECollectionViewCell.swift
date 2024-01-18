@@ -54,7 +54,6 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
     
     private func setDimmedView() {
         self.dimmedView.addGestureRecognizer(dimmedTapGesture)
-//        self.addGestureRecognizer(dimmedTapGesture)
         self.dimmedTapGesture.delegate = self
     }
     
@@ -208,13 +207,8 @@ extension MyPINGLECollectionViewCell {
 extension MyPINGLECollectionViewCell: UIGestureRecognizerDelegate {
     /// 딤 뷰 탭 되었을 때 메소드
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-//        if !homeDetailCancelPopUpView.isHidden {
-            dimmedView.isHidden = true
-            homeDetailCancelPopUpView.isHidden = true
-//        } else {
-//            moreView.isHidden = true
-//            print("하이염")
-//        }
+        dimmedView.isHidden = true
+        homeDetailCancelPopUpView.isHidden = true
         return true
     }
 }

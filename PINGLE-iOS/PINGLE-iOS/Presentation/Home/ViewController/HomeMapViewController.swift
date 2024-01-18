@@ -23,6 +23,7 @@ final class HomeMapViewController: BaseViewController {
     var markerId = 0
     var markerCategory: String = ""
     var allowLocation = false
+    var currentMeetingId: Int = 0
     
     // MARK: Component
     let mapsView = HomeMapView()
@@ -210,9 +211,12 @@ extension HomeMapViewController: UICollectionViewDataSource {
         }
         
         cell.homeDetailPopUpView.dataBind(data: self.homePinDetailList[indexPath.row])
-        cell.mapDetailView.participantCountButton.addTarget(self,
-                                                            action: #selector(participantCountButtonTapped),
-                                                            for: .touchUpInside)
+        
+        cell.memberButtonAction = {
+            self.currentMeetingId = cell.mapDetailView.meetingId
+            self.participantCountButtonTapped()
+        }
+        
         return cell
     }
 }
@@ -290,10 +294,11 @@ extension HomeMapViewController {
         }
     }
     
-    @objc func participantCountButtonTapped() {
+    func participantCountButtonTapped() {
         print("참여현황")
-        let participantViewController = ParticipantViewController()
-        self.navigationController?.pushViewController(participantViewController, animated: true)
+        let participantsListViewController = ParticipantsListViewController()
+        participantsListViewController.meetingIdentifier = self.currentMeetingId
+        self.navigationController?.pushViewController(participantsListViewController, animated: true)
     }
     
     func connectTalkLink(urlString: String) {
@@ -376,7 +381,7 @@ extension HomeMapViewController {
                                                   zoom: self.mapsView.mapsView.mapView.zoomLevel,
                                                   tilt: 0,
                                                   heading: 0)
-
+        
         let newCameraUpdate = NMFCameraUpdate(position: newCameraPosition)
         newCameraUpdate.animation = .easeIn
         self.mapsView.mapsView.mapView.moveCamera(newCameraUpdate)

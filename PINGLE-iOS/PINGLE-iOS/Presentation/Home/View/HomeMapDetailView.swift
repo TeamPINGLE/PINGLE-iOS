@@ -21,6 +21,7 @@ final class HomeMapDetailView: BaseView {
     var openChatURL: String?
     var participantsButtonAction: (() -> Void) = {}
     var talkButtonAction: (() -> Void) = {}
+    var meetingId: Int = 0
     
     // MARK: Component
     let topBackgroundView = UIView()
@@ -279,6 +280,7 @@ final class HomeMapDetailView: BaseView {
     
     // MARK: Data Bind Func
     func dataBind(data: HomePinDetailResponseDTO) {
+        self.meetingId = data.id
         titleLabel.text = data.name
         nameLabel.text = data.ownerName
         participantCountButton.currentParticipantsLabel.text = String(data.curParticipants)

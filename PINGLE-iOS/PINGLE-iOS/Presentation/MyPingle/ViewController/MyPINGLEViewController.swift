@@ -107,13 +107,15 @@ final class MyPINGLEViewController: BaseViewController {
     override func setDelegate() {
         pageViewController.delegate = self
         pageViewController.dataSource = self
-        soonViewController.pushToMemberAction = {
-            let participantViewController = ParticipantViewController()
-            self.navigationController?.pushViewController(participantViewController, animated: true)
+        soonViewController.pushToMemberAction = { meetingId in
+            let participantsListViewController = ParticipantsListViewController()
+            participantsListViewController.meetingIdentifier = meetingId
+            self.navigationController?.pushViewController(participantsListViewController, animated: true)
         }
-        completeViewController.pushToCompleteMemberAction = {
-            let participantViewController = ParticipantViewController()
-            self.navigationController?.pushViewController(participantViewController, animated: true)
+        completeViewController.pushToCompleteMemberAction = { meetingId in
+            let participantsListViewController = ParticipantsListViewController()
+            participantsListViewController.meetingIdentifier = meetingId
+            self.navigationController?.pushViewController(participantsListViewController, animated: true)
         }
     }
     

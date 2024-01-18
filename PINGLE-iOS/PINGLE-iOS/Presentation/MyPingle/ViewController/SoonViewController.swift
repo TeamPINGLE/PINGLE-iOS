@@ -20,9 +20,10 @@ final class SoonViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
     /// 참여 예정
     private let participant = false
+    var meetingId: Int = 0
     
     // MARK: Property
-    var pushToMemberAction: (() -> Void) = {}
+    var pushToMemberAction: ((Int) -> Void) = {_ in }
     private let homeDimmedTapGesture = UITapGestureRecognizer()
     private var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
     
@@ -107,7 +108,7 @@ final class SoonViewController: BaseViewController {
     }
     
     private func pushToMemberViewController() {
-        pushToMemberAction()
+        pushToMemberAction(self.meetingId)
     }
     
     private func connectTalkLink(urlString: String) {
@@ -197,6 +198,7 @@ extension SoonViewController: UICollectionViewDataSource {
         cell.isMoreViewAppear = false
         
         cell.memberButtonAction = {
+            self.meetingId = cell.meetingId
             self.pushToMemberViewController()
         }
         

@@ -232,7 +232,7 @@ extension SoonViewController: UIGestureRecognizerDelegate {
         
         for cell in myPINGLECollectionView.visibleCells {
             if let myPINGLECell = cell as? MyPINGLECollectionViewCell, !myPINGLECell.moreView.isHidden {
-                if touchView == myPINGLECell.moreView || touchView.isDescendant(of: myPINGLECell.moreView) {
+                if touchView == myPINGLECell.moreView || touchView == myPINGLECell.myPINGLECardView.moreButton || touchView.isDescendant(of: myPINGLECell.moreView) {
                     return false
                 } else {
                     myPINGLECell.isMoreViewAppear = false

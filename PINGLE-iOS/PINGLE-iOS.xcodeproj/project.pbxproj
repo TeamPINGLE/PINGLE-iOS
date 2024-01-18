@@ -28,6 +28,7 @@
 		C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728332B42E06D00AA575B /* HomeMapViewController.swift */; };
 		C3074B1C2B591B67009D2D0C /* MyPINGLETarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3074B1B2B591B67009D2D0C /* MyPINGLETarget.swift */; };
 		C3074B1E2B591B75009D2D0C /* MyPINGLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3074B1D2B591B75009D2D0C /* MyPINGLEService.swift */; };
+		C3074B222B591CD5009D2D0C /* MyPINGLEListRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3074B212B591CD5009D2D0C /* MyPINGLEListRequestQueryDTO.swift */; };
 		C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */; };
 		C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91892B4CEC32004EE026 /* NetworkResult.swift */; };
 		C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C918B2B4CECE2004EE026 /* TargetType.swift */; };
@@ -171,6 +172,7 @@
 		C30728332B42E06D00AA575B /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
 		C3074B1B2B591B67009D2D0C /* MyPINGLETarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLETarget.swift; sourceTree = "<group>"; };
 		C3074B1D2B591B75009D2D0C /* MyPINGLEService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEService.swift; sourceTree = "<group>"; };
+		C3074B212B591CD5009D2D0C /* MyPINGLEListRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEListRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderFieldKey.swift; sourceTree = "<group>"; };
 		C30C91892B4CEC32004EE026 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		C30C918B2B4CECE2004EE026 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 		C3074B192B591B4D009D2D0C /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				C3074B232B591CDE009D2D0C /* Request */,
 				C3074B1A2B591B54009D2D0C /* Response */,
 			);
 			path = DTO;
@@ -351,6 +354,14 @@
 				C3074B1B2B591B67009D2D0C /* MyPINGLETarget.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		C3074B232B591CDE009D2D0C /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				C3074B212B591CD5009D2D0C /* MyPINGLEListRequestQueryDTO.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		C30D1E0B2B56FD0400879258 /* Components */ = {
@@ -1257,6 +1268,7 @@
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */,
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
+				C3074B222B591CD5009D2D0C /* MyPINGLEListRequestQueryDTO.swift in Sources */,
 				F111BE662B4E8606001D116C /* UserInfoResponseDTO.swift in Sources */,
 				E50333652B50A65D0005AC0E /* MeetingService.swift in Sources */,
 				C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */,

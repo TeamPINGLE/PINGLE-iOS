@@ -26,6 +26,8 @@
 		C30728302B42CFDF00AA575B /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307282F2B42CFDF00AA575B /* TabBarItem.swift */; };
 		C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728312B42D0F900AA575B /* PINGLETabBarController.swift */; };
 		C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30728332B42E06D00AA575B /* HomeMapViewController.swift */; };
+		C3074B1C2B591B67009D2D0C /* MyPINGLETarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3074B1B2B591B67009D2D0C /* MyPINGLETarget.swift */; };
+		C3074B1E2B591B75009D2D0C /* MyPINGLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3074B1D2B591B75009D2D0C /* MyPINGLEService.swift */; };
 		C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */; };
 		C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91892B4CEC32004EE026 /* NetworkResult.swift */; };
 		C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C918B2B4CECE2004EE026 /* TargetType.swift */; };
@@ -167,6 +169,8 @@
 		C307282F2B42CFDF00AA575B /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		C30728312B42D0F900AA575B /* PINGLETabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLETabBarController.swift; sourceTree = "<group>"; };
 		C30728332B42E06D00AA575B /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
+		C3074B1B2B591B67009D2D0C /* MyPINGLETarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLETarget.swift; sourceTree = "<group>"; };
+		C3074B1D2B591B75009D2D0C /* MyPINGLEService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEService.swift; sourceTree = "<group>"; };
 		C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderFieldKey.swift; sourceTree = "<group>"; };
 		C30C91892B4CEC32004EE026 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		C30C918B2B4CECE2004EE026 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
@@ -315,6 +319,38 @@
 			);
 			name = Response;
 			path = Request;
+			sourceTree = "<group>";
+		};
+		C3074B192B591B4D009D2D0C /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				C3074B1A2B591B54009D2D0C /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		C3074B1A2B591B54009D2D0C /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				C3BCA8702B57E293003C6996 /* MyPINGLEResponseDTO.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		C3074B1F2B591B78009D2D0C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C3074B1D2B591B75009D2D0C /* MyPINGLEService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C3074B202B591B7F009D2D0C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C3074B1B2B591B67009D2D0C /* MyPINGLETarget.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		C30D1E0B2B56FD0400879258 /* Components */ = {
@@ -681,7 +717,9 @@
 		C39603052B3BF2D8004BB2B8 /* MyPingle */ = {
 			isa = PBXGroup;
 			children = (
-				C3BCA8702B57E293003C6996 /* MyPINGLEResponseDTO.swift */,
+				C3074B192B591B4D009D2D0C /* DTO */,
+				C3074B202B591B7F009D2D0C /* Router */,
+				C3074B1F2B591B78009D2D0C /* Service */,
 			);
 			path = MyPingle;
 			sourceTree = "<group>";
@@ -1205,6 +1243,7 @@
 				C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
 				E5A651F62B4AF72500676ED0 /* SearchPlaceView.swift in Sources */,
+				C3074B1E2B591B75009D2D0C /* MyPINGLEService.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
 				C30C91932B4CED84004EE026 /* APIEventLogger.swift in Sources */,
 				E5FA3EBC2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift in Sources */,
@@ -1267,6 +1306,7 @@
 				C39603182B3BF36C004BB2B8 /* p.swift in Sources */,
 				C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */,
 				C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */,
+				C3074B1C2B591B67009D2D0C /* MyPINGLETarget.swift in Sources */,
 				C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */,
 				E5FA3EBE2B57BB9000A0AC47 /* ParticipantsListView.swift in Sources */,
 				C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */,

@@ -160,6 +160,7 @@ extension MyPINGLECollectionViewCell {
         myPINGLECardView.titleLabel.text = data.name
         myPINGLECardView.nameLabel.text = data.ownerName
         myPINGLECardView.dateLabel.text = data.date.convertToKoreanDate()
+        myPINGLECardView.openChatURL = data.chatLink
         
         let startAtString = data.startAt.convertToShortTimeFormat() ?? data.startAt
         let endAtString = data.endAt.convertToShortTimeFormat() ?? data.endAt

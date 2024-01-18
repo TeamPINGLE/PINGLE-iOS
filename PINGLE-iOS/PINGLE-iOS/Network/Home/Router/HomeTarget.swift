@@ -14,6 +14,7 @@ enum HomeTarget {
     case pinDetail(_ teamId: Int, _ pinId: Int, queryDTO: HomePinListRequestQueryDTO)
     case meetingJoin(_ meetingId: Int)
     case meetingCancel(_ meetingId: Int)
+    case participantsList(_ meetingId: Int)
 }
 
 extension HomeTarget: TargetType {
@@ -26,6 +27,8 @@ extension HomeTarget: TargetType {
         case .meetingJoin:
             return .authorization
         case .meetingCancel:
+            return .authorization
+        case .participantsList:
             return .authorization
         }
     }
@@ -40,6 +43,8 @@ extension HomeTarget: TargetType {
             return .hasToken
         case .meetingCancel:
             return .hasToken
+        case .participantsList:
+            return .hasToken
         }
     }
     
@@ -53,6 +58,8 @@ extension HomeTarget: TargetType {
             return .post
         case .meetingCancel:
             return .delete
+        case .participantsList:
+            return .get
         }
     }
     
@@ -66,6 +73,8 @@ extension HomeTarget: TargetType {
             return "/meetings/\(meetingId)/join"
         case .meetingCancel(let meetingId):
             return "/meetings/\(meetingId)/cancel"
+        case .participantsList(let meetingId):
+            return "/meetings/\(meetingId)/participants"
         }
     }
     
@@ -78,6 +87,8 @@ extension HomeTarget: TargetType {
         case .meetingJoin:
             return .requestPlain
         case .meetingCancel:
+            return .requestPlain
+        case .participantsList:
             return .requestPlain
         }
     }

@@ -70,7 +70,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         titleLabel.do {
-            $0.text = "하루종일너란바닷속을항해하는나는아쿠아맨헤엄헤엄헤엄"
+            $0.text = "title"
             $0.setLineSpacing(spacing: 3)
             $0.font = .bodyBodyMed14
             $0.textColor = badgeColor
@@ -79,7 +79,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         nameLabel.do {
-            $0.text = "정채은"
+            $0.text = "name"
             $0.textColor = .grayscaleG03
             $0.font = .captionCapMed12
         }
@@ -108,7 +108,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         dateLabel.do {
-            $0.text = "2024년 1월 17일"
+            $0.text = "yyyy년 MM월 dd일"
             $0.textColor = .grayscaleG03
             $0.font = .captionCapMed12
         }
@@ -118,7 +118,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         timeLabel.do {
-            $0.text = "19:00 ~ 22:00"
+            $0.text = "HH:mm ~ HH:mm"
             $0.textColor = .grayscaleG03
             $0.font = .captionCapMed12
         }
@@ -133,7 +133,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         locationLabel.do {
-            $0.text = "한국"
+            $0.text = "location"
             $0.textColor = .grayscaleG03
             $0.font = .captionCapMed12
         }
@@ -143,7 +143,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         memberLabel.do {
-            $0.text = "5/10명"
+            $0.text = "0/00명"
             $0.textColor = .grayscaleG03
             $0.font = .captionCapMed12
             $0.isUserInteractionEnabled = false

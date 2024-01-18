@@ -25,6 +25,8 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
             moreView.isHidden = !isMoreViewAppear
         }
     }
+    var meetingId: Int = 0
+    var isOwner: Bool = false
     let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: Component
@@ -32,7 +34,6 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
     let dimmedView = UIView()
     let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
     let moreView = MoreView()
-    
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -53,6 +54,13 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
         self.cancelButtonAction = {}
         self.memberButtonAction = {}
         self.homeDetailCancelPopUpView.cancelButtonAction = {}
+        self.myPINGLECardView.dDayLabel.text = ""
+        self.myPINGLECardView.titleLabel.text = ""
+        self.myPINGLECardView.nameLabel.text = ""
+        self.myPINGLECardView.dateLabel.text = ""
+        self.myPINGLECardView.timeLabel.text = ""
+        self.myPINGLECardView.locationLabel.text = ""
+        self.myPINGLECardView.memberLabel.text = ""
     }
     
     private func setDimmedView() {
@@ -144,8 +152,6 @@ extension MyPINGLECollectionViewCell {
     
     @objc func cancelButtonTapped() {
         print("취소하기 버튼 탭")
-        dimmedView.isHidden = true
-        homeDetailCancelPopUpView.isHidden = true
         homeDetailCancelPopUpView.cancelButtonAction()
     }
     
@@ -156,10 +162,14 @@ extension MyPINGLECollectionViewCell {
     }
     
     func dataBind(data: MyPINGLEResponseDTO) {
+        self.meetingId = data.id
+        self.isOwner = data.isOwner
+        myPINGLECardView.dDayBackground.isHidden = data.dDay.isEmpty
         myPINGLECardView.dDayLabel.text = data.dDay
         myPINGLECardView.titleLabel.text = data.name
         myPINGLECardView.nameLabel.text = data.ownerName
         myPINGLECardView.dateLabel.text = data.date.convertToKoreanDate()
+        myPINGLECardView.openChatURL = data.chatLink
         
         let startAtString = data.startAt.convertToShortTimeFormat() ?? data.startAt
         let endAtString = data.endAt.convertToShortTimeFormat() ?? data.endAt
@@ -195,7 +205,11 @@ extension MyPINGLECollectionViewCell {
         }
         
         myPINGLECardView.titleLabel.textColor = myPINGLECardView.badgeColor
-        updateMoreView(isOwner: data.isOwner, isActivate: !data.isOwner)
+        updateMoreView(isOwner: data.isOwner, isActivate: true)
+        
+        homeDetailCancelPopUpView.titleLabel.text = data.isOwner ? StringLiterals.MyPingle.Delete.deleteTitle : StringLiterals.Home.Detail.cancelTitle
+        homeDetailCancelPopUpView.descriptionLabel.text = data.isOwner ? StringLiterals.MyPingle.Delete.deleteDescription : StringLiterals.Home.Detail.cancelDescription
+        homeDetailCancelPopUpView.cancelButton.setTitle(data.isOwner ? StringLiterals.MyPingle.Delete.deleteButton : StringLiterals.Home.Detail.cancelButton, for: .normal)
     }
     
     func updateMoreView(isOwner: Bool, isActivate: Bool) {
@@ -203,6 +217,17 @@ extension MyPINGLECollectionViewCell {
         moreView.deleteImageView.image = isActivate ? ImageLiterals.MyPingle.Icon.icTrash : ImageLiterals.MyPingle.Icon.icTrashDisabled
         moreView.deleteTitleLabel.textColor = isActivate ? .grayscaleG03 : .grayscaleG08
         moreView.deleteButton.isEnabled = isActivate
+    }
+    
+    func setDoneStyle() {
+        myPINGLECardView.dDayBackground.do {
+            $0.backgroundColor = .grayscaleG07
+        }
+        
+        myPINGLECardView.dDayLabel.do {
+            $0.text = StringLiterals.MyPingle.List.done
+            $0.textColor = .grayscaleG11
+        }
     }
 }
 

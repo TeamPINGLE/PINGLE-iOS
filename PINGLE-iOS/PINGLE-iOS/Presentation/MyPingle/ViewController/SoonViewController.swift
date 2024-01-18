@@ -15,15 +15,16 @@ final class SoonViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     lazy var myPINGLECollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLEFlowLayout)
-    let myPINGLEFlowLayout = UICollectionViewFlowLayout()
-    let emptyLabel = UILabel()
-    let refreshControl = UIRefreshControl()
+    private let myPINGLEFlowLayout = UICollectionViewFlowLayout()
+    private let emptyLabel = UILabel()
+    private let refreshControl = UIRefreshControl()
+    /// 참여 예정
+    private let participant = false
     
     // MARK: Property
     var pushToMemberAction: (() -> Void) = {}
-    let homeDimmedTapGesture = UITapGestureRecognizer()
-    var soonMyPINGLEData: [MyPINGLEResponseDTO] = myPingleDummy
-    //    var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
+    private let homeDimmedTapGesture = UITapGestureRecognizer()
+    private var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -35,7 +36,7 @@ final class SoonViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateCollectionView()
+        showCollectionView()
     }
     
     override func setDelegate() {
@@ -101,7 +102,7 @@ final class SoonViewController: BaseViewController {
     // MARK: Objc Function
     @objc func refreshCollection(refresh: UIRefreshControl) {
         refresh.beginRefreshing()
-        print("새로고침 하는 동안 서버통신")
+        self.showCollectionView()
         refresh.endRefreshing()
     }
     
@@ -109,7 +110,7 @@ final class SoonViewController: BaseViewController {
         pushToMemberAction()
     }
     
-    func connectTalkLink(urlString: String) {
+    private func connectTalkLink(urlString: String) {
         print("대화하기 버튼 탭")
         guard let url = URL(string: urlString) else {
             print("url error")
@@ -130,10 +131,61 @@ final class SoonViewController: BaseViewController {
     private func updateCollectionView() {
         emptyLabel.isHidden = !soonMyPINGLEData.isEmpty
     }
+    
+    // MARK: Server Function
+    private func myList(completion: @escaping (Bool) -> Void) {
+        NetworkService.shared.myPingleService.myList(queryDTO: MyPINGLEListRequestQueryDTO(participation: self.participant)) { [weak self] response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                self?.soonMyPINGLEData = data
+                completion(true)
+            default:
+                completion(false)
+            }
+        }
+    }
+    
+    private func showCollectionView() {
+        self.myList() { _ in
+            self.myPINGLECollectionView.reloadData()
+            self.updateCollectionView()
+        }
+    }
+    
+    private func meetingCancel(meetingId: Int, isOwner: Bool, completion: @escaping (Bool) -> Void) {
+        if isOwner {
+            NetworkService.shared.homeService.meetingDelete(meetingId: meetingId) { response in
+                switch response {
+                case .success:
+                    print("핑글 삭제 완료")
+                    completion(true)
+                default:
+                    print("실패")
+                    completion(false)
+                    return
+                }
+            }
+        } else {
+            NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
+                switch response {
+                case .success:
+                    print("신청 취소 완료")
+                    completion(true)
+                default:
+                    print("실패")
+                    completion(false)
+                    return
+                }
+            }
+        }
+    }
 }
-
+// MARK: - extension
+// MARK: UICollectionViewDelegate
 extension SoonViewController: UICollectionViewDelegate { }
 
+// MARK: UICollectionViewDataSource
 extension SoonViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return soonMyPINGLEData.count
@@ -148,9 +200,19 @@ extension SoonViewController: UICollectionViewDataSource {
             self.pushToMemberViewController()
         }
         
-        //        cell.moreView.addGestureRecognizer(homeDimmedTapGesture)
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
-            print("추후 취소 서버통신 연결")
+            self.meetingCancel(meetingId: cell.meetingId, isOwner: cell.isOwner) { _ in
+                cell.dimmedView.isHidden = true
+                cell.homeDetailCancelPopUpView.isHidden = true
+                if let index = self.myPINGLECollectionView.indexPath(for: cell) {
+                    self.soonMyPINGLEData.remove(at: index.row)
+                    self.myPINGLECollectionView.performBatchUpdates({
+                        self.myPINGLECollectionView.deleteItems(at: [index])
+                    }, completion: { _ in
+                        self.showCollectionView()
+                    })
+                }
+            }
         }
         
         cell.talkButtonAction = {
@@ -170,7 +232,7 @@ extension SoonViewController: UIGestureRecognizerDelegate {
         
         for cell in myPINGLECollectionView.visibleCells {
             if let myPINGLECell = cell as? MyPINGLECollectionViewCell, !myPINGLECell.moreView.isHidden {
-                if touchView == myPINGLECell.moreView || touchView.isDescendant(of: myPINGLECell.moreView) {
+                if touchView == myPINGLECell.moreView || touchView == myPINGLECell.myPINGLECardView.moreButton || touchView.isDescendant(of: myPINGLECell.moreView) {
                     return false
                 } else {
                     myPINGLECell.isMoreViewAppear = false

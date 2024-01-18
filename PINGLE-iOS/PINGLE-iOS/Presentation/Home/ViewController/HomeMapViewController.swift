@@ -168,7 +168,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
         cell.mapDetailView.updateStyle()
         
         cell.mapDetailView.participantsButtonAction = {
-            cell.showPopUp(isParticipating: self.homePinDetailList[indexPath.row].isParticipating)
+            cell.showPopUp(isParticipating: self.homePinDetailList[indexPath.row].isParticipating, isOwner: cell.mapDetailView.isOwner)
         }
         
         cell.mapDetailView.talkButtonAction = {
@@ -187,12 +187,24 @@ extension HomeMapViewController: UICollectionViewDataSource {
         }
         
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
-            self.meetingCancel(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
-                guard let self else { return }
-                if result {
-                    print("취소하기 버튼 탭")
-                    cell.mapDetailView.isParticipating = false
-                    self.bindDetailViewData(id: self.markerId, category: self.markerCategory) {}
+            if cell.mapDetailView.isOwner {
+                self.meetingDelete(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
+                    guard let self else { return }
+                    if result {
+                        print("삭제하기 버튼 탭")
+                        self.bindDetailViewData(id: self.markerId, category: self.markerCategory) {}
+                        self.mapsView.homeDetailCollectionView.isHidden = true
+                        self.loadPinList()
+                    }
+                }
+            } else {
+                self.meetingCancel(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
+                    guard let self else { return }
+                    if result {
+                        print("취소하기 버튼 탭")
+                        cell.mapDetailView.isParticipating = false
+                        self.bindDetailViewData(id: self.markerId, category: self.markerCategory) {}
+                    }
                 }
             }
         }
@@ -431,6 +443,20 @@ extension HomeMapViewController {
     
     func meetingCancel(meetingId: Int, completion: @escaping (Bool) -> Void) {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
+            switch response {
+            case .success:
+                print("신청 취소 완료")
+                completion(true)
+            default:
+                print("실패")
+                completion(false)
+                return
+            }
+        }
+    }
+    
+    func meetingDelete(meetingId: Int, completion: @escaping (Bool) -> Void) {
+        NetworkService.shared.homeService.meetingDelete(meetingId: meetingId) { response in
             switch response {
             case .success:
                 print("신청 취소 완료")

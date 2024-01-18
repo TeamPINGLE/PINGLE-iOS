@@ -61,7 +61,6 @@ final class PINGLETabBarController: UITabBarController {
     
     // MARK: TabBar Style
     private func setTabBarAppearance() {
-//        self.selectedIndex = defaultIndex
         self.tabBar.itemPositioning = .fill
         
         let myFont = UIFont.captionCapSemi12
@@ -144,6 +143,15 @@ extension PINGLETabBarController: UITabBarControllerDelegate {
                     tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)
                 }
             }
+        }
+        
+        let selectedIndex = tabBarController.selectedIndex
+        switch selectedIndex {
+        case 3:
+            myPingleViewController.soonViewController.myPINGLECollectionView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
+            myPingleViewController.completeViewController.myPINGLECompleteCollectionView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
+        default:
+            return
         }
     }
     

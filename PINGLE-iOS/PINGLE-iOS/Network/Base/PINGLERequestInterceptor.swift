@@ -92,7 +92,9 @@ final class PINGLERequestInterceptor: RequestInterceptor {
     func logout() {
         /// 토큰 초기화 이후 로그인 화면 이동
         KeychainHandler.shared.logout()
-        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        DispatchQueue.main.async {
+            guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        }
     }
 }

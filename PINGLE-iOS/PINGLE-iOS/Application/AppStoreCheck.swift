@@ -24,9 +24,17 @@ class AppStoreCheck {
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil,
-                  let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
-                  let results = json["results"] as? [[String: Any]],
+                  let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
+                print("Error parsing JSON data")
+                completion(nil)
+                return
+            }
+
+            print("JSON Data: \(json)")
+
+            guard let results = json["results"] as? [[String: Any]], results.count > 0,
                   let appStoreVersion = results[0]["version"] as? String else {
+                print("Error extracting version from JSON data")
                 completion(nil)
                 return
             }

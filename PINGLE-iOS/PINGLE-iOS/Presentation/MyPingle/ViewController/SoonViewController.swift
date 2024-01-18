@@ -18,12 +18,13 @@ final class SoonViewController: BaseViewController {
     let myPINGLEFlowLayout = UICollectionViewFlowLayout()
     let emptyLabel = UILabel()
     let refreshControl = UIRefreshControl()
+    /// 참여 예정
+    let participant = false
     
     // MARK: Property
     var pushToMemberAction: (() -> Void) = {}
     let homeDimmedTapGesture = UITapGestureRecognizer()
-    var soonMyPINGLEData: [MyPINGLEResponseDTO] = myPingleDummy
-    //    var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
+    var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -35,7 +36,7 @@ final class SoonViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateCollectionView()
+        showCollectionView()
     }
     
     override func setDelegate() {
@@ -101,7 +102,7 @@ final class SoonViewController: BaseViewController {
     // MARK: Objc Function
     @objc func refreshCollection(refresh: UIRefreshControl) {
         refresh.beginRefreshing()
-        print("새로고침 하는 동안 서버통신")
+        self.showCollectionView()
         refresh.endRefreshing()
     }
     
@@ -130,6 +131,27 @@ final class SoonViewController: BaseViewController {
     private func updateCollectionView() {
         emptyLabel.isHidden = !soonMyPINGLEData.isEmpty
     }
+    
+    // MARK: Server Function
+    func myList(completion: @escaping (Bool) -> Void) {
+        NetworkService.shared.myPingleService.myList(queryDTO: MyPINGLEListRequestQueryDTO(participation: self.participant)) { [weak self] response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                self?.soonMyPINGLEData = data
+                completion(true)
+            default:
+                completion(false)
+            }
+        }
+    }
+    
+    func showCollectionView() {
+        self.myList() { _ in
+            self.myPINGLECollectionView.reloadData()
+            self.updateCollectionView()
+        }
+    }
 }
 
 extension SoonViewController: UICollectionViewDelegate { }
@@ -148,7 +170,6 @@ extension SoonViewController: UICollectionViewDataSource {
             self.pushToMemberViewController()
         }
         
-        //        cell.moreView.addGestureRecognizer(homeDimmedTapGesture)
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
             print("추후 취소 서버통신 연결")
         }

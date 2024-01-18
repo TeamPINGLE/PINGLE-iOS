@@ -156,6 +156,7 @@ extension MyPINGLECollectionViewCell {
     }
     
     func dataBind(data: MyPINGLEResponseDTO) {
+        myPINGLECardView.dDayBackground.isHidden = data.dDay.isEmpty
         myPINGLECardView.dDayLabel.text = data.dDay
         myPINGLECardView.titleLabel.text = data.name
         myPINGLECardView.nameLabel.text = data.ownerName

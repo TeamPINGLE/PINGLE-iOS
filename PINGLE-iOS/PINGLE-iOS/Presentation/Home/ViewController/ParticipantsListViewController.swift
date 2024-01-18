@@ -28,7 +28,13 @@ final class ParticipantsListViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setNavigation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func setStyle() {
@@ -89,6 +95,7 @@ final class ParticipantsListViewController: BaseViewController {
     
     func setNavigation() {
         navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     func participantsList() {

@@ -136,8 +136,11 @@ final class CompleteViewController: BaseViewController {
     }
 }
 
+// MARK: - extension
+// MARK: UICollectionViewDelegate
 extension CompleteViewController: UICollectionViewDelegate { }
 
+// MARK: UICollectionViewDataSource
 extension CompleteViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return completeMyPINGLEData.count

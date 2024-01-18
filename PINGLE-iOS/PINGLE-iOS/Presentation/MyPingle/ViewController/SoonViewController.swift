@@ -167,9 +167,11 @@ final class SoonViewController: BaseViewController {
         }
     }
 }
-
+// MARK: - extension
+// MARK: UICollectionViewDelegate
 extension SoonViewController: UICollectionViewDelegate { }
 
+// MARK: UICollectionViewDataSource
 extension SoonViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return soonMyPINGLEData.count

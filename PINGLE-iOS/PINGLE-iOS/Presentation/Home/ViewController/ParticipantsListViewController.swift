@@ -24,6 +24,7 @@ final class ParticipantsListViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setRegister()
+        addTarget()
         participantsList()
     }
     
@@ -91,6 +92,10 @@ final class ParticipantsListViewController: BaseViewController {
     func setRegister() {
         self.participantsListCollectionView.register(ParticipantsCollectionViewCell.self,
                                                                   forCellWithReuseIdentifier: ParticipantsCollectionViewCell.identifier)
+    }
+    
+    func addTarget() {
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     func setNavigation() {

@@ -232,47 +232,23 @@ extension MeetingIntroductionViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            let maxLength = 27 
-            let oldText = textField.text ?? ""
-            let addedText = string
-
-            // 붙여넣기할때 분기처리
-            if let textRange = textField.selectedTextRange {
-                let start = textRange.start
-                let cursorPosition = textField.offset(from: textField.beginningOfDocument, to: start)
-                let prefix = oldText.prefix(cursorPosition)
-                let suffix = oldText.suffix(from: oldText.index(oldText.startIndex, offsetBy: cursorPosition))
-                let newText = prefix + addedText + suffix
-
-                if newText.count <= maxLength {
-                    return true
-                } else {
-                    return false
-                }
-            } else {
-                let newText = oldText + addedText
-                if newText.count <= maxLength {
-                    return true
-                }
-
-                let lastWordOfOldText = String(oldText[oldText.index(before: oldText.endIndex)])
-                let separatedCharacters = lastWordOfOldText.decomposedStringWithCanonicalMapping.unicodeScalars.map{ String($0) }
-                var separatedCharactersCount = separatedCharacters.count
-                if separatedCharactersCount >= 1 && separatedCharactersCount <= 3 && addedText.isConsonant {
-                    return true
-                }
-                return false
-            }
+        guard let currentText = textField.text else {
+            return true
         }
-        
-        func textFieldDidChangeSelection(_ textField: UITextField) {
-            var text = textField.text ?? ""
-            let maxLength = 26
-            if text.count > maxLength {
-                let startIndex = text.startIndex
-                let endIndex = text.index(startIndex, offsetBy: maxLength - 1)
-                let fixedText = String(text[startIndex...endIndex])
-                textField.text = fixedText
-            }
+        let emojiLength = string.unicodeScalars.filter { $0.isEmoji }.count
+        let newLength = currentText.count + string.count - range.length + emojiLength
+        let maxLength = 27
+        return newLength <= maxLength
+    }
+}
+
+extension UnicodeScalar {
+    var isEmoji: Bool {
+        switch value {
+        case 0x1F600...0x1F64F, 0x1F300...0x1F5FF, 0x1F680...0x1F6FF, 0x1F700...0x1F77F, 0x1F780...0x1F7FF, 0x1F800...0x1F8FF, 0x1F900...0x1F9FF, 0x1FA00...0x1FA6F, 0x1FA70...0x1FAFF, 0x2600...0x26FF, 0x2700...0x27BF:
+            return true
+        default:
+            return false
         }
+    }
 }

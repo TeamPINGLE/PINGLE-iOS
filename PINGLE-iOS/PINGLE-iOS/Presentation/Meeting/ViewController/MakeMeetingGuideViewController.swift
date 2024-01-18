@@ -121,6 +121,8 @@ final class MakeMeetingGuideViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func entranceButtonPressed() {
+        selectCategoryViewController.unselectAllButtons()
+        selectCategoryViewController.nextButton.disabledButton()
         navigationController?.pushViewController(selectCategoryViewController, animated: true)
         }
     

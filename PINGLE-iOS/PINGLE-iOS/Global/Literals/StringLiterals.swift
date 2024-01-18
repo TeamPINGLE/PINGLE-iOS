@@ -198,6 +198,12 @@ enum StringLiterals {
             static let backButton = "돌아가기"
             static let done = "Done"
         }
+        
+        enum Delete {
+            static let deleteTitle = "핑글을 삭제하시겠어요?"
+            static let deleteDescription = "삭제된 핑글은 다시 되돌릴 수 없어요"
+            static let deleteButton = "삭제하기"
+        }
     }
     
     enum Profile {

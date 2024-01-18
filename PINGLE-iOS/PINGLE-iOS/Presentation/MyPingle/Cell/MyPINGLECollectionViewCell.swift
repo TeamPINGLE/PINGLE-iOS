@@ -203,7 +203,11 @@ extension MyPINGLECollectionViewCell {
         }
         
         myPINGLECardView.titleLabel.textColor = myPINGLECardView.badgeColor
-        updateMoreView(isOwner: data.isOwner, isActivate: !data.isOwner)
+        updateMoreView(isOwner: data.isOwner, isActivate: true)
+        
+        homeDetailCancelPopUpView.titleLabel.text = data.isOwner ? StringLiterals.MyPingle.Delete.deleteTitle : StringLiterals.Home.Detail.cancelTitle
+        homeDetailCancelPopUpView.descriptionLabel.text = data.isOwner ? StringLiterals.MyPingle.Delete.deleteDescription : StringLiterals.Home.Detail.cancelDescription
+        homeDetailCancelPopUpView.cancelButton.setTitle(data.isOwner ? StringLiterals.MyPingle.Delete.deleteButton : StringLiterals.Home.Detail.cancelButton, for: .normal)
     }
     
     func updateMoreView(isOwner: Bool, isActivate: Bool) {

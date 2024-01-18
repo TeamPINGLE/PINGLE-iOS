@@ -227,16 +227,6 @@ enum StringLiterals {
     
     enum ToastView {
         static let wrongCode = "초대 코드를 다시 확인해주세요!"
-        
-        enum CTAButton {
-            static let buttonTitle = "다음으로"
-            static let enterTitle = "입장하기"
-            static let startTitle = "시작하기"
-        }
-        
-        enum ToastView {
-            static let wrongCode = "초대 코드를 다시 확인해주세요!"
-            static let rejectDelete = "단체 개설자는 탈퇴할 수 없어요!"
-        }
+        static let rejectDelete = "단체 개설자는 탈퇴할 수 없어요!"
     }
 }

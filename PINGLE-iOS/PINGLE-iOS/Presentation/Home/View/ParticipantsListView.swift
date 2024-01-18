@@ -48,7 +48,7 @@ final class ParticipantsListView: BaseView {
         }
         
         self.userName.do {
-            $0.text = "정채은강민수방민지짱최고"
+            $0.text = " "
             $0.font = .subtitleSubSemi16
             $0.textColor = .grayscaleG03
             $0.lineBreakMode = .byTruncatingTail
@@ -81,5 +81,9 @@ final class ParticipantsListView: BaseView {
             $0.top.equalToSuperview().inset(32)
             $0.leading.trailing.bottom.equalToSuperview().inset(15.adjusted)
         }
+    }
+    
+    func bindData(data: String) {
+        userName.text = data
     }
 }

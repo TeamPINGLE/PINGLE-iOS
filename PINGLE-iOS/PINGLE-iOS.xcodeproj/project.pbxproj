@@ -62,10 +62,8 @@
 		C39602D72B3BF189004BB2B8 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D62B3BF189004BB2B8 /* Font.swift */; };
 		C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DA2B3BF199004BB2B8 /* Color.swift */; };
 		C39602DD2B3BF1A8004BB2B8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */; };
-		C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DF2B3BF1CB004BB2B8 /* b.swift */; };
 		C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E32B3BF203004BB2B8 /* BaseView.swift */; };
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
-		C39603182B3BF36C004BB2B8 /* p.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603172B3BF36C004BB2B8 /* p.swift */; };
 		C39603212B3BF47A004BB2B8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C39603202B3BF47A004BB2B8 /* Then */; };
 		C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C39603232B3BF484004BB2B8 /* SnapKit */; };
 		C39603272B3BF48E004BB2B8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C39603262B3BF48E004BB2B8 /* Alamofire */; };
@@ -106,6 +104,7 @@
 		E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299A2B455E20005D1220 /* MakeMeetingGuideViewController.swift */; };
 		E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */; };
 		E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */; };
+		E5CA99732B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CA99722B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift */; };
 		E5FA3EBC2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA3EBB2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift */; };
 		E5FA3EBE2B57BB9000A0AC47 /* ParticipantsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA3EBD2B57BB9000A0AC47 /* ParticipantsListView.swift */; };
 		E5FA3EC02B57D35000A0AC47 /* ParticipantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA3EBF2B57D35000A0AC47 /* ParticipantsListViewController.swift */; };
@@ -208,10 +207,8 @@
 		C39602D62B3BF189004BB2B8 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		C39602DA2B3BF199004BB2B8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
-		C39602DF2B3BF1CB004BB2B8 /* b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = b.swift; sourceTree = "<group>"; };
 		C39602E32B3BF203004BB2B8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		C39603172B3BF36C004BB2B8 /* p.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p.swift; sourceTree = "<group>"; };
 		C39B8D212B4CFB68008DCAC6 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
 		C39B8D232B4CFB70008DCAC6 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListRequestQueryDTO.swift; sourceTree = "<group>"; };
@@ -248,6 +245,7 @@
 		E5AD299A2B455E20005D1220 /* MakeMeetingGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeMeetingGuideViewController.swift; sourceTree = "<group>"; };
 		E5AD299D2B467B2E005D1220 /* PINGLECategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLECategoryButton.swift; sourceTree = "<group>"; };
 		E5AD299F2B46876D005D1220 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
+		E5CA99722B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsListResponseDTO.swift; sourceTree = "<group>"; };
 		E5FA3EBB2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsCollectionViewCell.swift; sourceTree = "<group>"; };
 		E5FA3EBD2B57BB9000A0AC47 /* ParticipantsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsListView.swift; sourceTree = "<group>"; };
 		E5FA3EBF2B57D35000A0AC47 /* ParticipantsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsListViewController.swift; sourceTree = "<group>"; };
@@ -525,7 +523,6 @@
 				C39602CE2B3BF13A004BB2B8 /* Extensions */,
 				C39602CD2B3BF130004BB2B8 /* Literals */,
 				C39602D42B3BF173004BB2B8 /* Resources */,
-				C39602DE2B3BF1C0004BB2B8 /* Protocols */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -554,14 +551,6 @@
 				C30728232B4151CF00AA575B /* SUIT-SemiBold.otf */,
 			);
 			path = Font;
-			sourceTree = "<group>";
-		};
-		C39602DE2B3BF1C0004BB2B8 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				C39602DF2B3BF1CB004BB2B8 /* b.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		C39602E12B3BF1CF004BB2B8 /* Presentation */ = {
@@ -690,7 +679,6 @@
 				C39603012B3BF2BF004BB2B8 /* Base */,
 				C39603092B3BF307004BB2B8 /* Onboarding */,
 				C39603082B3BF2F3004BB2B8 /* Home */,
-				C39603072B3BF2E8004BB2B8 /* Recommend */,
 				C39603062B3BF2DC004BB2B8 /* Meeting */,
 				C39603052B3BF2D8004BB2B8 /* MyPingle */,
 				C39603022B3BF2C3004BB2B8 /* Profile */,
@@ -742,14 +730,6 @@
 				E503335A2B50A5580005AC0E /* Service */,
 			);
 			path = Meeting;
-			sourceTree = "<group>";
-		};
-		C39603072B3BF2E8004BB2B8 /* Recommend */ = {
-			isa = PBXGroup;
-			children = (
-				C39603172B3BF36C004BB2B8 /* p.swift */,
-			);
-			path = Recommend;
 			sourceTree = "<group>";
 		};
 		C39603082B3BF2F3004BB2B8 /* Home */ = {
@@ -827,6 +807,7 @@
 			children = (
 				C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */,
 				C385453D2B4857D30040E60D /* HomePinDetailResponseDTO.swift */,
+				E5CA99722B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1232,6 +1213,7 @@
 				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
 				F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
+				E5CA99732B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift in Sources */,
 				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
 				C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
@@ -1273,7 +1255,6 @@
 				E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */,
 				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				F14F44AD2B50413400871E5A /* ProfileTarget.swift in Sources */,
-				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
 				C30D1E0E2B5700DB00879258 /* MyPINGLECollectionViewCell.swift in Sources */,
 				C32A2DE72B4D934C0063F84A /* ParticipantViewController.swift in Sources */,
@@ -1307,7 +1288,6 @@
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C30C918E2B4CED0F004EE026 /* KeychainHandler.swift in Sources */,
 				C305D5992B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift in Sources */,
-				C39603182B3BF36C004BB2B8 /* p.swift in Sources */,
 				C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */,
 				C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */,
 				C3074B1C2B591B67009D2D0C /* MyPINGLETarget.swift in Sources */,

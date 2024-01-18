@@ -46,14 +46,14 @@ final class PINGLEWarningToastView: BaseView {
         self.addSubviews(warningImageView, warningLabel)
         
         self.snp.makeConstraints {
-            $0.width.equalTo(343.adjustedWidth)
-            $0.height.equalTo(50.adjusted)
+            $0.width.equalTo(343.adjusted)
+            $0.height.equalTo(50)
         }
         
         warningImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(17.adjusted)
-            $0.height.width.equalTo(24.adjusted)
+            $0.height.width.equalTo(24)
         }
         
         warningLabel.snp.makeConstraints {

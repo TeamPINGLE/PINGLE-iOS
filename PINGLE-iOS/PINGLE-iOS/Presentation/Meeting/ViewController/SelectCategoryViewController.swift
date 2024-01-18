@@ -62,7 +62,7 @@ class SelectCategoryViewController: BaseViewController {
     // MARK: UI
     override func setStyle() {
         self.view.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .grayscaleG11
         }
         
         backButton.do {
@@ -90,7 +90,8 @@ class SelectCategoryViewController: BaseViewController {
         }
         
         PINGLECategoryTitle.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Meeting.MeetingCategory.CategoryLabel.categoryTitleLabel, lineHeight: 34)
+            $0.text = StringLiterals.Meeting.MeetingCategory.CategoryLabel.categoryTitleLabel
+            $0.setLineSpacing(spacing: 4)
             $0.textAlignment = .left
             $0.font = .titleTitleSemi24
             $0.numberOfLines = 0
@@ -202,7 +203,6 @@ class SelectCategoryViewController: BaseViewController {
     
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         unselectAllButtons()
         nextButton.disabledButton()
     }
@@ -258,6 +258,7 @@ class SelectCategoryViewController: BaseViewController {
     
     private func setNavigation() {
         navigationController?.navigationBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     func setTarget() {

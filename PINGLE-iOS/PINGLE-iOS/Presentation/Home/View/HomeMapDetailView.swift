@@ -21,6 +21,7 @@ final class HomeMapDetailView: BaseView {
     var openChatURL: String?
     var participantsButtonAction: (() -> Void) = {}
     var talkButtonAction: (() -> Void) = {}
+    var meetingId: Int = 0
     
     // MARK: Component
     let topBackgroundView = UIView()
@@ -279,6 +280,7 @@ final class HomeMapDetailView: BaseView {
     
     // MARK: Data Bind Func
     func dataBind(data: HomePinDetailResponseDTO) {
+        self.meetingId = data.id
         titleLabel.text = data.name
         nameLabel.text = data.ownerName
         participantCountButton.currentParticipantsLabel.text = String(data.curParticipants)
@@ -410,12 +412,13 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
+    /// 취소하기 비활성화 버튼 -> 삭제하기 버튼으로 변경
     func disabledCancelButton() {
         participationButton.do {
-            $0.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
-            $0.setTitleColor(.grayscaleG10, for: .normal)
-            $0.backgroundColor = .grayscaleG07
-            $0.isEnabled = false
+            $0.setTitle(StringLiterals.Home.Detail.deleteButton, for: .normal)
+            $0.setTitleColor(.black, for: .normal)
+            $0.backgroundColor = .white
+            $0.isEnabled = true
         }
     }
 }

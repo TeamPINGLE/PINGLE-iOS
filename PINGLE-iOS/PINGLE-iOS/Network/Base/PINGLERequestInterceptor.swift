@@ -46,6 +46,10 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                         completion(.doNotRetry)
                     }
                 }
+            case 404:
+                print("404에러로 사용자를 찾을 수 없습니다.❌")
+                completion(.doNotRetry)
+                self.logout()
             default:
                 completion(.doNotRetry)
             }
@@ -72,6 +76,9 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                     self.isrefreshed = true
                     completion(true)
                     return
+                } else if data.code == 404 {
+                    print("이미 탈퇴한 사용자로 찾을 수 없습니다.❌")
+                    self.logout()
                 }
             case .failure:
                 self.logout()
@@ -83,8 +90,11 @@ final class PINGLERequestInterceptor: RequestInterceptor {
     }
     
     func logout() {
+        /// 토큰 초기화 이후 로그인 화면 이동
         KeychainHandler.shared.logout()
-        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        DispatchQueue.main.async {
+            guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        }
     }
 }

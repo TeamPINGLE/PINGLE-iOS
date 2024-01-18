@@ -12,6 +12,8 @@ protocol HomeServiceProtocol {
     func pinDetail(pinId: Int, teamId: Int, queryDTO: HomePinListRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<[HomePinDetailResponseDTO]>>) -> Void)
     func meetingJoin(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
     func meetingCancel(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
+    func participantsList(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<ParticipantsListResponseDTO>>) -> Void)
+    func meetingDelete(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
 }
 
 final class HomeService: APIRequestLoader<HomeTarget>, HomeServiceProtocol {
@@ -34,4 +36,15 @@ final class HomeService: APIRequestLoader<HomeTarget>, HomeServiceProtocol {
         fetchData(target: .meetingCancel(meetingId),
                   responseData: BaseResponse<String?>.self, completion: completion)
     }
+    
+    func participantsList(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<ParticipantsListResponseDTO>>) -> Void) {
+        fetchData(target: .participantsList(meetingId),
+                  responseData: BaseResponse<ParticipantsListResponseDTO>.self, completion: completion)
+    }
+
+    func meetingDelete(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
+        fetchData(target: .meetingDelete(meetingId),
+                  responseData: BaseResponse<String?>.self, completion: completion)
+    }
 }
+

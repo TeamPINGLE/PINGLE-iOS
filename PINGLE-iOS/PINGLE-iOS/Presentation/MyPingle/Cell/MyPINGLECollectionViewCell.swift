@@ -26,6 +26,7 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
         }
     }
     var meetingId: Int = 0
+    var isOwner: Bool = false
     let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: Component
@@ -162,6 +163,7 @@ extension MyPINGLECollectionViewCell {
     
     func dataBind(data: MyPINGLEResponseDTO) {
         self.meetingId = data.id
+        self.isOwner = data.isOwner
         myPINGLECardView.dDayBackground.isHidden = data.dDay.isEmpty
         myPINGLECardView.dDayLabel.text = data.dDay
         myPINGLECardView.titleLabel.text = data.name

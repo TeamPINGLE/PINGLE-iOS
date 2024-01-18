@@ -153,16 +153,30 @@ final class SoonViewController: BaseViewController {
         }
     }
     
-    private func meetingCancel(meetingId: Int, completion: @escaping (Bool) -> Void) {
-        NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
-            switch response {
-            case .success:
-                print("신청 취소 완료")
-                completion(true)
-            default:
-                print("실패")
-                completion(false)
-                return
+    private func meetingCancel(meetingId: Int, isOwner: Bool, completion: @escaping (Bool) -> Void) {
+        if isOwner {
+            NetworkService.shared.homeService.meetingDelete(meetingId: meetingId) { response in
+                switch response {
+                case .success:
+                    print("핑글 삭제 완료")
+                    completion(true)
+                default:
+                    print("실패")
+                    completion(false)
+                    return
+                }
+            }
+        } else {
+            NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
+                switch response {
+                case .success:
+                    print("신청 취소 완료")
+                    completion(true)
+                default:
+                    print("실패")
+                    completion(false)
+                    return
+                }
             }
         }
     }
@@ -187,7 +201,7 @@ extension SoonViewController: UICollectionViewDataSource {
         }
         
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
-            self.meetingCancel(meetingId: cell.meetingId) { _ in
+            self.meetingCancel(meetingId: cell.meetingId, isOwner: cell.isOwner) { _ in
                 cell.dimmedView.isHidden = true
                 cell.homeDetailCancelPopUpView.isHidden = true
                 if let index = self.myPINGLECollectionView.indexPath(for: cell) {

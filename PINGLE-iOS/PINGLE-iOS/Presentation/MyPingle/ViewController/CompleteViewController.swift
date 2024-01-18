@@ -14,7 +14,7 @@ final class CompleteViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private lazy var myPINGLECompleteCollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLECompleteFlowLayout)
+    lazy var myPINGLECompleteCollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLECompleteFlowLayout)
     private let myPINGLECompleteFlowLayout = UICollectionViewFlowLayout()
     private let emptyLabel = UILabel()
     private let refreshControl = UIRefreshControl()

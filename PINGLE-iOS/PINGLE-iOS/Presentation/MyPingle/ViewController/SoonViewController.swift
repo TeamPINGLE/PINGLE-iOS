@@ -14,7 +14,7 @@ final class SoonViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private lazy var myPINGLECollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLEFlowLayout)
+    lazy var myPINGLECollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLEFlowLayout)
     private let myPINGLEFlowLayout = UICollectionViewFlowLayout()
     private let emptyLabel = UILabel()
     private let refreshControl = UIRefreshControl()

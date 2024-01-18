@@ -83,7 +83,7 @@ final class SettingViewController: BaseViewController {
         }
         
         settingTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(15)
+            $0.top.equalToSuperview().inset(59)
             $0.leading.equalTo(self.view).offset(16.adjusted)
         }
         

@@ -49,6 +49,7 @@ final class SplashViewController: BaseViewController {
     
     func branchProcessing() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            AppStoreCheck.shared.checkAndUpdateIfNeeded()
             if KeychainHandler.shared.accessToken.isEmpty {
                 /// 어세스 토큰 없는 경우 - 애플 계정을 통한 회원가입을 한 적이 없는 경우
                 self.changeRootViewController(rootViewController: self.loginViewController)

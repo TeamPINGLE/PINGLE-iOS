@@ -12,6 +12,12 @@ enum StringLiterals {
     // 필요한 enum을 만들어서 사용해주세요
     // 사용예시: titleLabel.text = StringLiterals.TabBar.home
     
+    enum Update {
+        static let title = "업데이트 알림"
+        static let description = "핑글이 유저분들의 의견을 반영하여 사용성을 개선했습니다. 더 좋아진 핑글 앱을 사용하기 위해서는 새로운 버전으로 업데이트 후 이용해 주세요."
+        static let button = "업데이트하기"
+    }
+    
     enum Onboarding {
         enum ButtonTitle {
             static let appleLogin = "Apple로 시작하기"

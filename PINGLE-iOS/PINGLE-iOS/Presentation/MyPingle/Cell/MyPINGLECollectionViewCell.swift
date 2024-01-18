@@ -25,6 +25,7 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
             moreView.isHidden = !isMoreViewAppear
         }
     }
+    var meetingId: Int = 0
     let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: Component
@@ -32,7 +33,6 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
     let dimmedView = UIView()
     let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
     let moreView = MoreView()
-    
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -144,8 +144,6 @@ extension MyPINGLECollectionViewCell {
     
     @objc func cancelButtonTapped() {
         print("취소하기 버튼 탭")
-        dimmedView.isHidden = true
-        homeDetailCancelPopUpView.isHidden = true
         homeDetailCancelPopUpView.cancelButtonAction()
     }
     
@@ -156,6 +154,7 @@ extension MyPINGLECollectionViewCell {
     }
     
     func dataBind(data: MyPINGLEResponseDTO) {
+        self.meetingId = data.id
         myPINGLECardView.dDayBackground.isHidden = data.dDay.isEmpty
         myPINGLECardView.dDayLabel.text = data.dDay
         myPINGLECardView.titleLabel.text = data.name

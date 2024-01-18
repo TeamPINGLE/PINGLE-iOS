@@ -12,17 +12,21 @@ import Then
 
 final class SoonViewController: BaseViewController {
     
+    // MARK: - Variables
+    // MARK: Component
     lazy var myPINGLECollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLEFlowLayout)
     let myPINGLEFlowLayout = UICollectionViewFlowLayout()
     let emptyLabel = UILabel()
     let refreshControl = UIRefreshControl()
     
+    // MARK: Property
     var pushToMemberAction: (() -> Void) = {}
     let homeDimmedTapGesture = UITapGestureRecognizer()
-    
     var soonMyPINGLEData: [MyPINGLEResponseDTO] = myPingleDummy
     //    var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setCollectionView()
@@ -76,6 +80,7 @@ final class SoonViewController: BaseViewController {
         }
     }
     
+    // MARK: Layout Helpers
     override func setLayout() {
         view.addSubviews(myPINGLECollectionView,
                          emptyLabel)

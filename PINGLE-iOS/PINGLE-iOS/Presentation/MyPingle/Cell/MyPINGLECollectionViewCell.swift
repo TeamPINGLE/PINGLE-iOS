@@ -12,6 +12,8 @@ import Then
 
 final class MyPINGLECollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Variables
+    // MARK: Constants
     static let identifier = "MyPINGLECollectionViewCell"
     
     var memberButtonAction: (() -> Void) = {}
@@ -23,13 +25,14 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
             moreView.isHidden = !isMoreViewAppear
         }
     }
+    let dimmedTapGesture = UITapGestureRecognizer()
     
+    // MARK: Component
     let myPINGLECardView = MyPINGLECardView()
     let dimmedView = UIView()
     let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
     let moreView = MoreView()
     
-    let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -57,6 +60,7 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
         self.dimmedTapGesture.delegate = self
     }
     
+    // MARK: UI Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -119,7 +123,6 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
 }
 
 extension MyPINGLECollectionViewCell {
-    
     @objc func memberButtonTapped() {
         memberButtonAction()
     }

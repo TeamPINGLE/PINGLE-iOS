@@ -80,7 +80,7 @@ final class MyPINGLEViewController: BaseViewController {
         )
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(10)
+            $0.top.equalToSuperview().offset(54)
             $0.leading.equalToSuperview().inset(20)
         }
         

@@ -12,6 +12,8 @@ import Then
 
 final class MoreView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Component
     let talkTitleLabel = UILabel()
     let talkImageView = UIImageView()
     let talkButton = UIButton()

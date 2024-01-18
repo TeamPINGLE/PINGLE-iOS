@@ -15,7 +15,8 @@ final class ParticipantsListViewController: BaseViewController {
     // MARK: Property
     private let backButton = UIButton()
     private let participantsListTitle = UILabel()
-    var participantsListResponseDTO: [ParticipantsListResponseDTO] = []
+    var participantsListResponseDTO: [String] = []
+    var meetingIdentifier: Int = 0
     
     var participantsListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
@@ -23,6 +24,7 @@ final class ParticipantsListViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setRegister()
+        participantsList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +91,26 @@ final class ParticipantsListViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
+    func participantsList() {
+        NetworkService.shared.homeService.participantsList(meetingId: meetingIdentifier) { [weak self] response in
+            switch response {
+            case .success(let data):
+                guard let participantsList = data.data else {
+                    print("No data in response.")
+                    return
+                }
+                self?.participantsListResponseDTO = participantsList.participants
+                
+                DispatchQueue.main.async {
+                    self?.participantsListCollectionView.reloadData()
+                }
+            default:
+                print("실패")
+                return
+            }
+        }
+    }
+    
     // MARK: Objc Function
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
@@ -108,11 +130,14 @@ extension ParticipantsListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParticipantsCollectionViewCell.identifier,
                                                             for: indexPath) as? ParticipantsCollectionViewCell else {return UICollectionViewCell()}
-        let participant = participantsListResponseDTO[indexPath.item].participants
-        
-        return cell
+        let participantData = participantsListResponseDTO[indexPath.item]
+        cell.participantsListView.bindData(data: participantData)
+        if indexPath.item == 0 {
+            cell.participantsListView.setOwnerCard()
         }
+        return cell
     }
+}
 
 // MARK: UICollectionViewDelegateFlowLayout
 extension ParticipantsListViewController: UICollectionViewDelegateFlowLayout {

@@ -82,4 +82,8 @@ final class ParticipantsListView: BaseView {
             $0.leading.trailing.bottom.equalToSuperview().inset(15.adjusted)
         }
     }
+    
+    func bindData(data: String) {
+        userName.text = data
+    }
 }

@@ -20,9 +20,10 @@ final class CompleteViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
     /// 참여 완료
     private let participant = true
+    var meetingId: Int = 0
     
     // MARK: Property
-    var pushToCompleteMemberAction: (() -> Void) = {}
+    var pushToCompleteMemberAction: ((Int) -> Void) = {_ in}
     private let homeDimmedTapGesture = UITapGestureRecognizer()
     private var completeMyPINGLEData: [MyPINGLEResponseDTO] = []
     
@@ -107,7 +108,7 @@ final class CompleteViewController: BaseViewController {
     }
     
     private func pushToMemberViewController() {
-        pushToCompleteMemberAction()
+        pushToCompleteMemberAction(self.meetingId)
     }
     
     private func updateCollectionView() {
@@ -154,6 +155,7 @@ extension CompleteViewController: UICollectionViewDataSource {
         cell.isMoreViewAppear = false
         
         cell.memberButtonAction = {
+            self.meetingId = cell.meetingId
             self.pushToMemberViewController()
         }
         return cell

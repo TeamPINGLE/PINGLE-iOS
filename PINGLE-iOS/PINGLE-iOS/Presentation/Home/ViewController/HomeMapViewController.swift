@@ -292,8 +292,8 @@ extension HomeMapViewController {
     
     @objc func participantCountButtonTapped() {
         print("참여현황")
-        let participantViewController = ParticipantViewController()
-        self.navigationController?.pushViewController(participantViewController, animated: true)
+        let participantsListViewController = ParticipantsListViewController()
+        self.navigationController?.pushViewController(participantsListViewController, animated: true)
     }
     
     func connectTalkLink(urlString: String) {

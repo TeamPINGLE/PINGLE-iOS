@@ -25,6 +25,7 @@ final class SettingViewController: BaseViewController {
     private let settingSelectView = SettingSelectView()
     private let dimmedView = UIView()
     private let accountPopUpView = AccountPopUpView()
+    private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.rejectDelete)
     private let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: Life Cycle
@@ -63,11 +64,18 @@ final class SettingViewController: BaseViewController {
         self.accountPopUpView.do {
             $0.isHidden = true
         }
+        
+        self.warningToastView.do {
+            $0.alpha = 0.0
+        }
     }
     
     override func setLayout() {
+        let safeAreaHeight = view.safeAreaInsets.bottom
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
+        
         self.view.addSubviews(settingTitleLabel, userNameLabel, organizationButton,
-                              settingSelectView)
+                              settingSelectView, warningToastView)
         
         if let window = UIApplication.shared.keyWindow {
             window.addSubviews(dimmedView,
@@ -75,7 +83,7 @@ final class SettingViewController: BaseViewController {
         }
         
         settingTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(15)
+            $0.top.equalToSuperview().inset(59)
             $0.leading.equalTo(self.view).offset(16.adjusted)
         }
         
@@ -100,6 +108,11 @@ final class SettingViewController: BaseViewController {
         
         accountPopUpView.snp.makeConstraints {
             $0.center.equalTo(dimmedView)
+        }
+        
+        warningToastView.snp.makeConstraints {
+            $0.bottom.equalTo(safeAreaHeight).offset(-(tabBarHeight + 18))
+            $0.centerX.equalToSuperview()
         }
     }
     
@@ -178,6 +191,15 @@ final class SettingViewController: BaseViewController {
         }
     }
     
+    // MARK: WarningToastView Animation Function
+    func showWarningToastView(duration: TimeInterval = 2.0) {
+        self.warningToastView.fadeIn()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            self.warningToastView.fadeOut()
+        }
+    }
+    
     // MARK: Network Function
     func postLogout() {
         NetworkService.shared.profileService.logout() { [weak self] response in
@@ -207,6 +229,11 @@ final class SettingViewController: BaseViewController {
                     sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
                     self.navigationController?.popToRootViewController(animated: true)
                 }
+            case .networkErr:
+                /// 탈퇴하는 사용자가 단체장일 경우 경고장 띄우고 탈퇴시키지 않음.
+                dimmedView.isHidden = true
+                accountPopUpView.isHidden = true
+                showWarningToastView()
             default:
                 print("login error")
             }

@@ -54,7 +54,6 @@ final class HomeMapView: BaseView {
         super.init(frame: frame)
     }
     
-    // MARK: Style Helpers
     override func setStyle() {
         cameraUpdate.do {
             $0.animation = .easeIn

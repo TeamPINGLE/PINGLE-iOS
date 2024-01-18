@@ -108,14 +108,18 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
 }
 
 extension HomeDetailCollectionViewCell {
-    func showPopUp(isParticipating: Bool) {
+    func showPopUp(isParticipating: Bool, isOwner: Bool) {
         dimmedView.isHidden = false
+        
         if !isParticipating {
             homeDetailPopUpView.isHidden = false
             print("참여 팝업 보여주기")
         } else {
+            homeDetailCancelPopUpView.titleLabel.text = isOwner ? StringLiterals.MyPingle.Delete.deleteTitle : StringLiterals.Home.Detail.cancelTitle
+            homeDetailCancelPopUpView.descriptionLabel.text = isOwner ? StringLiterals.MyPingle.Delete.deleteDescription : StringLiterals.Home.Detail.cancelDescription
+            homeDetailCancelPopUpView.cancelButton.setTitle(isOwner ? StringLiterals.MyPingle.Delete.deleteButton : StringLiterals.Home.Detail.cancelButton, for: .normal)
             homeDetailCancelPopUpView.isHidden = false
-            print("참여취소 팝업 보여주기")
+            print("참여취소 / 삭제 팝업 보여주기")
         }
     }
     

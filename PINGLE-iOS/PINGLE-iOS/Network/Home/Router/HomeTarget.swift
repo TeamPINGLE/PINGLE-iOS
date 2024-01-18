@@ -15,6 +15,7 @@ enum HomeTarget {
     case meetingJoin(_ meetingId: Int)
     case meetingCancel(_ meetingId: Int)
     case participantsList(_ meetingId: Int)
+    case meetingDelete(_ meetingId: Int)
 }
 
 extension HomeTarget: TargetType {
@@ -29,6 +30,8 @@ extension HomeTarget: TargetType {
         case .meetingCancel:
             return .authorization
         case .participantsList:
+          return .authorization
+        case .meetingDelete:
             return .authorization
         }
     }
@@ -45,6 +48,8 @@ extension HomeTarget: TargetType {
             return .hasToken
         case .participantsList:
             return .hasToken
+        case .meetingDelete:
+            return .hasToken
         }
     }
     
@@ -60,6 +65,8 @@ extension HomeTarget: TargetType {
             return .delete
         case .participantsList:
             return .get
+        case .meetingDelete:
+            return .delete
         }
     }
     
@@ -75,6 +82,8 @@ extension HomeTarget: TargetType {
             return "/meetings/\(meetingId)/cancel"
         case .participantsList(let meetingId):
             return "/meetings/\(meetingId)/participants"
+        case .meetingDelete(let meetingId):
+            return "/meetings/\(meetingId)"
         }
     }
     
@@ -89,6 +98,8 @@ extension HomeTarget: TargetType {
         case .meetingCancel:
             return .requestPlain
         case .participantsList:
+            return .requestPlain
+        case .meetingDelete:
             return .requestPlain
         }
     }

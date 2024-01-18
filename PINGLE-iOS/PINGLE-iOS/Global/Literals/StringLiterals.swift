@@ -196,6 +196,7 @@ enum StringLiterals {
             static let popUpDescription = "취소한 모임은 언제든 다시 신청할 수 있어요"
             static let cancelButton = "취소하기"
             static let backButton = "돌아가기"
+            static let done = "Done"
         }
     }
     

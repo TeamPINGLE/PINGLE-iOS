@@ -111,6 +111,10 @@ final class MyPINGLEViewController: BaseViewController {
             let participantViewController = ParticipantViewController()
             self.navigationController?.pushViewController(participantViewController, animated: true)
         }
+        completeViewController.pushToCompleteMemberAction = {
+            let participantViewController = ParticipantViewController()
+            self.navigationController?.pushViewController(participantViewController, animated: true)
+        }
     }
     
     private func setSegmentedControl() {

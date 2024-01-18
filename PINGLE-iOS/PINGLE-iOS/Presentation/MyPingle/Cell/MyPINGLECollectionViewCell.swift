@@ -205,6 +205,17 @@ extension MyPINGLECollectionViewCell {
         moreView.deleteTitleLabel.textColor = isActivate ? .grayscaleG03 : .grayscaleG08
         moreView.deleteButton.isEnabled = isActivate
     }
+    
+    func setDoneStyle() {
+        myPINGLECardView.dDayBackground.do {
+            $0.backgroundColor = .grayscaleG07
+        }
+        
+        myPINGLECardView.dDayLabel.do {
+            $0.text = StringLiterals.MyPingle.List.done
+            $0.textColor = .grayscaleG11
+        }
+    }
 }
 
 // MARK: UIGestureRecognizerDelegate

@@ -14,17 +14,17 @@ final class SoonViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    lazy var myPINGLECollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLEFlowLayout)
-    let myPINGLEFlowLayout = UICollectionViewFlowLayout()
-    let emptyLabel = UILabel()
-    let refreshControl = UIRefreshControl()
+    private lazy var myPINGLECollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLEFlowLayout)
+    private let myPINGLEFlowLayout = UICollectionViewFlowLayout()
+    private let emptyLabel = UILabel()
+    private let refreshControl = UIRefreshControl()
     /// 참여 예정
-    let participant = false
+    private let participant = false
     
     // MARK: Property
     var pushToMemberAction: (() -> Void) = {}
-    let homeDimmedTapGesture = UITapGestureRecognizer()
-    var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
+    private let homeDimmedTapGesture = UITapGestureRecognizer()
+    private var soonMyPINGLEData: [MyPINGLEResponseDTO] = []
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -110,7 +110,7 @@ final class SoonViewController: BaseViewController {
         pushToMemberAction()
     }
     
-    func connectTalkLink(urlString: String) {
+    private func connectTalkLink(urlString: String) {
         print("대화하기 버튼 탭")
         guard let url = URL(string: urlString) else {
             print("url error")
@@ -133,7 +133,7 @@ final class SoonViewController: BaseViewController {
     }
     
     // MARK: Server Function
-    func myList(completion: @escaping (Bool) -> Void) {
+    private func myList(completion: @escaping (Bool) -> Void) {
         NetworkService.shared.myPingleService.myList(queryDTO: MyPINGLEListRequestQueryDTO(participation: self.participant)) { [weak self] response in
             switch response {
             case .success(let data):

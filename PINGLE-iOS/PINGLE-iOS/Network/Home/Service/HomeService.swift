@@ -40,9 +40,11 @@ final class HomeService: APIRequestLoader<HomeTarget>, HomeServiceProtocol {
     func participantsList(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<ParticipantsListResponseDTO>>) -> Void) {
         fetchData(target: .participantsList(meetingId),
                   responseData: BaseResponse<ParticipantsListResponseDTO>.self, completion: completion)
+    }
 
     func meetingDelete(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
         fetchData(target: .meetingDelete(meetingId),
                   responseData: BaseResponse<String?>.self, completion: completion)
     }
 }
+

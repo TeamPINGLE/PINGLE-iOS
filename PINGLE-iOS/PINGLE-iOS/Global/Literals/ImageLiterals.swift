@@ -125,6 +125,20 @@ enum ImageLiterals {
             static var progressBarImage7: UIImage { .load(named: "imgProgressBar7")}
         }
     }
+    
+    enum MyPingle {
+        enum Icon {
+            static var icChat: UIImage { .load(named: "icChat")}
+            static var btnMyPingleMore: UIImage { .load(named: "btnMyPingleMore")}
+            static var icTrash: UIImage { .load(named: "icTrash")}
+            static var icTrashDisabled: UIImage { .load(named: "icTrashDisabled")}
+            static var icCalendar: UIImage { .load(named: "icCalendar")}
+            static var icLocation: UIImage { .load(named: "icLocation")}
+            static var icUser: UIImage { .load(named: "icUser")}
+            static var icRightArrow: UIImage { .load(named: "icParticipantArrowActivate")}
+            static var imgMyPingle: UIImage { .load(named: "imgMyPingle")}
+        }
+    }
 }
 
 extension UIImage {

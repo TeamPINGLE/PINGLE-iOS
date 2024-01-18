@@ -35,6 +35,11 @@
 		C30C91952B4CED93004EE026 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91942B4CED93004EE026 /* BaseResponse.swift */; };
 		C30C91972B4CED9F004EE026 /* APIRequestLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91962B4CED9F004EE026 /* APIRequestLoader.swift */; };
 		C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91982B4CEDAB004EE026 /* NetworkService.swift */; };
+		C30D1E062B56FAD700879258 /* MyPINGLESegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D1E052B56FAD600879258 /* MyPINGLESegmentControl.swift */; };
+		C30D1E082B56FB7300879258 /* SoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D1E072B56FB7300879258 /* SoonViewController.swift */; };
+		C30D1E0A2B56FB7B00879258 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D1E092B56FB7B00879258 /* CompleteViewController.swift */; };
+		C30D1E0E2B5700DB00879258 /* MyPINGLECollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D1E0D2B5700DB00879258 /* MyPINGLECollectionViewCell.swift */; };
+		C30D1E112B57033800879258 /* MyPINGLECardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D1E102B57033800879258 /* MyPINGLECardView.swift */; };
 		C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */; };
 		C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */; };
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
@@ -58,7 +63,6 @@
 		C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E32B3BF203004BB2B8 /* BaseView.swift */; };
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
 		C39603182B3BF36C004BB2B8 /* p.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39603172B3BF36C004BB2B8 /* p.swift */; };
-		C396031C2B3BF374004BB2B8 /* r.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396031B2B3BF374004BB2B8 /* r.swift */; };
 		C39603212B3BF47A004BB2B8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C39603202B3BF47A004BB2B8 /* Then */; };
 		C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C39603232B3BF484004BB2B8 /* SnapKit */; };
 		C39603272B3BF48E004BB2B8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C39603262B3BF48E004BB2B8 /* Alamofire */; };
@@ -71,6 +75,8 @@
 		C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D9602B49866F00E817B5 /* FixView.swift */; };
 		C3A0D9652B49892500E817B5 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9642B49892500E817B5 /* SFProDisplay-Regular.otf */; };
 		C3A0D9672B49892900E817B5 /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9662B49892800E817B5 /* SFProDisplay-Bold.otf */; };
+		C3BCA86F2B57D0FC003C6996 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCA86E2B57D0FB003C6996 /* MoreView.swift */; };
+		C3BCA8712B57E293003C6996 /* MyPINGLEResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCA8702B57E293003C6996 /* MyPINGLEResponseDTO.swift */; };
 		C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */; };
 		C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */; };
 		C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC304E2B43E20600276E00 /* HomeMapView.swift */; };
@@ -169,6 +175,11 @@
 		C30C91942B4CED93004EE026 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		C30C91962B4CED9F004EE026 /* APIRequestLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestLoader.swift; sourceTree = "<group>"; };
 		C30C91982B4CEDAB004EE026 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		C30D1E052B56FAD600879258 /* MyPINGLESegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLESegmentControl.swift; sourceTree = "<group>"; };
+		C30D1E072B56FB7300879258 /* SoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonViewController.swift; sourceTree = "<group>"; };
+		C30D1E092B56FB7B00879258 /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
+		C30D1E0D2B5700DB00879258 /* MyPINGLECollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLECollectionViewCell.swift; sourceTree = "<group>"; };
+		C30D1E102B57033800879258 /* MyPINGLECardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLECardView.swift; sourceTree = "<group>"; };
 		C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListResponseDTO.swift; sourceTree = "<group>"; };
 		C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButtonStatus.swift; sourceTree = "<group>"; };
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
@@ -195,7 +206,6 @@
 		C39602E32B3BF203004BB2B8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C39603172B3BF36C004BB2B8 /* p.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p.swift; sourceTree = "<group>"; };
-		C396031B2B3BF374004BB2B8 /* r.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = r.swift; sourceTree = "<group>"; };
 		C39B8D212B4CFB68008DCAC6 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
 		C39B8D232B4CFB70008DCAC6 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListRequestQueryDTO.swift; sourceTree = "<group>"; };
@@ -204,6 +214,8 @@
 		C3A0D9602B49866F00E817B5 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
 		C3A0D9642B49892500E817B5 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
 		C3A0D9662B49892800E817B5 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
+		C3BCA86E2B57D0FB003C6996 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
+		C3BCA8702B57E293003C6996 /* MyPINGLEResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEResponseDTO.swift; sourceTree = "<group>"; };
 		C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewController.swift; sourceTree = "<group>"; };
 		C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCancelPopUpView.swift; sourceTree = "<group>"; };
 		C3EC304E2B43E20600276E00 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
@@ -303,6 +315,41 @@
 			);
 			name = Response;
 			path = Request;
+			sourceTree = "<group>";
+		};
+		C30D1E0B2B56FD0400879258 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C30D1E052B56FAD600879258 /* MyPINGLESegmentControl.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C30D1E0C2B56FD0D00879258 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */,
+				C30D1E072B56FB7300879258 /* SoonViewController.swift */,
+				C30D1E092B56FB7B00879258 /* CompleteViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C30D1E0F2B5700DE00879258 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C30D1E0D2B5700DB00879258 /* MyPINGLECollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C30D1E122B57033C00879258 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C30D1E102B57033800879258 /* MyPINGLECardView.swift */,
+				C3BCA86E2B57D0FB003C6996 /* MoreView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C33BF3462B46E85200008653 /* ViewController */ = {
@@ -562,7 +609,10 @@
 		C39602ED2B3BF244004BB2B8 /* MyPingle */ = {
 			isa = PBXGroup;
 			children = (
-				C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */,
+				C30D1E0C2B56FD0D00879258 /* ViewController */,
+				C30D1E0B2B56FD0400879258 /* Components */,
+				C30D1E0F2B5700DE00879258 /* Cell */,
+				C30D1E122B57033C00879258 /* View */,
 			);
 			path = MyPingle;
 			sourceTree = "<group>";
@@ -631,7 +681,7 @@
 		C39603052B3BF2D8004BB2B8 /* MyPingle */ = {
 			isa = PBXGroup;
 			children = (
-				C396031B2B3BF374004BB2B8 /* r.swift */,
+				C3BCA8702B57E293003C6996 /* MyPINGLEResponseDTO.swift */,
 			);
 			path = MyPingle;
 			sourceTree = "<group>";
@@ -1146,10 +1196,12 @@
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */,
+				C3BCA8712B57E293003C6996 /* MyPINGLEResponseDTO.swift in Sources */,
 				F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */,
 				E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
+				C30D1E0A2B56FB7B00879258 /* CompleteViewController.swift in Sources */,
 				C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */,
 				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
 				E5A651F62B4AF72500676ED0 /* SearchPlaceView.swift in Sources */,
@@ -1160,6 +1212,7 @@
 				F1239BC92B45C3880072A02A /* SearchedModel.swift in Sources */,
 				E5A651EE2B4ADE6000676ED0 /* PlaceSelectionViewController.swift in Sources */,
 				C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */,
+				C30D1E112B57033800879258 /* MyPINGLECardView.swift in Sources */,
 				F12181BF2B510EFB00D22F55 /* PINGLERequestInterceptor.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
@@ -1179,6 +1232,7 @@
 				F14F44AD2B50413400871E5A /* ProfileTarget.swift in Sources */,
 				C39602E02B3BF1CB004BB2B8 /* b.swift in Sources */,
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
+				C30D1E0E2B5700DB00879258 /* MyPINGLECollectionViewCell.swift in Sources */,
 				C32A2DE72B4D934C0063F84A /* ParticipantViewController.swift in Sources */,
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
 				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,
@@ -1202,11 +1256,11 @@
 				F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */,
 				C305D59B2B5176D3008993C3 /* SearchPlaceResponseDTO.swift in Sources */,
 				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
+				C30D1E062B56FAD700879258 /* MyPINGLESegmentControl.swift in Sources */,
 				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,
 				F16BCA392B4E62760096A62F /* SplashViewController.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
 				C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */,
-				C396031C2B3BF374004BB2B8 /* r.swift in Sources */,
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C30C918E2B4CED0F004EE026 /* KeychainHandler.swift in Sources */,
 				C305D5992B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift in Sources */,
@@ -1226,7 +1280,9 @@
 				E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */,
 				E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */,
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,
+				C3BCA86F2B57D0FC003C6996 /* MoreView.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
+				C30D1E082B56FB7300879258 /* SoonViewController.swift in Sources */,
 				E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */,
 				F14F44AB2B50411700871E5A /* ProfileService.swift in Sources */,
 				F125A1842B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift in Sources */,

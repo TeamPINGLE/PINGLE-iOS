@@ -73,6 +73,7 @@ enum StringLiterals {
             static let talkButton = "대화하기"
             static let participationButton = "참여하기"
             static let cancelButton = "취소하기"
+            static let deleteButton = "삭제하기"
             static let askDescription = "이 핑글에 참여할까요?"
             static let cancelTitle = "참여를 취소하시겠어요?"
             static let cancelDescription = "취소한 모임은 언제든 다시 신청할 수 있어요"

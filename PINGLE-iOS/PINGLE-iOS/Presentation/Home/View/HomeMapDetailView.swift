@@ -410,12 +410,13 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
+    /// 취소하기 비활성화 버튼 -> 삭제하기 버튼으로 변경
     func disabledCancelButton() {
         participationButton.do {
-            $0.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
-            $0.setTitleColor(.grayscaleG10, for: .normal)
-            $0.backgroundColor = .grayscaleG07
-            $0.isEnabled = false
+            $0.setTitle(StringLiterals.Home.Detail.deleteButton, for: .normal)
+            $0.setTitleColor(.black, for: .normal)
+            $0.backgroundColor = .white
+            $0.isEnabled = true
         }
     }
 }

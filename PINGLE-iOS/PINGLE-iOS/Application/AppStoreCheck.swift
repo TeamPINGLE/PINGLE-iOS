@@ -51,11 +51,12 @@ class AppStoreCheck {
         }
     }
     
-    func checkAndUpdateIfNeeded() {
+    func checkAndUpdateIfNeeded(completion: @escaping (Bool) -> Void) {
         self.latestVersion { marketingVersion in
             DispatchQueue.main.async {
                 guard let marketingVersion = marketingVersion else {
                     print("앱스토어 버전을 찾지 못했습니다.")
+                    completion(true)
                     return
                 }
                 let currentProjectVersion = AppStoreCheck.appVersion ?? ""
@@ -67,12 +68,15 @@ class AppStoreCheck {
                 
                 if splitCurrentProjectVersion.count > 0 && splitMarketingVersion.count > 0 {
                     if splitCurrentProjectVersion[0] < splitMarketingVersion[0] {
-                        self.showUpdateAlert()
-                    } else if splitCurrentProjectVersion[1] < splitMarketingVersion[1] {
-                        self.showUpdateAlert()
+                        completion(false)
+                    } else if splitCurrentProjectVersion[0] == splitMarketingVersion[0] && splitCurrentProjectVersion[1] < splitMarketingVersion[1] {
+                        completion(false)
                     } else {
                         print("현재 최신 버전입니다.")
+                        completion(true)
                     }
+                } else {
+                    completion(true)
                 }
             }
         }

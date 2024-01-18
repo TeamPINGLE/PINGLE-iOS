@@ -49,13 +49,18 @@ final class SplashViewController: BaseViewController {
     
     func branchProcessing() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-            AppStoreCheck.shared.checkAndUpdateIfNeeded()
-            if KeychainHandler.shared.accessToken.isEmpty {
-                /// 어세스 토큰 없는 경우 - 애플 계정을 통한 회원가입을 한 적이 없는 경우
-                self.changeRootViewController(rootViewController: self.loginViewController)
-            } else {
-                /// 어세스 토큰이 있는 경우 - 애플 계정을 통한 회원가입을 한 적이 있는 경우 : 가입한 단체가 있는지 확인하는 통신 코드 구현
-                self.getUserInfo()
+            AppStoreCheck.shared.checkAndUpdateIfNeeded { isLatestVersion in
+                if isLatestVersion {
+                    if KeychainHandler.shared.accessToken.isEmpty {
+                        /// 어세스 토큰 없는 경우 - 애플 계정을 통한 회원가입을 한 적이 없는 경우
+                        self.changeRootViewController(rootViewController: self.loginViewController)
+                    } else {
+                        /// 어세스 토큰이 있는 경우 - 애플 계정을 통한 회원가입을 한 적이 있는 경우 : 가입한 단체가 있는지 확인하는 통신 코드 구현
+                        self.getUserInfo()
+                    }
+                } else {
+                    AppStoreCheck.shared.showUpdateAlert()
+                }
             }
         }
     }

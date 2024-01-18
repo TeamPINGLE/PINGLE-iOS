@@ -106,6 +106,7 @@
 		E5FA3EBC2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA3EBB2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift */; };
 		E5FA3EBE2B57BB9000A0AC47 /* ParticipantsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA3EBD2B57BB9000A0AC47 /* ParticipantsListView.swift */; };
 		E5FA3EC02B57D35000A0AC47 /* ParticipantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA3EBF2B57D35000A0AC47 /* ParticipantsListViewController.swift */; };
+		E5FA3EC42B5867B800A0AC47 /* AddPingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA3EC32B5867B800A0AC47 /* AddPingleViewController.swift */; };
 		F111BE662B4E8606001D116C /* UserInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */; };
 		F12181BD2B505F5800D22F55 /* AppleTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181BC2B505F5800D22F55 /* AppleTokenResponse.swift */; };
 		F12181BF2B510EFB00D22F55 /* PINGLERequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181BE2B510EFB00D22F55 /* PINGLERequestInterceptor.swift */; };
@@ -245,6 +246,7 @@
 		E5FA3EBB2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsCollectionViewCell.swift; sourceTree = "<group>"; };
 		E5FA3EBD2B57BB9000A0AC47 /* ParticipantsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsListView.swift; sourceTree = "<group>"; };
 		E5FA3EBF2B57D35000A0AC47 /* ParticipantsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsListViewController.swift; sourceTree = "<group>"; };
+		E5FA3EC32B5867B800A0AC47 /* AddPingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPingleViewController.swift; sourceTree = "<group>"; };
 		F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponseDTO.swift; sourceTree = "<group>"; };
 		F12181BC2B505F5800D22F55 /* AppleTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTokenResponse.swift; sourceTree = "<group>"; };
 		F12181BE2B510EFB00D22F55 /* PINGLERequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLERequestInterceptor.swift; sourceTree = "<group>"; };
@@ -900,6 +902,7 @@
 				E5A651F72B4B28BF00676ED0 /* RecruitmentViewController.swift */,
 				E5A651ED2B4ADE6000676ED0 /* PlaceSelectionViewController.swift */,
 				E5A651FB2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift */,
+				E5FA3EC32B5867B800A0AC47 /* AddPingleViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1227,6 +1230,7 @@
 				E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */,
 				E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */,
 				E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */,
+				E5FA3EC42B5867B800A0AC47 /* AddPingleViewController.swift in Sources */,
 				E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */,
 				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				F14F44AD2B50413400871E5A /* ProfileTarget.swift in Sources */,

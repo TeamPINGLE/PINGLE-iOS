@@ -38,4 +38,8 @@ final class ParticipantsCollectionViewCell: UICollectionViewCell {
             $0.edges.equalToSuperview()
         }
     }
+    
+    func bindData(data: ParticipantsListResponseDTO) {
+        participantsListView.userName.text = data.participants
+    }
 }

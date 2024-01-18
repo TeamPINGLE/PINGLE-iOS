@@ -15,6 +15,7 @@ final class ParticipantsListViewController: BaseViewController {
     // MARK: Property
     private let backButton = UIButton()
     private let participantsListTitle = UILabel()
+    var participantsListResponseDTO: [ParticipantsListResponseDTO] = []
     
     var participantsListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
@@ -101,18 +102,17 @@ extension ParticipantsListViewController: UICollectionViewDelegate {}
 // MARK: UICollectionViewDataSource
 extension ParticipantsListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return participantsListResponseDTO.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParticipantsCollectionViewCell.identifier,
                                                             for: indexPath) as? ParticipantsCollectionViewCell else {return UICollectionViewCell()}
-        if indexPath.item == 0 {
-            cell.participantsListView.setOwnerCard()
-        }
+        let participant = participantsListResponseDTO[indexPath.item].participants
+        
         return cell
+        }
     }
-}
 
 // MARK: UICollectionViewDelegateFlowLayout
 extension ParticipantsListViewController: UICollectionViewDelegateFlowLayout {

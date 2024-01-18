@@ -22,6 +22,7 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
     let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
     
     let dimmedTapGesture = UITapGestureRecognizer()
+    var memberButtonAction: (() -> Void) = {}
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -42,6 +43,7 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
         mapDetailView.talkButtonAction = {}
         homeDetailPopUpView.participantionButtonAction = {}
         homeDetailCancelPopUpView.cancelButtonAction = {}
+        self.memberButtonAction = {}
     }
     
     private func setDimmedView() {
@@ -55,6 +57,9 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
                                                             for: .touchUpInside)
         self.homeDetailPopUpView.participationButton.addTarget(self, action: #selector(participationButtonTapped), for: .touchUpInside)
         self.homeDetailCancelPopUpView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        self.mapDetailView.participantCountButton.addTarget(self,
+                                                            action: #selector(participantCountButtonTapped),
+                                                            for: .touchUpInside)
     }
     
     // MARK: Layout Helpers
@@ -139,6 +144,10 @@ extension HomeDetailCollectionViewCell {
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
         homeDetailCancelPopUpView.cancelButtonAction()
+    }
+    
+    @objc func participantCountButtonTapped() {
+        memberButtonAction()
     }
 }
 

@@ -32,7 +32,7 @@ class SelectCategoryViewController: BaseViewController {
                                                     buttonExplainLabel: StringLiterals.Meeting.MeetingCategory.ExplainCategory.othersExplain,
                                                     category: ImageLiterals.Meeting.Category.categoryOthersImage,
                                                     textColor: .white)
-    private let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
+    let nextButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle,
                                              buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     private let exitLabel = UILabel()
@@ -47,6 +47,11 @@ class SelectCategoryViewController: BaseViewController {
         setNavigation()
         setTarget()
         setGesture()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setNavigation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -291,8 +296,6 @@ class SelectCategoryViewController: BaseViewController {
 // MARK: - Extension
 extension SelectCategoryViewController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        unselectAllButtons()
-        nextButton.disabledButton()
         return true
     }
 }

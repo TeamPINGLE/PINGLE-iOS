@@ -29,6 +29,7 @@
 		C3074B1C2B591B67009D2D0C /* MyPINGLETarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3074B1B2B591B67009D2D0C /* MyPINGLETarget.swift */; };
 		C3074B1E2B591B75009D2D0C /* MyPINGLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3074B1D2B591B75009D2D0C /* MyPINGLEService.swift */; };
 		C3074B222B591CD5009D2D0C /* MyPINGLEListRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3074B212B591CD5009D2D0C /* MyPINGLEListRequestQueryDTO.swift */; };
+		C3074B252B599406009D2D0C /* AppStoreCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3074B242B599406009D2D0C /* AppStoreCheck.swift */; };
 		C30C91882B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */; };
 		C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C91892B4CEC32004EE026 /* NetworkResult.swift */; };
 		C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30C918B2B4CECE2004EE026 /* TargetType.swift */; };
@@ -172,6 +173,7 @@
 		C3074B1B2B591B67009D2D0C /* MyPINGLETarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLETarget.swift; sourceTree = "<group>"; };
 		C3074B1D2B591B75009D2D0C /* MyPINGLEService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEService.swift; sourceTree = "<group>"; };
 		C3074B212B591CD5009D2D0C /* MyPINGLEListRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEListRequestQueryDTO.swift; sourceTree = "<group>"; };
+		C3074B242B599406009D2D0C /* AppStoreCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreCheck.swift; sourceTree = "<group>"; };
 		C30C91872B4CEBD7004EE026 /* HTTPHeaderFieldKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderFieldKey.swift; sourceTree = "<group>"; };
 		C30C91892B4CEC32004EE026 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		C30C918B2B4CECE2004EE026 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 			children = (
 				C39602B72B3BEE06004BB2B8 /* AppDelegate.swift */,
 				C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */,
+				C3074B242B599406009D2D0C /* AppStoreCheck.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1230,6 +1233,7 @@
 				E5A651F62B4AF72500676ED0 /* SearchPlaceView.swift in Sources */,
 				C3074B1E2B591B75009D2D0C /* MyPINGLEService.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
+				C3074B252B599406009D2D0C /* AppStoreCheck.swift in Sources */,
 				C30C91932B4CED84004EE026 /* APIEventLogger.swift in Sources */,
 				E5FA3EBC2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift in Sources */,
 				F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */,
@@ -1496,7 +1500,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PINGLE.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1535,7 +1539,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PINGLE.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

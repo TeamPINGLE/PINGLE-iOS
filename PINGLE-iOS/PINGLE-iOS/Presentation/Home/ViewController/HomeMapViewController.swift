@@ -389,17 +389,20 @@ extension HomeMapViewController {
     
     // MARK: Server Function
     private func pinList(category: String?, completion: @escaping (Bool) -> Void) {
-        NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
-            switch response {
-            case .success(let data):
-                guard let data = data.data else { return }
-                print(data)
-                self?.mapsView.homePinList = data
-                completion(true)
-            default:
-                print("실패")
-                completion(false)
-                return
+        if KeychainHandler.shared.userGroup.count > 0 {
+
+            NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
+                switch response {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    print(data)
+                    self?.mapsView.homePinList = data
+                    completion(true)
+                default:
+                    print("실패")
+                    completion(false)
+                    return
+                }
             }
         }
     }
@@ -411,23 +414,25 @@ extension HomeMapViewController {
     }
     
     private func pinDetail(pinId: Int, category: String?, completion: @escaping (Bool) -> Void) {
-        NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
-            switch response {
-            case .success(let data):
-                guard let data = data.data else { return }
-                print(data)
-                DispatchQueue.main.async { [weak self] in
-                    self?.homePinDetailList = []
-                    self?.homePinDetailList = data
-                    data.forEach {
-                        self?.meetingId.append($0.id)
+        if KeychainHandler.shared.userGroup.count > 0 {
+            NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
+                switch response {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    print(data)
+                    DispatchQueue.main.async { [weak self] in
+                        self?.homePinDetailList = []
+                        self?.homePinDetailList = data
+                        data.forEach {
+                            self?.meetingId.append($0.id)
+                        }
+                        completion(true)
                     }
-                    completion(true)
+                default:
+                    print("실패")
+                    completion(false)
+                    return
                 }
-            default:
-                print("실패")
-                completion(false)
-                return
             }
         }
     }

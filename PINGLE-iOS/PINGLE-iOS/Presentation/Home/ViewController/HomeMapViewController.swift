@@ -117,17 +117,14 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
-            // 위치 권한이 허용된 경우
             print("위치 권한이 허용되었습니다.")
             startUpdatingLocationAndMoveToCurrentLocation()
             self.moveToCurrentLocation()
             self.allowLocation = true
         case .denied, .restricted:
-            // 위치 권한이 거부된 경우
             print("위치 권한이 거부되었습니다.")
             self.allowLocation = false
         case .notDetermined:
-            // 위치 권한이 아직 결정되지 않은 경우
             print("위치 권한이 아직 결정되지 않았습니다.")
             manager.requestWhenInUseAuthorization()
         @unknown default:
@@ -180,7 +177,6 @@ extension HomeMapViewController: UICollectionViewDataSource {
             self.meetingJoin(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
                 guard let self else { return }
                 if result {
-                    print("참여하기 버튼 탭")
                     cell.mapDetailView.isParticipating = true
                     self.bindDetailViewData(id: self.markerId, category: self.markerCategory) {}
                 }
@@ -192,7 +188,6 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 self.meetingDelete(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
                     guard let self else { return }
                     if result {
-                        print("삭제하기 버튼 탭")
                         self.bindDetailViewData(id: self.markerId, category: self.markerCategory) {}
                         self.mapsView.homeDetailCollectionView.isHidden = true
                         self.loadPinList()
@@ -202,7 +197,6 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 self.meetingCancel(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
                     guard let self else { return }
                     if result {
-                        print("취소하기 버튼 탭")
                         cell.mapDetailView.isParticipating = false
                         self.bindDetailViewData(id: self.markerId, category: self.markerCategory) {}
                     }
@@ -295,14 +289,12 @@ extension HomeMapViewController {
     }
     
     private func participantCountButtonTapped() {
-        print("참여현황")
         let participantsListViewController = ParticipantsListViewController()
         participantsListViewController.meetingIdentifier = self.currentMeetingId
         self.navigationController?.pushViewController(participantsListViewController, animated: true)
     }
     
     private func connectTalkLink(urlString: String) {
-        print("대화하기 버튼 탭")
         guard let url = URL(string: urlString) else {
             print("url error")
             return
@@ -326,7 +318,6 @@ extension HomeMapViewController {
         
         self.mapsView.homeMarkerList.forEach { marker in
             marker.touchHandler = { ( _: NMFOverlay) -> Bool in
-                print("오버레이 터치됨")
                 let category = self.markerCategory.isEmpty ? "" : marker.meetingString
                 self.bindDetailViewData(id: marker.id, category: category) {
                     /// 맨 처음 인덱스로 돌아오도록 스크롤
@@ -455,7 +446,6 @@ extension HomeMapViewController {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
             switch response {
             case .success:
-                print("신청 취소 완료")
                 completion(true)
             default:
                 print("실패")
@@ -469,7 +459,6 @@ extension HomeMapViewController {
         NetworkService.shared.homeService.meetingDelete(meetingId: meetingId) { response in
             switch response {
             case .success:
-                print("신청 취소 완료")
                 completion(true)
             default:
                 print("실패")

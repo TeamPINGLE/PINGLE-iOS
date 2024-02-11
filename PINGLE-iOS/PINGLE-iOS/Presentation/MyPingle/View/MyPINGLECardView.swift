@@ -15,35 +15,35 @@ final class MyPINGLECardView: BaseView {
     // MARK: - Variables
     // MARK: Property
     var badgeColor: UIColor? = .subPingleOrange
-    var isOwner: Bool = false
+    private var isOwner: Bool = false
     var openChatURL: String?
     
     // MARK: Component
-    let topBackgroundView = UIView()
+    private let topBackgroundView = UIView()
     let badgeImageView = UIImageView()
     let dDayLabel = UILabel()
     let dDayBackground = UIView()
-    let badgeGroupView = UIView()
+    private let badgeGroupView = UIView()
     let titleLabel = UILabel()
     let nameLabel = UILabel()
-    let topStackView = UIStackView()
+    private let topStackView = UIStackView()
     let moreButton = UIButton()
     
-    let separateView = UIView()
-    let bottomBackgroundView = UIView()
-    let dateImageView = UIImageView()
+    private let separateView = UIView()
+    private let bottomBackgroundView = UIView()
+    private let dateImageView = UIImageView()
     let dateLabel = UILabel()
-    let dateSeparateView = UIView()
+    private let dateSeparateView = UIView()
     let timeLabel = UILabel()
-    let dateStackView = UIStackView()
+    private let dateStackView = UIStackView()
     let myPingleImageView = UIImageView()
     
-    let locationImageView = UIImageView()
+    private let locationImageView = UIImageView()
     let locationLabel = UILabel()
-    let memberImageView = UIImageView()
+    private let memberImageView = UIImageView()
     let memberButton = UIButton()
     let memberLabel = UILabel()
-    let memberArrow = UIImageView()
+    private let memberArrow = UIImageView()
     
     // MARK: - Function
     // MARK: Style Helpers

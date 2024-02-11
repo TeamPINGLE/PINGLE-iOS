@@ -22,11 +22,11 @@ final class MyPINGLEViewController: BaseViewController {
     let completeViewController = CompleteViewController()
     
     // MARK: Property
-    var dataViewControllers: [UIViewController] {
+    private var dataViewControllers: [UIViewController] {
         [self.soonViewController, self.completeViewController]
     }
     
-    var currentPage: Int = 0 {
+    private var currentPage: Int = 0 {
         didSet {
             let direction: UIPageViewController.NavigationDirection = oldValue <= self.currentPage ? .forward : .reverse
             self.pageViewController.setViewControllers(

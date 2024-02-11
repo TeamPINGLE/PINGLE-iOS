@@ -27,7 +27,7 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
     }
     var meetingId: Int = 0
     var isOwner: Bool = false
-    let dimmedTapGesture = UITapGestureRecognizer()
+    private let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: Component
     let myPINGLECardView = MyPINGLECardView()
@@ -131,31 +131,31 @@ final class MyPINGLECollectionViewCell: UICollectionViewCell {
 }
 
 extension MyPINGLECollectionViewCell {
-    @objc func memberButtonTapped() {
+    @objc private func memberButtonTapped() {
         memberButtonAction()
     }
     
-    @objc func moreButtonTapped() {
+    @objc private func moreButtonTapped() {
         isMoreViewAppear.toggle()
     }
     
-    @objc func talkButtonTapped() {
+    @objc private func talkButtonTapped() {
         talkButtonAction()
         print("대화하기")
     }
     
-    @objc func backButtonTapped() {
+    @objc private func backButtonTapped() {
         print("돌아가기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
     }
     
-    @objc func cancelButtonTapped() {
+    @objc private func cancelButtonTapped() {
         print("취소하기 버튼 탭")
         homeDetailCancelPopUpView.cancelButtonAction()
     }
     
-    @objc func deleteButtonTapped() {
+    @objc private func deleteButtonTapped() {
         dimmedView.isHidden = false
         homeDetailCancelPopUpView.isHidden = false
         print("참여 취소하기")
@@ -212,7 +212,7 @@ extension MyPINGLECollectionViewCell {
         homeDetailCancelPopUpView.cancelButton.setTitle(data.isOwner ? StringLiterals.MyPingle.Delete.deleteButton : StringLiterals.Home.Detail.cancelButton, for: .normal)
     }
     
-    func updateMoreView(isOwner: Bool, isActivate: Bool) {
+    private func updateMoreView(isOwner: Bool, isActivate: Bool) {
         moreView.deleteTitleLabel.text = isOwner ? StringLiterals.MyPingle.List.delete : StringLiterals.MyPingle.List.cancel
         moreView.deleteImageView.image = isActivate ? ImageLiterals.MyPingle.Icon.icTrash : ImageLiterals.MyPingle.Icon.icTrashDisabled
         moreView.deleteTitleLabel.textColor = isActivate ? .grayscaleG03 : .grayscaleG08

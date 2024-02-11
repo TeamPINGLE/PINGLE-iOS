@@ -14,7 +14,7 @@ final class HomeListViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    let fixView = FixView()
+    private let fixView = FixView()
     let mapButton = UIButton()
     
     // MARK: - Function

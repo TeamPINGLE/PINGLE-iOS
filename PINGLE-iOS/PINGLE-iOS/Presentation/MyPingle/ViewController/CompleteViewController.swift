@@ -20,7 +20,7 @@ final class CompleteViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
     /// 참여 완료
     private let participant = true
-    var meetingId: Int = 0
+    private var meetingId: Int = 0
     
     // MARK: Property
     var pushToCompleteMemberAction: ((Int) -> Void) = {_ in}
@@ -116,7 +116,7 @@ final class CompleteViewController: BaseViewController {
     }
     
     // MARK: Server Function
-    func myList(completion: @escaping (Bool) -> Void) {
+    private func myList(completion: @escaping (Bool) -> Void) {
         NetworkService.shared.myPingleService.myList(queryDTO: MyPINGLEListRequestQueryDTO(participation: self.participant)) { [weak self] response in
             switch response {
             case .success(let data):

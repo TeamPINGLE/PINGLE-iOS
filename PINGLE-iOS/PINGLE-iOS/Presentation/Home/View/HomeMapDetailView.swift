@@ -14,36 +14,36 @@ final class HomeMapDetailView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    var badgeColor: UIColor? = .subPingleOrange
+    private var badgeColor: UIColor? = .subPingleOrange
     var isParticipating: Bool = false
     var isOwner: Bool = false
-    var isFull: Bool = false
-    var openChatURL: String?
+    private var isFull: Bool = false
+    private var openChatURL: String?
     var participantsButtonAction: (() -> Void) = {}
     var talkButtonAction: (() -> Void) = {}
     var meetingId: Int = 0
     
     // MARK: Component
-    let topBackgroundView = UIView()
-    let infoGroupView = UIView()
-    let badgeImageView = UIImageView()
-    let titleLabel = UILabel()
-    let nameLabel = UILabel()
+    private let topBackgroundView = UIView()
+    private let infoGroupView = UIView()
+    private let badgeImageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let nameLabel = UILabel()
     
     let participantCountButton = ParticipantButton()
-    let separateView = UIView()
+    private let separateView = UIView()
     
-    let bottomBackgroundView = UIView()
-    let dateTimeImageView = UIImageView()
-    let dateTimeTitleLabel = UILabel()
-    let dateLabel = UILabel()
-    let timeLabel = UILabel()
-    let locationImageView = UIImageView()
-    let locationTitleLabel = UILabel()
-    let locationLabel = UILabel()
+    private let bottomBackgroundView = UIView()
+    private let dateTimeImageView = UIImageView()
+    private let dateTimeTitleLabel = UILabel()
+    private let dateLabel = UILabel()
+    private let timeLabel = UILabel()
+    private let locationImageView = UIImageView()
+    private let locationTitleLabel = UILabel()
+    private let locationLabel = UILabel()
     
-    let talkButton = UIButton()
-    let participationButton = UIButton()
+    private let talkButton = UIButton()
+    private let participationButton = UIButton()
     
     // MARK: - Function
     // MARK: init
@@ -265,16 +265,16 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
-    func setAddTarget() {
+    private func setAddTarget() {
         self.participationButton.addTarget(self, action: #selector(participationButtonTapped), for: .touchUpInside)
         self.talkButton.addTarget(self, action: #selector(talkButtonTapped), for: .touchUpInside)
     }
     
-    @objc func participationButtonTapped() {
+    @objc private func participationButtonTapped() {
         participantsButtonAction()
     }
     
-    @objc func talkButtonTapped() {
+    @objc private func talkButtonTapped() {
         talkButtonAction()
     }
     
@@ -369,7 +369,7 @@ final class HomeMapDetailView: BaseView {
         
     }
     
-    func activateTalkButton() {
+    private func activateTalkButton() {
         talkButton.do {
             $0.isEnabled = true
             $0.setTitleColor(.white, for: .normal)
@@ -377,7 +377,7 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
-    func disabledTalkButton() {
+    private func disabledTalkButton() {
         talkButton.do {
             $0.isEnabled = false
             $0.setTitleColor(.grayscaleG06, for: .normal)
@@ -385,7 +385,7 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
-    func activateParticipationButton() {
+    private func activateParticipationButton() {
         participationButton.do {
             $0.setTitle(StringLiterals.Home.Detail.participationButton, for: .normal)
             $0.setTitleColor(.black, for: .normal)
@@ -394,7 +394,7 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
-    func disabledParticipationButton() {
+    private func disabledParticipationButton() {
         participationButton.do {
             $0.setTitle(StringLiterals.Home.Detail.participationButton, for: .normal)
             $0.setTitleColor(.grayscaleG10, for: .normal)
@@ -403,7 +403,7 @@ final class HomeMapDetailView: BaseView {
         }
     }
     
-    func activateCancelButton() {
+    private func activateCancelButton() {
         participationButton.do {
             $0.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
             $0.setTitleColor(.black, for: .normal)
@@ -413,7 +413,7 @@ final class HomeMapDetailView: BaseView {
     }
     
     /// 취소하기 비활성화 버튼 -> 삭제하기 버튼으로 변경
-    func disabledCancelButton() {
+    private func disabledCancelButton() {
         participationButton.do {
             $0.setTitle(StringLiterals.Home.Detail.deleteButton, for: .normal)
             $0.setTitleColor(.black, for: .normal)

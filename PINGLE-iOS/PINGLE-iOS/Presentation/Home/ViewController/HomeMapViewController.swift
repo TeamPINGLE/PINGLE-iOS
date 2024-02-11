@@ -17,13 +17,13 @@ final class HomeMapViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Property
-    var shouldUpdateMap: Bool = true
-    var homePinDetailList: [HomePinDetailResponseDTO] = []
-    var meetingId: [Int] = []
-    var markerId = 0
-    var markerCategory: String = ""
-    var allowLocation = false
-    var currentMeetingId: Int = 0
+    private var shouldUpdateMap: Bool = true
+    private var homePinDetailList: [HomePinDetailResponseDTO] = []
+    private var meetingId: [Int] = []
+    private var markerId = 0
+    private var markerCategory: String = ""
+    private var allowLocation = false
+    private var currentMeetingId: Int = 0
     
     // MARK: Component
     let mapsView = HomeMapView()
@@ -233,7 +233,7 @@ extension HomeMapViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeMapViewController {
     
-    func hideSelectedPin() {
+    private func hideSelectedPin() {
         if !self.mapsView.homeDetailCollectionView.isHidden {
             self.mapsView.homeDetailCollectionView.isHidden = true
             self.mapsView.currentLocationButton.isHidden = false
@@ -245,14 +245,14 @@ extension HomeMapViewController {
     }
     
     /// 카메라를 이동하는 메소드
-    func moveToCurrentLocation() {
+    private func moveToCurrentLocation() {
         self.mapsView.cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: mapsView.nowLat, lng: mapsView.nowLng))
         self.mapsView.cameraUpdate.animation = .easeIn
         self.mapsView.mapsView.mapView.moveCamera(mapsView.cameraUpdate)
     }
     
     // MARK: Objc Function
-    @objc func isChipButtonTapped(sender: ChipButton) {
+    @objc private func isChipButtonTapped(sender: ChipButton) {
         /// 태그 선택 여부 반전
         sender.isButtonSelected.toggle()
         
@@ -288,20 +288,20 @@ extension HomeMapViewController {
         self.hideSelectedPin()
     }
     
-    @objc func currentLocationButtonTapped() {
+    @objc private func currentLocationButtonTapped() {
         if allowLocation {
             moveToCurrentLocation()
         }
     }
     
-    func participantCountButtonTapped() {
+    private func participantCountButtonTapped() {
         print("참여현황")
         let participantsListViewController = ParticipantsListViewController()
         participantsListViewController.meetingIdentifier = self.currentMeetingId
         self.navigationController?.pushViewController(participantsListViewController, animated: true)
     }
     
-    func connectTalkLink(urlString: String) {
+    private func connectTalkLink(urlString: String) {
         print("대화하기 버튼 탭")
         guard let url = URL(string: urlString) else {
             print("url error")
@@ -321,7 +321,7 @@ extension HomeMapViewController {
     
     // MARK: Custom Function
     /// 마커에 핸들러 부여
-    func setMarkerHandler() {
+    private func setMarkerHandler() {
         self.mapsView.homeDetailCollectionView.isHidden = true
         
         self.mapsView.homeMarkerList.forEach { marker in
@@ -344,7 +344,7 @@ extension HomeMapViewController {
         }
     }
     
-    func bindDetailViewData(id: Int, category: String?, completion: @escaping () -> Void) {
+    private func bindDetailViewData(id: Int, category: String?, completion: @escaping () -> Void) {
         // 추후 바뀐 그룹 받아오는 로직 작성 예정
         self.pinDetail(pinId: id, category: category) { [weak self] result in
             guard let self else { return }
@@ -356,7 +356,7 @@ extension HomeMapViewController {
         }
     }
     
-    func markerTapped(marker: PINGLEMarker) {
+    private func markerTapped(marker: PINGLEMarker) {
         self.mapsView.homeMarkerList.forEach {
             $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
         }
@@ -388,7 +388,7 @@ extension HomeMapViewController {
     }
     
     // MARK: Server Function
-    func pinList(category: String?, completion: @escaping (Bool) -> Void) {
+    private func pinList(category: String?, completion: @escaping (Bool) -> Void) {
         NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
             switch response {
             case .success(let data):
@@ -404,13 +404,13 @@ extension HomeMapViewController {
         }
     }
     
-    func loadPinList() {
+    private func loadPinList() {
         self.pinList(category: self.markerCategory) {_ in
             self.setMarker()
         }
     }
     
-    func pinDetail(pinId: Int, category: String?, completion: @escaping (Bool) -> Void) {
+    private func pinDetail(pinId: Int, category: String?, completion: @escaping (Bool) -> Void) {
         NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
             switch response {
             case .success(let data):
@@ -432,7 +432,7 @@ extension HomeMapViewController {
         }
     }
     
-    func meetingJoin(meetingId: Int, completion: @escaping (Bool) -> Void) {
+    private func meetingJoin(meetingId: Int, completion: @escaping (Bool) -> Void) {
         NetworkService.shared.homeService.meetingJoin(meetingId: meetingId) { response in
             switch response {
             case .success:
@@ -446,7 +446,7 @@ extension HomeMapViewController {
         }
     }
     
-    func meetingCancel(meetingId: Int, completion: @escaping (Bool) -> Void) {
+    private func meetingCancel(meetingId: Int, completion: @escaping (Bool) -> Void) {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
             switch response {
             case .success:
@@ -460,7 +460,7 @@ extension HomeMapViewController {
         }
     }
     
-    func meetingDelete(meetingId: Int, completion: @escaping (Bool) -> Void) {
+    private func meetingDelete(meetingId: Int, completion: @escaping (Bool) -> Void) {
         NetworkService.shared.homeService.meetingDelete(meetingId: meetingId) { response in
             switch response {
             case .success:
@@ -476,7 +476,7 @@ extension HomeMapViewController {
     
     // MARK: Marker Function
     /// 마커 추가 메소드
-    func setMarker() {
+    private func setMarker() {
         /// 마커 다 지우기
         self.mapsView.homeMarkerList.forEach {
             $0.hidden = true

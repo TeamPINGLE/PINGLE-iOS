@@ -50,7 +50,7 @@ final class ParticipantViewController: BaseViewController {
     }
     
     // MARK: Objc Function
-    @objc func backButtonTapped() {
+    @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
     

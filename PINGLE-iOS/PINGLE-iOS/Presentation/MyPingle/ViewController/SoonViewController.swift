@@ -20,7 +20,7 @@ final class SoonViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
     /// 참여 예정
     private let participant = false
-    var meetingId: Int = 0
+    private var meetingId: Int = 0
     
     // MARK: Property
     var pushToMemberAction: ((Int) -> Void) = {_ in }
@@ -101,7 +101,7 @@ final class SoonViewController: BaseViewController {
     }
     
     // MARK: Objc Function
-    @objc func refreshCollection(refresh: UIRefreshControl) {
+    @objc private func refreshCollection(refresh: UIRefreshControl) {
         refresh.beginRefreshing()
         self.showCollectionView()
         refresh.endRefreshing()

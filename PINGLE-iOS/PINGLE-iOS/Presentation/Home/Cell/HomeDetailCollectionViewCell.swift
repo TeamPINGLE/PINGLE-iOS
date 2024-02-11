@@ -17,11 +17,11 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
     static let identifier = "HomeDetailCollectionViewCell"
     
     let mapDetailView = HomeMapDetailView()
-    let dimmedView = UIView()
+    private let dimmedView = UIView()
     let homeDetailPopUpView = HomeDetailPopUpView()
     let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
     
-    let dimmedTapGesture = UITapGestureRecognizer()
+    private let dimmedTapGesture = UITapGestureRecognizer()
     var memberButtonAction: (() -> Void) = {}
     
     // MARK: - Function
@@ -128,25 +128,25 @@ extension HomeDetailCollectionViewCell {
         }
     }
     
-    @objc func backButtonTapped() {
+    @objc private func backButtonTapped() {
         print("돌아가기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
     }
     
-    @objc func participationButtonTapped() {
+    @objc private func participationButtonTapped() {
         dimmedView.isHidden = true
         homeDetailPopUpView.isHidden = true
         homeDetailPopUpView.participantionButtonAction()
     }
     
-    @objc func cancelButtonTapped() {
+    @objc private func cancelButtonTapped() {
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
         homeDetailCancelPopUpView.cancelButtonAction()
     }
     
-    @objc func participantCountButtonTapped() {
+    @objc private func participantCountButtonTapped() {
         memberButtonAction()
     }
 }

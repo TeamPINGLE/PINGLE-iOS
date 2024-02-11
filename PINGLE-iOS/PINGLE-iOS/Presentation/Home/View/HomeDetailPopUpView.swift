@@ -14,16 +14,16 @@ final class HomeDetailPopUpView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    var badgeColor: UIColor? = .subPingleOrange
-    var isParticipating: Bool = false
+    private var badgeColor: UIColor? = .subPingleOrange
+    private var isParticipating: Bool = false
     
     // MARK: Component
-    let infoBackgroundView = UIView()
-    let badgeImageView = UIImageView()
-    let titleLabel = UILabel()
-    let nameLabel = UILabel()
+    private let infoBackgroundView = UIView()
+    private let badgeImageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let nameLabel = UILabel()
     
-    let askLabel = UILabel()
+    private let askLabel = UILabel()
     let participationButton = UIButton()
     
     var participantionButtonAction: (() -> Void) = {}

@@ -23,10 +23,10 @@ final class HomeMapView: BaseView {
     // MARK: Component
     let chipStackView = UIStackView()
     
-    let playChipButton = ChipButton(state: .play)
-    let studyChipButton = ChipButton(state: .study)
-    let multiChipButton = ChipButton(state: .multi)
-    let othersChipButton = ChipButton(state: .others)
+    private let playChipButton = ChipButton(state: .play)
+    private let studyChipButton = ChipButton(state: .study)
+    private let multiChipButton = ChipButton(state: .multi)
+    private let othersChipButton = ChipButton(state: .others)
     
     lazy var chipButtons: [ChipButton] = [playChipButton,
                                           studyChipButton,
@@ -36,12 +36,12 @@ final class HomeMapView: BaseView {
     let mapsView = NMFNaverMapView()
     lazy var homeDetailCollectionView = UICollectionView(frame: .zero,
                                                          collectionViewLayout: homeDetailFlowLayout)
-    let homeDetailFlowLayout = UICollectionViewFlowLayout()
+    private let homeDetailFlowLayout = UICollectionViewFlowLayout()
     
     var locationManager = CLLocationManager()
     lazy var cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: self.nowLat, lng: self.nowLng))
     
-    let currentMarker = NMFMarker()
+    private let currentMarker = NMFMarker()
     
     let currentLocationButton = UIButton()
     let listButton = UIButton()

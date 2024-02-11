@@ -105,7 +105,9 @@ final class LoginViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+        authorizationButton.addTarget(self, 
+                                      action: #selector(handleAuthorizationAppleIDButtonPress),
+                                      for: .touchUpInside)
     }
     
     // MARK: Objc Function

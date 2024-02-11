@@ -49,7 +49,9 @@ final class MyOrganizationViewController: BaseViewController {
     }
     
     private func setAddTarget() {
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        backButton.addTarget(self, 
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
     }
     
     // MARK: Objc Function

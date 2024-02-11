@@ -124,7 +124,9 @@ final class EntranceCompletedViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        bottomCTAButton.addTarget(self, action: #selector(bottomCTAButtonTapped), for: .touchUpInside)
+        bottomCTAButton.addTarget(self, 
+                                  action: #selector(bottomCTAButtonTapped),
+                                  for: .touchUpInside)
     }
     
     // MARK: Objc Function

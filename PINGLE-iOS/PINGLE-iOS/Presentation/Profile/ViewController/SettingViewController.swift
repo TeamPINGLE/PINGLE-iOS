@@ -128,13 +128,27 @@ final class SettingViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        self.organizationButton.addTarget(self, action: #selector(organizationButtonTapped), for: .touchUpInside)
-        self.settingSelectView.contactButton.addTarget(self, action: #selector(contactButtonTapped), for: .touchUpInside)
-        self.settingSelectView.noticeButton.addTarget(self, action: #selector(noticeButtonTapped), for: .touchUpInside)
-        self.settingSelectView.logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-        self.settingSelectView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        self.accountPopUpView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        self.accountPopUpView.changeStateButton.addTarget(self, action: #selector(changeStateButtonTapped), for: .touchUpInside)
+        self.organizationButton.addTarget(self, 
+                                          action: #selector(organizationButtonTapped),
+                                          for: .touchUpInside)
+        self.settingSelectView.contactButton.addTarget(self, 
+                                                       action: #selector(contactButtonTapped),
+                                                       for: .touchUpInside)
+        self.settingSelectView.noticeButton.addTarget(self, 
+                                                      action: #selector(noticeButtonTapped),
+                                                      for: .touchUpInside)
+        self.settingSelectView.logoutButton.addTarget(self, 
+                                                      action: #selector(logoutButtonTapped),
+                                                      for: .touchUpInside)
+        self.settingSelectView.deleteButton.addTarget(self, 
+                                                      action: #selector(deleteButtonTapped),
+                                                      for: .touchUpInside)
+        self.accountPopUpView.backButton.addTarget(self, 
+                                                   action: #selector(backButtonTapped),
+                                                   for: .touchUpInside)
+        self.accountPopUpView.changeStateButton.addTarget(self, 
+                                                          action: #selector(changeStateButtonTapped),
+                                                          for: .touchUpInside)
         self.dimmedView.addGestureRecognizer(dimmedTapGesture)
     }
     

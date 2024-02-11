@@ -101,8 +101,12 @@ final class OnboardingViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        existingOrganizationButton.addTarget(self, action: #selector(existingOrganizationButtonDidTap), for: .touchUpInside)
-        makeOrganizationButton.addTarget(self, action: #selector(makeOrganizationButtonDidTap), for: .touchUpInside)
+        existingOrganizationButton.addTarget(self, 
+                                             action: #selector(existingOrganizationButtonDidTap),
+                                             for: .touchUpInside)
+        makeOrganizationButton.addTarget(self, 
+                                         action: #selector(makeOrganizationButtonDidTap),
+                                         for: .touchUpInside)
     }
     
     // MARK: Objc Function

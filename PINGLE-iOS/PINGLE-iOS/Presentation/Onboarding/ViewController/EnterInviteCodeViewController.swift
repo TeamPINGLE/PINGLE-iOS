@@ -156,9 +156,15 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        inviteCodeTextFieldView.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        bottomCTAButton.addTarget(self, action: #selector(bottomCTAButtonTapped), for: .touchUpInside)
+        backButton.addTarget(self, 
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
+        inviteCodeTextFieldView.searchTextField.addTarget(self, 
+                                                          action: #selector(self.textFieldDidChange(_:)),
+                                                          for: .editingChanged)
+        bottomCTAButton.addTarget(self, 
+                                  action: #selector(bottomCTAButtonTapped),
+                                  for: .touchUpInside)
     }
     
     // MARK: Objc Function

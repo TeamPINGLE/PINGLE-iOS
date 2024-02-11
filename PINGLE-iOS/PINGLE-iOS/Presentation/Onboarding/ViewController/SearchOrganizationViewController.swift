@@ -135,10 +135,18 @@ final class SearchOrganizationViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        searchOrganizationView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-        makeOrganizationButton.addTarget(self, action: #selector(makeOrganizationButtonTapped), for: .touchUpInside)
-        bottomCTAButton.addTarget(self, action: #selector(bottomCTAButtonTapped), for: .touchUpInside)
+        backButton.addTarget(self, 
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
+        searchOrganizationView.searchButton.addTarget(self,
+                                                      action: #selector(searchButtonTapped),
+                                                      for: .touchUpInside)
+        makeOrganizationButton.addTarget(self, 
+                                         action: #selector(makeOrganizationButtonTapped),
+                                         for: .touchUpInside)
+        bottomCTAButton.addTarget(self,
+                                  action: #selector(bottomCTAButtonTapped),
+                                  for: .touchUpInside)
     }
     
     // MARK: Objc Function

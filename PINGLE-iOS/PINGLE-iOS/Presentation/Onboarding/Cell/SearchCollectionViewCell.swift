@@ -29,7 +29,7 @@ final class SearchCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        selectImageView.image = ImageLiterals.Icon.imgCheckDefault
+        selectImageView.image = UIImage(resource: .icsvgCheckDefault)
     }
     
     required init?(coder: NSCoder) {
@@ -55,7 +55,7 @@ final class SearchCollectionViewCell: UICollectionViewCell {
         }
         
         self.selectImageView.do {
-            $0.image = ImageLiterals.Icon.imgCheckDefault
+            $0.image = UIImage(resource: .icsvgCheckDefault)
         }
         
         self.horizontalLineView.do {
@@ -91,7 +91,7 @@ final class SearchCollectionViewCell: UICollectionViewCell {
     
     // MARK: Custom Function
     func changeSelectedImage() {
-        selectImageView.image = ImageLiterals.Icon.imgCheckSelected
+        selectImageView.image = UIImage(resource: .icsvgCheckSelected)
     }
     
     func bindData(data: SearchOrganizationResponseDTO) {

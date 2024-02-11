@@ -49,7 +49,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         self.backButton.do {
-            $0.setImage(ImageLiterals.Icon.imgArrowLeft, for: .normal)
+            $0.setImage(UIImage(resource: .icsvgArrowLeft), for: .normal)
         }
         
         self.titleBackgroundView.do {
@@ -69,7 +69,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         self.infoImageView.do {
-            $0.image = ImageLiterals.Icon.icInfo
+            $0.image = UIImage(resource: .icsvgInfo)
             $0.tintColor = .grayscaleG04
         }
         
@@ -114,7 +114,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         infoImageView.snp.makeConstraints {
             $0.top.equalTo(inviteCodeTextFieldView.snp.bottom).offset(8)
             $0.leading.equalTo(inviteCodeTextFieldView)
-            $0.width.height.equalTo(10.adjusted)
+            $0.width.height.equalTo(14.adjusted)
         }
         
         infoMessageLabel.snp.makeConstraints {

@@ -482,22 +482,19 @@ extension HomeMapViewController {
             $0.hidden = true
         }
         mapsView.homeMarkerList = []
-        
-        mapsView.homePinList.forEach {
+        mapsView.homeMarkerList = mapsView.homePinList.map { pin -> PINGLEMarker in
             let pingleMarker = PINGLEMarker()
-            
-            pingleMarker.id = $0.id
-            pingleMarker.changeStringToStatus(string: $0.category)
-            pingleMarker.meetingString = $0.category
-            
-            let x = $0.x
-            let y = $0.y
-            
-            pingleMarker.iconImage = NMFOverlayImage(image: mapsView.setMarkerColor(category: $0.category))
-            
-            pingleMarker.position = NMGLatLng(lat: y, lng: x)
+
+            pingleMarker.id = pin.id
+            pingleMarker.changeStringToStatus(string: pin.category)
+            pingleMarker.meetingString = pin.category
+
+            pingleMarker.iconImage = NMFOverlayImage(image: mapsView.setMarkerColor(category: pin.category))
+            pingleMarker.position = NMGLatLng(lat: pin.y, lng: pin.x)
+
             pingleMarker.mapView = mapsView.mapsView.mapView
-            mapsView.homeMarkerList.append(pingleMarker)
+
+            return pingleMarker
         }
         self.setMarkerHandler()
     }

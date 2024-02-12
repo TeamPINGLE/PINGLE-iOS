@@ -1,23 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "my_ic_trash.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "my_ic_trash@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "my_ic_trash@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "icTrashDisabled.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

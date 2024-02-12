@@ -51,7 +51,7 @@ final class SearchOrganizationView: BaseView {
         }
         
         self.searchButton.do {
-            $0.setImage(UIImage(resource: .icsvgSearch), for: .normal)
+            $0.setImage(UIImage(resource: .icSearch), for: .normal)
         }
         
         self.searchCollectionView.do {

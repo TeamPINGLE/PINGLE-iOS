@@ -44,7 +44,7 @@ final class MyOrganizationViewController: BaseViewController {
         self.view.backgroundColor = .grayscaleG11
         
         backButton.do {
-            $0.setImage(ImageLiterals.Icon.imgArrowLeft, for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
     }
     

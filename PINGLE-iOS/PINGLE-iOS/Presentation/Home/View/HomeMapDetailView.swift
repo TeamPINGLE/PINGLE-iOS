@@ -89,7 +89,7 @@ final class HomeMapDetailView: BaseView {
         }
         
         dateTimeImageView.do {
-            $0.image = ImageLiterals.Home.Detail.icCalendar
+            $0.image = UIImage(resource: .icCalendar)
         }
         
         dateTimeTitleLabel.do {
@@ -111,7 +111,7 @@ final class HomeMapDetailView: BaseView {
         }
         
         locationImageView.do {
-            $0.image = ImageLiterals.Home.Detail.icLocation
+            $0.image = UIImage(resource: .icLocation)
         }
         
         locationTitleLabel.do {
@@ -298,19 +298,19 @@ final class HomeMapDetailView: BaseView {
         switch data.category {
         case "PLAY":
             badgeColor = .mainPingleGreen
-            badgeImageView.image = ImageLiterals.Home.Detail.imgPlayBadge
+            badgeImageView.image = UIImage(resource: .imgPlayBadge)
             
         case "STUDY":
             badgeColor = .subPingleOrange
-            badgeImageView.image = ImageLiterals.Home.Detail.imgStudyBadge
+            badgeImageView.image = UIImage(resource: .imgStudyBadge)
             
         case "MULTI":
             badgeColor = .subPingleYellow
-            badgeImageView.image = ImageLiterals.Home.Detail.imgMultiBadge
+            badgeImageView.image = UIImage(resource: .imgMultiBadge)
             
         case "OTHERS":
             badgeColor = .grayscaleG01
-            badgeImageView.image = ImageLiterals.Home.Detail.imgOthersBadge
+            badgeImageView.image = UIImage(resource: .imgOthersBadge)
             
         default:
             return
@@ -324,13 +324,13 @@ final class HomeMapDetailView: BaseView {
             participantCountButton.completeLabel.isHidden = false
             participantCountButton.countStackView.isHidden = true
             participantCountButton.participantsLabel.textColor = .grayscaleG06
-            participantCountButton.rightArrowImageView.image = ImageLiterals.Home.Detail.icParticipantArrow
+            participantCountButton.rightArrowImageView.image = UIImage(resource: .icParticipantArrow)
             self.isFull = true
         } else {
             participantCountButton.completeLabel.isHidden = true
             participantCountButton.countStackView.isHidden = false
             participantCountButton.participantsLabel.textColor = .white
-            participantCountButton.rightArrowImageView.image = ImageLiterals.Home.Detail.icParticipantArrowActivate
+            participantCountButton.rightArrowImageView.image = UIImage(resource: .icParticipantArrowActivate)
             self.isFull = false
         }
         

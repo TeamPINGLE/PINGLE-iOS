@@ -361,16 +361,16 @@ extension HomeMapViewController {
             $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
         }
         
-        var activateImage: UIImage = ImageLiterals.Home.Map.imgMapPinOtherActive
+        var activateImage: UIImage = UIImage(resource: .imgMapPinOtherActive)
         switch marker.meetingStatus {
         case .play:
-            activateImage = ImageLiterals.Home.Map.imgMapPinPlayActive
+            activateImage = UIImage(resource: .imgMapPinPlayActive)
         case .study:
-            activateImage = ImageLiterals.Home.Map.imgMapPinStudyActive
+            activateImage = UIImage(resource: .imgMapPinStudyActive)
         case .multi:
-            activateImage = ImageLiterals.Home.Map.imgMapPinMultiActive
+            activateImage = UIImage(resource: .imgMapPinMultiActive)
         default:
-            activateImage = ImageLiterals.Home.Map.imgMapPinOtherActive
+            activateImage = UIImage(resource: .imgMapPinOtherActive)
         }
         
         marker.iconImage = NMFOverlayImage(image: activateImage)

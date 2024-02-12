@@ -46,7 +46,7 @@ final class SearchOrganizationViewController: BaseViewController {
         }
         
         self.backButton.do {
-            $0.setImage(UIImage(resource: .icsvgArrowLeft), for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         self.titleLabel.do {

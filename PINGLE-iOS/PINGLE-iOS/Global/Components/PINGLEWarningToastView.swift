@@ -33,7 +33,7 @@ final class PINGLEWarningToastView: BaseView {
         }
         
         warningImageView.do {
-            $0.image = UIImage(resource: .icsvgNotice)
+            $0.image = UIImage(resource: .icNotice)
         }
         
         warningLabel.do {

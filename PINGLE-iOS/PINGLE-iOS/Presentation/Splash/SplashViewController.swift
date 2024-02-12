@@ -26,7 +26,7 @@ final class SplashViewController: BaseViewController {
     
     override func setStyle() {
         PINGLELogoImageView.do {
-            $0.image = ImageLiterals.OnBoarding.imgPINGLELogo
+            $0.image = UIImage(resource: .imgPINGLELogo)
         }
     }
     

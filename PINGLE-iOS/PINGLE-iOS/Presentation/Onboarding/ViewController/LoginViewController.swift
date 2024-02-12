@@ -34,7 +34,7 @@ final class LoginViewController: BaseViewController {
         }
         
         self.logoImageView.do {
-            $0.image = ImageLiterals.OnBoarding.imgApplogo
+            $0.image = UIImage(resource: .imgApplogo)
         }
         
         self.loginTitleLabel.do {
@@ -59,7 +59,7 @@ final class LoginViewController: BaseViewController {
         self.authorizationButton.do {
             $0.layer.cornerRadius = 12
             $0.backgroundColor = .white
-            $0.setImage(ImageLiterals.OnBoarding.imgApplelogo, for: .normal)
+            $0.setImage(UIImage(resource: .imgApplelogo), for: .normal)
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.appleLogin, for: .normal)
             $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
@@ -182,6 +182,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
             
             let userName = KeychainHandler.shared.userName
+            
+            KeychainHandler.shared.userID = appleIDCredential.user
+            
             self.login(data: LoginRequestBodyDTO(provider: "APPLE", name: userName))
             
         default:

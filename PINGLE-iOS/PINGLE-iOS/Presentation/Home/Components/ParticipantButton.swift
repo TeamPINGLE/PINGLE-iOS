@@ -53,7 +53,7 @@ extension ParticipantButton {
         }
         
         rightArrowImageView.do {
-            $0.image = ImageLiterals.Home.Detail.icParticipantArrowActivate
+            $0.image = UIImage(resource: .icParticipantArrowActivate)
         }
         
         completeLabel.do {

@@ -39,7 +39,7 @@ final class MoreView: BaseView {
         }
         
         talkImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icChat
+            $0.image = UIImage(resource: .icChat)
             $0.isUserInteractionEnabled = false
         }
         
@@ -55,7 +55,7 @@ final class MoreView: BaseView {
         }
         
         deleteImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icTrash
+            $0.image = UIImage(resource: .icTrash)
             $0.isUserInteractionEnabled = false
         }
     }

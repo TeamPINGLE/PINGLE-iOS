@@ -26,7 +26,7 @@ final class HomeListViewController: BaseViewController {
         mapButton.do {
             $0.setBackgroundColor(.white, for: .normal)
             $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
-            $0.setImage(ImageLiterals.Home.Map.icMapMap, for: .normal)
+            $0.setImage(UIImage(resource: .icMapMap), for: .normal)
             $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
             $0.makeCornerRound(radius: 25.adjusted)
         }

@@ -46,7 +46,7 @@ class OrganizationButton: UIButton {
         }
         
         self.arrowRightImageView.do {
-            $0.image = UIImage(resource: .icsvgArrowRight)
+            $0.image = UIImage(resource: .icArrowRight)
         }
     }
     

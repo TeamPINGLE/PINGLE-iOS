@@ -47,7 +47,7 @@ final class OnboardingViewController: BaseViewController {
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.existingOrganization, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
             $0.setTitleColor(.white, for: .normal)
-            $0.setImage(ImageLiterals.OnBoarding.imgSearchGraphic, for: .normal)
+            $0.setImage(UIImage(resource: .imgSearchGraphic), for: .normal)
             $0.alignTextBelow(spacing: 26)
             $0.titleLabel?.numberOfLines = 0
             $0.titleLabel?.textAlignment = .center
@@ -60,7 +60,7 @@ final class OnboardingViewController: BaseViewController {
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.makeOrganization, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
             $0.setTitleColor(.white, for: .normal)
-            $0.setImage(ImageLiterals.OnBoarding.imgCreateGraphic, for: .normal)
+            $0.setImage(UIImage(resource: .imgCreateGraphic), for: .normal)
             $0.alignTextBelow(spacing: 26)
             $0.titleLabel?.numberOfLines = 0
             $0.titleLabel?.textAlignment = .center

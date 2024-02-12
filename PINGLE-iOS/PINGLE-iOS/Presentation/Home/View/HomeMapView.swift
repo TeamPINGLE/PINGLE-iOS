@@ -84,7 +84,7 @@ final class HomeMapView: BaseView {
         currentLocationButton.do {
             $0.setBackgroundColor(.white, for: .normal)
             $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
-            $0.setImage(ImageLiterals.Home.Map.icMapHere, for: .normal)
+            $0.setImage(UIImage(resource: .icMapHere), for: .normal)
             $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
             $0.makeCornerRound(radius: 25.adjusted)
         }
@@ -92,13 +92,13 @@ final class HomeMapView: BaseView {
         listButton.do {
             $0.setBackgroundColor(.white, for: .normal)
             $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
-            $0.setImage(ImageLiterals.Home.Map.icMapList, for: .normal)
+            $0.setImage(UIImage(resource: .icMapList), for: .normal)
             $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
             $0.makeCornerRound(radius: 25.adjusted)
         }
         
         currentMarker.do {
-            $0.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
+            $0.iconImage = NMFOverlayImage(image: UIImage(resource: .icLocationOverlay))
         }
         
         homeDetailCollectionView.do {
@@ -157,18 +157,17 @@ final class HomeMapView: BaseView {
             $0.bottom.equalTo(listButton.snp.top).offset(-8.adjustedHeight)
         }
     }
-    
     // MARK: Marker Function
     func setMarkerColor(category: String) -> UIImage {
         switch category {
         case "PLAY":
-            return ImageLiterals.Home.Map.imgMapPinPlay
+            return UIImage(resource: .imgMapPinPlay)
         case "STUDY":
-            return ImageLiterals.Home.Map.imgMapPinStudy
+            return UIImage(resource: .imgMapPinStudy)
         case "MULTI":
-            return ImageLiterals.Home.Map.imgMapPinMulti
+            return UIImage(resource: .imgMapPinMulti)
         default:
-            return ImageLiterals.Home.Map.imgMapPinOther
+            return UIImage(resource: .imgMapPinOther)
         }
     }
     

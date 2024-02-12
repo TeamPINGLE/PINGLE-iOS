@@ -58,7 +58,7 @@ extension ChipButton {
     
     private func setStyle() {
         self.do {
-            $0.setImage(ImageLiterals.Home.Chips.btnPlayChip, for: .normal)
+            $0.setImage(UIImage(resource: .btnPlayChip), for: .normal)
             $0.makeShadow(radius: 4.12, offset: CGSize(width: 0, height: 0), opacity: 0.25)
         }
     }
@@ -89,32 +89,32 @@ extension ChipButton {
     func setButtonUnselected(state: ChipStatus) {
         switch state {
         case .play:
-            self.setImage(ImageLiterals.Home.Chips.btnPlayChip, for: .normal)
+            self.setImage(UIImage(resource: .btnPlayChip), for: .normal)
             
         case .study:
-            self.setImage(ImageLiterals.Home.Chips.btnStudyChip, for: .normal)
+            self.setImage(UIImage(resource: .btnStudyChip), for: .normal)
             
         case .multi:
-            self.setImage(ImageLiterals.Home.Chips.btnMultiChip, for: .normal)
+            self.setImage(UIImage(resource: .btnMultiChip), for: .normal)
             
         case .others:
-            self.setImage(ImageLiterals.Home.Chips.btnOtherChip, for: .normal)
+            self.setImage(UIImage(resource: .btnOtherChip), for: .normal)
         }
     }
     
     func setButtonSelected(state: ChipStatus) {
         switch state {
         case .play:
-            self.setImage(ImageLiterals.Home.Chips.btnPlayChipSelected, for: .normal)
+            self.setImage(UIImage(resource: .btnPlayChipSelected), for: .normal)
             
         case .study:
-            self.setImage(ImageLiterals.Home.Chips.btnStudyChipSelected, for: .normal)
+            self.setImage(UIImage(resource: .btnStudyChipSelected), for: .normal)
             
         case .multi:
-            self.setImage(ImageLiterals.Home.Chips.btnMultiChipSelected, for: .normal)
+            self.setImage(UIImage(resource: .btnMultiChipSelected), for: .normal)
             
         case .others:
-            self.setImage(ImageLiterals.Home.Chips.btnOthersChipSelected, for: .normal)
+            self.setImage(UIImage(resource: .btnOthersChipSelected), for: .normal)
         }
     }
 }

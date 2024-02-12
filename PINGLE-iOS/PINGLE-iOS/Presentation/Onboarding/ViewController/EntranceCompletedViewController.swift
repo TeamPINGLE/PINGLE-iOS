@@ -66,7 +66,7 @@ final class EntranceCompletedViewController: BaseViewController {
         }
         
         self.backgroundImageView.do {
-            $0.image = ImageLiterals.OnBoarding.imgGraphic1
+            $0.image = UIImage(resource: .imgGraphic1)
             $0.contentMode = .scaleAspectFit
         }
     }

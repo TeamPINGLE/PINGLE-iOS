@@ -504,6 +504,7 @@
 		C39602CE2B3BF13A004BB2B8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F1239BC42B458C9F0072A02A /* Cell */,
 				C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */,
 				C307280E2B414D4B00AA575B /* UITextField+.swift */,
 				C30728102B414D6500AA575B /* UILabel+.swift */,
@@ -584,7 +585,6 @@
 		C39602E72B3BF20D004BB2B8 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				F1239BC42B458C9F0072A02A /* Cell */,
 				C39602EE2B3BF26D004BB2B8 /* ViewController */,
 				C39602F12B3BF276004BB2B8 /* View */,
 				F14F3C712B4B19230049A9EE /* Component */,

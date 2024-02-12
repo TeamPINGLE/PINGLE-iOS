@@ -49,7 +49,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         self.backButton.do {
-            $0.setImage(UIImage(resource: .icsvgArrowLeft), for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         self.titleBackgroundView.do {
@@ -69,7 +69,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         self.infoImageView.do {
-            $0.image = UIImage(resource: .icsvgInfo)
+            $0.image = UIImage(resource: .icInfo)
             $0.tintColor = .grayscaleG04
         }
         

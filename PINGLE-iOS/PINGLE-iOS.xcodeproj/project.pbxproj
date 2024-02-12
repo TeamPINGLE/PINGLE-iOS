@@ -61,7 +61,6 @@
 		C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D02B3BF162004BB2B8 /* ImageLiterals.swift */; };
 		C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D22B3BF169004BB2B8 /* StringLiterals.swift */; };
 		C39602D72B3BF189004BB2B8 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D62B3BF189004BB2B8 /* Font.swift */; };
-		C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DA2B3BF199004BB2B8 /* Color.swift */; };
 		C39602DD2B3BF1A8004BB2B8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */; };
 		C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E32B3BF203004BB2B8 /* BaseView.swift */; };
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
@@ -207,7 +206,6 @@
 		C39602D02B3BF162004BB2B8 /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		C39602D22B3BF169004BB2B8 /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		C39602D62B3BF189004BB2B8 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		C39602DA2B3BF199004BB2B8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		C39602E32B3BF203004BB2B8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -535,7 +533,6 @@
 			children = (
 				C39602D52B3BF183004BB2B8 /* Font */,
 				C39602D62B3BF189004BB2B8 /* Font.swift */,
-				C39602DA2B3BF199004BB2B8 /* Color.swift */,
 				C39602C02B3BEE08004BB2B8 /* Assets.xcassets */,
 				C39602C52B3BEE08004BB2B8 /* Info.plist */,
 				C307282B2B4269A000AA575B /* Config.swift */,
@@ -1283,7 +1280,6 @@
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,
 				F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */,
 				C305D59B2B5176D3008993C3 /* SearchPlaceResponseDTO.swift in Sources */,
-				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
 				C30D1E062B56FAD700879258 /* MyPINGLESegmentControl.swift in Sources */,
 				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,
 				F16BCA392B4E62760096A62F /* SplashViewController.swift in Sources */,
@@ -1495,7 +1491,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1534,7 +1530,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

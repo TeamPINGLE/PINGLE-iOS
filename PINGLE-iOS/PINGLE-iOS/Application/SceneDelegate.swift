@@ -7,6 +7,8 @@
 
 import UIKit
 
+import AuthenticationServices
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -34,6 +36,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let userID = KeychainHandler.shared.userID
+        
+        appleIDProvider.getCredentialState(forUserID: userID) { (credentialState, error) in
+            switch credentialState {
+            case .authorized:
+                print("해당 ID는 연동되어있습니다.")
+            case .revoked, .notFound:
+                print("해당 ID는 연동되어있지않습니다.")
+                KeychainHandler.shared.logout()
+                DispatchQueue.main.async {
+                    let splashViewController = SplashViewController()
+                    
+                    let navigationController = UINavigationController(rootViewController: splashViewController)
+                    
+                    self.window?.rootViewController = navigationController
+                    self.window?.makeKeyAndVisible()
+                }
+            default:
+                break
+            }
+        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

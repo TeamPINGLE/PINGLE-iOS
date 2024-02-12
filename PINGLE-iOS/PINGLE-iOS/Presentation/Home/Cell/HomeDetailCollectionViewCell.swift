@@ -43,23 +43,35 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
         mapDetailView.talkButtonAction = {}
         homeDetailPopUpView.participantionButtonAction = {}
         homeDetailCancelPopUpView.cancelButtonAction = {}
-        self.memberButtonAction = {}
+        memberButtonAction = {}
     }
     
     private func setDimmedView() {
-        self.dimmedView.addGestureRecognizer(dimmedTapGesture)
-        self.dimmedTapGesture.delegate = self
+        dimmedView.addGestureRecognizer(dimmedTapGesture)
+        dimmedTapGesture.delegate = self
     }
     
     private func setAddTarget() {
-        self.homeDetailCancelPopUpView.backButton.addTarget(self,
-                                                            action: #selector(backButtonTapped),
-                                                            for: .touchUpInside)
-        self.homeDetailPopUpView.participationButton.addTarget(self, action: #selector(participationButtonTapped), for: .touchUpInside)
-        self.homeDetailCancelPopUpView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        self.mapDetailView.participantCountButton.addTarget(self,
-                                                            action: #selector(participantCountButtonTapped),
-                                                            for: .touchUpInside)
+        homeDetailCancelPopUpView.backButton.addTarget(
+            self,
+            action: #selector(backButtonTapped),
+            for: .touchUpInside
+        )
+        homeDetailPopUpView.participationButton.addTarget(
+            self,
+            action: #selector(participationButtonTapped),
+            for: .touchUpInside
+        )
+        homeDetailCancelPopUpView.cancelButton.addTarget(
+            self,
+            action: #selector(cancelButtonTapped),
+            for: .touchUpInside
+        )
+        mapDetailView.participantCountButton.addTarget(
+            self,
+            action: #selector(participantCountButtonTapped),
+            for: .touchUpInside
+        )
     }
     
     // MARK: Layout Helpers
@@ -86,7 +98,7 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
     }
     
     private func setLayout() {
-        self.addSubviews(mapDetailView)
+        addSubviews(mapDetailView)
         
         if let window = UIApplication.shared.keyWindow {
             window.addSubviews(dimmedView,
@@ -113,7 +125,10 @@ final class HomeDetailCollectionViewCell: UICollectionViewCell {
 }
 
 extension HomeDetailCollectionViewCell {
-    func showPopUp(isParticipating: Bool, isOwner: Bool) {
+    func showPopUp(
+        isParticipating: Bool,
+        isOwner: Bool
+    ) {
         dimmedView.isHidden = false
         
         if !isParticipating {
@@ -122,7 +137,10 @@ extension HomeDetailCollectionViewCell {
         } else {
             homeDetailCancelPopUpView.titleLabel.text = isOwner ? StringLiterals.MyPingle.Delete.deleteTitle : StringLiterals.Home.Detail.cancelTitle
             homeDetailCancelPopUpView.descriptionLabel.text = isOwner ? StringLiterals.MyPingle.Delete.deleteDescription : StringLiterals.Home.Detail.cancelDescription
-            homeDetailCancelPopUpView.cancelButton.setTitle(isOwner ? StringLiterals.MyPingle.Delete.deleteButton : StringLiterals.Home.Detail.cancelButton, for: .normal)
+            homeDetailCancelPopUpView.cancelButton.setTitle(
+                isOwner ? StringLiterals.MyPingle.Delete.deleteButton : StringLiterals.Home.Detail.cancelButton,
+                for: .normal
+            )
             homeDetailCancelPopUpView.isHidden = false
             print("참여취소 / 삭제 팝업 보여주기")
         }
@@ -154,7 +172,10 @@ extension HomeDetailCollectionViewCell {
 // MARK: UIGestureRecognizerDelegate
 extension HomeDetailCollectionViewCell: UIGestureRecognizerDelegate {
     /// 딤 뷰 탭 되었을 때 메소드
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldReceive touch: UITouch
+    ) -> Bool {
         dimmedView.isHidden = true
         homeDetailPopUpView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true

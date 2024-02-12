@@ -27,26 +27,33 @@ final class ParticipantViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
     }
     
     private func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = true
-        self.tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
     }
     
     // MARK: Style Helpers
     override func setStyle() {
-        self.navigationController?.navigationBar.isHidden = true
-        self.view.backgroundColor = .grayscaleG11
+        navigationController?.navigationBar.isHidden = true
+        view.backgroundColor = .grayscaleG11
         
         backButton.do {
-            $0.setImage(ImageLiterals.Icon.imgArrowLeft, for: .normal)
+            $0.setImage(
+                ImageLiterals.Icon.imgArrowLeft,
+                for: .normal
+            )
         }
     }
     
     private func setAddTarget() {
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        backButton.addTarget(
+            self,
+            action: #selector(backButtonTapped),
+            for: .touchUpInside
+        )
     }
     
     // MARK: Objc Function
@@ -57,11 +64,11 @@ final class ParticipantViewController: BaseViewController {
     // MARK: Style Helpers
     override func setLayout() {
         
-        self.view.addSubviews(backButton,
-                              fixView)
+        view.addSubviews(backButton,
+                         fixView)
         
         backButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(16.adjusted)
             $0.leading.equalToSuperview().inset(18)
         }
         

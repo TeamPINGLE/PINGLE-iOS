@@ -17,20 +17,24 @@ final class MyPINGLEViewController: BaseViewController {
     private let titleLabel = UILabel()
     private let segmentedControl = MyPINGLESegmentControl(items: [StringLiterals.MyPingle.SegmentControl.soon, StringLiterals.MyPingle.SegmentControl.complete])
     private let separateView = UIView()
-    private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    private lazy var pageViewController = UIPageViewController(
+        transitionStyle: .scroll,
+        navigationOrientation: .horizontal,
+        options: nil)
     let soonViewController = SoonViewController()
     let completeViewController = CompleteViewController()
     
     // MARK: Property
     private var dataViewControllers: [UIViewController] {
-        [self.soonViewController, self.completeViewController]
+        [soonViewController,
+         completeViewController]
     }
     
     private var currentPage: Int = 0 {
         didSet {
-            let direction: UIPageViewController.NavigationDirection = oldValue <= self.currentPage ? .forward : .reverse
-            self.pageViewController.setViewControllers(
-                [dataViewControllers[self.currentPage]],
+            let direction: UIPageViewController.NavigationDirection = oldValue <= currentPage ? .forward : .reverse
+            pageViewController.setViewControllers(
+                [dataViewControllers[currentPage]],
                 direction: direction,
                 animated: true,
                 completion: nil
@@ -47,8 +51,8 @@ final class MyPINGLEViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func setStyle() {
@@ -64,7 +68,9 @@ final class MyPINGLEViewController: BaseViewController {
         }
         
         pageViewController.do {
-            $0.setViewControllers([self.dataViewControllers[0]], direction: .forward, animated: true)
+            $0.setViewControllers([dataViewControllers[0]],
+                                  direction: .forward,
+                                  animated: true)
         }
     }
     
@@ -120,18 +126,28 @@ final class MyPINGLEViewController: BaseViewController {
     }
     
     private func setSegmentedControl() {
-        self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.grayscaleG07, .font: UIFont.bodyBodyMed16], for: .normal)
-        self.segmentedControl.setTitleTextAttributes(
+        segmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: UIColor.grayscaleG07,
+             .font: UIFont.bodyBodyMed16],
+            for: .normal
+        )
+        segmentedControl.setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: UIColor.white,
-             .font: UIFont.bodyBodyMed16], for: .selected)
-        self.segmentedControl.addTarget(self, action: #selector(changeValue(control:)), for: .valueChanged)
-        self.segmentedControl.selectedSegmentIndex = 0
-        self.changeValue(control: self.segmentedControl)
+             .font: UIFont.bodyBodyMed16],
+            for: .selected
+        )
+        segmentedControl.addTarget(
+            self,
+            action: #selector(changeValue(control:)),
+            for: .valueChanged
+        )
+        segmentedControl.selectedSegmentIndex = 0
+        changeValue(control: self.segmentedControl)
     }
     
     // MARK: Objc Function
     @objc private func changeValue(control: UISegmentedControl) {
-        self.currentPage = control.selectedSegmentIndex
+        currentPage = control.selectedSegmentIndex
     }
 }
 
@@ -145,24 +161,32 @@ extension MyPINGLEViewController: UIPageViewControllerDataSource {
         _ pageViewController: UIPageViewController,
         viewControllerBefore viewController: UIViewController
     ) -> UIViewController? {
-        guard let index = self.dataViewControllers.firstIndex(of: viewController),
+        guard let index = dataViewControllers.firstIndex(of: viewController),
               index - 1 >= 0
         else { return nil }
-        return self.dataViewControllers[index - 1]
+        return dataViewControllers[index - 1]
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let index = self.dataViewControllers.firstIndex(of: viewController),
-              index + 1 < self.dataViewControllers.count
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        viewControllerAfter viewController: UIViewController
+    ) -> UIViewController? {
+        guard let index = dataViewControllers.firstIndex(of: viewController),
+              index + 1 < dataViewControllers.count
         else { return nil }
-        return self.dataViewControllers[index + 1]
+        return dataViewControllers[index + 1]
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        didFinishAnimating finished: Bool,
+        previousViewControllers: [UIViewController],
+        transitionCompleted completed: Bool
+    ) {
         guard let viewController = pageViewController.viewControllers?[0],
-              let index = self.dataViewControllers.firstIndex(of: viewController)
+              let index = dataViewControllers.firstIndex(of: viewController)
         else { return }
-        self.currentPage = index
-        self.segmentedControl.selectedSegmentIndex = index
+        currentPage = index
+        segmentedControl.selectedSegmentIndex = index
     }
 }

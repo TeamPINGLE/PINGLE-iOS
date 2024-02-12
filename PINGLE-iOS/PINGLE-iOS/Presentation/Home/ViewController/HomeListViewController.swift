@@ -20,14 +20,27 @@ final class HomeListViewController: BaseViewController {
     // MARK: - Function
     // MARK: Style Helpers
     override func setStyle() {
-        self.navigationController?.navigationBar.isHidden = true
-        self.view.backgroundColor = .grayscaleG11
+        navigationController?.navigationBar.isHidden = true
+        view.backgroundColor = .grayscaleG11
         
         mapButton.do {
-            $0.setBackgroundColor(.white, for: .normal)
-            $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
-            $0.setImage(ImageLiterals.Home.Map.icMapMap, for: .normal)
-            $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+            $0.setBackgroundColor(
+                .white,
+                for: .normal
+            )
+            $0.setBackgroundColor(
+                .grayscaleG04,
+                for: .highlighted
+            )
+            $0.setImage(
+                ImageLiterals.Home.Map.icMapMap,
+                for: .normal
+            )
+            $0.makeShadow(
+                radius: 5,
+                offset: CGSize(width: 0, height: 0),
+                opacity: 0.25
+            )
             $0.makeCornerRound(radius: 25.adjusted)
         }
     }
@@ -37,8 +50,8 @@ final class HomeListViewController: BaseViewController {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
-        self.view.addSubviews(fixView,
-                              mapButton)
+        view.addSubviews(fixView,
+                         mapButton)
         
         fixView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).offset(117.adjustedHeight)

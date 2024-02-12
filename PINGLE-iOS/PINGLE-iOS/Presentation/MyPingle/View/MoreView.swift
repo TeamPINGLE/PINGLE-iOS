@@ -28,7 +28,10 @@ final class MoreView: BaseView {
         self.do {
             $0.backgroundColor = .grayscaleG10
             $0.makeCornerRound(radius: 8)
-            $0.makeBorder(width: 1, color: .grayscaleG09)
+            $0.makeBorder(
+                width: 1,
+                color: .grayscaleG09
+            )
         }
         
         talkTitleLabel.do {
@@ -61,9 +64,9 @@ final class MoreView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(talkButton,
-                         moreSeparateView,
-                         deleteButton)
+        addSubviews(talkButton,
+                    moreSeparateView,
+                    deleteButton)
         
         talkButton.addSubviews(talkTitleLabel,
                                talkImageView)

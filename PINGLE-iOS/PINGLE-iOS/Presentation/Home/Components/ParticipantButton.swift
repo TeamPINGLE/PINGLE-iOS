@@ -88,10 +88,10 @@ extension ParticipantButton {
     }
     
     private func setLayout() {
-        self.addSubviews(participantsLabel,
-                         rightArrowImageView,
-                         completeLabel,
-                         countStackView)
+        addSubviews(participantsLabel,
+                    rightArrowImageView,
+                    completeLabel,
+                    countStackView)
         
         countStackView.addArrangedSubviews(currentParticipantsLabel,
                                            slashLabel,

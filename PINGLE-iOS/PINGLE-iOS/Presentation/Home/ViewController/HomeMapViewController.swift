@@ -35,7 +35,7 @@ final class HomeMapViewController: BaseViewController {
         setLocationManager()
         setAddTarget()
         setCollectionView()
-        self.loadPinList()
+        loadPinList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,8 +44,8 @@ final class HomeMapViewController: BaseViewController {
     }
     
     private func setNavigationBar() {
-        self.navigationController?.navigationBar.isHidden = true
-        self.tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Layout Helpers
@@ -53,7 +53,7 @@ final class HomeMapViewController: BaseViewController {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
-        self.view.addSubviews(mapsView)
+        view.addSubviews(mapsView)
         
         mapsView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -62,36 +62,48 @@ final class HomeMapViewController: BaseViewController {
     }
     
     override func setDelegate() {
-        self.mapsView.mapsView.mapView.touchDelegate = self
-        self.mapsView.homeDetailCollectionView.delegate = self
-        self.mapsView.homeDetailCollectionView.dataSource = self
+        mapsView.mapsView.mapView.touchDelegate = self
+        mapsView.homeDetailCollectionView.delegate = self
+        mapsView.homeDetailCollectionView.dataSource = self
     }
     
     private func setCollectionView() {
-        self.mapsView.homeDetailCollectionView.register(HomeDetailCollectionViewCell.self, forCellWithReuseIdentifier: HomeDetailCollectionViewCell.identifier)
+        mapsView.homeDetailCollectionView.register(
+            HomeDetailCollectionViewCell.self,
+            forCellWithReuseIdentifier: HomeDetailCollectionViewCell.identifier
+        )
     }
     
     private func setLocationManager() {
         mapsView.locationManager.delegate = self
         mapsView.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         mapsView.locationManager.requestWhenInUseAuthorization()
-        self.startUpdatingLocationAndMoveToCurrentLocation()
+        startUpdatingLocationAndMoveToCurrentLocation()
     }
     
     private func setAddTarget() {
-        self.mapsView.chipButtons.forEach {
-            $0.addTarget(self, action: #selector(isChipButtonTapped), for: .touchUpInside)
+        mapsView.chipButtons.forEach {
+            $0.addTarget(
+                self,
+                action: #selector(isChipButtonTapped),
+                for: .touchUpInside
+            )
         }
-        self.mapsView.currentLocationButton.addTarget(self,
-                                                      action: #selector(currentLocationButtonTapped),
-                                                      for: .touchUpInside)
+        mapsView.currentLocationButton.addTarget(
+            self,
+            action: #selector(currentLocationButtonTapped),
+            for: .touchUpInside
+        )
     }
 }
 
 // MARK: - extension
 // MARK: CLLocationManagerDelegate
 extension HomeMapViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
+    ) {
         if let location = locations.first {
             print("위치 업데이트!")
             mapsView.nowLat = location.coordinate.latitude
@@ -105,12 +117,15 @@ extension HomeMapViewController: CLLocationManagerDelegate {
                 shouldUpdateMap = false
                 allowLocation = true
             }
-            self.mapsView.setCurrentMarker()
+            mapsView.setCurrentMarker()
         }
     }
     
     // 위치 가져오기 실패 시
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+    ) {
         print(error)
     }
     
@@ -119,11 +134,11 @@ extension HomeMapViewController: CLLocationManagerDelegate {
         case .authorizedWhenInUse, .authorizedAlways:
             print("위치 권한이 허용되었습니다.")
             startUpdatingLocationAndMoveToCurrentLocation()
-            self.moveToCurrentLocation()
-            self.allowLocation = true
+            moveToCurrentLocation()
+            allowLocation = true
         case .denied, .restricted:
             print("위치 권한이 거부되었습니다.")
-            self.allowLocation = false
+            allowLocation = false
         case .notDetermined:
             print("위치 권한이 아직 결정되지 않았습니다.")
             manager.requestWhenInUseAuthorization()
@@ -146,8 +161,12 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 // MARK: NMFMapViewTouchDelegate
 extension HomeMapViewController: NMFMapViewTouchDelegate {
     /// 지도 탭 되었을 때 메소드
-    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        self.hideSelectedPin()
+    func mapView(
+        _ mapView: NMFMapView,
+        didTapMap latlng: NMGLatLng,
+        point: CGPoint
+    ) {
+        hideSelectedPin()
     }
 }
 
@@ -156,17 +175,29 @@ extension HomeMapViewController: UICollectionViewDelegate { }
 
 // MARK: UICollectionViewDataSource
 extension HomeMapViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         return homePinDetailList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeDetailCollectionViewCell.identifier, for: indexPath) as? HomeDetailCollectionViewCell else { return UICollectionViewCell() }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: HomeDetailCollectionViewCell.identifier,
+            for: indexPath) as? HomeDetailCollectionViewCell else { return UICollectionViewCell() }
+        
         cell.mapDetailView.dataBind(data: homePinDetailList[indexPath.row])
         cell.mapDetailView.updateStyle()
         
         cell.mapDetailView.participantsButtonAction = {
-            cell.showPopUp(isParticipating: self.homePinDetailList[indexPath.row].isParticipating, isOwner: cell.mapDetailView.isOwner)
+            cell.showPopUp(
+                isParticipating: self.homePinDetailList[indexPath.row].isParticipating,
+                isOwner: cell.mapDetailView.isOwner
+            )
         }
         
         cell.mapDetailView.talkButtonAction = {
@@ -178,7 +209,10 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 guard let self else { return }
                 if result {
                     cell.mapDetailView.isParticipating = true
-                    self.bindDetailViewData(id: self.markerId, category: self.markerCategory) {}
+                    bindDetailViewData(
+                        id: markerId,
+                        category: markerCategory
+                    ) {}
                 }
             }
         }
@@ -188,9 +222,12 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 self.meetingDelete(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
                     guard let self else { return }
                     if result {
-                        self.bindDetailViewData(id: self.markerId, category: self.markerCategory) {}
-                        self.mapsView.homeDetailCollectionView.isHidden = true
-                        self.loadPinList()
+                        bindDetailViewData(
+                            id: markerId,
+                            category: markerCategory
+                        ) {}
+                        mapsView.homeDetailCollectionView.isHidden = true
+                        loadPinList()
                     }
                 }
             } else {
@@ -198,13 +235,16 @@ extension HomeMapViewController: UICollectionViewDataSource {
                     guard let self else { return }
                     if result {
                         cell.mapDetailView.isParticipating = false
-                        self.bindDetailViewData(id: self.markerId, category: self.markerCategory) {}
+                        bindDetailViewData(
+                            id: markerId,
+                            category: markerCategory
+                        ) {}
                     }
                 }
             }
         }
         
-        cell.homeDetailPopUpView.dataBind(data: self.homePinDetailList[indexPath.row])
+        cell.homeDetailPopUpView.dataBind(data: homePinDetailList[indexPath.row])
         
         cell.memberButtonAction = {
             self.currentMeetingId = cell.mapDetailView.meetingId
@@ -217,32 +257,44 @@ extension HomeMapViewController: UICollectionViewDataSource {
 
 // MARK: UICollectionViewDelegateFlowLayout
 extension HomeMapViewController: UICollectionViewDelegateFlowLayout {
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(
+        _ scrollView: UIScrollView,
+        withVelocity velocity: CGPoint,
+        targetContentOffset: UnsafeMutablePointer<CGPoint>
+    ) {
         let scrolledOffsetX = targetContentOffset.pointee.x + scrollView.contentInset.left
         let cellWidth = (UIScreen.main.bounds.width - 48.adjustedWidth) + 8.adjustedWidth
         let index = round(scrolledOffsetX / cellWidth)
-        targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left, y: scrollView.contentInset.top)
+        targetContentOffset.pointee = CGPoint(
+            x: index * cellWidth - scrollView.contentInset.left,
+            y: scrollView.contentInset.top
+        )
     }
 }
 
 extension HomeMapViewController {
     
     private func hideSelectedPin() {
-        if !self.mapsView.homeDetailCollectionView.isHidden {
-            self.mapsView.homeDetailCollectionView.isHidden = true
-            self.mapsView.currentLocationButton.isHidden = false
-            self.mapsView.listButton.isHidden = false
-            self.mapsView.homeMarkerList.forEach {
-                $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
+        if !mapsView.homeDetailCollectionView.isHidden {
+            mapsView.homeDetailCollectionView.isHidden = true
+            mapsView.currentLocationButton.isHidden = false
+            mapsView.listButton.isHidden = false
+            mapsView.homeMarkerList.forEach {
+                $0.iconImage = NMFOverlayImage(image: mapsView.setMarkerColor(category: $0.meetingString))
             }
         }
     }
     
     /// 카메라를 이동하는 메소드
     private func moveToCurrentLocation() {
-        self.mapsView.cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: mapsView.nowLat, lng: mapsView.nowLng))
-        self.mapsView.cameraUpdate.animation = .easeIn
-        self.mapsView.mapsView.mapView.moveCamera(mapsView.cameraUpdate)
+        mapsView.cameraUpdate = NMFCameraUpdate(
+            scrollTo: NMGLatLng(
+                lat: mapsView.nowLat,
+                lng: mapsView.nowLng
+            )
+        )
+        mapsView.cameraUpdate.animation = .easeIn
+        mapsView.mapsView.mapView.moveCamera(mapsView.cameraUpdate)
     }
     
     // MARK: Objc Function
@@ -252,34 +304,34 @@ extension HomeMapViewController {
         
         /// 서버 통신
         if sender.isButtonSelected {
-            self.pinList(category: sender.chipStatusString) { [weak self] result in
+            pinList(category: sender.chipStatusString) { [weak self] result in
                 guard let self else { return }
                 if result {
-                    self.setMarker()
+                    setMarker()
                 }
             }
-            self.markerCategory = sender.chipStatusString
+            markerCategory = sender.chipStatusString
         } else {
-            self.pinList(category: "") { [weak self] result in
+            pinList(category: "") { [weak self] result in
                 guard let self else { return }
                 if result {
-                    self.setMarker()
+                    setMarker()
                 }
             }
-            self.markerCategory = ""
+            markerCategory = ""
         }
         
         /// 태그 하나만 선택할 수 있도록
-        self.mapsView.chipButtons.filter { $0 != sender }.forEach {
+        mapsView.chipButtons.filter { $0 != sender }.forEach {
             $0.isButtonSelected = false
         }
         
         /// 모든 마커 (핀) 다 보이도록
-        self.mapsView.homeMarkerList.forEach {
+        mapsView.homeMarkerList.forEach {
             $0.hidden = false
         }
         
-        self.hideSelectedPin()
+        hideSelectedPin()
     }
     
     @objc private func currentLocationButtonTapped() {
@@ -290,8 +342,11 @@ extension HomeMapViewController {
     
     private func participantCountButtonTapped() {
         let participantsListViewController = ParticipantsListViewController()
-        participantsListViewController.meetingIdentifier = self.currentMeetingId
-        self.navigationController?.pushViewController(participantsListViewController, animated: true)
+        participantsListViewController.meetingIdentifier = currentMeetingId
+        navigationController?.pushViewController(
+            participantsListViewController,
+            animated: true
+        )
     }
     
     private func connectTalkLink(urlString: String) {
@@ -314,16 +369,22 @@ extension HomeMapViewController {
     // MARK: Custom Function
     /// 마커에 핸들러 부여
     private func setMarkerHandler() {
-        self.mapsView.homeDetailCollectionView.isHidden = true
+        mapsView.homeDetailCollectionView.isHidden = true
         
-        self.mapsView.homeMarkerList.forEach { marker in
+        mapsView.homeMarkerList.forEach { marker in
             marker.touchHandler = { ( _: NMFOverlay) -> Bool in
                 let category = self.markerCategory.isEmpty ? "" : marker.meetingString
-                self.bindDetailViewData(id: marker.id, category: category) {
+                self.bindDetailViewData(
+                    id: marker.id,
+                    category: category
+                ) {
                     /// 맨 처음 인덱스로 돌아오도록 스크롤
                     if !self.homePinDetailList.isEmpty {
                         let indexPath = IndexPath(item: 0, section: 0)
-                        self.mapsView.homeDetailCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+                        self.mapsView.homeDetailCollectionView.scrollToItem(
+                            at: indexPath,
+                            at: .left,
+                            animated: false)
                     }
                 }
                 self.mapsView.currentLocationButton.isHidden = true
@@ -335,21 +396,25 @@ extension HomeMapViewController {
         }
     }
     
-    private func bindDetailViewData(id: Int, category: String?, completion: @escaping () -> Void) {
+    private func bindDetailViewData(
+        id: Int,
+        category: String?,
+        completion: @escaping () -> Void
+    ) {
         // 추후 바뀐 그룹 받아오는 로직 작성 예정
-        self.pinDetail(pinId: id, category: category) { [weak self] result in
+        pinDetail(pinId: id, category: category) { [weak self] result in
             guard let self else { return }
             if result {
-                self.mapsView.homeDetailCollectionView.reloadData()
-                self.mapsView.homeDetailCollectionView.isHidden = false
+                mapsView.homeDetailCollectionView.reloadData()
+                mapsView.homeDetailCollectionView.isHidden = false
             }
             completion()
         }
     }
     
     private func markerTapped(marker: PINGLEMarker) {
-        self.mapsView.homeMarkerList.forEach {
-            $0.iconImage = NMFOverlayImage(image: self.mapsView.setMarkerColor(category: $0.meetingString))
+        mapsView.homeMarkerList.forEach {
+            $0.iconImage = NMFOverlayImage(image: mapsView.setMarkerColor(category: $0.meetingString))
         }
         
         var activateImage: UIImage = ImageLiterals.Home.Map.imgMapPinOtherActive
@@ -366,23 +431,31 @@ extension HomeMapViewController {
         
         marker.iconImage = NMFOverlayImage(image: activateImage)
         /// zoomLevel에 따라서 일정한 위치로 카메라 이동할 수 있도록 계산
-        let offsetLat = marker.position.lat - 0.003 * pow(2, 14 - self.mapsView.mapsView.mapView.zoomLevel)
+        let offsetLat = marker.position.lat - 0.003 * pow(2, 14 - mapsView.mapsView.mapView.zoomLevel)
         
-        let newCameraPosition = NMFCameraPosition(NMGLatLng(lat: offsetLat, lng: marker.position.lng),
-                                                  zoom: self.mapsView.mapsView.mapView.zoomLevel,
-                                                  tilt: 0,
-                                                  heading: 0)
+        let newCameraPosition = NMFCameraPosition(
+            NMGLatLng(lat: offsetLat, lng: marker.position.lng),
+            zoom: mapsView.mapsView.mapView.zoomLevel,
+            tilt: 0,
+            heading: 0
+        )
         
         let newCameraUpdate = NMFCameraUpdate(position: newCameraPosition)
         newCameraUpdate.animation = .easeIn
-        self.mapsView.mapsView.mapView.moveCamera(newCameraUpdate)
+        mapsView.mapsView.mapView.moveCamera(newCameraUpdate)
     }
     
     // MARK: Server Function
-    private func pinList(category: String?, completion: @escaping (Bool) -> Void) {
+    private func pinList(
+        category: String?,
+        completion: @escaping (Bool) -> Void
+    ) {
         if KeychainHandler.shared.userGroup.count > 0 {
-
-            NetworkService.shared.homeService.pinList(teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
+            
+            NetworkService.shared.homeService.pinList(
+                teamId: KeychainHandler.shared.userGroup[0].id,
+                queryDTO: HomePinListRequestQueryDTO(category: category)
+            ) { [weak self] response in
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
@@ -399,14 +472,22 @@ extension HomeMapViewController {
     }
     
     private func loadPinList() {
-        self.pinList(category: self.markerCategory) {_ in
+        pinList(category: markerCategory) {_ in
             self.setMarker()
         }
     }
     
-    private func pinDetail(pinId: Int, category: String?, completion: @escaping (Bool) -> Void) {
+    private func pinDetail(
+        pinId: Int,
+        category: String?,
+        completion: @escaping (Bool) -> Void
+    ) {
         if KeychainHandler.shared.userGroup.count > 0 {
-            NetworkService.shared.homeService.pinDetail(pinId: pinId, teamId: KeychainHandler.shared.userGroup[0].id, queryDTO: HomePinListRequestQueryDTO(category: category)) { [weak self] response in
+            NetworkService.shared.homeService.pinDetail(
+                pinId: pinId,
+                teamId: KeychainHandler.shared.userGroup[0].id,
+                queryDTO: HomePinListRequestQueryDTO(category: category)
+            ) { [weak self] response in
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
@@ -428,7 +509,10 @@ extension HomeMapViewController {
         }
     }
     
-    private func meetingJoin(meetingId: Int, completion: @escaping (Bool) -> Void) {
+    private func meetingJoin(
+        meetingId: Int,
+        completion: @escaping (Bool) -> Void
+    ) {
         NetworkService.shared.homeService.meetingJoin(meetingId: meetingId) { response in
             switch response {
             case .success:
@@ -442,7 +526,10 @@ extension HomeMapViewController {
         }
     }
     
-    private func meetingCancel(meetingId: Int, completion: @escaping (Bool) -> Void) {
+    private func meetingCancel(
+        meetingId: Int,
+        completion: @escaping (Bool) -> Void
+    ) {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
             switch response {
             case .success:
@@ -455,7 +542,10 @@ extension HomeMapViewController {
         }
     }
     
-    private func meetingDelete(meetingId: Int, completion: @escaping (Bool) -> Void) {
+    private func meetingDelete(
+        meetingId: Int,
+        completion: @escaping (Bool) -> Void
+    ) {
         NetworkService.shared.homeService.meetingDelete(meetingId: meetingId) { response in
             switch response {
             case .success:
@@ -472,24 +562,27 @@ extension HomeMapViewController {
     /// 마커 추가 메소드
     private func setMarker() {
         /// 마커 다 지우기
-        self.mapsView.homeMarkerList.forEach {
+        mapsView.homeMarkerList.forEach {
             $0.hidden = true
         }
         mapsView.homeMarkerList = []
         mapsView.homeMarkerList = mapsView.homePinList.map { pin -> PINGLEMarker in
             let pingleMarker = PINGLEMarker()
-
+            
             pingleMarker.id = pin.id
             pingleMarker.changeStringToStatus(string: pin.category)
             pingleMarker.meetingString = pin.category
-
+            
             pingleMarker.iconImage = NMFOverlayImage(image: mapsView.setMarkerColor(category: pin.category))
-            pingleMarker.position = NMGLatLng(lat: pin.y, lng: pin.x)
-
+            pingleMarker.position = NMGLatLng(
+                lat: pin.y,
+                lng: pin.x
+            )
+            
             pingleMarker.mapView = mapsView.mapsView.mapView
-
+            
             return pingleMarker
         }
-        self.setMarkerHandler()
+        setMarkerHandler()
     }
 }

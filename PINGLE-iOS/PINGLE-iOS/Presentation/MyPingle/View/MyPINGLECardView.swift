@@ -91,7 +91,10 @@ final class MyPINGLECardView: BaseView {
         }
         
         moreButton.do {
-            $0.setImage(ImageLiterals.MyPingle.Icon.btnMyPingleMore, for: .normal)
+            $0.setImage(
+                ImageLiterals.MyPingle.Icon.btnMyPingleMore,
+                for: .normal
+            )
         }
         
         separateView.do {
@@ -161,8 +164,8 @@ final class MyPINGLECardView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(topBackgroundView,
-                         bottomBackgroundView)
+        addSubviews(topBackgroundView,
+                    bottomBackgroundView)
         
         topBackgroundView.addSubviews(topStackView,
                                       moreButton,

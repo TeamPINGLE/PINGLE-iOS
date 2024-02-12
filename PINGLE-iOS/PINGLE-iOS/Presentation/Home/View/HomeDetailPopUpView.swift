@@ -47,7 +47,10 @@ final class HomeDetailPopUpView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "제목", lineHeight: 25)
+            $0.setTextWithLineHeight(
+                text: "제목",
+                lineHeight: 25
+            )
             $0.textColor = badgeColor
             $0.font = .subtitleSubSemi18
             $0.textAlignment = .center
@@ -71,17 +74,23 @@ final class HomeDetailPopUpView: BaseView {
         participationButton.do {
             $0.makeCornerRound(radius: 10)
             $0.backgroundColor = .white
-            $0.setTitle(StringLiterals.Home.Detail.participationButton, for: .normal)
-            $0.setTitleColor(.black, for: .normal)
+            $0.setTitle(
+                StringLiterals.Home.Detail.participationButton,
+                for: .normal
+            )
+            $0.setTitleColor(
+                .black,
+                for: .normal
+            )
             $0.titleLabel?.font = .bodyBodySemi14
         }
     }
     
     // MARK: Layout Helpers
     override func setLayout() {
-        self.addSubviews(infoBackgroundView,
-                         askLabel,
-                         participationButton)
+        addSubviews(infoBackgroundView,
+                    askLabel,
+                    participationButton)
         
         infoBackgroundView.addSubviews(badgeImageView,
                                        titleLabel,

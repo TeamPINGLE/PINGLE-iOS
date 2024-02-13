@@ -45,9 +45,9 @@ extension ProfileTarget: TargetType {
     var path: String {
         switch self {
         case .logout:
-            return "/auth/logout"
+            return "/v1/auth/logout"
         case .deleteID:
-            return "/users/leave"
+            return "/v1/users/leave"
         }
     }
     

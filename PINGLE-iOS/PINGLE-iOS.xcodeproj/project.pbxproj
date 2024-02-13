@@ -149,6 +149,7 @@
 /* Begin PBXFileReference section */
 		03E71CF4ACFDF0B6A8554474 /* Pods-PINGLE-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.debug.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5D4C2FEF64C9439656F53167 /* Pods_PINGLE_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PINGLE_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D8DEF11AB88169F6E15E4BE /* Pods-PINGLE-iOS.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.dev.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.dev.xcconfig"; sourceTree = "<group>"; };
 		99FA74A665E555FBFDA809A7 /* Pods-PINGLE-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.release.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C305D5982B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaceRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C305D59A2B5176D3008993C3 /* SearchPlaceResponseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchPlaceResponseDTO.swift; path = "PINGLE-iOS/Network/Meeting/DTO/Request/SearchPlaceResponseDTO.swift"; sourceTree = SOURCE_ROOT; };
@@ -194,6 +195,7 @@
 		C32A2DE62B4D934C0063F84A /* ParticipantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantViewController.swift; sourceTree = "<group>"; };
 		C33084BB2B47940300380E82 /* HomeMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapDetailView.swift; sourceTree = "<group>"; };
 		C33BF3442B46E03400008653 /* PINGLEMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEMarker.swift; sourceTree = "<group>"; };
+		C35857B72B7A980600C21AF2 /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
 		C36761B02B541C9C0086AAE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C385453B2B47C5AE0040E60D /* HomeDetailPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailPopUpView.swift; sourceTree = "<group>"; };
 		C385453D2B4857D30040E60D /* HomePinDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinDetailResponseDTO.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 			children = (
 				C307282E2B42707200AA575B /* .swiftlint.yml */,
 				C307282A2B42695400AA575B /* Config.xcconfig */,
+				C35857B72B7A980600C21AF2 /* Config_dev.xcconfig */,
 				C39602B62B3BEE06004BB2B8 /* PINGLE-iOS */,
 				C39602B52B3BEE06004BB2B8 /* Products */,
 				FF1E7173A2F29B75E917C196 /* Pods */,
@@ -1048,6 +1051,7 @@
 			children = (
 				03E71CF4ACFDF0B6A8554474 /* Pods-PINGLE-iOS.debug.xcconfig */,
 				99FA74A665E555FBFDA809A7 /* Pods-PINGLE-iOS.release.xcconfig */,
+				7D8DEF11AB88169F6E15E4BE /* Pods-PINGLE-iOS.dev.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1347,6 +1351,111 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C35857B52B7A97E700C21AF2 /* DEV */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C35857B72B7A980600C21AF2 /* Config_dev.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PINGLE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = DEV;
+		};
+		C35857B62B7A97E700C21AF2 /* DEV */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D8DEF11AB88169F6E15E4BE /* Pods-PINGLE-iOS.dev.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_dev;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "PINGLE-iOS/PINGLE-iOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5YM44C4YT8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PINGLE-iOS/Global/Resources/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = PINGLE;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PINGLE.iOS.dev;
+				PRODUCT_NAME = "$(TARGET_NAME).dev";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = DEV;
+		};
 		C39602C62B3BEE08004BB2B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C307282A2B42695400AA575B /* Config.xcconfig */;
@@ -1557,6 +1666,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C39602C62B3BEE08004BB2B8 /* Debug */,
+				C35857B52B7A97E700C21AF2 /* DEV */,
 				C39602C72B3BEE08004BB2B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1566,6 +1676,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C39602C92B3BEE08004BB2B8 /* Debug */,
+				C35857B62B7A97E700C21AF2 /* DEV */,
 				C39602CA2B3BEE08004BB2B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

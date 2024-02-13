@@ -31,11 +31,11 @@ final class OnboardingViewController: BaseViewController {
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.titleLabel.do {
+        titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.onboarding
             $0.setLineSpacing(spacing: 4)
             $0.font = .titleTitleSemi30
@@ -43,7 +43,7 @@ final class OnboardingViewController: BaseViewController {
             $0.numberOfLines = 0
         }
         
-        self.existingOrganizationButton.do {
+        existingOrganizationButton.do {
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.existingOrganization, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
             $0.setTitleColor(.white, for: .normal)
@@ -56,7 +56,7 @@ final class OnboardingViewController: BaseViewController {
             $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
         }
         
-        self.makeOrganizationButton.do {
+        makeOrganizationButton.do {
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.makeOrganization, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
             $0.setTitleColor(.white, for: .normal)
@@ -71,10 +71,10 @@ final class OnboardingViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel, existingOrganizationButton, makeOrganizationButton)
+        view.addSubviews(titleLabel, existingOrganizationButton, makeOrganizationButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(105)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(105)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         

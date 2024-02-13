@@ -35,11 +35,11 @@ final class EntranceCompletedViewController: BaseViewController {
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.titleLabel.do {
+        titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.entranceTitle
             $0.setLineSpacing(spacing: 5)
             $0.textAlignment = .left
@@ -48,31 +48,31 @@ final class EntranceCompletedViewController: BaseViewController {
             $0.numberOfLines = 0
         }
         
-        self.organizationNameLabel.do {
+        organizationNameLabel.do {
             $0.font = .subtitleSubSemi16
             $0.textColor = .grayscaleG01
         }
         
-        self.postpositionLabel.do {
+        postpositionLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.postposition
             $0.font = .bodyBodyMed16
             $0.textColor = .grayscaleG03
         }
         
-        self.welcomLabel.do {
+        welcomLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.welcomMessage
             $0.font = .bodyBodyMed16
             $0.textColor = .grayscaleG03
         }
         
-        self.backgroundImageView.do {
+        backgroundImageView.do {
             $0.image = UIImage(resource: .imgGraphic1)
             $0.contentMode = .scaleAspectFit
         }
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel, organizationNameLabel, postpositionLabel,
+        view.addSubviews(titleLabel, organizationNameLabel, postpositionLabel,
                               welcomLabel, backgroundImageView, bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
@@ -81,35 +81,35 @@ final class EntranceCompletedViewController: BaseViewController {
         }
         
         organizationNameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(16)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(16)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         postpositionLabel.snp.makeConstraints {
-            $0.leading.equalTo(self.organizationNameLabel.snp.trailing)
-            $0.centerY.equalTo(self.organizationNameLabel)
+            $0.leading.equalTo(organizationNameLabel.snp.trailing)
+            $0.centerY.equalTo(organizationNameLabel)
         }
         
         welcomLabel.snp.makeConstraints {
-            $0.top.equalTo(self.organizationNameLabel.snp.bottom).offset(4)
+            $0.top.equalTo(organizationNameLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().inset(24.adjusted)
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(41)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(41)
             $0.centerX.equalToSuperview()
         }
         
         if UIScreen.main.bounds.height > 667 {
             backgroundImageView.snp.makeConstraints {
-                $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-16)
+                $0.bottom.equalTo(bottomCTAButton.snp.top).offset(-16)
                 $0.trailing.equalToSuperview()
                 $0.height.equalTo(447)
                 $0.width.equalTo(475)
             }
         } else {
             backgroundImageView.snp.makeConstraints {
-                $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-16)
+                $0.bottom.equalTo(bottomCTAButton.snp.top).offset(-16)
                 $0.leading.trailing.equalToSuperview()
                 $0.height.equalTo(353)
             }

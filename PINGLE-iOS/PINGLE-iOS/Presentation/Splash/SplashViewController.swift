@@ -44,7 +44,7 @@ final class SplashViewController: BaseViewController {
     func changeRootViewController(rootViewController: UIViewController) {
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
         sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
-        self.navigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     func branchProcessing() {

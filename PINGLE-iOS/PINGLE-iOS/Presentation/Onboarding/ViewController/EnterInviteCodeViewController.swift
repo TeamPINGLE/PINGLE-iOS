@@ -44,23 +44,23 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.backButton.do {
+        backButton.do {
             $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
-        self.titleBackgroundView.do {
+        titleBackgroundView.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.organizationInfoView.do {
+        organizationInfoView.do {
             $0.isHidden = true
         }
         
-        self.titleLabel.do {
+        titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.inviteCodeTitle
             $0.setLineSpacing(spacing: 4)
             $0.font = .titleTitleSemi24
@@ -68,29 +68,29 @@ final class EnterInviteCodeViewController: BaseViewController {
             $0.numberOfLines = 0
         }
         
-        self.infoImageView.do {
+        infoImageView.do {
             $0.image = UIImage(resource: .icInfo)
             $0.tintColor = .grayscaleG04
         }
         
-        self.infoMessageLabel.do {
+        infoMessageLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.infoMessage
             $0.font = .captionCapMed10
             $0.textColor = .grayscaleG04
         }
         
-        self.warningToastView.do {
+        warningToastView.do {
             $0.alpha = 0.0
         }
     }
     
     override func setLayout() {
-        self.view.addSubviews(organizationInfoView, inviteCodeTextFieldView, infoImageView,
+        view.addSubviews(organizationInfoView, inviteCodeTextFieldView, infoImageView,
                               infoMessageLabel, bottomCTAButton, warningToastView, titleBackgroundView)
-        self.titleBackgroundView.addSubviews(titleLabel)
+        titleBackgroundView.addSubviews(titleLabel)
         
         titleBackgroundView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(113)
         }
@@ -101,7 +101,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         organizationInfoView.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(25)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(25)
             $0.leading.trailing.equalToSuperview().inset(24.adjusted)
             $0.height.equalTo(157)
         }
@@ -123,7 +123,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(41.adjusted)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(41.adjusted)
             $0.centerX.equalToSuperview()
         }
         

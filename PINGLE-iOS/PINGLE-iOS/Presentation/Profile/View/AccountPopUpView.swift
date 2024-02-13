@@ -34,17 +34,17 @@ final class AccountPopUpView: BaseView {
             $0.makeCornerRound(radius: 15)
         }
         
-        self.questionLabel.do {
+        questionLabel.do {
             $0.font = .subtitleSubSemi18
             $0.textColor = .white
         }
         
-        self.explanationLabel.do {
+        explanationLabel.do {
             $0.font = .bodyBodyMed14
             $0.textColor = .grayscaleG05
         }
         
-        self.backButton.do {
+        backButton.do {
             $0.makeCornerRound(radius: 10)
             $0.backgroundColor = .grayscaleG01
             $0.setTitle(StringLiterals.Profile.ButtonTitle.backTitle, for: .normal)
@@ -52,7 +52,7 @@ final class AccountPopUpView: BaseView {
             $0.titleLabel?.font = .bodyBodySemi14
         }
         
-        self.changeStateButton.do {
+        changeStateButton.do {
             $0.titleLabel?.font = .captionCapSemi12
             $0.setTitleColor(.grayscaleG01, for: .normal)
             $0.titleLabel?.textAlignment = .center
@@ -61,10 +61,10 @@ final class AccountPopUpView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(questionLabel, explanationLabel, backButton,
+        addSubviews(questionLabel, explanationLabel, backButton,
                          changeStateButton)
         
-        self.snp.makeConstraints {
+        snp.makeConstraints {
             $0.width.equalTo(UIScreen.main.bounds.size.width - 48.adjusted)
             $0.height.equalTo(232)
         }

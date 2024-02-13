@@ -41,15 +41,15 @@ final class SearchOrganizationViewController: BaseViewController {
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.backButton.do {
+        backButton.do {
             $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
-        self.titleLabel.do {
+        titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.searchOrganization
             $0.setLineSpacing(spacing: 4)
             $0.font = .titleTitleSemi24
@@ -57,13 +57,13 @@ final class SearchOrganizationViewController: BaseViewController {
             $0.numberOfLines = 0
         }
         
-        self.bottomRequestLabel.do {
+        bottomRequestLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.bottomRequest
             $0.font = .captionCapSemi12
             $0.textColor = .white
         }
         
-        self.makeOrganizationButton.do {
+        makeOrganizationButton.do {
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.requestOrganization, for: .normal)
             $0.titleLabel?.font = .captionCapSemi12
             $0.setTitleColor(.white, for: .normal)
@@ -73,33 +73,33 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel, searchOrganizationView, bottomRequestLabel, makeOrganizationButton, bottomCTAButton)
+        view.addSubviews(titleLabel, searchOrganizationView, bottomRequestLabel, makeOrganizationButton, bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(32)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         searchOrganizationView.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(24)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(self.bottomRequestLabel.snp.top).offset(-18)
+            $0.bottom.equalTo(bottomRequestLabel.snp.top).offset(-18)
         }
         
         bottomRequestLabel.snp.makeConstraints {
-            $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-20)
+            $0.bottom.equalTo(bottomCTAButton.snp.top).offset(-20)
             $0.leading.equalToSuperview().inset(77.adjusted)
         }
         
         makeOrganizationButton.snp.makeConstraints {
-            $0.centerY.equalTo(self.bottomRequestLabel)
-            $0.leading.equalTo(self.bottomRequestLabel.snp.trailing).offset(4.adjusted)
+            $0.centerY.equalTo(bottomRequestLabel)
+            $0.leading.equalTo(bottomRequestLabel.snp.trailing).offset(4.adjusted)
             $0.height.equalTo(17)
             $0.width.equalTo(121.adjusted)
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(41)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(41)
             $0.centerX.equalToSuperview()
         }
     }

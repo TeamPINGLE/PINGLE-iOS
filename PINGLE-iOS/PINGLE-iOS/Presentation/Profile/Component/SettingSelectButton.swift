@@ -36,14 +36,14 @@ class SettingSelectButton: UIButton {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.settingTitleLabel.do {
+        settingTitleLabel.do {
             $0.font = .bodyBodyMed16
             $0.textColor = .white
         }
     }
     
     func setLayout() {
-        self.addSubviews(settingTitleLabel)
+        addSubviews(settingTitleLabel)
         
         self.snp.makeConstraints {
             $0.width.equalTo(UIScreen.main.bounds.size.width - 32.adjusted)

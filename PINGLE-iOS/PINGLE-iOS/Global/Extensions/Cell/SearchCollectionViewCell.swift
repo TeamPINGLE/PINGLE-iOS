@@ -42,47 +42,47 @@ final class SearchCollectionViewCell: UICollectionViewCell {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.keywordLabel.do {
+        keywordLabel.do {
             $0.font = .captionCapSemi10
             $0.textColor = .mainPingleGreen
             $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
             $0.layer.cornerRadius = 10.adjusted
         }
         
-        self.groupNameLabel.do {
+        groupNameLabel.do {
             $0.font = .bodyBodyMed16
             $0.textColor = .white
         }
         
-        self.selectImageView.do {
+        selectImageView.do {
             $0.image = UIImage(resource: .imgCheckDefault)
         }
         
-        self.horizontalLineView.do {
+        horizontalLineView.do {
             $0.backgroundColor = .grayscaleG09
         }
     }
     
     func setLayout() {
-        self.addSubviews(keywordLabel, groupNameLabel, selectImageView, horizontalLineView)
+        addSubviews(keywordLabel, groupNameLabel, selectImageView, horizontalLineView)
         
-        self.keywordLabel.snp.makeConstraints {
+        keywordLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()
         }
         
-        self.groupNameLabel.snp.makeConstraints {
+        groupNameLabel.snp.makeConstraints {
             $0.leading.equalTo(keywordLabel.snp.trailing).offset(8.adjusted)
             $0.centerY.equalToSuperview()
         }
         
-        self.selectImageView.snp.makeConstraints {
+        selectImageView.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(10.adjusted)
             $0.centerY.equalToSuperview()
             $0.height.width.equalTo(24.adjusted)
         }
         
-        self.horizontalLineView.snp.makeConstraints {
+        horizontalLineView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.height.equalTo(1.adjusted)

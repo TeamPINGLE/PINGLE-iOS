@@ -43,7 +43,7 @@ final class PINGLEWarningToastView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(warningImageView, warningLabel)
+        addSubviews(warningImageView, warningLabel)
         
         self.snp.makeConstraints {
             $0.width.equalTo(343.adjusted)

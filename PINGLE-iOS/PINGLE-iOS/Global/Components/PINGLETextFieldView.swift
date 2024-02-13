@@ -40,12 +40,12 @@ final class PINGLETextFieldView: BaseView {
             $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
         }
         
-        self.titleLabel.do {
+        titleLabel.do {
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG03
         }
         
-        self.searchTextField.do {
+        searchTextField.do {
             $0.font = .subtitleSubSemi16
             $0.textColor = .white
             $0.tintColor = .mainPingleGreen
@@ -55,7 +55,7 @@ final class PINGLETextFieldView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(titleLabel, searchTextField)
+        addSubviews(titleLabel, searchTextField)
         
         self.snp.makeConstraints {
             $0.width.equalTo(327.adjustedWidth)
@@ -68,7 +68,7 @@ final class PINGLETextFieldView: BaseView {
         }
         
         searchTextField.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4.adjusted)
             $0.leading.trailing.equalToSuperview().inset(18.adjusted)
             $0.bottom.equalToSuperview().inset(16.adjusted)
         }

@@ -42,7 +42,7 @@ final class HomeDetailPopUpView: BaseView {
         }
         
         badgeImageView.do {
-            $0.image = ImageLiterals.Home.Detail.imgStudyBadge
+            $0.image = UIImage(resource: .imgStudyBadge)
             $0.contentMode = .scaleAspectFill
         }
         
@@ -140,19 +140,19 @@ final class HomeDetailPopUpView: BaseView {
         switch data.category {
         case "PLAY":
             badgeColor = .mainPingleGreen
-            badgeImageView.image = ImageLiterals.Home.Detail.imgPlayBadge
+            badgeImageView.image = UIImage(resource: .imgPlayBadge)
             
         case "STUDY":
             badgeColor = .subPingleOrange
-            badgeImageView.image = ImageLiterals.Home.Detail.imgStudyBadge
+            badgeImageView.image = UIImage(resource: .imgStudyBadge)
             
         case "MULTI":
             badgeColor = .subPingleYellow
-            badgeImageView.image = ImageLiterals.Home.Detail.imgMultiBadge
+            badgeImageView.image = UIImage(resource: .imgMultiBadge)
             
         case "OTHERS":
             badgeColor = .grayscaleG01
-            badgeImageView.image = ImageLiterals.Home.Detail.imgOthersBadge
+            badgeImageView.image = UIImage(resource: .imgOthersBadge)
             
         default:
             return

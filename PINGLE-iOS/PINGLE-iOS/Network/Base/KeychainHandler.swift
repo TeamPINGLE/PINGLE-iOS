@@ -22,6 +22,7 @@ struct KeychainHandler {
     private let refreshTokenKey = "refreshToken"
     private let providerTokenKey = "providerToken"
     private let authorizationCodeKey = "authorizationCode"
+    private let userIDKey = "userID"
     private let userNameKey = "userName"
     private let userGroupKey = "userGroup"
     
@@ -61,6 +62,15 @@ struct KeychainHandler {
         }
     }
     
+    var userID: String {
+        get {
+            return KeychainWrapper.standard.string(forKey: userIDKey) ?? ""
+        }
+        set {
+            KeychainWrapper.standard.set(newValue, forKey: userIDKey)
+        }
+    }
+    
     var userName: String {
         get {
             return KeychainWrapper.standard.string(forKey: userNameKey) ?? ""
@@ -83,6 +93,7 @@ struct KeychainHandler {
         accessToken = ""
         refreshToken = ""
         userGroup = []
+        KeychainWrapper.standard.removeObject(forKey: userIDKey)
         KeychainWrapper.standard.removeObject(forKey: accessTokenKey)
         KeychainWrapper.standard.removeObject(forKey: refreshTokenKey)
         UserDefaults.standard.removeObject(forKey: userGroupKey)
@@ -95,6 +106,7 @@ struct KeychainHandler {
         authorizationCode = ""
         
         userGroup = []
+        KeychainWrapper.standard.removeObject(forKey: userIDKey)
         KeychainWrapper.standard.removeObject(forKey: accessTokenKey)
         KeychainWrapper.standard.removeObject(forKey: refreshTokenKey)
         KeychainWrapper.standard.removeObject(forKey: providerTokenKey)

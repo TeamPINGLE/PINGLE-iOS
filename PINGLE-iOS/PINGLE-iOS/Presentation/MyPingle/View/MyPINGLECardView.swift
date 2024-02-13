@@ -54,7 +54,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         badgeImageView.do {
-            $0.image = ImageLiterals.Home.Detail.imgStudyBadge
+            $0.image = UIImage(resource: .imgStudyBadge)
             $0.contentMode = .scaleAspectFill
         }
         
@@ -92,7 +92,7 @@ final class MyPINGLECardView: BaseView {
         
         moreButton.do {
             $0.setImage(
-                ImageLiterals.MyPingle.Icon.btnMyPingleMore,
+                UIImage(resource: .btnMyPingleMore),
                 for: .normal
             )
         }
@@ -107,7 +107,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         dateImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icCalendar
+            $0.image = UIImage(resource: .icCalendar)
         }
         
         dateLabel.do {
@@ -132,7 +132,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         locationImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icLocation
+            $0.image = UIImage(resource: .icLocation)
         }
         
         locationLabel.do {
@@ -142,7 +142,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         memberImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icUser
+            $0.image = UIImage(resource: .icUser)
         }
         
         memberLabel.do {
@@ -153,12 +153,12 @@ final class MyPINGLECardView: BaseView {
         }
         
         memberArrow.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icRightArrow
+            $0.image = UIImage(resource: .icArrowRight)
             $0.isUserInteractionEnabled = false
         }
         
         myPingleImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.imgMyPingle
+            $0.image = UIImage(resource: .imgMyPingle)
             $0.isHidden = false
         }
     }

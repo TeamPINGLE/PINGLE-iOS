@@ -31,43 +31,43 @@ final class OrganizationInfoView: BaseView {
             $0.layer.cornerRadius = 12.adjusted
         }
         
-        self.keywordLabel.do {
+        keywordLabel.do {
             $0.font = .captionCapSemi12
             $0.textColor = .mainPingleGreen
             $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
             $0.layer.cornerRadius = 12.5.adjusted
         }
         
-        self.organizationNameLabel.do {
+        organizationNameLabel.do {
             $0.font = .titleTitleSemi24
             $0.textColor = .black
         }
         
-        self.meetingNumberTitleLabel.do {
+        meetingNumberTitleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.meetingNumber
             $0.font = .bodyBodySemi14
             $0.textColor = .grayscaleG11
         }
         
-        self.meetingNumberLabel.do {
+        meetingNumberLabel.do {
             $0.font = .bodyBodyMed14
             $0.textColor = .grayscaleG08
         }
         
-        self.memberNumberTitleLabel.do {
+        memberNumberTitleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.memberNumber
             $0.font = .bodyBodySemi14
             $0.textColor = .grayscaleG11
         }
         
-        self.memberNumberLabel.do {
+        memberNumberLabel.do {
             $0.font = .bodyBodyMed14
             $0.textColor = .grayscaleG08
         }
     }
     
     override func setLayout() {
-        self.addSubviews(keywordLabel, organizationNameLabel, meetingNumberTitleLabel, 
+        addSubviews(keywordLabel, organizationNameLabel, meetingNumberTitleLabel, 
                          meetingNumberLabel, memberNumberTitleLabel, memberNumberLabel)
         
         keywordLabel.snp.makeConstraints {

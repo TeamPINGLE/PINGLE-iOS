@@ -32,23 +32,23 @@ final class SettingSelectView: BaseView {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.versionTitleLabel.do {
+        versionTitleLabel.do {
             $0.text = StringLiterals.Profile.ExplainTitle.versionTitle
             $0.font = .bodyBodyMed16
             $0.textColor = .white
         }
         
-        self.versionInfoLabel.do {
+        versionInfoLabel.do {
             $0.text = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
             $0.font = .bodyBodyMed14
             $0.textColor = .grayscaleG03
         }
         
-        self.horizontalLineView.do {
+        horizontalLineView.do {
             $0.backgroundColor = .grayscaleG08
         }
         
-        self.deleteLabel.do {
+        deleteLabel.do {
             $0.text = StringLiterals.Profile.ButtonTitle.deleteTitle
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
@@ -57,11 +57,11 @@ final class SettingSelectView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(contactButton, noticeButton, versionTitleLabel,
+        addSubviews(contactButton, noticeButton, versionTitleLabel,
                          versionInfoLabel, horizontalLineView, logoutButton,
                          deleteButton)
         
-        self.deleteButton.addSubview(deleteLabel)
+        deleteButton.addSubview(deleteLabel)
         
         self.snp.makeConstraints {
             $0.width.equalTo(UIScreen.main.bounds.size.width - 32.adjusted)
@@ -74,35 +74,35 @@ final class SettingSelectView: BaseView {
         }
         
         noticeButton.snp.makeConstraints {
-            $0.top.equalTo(self.contactButton.snp.bottom)
+            $0.top.equalTo(contactButton.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50)
         }
         
         versionTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.noticeButton.snp.bottom).offset(14)
+            $0.top.equalTo(noticeButton.snp.bottom).offset(14)
             $0.leading.equalToSuperview().inset(4.adjusted)
         }
         
         versionInfoLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(4)
-            $0.centerY.equalTo(self.versionTitleLabel)
+            $0.centerY.equalTo(versionTitleLabel)
         }
         
         horizontalLineView.snp.makeConstraints {
-            $0.top.equalTo(self.versionTitleLabel.snp.bottom).offset(14)
+            $0.top.equalTo(versionTitleLabel.snp.bottom).offset(14)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
         }
         
         logoutButton.snp.makeConstraints {
-            $0.top.equalTo(self.versionTitleLabel.snp.bottom).offset(15)
+            $0.top.equalTo(versionTitleLabel.snp.bottom).offset(15)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50)
         }
         
         deleteButton.snp.makeConstraints {
-            $0.top.equalTo(self.logoutButton.snp.bottom).offset(8)
+            $0.top.equalTo(logoutButton.snp.bottom).offset(8)
             $0.trailing.equalToSuperview()
             $0.width.equalTo(50.adjustedWidth)
             $0.height.equalTo(45)

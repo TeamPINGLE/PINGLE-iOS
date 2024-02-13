@@ -210,19 +210,19 @@ extension MyPINGLECollectionViewCell {
         switch data.category {
         case "PLAY":
             myPINGLECardView.badgeColor = .mainPingleGreen
-            myPINGLECardView.badgeImageView.image = ImageLiterals.Home.Detail.imgPlayBadge
+            myPINGLECardView.badgeImageView.image = UIImage(resource: .imgPlayBadge)
             
         case "STUDY":
             myPINGLECardView.badgeColor = .subPingleOrange
-            myPINGLECardView.badgeImageView.image = ImageLiterals.Home.Detail.imgStudyBadge
+            myPINGLECardView.badgeImageView.image = UIImage(resource: .imgStudyBadge)
             
         case "MULTI":
             myPINGLECardView.badgeColor = .subPingleYellow
-            myPINGLECardView.badgeImageView.image = ImageLiterals.Home.Detail.imgMultiBadge
+            myPINGLECardView.badgeImageView.image = UIImage(resource: .imgMultiBadge)
             
         case "OTHERS":
             myPINGLECardView.badgeColor = .grayscaleG01
-            myPINGLECardView.badgeImageView.image = ImageLiterals.Home.Detail.imgOthersBadge
+            myPINGLECardView.badgeImageView.image = UIImage(resource: .imgOthersBadge)
             
         default:
             return
@@ -247,7 +247,7 @@ extension MyPINGLECollectionViewCell {
         isActivate: Bool
     ) {
         moreView.deleteTitleLabel.text = isOwner ? StringLiterals.MyPingle.List.delete : StringLiterals.MyPingle.List.cancel
-        moreView.deleteImageView.image = isActivate ? ImageLiterals.MyPingle.Icon.icTrash : ImageLiterals.MyPingle.Icon.icTrashDisabled
+        moreView.deleteImageView.image = isActivate ? UIImage(resource: .icTrash) : UIImage(resource: .icTrashDisabled)
         moreView.deleteTitleLabel.textColor = isActivate ? .grayscaleG03 : .grayscaleG08
         moreView.deleteButton.isEnabled = isActivate
     }

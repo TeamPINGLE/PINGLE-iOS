@@ -42,8 +42,8 @@ final class ParticipantViewController: BaseViewController {
         
         backButton.do {
             $0.setImage(
-                ImageLiterals.Icon.imgArrowLeft,
-                for: .normal
+              UIImage(resource: .icArrowLeft),
+              for: .normal
             )
         }
     }

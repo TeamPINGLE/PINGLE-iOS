@@ -1,23 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "map_ic_here.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "map_ic_here@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "map_ic_here@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "icMapHere.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

@@ -38,34 +38,34 @@ final class SettingViewController: BaseViewController {
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.settingTitleLabel.do {
+        settingTitleLabel.do {
             $0.text = StringLiterals.Profile.ExplainTitle.settingTitle
             $0.font = .subtitleSubSemi18
             $0.textColor = .white
         }
         
-        self.userNameLabel.do {
+        userNameLabel.do {
             $0.text = KeychainHandler.shared.userName
             $0.font = .subtitleSubSemi18
             $0.textColor = .white
         }
         
-        self.dimmedView.do {
+        dimmedView.do {
             $0.backgroundColor = .black
             $0.alpha = 0.7
             $0.isHidden = true
             $0.isUserInteractionEnabled = true
         }
         
-        self.accountPopUpView.do {
+        accountPopUpView.do {
             $0.isHidden = true
         }
         
-        self.warningToastView.do {
+        warningToastView.do {
             $0.alpha = 0.0
         }
     }
@@ -74,7 +74,7 @@ final class SettingViewController: BaseViewController {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
-        self.view.addSubviews(settingTitleLabel, userNameLabel, organizationButton,
+        view.addSubviews(settingTitleLabel, userNameLabel, organizationButton,
                               settingSelectView, warningToastView)
         
         if let window = UIApplication.shared.keyWindow {
@@ -84,21 +84,21 @@ final class SettingViewController: BaseViewController {
         
         settingTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(59)
-            $0.leading.equalTo(self.view).offset(16.adjusted)
+            $0.leading.equalTo(view).offset(16.adjusted)
         }
         
         userNameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.settingTitleLabel.snp.bottom).offset(36)
-            $0.leading.equalTo(self.view).offset(16.adjusted)
+            $0.top.equalTo(settingTitleLabel.snp.bottom).offset(36)
+            $0.leading.equalTo(view).offset(16.adjusted)
         }
         
         organizationButton.snp.makeConstraints {
-            $0.top.equalTo(self.userNameLabel.snp.bottom).offset(20)
+            $0.top.equalTo(userNameLabel.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
         }
         
         settingSelectView.snp.makeConstraints {
-            $0.top.equalTo(self.organizationButton.snp.bottom).offset(40)
+            $0.top.equalTo(organizationButton.snp.bottom).offset(40)
             $0.centerX.equalToSuperview()
         }
         
@@ -128,14 +128,28 @@ final class SettingViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        self.organizationButton.addTarget(self, action: #selector(organizationButtonTapped), for: .touchUpInside)
-        self.settingSelectView.contactButton.addTarget(self, action: #selector(contactButtonTapped), for: .touchUpInside)
-        self.settingSelectView.noticeButton.addTarget(self, action: #selector(noticeButtonTapped), for: .touchUpInside)
-        self.settingSelectView.logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-        self.settingSelectView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        self.accountPopUpView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        self.accountPopUpView.changeStateButton.addTarget(self, action: #selector(changeStateButtonTapped), for: .touchUpInside)
-        self.dimmedView.addGestureRecognizer(dimmedTapGesture)
+        organizationButton.addTarget(self,
+                                          action: #selector(organizationButtonTapped),
+                                          for: .touchUpInside)
+        settingSelectView.contactButton.addTarget(self,
+                                                       action: #selector(contactButtonTapped),
+                                                       for: .touchUpInside)
+        settingSelectView.noticeButton.addTarget(self,
+                                                      action: #selector(noticeButtonTapped),
+                                                      for: .touchUpInside)
+        settingSelectView.logoutButton.addTarget(self,
+                                                      action: #selector(logoutButtonTapped),
+                                                      for: .touchUpInside)
+        settingSelectView.deleteButton.addTarget(self,
+                                                      action: #selector(deleteButtonTapped),
+                                                      for: .touchUpInside)
+        accountPopUpView.backButton.addTarget(self,
+                                                   action: #selector(backButtonTapped),
+                                                   for: .touchUpInside)
+        accountPopUpView.changeStateButton.addTarget(self,
+                                                          action: #selector(changeStateButtonTapped),
+                                                          for: .touchUpInside)
+        dimmedView.addGestureRecognizer(dimmedTapGesture)
     }
     
     // MARK: Objc Function
@@ -193,7 +207,7 @@ final class SettingViewController: BaseViewController {
     
     // MARK: WarningToastView Animation Function
     func showWarningToastView(duration: TimeInterval = 2.0) {
-        self.warningToastView.fadeIn()
+        warningToastView.fadeIn()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             self.warningToastView.fadeOut()

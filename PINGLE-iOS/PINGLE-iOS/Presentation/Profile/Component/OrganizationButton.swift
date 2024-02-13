@@ -34,24 +34,24 @@ class OrganizationButton: UIButton {
             $0.layer.cornerRadius = 12
         }
         
-        self.organizationTitleLabel.do {
+        organizationTitleLabel.do {
             $0.text = StringLiterals.Profile.ExplainTitle.organizationTitle
             $0.font = .captionCapMed12
             $0.textColor = .grayscaleG03
         }
         
-        self.organizationNameLabel.do {
+        organizationNameLabel.do {
             $0.font = .subtitleSubBold18
             $0.textColor = .grayscaleG01
         }
         
-        self.arrowRightImageView.do {
-            $0.image = ImageLiterals.Icon.icArrowRight
+        arrowRightImageView.do {
+            $0.image = UIImage(resource: .icArrowRight)
         }
     }
     
     func setLayout() {
-        self.addSubviews(organizationTitleLabel, organizationNameLabel, arrowRightImageView)
+        addSubviews(organizationTitleLabel, organizationNameLabel, arrowRightImageView)
         
         self.snp.makeConstraints {
             $0.width.equalTo(343.adjustedWidth)
@@ -64,7 +64,7 @@ class OrganizationButton: UIButton {
         }
         
         organizationNameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.organizationTitleLabel.snp.bottom).offset(4)
+            $0.top.equalTo(organizationTitleLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().inset(21.adjusted)
         }
         

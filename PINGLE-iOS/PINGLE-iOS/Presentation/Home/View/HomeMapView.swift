@@ -94,7 +94,7 @@ final class HomeMapView: BaseView {
                 for: .highlighted
             )
             $0.setImage(
-                ImageLiterals.Home.Map.icMapHere,
+                UIImage(resource: .icMapHere),
                 for: .normal
             )
             $0.makeShadow(
@@ -115,7 +115,7 @@ final class HomeMapView: BaseView {
                 for: .highlighted
             )
             $0.setImage(
-                ImageLiterals.Home.Map.icMapList,
+                UIImage(resource: .icMapList),
                 for: .normal
             )
             $0.makeShadow(
@@ -127,7 +127,7 @@ final class HomeMapView: BaseView {
         }
         
         currentMarker.do {
-            $0.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
+            $0.iconImage = NMFOverlayImage(image: UIImage(resource: .icLocationOverlay))
         }
         
         homeDetailCollectionView.do {
@@ -195,18 +195,17 @@ final class HomeMapView: BaseView {
             $0.bottom.equalTo(listButton.snp.top).offset(-8.adjustedHeight)
         }
     }
-    
     // MARK: Marker Function
     func setMarkerColor(category: String) -> UIImage {
         switch category {
         case "PLAY":
-            return ImageLiterals.Home.Map.imgMapPinPlay
+            return UIImage(resource: .imgMapPinPlay)
         case "STUDY":
-            return ImageLiterals.Home.Map.imgMapPinStudy
+            return UIImage(resource: .imgMapPinStudy)
         case "MULTI":
-            return ImageLiterals.Home.Map.imgMapPinMulti
+            return UIImage(resource: .imgMapPinMulti)
         default:
-            return ImageLiterals.Home.Map.imgMapPinOther
+            return UIImage(resource: .imgMapPinOther)
         }
     }
     

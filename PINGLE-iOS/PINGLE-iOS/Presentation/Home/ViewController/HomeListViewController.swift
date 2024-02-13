@@ -33,7 +33,7 @@ final class HomeListViewController: BaseViewController {
                 for: .highlighted
             )
             $0.setImage(
-                ImageLiterals.Home.Map.icMapMap,
+                UIImage(resource: .icMapMap),
                 for: .normal
             )
             $0.makeShadow(

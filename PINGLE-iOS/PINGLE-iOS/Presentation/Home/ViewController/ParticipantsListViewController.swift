@@ -50,7 +50,7 @@ final class ParticipantsListViewController: BaseViewController {
         }
         
         self.backButton.do {
-            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         self.participantsListTitle.do {

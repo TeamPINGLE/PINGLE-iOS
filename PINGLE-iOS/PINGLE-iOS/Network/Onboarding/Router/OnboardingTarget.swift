@@ -73,17 +73,17 @@ extension OnboardingTarget: TargetType {
     var path: String {
         switch self {
         case .login:
-            return "/auth/login"
+            return "/v1/auth/login"
         case .userInfo:
-            return "/users/me"
+            return "/v1/users/me"
         case .searchOrganization:
-            return "/teams"
+            return "/v1/teams"
         case .organizationDetail(let teamId):
-            return "/teams/\(teamId)"
+            return "/v1/teams/\(teamId)"
         case .enterInviteCode(let teamId, _):
-            return "/teams/\(teamId)/register"
+            return "/v1/teams/\(teamId)/register"
         case .postRefreshToken:
-            return "/auth/reissue"
+            return "/v1/auth/reissue"
         }
     }
     

@@ -14,13 +14,16 @@ final class CompleteViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    lazy var myPINGLECompleteCollectionView = UICollectionView(frame: .zero, collectionViewLayout: myPINGLECompleteFlowLayout)
+    lazy var myPINGLECompleteCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: myPINGLECompleteFlowLayout
+    )
     private let myPINGLECompleteFlowLayout = UICollectionViewFlowLayout()
     private let emptyLabel = UILabel()
     private let refreshControl = UIRefreshControl()
     /// 참여 완료
     private let participant = true
-    var meetingId: Int = 0
+    private var meetingId: Int = 0
     
     // MARK: Property
     var pushToCompleteMemberAction: ((Int) -> Void) = {_ in}
@@ -41,13 +44,16 @@ final class CompleteViewController: BaseViewController {
     }
     
     override func setDelegate() {
-        self.myPINGLECompleteCollectionView.delegate = self
-        self.myPINGLECompleteCollectionView.dataSource = self
-        self.homeDimmedTapGesture.delegate = self
+        myPINGLECompleteCollectionView.delegate = self
+        myPINGLECompleteCollectionView.dataSource = self
+        homeDimmedTapGesture.delegate = self
     }
     
     private func setCollectionView() {
-        self.myPINGLECompleteCollectionView.register(MyPINGLECollectionViewCell.self, forCellWithReuseIdentifier: MyPINGLECollectionViewCell.identifier)
+        myPINGLECompleteCollectionView.register(
+            MyPINGLECollectionViewCell.self,
+            forCellWithReuseIdentifier: MyPINGLECollectionViewCell.identifier
+        )
     }
     
     override func setStyle() {
@@ -56,14 +62,22 @@ final class CompleteViewController: BaseViewController {
         myPINGLECompleteFlowLayout.do {
             $0.scrollDirection = .vertical
             $0.minimumLineSpacing = 16
-            $0.itemSize = CGSize(width: UIScreen.main.bounds.width - 48, height: 229)
+            $0.itemSize = CGSize(
+                width: UIScreen.main.bounds.width - 48,
+                height: 229
+            )
         }
         
         myPINGLECompleteCollectionView.do {
             $0.backgroundColor = .grayscaleG11
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
-            $0.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 40, right: 0)
+            $0.contentInset = UIEdgeInsets(
+                top: 20,
+                left: 0,
+                bottom: 40,
+                right: 0
+            )
         }
         
         emptyLabel.do {
@@ -78,7 +92,10 @@ final class CompleteViewController: BaseViewController {
         
         refreshControl.do {
             myPINGLECompleteCollectionView.refreshControl = $0
-            $0.addTarget(self, action: #selector(refreshCollection(refresh:)), for: .valueChanged)
+            $0.addTarget(
+                self,
+                action: #selector(refreshCollection(refresh:)),
+                for: .valueChanged)
         }
     }
     
@@ -97,18 +114,18 @@ final class CompleteViewController: BaseViewController {
     }
     
     private func setAddTarget() {
-        self.view.addGestureRecognizer(homeDimmedTapGesture)
+        view.addGestureRecognizer(homeDimmedTapGesture)
     }
     
     // MARK: Objc Function
     @objc func refreshCollection(refresh: UIRefreshControl) {
         refresh.beginRefreshing()
-        self.showCollectionView()
+        showCollectionView()
         refresh.endRefreshing()
     }
     
     private func pushToMemberViewController() {
-        pushToCompleteMemberAction(self.meetingId)
+        pushToCompleteMemberAction(meetingId)
     }
     
     private func updateCollectionView() {
@@ -116,8 +133,8 @@ final class CompleteViewController: BaseViewController {
     }
     
     // MARK: Server Function
-    func myList(completion: @escaping (Bool) -> Void) {
-        NetworkService.shared.myPingleService.myList(queryDTO: MyPINGLEListRequestQueryDTO(participation: self.participant)) { [weak self] response in
+    private func myList(completion: @escaping (Bool) -> Void) {
+        NetworkService.shared.myPingleService.myList(queryDTO: MyPINGLEListRequestQueryDTO(participation: participant)) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
@@ -130,7 +147,7 @@ final class CompleteViewController: BaseViewController {
     }
     
     private func showCollectionView() {
-        self.myList() { _ in
+        myList() { _ in
             self.myPINGLECompleteCollectionView.reloadData()
             self.updateCollectionView()
         }
@@ -143,12 +160,22 @@ extension CompleteViewController: UICollectionViewDelegate { }
 
 // MARK: UICollectionViewDataSource
 extension CompleteViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         return completeMyPINGLEData.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyPINGLECollectionViewCell.identifier, for: indexPath) as? MyPINGLECollectionViewCell else { return UICollectionViewCell() }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: MyPINGLECollectionViewCell.identifier,
+            for: indexPath
+        ) as? MyPINGLECollectionViewCell else { return UICollectionViewCell() }
+        
         cell.dataBind(data: completeMyPINGLEData[indexPath.row])
         cell.myPINGLECardView.moreButton.isHidden = true
         cell.setDoneStyle()
@@ -165,13 +192,17 @@ extension CompleteViewController: UICollectionViewDataSource {
 // MARK: UIGestureRecognizerDelegate
 extension CompleteViewController: UIGestureRecognizerDelegate {
     /// 다른 뷰 탭 되었을 때 메소드
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldReceive touch: UITouch
+    ) -> Bool {
         guard let touchView = touch.view else {
             return true
         }
         
         for cell in myPINGLECompleteCollectionView.visibleCells {
-            if let myPINGLECell = cell as? MyPINGLECollectionViewCell, !myPINGLECell.moreView.isHidden {
+            if let myPINGLECell = cell as? MyPINGLECollectionViewCell,
+               !myPINGLECell.moreView.isHidden {
                 if touchView == myPINGLECell.moreView || touchView.isDescendant(of: myPINGLECell.moreView) {
                     return false
                 } else {

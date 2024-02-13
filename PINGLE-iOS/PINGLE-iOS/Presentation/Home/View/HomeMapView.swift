@@ -23,10 +23,10 @@ final class HomeMapView: BaseView {
     // MARK: Component
     let chipStackView = UIStackView()
     
-    let playChipButton = ChipButton(state: .play)
-    let studyChipButton = ChipButton(state: .study)
-    let multiChipButton = ChipButton(state: .multi)
-    let othersChipButton = ChipButton(state: .others)
+    private let playChipButton = ChipButton(state: .play)
+    private let studyChipButton = ChipButton(state: .study)
+    private let multiChipButton = ChipButton(state: .multi)
+    private let othersChipButton = ChipButton(state: .others)
     
     lazy var chipButtons: [ChipButton] = [playChipButton,
                                           studyChipButton,
@@ -34,14 +34,17 @@ final class HomeMapView: BaseView {
                                           othersChipButton]
     
     let mapsView = NMFNaverMapView()
-    lazy var homeDetailCollectionView = UICollectionView(frame: .zero,
-                                                         collectionViewLayout: homeDetailFlowLayout)
-    let homeDetailFlowLayout = UICollectionViewFlowLayout()
+    lazy var homeDetailCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: homeDetailFlowLayout
+    )
+    private let homeDetailFlowLayout = UICollectionViewFlowLayout()
     
     var locationManager = CLLocationManager()
-    lazy var cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: self.nowLat, lng: self.nowLng))
+    lazy var cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: nowLat,
+                                                                lng: nowLng))
     
-    let currentMarker = NMFMarker()
+    private let currentMarker = NMFMarker()
     
     let currentLocationButton = UIButton()
     let listButton = UIButton()
@@ -82,18 +85,44 @@ final class HomeMapView: BaseView {
         }
         
         currentLocationButton.do {
-            $0.setBackgroundColor(.white, for: .normal)
-            $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
-            $0.setImage(UIImage(resource: .icMapHere), for: .normal)
-            $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+            $0.setBackgroundColor(
+                .white,
+                for: .normal
+            )
+            $0.setBackgroundColor(
+                .grayscaleG04,
+                for: .highlighted
+            )
+            $0.setImage(
+                UIImage(resource: .icMapHere),
+                for: .normal
+            )
+            $0.makeShadow(
+                radius: 5,
+                offset: CGSize(width: 0, height: 0),
+                opacity: 0.25
+            )
             $0.makeCornerRound(radius: 25.adjusted)
         }
         
         listButton.do {
-            $0.setBackgroundColor(.white, for: .normal)
-            $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
-            $0.setImage(UIImage(resource: .icMapList), for: .normal)
-            $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+            $0.setBackgroundColor(
+                .white,
+                for: .normal
+            )
+            $0.setBackgroundColor(
+                .grayscaleG04,
+                for: .highlighted
+            )
+            $0.setImage(
+                UIImage(resource: .icMapList),
+                for: .normal
+            )
+            $0.makeShadow(
+                radius: 5,
+                offset: CGSize(width: 0, height: 0),
+                opacity: 0.25
+            )
             $0.makeCornerRound(radius: 25.adjusted)
         }
         
@@ -107,7 +136,12 @@ final class HomeMapView: BaseView {
             $0.isPagingEnabled = false
             $0.decelerationRate = .fast
             $0.contentInsetAdjustmentBehavior = .never
-            $0.contentInset = UIEdgeInsets(top: 0, left: 24.adjustedWidth, bottom: 0, right: 24.adjustedWidth)
+            $0.contentInset = UIEdgeInsets(
+                top: 0,
+                left: 24.adjustedWidth,
+                bottom: 0,
+                right: 24.adjustedWidth
+            )
             $0.decelerationRate = .fast
             $0.isHidden = true
         }
@@ -115,13 +149,17 @@ final class HomeMapView: BaseView {
         homeDetailFlowLayout.do {
             $0.scrollDirection = .horizontal
             $0.minimumLineSpacing = 8.adjustedWidth
-            $0.itemSize = CGSize(width: UIScreen.main.bounds.width - 48.adjustedWidth, height: 327)
+            $0.itemSize = CGSize(
+                width: UIScreen.main.bounds.width - 48.adjustedWidth,
+                height: 327
+            )
         }
     }
     
     // MARK: Layout Helpers
     override func setLayout() {
-        self.addSubviews(mapsView, chipStackView)
+        addSubviews(mapsView,
+                    chipStackView)
         mapsView.addSubviews(homeDetailCollectionView,
                              currentLocationButton,
                              listButton)

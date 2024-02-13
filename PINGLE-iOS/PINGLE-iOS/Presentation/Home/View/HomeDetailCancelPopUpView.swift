@@ -31,7 +31,10 @@ final class HomeDetailCancelPopUpView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Home.Detail.cancelTitle, lineHeight: 25)
+            $0.setTextWithLineHeight(
+                text: StringLiterals.Home.Detail.cancelTitle,
+                lineHeight: 25
+            )
             $0.textColor = .white
             $0.font = .subtitleSubSemi18
             $0.textAlignment = .center
@@ -47,25 +50,37 @@ final class HomeDetailCancelPopUpView: BaseView {
         cancelButton.do {
             $0.makeCornerRound(radius: 10)
             $0.backgroundColor = .white
-            $0.setTitle(StringLiterals.Home.Detail.cancelButton, for: .normal)
-            $0.setTitleColor(.black, for: .normal)
+            $0.setTitle(
+                StringLiterals.Home.Detail.cancelButton,
+                for: .normal
+            )
+            $0.setTitleColor(
+                .black,
+                for: .normal
+            )
             $0.titleLabel?.font = .bodyBodySemi14
         }
         
-        backButton.do { 
-            $0.setTitle(StringLiterals.Home.Detail.backButton, for: .normal)
+        backButton.do {
+            $0.setTitle(
+                StringLiterals.Home.Detail.backButton,
+                for: .normal
+            )
             $0.setUnderline()
-            $0.setTitleColor(.grayscaleG01, for: .normal)
+            $0.setTitleColor(
+                .grayscaleG01,
+                for: .normal
+            )
             $0.titleLabel?.font = .captionCapSemi12
         }
     }
     
     // MARK: Layout Helpers
     override func setLayout() {
-        self.addSubviews(titleLabel,
-                         descriptionLabel,
-                         cancelButton,
-                         backButton)
+        addSubviews(titleLabel,
+                    descriptionLabel,
+                    cancelButton,
+                    backButton)
         
         self.snp.makeConstraints {
             $0.width.equalTo(327.adjustedWidth)

@@ -20,7 +20,7 @@ final class SoonViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
     /// 참여 예정
     private let participant = false
-    var meetingId: Int = 0
+    private var meetingId: Int = 0
     
     // MARK: Property
     var pushToMemberAction: ((Int) -> Void) = {_ in }
@@ -41,13 +41,16 @@ final class SoonViewController: BaseViewController {
     }
     
     override func setDelegate() {
-        self.myPINGLECollectionView.delegate = self
-        self.myPINGLECollectionView.dataSource = self
-        self.homeDimmedTapGesture.delegate = self
+        myPINGLECollectionView.delegate = self
+        myPINGLECollectionView.dataSource = self
+        homeDimmedTapGesture.delegate = self
     }
     
     private func setCollectionView() {
-        self.myPINGLECollectionView.register(MyPINGLECollectionViewCell.self, forCellWithReuseIdentifier: MyPINGLECollectionViewCell.identifier)
+        myPINGLECollectionView.register(
+            MyPINGLECollectionViewCell.self,
+            forCellWithReuseIdentifier: MyPINGLECollectionViewCell.identifier
+        )
     }
     
     override func setStyle() {
@@ -56,14 +59,18 @@ final class SoonViewController: BaseViewController {
         myPINGLEFlowLayout.do {
             $0.scrollDirection = .vertical
             $0.minimumLineSpacing = 16
-            $0.itemSize = CGSize(width: UIScreen.main.bounds.width - 48, height: 229)
+            $0.itemSize = CGSize(width: UIScreen.main.bounds.width - 48,
+                                 height: 229)
         }
         
         myPINGLECollectionView.do {
             $0.backgroundColor = .grayscaleG11
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
-            $0.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 40, right: 0)
+            $0.contentInset = UIEdgeInsets(top: 20,
+                                           left: 0,
+                                           bottom: 40,
+                                           right: 0)
         }
         
         emptyLabel.do {
@@ -78,7 +85,9 @@ final class SoonViewController: BaseViewController {
         
         refreshControl.do {
             myPINGLECollectionView.refreshControl = $0
-            $0.addTarget(self, action: #selector(refreshCollection(refresh:)), for: .valueChanged)
+            $0.addTarget(self,
+                         action: #selector(refreshCollection(refresh:)),
+                         for: .valueChanged)
         }
     }
     
@@ -97,18 +106,18 @@ final class SoonViewController: BaseViewController {
     }
     
     private func setAddTarget() {
-        self.view.addGestureRecognizer(homeDimmedTapGesture)
+        view.addGestureRecognizer(homeDimmedTapGesture)
     }
     
     // MARK: Objc Function
-    @objc func refreshCollection(refresh: UIRefreshControl) {
+    @objc private func refreshCollection(refresh: UIRefreshControl) {
         refresh.beginRefreshing()
-        self.showCollectionView()
+        showCollectionView()
         refresh.endRefreshing()
     }
     
     private func pushToMemberViewController() {
-        pushToMemberAction(self.meetingId)
+        pushToMemberAction(meetingId)
     }
     
     private func connectTalkLink(urlString: String) {
@@ -135,7 +144,7 @@ final class SoonViewController: BaseViewController {
     
     // MARK: Server Function
     private func myList(completion: @escaping (Bool) -> Void) {
-        NetworkService.shared.myPingleService.myList(queryDTO: MyPINGLEListRequestQueryDTO(participation: self.participant)) { [weak self] response in
+        NetworkService.shared.myPingleService.myList(queryDTO: MyPINGLEListRequestQueryDTO(participation: participant)) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
@@ -148,13 +157,15 @@ final class SoonViewController: BaseViewController {
     }
     
     private func showCollectionView() {
-        self.myList() { _ in
+        myList() { _ in
             self.myPINGLECollectionView.reloadData()
             self.updateCollectionView()
         }
     }
     
-    private func meetingCancel(meetingId: Int, isOwner: Bool, completion: @escaping (Bool) -> Void) {
+    private func meetingCancel(meetingId: Int,
+                               isOwner: Bool,
+                               completion: @escaping (Bool) -> Void) {
         if isOwner {
             NetworkService.shared.homeService.meetingDelete(meetingId: meetingId) { response in
                 switch response {
@@ -188,12 +199,22 @@ extension SoonViewController: UICollectionViewDelegate { }
 
 // MARK: UICollectionViewDataSource
 extension SoonViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         return soonMyPINGLEData.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyPINGLECollectionViewCell.identifier, for: indexPath) as? MyPINGLECollectionViewCell else { return UICollectionViewCell() }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: MyPINGLECollectionViewCell.identifier,
+            for: indexPath
+        ) as? MyPINGLECollectionViewCell else { return UICollectionViewCell() }
+        
         cell.dataBind(data: soonMyPINGLEData[indexPath.row])
         cell.isMoreViewAppear = false
         
@@ -203,16 +224,21 @@ extension SoonViewController: UICollectionViewDataSource {
         }
         
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
-            self.meetingCancel(meetingId: cell.meetingId, isOwner: cell.isOwner) { _ in
+            self.meetingCancel(
+                meetingId: cell.meetingId,
+                isOwner: cell.isOwner
+            ) { _ in
                 cell.dimmedView.isHidden = true
                 cell.homeDetailCancelPopUpView.isHidden = true
                 if let index = self.myPINGLECollectionView.indexPath(for: cell) {
                     self.soonMyPINGLEData.remove(at: index.row)
-                    self.myPINGLECollectionView.performBatchUpdates({
-                        self.myPINGLECollectionView.deleteItems(at: [index])
-                    }, completion: { _ in
-                        self.showCollectionView()
-                    })
+                    self.myPINGLECollectionView.performBatchUpdates(
+                        {
+                            self.myPINGLECollectionView.deleteItems(at: [index])
+                        }, completion: { _ in
+                            self.showCollectionView()
+                        }
+                    )
                 }
             }
         }
@@ -227,13 +253,17 @@ extension SoonViewController: UICollectionViewDataSource {
 // MARK: UIGestureRecognizerDelegate
 extension SoonViewController: UIGestureRecognizerDelegate {
     /// 다른 뷰 탭 되었을 때 메소드
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldReceive touch: UITouch
+    ) -> Bool {
         guard let touchView = touch.view else {
             return true
         }
         
         for cell in myPINGLECollectionView.visibleCells {
-            if let myPINGLECell = cell as? MyPINGLECollectionViewCell, !myPINGLECell.moreView.isHidden {
+            if let myPINGLECell = cell as? MyPINGLECollectionViewCell,
+               !myPINGLECell.moreView.isHidden {
                 if touchView == myPINGLECell.moreView || touchView == myPINGLECell.myPINGLECardView.moreButton || touchView.isDescendant(of: myPINGLECell.moreView) {
                     return false
                 } else {

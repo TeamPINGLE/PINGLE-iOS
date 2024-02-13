@@ -38,7 +38,7 @@ extension MyPINGLETarget: TargetType {
     var path: String {
         switch self {
         case .myList:
-            return "/users/me/meetings"
+            return "/v1/users/me/meetings"
         }
     }
     

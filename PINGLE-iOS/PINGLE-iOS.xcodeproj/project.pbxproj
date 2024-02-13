@@ -143,6 +143,8 @@
 		F19CE2C02B5417C500B8F9D0 /* MyOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CE2BF2B5417C500B8F9D0 /* MyOrganizationViewController.swift */; };
 		F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */; };
 		F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */; };
+		F1DFF2892B7B6E86000AC100 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */; };
+		F1DFF28C2B7B7449000AC100 /* ManualCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -285,6 +287,8 @@
 		F19CE2BF2B5417C500B8F9D0 /* MyOrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrganizationViewController.swift; sourceTree = "<group>"; };
 		F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationResponseDTO.swift; sourceTree = "<group>"; };
 		F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationRequestQueryDTO.swift; sourceTree = "<group>"; };
+		F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
+		F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,7 +505,6 @@
 		C39602CE2B3BF13A004BB2B8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F1239BC42B458C9F0072A02A /* Cell */,
 				C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */,
 				C307280E2B414D4B00AA575B /* UITextField+.swift */,
 				C30728102B414D6500AA575B /* UILabel+.swift */,
@@ -585,6 +588,7 @@
 				C39602EE2B3BF26D004BB2B8 /* ViewController */,
 				C39602F12B3BF276004BB2B8 /* View */,
 				F14F3C712B4B19230049A9EE /* Component */,
+				F1DFF28A2B7B723B000AC100 /* Cell */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -660,6 +664,7 @@
 				F1239BBE2B4557810072A02A /* SearchOrganizationViewController.swift */,
 				F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */,
 				F1239BD82B486B230072A02A /* EntranceCompletedViewController.swift */,
+				F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -950,14 +955,6 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
-		F1239BC42B458C9F0072A02A /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		F14F3C662B4946180049A9EE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1038,6 +1035,15 @@
 				F16BCA382B4E62760096A62F /* SplashViewController.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		F1DFF28A2B7B723B000AC100 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */,
+				F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {
@@ -1233,6 +1239,7 @@
 				C30C91932B4CED84004EE026 /* APIEventLogger.swift in Sources */,
 				E5FA3EBC2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift in Sources */,
 				F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */,
+				F1DFF28C2B7B7449000AC100 /* ManualCollectionViewCell.swift in Sources */,
 				E5A651EE2B4ADE6000676ED0 /* PlaceSelectionViewController.swift in Sources */,
 				C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */,
 				C30D1E112B57033800879258 /* MyPINGLECardView.swift in Sources */,
@@ -1258,6 +1265,7 @@
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
 				C30D1E0E2B5700DB00879258 /* MyPINGLECollectionViewCell.swift in Sources */,
 				C32A2DE72B4D934C0063F84A /* ParticipantViewController.swift in Sources */,
+				F1DFF2892B7B6E86000AC100 /* ManualViewController.swift in Sources */,
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
 				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,

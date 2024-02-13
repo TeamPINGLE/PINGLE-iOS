@@ -16,7 +16,7 @@ final class ParticipantButton: UIButton {
     let rightArrowImageView = UIImageView()
     let countStackView = UIStackView()
     let currentParticipantsLabel = UILabel()
-    let slashLabel = UILabel()
+    private let slashLabel = UILabel()
     let totalParticipantsLabel = UILabel()
     let completeLabel = UILabel()
     
@@ -88,10 +88,10 @@ extension ParticipantButton {
     }
     
     private func setLayout() {
-        self.addSubviews(participantsLabel,
-                         rightArrowImageView,
-                         completeLabel,
-                         countStackView)
+        addSubviews(participantsLabel,
+                    rightArrowImageView,
+                    completeLabel,
+                    countStackView)
         
         countStackView.addArrangedSubviews(currentParticipantsLabel,
                                            slashLabel,

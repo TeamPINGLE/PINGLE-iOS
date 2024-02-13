@@ -42,7 +42,7 @@ class ChipButton: UIButton {
     /// Custom Init
     init(state: ChipStatus) {
         super.init(frame: CGRect())
-        self.setButtonStatus(state: state)
+        setButtonStatus(state: state)
         setUI()
     }
 }
@@ -58,25 +58,32 @@ extension ChipButton {
     
     private func setStyle() {
         self.do {
-            $0.setImage(ImageLiterals.Home.Chips.btnPlayChip, for: .normal)
-            $0.makeShadow(radius: 4.12, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+            $0.setImage(
+                ImageLiterals.Home.Chips.btnPlayChip,
+                for: .normal
+            )
+            $0.makeShadow(
+                radius: 4.12,
+                offset: CGSize(width: 0, height: 0),
+                opacity: 0.25
+            )
         }
     }
     
     private func setLayout() { }
     
     func setButtonStatus(state: ChipStatus) {
-        self.chipStatus = state
+        chipStatus = state
         
         switch state {
         case .play:
-            self.chipStatusString = "PLAY"
+            chipStatusString = "PLAY"
         case .study:
-            self.chipStatusString = "STUDY"
+            chipStatusString = "STUDY"
         case .multi:
-            self.chipStatusString = "MULTI"
+            chipStatusString = "MULTI"
         case .others:
-            self.chipStatusString = "OTHERS"
+            chipStatusString = "OTHERS"
         }
         
         if isButtonSelected {
@@ -89,32 +96,56 @@ extension ChipButton {
     func setButtonUnselected(state: ChipStatus) {
         switch state {
         case .play:
-            self.setImage(ImageLiterals.Home.Chips.btnPlayChip, for: .normal)
+            setImage(
+                ImageLiterals.Home.Chips.btnPlayChip,
+                for: .normal
+            )
             
         case .study:
-            self.setImage(ImageLiterals.Home.Chips.btnStudyChip, for: .normal)
+            setImage(
+                ImageLiterals.Home.Chips.btnStudyChip,
+                for: .normal
+            )
             
         case .multi:
-            self.setImage(ImageLiterals.Home.Chips.btnMultiChip, for: .normal)
+            setImage(
+                ImageLiterals.Home.Chips.btnMultiChip,
+                for: .normal
+            )
             
         case .others:
-            self.setImage(ImageLiterals.Home.Chips.btnOtherChip, for: .normal)
+            setImage(
+                ImageLiterals.Home.Chips.btnOtherChip,
+                for: .normal
+            )
         }
     }
     
     func setButtonSelected(state: ChipStatus) {
         switch state {
         case .play:
-            self.setImage(ImageLiterals.Home.Chips.btnPlayChipSelected, for: .normal)
+            setImage(
+                ImageLiterals.Home.Chips.btnPlayChipSelected,
+                for: .normal
+            )
             
         case .study:
-            self.setImage(ImageLiterals.Home.Chips.btnStudyChipSelected, for: .normal)
+            setImage(
+                ImageLiterals.Home.Chips.btnStudyChipSelected,
+                for: .normal
+            )
             
         case .multi:
-            self.setImage(ImageLiterals.Home.Chips.btnMultiChipSelected, for: .normal)
+            setImage(
+                ImageLiterals.Home.Chips.btnMultiChipSelected,
+                for: .normal
+            )
             
         case .others:
-            self.setImage(ImageLiterals.Home.Chips.btnOthersChipSelected, for: .normal)
+            setImage(
+                ImageLiterals.Home.Chips.btnOthersChipSelected,
+                for: .normal
+            )
         }
     }
 }

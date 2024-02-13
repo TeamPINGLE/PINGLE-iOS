@@ -29,37 +29,37 @@ final class LoginViewController: BaseViewController {
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.logoImageView.do {
-            $0.image = ImageLiterals.OnBoarding.imgApplogo
+        logoImageView.do {
+            $0.image = UIImage(resource: .imgApplogo)
         }
         
-        self.loginTitleLabel.do {
+        loginTitleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.loginTitle
             $0.font = .titleTitleExtra40
             $0.textColor = .white
             $0.numberOfLines = 0
         }
         
-        self.introduceLabel.do {
+        introduceLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.loginIntroduce
             $0.font = .bodyBodyMed16
             $0.textColor = .grayscaleG02
         }
         
-        self.adviceLabel.do {
+        adviceLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.loginAdvice
             $0.font = .bodyBodyMed16
             $0.textColor = .grayscaleG02
         }
         
-        self.authorizationButton.do {
+        authorizationButton.do {
             $0.layer.cornerRadius = 12
             $0.backgroundColor = .white
-            $0.setImage(ImageLiterals.OnBoarding.imgApplelogo, for: .normal)
+            $0.setImage(UIImage(resource: .imgApplelogo), for: .normal)
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.appleLogin, for: .normal)
             $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
@@ -70,33 +70,33 @@ final class LoginViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(logoImageView, loginTitleLabel, introduceLabel,
+        view.addSubviews(logoImageView, loginTitleLabel, introduceLabel,
                               adviceLabel, authorizationButton)
         
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(63)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(63)
             $0.leading.equalToSuperview().inset(32.adjusted)
             $0.height.equalTo(73)
             $0.width.equalTo(73)
         }
         
         loginTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.logoImageView.snp.bottom).offset(12)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(32.adjusted)
         }
         
         introduceLabel.snp.makeConstraints {
-            $0.top.equalTo(self.loginTitleLabel.snp.bottom).offset(12)
+            $0.top.equalTo(loginTitleLabel.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(32.adjusted)
         }
         
         adviceLabel.snp.makeConstraints {
-            $0.top.equalTo(self.introduceLabel.snp.bottom).offset(4)
+            $0.top.equalTo(introduceLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().inset(32.adjusted)
         }
         
         authorizationButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(69)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(69)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(58)
             $0.width.equalTo(UIScreen.main.bounds.size.width - 32)
@@ -105,7 +105,9 @@ final class LoginViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+        authorizationButton.addTarget(self, 
+                                      action: #selector(handleAuthorizationAppleIDButtonPress),
+                                      for: .touchUpInside)
     }
     
     // MARK: Objc Function
@@ -180,6 +182,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
             
             let userName = KeychainHandler.shared.userName
+            
+            KeychainHandler.shared.userID = appleIDCredential.user
+            
             self.login(data: LoginRequestBodyDTO(provider: "APPLE", name: userName))
             
         default:

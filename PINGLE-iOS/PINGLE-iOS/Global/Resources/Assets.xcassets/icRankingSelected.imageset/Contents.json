@@ -1,23 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Ranking.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "Ranking@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "Ranking@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "icRankingSelected.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

@@ -33,7 +33,7 @@ final class PINGLEWarningToastView: BaseView {
         }
         
         warningImageView.do {
-            $0.image = ImageLiterals.Icon.imgWarningNotice
+            $0.image = UIImage(resource: .icNotice)
         }
         
         warningLabel.do {
@@ -43,7 +43,7 @@ final class PINGLEWarningToastView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(warningImageView, warningLabel)
+        addSubviews(warningImageView, warningLabel)
         
         self.snp.makeConstraints {
             $0.width.equalTo(343.adjusted)

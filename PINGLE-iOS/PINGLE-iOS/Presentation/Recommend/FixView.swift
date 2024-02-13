@@ -36,7 +36,7 @@ final class FixView: BaseView {
         }
         
         graphicImageView.do {
-            $0.image = ImageLiterals.Work.imgWorkGraphic
+            $0.image = UIImage(resource: .imgWorkGraphic)
         }
     }
     

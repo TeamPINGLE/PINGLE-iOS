@@ -26,7 +26,7 @@ final class SplashViewController: BaseViewController {
     
     override func setStyle() {
         PINGLELogoImageView.do {
-            $0.image = ImageLiterals.OnBoarding.imgPINGLELogo
+            $0.image = UIImage(resource: .imgPINGLELogo)
         }
     }
     
@@ -44,7 +44,7 @@ final class SplashViewController: BaseViewController {
     func changeRootViewController(rootViewController: UIViewController) {
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
         sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
-        self.navigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     func branchProcessing() {

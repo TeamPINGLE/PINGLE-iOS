@@ -49,11 +49,11 @@ final class FinalResultViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         progressBar7.do {
-            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage7
+            $0.image = UIImage(resource: .imgProgressBar7)
             $0.contentMode = .scaleAspectFill
         }
         

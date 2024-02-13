@@ -69,11 +69,11 @@ class DateSelectionViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         progressBar3.do {
-            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage3
+            $0.image = UIImage(resource: .imgProgressBar3)
             $0.contentMode = .scaleAspectFill
         }
         

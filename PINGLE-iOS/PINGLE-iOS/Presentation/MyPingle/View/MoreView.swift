@@ -15,7 +15,7 @@ final class MoreView: BaseView {
     // MARK: - Variables
     // MARK: Component
     let talkTitleLabel = UILabel()
-    private let talkImageView = UIImageView()
+    let talkImageView = UIImageView()
     let talkButton = UIButton()
     private let moreSeparateView = UIView()
     let deleteTitleLabel = UILabel()

@@ -102,7 +102,7 @@ final class HomeViewController: BaseViewController {
         
         searchButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(24.adjustedWidth)
-            $0.top.equalToSuperview().inset(62.adjustedHeight)
+            $0.top.equalToSuperview().inset(62)
         }
         
         homeLogoImageView.snp.makeConstraints {

@@ -18,7 +18,7 @@ final class HomeMapViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     private var shouldUpdateMap: Bool = true
-    private var homePinDetailList: [HomePinDetailResponseDTO] = []
+    var homePinDetailList: [HomePinDetailResponseDTO] = []
     private var meetingId: [Int] = []
     private var markerId = 0
     var markerCategory: String = ""

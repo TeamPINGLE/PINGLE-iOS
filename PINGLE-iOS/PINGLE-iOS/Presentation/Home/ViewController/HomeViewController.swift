@@ -18,6 +18,18 @@ final class HomeViewController: BaseViewController {
     private let homeMapViewController = HomeMapViewController()
     private let homeListViewController = HomeListViewController()
     
+    let chipStackView = UIStackView()
+    
+    private let playChipButton = ChipButton(state: .play)
+    private let studyChipButton = ChipButton(state: .study)
+    private let multiChipButton = ChipButton(state: .multi)
+    private let othersChipButton = ChipButton(state: .others)
+    
+    lazy var chipButtons: [ChipButton] = [playChipButton,
+                                          studyChipButton,
+                                          multiChipButton,
+                                          othersChipButton]
+    
     private let homeLogoImageView = UIImageView()
     private let searchButton = UIButton()
     
@@ -37,6 +49,13 @@ final class HomeViewController: BaseViewController {
             action: #selector(mapListButtonTapped),
             for: .touchUpInside
         )
+        chipButtons.forEach {
+            $0.addTarget(
+                self,
+                action: #selector(isChipButtonTapped),
+                for: .touchUpInside
+            )
+        }
     }
     
     override func setStyle() {
@@ -50,6 +69,11 @@ final class HomeViewController: BaseViewController {
         searchButton.do {
             $0.setImage(UIImage(resource: .icSearch), for: .normal)
         }
+        
+        chipStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 4.adjustedWidth
+        }
     }
     
     override func setLayout() {
@@ -59,7 +83,12 @@ final class HomeViewController: BaseViewController {
         view.addSubviews(homeMapViewController.view,
                          homeListViewController.view,
                          homeLogoImageView,
-                         searchButton)
+                         searchButton,
+                         chipStackView)
+        
+        chipButtons.forEach {
+            chipStackView.addArrangedSubview($0)
+        }
         
         homeMapViewController.view.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -80,11 +109,52 @@ final class HomeViewController: BaseViewController {
             $0.centerY.equalTo(searchButton)
             $0.leading.equalToSuperview().inset(24.adjustedWidth)
         }
+        
+        chipStackView.snp.makeConstraints {
+            $0.top.equalTo(homeLogoImageView.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+        }
     }
     
-    @objc func mapListButtonTapped() {
+    @objc private func mapListButtonTapped() {
         isHomeMap.toggle()
         homeMapViewController.view.isHidden = !isHomeMap
         homeListViewController.view.isHidden = isHomeMap
+    }
+    
+    @objc private func isChipButtonTapped(sender: ChipButton) {
+        /// 태그 선택 여부 반전
+        sender.isButtonSelected.toggle()
+        
+        /// 서버 통신
+        if sender.isButtonSelected {
+            homeMapViewController.pinList(category: sender.chipStatusString) { [weak self] result in
+                guard let self else { return }
+                if result {
+                    homeMapViewController.setMarker()
+                }
+            }
+            homeMapViewController.markerCategory = sender.chipStatusString
+        } else {
+            homeMapViewController.pinList(category: "") { [weak self] result in
+                guard let self else { return }
+                if result {
+                    homeMapViewController.setMarker()
+                }
+            }
+            homeMapViewController.markerCategory = ""
+        }
+        
+        /// 태그 하나만 선택할 수 있도록
+        chipButtons.filter { $0 != sender }.forEach {
+            $0.isButtonSelected = false
+        }
+        
+        /// 모든 마커 (핀) 다 보이도록
+        homeMapViewController.mapsView.homeMarkerList.forEach {
+            $0.hidden = false
+        }
+        
+        homeMapViewController.hideSelectedPin()
     }
 }

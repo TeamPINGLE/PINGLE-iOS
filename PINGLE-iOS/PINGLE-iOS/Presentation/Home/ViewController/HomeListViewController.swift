@@ -47,22 +47,19 @@ final class HomeListViewController: BaseViewController {
     
     // MARK: Style Helpers
     override func setLayout() {
-        let safeAreaHeight = view.safeAreaInsets.bottom
-        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
-        
         view.addSubviews(fixView,
                          mapButton)
         
         fixView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).offset(117.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(50.adjustedWidth)
-            $0.bottom.equalTo(safeAreaHeight).offset(-(tabBarHeight + 132.adjustedHeight))
+            $0.bottom.equalToSuperview().inset(132.adjustedHeight)
         }
         
         mapButton.snp.makeConstraints {
             $0.width.height.equalTo(50.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
-            $0.bottom.equalTo(safeAreaHeight).offset(-(tabBarHeight + 30.adjustedHeight))
+            $0.bottom.equalToSuperview().inset(30.adjustedHeight)
         }
     }
 }

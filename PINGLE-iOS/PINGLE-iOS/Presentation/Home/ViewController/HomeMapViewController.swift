@@ -50,14 +50,10 @@ final class HomeMapViewController: BaseViewController {
     
     // MARK: Layout Helpers
     override func setLayout() {
-        let safeAreaHeight = view.safeAreaInsets.bottom
-        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
-        
         view.addSubviews(mapsView)
         
         mapsView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(safeAreaHeight).offset(-tabBarHeight)
+            $0.edges.equalToSuperview()
         }
     }
     

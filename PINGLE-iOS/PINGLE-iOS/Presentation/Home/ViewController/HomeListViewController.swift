@@ -19,9 +19,10 @@ final class HomeListViewController: BaseViewController {
     private let sortImageView = UIImageView()
     private let sortMoreView = MoreView()
     let mapButton = UIButton()
-    var listDummy: [HomePinDetailResponseDTO] = [HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com"),
-                                                 HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com"),
-                                                 HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com"),HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com")]
+    var listDummy: [HomePinDetailResponseDTO] = [
+        HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com"),
+        HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com"),
+        HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com"),HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com")]
     
     lazy var listCollectionView = UICollectionView(frame: .zero, collectionViewLayout: listCollectionViewFlowLayout)
     private let listCollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -38,7 +39,7 @@ final class HomeListViewController: BaseViewController {
         listCollectionView.do {
             $0.delegate = self
             $0.dataSource = self
-            $0.register(HomeDetailCollectionViewCell.self, forCellWithReuseIdentifier: HomeDetailCollectionViewCell.identifier)
+            $0.register(HomeListCollectionViewCell.self, forCellWithReuseIdentifier: HomeListCollectionViewCell.identifier)
         }
     }
     
@@ -99,7 +100,7 @@ final class HomeListViewController: BaseViewController {
             $0.minimumLineSpacing = 12.adjustedWidth
             $0.itemSize = CGSize(
                 width: UIScreen.main.bounds.width - 48.adjustedWidth,
-                height: 327
+                height: 351
             )
         }
     }
@@ -191,9 +192,9 @@ extension HomeListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: HomeDetailCollectionViewCell.identifier,
-            for: indexPath) as? HomeDetailCollectionViewCell else {return UICollectionViewCell()}
-        cell.mapDetailView.dataBind(data: listDummy[indexPath.row])
+            withReuseIdentifier: HomeListCollectionViewCell.identifier,
+            for: indexPath) as? HomeListCollectionViewCell else {return UICollectionViewCell()}
+        cell.homeMapDetailView.dataBind(data: listDummy[indexPath.row])
         return cell
     }
 }

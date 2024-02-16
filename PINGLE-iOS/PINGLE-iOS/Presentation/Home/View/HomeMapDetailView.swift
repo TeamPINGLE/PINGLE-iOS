@@ -24,7 +24,7 @@ final class HomeMapDetailView: BaseView {
     var meetingId: Int = 0
     
     // MARK: Component
-    private let topBackgroundView = UIView()
+    let topBackgroundView = UIView()
     private let infoGroupView = UIView()
     private let badgeImageView = UIImageView()
     private let titleLabel = UILabel()
@@ -33,7 +33,7 @@ final class HomeMapDetailView: BaseView {
     let participantCountButton = ParticipantButton()
     private let separateView = UIView()
     
-    private let bottomBackgroundView = UIView()
+    let bottomBackgroundView = UIView()
     private let dateTimeImageView = UIImageView()
     private let dateTimeTitleLabel = UILabel()
     private let dateLabel = UILabel()

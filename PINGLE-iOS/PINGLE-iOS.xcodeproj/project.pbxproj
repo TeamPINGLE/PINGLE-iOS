@@ -77,6 +77,7 @@
 		C3A0D9672B49892900E817B5 /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9662B49892800E817B5 /* SFProDisplay-Bold.otf */; };
 		C3BCA86F2B57D0FC003C6996 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCA86E2B57D0FB003C6996 /* MoreView.swift */; };
 		C3BCA8712B57E293003C6996 /* MyPINGLEResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCA8702B57E293003C6996 /* MyPINGLEResponseDTO.swift */; };
+		C3C2621B2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C2621A2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift */; };
 		C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */; };
 		C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */; };
 		C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC304E2B43E20600276E00 /* HomeMapView.swift */; };
@@ -219,6 +220,7 @@
 		C3A0D9662B49892800E817B5 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
 		C3BCA86E2B57D0FB003C6996 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		C3BCA8702B57E293003C6996 /* MyPINGLEResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEResponseDTO.swift; sourceTree = "<group>"; };
+		C3C2621A2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewController.swift; sourceTree = "<group>"; };
 		C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCancelPopUpView.swift; sourceTree = "<group>"; };
 		C3EC304E2B43E20600276E00 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
@@ -832,6 +834,7 @@
 			children = (
 				C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */,
 				E5FA3EBB2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift */,
+				C3C2621A2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1214,6 +1217,7 @@
 				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
 				F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
+				C3C2621B2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift in Sources */,
 				E5CA99732B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift in Sources */,
 				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
 				C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */,

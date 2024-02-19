@@ -45,9 +45,9 @@ extension MeetingTarget: TargetType {
     var path: String {
         switch self {
         case .makeMeeting:
-            return "/meetings"
+            return "/v1/meetings"
         case .searchPlace(let location):
-            return "/location"
+            return "/v1/location"
         }
     }
     

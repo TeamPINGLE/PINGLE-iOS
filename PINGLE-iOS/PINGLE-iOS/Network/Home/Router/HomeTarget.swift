@@ -73,17 +73,17 @@ extension HomeTarget: TargetType {
     var path: String {
         switch self {
         case .pinList(let teamId, _):
-            return "/teams/\(teamId)/pins"
+            return "/v1/teams/\(teamId)/pins"
         case .pinDetail(let teamId, let pinId, _):
-            return "/teams/\(teamId)/pins/\(pinId)/meetings"
+            return "/v1/teams/\(teamId)/pins/\(pinId)/meetings"
         case .meetingJoin(let meetingId):
-            return "/meetings/\(meetingId)/join"
+            return "/v1/meetings/\(meetingId)/join"
         case .meetingCancel(let meetingId):
-            return "/meetings/\(meetingId)/cancel"
+            return "/v1/meetings/\(meetingId)/cancel"
         case .participantsList(let meetingId):
-            return "/meetings/\(meetingId)/participants"
+            return "/v1/meetings/\(meetingId)/participants"
         case .meetingDelete(let meetingId):
-            return "/meetings/\(meetingId)"
+            return "/v1/meetings/\(meetingId)"
         }
     }
     

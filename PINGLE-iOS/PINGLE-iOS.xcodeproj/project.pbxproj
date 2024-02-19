@@ -145,6 +145,7 @@
 		F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */; };
 		F1DFF2892B7B6E86000AC100 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */; };
 		F1DFF28C2B7B7449000AC100 /* ManualCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */; };
+		F1DFF28E2B83497F000AC100 /* ManualDummyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -289,6 +290,7 @@
 		F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationRequestQueryDTO.swift; sourceTree = "<group>"; };
 		F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCollectionViewCell.swift; sourceTree = "<group>"; };
+		F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualDummyDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1009,6 +1011,7 @@
 				F125A1852B4FC77800739C34 /* OrganizationDetailResponseDTO.swift */,
 				F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */,
 				F12181C02B5110F500D22F55 /* TokenRefreshResponseDTO.swift */,
+				F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1326,6 +1329,7 @@
 				E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */,
 				F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */,
 				E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */,
+				F1DFF28E2B83497F000AC100 /* ManualDummyDTO.swift in Sources */,
 				C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */,
 				C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */,
 				F14F3C692B494FB10049A9EE /* OrganizationButton.swift in Sources */,

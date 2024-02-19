@@ -10,9 +10,24 @@ import UIKit
 import SnapKit
 import Then
 
-
 final class ManualViewController: BaseViewController {
-
+    
+    // MARK: Dummy Data
+    let manualDummyData: [ManualDummyDTO] = [
+        ManualDummyDTO(manualImage: UIImage(resource: .imgManual1),
+                       manualTitle: "우리의 모임, PINGLE",
+                       manualSubTitle: "원하는 장소에서 사람들과 갖는\n나만의 모임을 뜻해요"),
+        ManualDummyDTO(manualImage: UIImage(resource: .imgManual2),
+                       manualTitle: "속해있는 단체를 선택하거나\n직접 개설해봐요!",
+                       manualSubTitle: nil),
+        ManualDummyDTO(manualImage: UIImage(resource: .imgManual3),
+                       manualTitle: "내 주변에서 열리는 핑글을\n간편하게 찾고 참여해봐요!",
+                       manualSubTitle: nil),
+        ManualDummyDTO(manualImage: UIImage(resource: .imgManual4),
+                       manualTitle: "원하는 테마로 간편하게\n핑글을 개최할 수 있어요!",
+                       manualSubTitle: nil)
+    ]
+    
     // MARK: Property
     private let skipButton = UIButton()
     private let manualCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -47,7 +62,7 @@ final class ManualViewController: BaseViewController {
         
         manualPageControl.do {
             $0.currentPage = 0
-            $0.numberOfPages = 4
+            $0.numberOfPages = manualDummyData.count
         }
     }
     
@@ -110,7 +125,7 @@ extension ManualViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDataSource
 extension ManualViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return manualDummyData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -118,6 +133,8 @@ extension ManualViewController: UICollectionViewDataSource {
             withReuseIdentifier: ManualCollectionViewCell.identifier,
             for: indexPath
         ) as? ManualCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.bindData(data: manualDummyData[indexPath.row])
         
         return cell
     }

@@ -79,7 +79,7 @@ final class ManualViewController: BaseViewController {
         }
         
         manualPageControl.snp.makeConstraints {
-            $0.bottom.equalTo(nextCTAButton.snp.top).offset(-40)
+            $0.centerY.equalTo(nextCTAButton.snp.top).offset(-44)
             $0.centerX.equalToSuperview()
         }
         

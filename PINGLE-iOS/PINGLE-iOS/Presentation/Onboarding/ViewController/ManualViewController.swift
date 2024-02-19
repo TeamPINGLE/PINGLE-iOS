@@ -32,7 +32,7 @@ final class ManualViewController: BaseViewController {
     private let skipButton = UIButton()
     private let manualCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let manualPageControl = UIPageControl()
-    private let nextCTAButton = PINGLECTAButton(
+    private let bottomCTAButton = PINGLECTAButton(
         title: StringLiterals.CTAButton.buttonTitle,
         buttonColor: .grayscaleG01,
         textColor: .black
@@ -42,6 +42,7 @@ final class ManualViewController: BaseViewController {
         super.viewDidLoad()
         setRegister()
         setTarget()
+        changeButton()
     }
     
     // MARK: UI
@@ -69,21 +70,21 @@ final class ManualViewController: BaseViewController {
     override func setLayout() {
         view.addSubviews(manualCollectionView,
                          manualPageControl,
-                         nextCTAButton)
+                         bottomCTAButton)
         
         manualCollectionView.snp.makeConstraints {
             let topOffest = (self.safeAreaHeight - 623) / 2
             $0.top.equalToSuperview().offset(topOffest)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(nextCTAButton.snp.top).offset(-48)
+            $0.bottom.equalTo(bottomCTAButton.snp.top).offset(-48)
         }
         
         manualPageControl.snp.makeConstraints {
-            $0.centerY.equalTo(nextCTAButton.snp.top).offset(-44)
+            $0.centerY.equalTo(bottomCTAButton.snp.top).offset(-44)
             $0.centerX.equalToSuperview()
         }
         
-        nextCTAButton.snp.makeConstraints {
+        bottomCTAButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(69)
             $0.centerX.equalToSuperview()
         }
@@ -106,6 +107,9 @@ final class ManualViewController: BaseViewController {
         manualPageControl.addTarget(self,
                                     action: #selector(pageControlDidChange),
                                     for: .valueChanged)
+        bottomCTAButton.addTarget(self,
+                                  action: #selector(bottomCTAButtonTapped),
+                                  for: .touchUpInside)
     }
     
     // MARK: objc Function
@@ -115,6 +119,26 @@ final class ManualViewController: BaseViewController {
         let indexPath = IndexPath(item: sender.currentPage, section: 0)
         manualCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         manualCollectionView.isPagingEnabled = true
+    }
+    
+    /// 마지막 페이지인 경우 로그인 화면으로 이동, 아닐 경우 다음페이지 이동
+    @objc func bottomCTAButtonTapped() {
+        if manualPageControl.currentPage == 3 {
+            let loginViewController = LoginViewController()
+            self.view.window?.rootViewController = loginViewController
+            self.view.window?.makeKeyAndVisible()
+        } else {
+            manualPageControl.currentPage += 1
+            manualCollectionView.isPagingEnabled = false
+            let indexPath = IndexPath(item: manualPageControl.currentPage, section: 0)
+            manualCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            manualCollectionView.isPagingEnabled = true
+        }
+    }
+    
+    // MARK: SetButton
+    func changeButton() {
+        self.bottomCTAButton.activateButton()
     }
 }
 

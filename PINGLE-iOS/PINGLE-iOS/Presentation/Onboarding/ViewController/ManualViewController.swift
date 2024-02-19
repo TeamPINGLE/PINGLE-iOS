@@ -40,6 +40,7 @@ final class ManualViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigation()
         setRegister()
         setTarget()
         changeButton()
@@ -65,10 +66,17 @@ final class ManualViewController: BaseViewController {
             $0.currentPage = 0
             $0.numberOfPages = manualDummyData.count
         }
+        
+        skipButton.do {
+            $0.setTitle(StringLiterals.Onboarding.ButtonTitle.skipButtonTitle, for: .normal)
+            $0.titleLabel?.font = .bodyBodyMed14
+            $0.titleLabel?.textColor = .white
+        }
     }
     
     override func setLayout() {
         view.addSubviews(manualCollectionView,
+                         skipButton,
                          manualPageControl,
                          bottomCTAButton)
         
@@ -77,6 +85,11 @@ final class ManualViewController: BaseViewController {
             $0.top.equalToSuperview().offset(topOffest)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(bottomCTAButton.snp.top).offset(-48)
+        }
+        
+        skipButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(13)
+            $0.trailing.equalToSuperview().inset(22)
         }
         
         manualPageControl.snp.makeConstraints {
@@ -88,6 +101,11 @@ final class ManualViewController: BaseViewController {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(69)
             $0.centerX.equalToSuperview()
         }
+    }
+    
+    // MARK: Navigation Function
+    private func setNavigation() {
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     // MARK: Delegate
@@ -110,6 +128,9 @@ final class ManualViewController: BaseViewController {
         bottomCTAButton.addTarget(self,
                                   action: #selector(bottomCTAButtonTapped),
                                   for: .touchUpInside)
+        skipButton.addTarget(self,
+                             action: #selector(skipButtonTapped),
+                             for: .touchUpInside)
     }
     
     // MARK: objc Function
@@ -124,15 +145,30 @@ final class ManualViewController: BaseViewController {
     /// 마지막 페이지인 경우 로그인 화면으로 이동, 아닐 경우 다음페이지 이동
     @objc func bottomCTAButtonTapped() {
         if manualPageControl.currentPage == 3 {
-            let loginViewController = LoginViewController()
-            self.view.window?.rootViewController = loginViewController
-            self.view.window?.makeKeyAndVisible()
+            changeRootViewController()
         } else {
             manualPageControl.currentPage += 1
             manualCollectionView.isPagingEnabled = false
             let indexPath = IndexPath(item: manualPageControl.currentPage, section: 0)
             manualCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             manualCollectionView.isPagingEnabled = true
+        }
+    }
+    
+    @objc func skipButtonTapped() {
+        changeRootViewController()
+    }
+    
+    // MARK: ChangeRootViewController
+    func changeRootViewController() {
+        let loginViewController = LoginViewController()
+        loginViewController.view.alpha = 0.0
+
+        self.view.window?.rootViewController = loginViewController
+        self.view.window?.makeKeyAndVisible()
+
+        UIView.animate(withDuration: 0.5) {
+            loginViewController.view.alpha = 1.0
         }
     }
     

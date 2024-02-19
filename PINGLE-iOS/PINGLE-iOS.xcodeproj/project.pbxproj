@@ -751,7 +751,6 @@
 			isa = PBXGroup;
 			children = (
 				C39603102B3BF348004BB2B8 /* DTO */,
-				F14F3C752B4D36D20049A9EE /* Response */,
 				C39603122B3BF357004BB2B8 /* Router */,
 				C39603112B3BF34E004BB2B8 /* Service */,
 			);
@@ -762,6 +761,7 @@
 			isa = PBXGroup;
 			children = (
 				F14F3C722B4D35F90049A9EE /* Request */,
+				F14F3C752B4D36D20049A9EE /* Response */,
 			);
 			path = DTO;
 			sourceTree = "<group>";

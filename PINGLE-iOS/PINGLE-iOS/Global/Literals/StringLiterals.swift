@@ -24,6 +24,7 @@ enum StringLiterals {
             static let existingOrganization = "이미 등록된\n단체가 있어요"
             static let makeOrganization = "새로운 단체를\n등록하고 싶어요"
             static let requestOrganization = "단체를 직접 추가해주세요"
+            static let skipButtonTitle = "건너뛰기"
         }
         
         enum ExplainTitle {

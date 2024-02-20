@@ -28,8 +28,11 @@ enum StringLiterals {
         }
         
         enum ExplainTitle {
-            static let manualTitle = "우리의 모임, PINGLE"
-            static let manualSubTitle = "원하는 장소에서 사람들과 갖는\n나만의 모임을 뜻해요"
+            static let manualTitle1 = "우리의 모임, PINGLE"
+            static let manualSubTitle1 = "원하는 장소에서 사람들과 갖는\n나만의 모임을 뜻해요"
+            static let manualTitle2 = "속해있는 단체를 선택하거나\n직접 개설해봐요!"
+            static let manualTitle3 = "내 주변에서 열리는 핑글을\n간편하게 찾고 참여해봐요!"
+            static let manualTitle4 = "원하는 테마로 간편하게\n핑글을 개최할 수 있어요!"
             static let onboarding = "입장 방식을\n선택해주세요!"
             static let searchOrganization = "속해있는 단체의\n이름을 알려주세요!"
             static let bottomRequest = "찾는 단체가 없나요?"

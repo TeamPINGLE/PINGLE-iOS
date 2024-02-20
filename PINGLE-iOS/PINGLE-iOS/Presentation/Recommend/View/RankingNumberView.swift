@@ -14,12 +14,10 @@ final class RankingNumberView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
-    
     let rankingIcon = UIImageView()
   
     // MARK: - Function
     // MARK: Style Helpers
-    
     override func setStyle() {
         self.backgroundColor = .black
         
@@ -34,7 +32,6 @@ final class RankingNumberView: BaseView {
     }
     
     // MARK: Layout Helpers
-    
     override func setLayout() {
         self.addSubviews(rankingIcon)
         

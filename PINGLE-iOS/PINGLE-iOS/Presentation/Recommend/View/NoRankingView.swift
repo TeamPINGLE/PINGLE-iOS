@@ -14,12 +14,10 @@ final class NoRankingView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
-    
     let rankingTitleLabel = UILabel()
     
     // MARK: - Function
     // MARK: Style Helpers
-    
     override func setStyle() {
         self.backgroundColor = .grayscaleG11
         
@@ -33,7 +31,6 @@ final class NoRankingView: BaseView {
     }
     
     // MARK: Layout Helpers
-    
     override func setLayout() {
         self.addSubview(rankingTitleLabel)
         

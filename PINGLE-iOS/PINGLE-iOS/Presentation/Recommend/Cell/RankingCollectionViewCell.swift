@@ -32,6 +32,11 @@ class RankingCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: UI
+    func setUI() {
+        setStyle()
+        setLayout()
+    }
+    
     func setStyle() {
         self.do {
             $0.backgroundColor = .grayscaleG11
@@ -75,8 +80,12 @@ class RankingCollectionViewCell: UICollectionViewCell {
     }
     
     func setLayout() {
-        self.addSubviews(ranking, rankingView)
-        rankingView.addSubviews(rankingPinView, placeName, currentVisit, currentDate)
+        self.addSubviews(ranking, 
+                         rankingView)
+        rankingView.addSubviews(rankingPinView, 
+                                placeName,
+                                currentVisit,
+                                currentDate)
         rankingPinView.addSubview(meetingNumber)
         
         ranking.snp.makeConstraints {

@@ -48,10 +48,16 @@ enum StringLiterals {
             static let loginTitle = "Ready to\nPINGLE?"
             static let loginIntroduce = "가볍고 재미있는 모임 문화,"
             static let loginAdvice = "핑글과 함께 만들어요!"
+            static let makeOrganizationGuideTitle = "신규 단체 개설 안내"
+            static let founderNoticeTitle = "단체 개설자는 탈퇴할 수 없어요"
+            static let founderNoticeSubTitle = "해당 단체의 초대코드 및 구성원을\n관리할 책임자가 없어지기 때문이에요."
+            static let founderNoticeExpTitle = "탈퇴를 원할 경우, 핑글에게 문의하기를 통해\n개설자를 변경해주셔야 해요."
+            static let inviteCodeNoticeTitle = "초대 코드가 유출되었다면\n핑글에게 문의 후\n재발급할 수 있어요"
         }
         
         enum NavigationTitle {
             static let searchOrganizationNavigation = "단체 입장하기"
+            static let makeOrganizationNavigation = "신규 단체 개설하기"
         }
         
         enum SearchBarPlaceholder {

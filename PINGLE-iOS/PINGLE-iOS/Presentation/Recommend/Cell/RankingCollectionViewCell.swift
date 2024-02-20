@@ -89,7 +89,7 @@ class RankingCollectionViewCell: UICollectionViewCell {
         rankingPinView.addSubview(meetingNumber)
         
         ranking.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16.adjustedHeight)
+            $0.top.equalToSuperview().inset(16)
             //레이아웃 확인 필요
             $0.leading.equalToSuperview().inset(6.adjusted)
         }
@@ -100,7 +100,7 @@ class RankingCollectionViewCell: UICollectionViewCell {
         }
         
         rankingPinView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16.adjustedHeight)
+            $0.top.equalToSuperview().inset(16)
             $0.leading.equalToSuperview().inset(20.adjusted)
         }
         
@@ -110,21 +110,21 @@ class RankingCollectionViewCell: UICollectionViewCell {
         }
         
         placeName.snp.makeConstraints {
-            $0.top.equalTo(rankingPinView.snp.bottom).offset(4.adjusted)
-            $0.bottom.equalToSuperview().inset(37.adjustedHeight)
+            $0.top.equalTo(rankingPinView.snp.bottom).offset(4)
+            $0.bottom.equalToSuperview().inset(37)
             $0.leading.trailing.equalToSuperview().inset(20.adjusted)
             $0.width.equalTo(270.adjusted)
         }
         
         currentVisit.snp.makeConstraints {
-            $0.top.equalTo(placeName.snp.bottom).offset(4.adjusted)
-            $0.bottom.equalToSuperview().inset(16.adjusted)
+            $0.top.equalTo(placeName.snp.bottom).offset(4)
+            $0.bottom.equalToSuperview().inset(16)
             $0.leading.equalToSuperview().inset(20.adjusted)
         }
         
         currentDate.snp.makeConstraints {
-            $0.top.equalTo(placeName.snp.bottom).offset(4.adjusted)
-            $0.bottom.equalToSuperview().inset(16.adjusted)
+            $0.top.equalTo(placeName.snp.bottom).offset(4)
+            $0.bottom.equalToSuperview().inset(16)
             $0.leading.equalTo(currentVisit.snp.trailing).offset(5.adjusted)
         }
     }

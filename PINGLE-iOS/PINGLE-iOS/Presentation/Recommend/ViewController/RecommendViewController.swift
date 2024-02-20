@@ -55,18 +55,18 @@ final class RecommendViewController: BaseViewController {
                               rankingView)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(59.adjustedHeight)
+            $0.top.equalToSuperview().inset(59)
             $0.leading.equalToSuperview().inset(20.adjusted)
         }
         
         rankingView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(20.adjustedHeight)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(safeAreaHeight)
         }
         
 //        noRakingView.snp.makeConstraints {
-//            $0.top.equalTo(view.safeAreaInsets).offset(100.adjustedHeight)
+//            $0.top.equalTo(view.safeAreaInsets).offset(100)
 //            $0.leading.trailing.equalToSuperview()
 //            $0.bottom.equalTo(safeAreaHeight)
 //        }

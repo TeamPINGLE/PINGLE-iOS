@@ -35,7 +35,7 @@ final class NoRankingView: BaseView {
         self.addSubview(rankingTitleLabel)
         
         rankingTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(201.adjustedHeight)
+            $0.top.equalToSuperview().inset(201)
             $0.leading.trailing.equalToSuperview().inset(32.adjusted)
         }
     }

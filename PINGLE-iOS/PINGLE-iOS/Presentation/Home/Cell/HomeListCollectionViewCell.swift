@@ -127,6 +127,7 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
                 $0.bottom.equalToSuperview().inset(self.isExpand ? 10 : 0)
                 $0.centerX.equalToSuperview()
             }
+            self.homeListDetailView.bottomBackgroundView.makeCornerRound(radius: self.isExpand ? 15 : 8)
         }
         self.layoutIfNeeded()
     }

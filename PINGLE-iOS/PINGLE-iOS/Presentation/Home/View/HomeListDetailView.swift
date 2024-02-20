@@ -92,7 +92,7 @@ final class HomeListDetailView: BaseView {
         
         bottomBackgroundView.do {
             $0.backgroundColor = .grayscaleG10
-            $0.makeCornerRound(radius: 15)
+            $0.makeCornerRound(radius: 8)
         }
         
         dateTimeImageView.do {

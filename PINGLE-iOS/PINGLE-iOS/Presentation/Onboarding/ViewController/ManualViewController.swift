@@ -161,6 +161,7 @@ final class ManualViewController: BaseViewController {
     
     // MARK: ChangeRootViewController
     func changeRootViewController() {
+        UserDefaults.standard.set(true, forKey: "isFirstTime")
         let loginViewController = LoginViewController()
         loginViewController.view.alpha = 0.0
 

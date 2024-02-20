@@ -15,16 +15,16 @@ final class ManualViewController: BaseViewController {
     // MARK: Dummy Data
     let manualDummyData: [ManualDummyDTO] = [
         ManualDummyDTO(manualImage: UIImage(resource: .imgManual1),
-                       manualTitle: "우리의 모임, PINGLE",
-                       manualSubTitle: "원하는 장소에서 사람들과 갖는\n나만의 모임을 뜻해요"),
+                       manualTitle: StringLiterals.Onboarding.ExplainTitle.manualTitle1,
+                       manualSubTitle: StringLiterals.Onboarding.ExplainTitle.manualSubTitle1),
         ManualDummyDTO(manualImage: UIImage(resource: .imgManual2),
-                       manualTitle: "속해있는 단체를 선택하거나\n직접 개설해봐요!",
+                       manualTitle: StringLiterals.Onboarding.ExplainTitle.manualTitle2,
                        manualSubTitle: nil),
         ManualDummyDTO(manualImage: UIImage(resource: .imgManual3),
-                       manualTitle: "내 주변에서 열리는 핑글을\n간편하게 찾고 참여해봐요!",
+                       manualTitle: StringLiterals.Onboarding.ExplainTitle.manualTitle3,
                        manualSubTitle: nil),
         ManualDummyDTO(manualImage: UIImage(resource: .imgManual4),
-                       manualTitle: "원하는 테마로 간편하게\n핑글을 개최할 수 있어요!",
+                       manualTitle: StringLiterals.Onboarding.ExplainTitle.manualTitle4,
                        manualSubTitle: nil)
     ]
     
@@ -180,8 +180,7 @@ final class ManualViewController: BaseViewController {
 }
 
 // MARK: UICollectionViewDelegate
-extension ManualViewController: UICollectionViewDelegate {
-}
+extension ManualViewController: UICollectionViewDelegate {}
 
 // MARK: UICollectionViewDataSource
 extension ManualViewController: UICollectionViewDataSource {

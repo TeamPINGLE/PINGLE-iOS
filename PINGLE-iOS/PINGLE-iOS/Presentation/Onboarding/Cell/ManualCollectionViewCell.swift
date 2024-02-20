@@ -37,8 +37,7 @@ final class ManualCollectionViewCell: UICollectionViewCell {
         }
         
         titleLabel.do {
-            $0.text = StringLiterals.Onboarding.ExplainTitle.manualTitle
-            $0.setLineSpacing(spacing: 4)
+            $0.setTextWithLineHeight(text: StringLiterals.Onboarding.ExplainTitle.manualTitle1, lineHeight: 28)
             $0.font = .titleTitleSemi20
             $0.textColor = .white
             $0.numberOfLines = 2
@@ -46,8 +45,7 @@ final class ManualCollectionViewCell: UICollectionViewCell {
         }
         
         subTitleLabel.do {
-            $0.text = StringLiterals.Onboarding.ExplainTitle.manualSubTitle
-            $0.setLineSpacing(spacing: 3)
+            $0.setTextWithLineHeight(text: StringLiterals.Onboarding.ExplainTitle.manualSubTitle1, lineHeight: 22)
             $0.font = .bodyBodyMed16
             $0.textColor = .grayscaleG02
             $0.numberOfLines = 2
@@ -66,7 +64,7 @@ final class ManualCollectionViewCell: UICollectionViewCell {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.snp.bottom).inset(131)
+            $0.top.equalTo(self.snp.bottom).inset(107)
             $0.centerX.equalToSuperview()
         }
         

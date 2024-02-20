@@ -91,6 +91,7 @@
 		E542B67A2B83D57C00B50B95 /* RankingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */; };
 		E542B6802B83F2B600B50B95 /* RankingRespnseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B67F2B83F2B600B50B95 /* RankingRespnseDTO.swift */; };
 		E542B6822B840FD700B50B95 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6812B840FD700B50B95 /* RankingView.swift */; };
+		E542B6842B84F5CA00B50B95 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6832B84F5CA00B50B95 /* FixView.swift */; };
 		E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */; };
 		E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */; };
 		E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565EB562B4FC9B80001758C /* MeetingManager.swift */; };
@@ -237,6 +238,7 @@
 		E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCollectionViewCell.swift; sourceTree = "<group>"; };
 		E542B67F2B83F2B600B50B95 /* RankingRespnseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingRespnseDTO.swift; sourceTree = "<group>"; };
 		E542B6812B840FD700B50B95 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
+		E542B6832B84F5CA00B50B95 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
 		E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryCardView.swift; sourceTree = "<group>"; };
 		E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultViewController.swift; sourceTree = "<group>"; };
 		E565EB562B4FC9B80001758C /* MeetingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManager.swift; sourceTree = "<group>"; };
@@ -624,6 +626,7 @@
 				E542B6762B83CB0300B50B95 /* Cell */,
 				E542B6742B83CADD00B50B95 /* ViewController */,
 				E542B6732B83CACB00B50B95 /* View */,
+				E542B6832B84F5CA00B50B95 /* FixView.swift */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";
@@ -1364,6 +1367,7 @@
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
 				C30D1E082B56FB7300879258 /* SoonViewController.swift in Sources */,
 				E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */,
+				E542B6842B84F5CA00B50B95 /* FixView.swift in Sources */,
 				F14F44AB2B50411700871E5A /* ProfileService.swift in Sources */,
 				F125A1842B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift in Sources */,
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,

@@ -18,6 +18,7 @@ final class SplashViewController: BaseViewController {
     let loginViewController = LoginViewController()
     let onboardingViewController = OnboardingViewController()
     let pingleTabBarController = PINGLETabBarController()
+    let manualViewController = ManualViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +52,17 @@ final class SplashViewController: BaseViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             AppStoreCheck.shared.checkAndUpdateIfNeeded { isLatestVersion in
                 if isLatestVersion {
-                    if KeychainHandler.shared.accessToken.isEmpty {
-                        /// 어세스 토큰 없는 경우 - 애플 계정을 통한 회원가입을 한 적이 없는 경우
-                        self.changeRootViewController(rootViewController: self.loginViewController)
+                    /// 최초 실행시 앱 설명화면으로 이동
+                    if !UserDefaults.standard.bool(forKey: "isFirstTime") {
+                        self.changeRootViewController(rootViewController: self.manualViewController)
                     } else {
-                        /// 어세스 토큰이 있는 경우 - 애플 계정을 통한 회원가입을 한 적이 있는 경우 : 가입한 단체가 있는지 확인하는 통신 코드 구현
-                        self.getUserInfo()
+                        if KeychainHandler.shared.accessToken.isEmpty {
+                            /// 어세스 토큰 없는 경우 - 애플 계정을 통한 회원가입을 한 적이 없는 경우
+                            self.changeRootViewController(rootViewController: self.loginViewController)
+                        } else {
+                            /// 어세스 토큰이 있는 경우 - 애플 계정을 통한 회원가입을 한 적이 있는 경우 : 가입한 단체가 있는지 확인하는 통신 코드 구현
+                            self.getUserInfo()
+                        }
                     }
                 } else {
                     AppStoreCheck.shared.showUpdateAlert()

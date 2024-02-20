@@ -72,7 +72,6 @@
 		C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */; };
 		C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */; };
 		C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */; };
-		C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D9602B49866F00E817B5 /* FixView.swift */; };
 		C3A0D9652B49892500E817B5 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9642B49892500E817B5 /* SFProDisplay-Regular.otf */; };
 		C3A0D9672B49892900E817B5 /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9662B49892800E817B5 /* SFProDisplay-Bold.otf */; };
 		C3BCA86F2B57D0FC003C6996 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCA86E2B57D0FB003C6996 /* MoreView.swift */; };
@@ -87,6 +86,12 @@
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
 		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
+		E542B6722B83C2C300B50B95 /* NoRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6712B83C2C300B50B95 /* NoRankingView.swift */; };
+		E542B6782B83CB2900B50B95 /* RankingNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6772B83CB2900B50B95 /* RankingNumberView.swift */; };
+		E542B67A2B83D57C00B50B95 /* RankingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */; };
+		E542B6802B83F2B600B50B95 /* RankingRespnseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B67F2B83F2B600B50B95 /* RankingRespnseDTO.swift */; };
+		E542B6822B840FD700B50B95 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6812B840FD700B50B95 /* RankingView.swift */; };
+		E542B6842B84F5CA00B50B95 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6832B84F5CA00B50B95 /* FixView.swift */; };
 		E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */; };
 		E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */; };
 		E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565EB562B4FC9B80001758C /* MeetingManager.swift */; };
@@ -217,7 +222,6 @@
 		C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEViewController.swift; sourceTree = "<group>"; };
 		C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
-		C3A0D9602B49866F00E817B5 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
 		C3A0D9642B49892500E817B5 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
 		C3A0D9662B49892800E817B5 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
 		C3BCA86E2B57D0FB003C6996 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
@@ -233,6 +237,12 @@
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
 		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
+		E542B6712B83C2C300B50B95 /* NoRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRankingView.swift; sourceTree = "<group>"; };
+		E542B6772B83CB2900B50B95 /* RankingNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingNumberView.swift; sourceTree = "<group>"; };
+		E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCollectionViewCell.swift; sourceTree = "<group>"; };
+		E542B67F2B83F2B600B50B95 /* RankingRespnseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingRespnseDTO.swift; sourceTree = "<group>"; };
+		E542B6812B840FD700B50B95 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
+		E542B6832B84F5CA00B50B95 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
 		E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryCardView.swift; sourceTree = "<group>"; };
 		E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultViewController.swift; sourceTree = "<group>"; };
 		E565EB562B4FC9B80001758C /* MeetingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManager.swift; sourceTree = "<group>"; };
@@ -623,8 +633,10 @@
 		C39602EA2B3BF22F004BB2B8 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
-				C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */,
-				C3A0D9602B49866F00E817B5 /* FixView.swift */,
+				E542B6762B83CB0300B50B95 /* Cell */,
+				E542B6742B83CADD00B50B95 /* ViewController */,
+				E542B6732B83CACB00B50B95 /* View */,
+				E542B6832B84F5CA00B50B95 /* FixView.swift */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";
@@ -689,6 +701,7 @@
 		C39603002B3BF2A7004BB2B8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E542B67D2B83F28900B50B95 /* Recommend */,
 				C39603012B3BF2BF004BB2B8 /* Base */,
 				C39603092B3BF307004BB2B8 /* Onboarding */,
 				C39603082B3BF2F3004BB2B8 /* Home */,
@@ -890,6 +903,48 @@
 				E5A651F92B4B2A6F00676ED0 /* RecruitButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		E542B6732B83CACB00B50B95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E542B6712B83C2C300B50B95 /* NoRankingView.swift */,
+				E542B6772B83CB2900B50B95 /* RankingNumberView.swift */,
+				E542B6812B840FD700B50B95 /* RankingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E542B6742B83CADD00B50B95 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E542B6762B83CB0300B50B95 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E542B67D2B83F28900B50B95 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				E542B67E2B83F29400B50B95 /* DTO */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
+		E542B67E2B83F29400B50B95 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				E542B67F2B83F2B600B50B95 /* RankingRespnseDTO.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		E565EB552B4FC9550001758C /* MeetingManager */ = {
@@ -1244,6 +1299,7 @@
 				C30D1E0A2B56FB7B00879258 /* CompleteViewController.swift in Sources */,
 				C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */,
 				E5A651F62B4AF72500676ED0 /* SearchPlaceView.swift in Sources */,
+				E542B6722B83C2C300B50B95 /* NoRankingView.swift in Sources */,
 				C3074B1E2B591B75009D2D0C /* MyPINGLEService.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
 				C3074B252B599406009D2D0C /* AppStoreCheck.swift in Sources */,
@@ -1255,7 +1311,9 @@
 				C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */,
 				C30D1E112B57033800879258 /* MyPINGLECardView.swift in Sources */,
 				F12181BF2B510EFB00D22F55 /* PINGLERequestInterceptor.swift in Sources */,
+				E542B6802B83F2B600B50B95 /* RankingRespnseDTO.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
+				E542B6822B840FD700B50B95 /* RankingView.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */,
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
@@ -1292,6 +1350,7 @@
 				F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */,
 				C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */,
 				F19CE2C02B5417C500B8F9D0 /* MyOrganizationViewController.swift in Sources */,
+				E542B67A2B83D57C00B50B95 /* RankingCollectionViewCell.swift in Sources */,
 				F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
 				F1DFF2932B849E62000AC100 /* MakeOrganizationGuideViewController.swift in Sources */,
@@ -1307,7 +1366,6 @@
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C30C918E2B4CED0F004EE026 /* KeychainHandler.swift in Sources */,
 				C305D5992B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift in Sources */,
-				C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */,
 				C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */,
 				C3074B1C2B591B67009D2D0C /* MyPINGLETarget.swift in Sources */,
 				C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */,
@@ -1320,6 +1378,7 @@
 				F1239BD92B486B230072A02A /* EntranceCompletedViewController.swift in Sources */,
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
 				C30C91952B4CED93004EE026 /* BaseResponse.swift in Sources */,
+				E542B6782B83CB2900B50B95 /* RankingNumberView.swift in Sources */,
 				E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */,
 				E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */,
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,
@@ -1327,6 +1386,7 @@
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
 				C30D1E082B56FB7300879258 /* SoonViewController.swift in Sources */,
 				E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */,
+				E542B6842B84F5CA00B50B95 /* FixView.swift in Sources */,
 				F14F44AB2B50411700871E5A /* ProfileService.swift in Sources */,
 				F125A1842B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift in Sources */,
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,

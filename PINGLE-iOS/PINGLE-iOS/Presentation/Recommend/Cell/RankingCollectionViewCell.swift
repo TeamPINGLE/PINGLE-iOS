@@ -23,8 +23,7 @@ class RankingCollectionViewCell: UICollectionViewCell {
     // MARK: Initializing
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setStyle()
-        setLayout()
+        setUI()
     }
     
     required init?(coder: NSCoder) {

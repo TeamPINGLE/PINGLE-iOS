@@ -85,6 +85,10 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         warningToastView.do {
             $0.alpha = 0.0
         }
+        
+        representativeEmailTextFieldView.searchTextField.do {
+            $0.keyboardType = .emailAddress
+        }
     }
     
     override func setLayout() {
@@ -97,17 +101,17 @@ final class EnterOrganizationInfoViewController: BaseViewController {
                          bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(126)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(32)
             $0.leading.equalToSuperview().inset(26)
         }
         
         organizationNameTextFieldView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(225)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(25)
             $0.centerX.equalToSuperview()
         }
         
         representativeEmailTextFieldView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(317)
+            $0.top.equalTo(organizationNameTextFieldView.snp.bottom).offset(17)
             $0.centerX.equalToSuperview()
         }
         
@@ -195,11 +199,12 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         let organizationNameText = text.trimmingCharacters(in: .whitespacesAndNewlines)
         organizationNameTextFieldView.searchTextField.text = organizationNameText
         bottomCTAButton.activateButton()
+        showWarningToastView(message: .possibleName)
     }
     
     @objc func bottomCTAButtonTapped() {
         let text = representativeEmailTextFieldView.searchTextField.text ?? ""
-        print("email = \(text)")
+        
         if text.isValidEmail() {
             
         } else {

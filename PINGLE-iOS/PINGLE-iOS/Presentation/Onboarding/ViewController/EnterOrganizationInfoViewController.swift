@@ -196,8 +196,11 @@ final class EnterOrganizationInfoViewController: BaseViewController {
     
     @objc func duplicationCheckButtonTapped() {
         let text = organizationNameTextFieldView.searchTextField.text ?? ""
-        let organizationNameText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        organizationNameTextFieldView.searchTextField.text = organizationNameText
+        /// 앞 뒤 공백을 제거한다.
+        let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        /// 문자 사이의 연속된 공백을 제거한다.
+        let replacedText = trimmedText.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+        organizationNameTextFieldView.searchTextField.text = replacedText
         bottomCTAButton.activateButton()
         showWarningToastView(message: .possibleName)
     }

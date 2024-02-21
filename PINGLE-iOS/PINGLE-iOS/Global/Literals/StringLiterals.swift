@@ -263,5 +263,6 @@ enum StringLiterals {
         static let rejectDelete = "단체 개설자는 탈퇴할 수 없어요!"
         static let possibleGroup = "등록 가능한 단체명입니다."
         static let impossibleGroup = "같은 이름을 가진 단체가 이미 존재합니다!"
+        static let impossibleEmail = "유효하지 않은 이메일입니다!"
     }
 }

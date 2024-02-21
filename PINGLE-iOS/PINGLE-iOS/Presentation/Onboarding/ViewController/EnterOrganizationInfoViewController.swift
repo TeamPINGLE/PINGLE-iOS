@@ -29,12 +29,19 @@ final class EnterOrganizationInfoViewController: BaseViewController {
     private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.impossibleGroup)
     private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
+    private enum warningToastMessage {
+        case possibleName
+        case impossibleName
+        case impossibleEmail
+    }
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         presentMakeGroupGuideViewController()
         setNavigation()
         setTarget()
+        hideKeyboardWhenTappedAround()
         makeDuplicateButton()
     }
     
@@ -146,6 +153,12 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         navigationItem.rightBarButtonItem = customInfoButton
     }
     
+    // MARK: Delegate
+    override func setDelegate() {
+        self.organizationNameTextFieldView.searchTextField.delegate = self
+        self.representativeEmailTextFieldView.searchTextField.delegate = self
+    }
+    
     // MARK: Target Function
     private func setTarget() {
         backButton.addTarget(self,
@@ -154,6 +167,18 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         infoButton.addTarget(self,
                              action: #selector(infoButtonTapped),
                              for: .touchUpInside)
+        organizationNameTextFieldView.searchTextField.addTarget(self,
+                                                          action: #selector(self.textFieldDidChange(_:)),
+                                                          for: .editingChanged)
+        representativeEmailTextFieldView.searchTextField.addTarget(self,
+                                                          action: #selector(self.textFieldDidChange(_:)),
+                                                          for: .editingChanged)
+        organizationNameTextFieldView.duplicationCheckButton.addTarget(self,
+                                                                       action: #selector(duplicationCheckButtonTapped),
+                                                                       for: .touchUpInside)
+        bottomCTAButton.addTarget(self,
+                                  action: #selector(bottomCTAButtonTapped),
+                                  for: .touchUpInside)
     }
     
     // MARK: Objc Function
@@ -165,6 +190,23 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         presentMakeGroupGuideViewController()
     }
     
+    @objc func duplicationCheckButtonTapped() {
+        let text = organizationNameTextFieldView.searchTextField.text ?? ""
+        let organizationNameText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        organizationNameTextFieldView.searchTextField.text = organizationNameText
+        bottomCTAButton.activateButton()
+    }
+    
+    @objc func bottomCTAButtonTapped() {
+        let text = representativeEmailTextFieldView.searchTextField.text ?? ""
+        print("email = \(text)")
+        if text.isValidEmail() {
+            
+        } else {
+            showWarningToastView(message: .impossibleEmail)
+        }
+    }
+    
     // MARK: Present Function
     private func presentMakeGroupGuideViewController() {
         let makeOrganizationGuideViewController = MakeOrganizationGuideViewController()
@@ -172,17 +214,52 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         navigationController?.present(makeOrganizationGuideViewController, animated: true)
     }
     
-    // MARK:
+    // MARK: Active Function
     private func makeDuplicateButton() {
         organizationNameTextFieldView.makeCheckForDuplicationButton()
     }
     
     // MARK: Animation Function
-    private func showWarningToastView(duration: TimeInterval = 2.0) {
-        self.warningToastView.fadeIn()
+    private func showWarningToastView(message: warningToastMessage, duration: TimeInterval = 2.0) {
+        switch message {
+        case .possibleName:
+            warningToastView.changeWarningMessage(message: StringLiterals.ToastView.possibleGroup, possible: true)
+        case .impossibleName:
+            warningToastView.changeWarningMessage(message: StringLiterals.ToastView.impossibleGroup, possible: false)
+        case .impossibleEmail:
+            warningToastView.changeWarningMessage(message: StringLiterals.ToastView.impossibleEmail, possible: false)
+        }
         
+        self.warningToastView.fadeIn()
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             self.warningToastView.fadeOut()
+        }
+    }
+}
+
+// MARK: - extension
+// MARK: UITextFieldDelegate
+extension EnterOrganizationInfoViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // MARK: Objc Function
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let text = textField.text ?? ""
+        
+        if organizationNameTextFieldView.searchTextField == textField {
+            let organizationNameText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            /// 공백만 입력했을 경우 중복확인 버튼 비활성화, 문자가 있을 경우 중복확인 버튼 활성화
+            if organizationNameText.isEmpty {
+                organizationNameTextFieldView.impossibleDuplicationButton()
+            } else {
+                organizationNameTextFieldView.possibleDuplicationButton()
+            }
+        } else if representativeEmailTextFieldView.searchTextField == textField {
+            
         }
     }
 }

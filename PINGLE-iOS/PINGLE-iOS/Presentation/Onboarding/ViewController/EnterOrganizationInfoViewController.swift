@@ -14,18 +14,33 @@ final class EnterOrganizationInfoViewController: BaseViewController {
     
     // MARK: Property
     private let backButton = UIButton()
+    private let infoButton = UIButton()
+    private let titleLabel = UILabel()
+    private let organizationNameTextFieldView = PINGLETextFieldView(
+        titleLabel: StringLiterals.Onboarding.ExplainTitle.organizationNameTextFieldTitle,
+        explainLabel: StringLiterals.Onboarding.SearchBarPlaceholder.organizationNamePlaceholder
+    )
+    private let representativeEmailTextFieldView = PINGLETextFieldView(
+        titleLabel: StringLiterals.Onboarding.ExplainTitle.representativeEmailTextFieldTitle,
+        explainLabel: StringLiterals.Onboarding.SearchBarPlaceholder.representativeEmailPlaceholder
+    )
+    private let infoImageView = UIImageView()
+    private let infoMessageLabel = UILabel()
+    private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.impossibleGroup)
+    private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.buttonTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presentMakeGroupGuideViewController()
         setNavigation()
         setTarget()
+        makeDuplicateButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
-        presentMakeGroupGuideViewController()
     }
     
     // MARK: UI
@@ -37,10 +52,78 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         backButton.do {
             $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
+        
+        infoButton.do {
+            $0.setImage(UIImage(resource: .icInfoBig), for: .normal)
+        }
+        
+        titleLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Onboarding.ExplainTitle.EnterOrganizationInfoTitle, lineHeight: 34)
+            $0.font = .titleTitleSemi24
+            $0.textColor = .white
+            $0.textAlignment = .left
+        }
+        
+        infoImageView.do {
+            $0.image = UIImage(resource: .icInfo)
+            $0.tintColor = .grayscaleG04
+        }
+        
+        infoMessageLabel.do {
+            $0.text = StringLiterals.Onboarding.ExplainTitle.emailInfoMessage
+            $0.font = .captionCapMed10
+            $0.textColor = .grayscaleG04
+        }
+        
+        warningToastView.do {
+            $0.alpha = 0.0
+        }
     }
     
     override func setLayout() {
+        view.addSubviews(titleLabel,
+                         organizationNameTextFieldView,
+                         representativeEmailTextFieldView,
+                         infoImageView,
+                         infoMessageLabel,
+                         warningToastView,
+                         bottomCTAButton)
         
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(126)
+            $0.leading.equalToSuperview().inset(26)
+        }
+        
+        organizationNameTextFieldView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(225)
+            $0.centerX.equalToSuperview()
+        }
+        
+        representativeEmailTextFieldView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(317)
+            $0.centerX.equalToSuperview()
+        }
+        
+        infoImageView.snp.makeConstraints {
+            $0.top.equalTo(representativeEmailTextFieldView.snp.bottom).offset(8)
+            $0.leading.equalTo(representativeEmailTextFieldView)
+            $0.size.equalTo(14)
+        }
+        
+        infoMessageLabel.snp.makeConstraints {
+            $0.centerY.equalTo(infoImageView)
+            $0.leading.equalTo(infoImageView.snp.trailing).offset(4)
+        }
+        
+        warningToastView.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(114)
+            $0.centerX.equalToSuperview()
+        }
+        
+        bottomCTAButton.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(41)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     // MARK: Navigation Function
@@ -50,19 +133,26 @@ final class EnterOrganizationInfoViewController: BaseViewController {
     }
     
     private func setNavigation() {
-        self.title = StringLiterals.Onboarding.NavigationTitle.searchOrganizationNavigation
+        self.title = StringLiterals.Onboarding.NavigationTitle.makeOrganizationNavigation
         self.navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.white,
             .font: UIFont.subtitleSubSemi18
         ]
+        
         let customBackButton = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = customBackButton
+        
+        let customInfoButton = UIBarButtonItem(customView: infoButton)
+        navigationItem.rightBarButtonItem = customInfoButton
     }
     
     // MARK: Target Function
     private func setTarget() {
         backButton.addTarget(self,
                              action: #selector(backButtonTapped),
+                             for: .touchUpInside)
+        infoButton.addTarget(self,
+                             action: #selector(infoButtonTapped),
                              for: .touchUpInside)
     }
     
@@ -71,11 +161,29 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func infoButtonTapped() {
+        presentMakeGroupGuideViewController()
+    }
+    
     // MARK: Present Function
     private func presentMakeGroupGuideViewController() {
         let makeOrganizationGuideViewController = MakeOrganizationGuideViewController()
         makeOrganizationGuideViewController.modalPresentationStyle = .fullScreen
         navigationController?.present(makeOrganizationGuideViewController, animated: true)
+    }
+    
+    // MARK:
+    private func makeDuplicateButton() {
+        organizationNameTextFieldView.makeCheckForDuplicationButton()
+    }
+    
+    // MARK: Animation Function
+    private func showWarningToastView(duration: TimeInterval = 2.0) {
+        self.warningToastView.fadeIn()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            self.warningToastView.fadeOut()
+        }
     }
 }
 

@@ -19,11 +19,13 @@ final class HomeListViewController: BaseViewController {
     private let sortImageView = UIImageView()
     private let sortMoreView = MoreView()
     let mapButton = UIButton()
-    var listDummy: [HomePinDetailResponseDTO] = [
-        HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com"),
-        HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com"),
-        HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com"),HomePinDetailResponseDTO(id: 5, category: "PLAY", name: "생일파티", ownerName: "정채은", location: "가양역 9호선", date: "2024-05-23", startAt: "18:00:33", endAt: "23:00:33", maxParticipants: 20, curParticipants: 11, isParticipating: true, isOwner: false, chatLink: "naver.com")]
     
+    var listData = HomeListSearchResponseDTO(searchCount: 0, meetings: [])
+    var searchText: String = ""
+    var category: String = ""
+    var order: String = "NEW"
+    
+    private let refreshControl = UIRefreshControl()
     lazy var listCollectionView = UICollectionView(frame: .zero, collectionViewLayout: listCollectionViewFlowLayout)
     private let listCollectionViewFlowLayout = UICollectionViewFlowLayout()
     
@@ -33,6 +35,7 @@ final class HomeListViewController: BaseViewController {
         super.viewDidLoad()
         setAddTarget()
         setCollectionView()
+        getListData(text: searchText, category: category, order: order)
     }
     
     private func setCollectionView() {
@@ -47,6 +50,13 @@ final class HomeListViewController: BaseViewController {
     override func setStyle() {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .grayscaleG11
+        
+        refreshControl.do {
+            listCollectionView.refreshControl = $0
+            $0.addTarget(self,
+                         action: #selector(refreshCollection(refresh:)),
+                         for: .valueChanged)
+        }
         
         sortTitleLabel.do {
             $0.text = StringLiterals.Home.List.sortRecent
@@ -92,16 +102,17 @@ final class HomeListViewController: BaseViewController {
         listCollectionView.do {
             $0.backgroundColor = .clear
             $0.showsVerticalScrollIndicator = false
-            $0.contentInset = .init(top: 0, left: 24.adjustedWidth, bottom: 8, right: 24.adjustedWidth)
+            $0.contentInset = .init(top: 0, left: 0, bottom: 8, right: 0)
         }
         
         listCollectionViewFlowLayout.do {
             $0.scrollDirection = .vertical
             $0.minimumLineSpacing = 12.adjustedWidth
-            $0.itemSize = CGSize(
-                width: UIScreen.main.bounds.width - 48.adjustedWidth,
-                height: 351
-            )
+//            $0.itemSize = CGSize(
+//                width: UIScreen.main.bounds.width - 48.adjustedWidth,
+//                height: 351
+//                height: 147
+//            )
         }
     }
     
@@ -171,30 +182,171 @@ final class HomeListViewController: BaseViewController {
     }
     
     @objc private func recentButtonTapped() {
-        // Reload
+        order = "NEW"
+        getListData(text: searchText, category: category, order: order)
         sortTitleLabel.text = StringLiterals.Home.List.sortRecent
         sortMoreView.isHidden = true
     }
     
     @objc private func imminentButtonTapped() {
-        // Reload
+        order = "UPCOMING"
+        getListData(text: searchText, category: category, order: order)
         sortTitleLabel.text = StringLiterals.Home.List.sortImminent
         sortMoreView.isHidden = true
     }
+    
+    private func getListData(text: String, category: String, order: String) {
+        if KeychainHandler.shared.userGroup.count > 0 {
+            NetworkService.shared.homeService.listGet(
+                queryDTO: HomeListSearchRequestQueryDTO(
+                    q: text.isEmpty ? nil : text,
+                    category: category,
+                    teamId: KeychainHandler.shared.userGroup[0].id,
+                    order: order
+                )
+            ) { [weak self] response in
+                switch response {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    self?.listData = data
+                    self?.listCollectionView.reloadData()
+                    print(data)
+                default:
+                    print("실패")
+                    return
+                }
+            }
+        }
+    }
+    
+    // MARK: Objc Function
+    @objc private func refreshCollection(refresh: UIRefreshControl) {
+        refresh.beginRefreshing()
+        getListData(text: searchText, category: category, order: order)
+        refresh.endRefreshing()
+    }
 }
 
-extension HomeListViewController: UICollectionViewDelegate { }
+extension HomeListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        collectionView.performBatchUpdates(nil)
+        return true
+    }
+        
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        collectionView.performBatchUpdates(nil)
+        return true
+    }
+}
 
 extension HomeListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listDummy.count
+        return listData.meetings.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: HomeListCollectionViewCell.identifier,
             for: indexPath) as? HomeListCollectionViewCell else {return UICollectionViewCell()}
-        cell.homeMapDetailView.dataBind(data: listDummy[indexPath.row])
+        cell.homeListDetailView.dataBind(data: listData.meetings[indexPath.row])
+        cell.homeListDetailView.updateStyle()
+        
+        cell.homeListDetailView.participantsButtonAction = {
+            cell.showPopUp(
+                isParticipating: self.listData.meetings[indexPath.row].isParticipating,
+                isOwner: cell.homeListDetailView.isOwner
+            )
+        }
+        
+        cell.homeListDetailView.talkButtonAction = {
+//            self.connectTalkLink(urlString: self.homePinDetailList[indexPath.row].chatLink)
+        }
+        
+        cell.homeDetailPopUpView.participantionButtonAction = {
+//            self.meetingJoin(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
+//                guard let self else { return }
+//                if result {
+//                    cell.homeMapDetailView.isParticipating = true
+//                    bindDetailViewData(
+//                        id: markerId,
+//                        category: markerCategory
+//                    ) {}
+//                }
+//            }
+        }
+        
+        cell.homeDetailCancelPopUpView.cancelButtonAction = {
+//            if cell.homeMapDetailView.isOwner {
+//                self.meetingDelete(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
+//                    guard let self else { return }
+//                    if result {
+//                        bindDetailViewData(
+//                            id: markerId,
+//                            category: markerCategory
+//                        ) {}
+//                        mapsView.homeDetailCollectionView.isHidden = true
+//                        loadPinList()
+//                    }
+//                }
+//            } else {
+//                self.meetingCancel(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
+//                    guard let self else { return }
+//                    if result {
+//                        cell.homeMapDetailView.isParticipating = false
+//                        bindDetailViewData(
+//                            id: markerId,
+//                            category: markerCategory
+//                        ) {}
+//                    }
+//                }
+//            }
+        }
+        
+        cell.homeDetailPopUpView.dataBind(data: listData.meetings[indexPath.row])
+        
+        cell.memberButtonAction = {
+//            self.currentMeetingId = cell.homeMapDetailView.meetingId
+//            self.participantCountButtonTapped()
+        }
+        
+        cell.toggleButtonAction = {
+            self.listCollectionView.reloadData()
+        }
+        
         return cell
     }
+}
+
+extension HomeListViewController: UICollectionViewDelegateFlowLayout {
+    
+    // MARK: Dynamic height calculation
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeListCollectionViewCell.identifier, for: indexPath) as? HomeListCollectionViewCell else { return .zero }
+        
+//        cell.frame = CGRect(
+//            origin: .zero,
+//            size: CGSize(width: collectionView.bounds.width - 48, height: 1000)
+//        )
+//        cell.setNeedsLayout()
+//        cell.layoutIfNeeded()
+//        let size = cell.systemLayoutSizeFitting(
+//            CGSize(width: collectionView.bounds.width - 48,
+//                   height: cell.isExpand ? 351 : 147),
+////                   height: 351),
+////                   height: .greatestFiniteMagnitude),
+//            withHorizontalFittingPriority: .required,
+//            verticalFittingPriority: .defaultLow
+//        )
+//        let maxHeight: CGFloat = 1000 // 원하는 최대 높이 값으로 수정
+//        
+        let size = CGSize(width: collectionView.bounds.width - 48, height: cell.isExpand ? 351 : 147)
+        return size
+        }
 }

@@ -17,6 +17,8 @@ final class RecommendViewController: BaseViewController {
     private let titleLabel = UILabel()
     private let noRakingView = NoRankingView()
     private let rankingView = RankingView()
+    private var meetingCount: Int?
+    var rankingResponseDTO: [RankingResponseDTO.Location] = []
     
     // MARK: - Function
     // MARK: Life Cycle
@@ -24,6 +26,8 @@ final class RecommendViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setRegister()
+        rankingList()
+        uploadRanking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +55,7 @@ final class RecommendViewController: BaseViewController {
         let safeAreaHeight = view.safeAreaInsets.bottom
         
         self.view.addSubviews(titleLabel, 
-                              /*noRakingView,*/
+                              noRakingView,
                               rankingView)
         
         titleLabel.snp.makeConstraints {
@@ -65,11 +69,11 @@ final class RecommendViewController: BaseViewController {
             $0.bottom.equalTo(safeAreaHeight)
         }
         
-//        noRakingView.snp.makeConstraints {
-//            $0.top.equalTo(view.safeAreaInsets).offset(100)
-//            $0.leading.trailing.equalToSuperview()
-//            $0.bottom.equalTo(safeAreaHeight)
-//        }
+        noRakingView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).offset(100)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(safeAreaHeight)
+        }
     }
     
     // MARK: - Func
@@ -84,6 +88,49 @@ final class RecommendViewController: BaseViewController {
         self.rankingView.rankingCollectionView.register(RankingCollectionViewCell.self,
                                                                   forCellWithReuseIdentifier: RankingCollectionViewCell.identifier)
     }
+    
+    private func showRankingView() {
+        // rankingView를 보이도록 설정
+        rankingView.isHidden = false
+        noRakingView.isHidden = true
+    }
+    
+    private func showNoRankingView() {
+        // noRakingView를 보이도록 설정
+        rankingView.isHidden = true
+        noRakingView.isHidden = false
+    }
+    
+    private func uploadRanking() {
+        guard let meetingCount = meetingCount else {return}
+        if meetingCount >= 30 {
+            showRankingView()
+        } else {
+            showNoRankingView()
+        }
+    }
+    
+    func rankingList() {
+        NetworkService.shared.rankingService.ranking(teamId: KeychainHandler.shared.userGroup[0].id){ [weak self]
+            response in
+            switch response {
+            case .success(let data):
+                guard let rankingList = data.data else {
+                    print("No data in response.")
+                    return
+                }
+                self?.meetingCount = rankingList.meetingCount
+                self?.rankingResponseDTO = rankingList.locations
+                
+                DispatchQueue.main.async {
+                    self?.rankingView.rankingCollectionView.reloadData()
+                }
+            default:
+                print("실패")
+                return
+            }
+        }
+    }
 }
 
 // MARK: - extension
@@ -93,18 +140,15 @@ extension RecommendViewController: UICollectionViewDelegate {}
 // MARK: UICollectionViewDataSource
 extension RecommendViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return rankingCollectionList.count
+        return rankingResponseDTO.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RankingCollectionViewCell.identifier,
                                                             for: indexPath) as? RankingCollectionViewCell else {return UICollectionViewCell()}
-        cell.bindData(data: rankingCollectionList[indexPath.row], ranking: indexPath.row + 1)
+        let rankingData = rankingResponseDTO[indexPath.item]
+        cell.bindData(data: rankingData, ranking: indexPath.row + 1)
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        rankingView.rankingCollectionView.reloadData()
     }
 }
 
@@ -120,7 +164,7 @@ extension RecommendViewController: UICollectionViewDelegateFlowLayout {
     
     // UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let labelHeight = calculateDynamicHeight(placeNameText: rankingCollectionList[indexPath.row].name)
+        let labelHeight = calculateDynamicHeight(placeNameText: rankingResponseDTO[indexPath.row].name)
         return CGSize(width: 341.adjusted, height: labelHeight + 96)
     }
     

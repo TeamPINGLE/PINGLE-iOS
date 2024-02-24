@@ -14,6 +14,7 @@ protocol OnboardingServiceProtocol {
     func organizationDetail(teamId: Int, completion: @escaping (NetworkResult<BaseResponse<OrganizationDetailResponseDTO>>) -> Void)
     func enterInviteCode(teamId: Int, bodyDTO: EnterInviteCodeRequestBodyDTO, completion: @escaping (NetworkResult<BaseResponse<EnterInviteCodeResponseDTO>>) -> Void)
     func postRefreshToken(completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>) -> Void)
+    func checkName(parameterDTO: CheckNameRequestParameterDTO, completion: @escaping (NetworkResult<BaseResponse<CheckNameResponseDTO>>) -> Void)
 }
 
 final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingServiceProtocol {
@@ -40,5 +41,8 @@ final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingSer
     }
     func postRefreshToken(completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>) -> Void) {
         fetchData(target: .postRefreshToken, responseData: BaseResponse<TokenRefreshResponseDTO>.self, completion: completion)
+    }
+    func checkName(parameterDTO: CheckNameRequestParameterDTO, completion: @escaping (NetworkResult<BaseResponse<CheckNameResponseDTO>>) -> Void) {
+        fetchData(target: .checkName(parameterDTO), responseData: BaseResponse<CheckNameResponseDTO>.self, completion: completion)
     }
 }

@@ -147,6 +147,9 @@
 		F19CE2C02B5417C500B8F9D0 /* MyOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CE2BF2B5417C500B8F9D0 /* MyOrganizationViewController.swift */; };
 		F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */; };
 		F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */; };
+		F1D452722B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452712B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift */; };
+		F1D452742B89BB6000D8F50F /* CheckNameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452732B89BB6000D8F50F /* CheckNameResponseDTO.swift */; };
+		F1D452762B89CD2D00D8F50F /* KeywordSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452752B89CD2D00D8F50F /* KeywordSelectionViewController.swift */; };
 		F1DFF2892B7B6E86000AC100 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */; };
 		F1DFF28C2B7B7449000AC100 /* ManualCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */; };
 		F1DFF28E2B83497F000AC100 /* ManualDummyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */; };
@@ -299,6 +302,9 @@
 		F19CE2BF2B5417C500B8F9D0 /* MyOrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrganizationViewController.swift; sourceTree = "<group>"; };
 		F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationResponseDTO.swift; sourceTree = "<group>"; };
 		F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationRequestQueryDTO.swift; sourceTree = "<group>"; };
+		F1D452712B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNameRequestParameterDTO.swift; sourceTree = "<group>"; };
+		F1D452732B89BB6000D8F50F /* CheckNameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNameResponseDTO.swift; sourceTree = "<group>"; };
+		F1D452752B89CD2D00D8F50F /* KeywordSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSelectionViewController.swift; sourceTree = "<group>"; };
 		F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualDummyDTO.swift; sourceTree = "<group>"; };
@@ -685,6 +691,7 @@
 				F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */,
 				F1DFF2902B849D65000AC100 /* EnterOrganizationInfoViewController.swift */,
 				F1DFF2922B849E62000AC100 /* MakeOrganizationGuideViewController.swift */,
+				F1D452752B89CD2D00D8F50F /* KeywordSelectionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1059,6 +1066,7 @@
 				F14F3C732B4D36BB0049A9EE /* LoginRequestBodyDTO.swift */,
 				F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */,
 				F125A1832B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift */,
+				F1D452712B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1073,6 +1081,7 @@
 				F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */,
 				F12181C02B5110F500D22F55 /* TokenRefreshResponseDTO.swift */,
 				F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */,
+				F1D452732B89BB6000D8F50F /* CheckNameResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1307,11 +1316,13 @@
 				E5FA3EBC2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift in Sources */,
 				F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */,
 				F1DFF28C2B7B7449000AC100 /* ManualCollectionViewCell.swift in Sources */,
+				F1D452722B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift in Sources */,
 				E5A651EE2B4ADE6000676ED0 /* PlaceSelectionViewController.swift in Sources */,
 				C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */,
 				C30D1E112B57033800879258 /* MyPINGLECardView.swift in Sources */,
 				F12181BF2B510EFB00D22F55 /* PINGLERequestInterceptor.swift in Sources */,
 				E542B6802B83F2B600B50B95 /* RankingRespnseDTO.swift in Sources */,
+				F1D452762B89CD2D00D8F50F /* KeywordSelectionViewController.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
 				E542B6822B840FD700B50B95 /* RankingView.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
@@ -1384,6 +1395,7 @@
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,
 				C3BCA86F2B57D0FC003C6996 /* MoreView.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
+				F1D452742B89BB6000D8F50F /* CheckNameResponseDTO.swift in Sources */,
 				C30D1E082B56FB7300879258 /* SoonViewController.swift in Sources */,
 				E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */,
 				E542B6842B84F5CA00B50B95 /* FixView.swift in Sources */,

@@ -25,6 +25,7 @@ enum StringLiterals {
             static let makeOrganization = "새로운 단체를\n등록하고 싶어요"
             static let requestOrganization = "단체를 직접 추가해주세요"
             static let skipButtonTitle = "건너뛰기"
+            static let duplicationCheck = "중복 확인"
         }
         
         enum ExplainTitle {
@@ -53,6 +54,10 @@ enum StringLiterals {
             static let founderNoticeSubTitle = "해당 단체의 초대코드 및 구성원을\n관리할 책임자가 없어지기 때문이에요."
             static let founderNoticeExpTitle = "탈퇴를 원할 경우, 핑글에게 문의하기를 통해\n개설자를 변경해주셔야 해요."
             static let inviteCodeNoticeTitle = "초대 코드가 유출되었다면\n핑글에게 문의 후\n재발급할 수 있어요"
+            static let organizationNameTextFieldTitle = "단체명"
+            static let representativeEmailTextFieldTitle = "대표 이메일"
+            static let EnterOrganizationInfoTitle = "새로 개설할 단체에\n대해 알려주세요"
+            static let emailInfoMessage = "해당 이메일은 초대 코드 공유 및 단체 관리를 위해 사용될 예정입니다"
         }
         
         enum NavigationTitle {
@@ -63,6 +68,8 @@ enum StringLiterals {
         enum SearchBarPlaceholder {
             static let searchOrganizationPlaceholder = "단체 이름을 검색해보세요"
             static let inviteCodePlaceholder = "초대 코드를 입력해주세요"
+            static let organizationNamePlaceholder = "단체명을 입력해주세요"
+            static let representativeEmailPlaceholder = "ex. 단체 공식 이메일, 개설자님의 이메일"
         }
     }
     
@@ -263,5 +270,8 @@ enum StringLiterals {
     enum ToastView {
         static let wrongCode = "초대 코드를 다시 확인해주세요!"
         static let rejectDelete = "단체 개설자는 탈퇴할 수 없어요!"
+        static let possibleGroup = "등록 가능한 단체명입니다."
+        static let impossibleGroup = "같은 이름을 가진 단체가 이미 존재합니다!"
+        static let impossibleEmail = "유효하지 않은 이메일입니다!"
     }
 }

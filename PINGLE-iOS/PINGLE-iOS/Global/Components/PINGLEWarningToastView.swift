@@ -61,4 +61,18 @@ final class PINGLEWarningToastView: BaseView {
             $0.leading.equalTo(warningImageView.snp.trailing).offset(8.adjusted)
         }
     }
+    
+    func changeWarningMessage(message: String, possible: Bool) {
+        if possible {
+            self.backgroundColor = .white
+            warningImageView.image = UIImage(resource: .icCheckGray)
+            warningLabel.textColor = .black
+        } else {
+            self.backgroundColor = .systemRedAlert
+            warningImageView.image = UIImage(resource: .icNotice)
+            warningLabel.textColor = .white
+        }
+        
+        warningLabel.text = message
+    }
 }

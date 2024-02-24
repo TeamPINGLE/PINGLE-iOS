@@ -12,7 +12,6 @@ import Then
 
 final class HomeListViewController: BaseViewController {
     // TODO: 카드 접기 UI 다시 확인
-    // TODO: 셀 버튼마다 로직 연결
     
     // MARK: - Variables
     // MARK: Component
@@ -27,6 +26,7 @@ final class HomeListViewController: BaseViewController {
     var searchText: String = ""
     var category: String = ""
     var order: String = "NEW"
+    var currentMeetingId: Int = 0
     
     private let refreshControl = UIRefreshControl()
     lazy var listCollectionView = UICollectionView(frame: .zero, collectionViewLayout: listCollectionViewFlowLayout)
@@ -213,7 +213,7 @@ final class HomeListViewController: BaseViewController {
         sortMoreView.isHidden = true
     }
     
-    private func getListData(text: String, category: String, order: String) {
+    func getListData(text: String, category: String, order: String) {
         if KeychainHandler.shared.userGroup.count > 0 {
             NetworkService.shared.homeService.listGet(
                 queryDTO: HomeListSearchRequestQueryDTO(
@@ -243,6 +243,82 @@ final class HomeListViewController: BaseViewController {
         refresh.beginRefreshing()
         getListData(text: searchText, category: category, order: order)
         refresh.endRefreshing()
+    }
+    
+    private func connectTalkLink(urlString: String) {
+        print("대화하기 버튼 탭")
+        guard let url = URL(string: urlString) else {
+            print("url error")
+            return
+        }
+        
+        if ["http", "https"].contains(url.scheme?.lowercased() ?? "") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            guard let chatURL = URL(string: "https://" + urlString) else {
+                print("chatURL error")
+                return
+            }
+            UIApplication.shared.open(chatURL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    private func meetingJoin(
+        meetingId: Int,
+        completion: @escaping (Bool) -> Void
+    ) {
+        NetworkService.shared.homeService.meetingJoin(meetingId: meetingId) { response in
+            switch response {
+            case .success:
+                print("신청 완료")
+                completion(true)
+            default:
+                print("실패")
+                completion(false)
+                return
+            }
+        }
+    }
+    
+    private func meetingCancel(
+        meetingId: Int,
+        completion: @escaping (Bool) -> Void
+    ) {
+        NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
+            switch response {
+            case .success:
+                completion(true)
+            default:
+                print("실패")
+                completion(false)
+                return
+            }
+        }
+    }
+    
+    private func meetingDelete(
+        meetingId: Int,
+        completion: @escaping (Bool) -> Void
+    ) {
+        NetworkService.shared.homeService.meetingDelete(meetingId: meetingId) { response in
+            switch response {
+            case .success:
+                completion(true)
+            default:
+                print("실패")
+                completion(false)
+                return
+            }
+        }
+    }
+    
+    private func participantCountButtonTapped() {
+        let participantsListViewController = ParticipantsListViewController()
+        participantsListViewController.meetingIdentifier = currentMeetingId
+        navigationController?.pushViewController(
+            participantsListViewController,
+            animated: true
+        )
     }
 }
 
@@ -280,54 +356,44 @@ extension HomeListViewController: UICollectionViewDataSource {
         }
         
         cell.homeListDetailView.talkButtonAction = {
-//            self.connectTalkLink(urlString: self.homePinDetailList[indexPath.row].chatLink)
+            self.connectTalkLink(urlString: self.listData.meetings[indexPath.row].chatLink)
         }
         
         cell.homeDetailPopUpView.participantionButtonAction = {
-//            self.meetingJoin(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
-//                guard let self else { return }
-//                if result {
-//                    cell.homeMapDetailView.isParticipating = true
-//                    bindDetailViewData(
-//                        id: markerId,
-//                        category: markerCategory
-//                    ) {}
-//                }
-//            }
+            self.meetingJoin(meetingId: self.listData.meetings[indexPath.row].id) { [weak self] result in
+                guard let self else { return }
+                if result {
+                    cell.homeListDetailView.isParticipating = true
+                    getListData(text: searchText, category: category, order: order)
+                }
+            }
         }
         
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
-//            if cell.homeMapDetailView.isOwner {
-//                self.meetingDelete(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
-//                    guard let self else { return }
-//                    if result {
-//                        bindDetailViewData(
-//                            id: markerId,
-//                            category: markerCategory
-//                        ) {}
-//                        mapsView.homeDetailCollectionView.isHidden = true
-//                        loadPinList()
-//                    }
-//                }
-//            } else {
-//                self.meetingCancel(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
-//                    guard let self else { return }
-//                    if result {
-//                        cell.homeMapDetailView.isParticipating = false
-//                        bindDetailViewData(
-//                            id: markerId,
-//                            category: markerCategory
-//                        ) {}
-//                    }
-//                }
-//            }
+            if cell.homeListDetailView.isOwner {
+                self.meetingDelete(meetingId: self.listData.meetings[indexPath.row].id) { [weak self] result in
+                    guard let self else { return }
+                    if result {
+                        getListData(text: searchText, category: category, order: order)
+                    }
+                }
+            } else {
+                self.meetingCancel(meetingId: self.listData.meetings[indexPath.row].id) { [weak self] result in
+                    guard let self else { return }
+                    if result {
+                        cell.homeListDetailView.isParticipating = false
+                        getListData(text: searchText, category: category, order: order)
+                    }
+                }
+            }
+            self.listCollectionView.reloadData()
         }
         
         cell.homeDetailPopUpView.dataBind(data: listData.meetings[indexPath.row])
         
         cell.memberButtonAction = {
-//            self.currentMeetingId = cell.homeMapDetailView.meetingId
-//            self.participantCountButtonTapped()
+            self.currentMeetingId = cell.homeListDetailView.meetingId
+            self.participantCountButtonTapped()
         }
         
         cell.toggleButtonAction = {

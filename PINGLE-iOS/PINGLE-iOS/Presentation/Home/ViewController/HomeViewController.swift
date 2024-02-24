@@ -135,6 +135,7 @@ final class HomeViewController: BaseViewController {
                 }
             }
             homeMapViewController.markerCategory = sender.chipStatusString
+            homeListViewController.category = sender.chipStatusString
         } else {
             homeMapViewController.pinList(category: "") { [weak self] result in
                 guard let self else { return }
@@ -143,6 +144,7 @@ final class HomeViewController: BaseViewController {
                 }
             }
             homeMapViewController.markerCategory = ""
+            homeListViewController.category = ""
         }
         
         /// 태그 하나만 선택할 수 있도록
@@ -156,5 +158,10 @@ final class HomeViewController: BaseViewController {
         }
         
         homeMapViewController.hideSelectedPin()
+        homeListViewController.getListData(
+            text: homeListViewController.searchText,
+            category: homeListViewController.category,
+            order: homeListViewController.order
+        )
     }
 }

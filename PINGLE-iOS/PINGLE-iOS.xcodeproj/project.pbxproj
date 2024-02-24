@@ -82,6 +82,8 @@
 		C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */; };
 		C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */; };
 		C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC304E2B43E20600276E00 /* HomeMapView.swift */; };
+		C3F095AC2B8A433A009A0819 /* HomeListSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F095AB2B8A433A009A0819 /* HomeListSearchRequestQueryDTO.swift */; };
+		C3F095AE2B8A443C009A0819 /* HomeListSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F095AD2B8A443C009A0819 /* HomeListSearchResponseDTO.swift */; };
 		C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */; };
 		E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */; };
 		E50333632B50A64F0005AC0E /* MeetingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333622B50A64F0005AC0E /* MeetingTarget.swift */; };
@@ -226,6 +228,8 @@
 		C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewController.swift; sourceTree = "<group>"; };
 		C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCancelPopUpView.swift; sourceTree = "<group>"; };
 		C3EC304E2B43E20600276E00 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
+		C3F095AB2B8A433A009A0819 /* HomeListSearchRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListSearchRequestQueryDTO.swift; sourceTree = "<group>"; };
+		C3F095AD2B8A443C009A0819 /* HomeListSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListSearchResponseDTO.swift; sourceTree = "<group>"; };
 		C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMeetingRequestBodyDTO.swift; sourceTree = "<group>"; };
 		E50333622B50A64F0005AC0E /* MeetingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTarget.swift; sourceTree = "<group>"; };
@@ -811,6 +815,7 @@
 			isa = PBXGroup;
 			children = (
 				C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */,
+				C3F095AD2B8A443C009A0819 /* HomeListSearchResponseDTO.swift */,
 				C385453D2B4857D30040E60D /* HomePinDetailResponseDTO.swift */,
 				E5CA99722B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift */,
 			);
@@ -821,6 +826,7 @@
 			isa = PBXGroup;
 			children = (
 				C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */,
+				C3F095AB2B8A433A009A0819 /* HomeListSearchRequestQueryDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1264,6 +1270,7 @@
 				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				F14F44AD2B50413400871E5A /* ProfileTarget.swift in Sources */,
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
+				C3F095AE2B8A443C009A0819 /* HomeListSearchResponseDTO.swift in Sources */,
 				C30D1E0E2B5700DB00879258 /* MyPINGLECollectionViewCell.swift in Sources */,
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
 				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,
@@ -1309,6 +1316,7 @@
 				F1239BD92B486B230072A02A /* EntranceCompletedViewController.swift in Sources */,
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
 				C30C91952B4CED93004EE026 /* BaseResponse.swift in Sources */,
+				C3F095AC2B8A433A009A0819 /* HomeListSearchRequestQueryDTO.swift in Sources */,
 				E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */,
 				E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */,
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,

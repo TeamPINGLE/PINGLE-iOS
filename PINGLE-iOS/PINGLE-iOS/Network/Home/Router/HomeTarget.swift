@@ -16,6 +16,7 @@ enum HomeTarget {
     case meetingCancel(_ meetingId: Int)
     case participantsList(_ meetingId: Int)
     case meetingDelete(_ meetingId: Int)
+    case listGet(_ queryDTO: HomeListSearchRequestQueryDTO)
 }
 
 extension HomeTarget: TargetType {
@@ -32,6 +33,8 @@ extension HomeTarget: TargetType {
         case .participantsList:
           return .authorization
         case .meetingDelete:
+            return .authorization
+        case .listGet:
             return .authorization
         }
     }
@@ -50,6 +53,8 @@ extension HomeTarget: TargetType {
             return .hasToken
         case .meetingDelete:
             return .hasToken
+        case .listGet:
+            return .hasToken
         }
     }
     
@@ -67,6 +72,8 @@ extension HomeTarget: TargetType {
             return .get
         case .meetingDelete:
             return .delete
+        case .listGet:
+            return .get
         }
     }
     
@@ -84,6 +91,8 @@ extension HomeTarget: TargetType {
             return "/v1/meetings/\(meetingId)/participants"
         case .meetingDelete(let meetingId):
             return "/v1/meetings/\(meetingId)"
+        case .listGet(_):
+            return "/v1/meetings/search"
         }
     }
     
@@ -101,6 +110,8 @@ extension HomeTarget: TargetType {
             return .requestPlain
         case .meetingDelete:
             return .requestPlain
+        case .listGet(let quertDTO):
+            return .requestQuery(quertDTO)
         }
     }
 }

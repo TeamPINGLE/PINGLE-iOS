@@ -28,6 +28,10 @@ final class RankingView: BaseView {
         rankingCollectionView.do {
             $0.backgroundColor = .clear
             $0.showsVerticalScrollIndicator = false
+            $0.contentInset = UIEdgeInsets(top: 0,
+                                           left: 0,
+                                           bottom: 32,
+                                           right: 0)
         }
     }
     
@@ -36,6 +40,7 @@ final class RankingView: BaseView {
 
         rankingCollectionView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(17.adjusted)        }
+            $0.leading.trailing.equalToSuperview().inset(17.adjusted)
+        }
     }
 }

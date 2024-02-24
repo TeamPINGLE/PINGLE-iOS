@@ -72,7 +72,7 @@ class RankingCollectionViewCell: UICollectionViewCell {
         }
         
         currentDate.do {
-            $0.text = StringLiterals.Recommend.latestDate
+            $0.text = " "
             $0.font = .captionCapMed12
             $0.textColor = .grayscaleG03
         }
@@ -88,9 +88,8 @@ class RankingCollectionViewCell: UICollectionViewCell {
         rankingPinView.addSubview(meetingNumber)
         
         ranking.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16)
-            //레이아웃 확인 필요
-            $0.leading.equalToSuperview().inset(6.adjusted)
+            $0.top.equalToSuperview().inset(19)
+            $0.leading.equalToSuperview().inset(7)
         }
         
         rankingView.snp.makeConstraints {
@@ -109,29 +108,51 @@ class RankingCollectionViewCell: UICollectionViewCell {
         }
         
         placeName.snp.makeConstraints {
-            $0.top.equalTo(rankingPinView.snp.bottom).offset(4)
+            $0.top.equalTo(rankingPinView.snp.bottom).inset(4)
             $0.bottom.equalToSuperview().inset(37)
             $0.leading.trailing.equalToSuperview().inset(20.adjusted)
             $0.width.equalTo(270.adjusted)
         }
         
         currentVisit.snp.makeConstraints {
-            $0.top.equalTo(placeName.snp.bottom).offset(4)
+            $0.top.equalTo(placeName.snp.bottom).inset(4)
             $0.bottom.equalToSuperview().inset(16)
             $0.leading.equalToSuperview().inset(20.adjusted)
         }
         
         currentDate.snp.makeConstraints {
-            $0.top.equalTo(placeName.snp.bottom).offset(4)
+            $0.top.equalTo(placeName.snp.bottom).inset(4)
             $0.bottom.equalToSuperview().inset(16)
             $0.leading.equalTo(currentVisit.snp.trailing).offset(5.adjusted)
         }
     }
     
     // MARK: Custom Function
-    func bindData(data: RankingRespnseDTO, ranking: Int) {
+    func bindData(data: RankingResponseDTO.Location, ranking: Int) {
         self.ranking.text = "\(ranking)"
         placeName.text = data.name
         meetingNumber.text = "\(data.locationCount)"
+        currentDate.text = convertToDateStr(dateComponents: data.latestVisitedDate)
+    }
+}
+
+func convertToDateStr(dateComponents: [Int]) -> String? {
+    guard dateComponents.count == 6 else {
+        return nil
+    }
+
+    let year = dateComponents[0]
+    let month = dateComponents[1]
+    let day = dateComponents[2]
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let date = dateFormatter.date(from: "\(year)-\(month)-\(day)")
+
+    if let date = date {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: date)
+    } else {
+        return nil
     }
 }

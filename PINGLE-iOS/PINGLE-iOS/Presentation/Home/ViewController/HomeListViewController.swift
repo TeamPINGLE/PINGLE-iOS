@@ -11,6 +11,8 @@ import SnapKit
 import Then
 
 final class HomeListViewController: BaseViewController {
+    // TODO: 카드 접기 UI 다시 확인
+    // TODO: 셀 버튼마다 로직 연결
     
     // MARK: - Variables
     // MARK: Component
@@ -19,6 +21,7 @@ final class HomeListViewController: BaseViewController {
     private let sortImageView = UIImageView()
     private let sortMoreView = MoreView()
     let mapButton = UIButton()
+    let emptyLabel = UILabel()
     
     var listData = HomeListSearchResponseDTO(searchCount: 0, meetings: [])
     var searchText: String = ""
@@ -50,6 +53,15 @@ final class HomeListViewController: BaseViewController {
     override func setStyle() {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .grayscaleG11
+        
+        emptyLabel.do {
+            $0.text = StringLiterals.Home.List.emptyList
+            $0.font = .subtitleSubSemi18
+            $0.textColor = .grayscaleG06
+            $0.setLineSpacing(spacing: 7)
+            $0.numberOfLines = 0
+            $0.isHidden = true
+        }
         
         refreshControl.do {
             listCollectionView.refreshControl = $0
@@ -121,7 +133,8 @@ final class HomeListViewController: BaseViewController {
         view.addSubviews(sortButton,
                          listCollectionView,
                          mapButton,
-                         sortMoreView)
+                         sortMoreView,
+                         emptyLabel)
         
         sortButton.addSubviews(sortTitleLabel,
                                sortImageView)
@@ -156,6 +169,11 @@ final class HomeListViewController: BaseViewController {
             $0.width.height.equalTo(50.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview().inset(30.adjustedHeight)
+        }
+        
+        emptyLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(sortButton.snp.bottom).offset(163.adjustedHeight)
         }
     }
     
@@ -209,6 +227,7 @@ final class HomeListViewController: BaseViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
                     self?.listData = data
+                    self?.emptyLabel.isHidden = data.meetings.isEmpty ? false : true
                     self?.listCollectionView.reloadData()
                     print(data)
                 default:

@@ -7,10 +7,14 @@
 
 import UIKit
 
+import Alamofire
 import SnapKit
 import Then
 
 final class EnterOrganizationInfoViewController: BaseViewController {
+    
+    // MARK: Variables
+    private var teamName: String = ""
     
     // MARK: Property
     private let backButton = UIButton()
@@ -201,15 +205,16 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         /// 문자 사이의 연속된 공백을 제거한다.
         let replacedText = trimmedText.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
         organizationNameTextFieldView.searchTextField.text = replacedText
-        bottomCTAButton.activateButton()
-        showWarningToastView(message: .possibleName)
+        
+        getCheckName(parameterDTO: CheckNameRequestParameterDTO(name: replacedText))
     }
     
     @objc func bottomCTAButtonTapped() {
         let text = representativeEmailTextFieldView.searchTextField.text ?? ""
         
         if text.isValidEmail() {
-            
+            let keywordSelectionViewController = KeywordSelectionViewController()
+            navigationController?.pushViewController(keywordSelectionViewController, animated: true)
         } else {
             showWarningToastView(message: .impossibleEmail)
         }
@@ -243,6 +248,35 @@ final class EnterOrganizationInfoViewController: BaseViewController {
             self.warningToastView.fadeOut()
         }
     }
+    
+    // MARK: Network Function
+    func getCheckName(parameterDTO: CheckNameRequestParameterDTO) {
+        NetworkService.shared.onboardingService.checkName(parameterDTO: parameterDTO) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                if data.result {
+                    /// 사용 가능한 팀명일 경우 중복확인 버튼 비활성화와 사용 가능 토스트 뷰를 띄우고 사용가능한 이름을 저장한다.
+                    organizationNameTextFieldView.impossibleDuplicationButton()
+                    showWarningToastView(message: .possibleName)
+                    teamName = parameterDTO.name
+                    
+                    /// 사용가능한 팀명이 있는 경우와 email이 하나라도 입력되었을 경우에 다음으로 버튼을 활성화한다.
+                    let text = representativeEmailTextFieldView.searchTextField.text ?? ""
+                    if !text.isEmpty && !teamName.isEmpty {
+                        bottomCTAButton.activateButton()
+                    }
+                } else {
+                    /// 사용할 수 없는 팀명일 경우 오류메시지를 출력한다.
+                    showWarningToastView(message: .impossibleName)
+                }
+            default:
+                /// 서버 오류일 경우 경고 메시지를 출력한다.
+                showWarningToastView(message: .impossibleName)
+            }
+        }
+    }
 }
 
 // MARK: - extension
@@ -258,6 +292,9 @@ extension EnterOrganizationInfoViewController: UITextFieldDelegate {
         let text = textField.text ?? ""
         
         if organizationNameTextFieldView.searchTextField == textField {
+            /// 가능한 팀명을 수정했기 때문에 teamName과 다음으로 버튼 비활성화 한 후, 공백으로만 이루어져있는지 확인하여 중복검사 버튼을 활성화한다.
+            teamName = ""
+            bottomCTAButton.disabledButton()
             let organizationNameText = text.trimmingCharacters(in: .whitespacesAndNewlines)
             
             /// 공백만 입력했을 경우 중복확인 버튼 비활성화, 문자가 있을 경우 중복확인 버튼 활성화
@@ -267,7 +304,12 @@ extension EnterOrganizationInfoViewController: UITextFieldDelegate {
                 organizationNameTextFieldView.possibleDuplicationButton()
             }
         } else if representativeEmailTextFieldView.searchTextField == textField {
-            
+            /// 이메일 입력 칸이 비어있거나 사용가능한 티명이 비어있을 경우에 CTA버튼 비활성화한다. 그 외의 경우는 CTA 버튼 활성화한다.
+            if text.isEmpty || teamName.isEmpty {
+                bottomCTAButton.disabledButton()
+            } else {
+                bottomCTAButton.activateButton()
+            }
         }
     }
 }

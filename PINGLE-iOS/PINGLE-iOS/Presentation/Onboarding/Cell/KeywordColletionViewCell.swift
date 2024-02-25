@@ -53,4 +53,15 @@ final class KeywordColletionViewCell: UICollectionViewCell {
     func bindData(data: keywordSample) {
         keywordTitleLabel.text = data.value
     }
+    
+    /// cell이 선택되었을 때 색상이 변한다.
+    func changeCellColor(selected: Bool) {
+        if selected {
+            keywordTitleLabel.textColor = .black
+            self.backgroundColor = .mainPingleGreen
+        } else {
+            keywordTitleLabel.textColor = .grayscaleG02
+            self.backgroundColor = .grayscaleG09
+        }
+    }
 }

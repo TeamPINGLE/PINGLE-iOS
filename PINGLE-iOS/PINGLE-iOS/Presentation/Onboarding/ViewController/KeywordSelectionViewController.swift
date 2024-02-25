@@ -31,6 +31,9 @@ final class KeywordSelectionViewController: BaseViewController {
         keywordSample(name: "CIRCLE", value: "기타"),
     ]
     
+    // MARK: Variables
+    private var selectIndexPathRow: Int?
+    
     // MARK: Property
     private let backButton = UIButton()
     private let infoButton = UIButton()
@@ -80,6 +83,7 @@ final class KeywordSelectionViewController: BaseViewController {
             $0.backgroundColor = .grayscaleG11
             $0.showsHorizontalScrollIndicator = false
             $0.showsVerticalScrollIndicator = false
+            $0.allowsMultipleSelection = false
             
             let layout = LeftAlignedCollectionViewFlowLayout()
             layout.minimumLineSpacing = 16
@@ -151,6 +155,9 @@ final class KeywordSelectionViewController: BaseViewController {
         infoButton.addTarget(self,
                              action: #selector(infoButtonTapped),
                              for: .touchUpInside)
+        bottomCTAButton.addTarget(self,
+                                  action: #selector(bottomCTAButtonTapped),
+                                  for: .touchUpInside)
     }
     
     // MARK: Objc Function
@@ -160,6 +167,11 @@ final class KeywordSelectionViewController: BaseViewController {
     
     @objc func infoButtonTapped() {
         presentMakeGroupGuideViewController()
+    }
+    
+    @objc func bottomCTAButtonTapped() {
+        let checkOrganizationViewController = CheckOrganizationViewController()
+        navigationController?.pushViewController(checkOrganizationViewController, animated: true)
     }
     
     // MARK: Present Function
@@ -178,7 +190,21 @@ extension KeywordSelectionViewController: UIGestureRecognizerDelegate {
 }
 
 // MARK: UICollectionViewDelegate
-extension KeywordSelectionViewController: UICollectionViewDelegate {}
+extension KeywordSelectionViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? KeywordColletionViewCell {
+            cell.changeCellColor(selected: true)
+            selectIndexPathRow = indexPath.row
+            bottomCTAButton.activateButton()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? KeywordColletionViewCell {
+            cell.changeCellColor(selected: false)
+        }
+    }
+}
 
 // MARK: UICollectionViewDataSource
 extension KeywordSelectionViewController: UICollectionViewDataSource {

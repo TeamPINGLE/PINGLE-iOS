@@ -5,7 +5,7 @@
 //  Created by 정채은 on 1/6/24.
 //
 
-import Foundation
+import UIKit
 
 extension String {
     func convertToKoreanDate() -> String? {
@@ -58,5 +58,11 @@ extension String {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: self)
+    }
+    
+    func width(withFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.width
     }
 }

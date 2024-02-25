@@ -58,6 +58,7 @@ enum StringLiterals {
             static let representativeEmailTextFieldTitle = "대표 이메일"
             static let EnterOrganizationInfoTitle = "새로 개설할 단체에\n대해 알려주세요"
             static let emailInfoMessage = "해당 이메일은 초대 코드 공유 및 단체 관리를 위해 사용될 예정입니다"
+            static let keyworkSelectTitle = "단체를 설명하는\n키워드를 선택해주세요"
         }
         
         enum NavigationTitle {

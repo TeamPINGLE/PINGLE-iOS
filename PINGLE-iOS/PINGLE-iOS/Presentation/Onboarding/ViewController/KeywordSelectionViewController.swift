@@ -222,7 +222,9 @@ extension KeywordSelectionViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? KeywordColletionViewCell else { return UICollectionViewCell() }
         
-        cell.bindData(data: keywordList?[indexPath.row] ?? KeywordResponseDTO(name: "error", value: "error"))
+        if let keyword = keywordList?[indexPath.row] {
+            cell.bindData(data: keyword)
+        }
         
         return cell
     }

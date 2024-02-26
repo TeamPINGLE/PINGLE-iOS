@@ -50,7 +50,7 @@ final class KeywordColletionViewCell: UICollectionViewCell {
         }
     }
     
-    func bindData(data: keywordSample) {
+    func bindData(data: KeywordResponseDTO) {
         keywordTitleLabel.text = data.value
     }
     

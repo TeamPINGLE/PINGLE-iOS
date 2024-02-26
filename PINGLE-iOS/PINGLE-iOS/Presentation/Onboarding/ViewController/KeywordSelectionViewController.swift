@@ -10,29 +10,11 @@ import UIKit
 import SnapKit
 import Then
 
-struct keywordSample {
-    let name: String
-    let value: String
-}
-
 final class KeywordSelectionViewController: BaseViewController {
-    
-    let keyworkdList: [keywordSample] = [
-        keywordSample(name: "CIRCLE", value: "연합동아리"),
-        keywordSample(name: "CIRCLE", value: "교내동아리"),
-        keywordSample(name: "CIRCLE", value: "학생회"),
-        keywordSample(name: "CIRCLE", value: "대학교"),
-        keywordSample(name: "CIRCLE", value: "고등학교"),
-        keywordSample(name: "CIRCLE", value: "중학교"),
-        keywordSample(name: "CIRCLE", value: "강의"),
-        keywordSample(name: "CIRCLE", value: "스터디"),
-        keywordSample(name: "CIRCLE", value: "사모임"),
-        keywordSample(name: "CIRCLE", value: "동호회"),
-        keywordSample(name: "CIRCLE", value: "기타"),
-    ]
     
     // MARK: Variables
     private var selectIndexPathRow: Int?
+    private var keywordList: [KeywordResponseDTO]?
     
     // MARK: Property
     private let backButton = UIButton()
@@ -51,6 +33,7 @@ final class KeywordSelectionViewController: BaseViewController {
         setNavigation()
         setRegister()
         setTarget()
+        getKeyword()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -180,6 +163,21 @@ final class KeywordSelectionViewController: BaseViewController {
         makeOrganizationGuideViewController.modalPresentationStyle = .fullScreen
         navigationController?.present(makeOrganizationGuideViewController, animated: true)
     }
+    
+    // MARK: Network Function
+    func getKeyword() {
+        NetworkService.shared.onboardingService.keyword() { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                keywordList = data
+                keywordColletionView.reloadData()
+            default:
+                print("error")
+            }
+        }
+    }
 }
 
 
@@ -215,7 +213,7 @@ extension KeywordSelectionViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDataSource
 extension KeywordSelectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return keyworkdList.count
+        return keywordList?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -224,7 +222,7 @@ extension KeywordSelectionViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? KeywordColletionViewCell else { return UICollectionViewCell() }
         
-        cell.bindData(data: keyworkdList[indexPath.row])
+        cell.bindData(data: keywordList?[indexPath.row] ?? KeywordResponseDTO(name: "error", value: "error"))
         
         return cell
     }
@@ -233,7 +231,7 @@ extension KeywordSelectionViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegateFlowLayout
 extension KeywordSelectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = keyworkdList[indexPath.row].value.width(withFont: .bodyBodyMed16) + 32
+        let cellWidth = (keywordList?[indexPath.row].value.width(withFont: .bodyBodyMed16) ?? 0) + 32
         
         return CGSize(width: cellWidth, height: 38)
     }

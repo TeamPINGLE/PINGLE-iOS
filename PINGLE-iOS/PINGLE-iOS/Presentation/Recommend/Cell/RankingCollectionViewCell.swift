@@ -60,7 +60,6 @@ class RankingCollectionViewCell: UICollectionViewCell {
             $0.font = .bodyBodySemi14
             $0.textColor = .grayscaleG01
             $0.numberOfLines = 2
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.textAlignment = .left
             $0.lineBreakMode = .byCharWrapping
         }
@@ -108,20 +107,20 @@ class RankingCollectionViewCell: UICollectionViewCell {
         }
         
         placeName.snp.makeConstraints {
-            $0.top.equalTo(rankingPinView.snp.bottom).inset(4)
+            $0.top.equalTo(rankingPinView.snp.bottom).offset(4)
             $0.bottom.equalToSuperview().inset(37)
             $0.leading.trailing.equalToSuperview().inset(20.adjusted)
             $0.width.equalTo(270.adjusted)
         }
         
         currentVisit.snp.makeConstraints {
-            $0.top.equalTo(placeName.snp.bottom).inset(4)
+            $0.top.equalTo(placeName.snp.bottom).offset(4)
             $0.bottom.equalToSuperview().inset(16)
             $0.leading.equalToSuperview().inset(20.adjusted)
         }
         
         currentDate.snp.makeConstraints {
-            $0.top.equalTo(placeName.snp.bottom).inset(4)
+            $0.top.equalTo(placeName.snp.bottom).offset(4)
             $0.bottom.equalToSuperview().inset(16)
             $0.leading.equalTo(currentVisit.snp.trailing).offset(5.adjusted)
         }

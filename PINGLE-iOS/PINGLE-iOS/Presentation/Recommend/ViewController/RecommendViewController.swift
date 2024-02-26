@@ -167,7 +167,7 @@ extension RecommendViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RankingCollectionViewCell.identifier,
                                                             for: indexPath) as? RankingCollectionViewCell else {return UICollectionViewCell()}
         let rankingData = rankingResponseDTO[indexPath.item]
-        cell.bindData(data: rankingData, ranking: indexPath.row + 1)
+        cell.bindData(data: rankingData, rankingLabel: indexPath.row + 1)
         return cell
     }
 }
@@ -189,14 +189,14 @@ extension RecommendViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func calculateDynamicHeight(placeNameText: String) -> CGFloat {
-        let placeName = UILabel()
-        placeName.text = placeNameText
-        placeName.numberOfLines = 2
-        placeName.preferredMaxLayoutWidth = 270.adjusted
-        placeName.font = .bodyBodySemi14
-        placeName.setTextWithLineHeight(text: placeNameText, lineHeight: 20)
+        let placeNameLabel = UILabel()
+        placeNameLabel.text = placeNameText
+        placeNameLabel.numberOfLines = 2
+        placeNameLabel.preferredMaxLayoutWidth = 270.adjusted
+        placeNameLabel.font = .bodyBodySemi14
+        placeNameLabel.setTextWithLineHeight(text: placeNameText, lineHeight: 20)
 
-        let placeNameSize = placeName.sizeThatFits(CGSize(width: 270.adjusted, height: CGFloat.greatestFiniteMagnitude))
+        let placeNameSize = placeNameLabel.sizeThatFits(CGSize(width: 270.adjusted, height: CGFloat.greatestFiniteMagnitude))
 
         return placeNameSize.height
     }

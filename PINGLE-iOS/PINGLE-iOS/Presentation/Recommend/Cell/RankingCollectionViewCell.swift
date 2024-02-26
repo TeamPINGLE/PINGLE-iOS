@@ -14,11 +14,11 @@ class RankingCollectionViewCell: UICollectionViewCell {
     // MARK: Properties
     private let rankingPinView = RankingNumberView()
     private let rankingView = UIView()
-    private let ranking = UILabel()
-    private let meetingNumber = UILabel()
-    private let placeName = UILabel()
-    private let currentVisit = UILabel()
-    private let currentDate = UILabel()
+    private let rankingLabel = UILabel()
+    private let meetingNumberLabel = UILabel()
+    private let placeNameLabel = UILabel()
+    private let currentVisitLabel = UILabel()
+    private let currentDateLabel = UILabel()
     
     // MARK: Initializing
     override init(frame: CGRect) {
@@ -46,17 +46,17 @@ class RankingCollectionViewCell: UICollectionViewCell {
             $0.makeCornerRound(radius: 15)
         }
         
-        ranking.do {
+        rankingLabel.do {
             $0.font = .captionCapBold12
             $0.textColor = .white
         }
         
-        meetingNumber.do {
+        meetingNumberLabel.do {
             $0.font = .captionCapBold10
             $0.textColor = .white
         }
         
-        placeName.do {
+        placeNameLabel.do {
             $0.font = .bodyBodySemi14
             $0.textColor = .grayscaleG01
             $0.numberOfLines = 2
@@ -64,13 +64,13 @@ class RankingCollectionViewCell: UICollectionViewCell {
             $0.lineBreakMode = .byCharWrapping
         }
         
-        currentVisit.do {
+        currentVisitLabel.do {
             $0.text = StringLiterals.Recommend.latestVisit
             $0.font = .captionCapMed12
             $0.textColor = .grayscaleG04
         }
         
-        currentDate.do {
+        currentDateLabel.do {
             $0.text = " "
             $0.font = .captionCapMed12
             $0.textColor = .grayscaleG03
@@ -78,15 +78,15 @@ class RankingCollectionViewCell: UICollectionViewCell {
     }
     
     func setLayout() {
-        self.addSubviews(ranking, 
+        self.addSubviews(rankingLabel, 
                          rankingView)
         rankingView.addSubviews(rankingPinView, 
-                                placeName,
-                                currentVisit,
-                                currentDate)
-        rankingPinView.addSubview(meetingNumber)
+                                placeNameLabel,
+                                currentVisitLabel,
+                                currentDateLabel)
+        rankingPinView.addSubview(meetingNumberLabel)
         
-        ranking.snp.makeConstraints {
+        rankingLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(19)
             $0.leading.equalToSuperview().inset(7)
         }
@@ -101,37 +101,37 @@ class RankingCollectionViewCell: UICollectionViewCell {
             $0.leading.equalToSuperview().inset(20.adjusted)
         }
         
-        meetingNumber.snp.makeConstraints {
+        meetingNumberLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(20.adjusted)
         }
         
-        placeName.snp.makeConstraints {
+        placeNameLabel.snp.makeConstraints {
             $0.top.equalTo(rankingPinView.snp.bottom).offset(4)
             $0.bottom.equalToSuperview().inset(37)
             $0.leading.trailing.equalToSuperview().inset(20.adjusted)
             $0.width.equalTo(270.adjusted)
         }
         
-        currentVisit.snp.makeConstraints {
-            $0.top.equalTo(placeName.snp.bottom).offset(4)
+        currentVisitLabel.snp.makeConstraints {
+            $0.top.equalTo(placeNameLabel.snp.bottom).offset(4)
             $0.bottom.equalToSuperview().inset(16)
             $0.leading.equalToSuperview().inset(20.adjusted)
         }
         
-        currentDate.snp.makeConstraints {
-            $0.top.equalTo(placeName.snp.bottom).offset(4)
+        currentDateLabel.snp.makeConstraints {
+            $0.top.equalTo(placeNameLabel.snp.bottom).offset(4)
             $0.bottom.equalToSuperview().inset(16)
-            $0.leading.equalTo(currentVisit.snp.trailing).offset(5.adjusted)
+            $0.leading.equalTo(currentVisitLabel.snp.trailing).offset(5.adjusted)
         }
     }
     
     // MARK: Custom Function
-    func bindData(data: RankingResponseDTO.Location, ranking: Int) {
-        self.ranking.text = "\(ranking)"
-        placeName.text = data.name
-        meetingNumber.text = "\(data.locationCount)"
-        currentDate.text = convertToDateStr(dateComponents: data.latestVisitedDate)
+    func bindData(data: RankingResponseDTO.Location, rankingLabel: Int) {
+        self.rankingLabel.text = "\(rankingLabel)"
+        placeNameLabel.text = data.name
+        meetingNumberLabel.text = "\(data.locationCount)"
+        currentDateLabel.text = convertToDateStr(dateComponents: data.latestVisitedDate)
     }
 }
 

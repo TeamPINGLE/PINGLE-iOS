@@ -17,6 +17,7 @@ final class RecommendViewController: BaseViewController {
     private let titleLabel = UILabel()
     private let noRakingView = NoRankingView()
     private let rankingView = RankingView()
+    private let refreshControl = UIRefreshControl()
     private var meetingCount: Int?
     var rankingResponseDTO: [RankingResponseDTO.Location] = []
     
@@ -48,13 +49,20 @@ final class RecommendViewController: BaseViewController {
             $0.font = .subtitleSubSemi18
             $0.textColor = .white
         }
+        
+        refreshControl.do {
+            rankingView.rankingCollectionView.refreshControl = $0
+            $0.addTarget(self,
+                         action: #selector(refreshRankingView(refresh:)),
+                         for: .valueChanged)
+        }
     }
     
     // MARK: Style Helpers
     override func setLayout() {
         let safeAreaHeight = view.safeAreaInsets.bottom
         
-        self.view.addSubviews(titleLabel, 
+        self.view.addSubviews(titleLabel,
                               noRakingView,
                               rankingView)
         
@@ -86,7 +94,7 @@ final class RecommendViewController: BaseViewController {
     // MARK: Register
     func setRegister() {
         self.rankingView.rankingCollectionView.register(RankingCollectionViewCell.self,
-                                                                  forCellWithReuseIdentifier: RankingCollectionViewCell.identifier)
+                                                        forCellWithReuseIdentifier: RankingCollectionViewCell.identifier)
     }
     
     private func showRankingView() {
@@ -110,7 +118,19 @@ final class RecommendViewController: BaseViewController {
         }
     }
     
-    func rankingList() {
+    private func setupRefreshControl() {
+        rankingList { _ in
+            self.rankingView.rankingCollectionView.reloadData()
+        }
+       }
+
+    @objc private func refreshRankingView(refresh: UIRefreshControl) {
+        refresh.beginRefreshing()
+        setupRefreshControl()
+        refresh.endRefreshing()
+    }
+    
+    func rankingList(completion: @escaping (Bool) -> Void = { _ in }) {
         NetworkService.shared.rankingService.ranking(teamId: KeychainHandler.shared.userGroup[0].id){ [weak self]
             response in
             switch response {
@@ -165,7 +185,7 @@ extension RecommendViewController: UICollectionViewDelegateFlowLayout {
     // UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let labelHeight = calculateDynamicHeight(placeNameText: rankingResponseDTO[indexPath.row].name)
-        return CGSize(width: 341.adjusted, height: labelHeight + 96)
+        return CGSize(width: 341.adjusted, height: labelHeight + 76)
     }
     
     func calculateDynamicHeight(placeNameText: String) -> CGFloat {
@@ -174,6 +194,7 @@ extension RecommendViewController: UICollectionViewDelegateFlowLayout {
         placeName.numberOfLines = 2
         placeName.preferredMaxLayoutWidth = 270.adjusted
         placeName.font = .bodyBodySemi14
+        placeName.setTextWithLineHeight(text: placeNameText, lineHeight: 20)
 
         let placeNameSize = placeName.sizeThatFits(CGSize(width: 270.adjusted, height: CGFloat.greatestFiniteMagnitude))
 

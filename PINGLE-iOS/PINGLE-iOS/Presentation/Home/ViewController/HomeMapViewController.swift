@@ -355,7 +355,7 @@ extension HomeMapViewController {
         completion: @escaping () -> Void
     ) {
         // 추후 바뀐 그룹 받아오는 로직 작성 예정
-        pinDetail(pinId: id, category: category) { [weak self] result in
+        pinDetail(pinId: id, category: category ?? "") { [weak self] result in
             guard let self else { return }
             if result {
                 mapsView.homeDetailCollectionView.reloadData()
@@ -432,14 +432,14 @@ extension HomeMapViewController {
     
     private func pinDetail(
         pinId: Int,
-        category: String?,
+        category: String,
         completion: @escaping (Bool) -> Void
     ) {
         if KeychainHandler.shared.userGroup.count > 0 {
             NetworkService.shared.homeService.pinDetail(
                 pinId: pinId,
                 teamId: KeychainHandler.shared.userGroup[0].id,
-                queryDTO: HomePinListRequestQueryDTO(category: category)
+                queryDTO: HomePinListRequestQueryDTO(category: category.isEmpty ? nil : category)
             ) { [weak self] response in
                 switch response {
                 case .success(let data):

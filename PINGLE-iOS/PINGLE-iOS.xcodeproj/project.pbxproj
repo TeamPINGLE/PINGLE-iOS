@@ -150,6 +150,9 @@
 		F1D452722B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452712B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift */; };
 		F1D452742B89BB6000D8F50F /* CheckNameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452732B89BB6000D8F50F /* CheckNameResponseDTO.swift */; };
 		F1D452762B89CD2D00D8F50F /* KeywordSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452752B89CD2D00D8F50F /* KeywordSelectionViewController.swift */; };
+		F1D452782B8B5EE200D8F50F /* KeywordColletionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452772B8B5EE200D8F50F /* KeywordColletionViewCell.swift */; };
+		F1D4527C2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D4527B2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		F1D4527E2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D4527D2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift */; };
 		F1DFF2892B7B6E86000AC100 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */; };
 		F1DFF28C2B7B7449000AC100 /* ManualCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */; };
 		F1DFF28E2B83497F000AC100 /* ManualDummyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */; };
@@ -305,6 +308,9 @@
 		F1D452712B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNameRequestParameterDTO.swift; sourceTree = "<group>"; };
 		F1D452732B89BB6000D8F50F /* CheckNameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNameResponseDTO.swift; sourceTree = "<group>"; };
 		F1D452752B89CD2D00D8F50F /* KeywordSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSelectionViewController.swift; sourceTree = "<group>"; };
+		F1D452772B8B5EE200D8F50F /* KeywordColletionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordColletionViewCell.swift; sourceTree = "<group>"; };
+		F1D4527B2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		F1D4527D2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOrganizationViewController.swift; sourceTree = "<group>"; };
 		F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualDummyDTO.swift; sourceTree = "<group>"; };
@@ -539,6 +545,7 @@
 				C307281E2B41503100AA575B /* UIViewController+.swift */,
 				F1239BCE2B468A0F0072A02A /* CALayer+.swift */,
 				C385453F2B4868860040E60D /* String+.swift */,
+				F1D4527B2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -692,6 +699,7 @@
 				F1DFF2902B849D65000AC100 /* EnterOrganizationInfoViewController.swift */,
 				F1DFF2922B849E62000AC100 /* MakeOrganizationGuideViewController.swift */,
 				F1D452752B89CD2D00D8F50F /* KeywordSelectionViewController.swift */,
+				F1D4527D2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1115,6 +1123,7 @@
 			children = (
 				F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */,
 				F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */,
+				F1D452772B8B5EE200D8F50F /* KeywordColletionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1334,6 +1343,7 @@
 				C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */,
 				F12181BD2B505F5800D22F55 /* AppleTokenResponse.swift in Sources */,
 				C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */,
+				F1D452782B8B5EE200D8F50F /* KeywordColletionViewCell.swift in Sources */,
 				E5A651F42B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift in Sources */,
 				E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */,
 				E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */,
@@ -1370,6 +1380,7 @@
 				F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */,
 				C305D59B2B5176D3008993C3 /* SearchPlaceResponseDTO.swift in Sources */,
 				C30D1E062B56FAD700879258 /* MyPINGLESegmentControl.swift in Sources */,
+				F1D4527C2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,
 				F16BCA392B4E62760096A62F /* SplashViewController.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
@@ -1407,6 +1418,7 @@
 				F14F3C792B4D389E0049A9EE /* OnboardingTarget.swift in Sources */,
 				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,
 				E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */,
+				F1D4527E2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift in Sources */,
 				F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */,
 				E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */,
 				F1DFF28E2B83497F000AC100 /* ManualDummyDTO.swift in Sources */,

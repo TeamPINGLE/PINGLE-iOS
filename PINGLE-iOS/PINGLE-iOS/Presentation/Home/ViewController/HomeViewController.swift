@@ -30,7 +30,7 @@ final class HomeViewController: BaseViewController {
                                           multiChipButton,
                                           othersChipButton]
     
-    private let homeLogoImageView = UIImageView()
+    private let homeGroupLabel = UILabel()
     private let searchButton = UIButton()
     
     override func viewDidLoad() {
@@ -62,8 +62,12 @@ final class HomeViewController: BaseViewController {
         homeMapViewController.view.isHidden = !isHomeMap
         homeListViewController.view.isHidden = isHomeMap
         
-        homeLogoImageView.do {
-            $0.image = UIImage(resource: .imgHomeLogo)
+        homeGroupLabel.do {
+            if !KeychainHandler.shared.userGroup.isEmpty {
+                $0.text = KeychainHandler.shared.userGroup[0].name
+            }
+            $0.font = .titleTitleSemi20
+            $0.textColor = .white
         }
         
         searchButton.do {
@@ -82,7 +86,7 @@ final class HomeViewController: BaseViewController {
         
         view.addSubviews(homeMapViewController.view,
                          homeListViewController.view,
-                         homeLogoImageView,
+                         homeGroupLabel,
                          searchButton,
                          chipStackView)
         
@@ -105,13 +109,14 @@ final class HomeViewController: BaseViewController {
             $0.top.equalToSuperview().inset(62)
         }
         
-        homeLogoImageView.snp.makeConstraints {
+        homeGroupLabel.snp.makeConstraints {
             $0.centerY.equalTo(searchButton)
             $0.leading.equalToSuperview().inset(24.adjustedWidth)
+            $0.trailing.equalToSuperview().inset(152.adjustedWidth)
         }
         
         chipStackView.snp.makeConstraints {
-            $0.top.equalTo(homeLogoImageView.snp.bottom).offset(20)
+            $0.top.equalTo(homeGroupLabel.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
     }

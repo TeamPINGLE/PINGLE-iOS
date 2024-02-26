@@ -193,9 +193,15 @@ extension KeywordSelectionViewController: UIGestureRecognizerDelegate {
 extension KeywordSelectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? KeywordColletionViewCell {
-            cell.changeCellColor(selected: true)
-            selectIndexPathRow = indexPath.row
-            bottomCTAButton.activateButton()
+            if indexPath.row == selectIndexPathRow {
+                cell.changeCellColor(selected: false)
+                selectIndexPathRow = nil
+                bottomCTAButton.disabledButton()
+            } else {
+                cell.changeCellColor(selected: true)
+                selectIndexPathRow = indexPath.row
+                bottomCTAButton.activateButton()
+            }
         }
     }
     

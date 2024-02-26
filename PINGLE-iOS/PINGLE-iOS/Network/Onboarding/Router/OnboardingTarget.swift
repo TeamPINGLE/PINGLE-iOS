@@ -17,6 +17,7 @@ enum OnboardingTarget {
     case enterInviteCode(_ teamId: Int, _ bodyDTO: EnterInviteCodeRequestBodyDTO)
     case postRefreshToken
     case checkName(_ parameterDTO: CheckNameRequestParameterDTO)
+    case keyword
 }
 
 extension OnboardingTarget: TargetType {
@@ -35,6 +36,8 @@ extension OnboardingTarget: TargetType {
         case .postRefreshToken:
             return .reAuthorization
         case .checkName:
+            return .authorization
+        case .keyword:
             return .authorization
         }
     }
@@ -55,6 +58,8 @@ extension OnboardingTarget: TargetType {
             return .refreshToken
         case .checkName:
             return .hasToken
+        case .keyword:
+            return .hasToken
         }
     }
     
@@ -73,6 +78,8 @@ extension OnboardingTarget: TargetType {
         case .postRefreshToken:
             return .post
         case .checkName:
+            return .get
+        case .keyword:
             return .get
         }
     }
@@ -93,6 +100,8 @@ extension OnboardingTarget: TargetType {
             return "/v1/auth/reissue"
         case .checkName:
             return "/v1/teams/check-name"
+        case .keyword:
+            return "/v1/teams/keywords"
         }
     }
     
@@ -112,6 +121,8 @@ extension OnboardingTarget: TargetType {
             return .requestPlain
         case .checkName(let parameterDTO):
             return .requestQuery(parameterDTO)
+        case .keyword:
+            return .requestPlain
         }
     }
 }

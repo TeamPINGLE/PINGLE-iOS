@@ -16,7 +16,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     private let backButton = UIButton()
     private let titleBackgroundView = UIView()
     private let titleLabel = UILabel()
-    private let organizationInfoView = OrganizationInfoView()
+    private let organizationInfoView = OrganizationInfoView(type: .search)
     private let inviteCodeTextFieldView = PINGLETextFieldView(
         titleLabel: StringLiterals.Onboarding.ExplainTitle.inviteCodeTextFieldTitle,
         explainLabel: StringLiterals.Onboarding.SearchBarPlaceholder.inviteCodePlaceholder
@@ -102,8 +102,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         
         organizationInfoView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(25)
-            $0.leading.trailing.equalToSuperview().inset(24.adjusted)
-            $0.height.equalTo(157)
+            $0.centerX.equalToSuperview()
         }
         
         inviteCodeTextFieldView.snp.makeConstraints {
@@ -197,7 +196,7 @@ final class EnterInviteCodeViewController: BaseViewController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                organizationInfoView.bindData(data: data)
+                organizationInfoView.bindSearchData(data: data)
                 organizationInfoView.isHidden = false
             default:
                 print("login error")

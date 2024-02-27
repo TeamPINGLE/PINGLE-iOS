@@ -12,9 +12,11 @@ import Then
 
 final class HomeViewController: BaseViewController {
     
+    // MARK: - Variables
     // MARK: Property
     var isHomeMap = true
     
+    // MARK: Component
     private let homeMapViewController = HomeMapViewController()
     private let homeListViewController = HomeListViewController()
     
@@ -33,11 +35,14 @@ final class HomeViewController: BaseViewController {
     private let homeGroupLabel = UILabel()
     private let searchButton = UIButton()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setAddTarget()
     }
     
+    // MARK: Target Helpers
     private func setAddTarget() {
         homeMapViewController.mapsView.listButton.addTarget(
             self,
@@ -66,6 +71,7 @@ final class HomeViewController: BaseViewController {
         }
     }
     
+    // MARK: Style Helpers
     override func setStyle() {
         homeMapViewController.view.isHidden = !isHomeMap
         homeListViewController.view.isHidden = isHomeMap
@@ -88,6 +94,7 @@ final class HomeViewController: BaseViewController {
         }
     }
     
+    // MARK: Layout Helpers
     override func setLayout() {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
@@ -129,6 +136,7 @@ final class HomeViewController: BaseViewController {
         }
     }
     
+    // MARK: @objc Func
     @objc private func mapListButtonTapped() {
         isHomeMap.toggle()
         homeMapViewController.view.isHidden = !isHomeMap
@@ -178,6 +186,7 @@ final class HomeViewController: BaseViewController {
         )
     }
     
+    // MARK: Custom Func
     private func pushParticipantsViewController(meetingId: Int) {
         let participantsListViewController = ParticipantsListViewController()
         participantsListViewController.meetingIdentifier = meetingId

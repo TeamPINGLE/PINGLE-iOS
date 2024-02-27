@@ -29,7 +29,10 @@ final class HomeListViewController: BaseViewController {
     var currentMeetingId: Int = 0
     
     private let refreshControl = UIRefreshControl()
-    lazy var listCollectionView = UICollectionView(frame: .zero, collectionViewLayout: listCollectionViewFlowLayout)
+    lazy var listCollectionView = UICollectionView(
+        frame: .zero, 
+        collectionViewLayout: listCollectionViewFlowLayout
+    )
     private let listCollectionViewFlowLayout = UICollectionViewFlowLayout()
     
     var participantsAction: (() -> Void) = {}
@@ -47,7 +50,10 @@ final class HomeListViewController: BaseViewController {
         listCollectionView.do {
             $0.delegate = self
             $0.dataSource = self
-            $0.register(HomeListCollectionViewCell.self, forCellWithReuseIdentifier: HomeListCollectionViewCell.identifier)
+            $0.register(
+                HomeListCollectionViewCell.self,
+                forCellWithReuseIdentifier: HomeListCollectionViewCell.identifier
+            )
         }
     }
     

@@ -23,7 +23,8 @@ final class HomeMapViewController: BaseViewController {
     private var markerId = 0
     var markerCategory: String = ""
     private var allowLocation = false
-    private var currentMeetingId: Int = 0
+    var currentMeetingId: Int = 0
+    var participantsAction: (() -> Void) = {}
     
     // MARK: Component
     let mapsView = HomeMapView()
@@ -294,12 +295,7 @@ extension HomeMapViewController {
     }
     
     private func participantCountButtonTapped() {
-        let participantsListViewController = ParticipantsListViewController()
-        participantsListViewController.meetingIdentifier = currentMeetingId
-        navigationController?.pushViewController(
-            participantsListViewController,
-            animated: true
-        )
+        participantsAction()
     }
     
     private func connectTalkLink(urlString: String) {

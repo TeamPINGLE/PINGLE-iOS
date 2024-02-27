@@ -7,7 +7,6 @@
 
 import UIKit
 
-import SafariServices
 import SnapKit
 import Then
 
@@ -116,8 +115,7 @@ final class OnboardingViewController: BaseViewController {
     }
     
     @objc func makeOrganizationButtonDidTap() {
-        guard let url = URL(string: "https://docs.google.com/forms/d/10WxvEzSVRrRvRGXsYf9Z5oXv4HsNuAwG2QicB4bY0aY/edit") else { return }
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true)
+        let enterOrganizationInfoViewController = EnterOrganizationInfoViewController()
+        navigationController?.pushViewController(enterOrganizationInfoViewController, animated: true)
     }
 }

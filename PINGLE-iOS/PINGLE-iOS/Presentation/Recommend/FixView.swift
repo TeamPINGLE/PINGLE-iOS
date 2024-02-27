@@ -61,3 +61,4 @@ final class FixView: BaseView {
         }
     }
 }
+

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C39602B32B3BEE06004BB2B8"
-               BuildableName = "PINGLE-iOS.app"
+               BuildableName = "PINGLE-iOS.dev.app"
                BlueprintName = "PINGLE-iOS"
                ReferencedContainer = "container:PINGLE-iOS.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C39602B32B3BEE06004BB2B8"
-            BuildableName = "PINGLE-iOS.app"
+            BuildableName = "PINGLE-iOS.dev.app"
             BlueprintName = "PINGLE-iOS"
             ReferencedContainer = "container:PINGLE-iOS.xcodeproj">
          </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C39602B32B3BEE06004BB2B8"
-            BuildableName = "PINGLE-iOS.app"
+            BuildableName = "PINGLE-iOS.dev.app"
             BlueprintName = "PINGLE-iOS"
             ReferencedContainer = "container:PINGLE-iOS.xcodeproj">
          </BuildableReference>

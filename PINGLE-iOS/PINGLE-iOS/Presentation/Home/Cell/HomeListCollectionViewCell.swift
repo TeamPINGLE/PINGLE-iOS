@@ -16,11 +16,7 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     // MARK: Constants
     static let identifier = "HomeListCollectionViewCell"
     
-    var isExpand = false {
-        didSet {
-            updateAppearance()
-        }
-    }
+    var isExpand = true
     private var expandedConstraint: Constraint?
     private var collapsedConstraint: Constraint?
 
@@ -32,6 +28,7 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     
     private let dimmedTapGesture = UITapGestureRecognizer()
     var memberButtonAction: (() -> Void) = {}
+    var toggleButtonAction: (() -> Void) = {}
      
     // MARK: - Function
     // MARK: LifeCycle
@@ -53,6 +50,7 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
         homeDetailPopUpView.participantionButtonAction = {}
         homeDetailCancelPopUpView.cancelButtonAction = {}
         memberButtonAction = {}
+        toggleButtonAction = {}
     }
     
     private func setDimmedView() {
@@ -94,10 +92,47 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
         updateAppearance()
     }
     
-    private func setStyle() { }
+    private func setStyle() {
+        dimmedView.do {
+            $0.backgroundColor = .black
+            $0.alpha = 0.7
+            $0.isHidden = true
+            $0.isUserInteractionEnabled = true
+        }
+        
+        homeDetailPopUpView.do {
+            $0.isHidden = true
+        }
+        
+        homeDetailCancelPopUpView.do {
+            $0.isHidden = true
+        }
+    }
     
     private func setLayout() {
         self.addSubviews(homeListDetailView)
+        
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubviews(dimmedView,
+                               homeDetailPopUpView,
+                               homeDetailCancelPopUpView)
+        }
+        
+        homeListDetailView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        homeDetailPopUpView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        homeDetailCancelPopUpView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
         
         homeListDetailView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -117,6 +152,7 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
         collapsedConstraint?.isActive = true
     }
     
+    
     private func updateAppearance() {
         collapsedConstraint?.isActive = !isExpand
         expandedConstraint?.isActive = isExpand
@@ -129,7 +165,6 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
             }
             self.homeListDetailView.bottomBackgroundView.makeCornerRound(radius: self.isExpand ? 15 : 8)
         }
-        self.layoutIfNeeded()
     }
     
     func showPopUp(
@@ -177,6 +212,8 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     
     @objc private func toggleButtonTapped() {
         isExpand.toggle()
+        updateAppearance()
+        toggleButtonAction()
     }
 }
 

@@ -9,7 +9,7 @@ import UIKit
 
 class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForElements(in rect: CGRect) ->  [UICollectionViewLayoutAttributes]? {
-        let attributes = super.layoutAttributesForElements(in: rect)?.map { $0.copy() as! UICollectionViewLayoutAttributes }
+        let attributes = super.layoutAttributesForElements(in: rect)
         var leftMargin: CGFloat = 0.0
         var maxY: CGFloat = -1.0
         
@@ -22,7 +22,7 @@ class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
             }
             layoutAttribute.frame.origin.x = leftMargin
             leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
-            maxY = max(layoutAttribute.frame.maxY , maxY)
+            maxY = max(layoutAttribute.frame.maxY, maxY)
         }
         return attributes
     }

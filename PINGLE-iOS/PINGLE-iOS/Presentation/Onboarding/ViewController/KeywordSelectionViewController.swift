@@ -15,6 +15,8 @@ final class KeywordSelectionViewController: BaseViewController {
     // MARK: Variables
     private var selectIndexPathRow: Int?
     private var keywordList: [KeywordResponseDTO]?
+    var organizationName: String?
+    var representativeEmail: String?
     
     // MARK: Property
     private let backButton = UIButton()
@@ -153,7 +155,13 @@ final class KeywordSelectionViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
+        guard let selectIndexPathRow = selectIndexPathRow else { return }
         let checkOrganizationViewController = CheckOrganizationViewController()
+        
+        checkOrganizationViewController.organizationName = organizationName
+        checkOrganizationViewController.representativeEmail = representativeEmail
+        checkOrganizationViewController.keyword = keywordList?[selectIndexPathRow]
+        
         navigationController?.pushViewController(checkOrganizationViewController, animated: true)
     }
     

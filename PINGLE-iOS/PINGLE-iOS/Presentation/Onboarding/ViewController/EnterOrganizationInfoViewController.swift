@@ -210,10 +210,15 @@ final class EnterOrganizationInfoViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
-        let text = representativeEmailTextFieldView.searchTextField.text ?? ""
+        let organizationNameText = organizationNameTextFieldView.searchTextField.text ?? ""
+        let representativeEmailText = representativeEmailTextFieldView.searchTextField.text ?? ""
         
-        if text.isValidEmail() {
+        if representativeEmailText.isValidEmail() {
             let keywordSelectionViewController = KeywordSelectionViewController()
+            
+            keywordSelectionViewController.organizationName = organizationNameText
+            keywordSelectionViewController.representativeEmail = representativeEmailText
+            
             navigationController?.pushViewController(keywordSelectionViewController, animated: true)
         } else {
             showWarningToastView(message: .impossibleEmail)

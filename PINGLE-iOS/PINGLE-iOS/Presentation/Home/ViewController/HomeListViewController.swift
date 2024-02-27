@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class HomeListViewController: BaseViewController {
-    // TODO: 카드 접기 UI 다시 확인하면서 연결된 로직 맞는지 다시 확인 필요
+    // TODO: 카드 접기 UI
     
     // MARK: - Variables
     // MARK: Component

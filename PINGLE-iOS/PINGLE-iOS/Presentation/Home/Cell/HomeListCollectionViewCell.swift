@@ -152,7 +152,6 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
         collapsedConstraint?.isActive = true
     }
     
-    
     private func updateAppearance() {
         collapsedConstraint?.isActive = !isExpand
         expandedConstraint?.isActive = isExpand

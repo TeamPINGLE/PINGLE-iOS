@@ -56,6 +56,14 @@ final class HomeViewController: BaseViewController {
                 for: .touchUpInside
             )
         }
+        
+        homeMapViewController.participantsAction = {
+            self.pushParticipantsViewController(meetingId: self.homeMapViewController.currentMeetingId)
+        }
+        
+        homeListViewController.participantsAction = {
+            self.pushParticipantsViewController(meetingId: self.homeListViewController.currentMeetingId)
+        }
     }
     
     override func setStyle() {
@@ -167,6 +175,15 @@ final class HomeViewController: BaseViewController {
             text: homeListViewController.searchText,
             category: homeListViewController.category,
             order: homeListViewController.order
+        )
+    }
+    
+    private func pushParticipantsViewController(meetingId: Int) {
+        let participantsListViewController = ParticipantsListViewController()
+        participantsListViewController.meetingIdentifier = meetingId
+        navigationController?.pushViewController(
+            participantsListViewController,
+            animated: true
         )
     }
 }

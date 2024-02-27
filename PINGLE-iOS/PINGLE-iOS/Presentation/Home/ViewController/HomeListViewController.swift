@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class HomeListViewController: BaseViewController {
-    // TODO: 카드 접기 UI 다시 확인
+    // TODO: 카드 접기 UI 다시 확인하면서 연결된 로직 맞는지 다시 확인 필요
     
     // MARK: - Variables
     // MARK: Component
@@ -31,6 +31,8 @@ final class HomeListViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
     lazy var listCollectionView = UICollectionView(frame: .zero, collectionViewLayout: listCollectionViewFlowLayout)
     private let listCollectionViewFlowLayout = UICollectionViewFlowLayout()
+    
+    var participantsAction: (() -> Void) = {}
     
     // MARK: - Function
     // MARK: Life Cycle
@@ -313,12 +315,7 @@ final class HomeListViewController: BaseViewController {
     }
     
     private func participantCountButtonTapped() {
-        let participantsListViewController = ParticipantsListViewController()
-        participantsListViewController.meetingIdentifier = currentMeetingId
-        navigationController?.pushViewController(
-            participantsListViewController,
-            animated: true
-        )
+        participantsAction()
     }
 }
 

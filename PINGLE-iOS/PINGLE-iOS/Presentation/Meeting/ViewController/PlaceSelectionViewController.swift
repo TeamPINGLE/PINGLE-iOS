@@ -163,6 +163,8 @@ class PlaceSelectionViewController: BaseViewController {
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         searchPlaceView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        searchPlaceView.clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
+        searchPlaceView.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
         exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
@@ -191,6 +193,12 @@ class PlaceSelectionViewController: BaseViewController {
             }
             self.view.endEditing(true)
         }
+    }
+    
+    @objc func clearButtonTapped() {
+        searchPlaceView.searchTextField.text?.removeAll()
+        searchPlaceView.clearButton.isHidden = true
+        searchPlaceView.searchButton.isHidden = false
     }
     
     @objc func nextButtonTapped() {
@@ -224,6 +232,11 @@ class PlaceSelectionViewController: BaseViewController {
         exitModal.isHidden = true
         dimmedView.isHidden = true
         self.dismiss(animated: true)
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        searchPlaceView.clearButton.isHidden = textField.text?.isEmpty ?? true
+        searchPlaceView.searchButton.isHidden = !searchPlaceView.clearButton.isHidden
     }
     
     @objc func dimmedViewTapped() {
@@ -278,6 +291,12 @@ extension PlaceSelectionViewController: UITextFieldDelegate {
         nextButton.disabledButton()
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            searchPlaceView.clearButton.isHidden = textField.text?.isEmpty ?? true
+            searchPlaceView.searchButton.isHidden = !searchPlaceView.clearButton.isHidden
+            return true
+        }
 }
 
 // MARK: UICollectionViewDelegate

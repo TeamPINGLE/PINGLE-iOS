@@ -180,15 +180,15 @@ class InsertOpenChatLinkViewController: BaseViewController {
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {
             if let currentText = textField.text, !currentText.isEmpty {
-                nextButton.activateButton()
                 let pattern = "https://open.kakao.com/o/[A-Za-z0-9]+"
-                
                 /// URL 패턴 검사
                 if let matchedString = currentText.range(of: pattern, options: .regularExpression) {
                     /// 패턴이 일치하는 경우 해당 부분만 추출하여 텍스트 필드에 붙여넣기
                     textField.text = String(currentText[matchedString])
                 }
-            }else {
+                nextButton.activateButton()
+                MeetingManager.shared.chatLink = textField.text ?? " "
+            } else {
                 nextButton.disabledButton()
             }
         }

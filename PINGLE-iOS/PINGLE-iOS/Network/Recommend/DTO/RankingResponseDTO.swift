@@ -17,4 +17,3 @@ struct RankingResponseDTO: Codable {
         let locationCount: Int
     }
 }
-

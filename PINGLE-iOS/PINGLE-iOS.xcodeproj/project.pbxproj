@@ -86,10 +86,12 @@
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
 		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
+		E51D424B2B89E1A6000E0CCE /* RankingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D424A2B89E1A6000E0CCE /* RankingTarget.swift */; };
+		E51D424D2B89E1C2000E0CCE /* RankingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D424C2B89E1C2000E0CCE /* RankingService.swift */; };
 		E542B6722B83C2C300B50B95 /* NoRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6712B83C2C300B50B95 /* NoRankingView.swift */; };
 		E542B6782B83CB2900B50B95 /* RankingNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6772B83CB2900B50B95 /* RankingNumberView.swift */; };
 		E542B67A2B83D57C00B50B95 /* RankingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */; };
-		E542B6802B83F2B600B50B95 /* RankingRespnseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B67F2B83F2B600B50B95 /* RankingRespnseDTO.swift */; };
+		E542B6802B83F2B600B50B95 /* RankingResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B67F2B83F2B600B50B95 /* RankingResponseDTO.swift */; };
 		E542B6822B840FD700B50B95 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6812B840FD700B50B95 /* RankingView.swift */; };
 		E542B6842B84F5CA00B50B95 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6832B84F5CA00B50B95 /* FixView.swift */; };
 		E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */; };
@@ -244,10 +246,12 @@
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
 		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
+		E51D424A2B89E1A6000E0CCE /* RankingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTarget.swift; sourceTree = "<group>"; };
+		E51D424C2B89E1C2000E0CCE /* RankingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingService.swift; sourceTree = "<group>"; };
 		E542B6712B83C2C300B50B95 /* NoRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRankingView.swift; sourceTree = "<group>"; };
 		E542B6772B83CB2900B50B95 /* RankingNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingNumberView.swift; sourceTree = "<group>"; };
 		E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCollectionViewCell.swift; sourceTree = "<group>"; };
-		E542B67F2B83F2B600B50B95 /* RankingRespnseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingRespnseDTO.swift; sourceTree = "<group>"; };
+		E542B67F2B83F2B600B50B95 /* RankingResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingResponseDTO.swift; sourceTree = "<group>"; };
 		E542B6812B840FD700B50B95 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
 		E542B6832B84F5CA00B50B95 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
 		E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryCardView.swift; sourceTree = "<group>"; };
@@ -922,6 +926,22 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		E51D42482B89E155000E0CCE /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E51D424A2B89E1A6000E0CCE /* RankingTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		E51D42492B89E15D000E0CCE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E51D424C2B89E1C2000E0CCE /* RankingService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		E542B6732B83CACB00B50B95 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -951,6 +971,8 @@
 		E542B67D2B83F28900B50B95 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
+				E51D42492B89E15D000E0CCE /* Service */,
+				E51D42482B89E155000E0CCE /* Router */,
 				E542B67E2B83F29400B50B95 /* DTO */,
 			);
 			path = Recommend;
@@ -959,7 +981,7 @@
 		E542B67E2B83F29400B50B95 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				E542B67F2B83F2B600B50B95 /* RankingRespnseDTO.swift */,
+				E542B67F2B83F2B600B50B95 /* RankingResponseDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -1314,6 +1336,7 @@
 				C3BCA8712B57E293003C6996 /* MyPINGLEResponseDTO.swift in Sources */,
 				F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */,
 				E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */,
+				E51D424B2B89E1A6000E0CCE /* RankingTarget.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
 				F1DFF2912B849D65000AC100 /* EnterOrganizationInfoViewController.swift in Sources */,
@@ -1324,6 +1347,7 @@
 				C3074B1E2B591B75009D2D0C /* MyPINGLEService.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
 				C3074B252B599406009D2D0C /* AppStoreCheck.swift in Sources */,
+				E51D424D2B89E1C2000E0CCE /* RankingService.swift in Sources */,
 				C30C91932B4CED84004EE026 /* APIEventLogger.swift in Sources */,
 				E5FA3EBC2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift in Sources */,
 				F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */,
@@ -1333,7 +1357,7 @@
 				C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */,
 				C30D1E112B57033800879258 /* MyPINGLECardView.swift in Sources */,
 				F12181BF2B510EFB00D22F55 /* PINGLERequestInterceptor.swift in Sources */,
-				E542B6802B83F2B600B50B95 /* RankingRespnseDTO.swift in Sources */,
+				E542B6802B83F2B600B50B95 /* RankingResponseDTO.swift in Sources */,
 				F1D452762B89CD2D00D8F50F /* KeywordSelectionViewController.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
 				E542B6822B840FD700B50B95 /* RankingView.swift in Sources */,

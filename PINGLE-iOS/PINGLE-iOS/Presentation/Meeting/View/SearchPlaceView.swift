@@ -79,8 +79,13 @@ final class SearchPlaceView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(searchPlaceView, noPlaceResult, reSearch, searchPlaceCollectionView)
-        searchPlaceView.addSubviews(searchTextField, searchButton, clearButton)
+        self.addSubviews(searchPlaceView, 
+                         noPlaceResult,
+                         reSearch,
+                         searchPlaceCollectionView)
+        searchPlaceView.addSubviews(searchTextField, 
+                                    searchButton,
+                                    clearButton)
         
         searchPlaceView.snp.makeConstraints {
             $0.top.equalTo(self.snp.top)

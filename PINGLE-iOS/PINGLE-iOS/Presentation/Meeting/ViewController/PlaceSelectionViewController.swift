@@ -78,8 +78,8 @@ class PlaceSelectionViewController: BaseViewController {
         }
         
         exitModal.do {
-                    $0.isHidden = true
-                }
+            $0.isHidden = true
+        }
         
         dimmedView.do {
             $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
@@ -88,7 +88,14 @@ class PlaceSelectionViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, progressBar4, placeSelectionTitle, searchPlaceView, nextButton, exitLabel, exitButton, dimmedView)
+        self.view.addSubviews(backButton,
+                              progressBar4,
+                              placeSelectionTitle,
+                              searchPlaceView,
+                              nextButton,
+                              exitLabel,
+                              exitButton,
+                              dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -112,7 +119,7 @@ class PlaceSelectionViewController: BaseViewController {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(nextButton.snp.top).offset(-15.adjusted)
         }
-
+        
         nextButton.snp.makeConstraints {
             $0.bottom.equalTo(exitLabel.snp.top).offset(-14.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
@@ -147,7 +154,7 @@ class PlaceSelectionViewController: BaseViewController {
     // MARK: Register
     func setRegister() {
         self.searchPlaceView.searchPlaceCollectionView.register(PlaceSelectionCollectionViewCell.self,
-                                                                  forCellWithReuseIdentifier: PlaceSelectionCollectionViewCell.identifier)
+                                                                forCellWithReuseIdentifier: PlaceSelectionCollectionViewCell.identifier)
     }
     
     // MARK: Navigation Function
@@ -210,7 +217,7 @@ class PlaceSelectionViewController: BaseViewController {
         MeetingManager.shared.y = searchPlaceResponseDTO[selectedPlaceRow].y
         let recruitmentViewController = RecruitmentViewController()
         navigationController?.pushViewController(recruitmentViewController, animated: true)
-        }
+    }
     
     @objc func exitButtonTapped() {
         self.view.addSubview(exitModal)
@@ -293,10 +300,10 @@ extension PlaceSelectionViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            searchPlaceView.clearButton.isHidden = textField.text?.isEmpty ?? true
-            searchPlaceView.searchButton.isHidden = !searchPlaceView.clearButton.isHidden
-            return true
-        }
+        searchPlaceView.clearButton.isHidden = textField.text?.isEmpty ?? true
+        searchPlaceView.searchButton.isHidden = !searchPlaceView.clearButton.isHidden
+        return true
+    }
 }
 
 // MARK: UICollectionViewDelegate
@@ -364,5 +371,5 @@ extension PlaceSelectionViewController: UICollectionViewDelegateFlowLayout {
         
         return placeNameSize.height + placeAddressSize.height
     }
-
+    
 }

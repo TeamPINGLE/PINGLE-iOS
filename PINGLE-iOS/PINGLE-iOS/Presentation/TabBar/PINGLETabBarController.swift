@@ -13,18 +13,9 @@ import Then
 final class PINGLETabBarController: UITabBarController {
     
     // MARK: - Variables
-    // MARK: Property
-    var isHomeMap = true {
-        didSet {
-            self.setTabs()
-            self.setTabBarItems()
-        }
-    }
-    
     private var tabs: [UIViewController] = []
     
-    let homeMapViewController = HomeMapViewController()
-    let homeListViewController = HomeListViewController()
+    let homeViewController = HomeViewController()
     let recommendViewController = RecommendViewController()
     let addPingleViewController = AddPingleViewController()
     let myPingleViewController = MyPINGLEViewController()
@@ -36,7 +27,6 @@ final class PINGLETabBarController: UITabBarController {
         super.viewDidLoad()
         setDelegate()
         setTabBarAppearance()
-        setAddTarget()
     }
     
     override func viewDidLayoutSubviews() {
@@ -70,8 +60,6 @@ final class PINGLETabBarController: UITabBarController {
     }
     
     func setTabs() {
-        let homeViewController = isHomeMap ? homeMapViewController : homeListViewController
-        
         tabs = [
             UINavigationController(rootViewController: homeViewController),
             UINavigationController(rootViewController: recommendViewController),
@@ -103,17 +91,6 @@ final class PINGLETabBarController: UITabBarController {
                 tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)
             }
         }
-    }
-    
-    func setAddTarget() {
-        self.homeMapViewController.mapsView.listButton.addTarget(self,
-                                                                 action: #selector(mapListButtonTapped),
-                                                                 for: .touchUpInside)
-        self.homeListViewController.mapButton.addTarget(self, action: #selector(mapListButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc func mapListButtonTapped() {
-        self.isHomeMap.toggle()
     }
     
     @objc func goToAddPingle() {

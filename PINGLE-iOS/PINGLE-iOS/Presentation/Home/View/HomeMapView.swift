@@ -21,18 +21,6 @@ final class HomeMapView: BaseView {
     var homePinList: [HomePinListResponseDTO] = []
     
     // MARK: Component
-    let chipStackView = UIStackView()
-    
-    private let playChipButton = ChipButton(state: .play)
-    private let studyChipButton = ChipButton(state: .study)
-    private let multiChipButton = ChipButton(state: .multi)
-    private let othersChipButton = ChipButton(state: .others)
-    
-    lazy var chipButtons: [ChipButton] = [playChipButton,
-                                          studyChipButton,
-                                          multiChipButton,
-                                          othersChipButton]
-    
     let mapsView = NMFNaverMapView()
     lazy var homeDetailCollectionView = UICollectionView(
         frame: .zero,
@@ -77,11 +65,6 @@ final class HomeMapView: BaseView {
         
         cameraUpdate.do {
             $0.animation = .easeIn
-        }
-        
-        chipStackView.do {
-            $0.axis = .horizontal
-            $0.spacing = 4.adjustedWidth
         }
         
         currentLocationButton.do {
@@ -158,23 +141,13 @@ final class HomeMapView: BaseView {
     
     // MARK: Layout Helpers
     override func setLayout() {
-        addSubviews(mapsView,
-                    chipStackView)
+        addSubviews(mapsView)
         mapsView.addSubviews(homeDetailCollectionView,
                              currentLocationButton,
                              listButton)
         
-        chipButtons.forEach {
-            chipStackView.addArrangedSubview($0)
-        }
-        
         mapsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-        }
-        
-        chipStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(66.adjustedHeight)
-            $0.centerX.equalToSuperview()
         }
         
         homeDetailCollectionView.snp.makeConstraints {

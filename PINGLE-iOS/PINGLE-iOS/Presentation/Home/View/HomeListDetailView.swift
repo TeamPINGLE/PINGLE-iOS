@@ -1,8 +1,8 @@
 //
-//  HomeMapDetailView.swift
+//  HomeListDetailView.swift
 //  PINGLE-iOS
 //
-//  Created by 정채은 on 1/5/24.
+//  Created by 정채은 on 2/20/24.
 //
 
 import UIKit
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class HomeMapDetailView: BaseView {
+final class HomeListDetailView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
@@ -44,6 +44,7 @@ final class HomeMapDetailView: BaseView {
     
     private let talkButton = UIButton()
     private let participationButton = UIButton()
+    let toggleButton = UIButton()
     
     // MARK: - Function
     // MARK: init
@@ -56,7 +57,7 @@ final class HomeMapDetailView: BaseView {
     // MARK: Style Helpers
     override func setStyle() {
         topBackgroundView.do {
-            $0.backgroundColor = .grayscaleG11
+            $0.backgroundColor = .grayscaleG10
             $0.makeCornerRound(radius: 15)
         }
         
@@ -90,8 +91,8 @@ final class HomeMapDetailView: BaseView {
         }
         
         bottomBackgroundView.do {
-            $0.backgroundColor = .grayscaleG11
-            $0.makeCornerRound(radius: 15)
+            $0.backgroundColor = .grayscaleG10
+            $0.makeCornerRound(radius: 8)
         }
         
         dateTimeImageView.do {
@@ -168,6 +169,14 @@ final class HomeMapDetailView: BaseView {
             $0.makeCornerRound(radius: 10)
             $0.backgroundColor = .white
         }
+        
+        participantCountButton.do {
+            $0.backgroundColor = .grayscaleG09
+        }
+        
+        toggleButton.do {
+            $0.setImage(UIImage(resource: .icListArrowDown), for: .normal)
+        }
     }
     
     // MARK: Layout Helpers
@@ -191,11 +200,13 @@ final class HomeMapDetailView: BaseView {
                                          locationTitleLabel,
                                          locationLabel,
                                          talkButton,
-                                         participationButton)
+                                         participationButton,
+                                         toggleButton)
         
         topBackgroundView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.width.equalTo(327.adjustedWidth)
+//            $0.width.equalTo(327.adjustedWidth)
+            $0.width.equalTo(UIScreen.main.bounds.width - 48)
             $0.height.equalTo(121)
         }
         
@@ -234,8 +245,7 @@ final class HomeMapDetailView: BaseView {
         bottomBackgroundView.snp.makeConstraints {
             $0.top.equalTo(topBackgroundView.snp.bottom)
             $0.bottom.equalToSuperview()
-            $0.width.equalTo(topBackgroundView)
-            $0.height.equalTo(206)
+            $0.leading.trailing.width.equalTo(topBackgroundView)
         }
         
         dateTimeImageView.snp.makeConstraints {
@@ -275,7 +285,7 @@ final class HomeMapDetailView: BaseView {
         }
         
         talkButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(20)
+            $0.bottom.equalTo(toggleButton.snp.top).offset(-20)
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
             $0.height.equalTo(44)
             $0.width.equalTo(100.adjustedWidth)
@@ -286,6 +296,11 @@ final class HomeMapDetailView: BaseView {
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.height.equalTo(44)
             $0.width.equalTo(185.adjustedWidth)
+        }
+        
+        toggleButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
     

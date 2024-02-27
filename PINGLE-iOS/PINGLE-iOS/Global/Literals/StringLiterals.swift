@@ -94,9 +94,6 @@ enum StringLiterals {
         static let rankingTitle = "랭킹"
         static let nonRanking = "우리 단체에서 핑글이 30회 이상 이루어지면\n랭킹을 확인할 수 있어요!"
         static let latestVisit = "최근방문"
-        static let rankingPlace = "솔트캐빈 화이트 용리단길점"
-        static let rankingPlace2 = "솔트캐빈 화이트 용리단길점 솔트캐빈 화이트 용리단길점 솔트캐빈 화이트 용리단길점"
-        static let latestDate = "2024년 1월 31일"
     }
     
     enum Home {
@@ -119,6 +116,12 @@ enum StringLiterals {
         enum Participants {
             static let participationTitle = "참여현황"
             static let meetingOwner = "개최자"
+        }
+        
+        enum List {
+            static let sortRecent = "최신순"
+            static let sortImminent = "날짜임박순"
+            static let emptyList = "현재 개최된 핑글이 없어요.\n핑글을 직접 개최해보세요!"
         }
     }
     

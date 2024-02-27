@@ -14,6 +14,7 @@ protocol HomeServiceProtocol {
     func meetingCancel(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
     func participantsList(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<ParticipantsListResponseDTO>>) -> Void)
     func meetingDelete(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
+    func listGet(queryDTO: HomeListSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HomeListSearchResponseDTO>>) -> Void)
 }
 
 final class HomeService: APIRequestLoader<HomeTarget>, HomeServiceProtocol {
@@ -45,6 +46,11 @@ final class HomeService: APIRequestLoader<HomeTarget>, HomeServiceProtocol {
     func meetingDelete(meetingId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
         fetchData(target: .meetingDelete(meetingId),
                   responseData: BaseResponse<String?>.self, completion: completion)
+    }
+    
+    func listGet(queryDTO: HomeListSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HomeListSearchResponseDTO>>) -> Void) {
+        fetchData(target: .listGet(queryDTO),
+                  responseData: BaseResponse<HomeListSearchResponseDTO>.self, completion: completion)
     }
 }
 

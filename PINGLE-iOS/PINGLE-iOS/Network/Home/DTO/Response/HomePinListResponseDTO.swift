@@ -12,5 +12,5 @@ struct HomePinListResponseDTO: Codable {
     let x: Double
     let y: Double
     let category: String
-    let meetingCount: Int
+//    let meetingCount: Int
 }

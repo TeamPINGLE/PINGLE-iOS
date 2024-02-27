@@ -18,12 +18,13 @@ final class HomeMapViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     private var shouldUpdateMap: Bool = true
-    private var homePinDetailList: [HomePinDetailResponseDTO] = []
+    var homePinDetailList: [HomePinDetailResponseDTO] = []
     private var meetingId: [Int] = []
     private var markerId = 0
-    private var markerCategory: String = ""
+    var markerCategory: String = ""
     private var allowLocation = false
-    private var currentMeetingId: Int = 0
+    var currentMeetingId: Int = 0
+    var participantsAction: (() -> Void) = {}
     
     // MARK: Component
     let mapsView = HomeMapView()
@@ -50,14 +51,10 @@ final class HomeMapViewController: BaseViewController {
     
     // MARK: Layout Helpers
     override func setLayout() {
-        let safeAreaHeight = view.safeAreaInsets.bottom
-        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
-        
         view.addSubviews(mapsView)
         
         mapsView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(safeAreaHeight).offset(-tabBarHeight)
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -82,13 +79,6 @@ final class HomeMapViewController: BaseViewController {
     }
     
     private func setAddTarget() {
-        mapsView.chipButtons.forEach {
-            $0.addTarget(
-                self,
-                action: #selector(isChipButtonTapped),
-                for: .touchUpInside
-            )
-        }
         mapsView.currentLocationButton.addTarget(
             self,
             action: #selector(currentLocationButtonTapped),
@@ -274,7 +264,7 @@ extension HomeMapViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeMapViewController {
     
-    private func hideSelectedPin() {
+    func hideSelectedPin() {
         if !mapsView.homeDetailCollectionView.isHidden {
             mapsView.homeDetailCollectionView.isHidden = true
             mapsView.currentLocationButton.isHidden = false
@@ -298,42 +288,6 @@ extension HomeMapViewController {
     }
     
     // MARK: Objc Function
-    @objc private func isChipButtonTapped(sender: ChipButton) {
-        /// 태그 선택 여부 반전
-        sender.isButtonSelected.toggle()
-        
-        /// 서버 통신
-        if sender.isButtonSelected {
-            pinList(category: sender.chipStatusString) { [weak self] result in
-                guard let self else { return }
-                if result {
-                    setMarker()
-                }
-            }
-            markerCategory = sender.chipStatusString
-        } else {
-            pinList(category: "") { [weak self] result in
-                guard let self else { return }
-                if result {
-                    setMarker()
-                }
-            }
-            markerCategory = ""
-        }
-        
-        /// 태그 하나만 선택할 수 있도록
-        mapsView.chipButtons.filter { $0 != sender }.forEach {
-            $0.isButtonSelected = false
-        }
-        
-        /// 모든 마커 (핀) 다 보이도록
-        mapsView.homeMarkerList.forEach {
-            $0.hidden = false
-        }
-        
-        hideSelectedPin()
-    }
-    
     @objc private func currentLocationButtonTapped() {
         if allowLocation {
             moveToCurrentLocation()
@@ -341,12 +295,7 @@ extension HomeMapViewController {
     }
     
     private func participantCountButtonTapped() {
-        let participantsListViewController = ParticipantsListViewController()
-        participantsListViewController.meetingIdentifier = currentMeetingId
-        navigationController?.pushViewController(
-            participantsListViewController,
-            animated: true
-        )
+        participantsAction()
     }
     
     private func connectTalkLink(urlString: String) {
@@ -402,7 +351,7 @@ extension HomeMapViewController {
         completion: @escaping () -> Void
     ) {
         // 추후 바뀐 그룹 받아오는 로직 작성 예정
-        pinDetail(pinId: id, category: category) { [weak self] result in
+        pinDetail(pinId: id, category: category ?? "") { [weak self] result in
             guard let self else { return }
             if result {
                 mapsView.homeDetailCollectionView.reloadData()
@@ -446,7 +395,7 @@ extension HomeMapViewController {
     }
     
     // MARK: Server Function
-    private func pinList(
+    func pinList(
         category: String?,
         completion: @escaping (Bool) -> Void
     ) {
@@ -479,14 +428,14 @@ extension HomeMapViewController {
     
     private func pinDetail(
         pinId: Int,
-        category: String?,
+        category: String,
         completion: @escaping (Bool) -> Void
     ) {
         if KeychainHandler.shared.userGroup.count > 0 {
             NetworkService.shared.homeService.pinDetail(
                 pinId: pinId,
                 teamId: KeychainHandler.shared.userGroup[0].id,
-                queryDTO: HomePinListRequestQueryDTO(category: category)
+                queryDTO: HomePinListRequestQueryDTO(category: category.isEmpty ? nil : category)
             ) { [weak self] response in
                 switch response {
                 case .success(let data):
@@ -560,7 +509,7 @@ extension HomeMapViewController {
     
     // MARK: Marker Function
     /// 마커 추가 메소드
-    private func setMarker() {
+    func setMarker() {
         /// 마커 다 지우기
         mapsView.homeMarkerList.forEach {
             $0.hidden = true

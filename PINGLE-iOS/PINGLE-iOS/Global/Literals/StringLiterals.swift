@@ -59,6 +59,7 @@ enum StringLiterals {
             static let EnterOrganizationInfoTitle = "새로 개설할 단체에\n대해 알려주세요"
             static let emailInfoMessage = "해당 이메일은 초대 코드 공유 및 단체 관리를 위해 사용될 예정입니다"
             static let keyworkSelectTitle = "단체를 설명하는\n키워드를 선택해주세요"
+            static let checkOrganizationTitle = "단체 정보를\n확인하세요"
         }
         
         enum NavigationTitle {
@@ -269,6 +270,7 @@ enum StringLiterals {
         static let buttonTitle = "다음으로"
         static let enterTitle = "입장하기"
         static let startTitle = "시작하기"
+        static let makeTitle = "개설하기"
     }
     
     enum ToastView {

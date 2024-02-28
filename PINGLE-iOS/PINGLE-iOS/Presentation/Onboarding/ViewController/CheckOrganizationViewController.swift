@@ -12,15 +12,29 @@ import Then
 
 final class CheckOrganizationViewController: BaseViewController {
     
+    // MARK: Variables
+    var organizationName: String?
+    var representativeEmail: String?
+    var keyword: KeywordResponseDTO?
+    
     // MARK: Property
     private let backButton = UIButton()
     private let infoButton = UIButton()
+    private let titleLabel = UILabel()
+    private let organizationInfoView = OrganizationInfoView(type: .make)
+    private let bottomCTAButton = PINGLECTAButton(
+        title: StringLiterals.CTAButton.makeTitle,
+        buttonColor: .grayscaleG08,
+        textColor: .grayscaleG10
+    )
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
         setTarget()
+        activateBottomCTAButton()
+        organizationInfoViewBindData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,9 +55,34 @@ final class CheckOrganizationViewController: BaseViewController {
         infoButton.do {
             $0.setImage(UIImage(resource: .icInfoBig), for: .normal)
         }
+        
+        titleLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Onboarding.ExplainTitle.checkOrganizationTitle, lineHeight: 34)
+            $0.font = .titleTitleSemi24
+            $0.textColor = .white
+            $0.textAlignment = .left
+        }
     }
     
     override func setLayout() {
+        view.addSubviews(titleLabel,
+                         organizationInfoView,
+                         bottomCTAButton)
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(32)
+            $0.leading.equalToSuperview().inset(26)
+        }
+        
+        organizationInfoView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(25)
+            $0.centerX.equalToSuperview()
+        }
+        
+        bottomCTAButton.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(41)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     // MARK: Navigation Function
@@ -90,6 +129,25 @@ final class CheckOrganizationViewController: BaseViewController {
         let makeOrganizationGuideViewController = MakeOrganizationGuideViewController()
         makeOrganizationGuideViewController.modalPresentationStyle = .fullScreen
         navigationController?.present(makeOrganizationGuideViewController, animated: true)
+    }
+    
+    // MARK: ActiveButton
+    private func activateBottomCTAButton() {
+        self.bottomCTAButton.activateButton()
+    }
+    
+    // MARK: BindData
+    private func organizationInfoViewBindData() {
+        guard let organizationName = organizationName,
+              let representativeEmail = representativeEmail,
+              let keywordValue = keyword?.value else {
+            return
+        }
+        
+        let organizationInfoData = MakeTeamsRequestBodyDTO(name: organizationName,
+                                                       email: representativeEmail,
+                                                       keyword: keywordValue)
+        organizationInfoView.bindMakeData(data: organizationInfoData)
     }
 }
 

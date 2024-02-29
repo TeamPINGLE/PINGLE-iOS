@@ -399,10 +399,9 @@ extension HomeMapViewController {
         category: String?,
         completion: @escaping (Bool) -> Void
     ) {
-        if KeychainHandler.shared.userGroup.count > 0 {
-            
+        if let userGroupId = KeychainHandler.shared.userGroupId {
             NetworkService.shared.homeService.pinList(
-                teamId: KeychainHandler.shared.userGroup[0].id,
+                teamId: userGroupId,
                 queryDTO: HomePinListRequestQueryDTO(category: category)
             ) { [weak self] response in
                 switch response {
@@ -431,10 +430,10 @@ extension HomeMapViewController {
         category: String,
         completion: @escaping (Bool) -> Void
     ) {
-        if KeychainHandler.shared.userGroup.count > 0 {
+        if let userGroupId = KeychainHandler.shared.userGroupId {
             NetworkService.shared.homeService.pinDetail(
                 pinId: pinId,
-                teamId: KeychainHandler.shared.userGroup[0].id,
+                teamId: userGroupId,
                 queryDTO: HomePinListRequestQueryDTO(category: category.isEmpty ? nil : category)
             ) { [weak self] response in
                 switch response {

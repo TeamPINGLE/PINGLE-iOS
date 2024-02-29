@@ -222,12 +222,12 @@ final class HomeListViewController: BaseViewController {
     }
     
     func getListData(text: String, category: String, order: String) {
-        if KeychainHandler.shared.userGroup.count > 0 {
+        if let userGroupId = KeychainHandler.shared.userGroupId {
             NetworkService.shared.homeService.listGet(
                 queryDTO: HomeListSearchRequestQueryDTO(
                     q: text.isEmpty ? nil : text,
                     category: category,
-                    teamId: KeychainHandler.shared.userGroup[0].id,
+                    teamId: userGroupId,
                     order: order
                 )
             ) { [weak self] response in

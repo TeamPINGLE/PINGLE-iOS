@@ -14,7 +14,6 @@ protocol MeetingServiceProtocol {
 
 final class MeetingService: APIRequestLoader<MeetingTarget>, MeetingServiceProtocol {
     func makeMeeting(bodyDTO: MakeMeetingRequestBodyDTO, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
-        let headers = "\(KeychainHandler.shared.userGroup[0].id)"
         fetchData(target: .makeMeeting(bodyDTO), responseData: BaseResponse<String?>.self, completion: completion)
     }
     

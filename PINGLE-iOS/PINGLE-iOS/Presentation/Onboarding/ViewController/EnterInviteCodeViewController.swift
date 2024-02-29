@@ -212,10 +212,9 @@ final class EnterInviteCodeViewController: BaseViewController {
             case .success(let data):
                 /// data가 있다는 것은 초대코드가 유효하다는 뜻이다. 없다는 것은 초대코드가 유효하지 않아 그룹 정보를 보내지 않는다는 뜻이다.
                 if let data = data.data {
-                    /// 이후 여러단체에 가입할 경우에 대비하여 사용자가 가입한 팀명과 팀번호를 배열의 첫번째에 저장한다.
-                    var userGroup: [UserGroup] = []
-                    userGroup.append(UserGroup(id: data.id, name: data.name))
-                    KeychainHandler.shared.userGroup = userGroup
+                    /// 사용자가 가입한 팀명과 팀번호를  저장한다.
+                    KeychainHandler.shared.userGroupId = data.id
+                    KeychainHandler.shared.userGroupName = data.name
                     let entranceCompletedViewController = EntranceCompletedViewController()
                     navigationController?.pushViewController(entranceCompletedViewController, animated: true)
                 } else {

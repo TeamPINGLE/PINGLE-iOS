@@ -13,6 +13,7 @@ import Then
 final class MakeCompletedViewController: BaseViewController {
     
     // MARK: Variables
+    var organizationName: String?
     var inviteCode: String?
     
     // MARK: Property

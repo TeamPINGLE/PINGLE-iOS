@@ -188,6 +188,7 @@ final class CheckOrganizationViewController: BaseViewController {
     // MARK: ChangeRootViewController
     func changeRootViewController() {
         let makeCompletedViewController = MakeCompletedViewController()
+        makeCompletedViewController.organizationName = organizationName
         makeCompletedViewController.inviteCode = inviteCode
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
         sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: makeCompletedViewController)

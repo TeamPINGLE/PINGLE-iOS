@@ -13,6 +13,7 @@ import Then
 final class ShareInviteCodeViewController: BaseViewController {
     
     // MARK: Variables
+    var organizationName: String?
     var inviteCode: String?
     
     // MARK: Property
@@ -172,11 +173,35 @@ final class ShareInviteCodeViewController: BaseViewController {
     }
     
     @objc func clipBoardCopyButtonTapped() {
-        
+        UIPasteboard.general.string = inviteCode
+        showWarningToastView()
     }
     
     @objc func bottomCTAButtonTapped() {
-        showWarningToastView()
+        let organizationName = organizationName ?? ""
+        let inviteCode = inviteCode ?? ""
+        let shareText: String = """
+                                지금 \(organizationName)는 너 빼고 핑글하는 중!
+                                핑글 앱을 다운받고, \(organizationName)사람들을 만나보세요!
+
+                                초대코드: \(inviteCode)
+                                
+                                https://apps.apple.com/kr/app/pingle-%ED%95%91%EA%B8%80/id6475423894?l=en-GB
+                                """
+        
+        let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+
+        activityViewController.excludedActivityTypes = [
+            .addToReadingList,
+            .airDrop,
+            .assignToContact,
+            .markupAsPDF,
+            .openInIBooks,
+            .print,
+            .saveToCameraRoll
+        ]
+        
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     // MARK: Animation Function

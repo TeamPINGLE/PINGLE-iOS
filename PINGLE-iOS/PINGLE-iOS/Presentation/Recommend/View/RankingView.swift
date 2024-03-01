@@ -14,6 +14,7 @@ final class RankingView: BaseView {
 
     // MARK: - Property
     let rankingCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let emptyRankingLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,14 +34,30 @@ final class RankingView: BaseView {
                                            bottom: 32,
                                            right: 0)
         }
+        
+        
+        emptyRankingLabel.do {
+            $0.text = StringLiterals.Recommend.nonRanking
+            $0.numberOfLines = 2
+            $0.font = .subtitleSubSemi18
+            $0.textColor = .grayscaleG06
+            $0.setLineSpacing(spacing: 2)
+            $0.textAlignment = .center
+            $0.isHidden = true
+        }
     }
     
     override func setLayout() {
-        self.addSubviews(rankingCollectionView)
-
+        self.addSubviews(rankingCollectionView, emptyRankingLabel)
+        
         rankingCollectionView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(17.adjusted)
+        }
+        
+        emptyRankingLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(201)
+            $0.leading.trailing.equalToSuperview().inset(32.adjusted)
         }
     }
 }

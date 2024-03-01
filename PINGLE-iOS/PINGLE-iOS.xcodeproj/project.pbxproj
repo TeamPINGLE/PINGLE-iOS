@@ -92,7 +92,6 @@
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
 		E51D424B2B89E1A6000E0CCE /* RankingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D424A2B89E1A6000E0CCE /* RankingTarget.swift */; };
 		E51D424D2B89E1C2000E0CCE /* RankingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D424C2B89E1C2000E0CCE /* RankingService.swift */; };
-		E542B6722B83C2C300B50B95 /* NoRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6712B83C2C300B50B95 /* NoRankingView.swift */; };
 		E542B6782B83CB2900B50B95 /* RankingNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6772B83CB2900B50B95 /* RankingNumberView.swift */; };
 		E542B67A2B83D57C00B50B95 /* RankingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */; };
 		E542B6802B83F2B600B50B95 /* RankingResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B67F2B83F2B600B50B95 /* RankingResponseDTO.swift */; };
@@ -259,7 +258,6 @@
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
 		E51D424A2B89E1A6000E0CCE /* RankingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTarget.swift; sourceTree = "<group>"; };
 		E51D424C2B89E1C2000E0CCE /* RankingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingService.swift; sourceTree = "<group>"; };
-		E542B6712B83C2C300B50B95 /* NoRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRankingView.swift; sourceTree = "<group>"; };
 		E542B6772B83CB2900B50B95 /* RankingNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingNumberView.swift; sourceTree = "<group>"; };
 		E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCollectionViewCell.swift; sourceTree = "<group>"; };
 		E542B67F2B83F2B600B50B95 /* RankingResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingResponseDTO.swift; sourceTree = "<group>"; };
@@ -964,7 +962,6 @@
 		E542B6732B83CACB00B50B95 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E542B6712B83C2C300B50B95 /* NoRankingView.swift */,
 				E542B6772B83CB2900B50B95 /* RankingNumberView.swift */,
 				E542B6812B840FD700B50B95 /* RankingView.swift */,
 			);
@@ -1366,7 +1363,6 @@
 				C30D1E0A2B56FB7B00879258 /* CompleteViewController.swift in Sources */,
 				C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */,
 				E5A651F62B4AF72500676ED0 /* SearchPlaceView.swift in Sources */,
-				E542B6722B83C2C300B50B95 /* NoRankingView.swift in Sources */,
 				C3074B1E2B591B75009D2D0C /* MyPINGLEService.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
 				C3074B252B599406009D2D0C /* AppStoreCheck.swift in Sources */,

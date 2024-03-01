@@ -42,7 +42,11 @@ final class HomeListViewController: BaseViewController {
         super.viewDidLoad()
         setAddTarget()
         setCollectionView()
-        getListData(text: searchText, category: category, order: order)
+        getListData(
+            text: searchText,
+            category: category,
+            order: order
+        ) {}
     }
     
     private func setCollectionView() {
@@ -200,8 +204,13 @@ final class HomeListViewController: BaseViewController {
     // MARK: Objc Function
     @objc private func refreshCollection(refresh: UIRefreshControl) {
         refresh.beginRefreshing()
-        getListData(text: searchText, category: category, order: order)
-        refresh.endRefreshing()
+        getListData(
+            text: searchText,
+            category: category,
+            order: order
+        ) {
+            refresh.endRefreshing()
+        }
     }
     
     @objc private func sortButtonTapped() {
@@ -210,20 +219,33 @@ final class HomeListViewController: BaseViewController {
     
     @objc private func recentButtonTapped() {
         order = "NEW"
-        getListData(text: searchText, category: category, order: order)
+        getListData(
+            text: searchText,
+            category: category,
+            order: order
+        ) {}
         sortTitleLabel.text = StringLiterals.Home.List.sortRecent
         sortMoreView.isHidden = true
     }
     
     @objc private func imminentButtonTapped() {
         order = "UPCOMING"
-        getListData(text: searchText, category: category, order: order)
+        getListData(
+            text: searchText,
+            category: category,
+            order: order
+        ) {}
         sortTitleLabel.text = StringLiterals.Home.List.sortImminent
         sortMoreView.isHidden = true
     }
     
     // MARK: Network Helper
-    func getListData(text: String, category: String, order: String) {
+    func getListData(
+        text: String,
+        category: String,
+        order: String,
+        completion: @escaping () -> Void
+    ) {
         if KeychainHandler.shared.userGroup.count > 0 {
             NetworkService.shared.homeService.listGet(
                 queryDTO: HomeListSearchRequestQueryDTO(
@@ -251,6 +273,7 @@ final class HomeListViewController: BaseViewController {
                     return
                 }
             }
+            completion()
         }
     }
     
@@ -340,7 +363,7 @@ extension HomeListViewController: UICollectionViewDataSource {
         cell.homeListDetailView.dataBind(data: listData[indexPath.row].meeting)
         cell.isExpand = listData[indexPath.row].isExpand
         cell.homeListDetailView.updateStyle()
-
+        
         cell.homeListDetailView.participantsButtonAction = {
             cell.showPopUp(
                 isParticipating: self.listData[indexPath.row].meeting.isParticipating,
@@ -357,7 +380,11 @@ extension HomeListViewController: UICollectionViewDataSource {
                 guard let self else { return }
                 if result {
                     cell.homeListDetailView.isParticipating = true
-                    getListData(text: searchText, category: category, order: order)
+                    getListData(
+                        text: searchText,
+                        category: category,
+                        order: order
+                    ) {}
                 }
             }
         }
@@ -367,7 +394,11 @@ extension HomeListViewController: UICollectionViewDataSource {
                 self.meetingDelete(meetingId: self.listData[indexPath.row].meeting.id) { [weak self] result in
                     guard let self else { return }
                     if result {
-                        getListData(text: searchText, category: category, order: order)
+                        getListData(
+                            text: searchText,
+                            category: category,
+                            order: order
+                        ) {}
                     }
                 }
             } else {
@@ -375,7 +406,11 @@ extension HomeListViewController: UICollectionViewDataSource {
                     guard let self else { return }
                     if result {
                         cell.homeListDetailView.isParticipating = false
-                        getListData(text: searchText, category: category, order: order)
+                        getListData(
+                            text: searchText,
+                            category: category,
+                            order: order
+                        ) {}
                     }
                 }
             }

@@ -30,11 +30,11 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     }
     private var expandedConstraint: Constraint?
     private var collapsedConstraint: Constraint?
-
+    
     private let dimmedTapGesture = UITapGestureRecognizer()
     var memberButtonAction: (() -> Void) = {}
     var toggleButtonAction: (() -> Void) = {}
-     
+    
     // MARK: - Function
     // MARK: LifeCycle
     override init(frame: CGRect) {

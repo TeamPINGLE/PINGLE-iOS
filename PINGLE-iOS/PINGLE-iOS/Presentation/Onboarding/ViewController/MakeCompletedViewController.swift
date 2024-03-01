@@ -156,6 +156,7 @@ final class MakeCompletedViewController: BaseViewController {
     // MARK: Objc Function
     @objc func bottomCTAButtonTapped() {
         let shareInviteCodeViewController = ShareInviteCodeViewController()
+        shareInviteCodeViewController.organizationName = organizationName
         shareInviteCodeViewController.inviteCode = inviteCode
         navigationController?.pushViewController(shareInviteCodeViewController, animated: true)
     }

@@ -131,7 +131,8 @@ final class RecommendViewController: BaseViewController {
     }
     
     func rankingList(completion: @escaping (Bool) -> Void = { _ in }) {
-        NetworkService.shared.rankingService.ranking(teamId: KeychainHandler.shared.userGroup[0].id){ [weak self]
+        guard let userGroupId = KeychainHandler.shared.userGroupId else { return }
+        NetworkService.shared.rankingService.ranking(teamId: userGroupId){ [weak self]
             response in
             switch response {
             case .success(let data):

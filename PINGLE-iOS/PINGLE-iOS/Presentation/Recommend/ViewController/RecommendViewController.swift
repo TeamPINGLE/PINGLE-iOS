@@ -17,6 +17,7 @@ final class RecommendViewController: BaseViewController {
     private let titleLabel = UILabel()
     private let rankingView = RankingView()
     private let refreshControl = UIRefreshControl()
+    private var meetingCount: Int?
     var rankingResponseDTO: [RankingResponseDTO.Location] = []
     
     // MARK: - Function
@@ -88,10 +89,11 @@ final class RecommendViewController: BaseViewController {
     }
     
     private func uploadRanking() {
-        if rankingResponseDTO.count >= 30 {
-            rankingView.emptyRankingLabel.isHidden = true
+        guard let meetingCount = meetingCount else {return}
+        if meetingCount >= 30 {
+            rankingView.rankingCollectionView.isHidden = false
         } else {
-            rankingView.emptyRankingLabel.isHidden = false
+            rankingView.rankingCollectionView.isHidden = true
         }
     }
     
@@ -110,24 +112,30 @@ final class RecommendViewController: BaseViewController {
     
     func rankingList(completion: @escaping (Bool) -> Void = { _ in }) {
         guard let userGroupId = KeychainHandler.shared.userGroupId else { return }
-        NetworkService.shared.rankingService.ranking(teamId: userGroupId){ [weak self]
-            response in
+        NetworkService.shared.rankingService.ranking(teamId: userGroupId) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let rankingList = data.data else {
                     print("No data in response.")
                     return
                 }
-                self?.rankingResponseDTO = rankingList.locations
                 
-                self?.uploadRanking()
+                self?.meetingCount = rankingList.meetingCount
+                /// meetingCount가 30 이상이면 배열에 데이터 추가 및 emptyLabel hidden
+                if let meetingCount = self?.meetingCount, meetingCount >= 30 {
+                    self?.rankingResponseDTO = rankingList.locations
+                    self?.rankingView.emptyRankingLabel.isHidden = true
+                }else {
+                    self?.rankingResponseDTO = []
+                    self?.rankingView.emptyRankingLabel.isHidden = false
+                }
                 
                 DispatchQueue.main.async {
                     self?.rankingView.rankingCollectionView.reloadData()
                 }
             default:
                 print("실패")
-                return
+                break
             }
         }
     }

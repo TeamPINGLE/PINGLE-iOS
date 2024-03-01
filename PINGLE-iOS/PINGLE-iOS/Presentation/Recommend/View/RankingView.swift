@@ -35,7 +35,6 @@ final class RankingView: BaseView {
                                            right: 0)
         }
         
-        
         emptyRankingLabel.do {
             $0.text = StringLiterals.Recommend.nonRanking
             $0.numberOfLines = 2

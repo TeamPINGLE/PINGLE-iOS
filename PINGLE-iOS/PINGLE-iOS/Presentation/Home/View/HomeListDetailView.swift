@@ -205,7 +205,6 @@ final class HomeListDetailView: BaseView {
         
         topBackgroundView.snp.makeConstraints {
             $0.top.equalToSuperview()
-//            $0.width.equalTo(327.adjustedWidth)
             $0.width.equalTo(UIScreen.main.bounds.width - 48)
             $0.height.equalTo(121)
         }
@@ -245,6 +244,7 @@ final class HomeListDetailView: BaseView {
         bottomBackgroundView.snp.makeConstraints {
             $0.top.equalTo(topBackgroundView.snp.bottom)
             $0.bottom.equalToSuperview()
+            $0.height.greaterThanOrEqualTo(24)
             $0.leading.trailing.width.equalTo(topBackgroundView)
         }
         

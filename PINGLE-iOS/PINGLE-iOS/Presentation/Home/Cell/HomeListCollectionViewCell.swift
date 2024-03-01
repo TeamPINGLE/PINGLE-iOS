@@ -16,7 +16,7 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     // MARK: Constants
     static let identifier = "HomeListCollectionViewCell"
     
-    var isExpand = true
+    var isExpand = false
     private var expandedConstraint: Constraint?
     private var collapsedConstraint: Constraint?
 
@@ -134,10 +134,6 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
             $0.center.equalToSuperview()
         }
         
-        homeListDetailView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
         homeListDetailView.bottomBackgroundView.snp.prepareConstraints {
             expandedConstraint = $0.height.equalTo(230).constraint
             expandedConstraint?.layoutConstraints.first?.priority = .defaultLow
@@ -152,7 +148,7 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
         collapsedConstraint?.isActive = true
     }
     
-    private func updateAppearance() {
+    func updateAppearance() {
         collapsedConstraint?.isActive = !isExpand
         expandedConstraint?.isActive = isExpand
         UIView.animate(withDuration: 0.3) {

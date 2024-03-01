@@ -21,12 +21,6 @@ final class HomeListViewController: BaseViewController {
     let mapButton = UIButton()
     let emptyLabel = UILabel()
     
-    var listData: [HomeListData] = []
-    var searchText: String = ""
-    var category: String = ""
-    var order: String = "NEW"
-    var currentMeetingId: Int = 0
-    
     private let refreshControl = UIRefreshControl()
     lazy var listCollectionView = UICollectionView(
         frame: .zero, 
@@ -34,6 +28,12 @@ final class HomeListViewController: BaseViewController {
     )
     private let listCollectionViewFlowLayout = UICollectionViewFlowLayout()
     
+    // MARK: Variables
+    var listData: [HomeListData] = []
+    var searchText: String = ""
+    var category: String = ""
+    var order: String = "NEW"
+    var currentMeetingId: Int = 0
     var participantsAction: (() -> Void) = {}
     
     // MARK: - Function
@@ -197,6 +197,13 @@ final class HomeListViewController: BaseViewController {
         )
     }
     
+    // MARK: Objc Function
+    @objc private func refreshCollection(refresh: UIRefreshControl) {
+        refresh.beginRefreshing()
+        getListData(text: searchText, category: category, order: order)
+        refresh.endRefreshing()
+    }
+    
     @objc private func sortButtonTapped() {
         sortMoreView.isHidden.toggle()
     }
@@ -215,6 +222,7 @@ final class HomeListViewController: BaseViewController {
         sortMoreView.isHidden = true
     }
     
+    // MARK: Network Helper
     func getListData(text: String, category: String, order: String) {
         if KeychainHandler.shared.userGroup.count > 0 {
             NetworkService.shared.homeService.listGet(
@@ -244,13 +252,6 @@ final class HomeListViewController: BaseViewController {
                 }
             }
         }
-    }
-    
-    // MARK: Objc Function
-    @objc private func refreshCollection(refresh: UIRefreshControl) {
-        refresh.beginRefreshing()
-        getListData(text: searchText, category: category, order: order)
-        refresh.endRefreshing()
     }
     
     private func connectTalkLink(urlString: String) {
@@ -325,6 +326,8 @@ final class HomeListViewController: BaseViewController {
     }
 }
 
+// MARK: - extensions
+// MARK: UICollectionViewDataSource
 extension HomeListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listData.count
@@ -394,8 +397,8 @@ extension HomeListViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionViewDataSource
 extension HomeListViewController: UICollectionViewDelegateFlowLayout {
-    
     // MARK: Dynamic height calculation
     func collectionView(
         _ collectionView: UICollectionView,

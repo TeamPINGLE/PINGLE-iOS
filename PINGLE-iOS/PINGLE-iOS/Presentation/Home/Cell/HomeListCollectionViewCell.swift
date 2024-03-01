@@ -16,6 +16,13 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     // MARK: Constants
     static let identifier = "HomeListCollectionViewCell"
     
+    // MARK: Components
+    let homeListDetailView = HomeListDetailView()
+    private let dimmedView = UIView()
+    let homeDetailPopUpView = HomeDetailPopUpView()
+    let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
+    
+    // MARK: Variables
     var isExpand = false {
         didSet {
             updateAppearance()
@@ -24,12 +31,6 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     private var expandedConstraint: Constraint?
     private var collapsedConstraint: Constraint?
 
-    let homeListDetailView = HomeListDetailView()
-    
-    private let dimmedView = UIView()
-    let homeDetailPopUpView = HomeDetailPopUpView()
-    let homeDetailCancelPopUpView = HomeDetailCancelPopUpView()
-    
     private let dimmedTapGesture = UITapGestureRecognizer()
     var memberButtonAction: (() -> Void) = {}
     var toggleButtonAction: (() -> Void) = {}
@@ -96,6 +97,7 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
         updateAppearance()
     }
     
+    // MARK: Style Helper
     private func setStyle() {
         dimmedView.do {
             $0.backgroundColor = .black
@@ -113,6 +115,7 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK: Layout Helper
     private func setLayout() {
         self.addSubviews(homeListDetailView)
         
@@ -174,7 +177,6 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
         
         if !isParticipating {
             homeDetailPopUpView.isHidden = false
-            print("참여 팝업 보여주기")
         } else {
             homeDetailCancelPopUpView.titleLabel.text = isOwner ? StringLiterals.MyPingle.Delete.deleteTitle : StringLiterals.Home.Detail.cancelTitle
             homeDetailCancelPopUpView.descriptionLabel.text = isOwner ? StringLiterals.MyPingle.Delete.deleteDescription : StringLiterals.Home.Detail.cancelDescription
@@ -183,12 +185,11 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
                 for: .normal
             )
             homeDetailCancelPopUpView.isHidden = false
-            print("참여취소 / 삭제 팝업 보여주기")
         }
     }
     
+    // MARK: @objc func
     @objc private func backButtonTapped() {
-        print("돌아가기 버튼 탭")
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
     }
@@ -211,7 +212,6 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     
     @objc private func toggleButtonTapped() {
         isExpand.toggle()
-//        updateAppearance()
         toggleButtonAction()
     }
 }

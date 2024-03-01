@@ -88,19 +88,9 @@ final class RecommendViewController: BaseViewController {
                                                         forCellWithReuseIdentifier: RankingCollectionViewCell.identifier)
     }
     
-    private func uploadRanking() {
-        guard let meetingCount = meetingCount else {return}
-        if meetingCount >= 30 {
-            rankingView.rankingCollectionView.isHidden = false
-        } else {
-            rankingView.rankingCollectionView.isHidden = true
-        }
-    }
-    
     private func setupRefreshControl() {
         rankingList { _ in
             self.rankingView.rankingCollectionView.reloadData()
-            self.uploadRanking()
         }
        }
 

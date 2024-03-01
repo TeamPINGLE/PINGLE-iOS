@@ -49,6 +49,7 @@
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
 		C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A2DE42B4D89950063F84A /* ParticipantButton.swift */; };
 		C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33084BB2B47940300380E82 /* HomeMapDetailView.swift */; };
+		C33626D42B91CB3400CD8437 /* HomeListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33626D32B91CB3400CD8437 /* HomeListData.swift */; };
 		C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF3442B46E03400008653 /* PINGLEMarker.swift */; };
 		C3671F872B7DEC2E006E7C8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3671F862B7DEC2E006E7C8C /* HomeViewController.swift */; };
 		C384C1952B84E41D002B6F45 /* HomeListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C384C1942B84E41D002B6F45 /* HomeListDetailView.swift */; };
@@ -213,6 +214,7 @@
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
 		C32A2DE42B4D89950063F84A /* ParticipantButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ParticipantButton.swift; path = "PINGLE-iOS/Presentation/Home/Components/ParticipantButton.swift"; sourceTree = SOURCE_ROOT; };
 		C33084BB2B47940300380E82 /* HomeMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapDetailView.swift; sourceTree = "<group>"; };
+		C33626D32B91CB3400CD8437 /* HomeListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListData.swift; sourceTree = "<group>"; };
 		C33BF3442B46E03400008653 /* PINGLEMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEMarker.swift; sourceTree = "<group>"; };
 		C35857B72B7A980600C21AF2 /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
 		C3671F862B7DEC2E006E7C8C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */,
+				C33626D32B91CB3400CD8437 /* HomeListData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1356,6 +1359,7 @@
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
 				F1DFF2912B849D65000AC100 /* EnterOrganizationInfoViewController.swift in Sources */,
+				C33626D42B91CB3400CD8437 /* HomeListData.swift in Sources */,
 				C30D1E0A2B56FB7B00879258 /* CompleteViewController.swift in Sources */,
 				C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */,
 				E5A651F62B4AF72500676ED0 /* SearchPlaceView.swift in Sources */,
@@ -1398,7 +1402,6 @@
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
 				C3F095AE2B8A443C009A0819 /* HomeListSearchResponseDTO.swift in Sources */,
 				C30D1E0E2B5700DB00879258 /* MyPINGLECollectionViewCell.swift in Sources */,
-				C32A2DE72B4D934C0063F84A /* ParticipantViewController.swift in Sources */,
 				F1DFF2892B7B6E86000AC100 /* ManualViewController.swift in Sources */,
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
 				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,

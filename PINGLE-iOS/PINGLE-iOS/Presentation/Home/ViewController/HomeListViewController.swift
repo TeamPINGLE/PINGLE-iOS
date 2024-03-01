@@ -337,7 +337,6 @@ extension HomeListViewController: UICollectionViewDataSource {
         cell.homeListDetailView.dataBind(data: listData[indexPath.row].meeting)
         cell.isExpand = listData[indexPath.row].isExpand
         cell.homeListDetailView.updateStyle()
-        cell.updateAppearance()
 
         cell.homeListDetailView.participantsButtonAction = {
             cell.showPopUp(
@@ -389,7 +388,7 @@ extension HomeListViewController: UICollectionViewDataSource {
         
         cell.toggleButtonAction = {
             self.listData[indexPath.row].isExpand = cell.isExpand
-            collectionView.reloadData()
+            collectionView.reloadItems(at: [indexPath])
         }
         return cell
     }

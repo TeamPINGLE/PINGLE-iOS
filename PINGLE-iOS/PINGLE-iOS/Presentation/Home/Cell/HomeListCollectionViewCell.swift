@@ -16,7 +16,11 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     // MARK: Constants
     static let identifier = "HomeListCollectionViewCell"
     
-    var isExpand = false
+    var isExpand = false {
+        didSet {
+            updateAppearance()
+        }
+    }
     private var expandedConstraint: Constraint?
     private var collapsedConstraint: Constraint?
 
@@ -149,9 +153,9 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     }
     
     func updateAppearance() {
-        collapsedConstraint?.isActive = !isExpand
-        expandedConstraint?.isActive = isExpand
         UIView.animate(withDuration: 0.3) {
+            self.collapsedConstraint?.isActive = !self.isExpand
+            self.expandedConstraint?.isActive = self.isExpand
             let upsideDown = CGAffineTransform(rotationAngle: .pi * -1)
             self.homeListDetailView.toggleButton.transform = self.isExpand ? upsideDown : .identity
             self.homeListDetailView.toggleButton.snp.remakeConstraints {
@@ -207,7 +211,7 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
     
     @objc private func toggleButtonTapped() {
         isExpand.toggle()
-        updateAppearance()
+//        updateAppearance()
         toggleButtonAction()
     }
 }

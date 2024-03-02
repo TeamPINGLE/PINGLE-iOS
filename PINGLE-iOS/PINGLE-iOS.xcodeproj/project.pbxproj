@@ -143,6 +143,7 @@
 		F13E69262B930BF800FCFBA3 /* CurrentOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */; };
 		F13E69292B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69282B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift */; };
 		F13E692B2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E692A2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift */; };
+		F13E692D2B9378AF00FCFBA3 /* ShareInviteCodePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E692C2B9378AF00FCFBA3 /* ShareInviteCodePopUpView.swift */; };
 		F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C642B4945E00049A9EE /* SettingViewController.swift */; };
 		F14F3C692B494FB10049A9EE /* OrganizationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C682B494FB10049A9EE /* OrganizationButton.swift */; };
 		F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */; };
@@ -314,6 +315,7 @@
 		F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentOrganizationView.swift; sourceTree = "<group>"; };
 		F13E69282B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrganizationCollectionViewCell.swift; sourceTree = "<group>"; };
 		F13E692A2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamsResponseDTO.swift; sourceTree = "<group>"; };
+		F13E692C2B9378AF00FCFBA3 /* ShareInviteCodePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInviteCodePopUpView.swift; sourceTree = "<group>"; };
 		F14F3C642B4945E00049A9EE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F14F3C682B494FB10049A9EE /* OrganizationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationButton.swift; sourceTree = "<group>"; };
 		F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSelectButton.swift; sourceTree = "<group>"; };
@@ -1114,6 +1116,7 @@
 			isa = PBXGroup;
 			children = (
 				F14F3C6F2B49BEB60049A9EE /* AccountPopUpView.swift */,
+				F13E692C2B9378AF00FCFBA3 /* ShareInviteCodePopUpView.swift */,
 				F14F3C6D2B4988380049A9EE /* SettingSelectView.swift */,
 				F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */,
 			);
@@ -1484,6 +1487,7 @@
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
 				F1D452742B89BB6000D8F50F /* CheckNameResponseDTO.swift in Sources */,
 				C30D1E082B56FB7300879258 /* SoonViewController.swift in Sources */,
+				F13E692D2B9378AF00FCFBA3 /* ShareInviteCodePopUpView.swift in Sources */,
 				E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */,
 				E542B6842B84F5CA00B50B95 /* FixView.swift in Sources */,
 				F14F44AB2B50411700871E5A /* ProfileService.swift in Sources */,

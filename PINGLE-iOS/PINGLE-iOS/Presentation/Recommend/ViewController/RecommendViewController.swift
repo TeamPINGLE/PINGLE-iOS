@@ -115,7 +115,7 @@ final class RecommendViewController: BaseViewController {
                 if let meetingCount = self?.meetingCount, meetingCount >= 30 {
                     self?.rankingResponseDTO = rankingList.locations
                     self?.rankingView.emptyRankingLabel.isHidden = true
-                }else {
+                } else {
                     self?.rankingResponseDTO = []
                     self?.rankingView.emptyRankingLabel.isHidden = false
                 }

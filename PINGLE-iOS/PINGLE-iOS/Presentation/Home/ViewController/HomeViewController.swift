@@ -40,6 +40,7 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setAddTarget()
+        setNavigation()
     }
     
     // MARK: Target Helpers
@@ -69,6 +70,8 @@ final class HomeViewController: BaseViewController {
         homeListViewController.participantsAction = {
             self.pushParticipantsViewController(meetingId: self.homeListViewController.currentMeetingId)
         }
+        
+        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Style Helpers
@@ -186,6 +189,20 @@ final class HomeViewController: BaseViewController {
         )
     }
     
+    @objc private func searchButtonTapped() {
+        let searchViewController: UIViewController
+        if isHomeMap {
+            searchViewController = SearchMapViewController()
+        } else {
+            searchViewController = SearchListViewController()
+        }
+        searchViewController.hidesBottomBarWhenPushed = true
+        
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(searchViewController, animated: true)
+        }
+    }
+    
     // MARK: Custom Func
     private func pushParticipantsViewController(meetingId: Int) {
         let participantsListViewController = ParticipantsListViewController()
@@ -194,5 +211,9 @@ final class HomeViewController: BaseViewController {
             participantsListViewController,
             animated: true
         )
+    }
+    
+    private func setNavigation() {
+        navigationController?.navigationBar.isHidden = true
     }
 }

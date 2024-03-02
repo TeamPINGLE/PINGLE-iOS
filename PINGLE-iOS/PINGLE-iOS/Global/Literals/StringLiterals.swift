@@ -65,6 +65,7 @@ enum StringLiterals {
         enum NavigationTitle {
             static let searchOrganizationNavigation = "단체 입장하기"
             static let makeOrganizationNavigation = "신규 단체 개설하기"
+            static let myOrganizationViewController = "나의 단체"
         }
         
         enum SearchBarPlaceholder {
@@ -255,6 +256,8 @@ enum StringLiterals {
             static let deleteQuestionTitle = "정말로 탈퇴하실건가요?"
             static let logoutExplanation = "Apple 계정을 로그아웃합니다"
             static let deleteExplanation = "탈퇴 시 계정은 삭제되며 복구할 수 없어요"
+            static let meetingNumber = "개최된 핑글 수"
+            static let memberNumber = "참여자 수"
         }
         
         enum ButtonTitle {
@@ -263,6 +266,8 @@ enum StringLiterals {
             static let logoutTitle = "로그아웃"
             static let deleteTitle = "탈퇴하기"
             static let backTitle = "돌아가기"
+            static let lookInviteCode = "초대코드 보기"
+            static let makeOrganization = "새로운 단체 추가하러 가기"
         }
     }
     

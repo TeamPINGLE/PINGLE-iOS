@@ -15,8 +15,9 @@ final class MyOrganizationCollectionViewCell: UICollectionViewCell {
     static let identifier: String = "MyOrganizationCollectionViewCell"
     
     // MARK: Properties
-    private let keywordLabel = BasePaddingLabel(padding: UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8))
+    private let keywordLabel = BasePaddingLabel(padding: UIEdgeInsets(top: 4, left: 10, bottom: 4, right: 10))
     private let organizationNameLabel = UILabel()
+    private let ownerImageView = UIImageView()
     
     // MARK: Initializing
     override init(frame: CGRect) {
@@ -32,64 +33,62 @@ final class MyOrganizationCollectionViewCell: UICollectionViewCell {
     // MARK: UI
     func setStyle() {
         self.do {
-            $0.backgroundColor = .grayscaleG11
+            $0.backgroundColor = .grayscaleG10
+            $0.makeCornerRound(radius: 12)
         }
         
         keywordLabel.do {
-            $0.font = .captionCapSemi10
+            $0.font = .captionCapSemi12
             $0.textColor = .mainPingleGreen
-            $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
-            $0.layer.cornerRadius = 10.adjusted
+            $0.layer.backgroundColor = UIColor.grayscaleG07.cgColor
+            $0.makeCornerRound(radius: 12.5)
         }
         
-        groupNameLabel.do {
-            $0.font = .bodyBodyMed16
-            $0.textColor = .white
+        organizationNameLabel.do {
+            $0.setTextWithLineHeight(text: " ", lineHeight: 28)
+            $0.font = .titleTitleSemi20
+            $0.textColor = .grayscaleG01
+            $0.numberOfLines = 2
+            $0.textAlignment = .left
+            $0.lineBreakMode = .byTruncatingTail
         }
         
-        selectImageView.do {
-            $0.image = UIImage(resource: .imgCheckDefault)
-        }
-        
-        horizontalLineView.do {
-            $0.backgroundColor = .grayscaleG09
+        ownerImageView.do {
+            $0.image = UIImage(resource: .imgDefaltOwner)
+            $0.isHidden = true
         }
     }
     
     func setLayout() {
-        addSubviews(keywordLabel, groupNameLabel, selectImageView, horizontalLineView)
+        self.addSubviews(keywordLabel,
+                         organizationNameLabel,
+                         ownerImageView)
         
         keywordLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview()
+            $0.top.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(24)
         }
         
-        groupNameLabel.snp.makeConstraints {
-            $0.leading.equalTo(keywordLabel.snp.trailing).offset(8.adjusted)
-            $0.centerY.equalToSuperview()
+        organizationNameLabel.snp.makeConstraints {
+            $0.top.equalTo(keywordLabel.snp.bottom).offset(14)
+            $0.leading.trailing.equalToSuperview().inset(24)
         }
         
-        selectImageView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(10.adjusted)
-            $0.centerY.equalToSuperview()
-            $0.height.width.equalTo(24.adjusted)
-        }
-        
-        horizontalLineView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.height.equalTo(1.adjusted)
+        ownerImageView.snp.makeConstraints {
+            $0.bottom.trailing.equalToSuperview()
+            $0.size.equalTo(57)
         }
     }
     
-    // MARK: Custom Function
-    func changeSelectedImage() {
-        selectImageView.image = UIImage(resource: .imgCheckSelected)
-    }
-    
-    func bindData(data: SearchOrganizationResponseDTO) {
+    // MARK: Bind Function
+    func bindData(data: MyTeamsResponseDTO) {
         keywordLabel.text = data.keyword
-        groupNameLabel.text = data.name
+        organizationNameLabel.text = data.name
+        
+        if data.isOwner {
+            ownerImageView.isHidden = false
+        } else {
+            ownerImageView.isHidden = true
+        }
     }
 }
-

@@ -16,6 +16,7 @@ final class CheckOrganizationViewController: BaseViewController {
     var organizationName: String?
     var representativeEmail: String?
     var keyword: KeywordResponseDTO?
+    private var inviteCode: String?
     
     // MARK: Property
     private let backButton = UIButton()
@@ -113,6 +114,9 @@ final class CheckOrganizationViewController: BaseViewController {
         infoButton.addTarget(self,
                              action: #selector(infoButtonTapped),
                              for: .touchUpInside)
+        bottomCTAButton.addTarget(self,
+                                  action: #selector(bottomCTAButtonTapped),
+                                  for: .touchUpInside)
     }
     
     // MARK: Objc Function
@@ -122,6 +126,20 @@ final class CheckOrganizationViewController: BaseViewController {
     
     @objc func infoButtonTapped() {
         presentMakeGroupGuideViewController()
+    }
+    
+    @objc func bottomCTAButtonTapped() {
+        guard let organizationName = organizationName,
+              let representativeEmail = representativeEmail,
+              let keywordName = keyword?.name else { return }
+        
+        let bodyDTO = MakeTeamsRequestBodyDTO(
+            name: organizationName,
+            email: representativeEmail,
+            keyword: keywordName
+        )
+        
+        postMakeTeams(bodyDTO: bodyDTO)
     }
     
     // MARK: Present Function
@@ -148,6 +166,32 @@ final class CheckOrganizationViewController: BaseViewController {
                                                        email: representativeEmail,
                                                        keyword: keywordValue)
         organizationInfoView.bindMakeData(data: organizationInfoData)
+    }
+    
+    // MARK: Network Function
+    func postMakeTeams(bodyDTO: MakeTeamsRequestBodyDTO) {
+        NetworkService.shared.onboardingService.makeTeams(bodyDTO: bodyDTO) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                KeychainHandler.shared.userGroupId = data.id
+                KeychainHandler.shared.userGroupName = data.name
+                inviteCode = data.code
+                changeRootViewController()
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    // MARK: ChangeRootViewController
+    func changeRootViewController() {
+        let makeCompletedViewController = MakeCompletedViewController()
+        makeCompletedViewController.organizationName = organizationName
+        makeCompletedViewController.inviteCode = inviteCode
+        
+        navigationController?.pushViewController(makeCompletedViewController, animated: true)
     }
 }
 

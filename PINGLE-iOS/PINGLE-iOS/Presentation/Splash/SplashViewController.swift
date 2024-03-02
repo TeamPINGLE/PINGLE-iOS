@@ -61,7 +61,12 @@ final class SplashViewController: BaseViewController {
                             self.changeRootViewController(rootViewController: self.loginViewController)
                         } else {
                             /// 어세스 토큰이 있는 경우 - 애플 계정을 통한 회원가입을 한 적이 있는 경우 : 가입한 단체가 있는지 확인하는 통신 코드 구현
-                            self.getUserInfo()
+                            /// 선택된 유저 그룹이 없는 경우 저장된 유저 정보 확인, 선택된 그룹이 있는 경우 홈 화면으로 이동.
+                            if KeychainHandler.shared.userGroupId == nil || KeychainHandler.shared.userGroupId == nil {
+                                self.getUserInfo()
+                            } else {
+                                self.changeRootViewController(rootViewController: self.pingleTabBarController)
+                            }
                         }
                     }
                 } else {
@@ -79,9 +84,10 @@ final class SplashViewController: BaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 if let groups = data.groups {
-                    KeychainHandler.shared.userGroup = groups
+                    KeychainHandler.shared.userGroupId = groups.first?.id
+                    KeychainHandler.shared.userGroupName = groups.first?.name
                 }
-                if KeychainHandler.shared.userGroup.isEmpty {
+                if KeychainHandler.shared.userGroupId == nil || KeychainHandler.shared.userGroupId == nil {
                     /// 유저가 가입한 단체가 없는 경우 - Onboarding 화면으로 이동하여 단체에 가입하도록 유도
                     self.changeRootViewController(rootViewController: self.onboardingViewController)
                 } else {

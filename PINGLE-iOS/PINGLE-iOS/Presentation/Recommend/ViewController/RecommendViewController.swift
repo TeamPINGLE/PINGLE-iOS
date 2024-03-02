@@ -15,7 +15,6 @@ final class RecommendViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     private let titleLabel = UILabel()
-    private let noRakingView = NoRankingView()
     private let rankingView = RankingView()
     private let refreshControl = UIRefreshControl()
     private var meetingCount: Int?
@@ -28,7 +27,6 @@ final class RecommendViewController: BaseViewController {
         setDelegate()
         setRegister()
         rankingList()
-        uploadRanking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +61,6 @@ final class RecommendViewController: BaseViewController {
         let safeAreaHeight = view.safeAreaInsets.bottom
         
         self.view.addSubviews(titleLabel,
-                              noRakingView,
                               rankingView)
         
         titleLabel.snp.makeConstraints {
@@ -72,13 +69,7 @@ final class RecommendViewController: BaseViewController {
         }
         
         rankingView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(safeAreaHeight)
-        }
-        
-        noRakingView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).offset(100)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(safeAreaHeight)
         }
@@ -97,27 +88,6 @@ final class RecommendViewController: BaseViewController {
                                                         forCellWithReuseIdentifier: RankingCollectionViewCell.identifier)
     }
     
-    private func showRankingView() {
-        // rankingView를 보이도록 설정
-        rankingView.isHidden = false
-        noRakingView.isHidden = true
-    }
-    
-    private func showNoRankingView() {
-        // noRakingView를 보이도록 설정
-        rankingView.isHidden = true
-        noRakingView.isHidden = false
-    }
-    
-    private func uploadRanking() {
-        guard let meetingCount = meetingCount else {return}
-        if meetingCount >= 30 {
-            showRankingView()
-        } else {
-            showNoRankingView()
-        }
-    }
-    
     private func setupRefreshControl() {
         rankingList { _ in
             self.rankingView.rankingCollectionView.reloadData()
@@ -131,23 +101,31 @@ final class RecommendViewController: BaseViewController {
     }
     
     func rankingList(completion: @escaping (Bool) -> Void = { _ in }) {
-        NetworkService.shared.rankingService.ranking(teamId: KeychainHandler.shared.userGroup[0].id){ [weak self]
-            response in
+        guard let userGroupId = KeychainHandler.shared.userGroupId else { return }
+        NetworkService.shared.rankingService.ranking(teamId: userGroupId) { [weak self] response in
             switch response {
             case .success(let data):
                 guard let rankingList = data.data else {
                     print("No data in response.")
                     return
                 }
+                
                 self?.meetingCount = rankingList.meetingCount
-                self?.rankingResponseDTO = rankingList.locations
+                /// meetingCount가 30 이상이면 배열에 데이터 추가 및 emptyLabel hidden
+                if let meetingCount = self?.meetingCount, meetingCount >= 30 {
+                    self?.rankingResponseDTO = rankingList.locations
+                    self?.rankingView.emptyRankingLabel.isHidden = true
+                } else {
+                    self?.rankingResponseDTO = []
+                    self?.rankingView.emptyRankingLabel.isHidden = false
+                }
                 
                 DispatchQueue.main.async {
                     self?.rankingView.rankingCollectionView.reloadData()
                 }
             default:
                 print("실패")
-                return
+                break
             }
         }
     }

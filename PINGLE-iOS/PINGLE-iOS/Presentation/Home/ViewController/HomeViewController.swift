@@ -77,8 +77,8 @@ final class HomeViewController: BaseViewController {
         homeListViewController.view.isHidden = isHomeMap
         
         homeGroupLabel.do {
-            if !KeychainHandler.shared.userGroup.isEmpty {
-                $0.text = KeychainHandler.shared.userGroup[0].name
+            if let userGroupName = KeychainHandler.shared.userGroupName {
+                $0.text = userGroupName
             }
             $0.font = .titleTitleSemi20
             $0.textColor = .white

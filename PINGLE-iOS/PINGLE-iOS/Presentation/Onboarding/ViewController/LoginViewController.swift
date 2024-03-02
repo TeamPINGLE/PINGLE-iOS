@@ -146,21 +146,29 @@ final class LoginViewController: BaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 if let groups = data.groups {
-                    KeychainHandler.shared.userGroup = groups
+                    KeychainHandler.shared.userGroupId = groups.first?.id
+                    KeychainHandler.shared.userGroupName = groups.first?.name
                 }
-                if KeychainHandler.shared.userGroup.isEmpty {
-                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
-                    self.navigationController?.popToRootViewController(animated: true)
+                if KeychainHandler.shared.userGroupId == nil || KeychainHandler.shared.userGroupId == nil {
+                    /// 유저가 가입한 단체가 없는 경우 - Onboarding 화면으로 이동하여 단체에 가입하도록 유도
+                    let onboardingViewController = OnboardingViewController()
+                    self.changeRootViewController(rootViewController: onboardingViewController)
                 } else {
-                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: PINGLETabBarController())
-                    self.navigationController?.popToRootViewController(animated: true)
+                    /// 유저가 가입한 단체가 있는 경우 - 메인화면으로 이동
+                    let pingleTabBarController = PINGLETabBarController()
+                    self.changeRootViewController(rootViewController: pingleTabBarController)
                 }
             default:
                 print("getUserInfo error")
             }
         }
+    }
+    
+    // MARK: Select RootViewController Function
+    func changeRootViewController(rootViewController: UIViewController) {
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 

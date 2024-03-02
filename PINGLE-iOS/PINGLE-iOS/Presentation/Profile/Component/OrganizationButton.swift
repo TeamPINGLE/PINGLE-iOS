@@ -78,6 +78,7 @@ class OrganizationButton: UIButton {
     
     // MARK: SetOrganizationName
     func changeOrganizationName() {
-        organizationNameLabel.text = KeychainHandler.shared.userGroup[0].name
+        guard let userGroupName = KeychainHandler.shared.userGroupName else { return }
+        organizationNameLabel.text = userGroupName
     }
 }

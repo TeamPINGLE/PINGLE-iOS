@@ -57,7 +57,7 @@ final class CurrentOrganizationView: BaseView {
         organizationNameLabel.do {
             $0.setTextWithLineHeight(text: " ", lineHeight: 28)
             $0.font = .titleTitleSemi20
-            $0.textColor = .white
+            $0.textColor = .grayscaleG01
             $0.numberOfLines = 2
             $0.textAlignment = .left
             $0.lineBreakMode = .byTruncatingTail
@@ -87,7 +87,6 @@ final class CurrentOrganizationView: BaseView {
         
         ownerImageView.do {
             $0.image = UIImage(resource: .imgSelectedOwner)
-            $0.backgroundColor = .grayscaleG11
             $0.isHidden = true
         }
     }
@@ -156,7 +155,7 @@ final class CurrentOrganizationView: BaseView {
         }
     }
     
-    func bindData(data: OrganizationDetailResponseDTO, isOwner: Bool) {
+    func bindData(data: MyTeamsResponseDTO) {
         keywordLabel.text = data.keyword
         organizationNameLabel.text = data.name
         meetingNumberLabel.text = "\(data.meetingCount)개"
@@ -172,7 +171,7 @@ final class CurrentOrganizationView: BaseView {
             $0.height.equalTo(viewHeight)
         }
         
-        if isOwner {
+        if data.isOwner {
             ownerImageView.isHidden = false
         } else {
             ownerImageView.isHidden = true

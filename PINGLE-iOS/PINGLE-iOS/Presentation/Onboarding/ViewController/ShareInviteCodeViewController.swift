@@ -181,11 +181,13 @@ final class ShareInviteCodeViewController: BaseViewController {
         let organizationName = organizationName ?? ""
         let inviteCode = inviteCode ?? ""
         let shareText: String = """
-                                지금 \(organizationName)는 너 빼고 핑글하는 중!
-                                핑글 앱을 다운받고, \(organizationName)사람들을 만나보세요!
-
-                                초대코드: \(inviteCode)
+                                Ready to PINGLE?
+                                구성원 모두를 위한 위치기반 네트워킹 서비스, PINGLE
                                 
+                                \(organizationName)에서 초대 메시지를 보냈습니다.
+                                핑글 앱을 다운받고, \(organizationName) 사람들을 만나보세요!
+                                
+                                초대코드 : \(inviteCode)
                                 https://apps.apple.com/kr/app/pingle-%ED%95%91%EA%B8%80/id6475423894?l=en-GB
                                 """
         

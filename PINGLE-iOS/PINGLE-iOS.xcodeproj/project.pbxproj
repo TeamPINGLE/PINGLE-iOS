@@ -141,6 +141,8 @@
 		F125A1882B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */; };
 		F13E69222B90730900FCFBA3 /* MakeCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69212B90730900FCFBA3 /* MakeCompletedViewController.swift */; };
 		F13E69262B930BF800FCFBA3 /* CurrentOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */; };
+		F13E69292B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69282B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift */; };
+		F13E692B2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E692A2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift */; };
 		F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C642B4945E00049A9EE /* SettingViewController.swift */; };
 		F14F3C692B494FB10049A9EE /* OrganizationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C682B494FB10049A9EE /* OrganizationButton.swift */; };
 		F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */; };
@@ -310,6 +312,8 @@
 		F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInviteCodeResponseDTO.swift; sourceTree = "<group>"; };
 		F13E69212B90730900FCFBA3 /* MakeCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompletedViewController.swift; sourceTree = "<group>"; };
 		F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentOrganizationView.swift; sourceTree = "<group>"; };
+		F13E69282B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrganizationCollectionViewCell.swift; sourceTree = "<group>"; };
+		F13E692A2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamsResponseDTO.swift; sourceTree = "<group>"; };
 		F14F3C642B4945E00049A9EE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F14F3C682B494FB10049A9EE /* OrganizationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationButton.swift; sourceTree = "<group>"; };
 		F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSelectButton.swift; sourceTree = "<group>"; };
@@ -695,6 +699,7 @@
 				F14F3C662B4946180049A9EE /* ViewController */,
 				F14F3C6C2B4988150049A9EE /* View */,
 				F14F3C672B494F6A0049A9EE /* Component */,
+				F13E69272B9351BE00FCFBA3 /* Cell */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1074,8 +1079,17 @@
 			isa = PBXGroup;
 			children = (
 				F12181BC2B505F5800D22F55 /* AppleTokenResponse.swift */,
+				F13E692A2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		F13E69272B9351BE00FCFBA3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F13E69282B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		F14F3C662B4946180049A9EE /* ViewController */ = {
@@ -1342,6 +1356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E50333632B50A64F0005AC0E /* MeetingTarget.swift in Sources */,
+				F13E692B2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift in Sources */,
 				F14F3C702B49BEB60049A9EE /* AccountPopUpView.swift in Sources */,
 				F125A1882B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift in Sources */,
 				F12181C12B5110F500D22F55 /* TokenRefreshResponseDTO.swift in Sources */,
@@ -1412,6 +1427,7 @@
 				F1DFF2892B7B6E86000AC100 /* ManualViewController.swift in Sources */,
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
 				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,
+				F13E69292B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift in Sources */,
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
 				F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,

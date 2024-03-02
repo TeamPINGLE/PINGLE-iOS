@@ -183,7 +183,7 @@ final class HomeViewController: BaseViewController {
             text: homeListViewController.searchText,
             category: homeListViewController.category,
             order: homeListViewController.order
-        )
+        ) {}
     }
     
     // MARK: Custom Func

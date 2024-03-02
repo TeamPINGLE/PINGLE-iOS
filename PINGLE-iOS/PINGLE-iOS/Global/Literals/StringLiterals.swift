@@ -258,6 +258,7 @@ enum StringLiterals {
             static let deleteExplanation = "탈퇴 시 계정은 삭제되며 복구할 수 없어요"
             static let meetingNumber = "개최된 핑글 수"
             static let memberNumber = "참여자 수"
+            static let shareCodeTitle = "공유하고 더 많은 친구와 함께해보세요!"
         }
         
         enum ButtonTitle {
@@ -268,6 +269,9 @@ enum StringLiterals {
             static let backTitle = "돌아가기"
             static let lookInviteCode = "초대코드 보기"
             static let makeOrganization = "새로운 단체 추가하러 가기"
+            static let changeTitle = "변경하기"
+            static let copyInviteCode = "초대코드 복사하기"
+            static let shareTitle = "공유하기"
         }
     }
     

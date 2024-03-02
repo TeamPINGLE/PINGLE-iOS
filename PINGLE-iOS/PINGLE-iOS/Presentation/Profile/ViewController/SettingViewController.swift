@@ -33,7 +33,6 @@ final class SettingViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setTarget()
-        organizationButton.changeOrganizationName()
     }
     
     // MARK: UI

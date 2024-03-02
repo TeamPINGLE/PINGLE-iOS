@@ -140,6 +140,7 @@
 		F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F125A1852B4FC77800739C34 /* OrganizationDetailResponseDTO.swift */; };
 		F125A1882B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */; };
 		F13E69222B90730900FCFBA3 /* MakeCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69212B90730900FCFBA3 /* MakeCompletedViewController.swift */; };
+		F13E69262B930BF800FCFBA3 /* CurrentOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */; };
 		F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C642B4945E00049A9EE /* SettingViewController.swift */; };
 		F14F3C692B494FB10049A9EE /* OrganizationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C682B494FB10049A9EE /* OrganizationButton.swift */; };
 		F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */; };
@@ -308,6 +309,7 @@
 		F125A1852B4FC77800739C34 /* OrganizationDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationDetailResponseDTO.swift; sourceTree = "<group>"; };
 		F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInviteCodeResponseDTO.swift; sourceTree = "<group>"; };
 		F13E69212B90730900FCFBA3 /* MakeCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompletedViewController.swift; sourceTree = "<group>"; };
+		F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentOrganizationView.swift; sourceTree = "<group>"; };
 		F14F3C642B4945E00049A9EE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F14F3C682B494FB10049A9EE /* OrganizationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationButton.swift; sourceTree = "<group>"; };
 		F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSelectButton.swift; sourceTree = "<group>"; };
@@ -1099,6 +1101,7 @@
 			children = (
 				F14F3C6F2B49BEB60049A9EE /* AccountPopUpView.swift */,
 				F14F3C6D2B4988380049A9EE /* SettingSelectView.swift */,
+				F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1413,6 +1416,7 @@
 				F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
+				F13E69262B930BF800FCFBA3 /* CurrentOrganizationView.swift in Sources */,
 				F1239BC62B458CC20072A02A /* SearchCollectionViewCell.swift in Sources */,
 				F1239BD52B47D5530072A02A /* EnterInviteCodeViewController.swift in Sources */,
 				C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */,

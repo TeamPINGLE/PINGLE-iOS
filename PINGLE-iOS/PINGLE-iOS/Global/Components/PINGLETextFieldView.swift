@@ -16,6 +16,7 @@ final class PINGLETextFieldView: BaseView {
     private let titleLabel = UILabel()
     let searchTextField = UITextField()
     let duplicationCheckButton = UIButton()
+    private let clipBoardCopyImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -113,5 +114,21 @@ final class PINGLETextFieldView: BaseView {
     func impossibleDuplicationButton() {
         duplicationCheckButton.isEnabled = false
         duplicationCheckButton.backgroundColor = .grayscaleG08
+    }
+    
+    func makeClipBoardCopyImageView() {
+        /// set Style
+        clipBoardCopyImageView.do {
+            $0.image = UIImage(resource: .icCopy)
+            $0.tintColor = .grayscaleG04
+        }
+        
+        /// set Layout
+        addSubview(clipBoardCopyImageView)
+        clipBoardCopyImageView.snp.makeConstraints {
+            $0.centerY.equalTo(searchTextField)
+            $0.trailing.equalToSuperview().inset(18)
+            $0.size.equalTo(24)
+        }
     }
 }

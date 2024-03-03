@@ -26,6 +26,7 @@ enum StringLiterals {
             static let requestOrganization = "단체를 직접 추가해주세요"
             static let skipButtonTitle = "건너뛰기"
             static let duplicationCheck = "중복 확인"
+            static let startHome = "홈으로 시작하기"
         }
         
         enum ExplainTitle {
@@ -60,11 +61,16 @@ enum StringLiterals {
             static let emailInfoMessage = "해당 이메일은 초대 코드 공유 및 단체 관리를 위해 사용될 예정입니다"
             static let keyworkSelectTitle = "단체를 설명하는\n키워드를 선택해주세요"
             static let checkOrganizationTitle = "단체 정보를\n확인하세요"
+            static let makeCompletedTitle = "단체가\n개설되었어요!"
+            static let makeCompletedPostPosition = "에 친구들을 초대하고"
+            static let shareInviteCodeTitle = "초대 코드를\n확인하세요"
+            static let shareInviteCodeInfoMessage = "초대코드는 더보기 > 나의 단체 페이지에서 다시 확인할 수 있어요"
         }
         
         enum NavigationTitle {
             static let searchOrganizationNavigation = "단체 입장하기"
             static let makeOrganizationNavigation = "신규 단체 개설하기"
+            static let shareInviteCodeNavigation = "친구 초대하기"
         }
         
         enum SearchBarPlaceholder {
@@ -278,6 +284,8 @@ enum StringLiterals {
         static let enterTitle = "입장하기"
         static let startTitle = "시작하기"
         static let makeTitle = "개설하기"
+        static let inviteFriendTitle = "친구 초대하러 가기"
+        static let shareTitle = "공유하기"
     }
     
     enum ToastView {
@@ -286,5 +294,6 @@ enum StringLiterals {
         static let possibleGroup = "등록 가능한 단체명입니다."
         static let impossibleGroup = "같은 이름을 가진 단체가 이미 존재합니다!"
         static let impossibleEmail = "유효하지 않은 이메일입니다!"
+        static let CompletedCopy = "초대코드가 복사되었습니다!"
     }
 }

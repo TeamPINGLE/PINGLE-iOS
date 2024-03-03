@@ -143,6 +143,8 @@ final class EntranceCompletedViewController: BaseViewController {
     
     // MARK: SetOrganizationName
     func changeOrganizationName() {
-        organizationNameLabel.text = KeychainHandler.shared.userGroup[0].name
+        if let userGroupName = KeychainHandler.shared.userGroupName {
+            organizationNameLabel.text = userGroupName
+        }
     }
 }

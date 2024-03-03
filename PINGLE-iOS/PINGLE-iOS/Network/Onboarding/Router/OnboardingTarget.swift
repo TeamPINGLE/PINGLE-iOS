@@ -18,6 +18,7 @@ enum OnboardingTarget {
     case postRefreshToken
     case checkName(_ parameterDTO: CheckNameRequestParameterDTO)
     case keyword
+    case makeTeams(_ makeTeamsRequestBodyDTO: MakeTeamsRequestBodyDTO)
 }
 
 extension OnboardingTarget: TargetType {
@@ -38,6 +39,8 @@ extension OnboardingTarget: TargetType {
         case .checkName:
             return .authorization
         case .keyword:
+            return .authorization
+        case .makeTeams:
             return .authorization
         }
     }
@@ -60,6 +63,8 @@ extension OnboardingTarget: TargetType {
             return .hasToken
         case .keyword:
             return .hasToken
+        case .makeTeams:
+            return .hasToken
         }
     }
     
@@ -81,6 +86,8 @@ extension OnboardingTarget: TargetType {
             return .get
         case .keyword:
             return .get
+        case .makeTeams:
+            return .post
         }
     }
     
@@ -102,6 +109,8 @@ extension OnboardingTarget: TargetType {
             return "/v1/teams/check-name"
         case .keyword:
             return "/v1/teams/keywords"
+        case .makeTeams:
+            return "/v1/teams"
         }
     }
     
@@ -123,6 +132,8 @@ extension OnboardingTarget: TargetType {
             return .requestQuery(parameterDTO)
         case .keyword:
             return .requestPlain
+        case .makeTeams(let bodyDTO):
+            return .requestWithBody(bodyDTO)
         }
     }
 }

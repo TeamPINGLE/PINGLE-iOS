@@ -76,7 +76,7 @@ final class AccountPopUpView: BaseView {
         
         questionLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(49)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(30)
         }
         
         explanationLabel.snp.makeConstraints {
@@ -119,7 +119,7 @@ final class AccountPopUpView: BaseView {
         changeStateButton.setTitle(StringLiterals.Profile.ButtonTitle.backTitle, for: .normal)
         explanationLabel.isHidden = true
         
-        questionLabel.text = "'\(organizationName)'(으)로\n단체를 변경하시겠어요?"
+        questionLabel.text = "'\(organizationName)'" + StringLiterals.Profile.ExplainTitle.questionChangeOrganization
         questionLabel.layoutIfNeeded()
         
         let viewHeight = 183 + min(questionLabel.countCurrentLines(), 3) * 25

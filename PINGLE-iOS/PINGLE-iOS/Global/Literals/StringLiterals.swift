@@ -265,6 +265,7 @@ enum StringLiterals {
             static let meetingNumber = "개최된 핑글 수"
             static let memberNumber = "참여자 수"
             static let shareCodeTitle = "공유하고 더 많은 친구와 함께해보세요!"
+            static let questionChangeOrganization = "(으)로\n단체를 변경하시겠어요?"
         }
         
         enum ButtonTitle {

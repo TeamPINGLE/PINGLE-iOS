@@ -82,7 +82,13 @@ final class MyOrganizationViewController: BaseViewController {
             $0.titleLabel?.font = .captionCapSemi12
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.textAlignment = .center
-            $0.layer.addBorder([.bottom], color: .white, width: 1.0, frameHeight: 17.0, framgeWidth: 124.0)
+            $0.layer.addBorder(
+                [.bottom],
+                color: .white,
+                width: 1.0,
+                frameHeight: 17.0,
+                framgeWidth: 124.0
+            )
         }
         
         dimmedView.do {

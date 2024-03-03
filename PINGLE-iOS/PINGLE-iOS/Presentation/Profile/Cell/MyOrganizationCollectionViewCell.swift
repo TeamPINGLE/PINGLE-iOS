@@ -84,11 +84,6 @@ final class MyOrganizationCollectionViewCell: UICollectionViewCell {
     func bindData(data: MyTeamsResponseDTO) {
         keywordLabel.text = data.keyword
         organizationNameLabel.text = data.name
-        
-        if data.isOwner {
-            ownerImageView.isHidden = false
-        } else {
-            ownerImageView.isHidden = true
-        }
+        ownerImageView.isHidden = !data.isOwner
     }
 }

@@ -37,7 +37,7 @@ final class SettingViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tabBarController?.tabBar.isHidden = false
+        setTapBarHidden()
     }
     
     // MARK: UI
@@ -123,6 +123,10 @@ final class SettingViewController: BaseViewController {
     // MARK: Navigation Function
     private func setNavigation() {
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func setTapBarHidden() {
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Delegate Function

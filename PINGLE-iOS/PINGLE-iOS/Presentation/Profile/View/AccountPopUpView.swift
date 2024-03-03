@@ -59,7 +59,13 @@ final class AccountPopUpView: BaseView {
             $0.titleLabel?.font = .captionCapSemi12
             $0.setTitleColor(.grayscaleG01, for: .normal)
             $0.titleLabel?.textAlignment = .center
-            $0.layer.addBorder([.bottom], color: .grayscaleG01, width: 1.0, frameHeight: 17.0, framgeWidth: 42.0)
+            $0.layer.addBorder(
+                [.bottom],
+                color: .grayscaleG01,
+                width: 1.0,
+                frameHeight: 17.0,
+                framgeWidth: 42.0
+            )
         }
     }
     

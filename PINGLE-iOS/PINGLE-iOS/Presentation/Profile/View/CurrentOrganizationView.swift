@@ -22,10 +22,6 @@ final class CurrentOrganizationView: BaseView {
     private let memberNumberTitleLabel = UILabel()
     private let memberNumberLabel = UILabel()
     private let ownerImageView = UIImageView()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
 
     // MARK: UI
     override func setStyle() {
@@ -51,7 +47,13 @@ final class CurrentOrganizationView: BaseView {
             $0.titleLabel?.font = .captionCapMed12
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.textAlignment = .center
-            $0.layer.addBorder([.bottom], color: .white, width: 1.0, frameHeight: 17.0, framgeWidth: 66.0)
+            $0.layer.addBorder(
+                [.bottom],
+                color: .white,
+                width: 1.0,
+                frameHeight: 17.0,
+                framgeWidth: 66.0
+            )
         }
         
         organizationNameLabel.do {
@@ -171,10 +173,6 @@ final class CurrentOrganizationView: BaseView {
             $0.height.equalTo(viewHeight)
         }
         
-        if data.isOwner {
-            ownerImageView.isHidden = false
-        } else {
-            ownerImageView.isHidden = true
-        }
+        ownerImageView.isHidden = !data.isOwner
     }
 }

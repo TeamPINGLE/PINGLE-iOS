@@ -49,7 +49,13 @@ final class ShareInviteCodePopUpView: BaseView {
             $0.titleLabel?.font = .captionCapMed12
             $0.setTitleColor(.grayscaleG03, for: .normal)
             $0.titleLabel?.textAlignment = .center
-            $0.layer.addBorder([.bottom], color: .grayscaleG03, width: 1.0, frameHeight: 16.0, framgeWidth: 87.0)
+            $0.layer.addBorder(
+                [.bottom],
+                color: .grayscaleG03,
+                width: 1.0,
+                frameHeight: 16.0,
+                framgeWidth: 87.0
+            )
         }
         
         questionLabel.do {

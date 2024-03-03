@@ -249,7 +249,7 @@ final class HomeListViewController: BaseViewController {
         if let userGroupId = KeychainHandler.shared.userGroupId {
             NetworkService.shared.homeService.listGet(
                 queryDTO: HomeListSearchRequestQueryDTO(
-                    q: text.isEmpty ? nil : text,
+                    q: text.isEmpty ? nil : searchText,
                     category: category,
                     teamId: userGroupId,
                     order: order

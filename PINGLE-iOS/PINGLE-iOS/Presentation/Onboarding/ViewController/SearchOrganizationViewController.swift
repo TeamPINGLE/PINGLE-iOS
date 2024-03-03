@@ -138,8 +138,11 @@ final class SearchOrganizationViewController: BaseViewController {
         backButton.addTarget(self, 
                              action: #selector(backButtonTapped),
                              for: .touchUpInside)
+        searchOrganizationView.searchTextField.addTarget(self,
+                                                          action: #selector(self.textFieldDidChange(_:)),
+                                                          for: .editingChanged)
         searchOrganizationView.searchButton.addTarget(self,
-                                                      action: #selector(searchButtonTapped),
+                                                      action: #selector(deleteButtonTapped),
                                                       for: .touchUpInside)
         makeOrganizationButton.addTarget(self, 
                                          action: #selector(makeOrganizationButtonTapped),
@@ -154,15 +157,9 @@ final class SearchOrganizationViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func searchButtonTapped() {
-        /// 검색하는 내용이 없을 경우 아무런 통신도 하지 않고 이전 상태를 유지합니다.
-        if let searchText = searchOrganizationView.searchTextField.text {
-            if !searchText.isEmpty {
-                searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
-                selectedCellIndex = nil
-                bottomCTAButton.disabledButton()
-            }
-        }
+    @objc func deleteButtonTapped() {
+        searchOrganizationView.searchTextField.text = ""
+        searchOrganizationView.searchButton.setImage(UIImage(resource: .icSearch), for: .normal)
         self.view.endEditing(true)
     }
     
@@ -238,6 +235,18 @@ extension SearchOrganizationViewController: UITextFieldDelegate {
         selectedCellIndex = nil
         bottomCTAButton.disabledButton()
         return true
+    }
+    
+    // MARK: Objc Function
+    /// 검색에 따른 버튼 이미지 수정 objc 함수입니다.
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let text = textField.text ?? ""
+        
+        if text.isEmpty {
+            searchOrganizationView.searchButton.setImage(UIImage(resource: .icSearch), for: .normal)
+        } else {
+            searchOrganizationView.searchButton.setImage(UIImage(resource: .btnClear), for: .normal)
+        }
     }
 }
 

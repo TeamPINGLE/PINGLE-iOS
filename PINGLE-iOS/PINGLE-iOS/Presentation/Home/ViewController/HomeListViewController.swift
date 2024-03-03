@@ -16,6 +16,7 @@ final class HomeListViewController: BaseViewController {
     // MARK: Component
     private let sortButton = UIButton()
     private let sortTitleLabel = UILabel()
+    private let resultCountLabel = UILabel()
     private let sortImageView = UIImageView()
     private let sortMoreView = MoreView()
     let mapButton = UIButton()
@@ -37,6 +38,7 @@ final class HomeListViewController: BaseViewController {
     var currentMeetingId: Int = 0
     var participantsAction: (() -> Void) = {}
     var isSearchResult = false
+    var totalResult: Int = 0
     
     // MARK: - Function
     // MARK: Life Cycle
@@ -97,6 +99,12 @@ final class HomeListViewController: BaseViewController {
             $0.isUserInteractionEnabled = false
         }
         
+        resultCountLabel.do {
+            $0.font = .bodyBodyMed14
+            $0.textColor = .grayscaleG02
+            $0.isHidden = true
+        }
+        
         sortImageView.do {
             $0.image = UIImage(resource: .icArrowDown)
             $0.isUserInteractionEnabled = false
@@ -150,7 +158,8 @@ final class HomeListViewController: BaseViewController {
                          mapButton,
                          sortMoreView,
                          emptyLabel,
-                         emptyResultLabel)
+                         emptyResultLabel,
+                         resultCountLabel)
         
         sortButton.addSubviews(sortTitleLabel,
                                sortImageView)
@@ -195,6 +204,11 @@ final class HomeListViewController: BaseViewController {
         emptyResultLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(sortButton.snp.bottom).offset(218.adjustedHeight)
+        }
+        
+        resultCountLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(165)
+            $0.leading.equalToSuperview().inset(24)
         }
     }
     
@@ -274,6 +288,9 @@ final class HomeListViewController: BaseViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
                     
+                    self?.totalResult = data.searchCount
+                    self?.resultCountLabel.text = "총 \(self?.totalResult ?? 0)건"
+                    
                     self?.listData = data.meetings.map { meeting in
                         return HomeListData(
                             meeting: meeting,
@@ -282,9 +299,11 @@ final class HomeListViewController: BaseViewController {
                     }
                     if let self = self {
                         if self.isSearchResult {
+                            self.resultCountLabel.isHidden = false
                             self.emptyLabel.isHidden = true
                             self.emptyResultLabel.isHidden = self.listData.isEmpty ? false : true
                         } else {
+                            self.resultCountLabel.isHidden = true
                             self.emptyResultLabel.isHidden = true
                             self.emptyLabel.isHidden = self.listData.isEmpty ? false : true
                         }

@@ -199,6 +199,24 @@ final class SearchOrganizationViewController: BaseViewController {
             }
         }
     }
+    
+    // MARK: CalculateHeight Function
+    /// 검색된 단체 정보 Cell의 단체명에 따른 높이를 측정하기 위한 함수
+    private func calculateDynamicHeight(placeNameText: String) -> CGFloat {
+        let organizationNameLabel = UILabel().then {
+            $0.setTextWithLineHeight(text: placeNameText, lineHeight: 22)
+            $0.font = .bodyBodyMed16
+            $0.numberOfLines = 2
+            $0.preferredMaxLayoutWidth = 292.adjusted
+        }
+
+        let organizationNameSize = organizationNameLabel.sizeThatFits(
+            CGSize(width: 292.adjusted,
+                   height: CGFloat.greatestFiniteMagnitude)
+        )
+
+        return organizationNameSize.height
+    }
 }
 
 // MARK: - extension
@@ -265,7 +283,9 @@ extension SearchOrganizationViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width - 50.adjusted, height: 88)
+        let cellHeight = 66 + calculateDynamicHeight(placeNameText: searchOrganizationResponseDTO[indexPath.row].name)
+        
+        return CGSize(width: UIScreen.main.bounds.size.width - 50, height: cellHeight)
     }
 }
 

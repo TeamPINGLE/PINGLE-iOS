@@ -46,12 +46,16 @@ final class SearchCollectionViewCell: UICollectionViewCell {
             $0.font = .captionCapSemi10
             $0.textColor = .mainPingleGreen
             $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
-            $0.layer.cornerRadius = 10.adjusted
+            $0.makeCornerRound(radius: 10)
         }
         
         groupNameLabel.do {
+            $0.setTextWithLineHeight(text: " ", lineHeight: 22)
             $0.font = .bodyBodyMed16
             $0.textColor = .white
+            $0.numberOfLines = 2
+            $0.textAlignment = .left
+            $0.lineBreakMode = .byTruncatingTail
         }
         
         selectImageView.do {
@@ -72,20 +76,20 @@ final class SearchCollectionViewCell: UICollectionViewCell {
         }
         
         groupNameLabel.snp.makeConstraints {
-            $0.leading.equalTo(keywordLabel.snp.trailing).offset(8.adjusted)
+            $0.leading.equalToSuperview().inset(71)
+            $0.trailing.equalToSuperview().inset(55)
             $0.centerY.equalToSuperview()
         }
         
         selectImageView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(10.adjusted)
+            $0.trailing.equalToSuperview().inset(10)
             $0.centerY.equalToSuperview()
-            $0.height.width.equalTo(24.adjusted)
+            $0.height.width.equalTo(24)
         }
         
         horizontalLineView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.height.equalTo(1.adjusted)
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(1)
         }
     }
     

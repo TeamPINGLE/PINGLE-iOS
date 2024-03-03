@@ -25,8 +25,15 @@ final class SearchMapViewController: BaseViewController {
         super.viewDidLoad()
         setTarget()
         setNavigation()
+        clearTabBar()
         setDelegate()
         hideKeyboardWhenTappedAround()
+        setKeyBoard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setKeyBoard()
+        clearTextField()
     }
     
     deinit {
@@ -176,11 +183,37 @@ final class SearchMapViewController: BaseViewController {
     private func setNavigation() {
         navigationController?.navigationBar.isHidden = true
     }
+    
+    private func clearTabBar() {
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    private func clearTextField() {
+        self.searchMapTextField.text?.removeAll()
+    }
+    
+    private func setKeyBoard() {
+        self.searchMapTextField.becomeFirstResponder()
+    }
 }
 
 // MARK: - extension
 // MARK: UITextFieldDelegate
 extension SearchMapViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if let search = textField.text, !search.isEmpty {
+            let homeViewController = HomeViewController()
+            let homeMapViewController = homeViewController.getHomeMapViewController()
+            let homeListViewController = homeViewController.getHomeListViewController()
+            homeMapViewController.searchText = search
+            homeListViewController.searchText = search
+            homeViewController.isSearchResult = true
+            homeViewController.isHomeMap = true
+            navigationController?.pushViewController(homeViewController, animated: true)
+        }
+        return true
+    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         clearButton.isHidden = textField.text?.isEmpty ?? true

@@ -25,8 +25,15 @@ final class SearchListViewController: BaseViewController {
         super.viewDidLoad()
         setTarget()
         setNavigation()
+        clearTabBar()
         setDelegate()
         hideKeyboardWhenTappedAround()
+        setKeyBoard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setKeyBoard()
+        clearTextField()
     }
     
     deinit {
@@ -156,7 +163,7 @@ final class SearchListViewController: BaseViewController {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         clearButton.isHidden = textField.text?.isEmpty ?? true
-        searchButton.isHidden = clearButton.isHidden
+        searchButton.isHidden = !clearButton.isHidden
     }
     
     // MARK: - Func
@@ -176,11 +183,37 @@ final class SearchListViewController: BaseViewController {
     private func setNavigation() {
         navigationController?.navigationBar.isHidden = true
     }
+    
+    private func clearTabBar() {
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    private func clearTextField() {
+        self.searchListTextField.text?.removeAll()
+    }
+    
+    private func setKeyBoard() {
+        self.searchListTextField.becomeFirstResponder()
+    }
 }
 
 // MARK: - extension
 // MARK: UITextFieldDelegate
 extension SearchListViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if let search = textField.text, !search.isEmpty {
+            let homeViewController = HomeViewController()
+            let homeMapViewController = homeViewController.getHomeMapViewController()
+            let homeListViewController = homeViewController.getHomeListViewController()
+            homeMapViewController.searchText = search
+            homeListViewController.searchText = search
+            homeViewController.isSearchResult = true
+            homeViewController.isHomeMap = false
+            navigationController?.pushViewController(homeViewController, animated: true)
+        }
+        return true
+    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         clearButton.isHidden = textField.text?.isEmpty ?? true

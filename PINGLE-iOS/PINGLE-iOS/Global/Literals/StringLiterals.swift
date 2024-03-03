@@ -297,6 +297,7 @@ enum StringLiterals {
         static let possibleGroup = "등록 가능한 단체명입니다."
         static let impossibleGroup = "같은 이름을 가진 단체가 이미 존재합니다!"
         static let impossibleEmail = "유효하지 않은 이메일입니다!"
-        static let CompletedCopy = "초대코드가 복사되었습니다!"
+        static let completedCopy = "초대코드가 복사되었습니다!"
+        static let changeOrganization = "단체가 변경되었습니다!"
     }
 }

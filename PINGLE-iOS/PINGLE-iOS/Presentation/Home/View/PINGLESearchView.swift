@@ -13,7 +13,7 @@ import Then
 final class PINGLESearchView: BaseView {
     
     // MARK: Property
-    private let searchGraphic = UIImageView()
+    private let searchGraphicImageView = UIImageView()
     private let searchExplainLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -23,7 +23,8 @@ final class PINGLESearchView: BaseView {
     init(searchExplainLabel: String) {
         super.init(frame: .zero)
         self.searchExplainLabel.text = searchExplainLabel
-        self.searchExplainLabel.asColorArray(targetStringList: ["지도", "리스트"], color: .mainPingleGreen)
+        self.searchExplainLabel.asColorArray(targetStringList: ["지도", "리스트"],
+                                             color: .mainPingleGreen)
     }
     
     // MARK: UI
@@ -32,7 +33,7 @@ final class PINGLESearchView: BaseView {
             $0.backgroundColor = .grayscaleG11
         }
         
-        searchGraphic.do {
+        searchGraphicImageView.do {
             $0.image = UIImage(resource: .graphicSearch)
             $0.contentMode = .scaleAspectFit
         }
@@ -44,16 +45,17 @@ final class PINGLESearchView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(searchGraphic, searchExplainLabel)
+        self.addSubviews(searchGraphicImageView,
+                         searchExplainLabel)
         
-        searchGraphic.snp.makeConstraints {
+        searchGraphicImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(42)
         }
         
         searchExplainLabel.snp.makeConstraints {
-            $0.top.equalTo(searchGraphic.snp.bottom).offset(20)
+            $0.top.equalTo(searchGraphicImageView.snp.bottom).offset(20)
             $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
         }

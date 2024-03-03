@@ -49,9 +49,7 @@ final class HomeViewController: BaseViewController {
         setAddTarget()
         setNavigation()
         setTabBar()
-        if isSearchResult {
-            setResult()
-        }
+        setResult()
     }
     
     // MARK: Target Helpers
@@ -82,11 +80,17 @@ final class HomeViewController: BaseViewController {
             self.pushParticipantsViewController(meetingId: self.homeListViewController.currentMeetingId)
         }
         
-        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        searchButton.addTarget(self, 
+                               action: #selector(searchButtonTapped),
+                               for: .touchUpInside)
         
-        clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
+        clearButton.addTarget(self, 
+                              action: #selector(clearButtonTapped),
+                              for: .touchUpInside)
         
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        backButton.addTarget(self, 
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
     }
     
     // MARK: Style Helpers
@@ -150,7 +154,8 @@ final class HomeViewController: BaseViewController {
                          searchView,
                          backButton)
         
-        searchView.addSubviews(searchTextField, clearButton)
+        searchView.addSubviews(searchTextField, 
+                               clearButton)
         
         chipButtons.forEach {
             chipStackView.addArrangedSubview($0)
@@ -264,11 +269,7 @@ final class HomeViewController: BaseViewController {
         } else {
             searchViewController = SearchListViewController()
         }
-        searchViewController.hidesBottomBarWhenPushed = true
-        
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(searchViewController, animated: true)
-        }
+        self.navigationController?.pushViewController(searchViewController, animated: true)
     }
     
     @objc private func clearButtonTapped() {
@@ -306,13 +307,15 @@ final class HomeViewController: BaseViewController {
     }
     
     private func setResult() {
-        searchButton.isHidden = true
-        homeGroupLabel.isHidden = true
-        backButton.isHidden = false
-        searchView.isHidden = false
-        searchTextField.isHidden = false
-        searchTextField.text = homeListViewController.searchText
-        searchTextField.text = homeMapViewController.searchText
-        clearButton.isHidden = false
+        if isSearchResult {
+            searchButton.isHidden = true
+            homeGroupLabel.isHidden = true
+            backButton.isHidden = false
+            searchView.isHidden = false
+            searchTextField.isHidden = false
+            searchTextField.text = homeListViewController.searchText
+            searchTextField.text = homeMapViewController.searchText
+            clearButton.isHidden = false
+        }
     }
 }

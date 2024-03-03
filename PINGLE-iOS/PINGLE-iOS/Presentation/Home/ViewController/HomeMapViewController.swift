@@ -18,7 +18,7 @@ final class HomeMapViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     private var shouldUpdateMap: Bool = true
-//    var homePinList: [HomePinListResponseDTO] = []
+    var homePinList: [HomePinListResponseDTO] = []
     var homePinDetailList: [HomePinDetailResponseDTO] = []
     private var meetingId: [Int] = []
     private var markerId = 0
@@ -361,12 +361,12 @@ extension HomeMapViewController {
     
     private func bindDetailViewData(
         id: Int,
-        category: String?,
+        category: String,
         q: String,
         completion: @escaping () -> Void
     ) {
         // 추후 바뀐 그룹 받아오는 로직 작성 예정
-        pinDetail(pinId: id, category: category ?? "", q: q) { [weak self] result in
+        pinDetail(pinId: id, category: category, q: q) { [weak self] result in
             guard let self else { return }
             if result {
                 mapsView.homeDetailCollectionView.reloadData()
@@ -411,14 +411,14 @@ extension HomeMapViewController {
     
     // MARK: Server Function
     func pinList(
-        category: String?,
+        category: String,
         q: String,
         completion: @escaping (Bool) -> Void
     ) {
         if let userGroupId = KeychainHandler.shared.userGroupId {
             NetworkService.shared.homeService.pinList(
                 teamId: userGroupId,
-                queryDTO: HomePinListRequestQueryDTO(category: category, q: q)
+                queryDTO: HomePinListRequestQueryDTO(category: category.isEmpty ? nil : category, q: q.isEmpty ? nil : q)
             ) { [weak self] response in
                 switch response {
                 case .success(let data):
@@ -434,32 +434,6 @@ extension HomeMapViewController {
             }
         }
     }
-    
-//    private func moveToFirstPinLocation() {
-//        guard !homePinList.isEmpty else {
-//            return // 핀 리스트가 비어있으면 작업을 수행할 필요가 없습니다.
-//        }
-//
-//        // 첫 번째 핀의 위치 정보를 가져옵니다.
-//        let firstPin = homePinList[0]
-//
-//        mapsView.cameraUpdate = NMFCameraUpdate(
-//            scrollTo: NMGLatLng(
-//                lat: firstPin.y,
-//                lng: firstPin.x
-//            )
-//        )
-//        mapsView.cameraUpdate.animation = .easeIn
-//        mapsView.mapsView.mapView.moveCamera(mapsView.cameraUpdate)
-//    }
-//
-//    /// searchText가 있을 때 핀 리스트를 받아오는 메서드
-//    private func loadPinListWithSearchText() {
-//        pinList(category: markerCategory, q: searchText) { [weak self] _ in
-//            self?.setMarker()
-//            self?.moveToFirstPinLocation() // 이동 메서드 호출
-//        }
-//    }
     
     private func loadPinList() {
         pinList(category: markerCategory, q: searchText) {_ in
@@ -477,7 +451,7 @@ extension HomeMapViewController {
             NetworkService.shared.homeService.pinDetail(
                 pinId: pinId,
                 teamId: userGroupId,
-                queryDTO: HomePinListRequestQueryDTO(category: category.isEmpty ? nil : category, q: q)
+                queryDTO: HomePinListRequestQueryDTO(category: category.isEmpty ? nil : category, q: q.isEmpty ? nil : q)
             ) { [weak self] response in
                 switch response {
                 case .success(let data):

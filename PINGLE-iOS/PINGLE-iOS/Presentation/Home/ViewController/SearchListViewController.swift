@@ -52,7 +52,7 @@ final class SearchListViewController: BaseViewController {
         
         searchMapView.do {
             $0.backgroundColor = .grayscaleG10
-            $0.layer.cornerRadius = 8
+            $0.makeCornerRound(radius: 8)
         }
         
         searchListTextField.do {
@@ -81,8 +81,12 @@ final class SearchListViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, searchMapView, searchMapGraphic)
-        searchMapView.addSubviews(searchListTextField, searchButton, clearButton)
+        self.view.addSubviews(backButton, 
+                              searchMapView,
+                              searchMapGraphic)
+        searchMapView.addSubviews(searchListTextField, 
+                                  searchButton,
+                                  clearButton)
         
         backButton.snp.makeConstraints {
             $0.top.equalToSuperview().inset(60)
@@ -174,10 +178,18 @@ final class SearchListViewController: BaseViewController {
     
     // MARK: Function
     private func setTarget() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        searchListTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        backButton.addTarget(self, action: #selector(backToListViewController), for: .touchUpInside)
-        clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(keyboardWillChange(_:)),
+                                               name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        searchListTextField.addTarget(self, 
+                                      action: #selector(self.textFieldDidChange(_:)),
+                                      for: .editingChanged)
+        backButton.addTarget(self, 
+                             action: #selector(backToListViewController),
+                             for: .touchUpInside)
+        clearButton.addTarget(self, 
+                              action: #selector(clearButtonTapped),
+                              for: .touchUpInside)
     }
     
     private func setNavigation() {

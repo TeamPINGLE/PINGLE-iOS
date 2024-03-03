@@ -190,9 +190,8 @@ final class CheckOrganizationViewController: BaseViewController {
         let makeCompletedViewController = MakeCompletedViewController()
         makeCompletedViewController.organizationName = organizationName
         makeCompletedViewController.inviteCode = inviteCode
-        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: makeCompletedViewController)
-        navigationController?.popToRootViewController(animated: true)
+        
+        navigationController?.pushViewController(makeCompletedViewController, animated: true)
     }
 }
 

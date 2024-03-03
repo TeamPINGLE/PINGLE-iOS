@@ -12,7 +12,7 @@ import Then
 
 final class MyOrganizationViewController: BaseViewController {
     
-    // MARK: - Variables
+    // MARK: Variables
     private var selectedOrganizationInfo: MyTeamsResponseDTO?
     private var currentOrganizationInviteCode: String?
     // TO DO 샘플 그룹 정보 값은 네트워크 통신 이후에 받아올 예정
@@ -50,12 +50,7 @@ final class MyOrganizationViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavigationBar(true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        setNavigationBar(false)
+        setNavigationBar()
     }
     
     // MARK: UI
@@ -79,6 +74,7 @@ final class MyOrganizationViewController: BaseViewController {
         
         warningToastView.do {
             $0.alpha = 0.0
+            $0.isHidden = true
             $0.changeWarningMessage(message: StringLiterals.ToastView.CompletedCopy, possible: true)
         }
         
@@ -162,13 +158,10 @@ final class MyOrganizationViewController: BaseViewController {
     }
     
     // MARK: Navigation Function
-    private func setNavigationBar(_ appear: Bool) {
-        if appear {
-            navigationController?.navigationBar.isHidden = false
-            tabBarController?.tabBar.isHidden = true
-        } else {
-            tabBarController?.tabBar.isHidden = true
-        }
+    private func setNavigationBar() {
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        tabBarController?.tabBar.isHidden = true
     }
     
     private func setNavigation() {
@@ -202,6 +195,9 @@ final class MyOrganizationViewController: BaseViewController {
         currentOrganizationView.lookInviteCodeButton.addTarget(self,
                                                                action: #selector(lookInviteCodeButtonTapped),
                                                                for: .touchUpInside)
+        makeOrganizationButton.addTarget(self,
+                                         action: #selector(makeOrganizationButtonTapped),
+                                         for: .touchUpInside)
         shareInviteCodePopUpView.clipBoardCopyButton.addTarget(self,
                                                                action: #selector(clipBoardCopyButtonTapped),
                                                                for: .touchUpInside)
@@ -220,6 +216,7 @@ final class MyOrganizationViewController: BaseViewController {
     // MARK: Objc Function
     /// 네비게이션 바 backButton 클릭되었을 때 pop 함수 호출
     @objc private func backButtonTapped() {
+        tabBarController?.tabBar.isHidden = false
         navigationController?.popViewController(animated: true)
     }
     
@@ -227,6 +224,12 @@ final class MyOrganizationViewController: BaseViewController {
     @objc private func lookInviteCodeButtonTapped() {
         dimmedView.isHidden = false
         shareInviteCodePopUpView.isHidden = false
+    }
+    
+    /// 새로운 단체 추가하러 가기 버튼이 클릭되었을 때 호출되는 함수
+    @objc private func makeOrganizationButtonTapped() {
+        let onboardingViewController = OnboardingViewController()
+        navigationController?.pushViewController(onboardingViewController, animated: true)
     }
     
     /// 초대코드 공유 팝업창에서 클립보드 복사했을 때 호출되는 함수
@@ -286,9 +289,11 @@ final class MyOrganizationViewController: BaseViewController {
     
     // MARK: Animation Function
     private func showWarningToastView(duration: TimeInterval = 2.0) {
+        warningToastView.isHidden = false
         warningToastView.fadeIn()
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             self.warningToastView.fadeOut()
+            self.warningToastView.isHidden = true
         }
     }
     
@@ -355,6 +360,10 @@ extension MyOrganizationViewController: UIGestureRecognizerDelegate {
         dimmedView.isHidden = true
         shareInviteCodePopUpView.isHidden = true
         changeOrganizationPopUpView.isHidden = true
+        return true
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }

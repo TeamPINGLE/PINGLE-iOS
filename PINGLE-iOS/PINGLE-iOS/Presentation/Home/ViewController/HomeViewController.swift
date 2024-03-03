@@ -127,8 +127,7 @@ final class HomeViewController: BaseViewController {
             $0.font = .bodyBodySemi14
             $0.textColor = .white
             $0.tintColor = .mainPingleGreen
-            $0.returnKeyType = .search
-            $0.enablesReturnKeyAutomatically = true
+            $0.isUserInteractionEnabled = false
             $0.isHidden = true
         }
         

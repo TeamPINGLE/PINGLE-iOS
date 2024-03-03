@@ -74,7 +74,6 @@ final class MyOrganizationViewController: BaseViewController {
         
         warningToastView.do {
             $0.alpha = 0.0
-            $0.isHidden = true
             $0.changeWarningMessage(message: StringLiterals.ToastView.CompletedCopy, possible: true)
         }
         
@@ -289,11 +288,9 @@ final class MyOrganizationViewController: BaseViewController {
     
     // MARK: Animation Function
     private func showWarningToastView(duration: TimeInterval = 2.0) {
-        warningToastView.isHidden = false
         warningToastView.fadeIn()
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             self.warningToastView.fadeOut()
-            self.warningToastView.isHidden = true
         }
     }
     

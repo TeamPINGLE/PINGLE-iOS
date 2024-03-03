@@ -164,9 +164,8 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     @objc func makeOrganizationButtonTapped() {
-        guard let url = URL(string: "https://docs.google.com/forms/d/10WxvEzSVRrRvRGXsYf9Z5oXv4HsNuAwG2QicB4bY0aY/edit") else { return }
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true)
+        let enterOrganizationInfoViewController = EnterOrganizationInfoViewController()
+        navigationController?.pushViewController(enterOrganizationInfoViewController, animated: true)
     }
     
     @objc func bottomCTAButtonTapped() {

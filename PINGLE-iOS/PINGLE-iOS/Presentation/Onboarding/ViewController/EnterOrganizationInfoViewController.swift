@@ -228,7 +228,7 @@ final class EnterOrganizationInfoViewController: BaseViewController {
     // MARK: Present Function
     private func presentMakeGroupGuideViewController() {
         let makeOrganizationGuideViewController = MakeOrganizationGuideViewController()
-        makeOrganizationGuideViewController.modalPresentationStyle = .fullScreen
+        makeOrganizationGuideViewController.modalPresentationStyle = .overFullScreen
         navigationController?.present(makeOrganizationGuideViewController, animated: true)
     }
     

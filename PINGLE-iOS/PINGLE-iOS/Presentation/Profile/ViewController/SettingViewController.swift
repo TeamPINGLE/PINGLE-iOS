@@ -33,7 +33,11 @@ final class SettingViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setTarget()
-        organizationButton.changeOrganizationName()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setTapBarHidden()
     }
     
     // MARK: UI
@@ -119,6 +123,10 @@ final class SettingViewController: BaseViewController {
     // MARK: Navigation Function
     private func setNavigation() {
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func setTapBarHidden() {
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Delegate Function

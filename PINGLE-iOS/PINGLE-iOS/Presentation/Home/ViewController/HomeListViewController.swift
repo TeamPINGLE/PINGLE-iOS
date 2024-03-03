@@ -20,6 +20,7 @@ final class HomeListViewController: BaseViewController {
     private let sortMoreView = MoreView()
     let mapButton = UIButton()
     let emptyLabel = UILabel()
+    let emptyResultLabel = UILabel()
     
     private let refreshControl = UIRefreshControl()
     lazy var listCollectionView = UICollectionView(
@@ -35,6 +36,7 @@ final class HomeListViewController: BaseViewController {
     var order: String = "NEW"
     var currentMeetingId: Int = 0
     var participantsAction: (() -> Void) = {}
+    var isSearchResult = false
     
     // MARK: - Function
     // MARK: Life Cycle
@@ -71,6 +73,13 @@ final class HomeListViewController: BaseViewController {
             $0.textColor = .grayscaleG06
             $0.setLineSpacing(spacing: 7)
             $0.numberOfLines = 0
+            $0.isHidden = true
+        }
+        
+        emptyResultLabel.do {
+            $0.text = StringLiterals.Home.Search.searchEmptyLabel
+            $0.font = .subtitleSubSemi18
+            $0.textColor = .grayscaleG06
             $0.isHidden = true
         }
         
@@ -140,7 +149,8 @@ final class HomeListViewController: BaseViewController {
                          listCollectionView,
                          mapButton,
                          sortMoreView,
-                         emptyLabel)
+                         emptyLabel,
+                         emptyResultLabel)
         
         sortButton.addSubviews(sortTitleLabel,
                                sortImageView)
@@ -180,6 +190,11 @@ final class HomeListViewController: BaseViewController {
         emptyLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(sortButton.snp.bottom).offset(163.adjustedHeight)
+        }
+        
+        emptyResultLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(sortButton.snp.bottom).offset(218.adjustedHeight)
         }
     }
     
@@ -265,7 +280,15 @@ final class HomeListViewController: BaseViewController {
                             isExpand: false
                         )
                     }
-                    self?.emptyLabel.isHidden = !data.meetings.isEmpty
+                    if let self = self {
+                        if self.isSearchResult {
+                            self.emptyLabel.isHidden = true
+                            self.emptyResultLabel.isHidden = self.listData.isEmpty ? false : true
+                        } else {
+                            self.emptyResultLabel.isHidden = true
+                            self.emptyLabel.isHidden = self.listData.isEmpty ? false : true
+                        }
+                    }
                     self?.listCollectionView.reloadData()
                     print(data)
                 default:

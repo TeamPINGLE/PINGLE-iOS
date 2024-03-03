@@ -209,6 +209,7 @@ extension SearchListViewController: UITextFieldDelegate {
             homeMapViewController.searchText = search
             homeListViewController.searchText = search
             homeViewController.isSearchResult = true
+            homeListViewController.isSearchResult = true
             homeViewController.isHomeMap = false
             navigationController?.pushViewController(homeViewController, animated: true)
         }

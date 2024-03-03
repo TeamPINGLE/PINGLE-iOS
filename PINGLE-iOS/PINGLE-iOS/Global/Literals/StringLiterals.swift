@@ -135,6 +135,7 @@ enum StringLiterals {
             static let searchListExplain = "원하는 핑글을 리스트에서 찾아보세요!"
             static let searchMapPlaceHolder = "장소 이름 검색"
             static let searchListPlaceHolder = "핑글 이름, 장소 이름 검색"
+            static let searchEmptyLabel = "검색 결과가 없어요"
         }
     }
     

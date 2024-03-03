@@ -265,7 +265,6 @@ final class HomeViewController: BaseViewController {
         ) {}
     }
 
-    
     @objc private func searchButtonTapped() {
         let searchViewController = SearchPINGLEViewController()
         if isHomeMap {

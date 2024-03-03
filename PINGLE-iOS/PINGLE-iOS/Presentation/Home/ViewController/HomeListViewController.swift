@@ -380,11 +380,11 @@ extension HomeListViewController: UICollectionViewDataSource {
                 guard let self else { return }
                 if result {
                     cell.homeListDetailView.isParticipating = true
-                    getListData(
-                        text: searchText,
-                        category: category,
-                        order: order
-                    ) {}
+                    self.listData[indexPath.row].meeting.isParticipating = true
+                    cell.homeListDetailView.currentParticipants += 1
+                    self.listData[indexPath.row].meeting.curParticipants += 1
+
+                    cell.homeListDetailView.updateStyle()
                 }
             }
         }
@@ -406,18 +406,15 @@ extension HomeListViewController: UICollectionViewDataSource {
                     guard let self else { return }
                     if result {
                         cell.homeListDetailView.isParticipating = false
-                        getListData(
-                            text: searchText,
-                            category: category,
-                            order: order
-                        ) {}
+                        self.listData[indexPath.row].meeting.isParticipating = false
+                        cell.homeListDetailView.currentParticipants -= 1
+                        self.listData[indexPath.row].meeting.curParticipants -= 1
+
+                        cell.homeListDetailView.updateStyle()
                     }
                 }
             }
-            self.listCollectionView.reloadData()
         }
-        
-        cell.homeDetailPopUpView.dataBind(data: listData[indexPath.row].meeting)
         
         cell.memberButtonAction = {
             self.currentMeetingId = cell.homeListDetailView.meetingId
@@ -428,6 +425,8 @@ extension HomeListViewController: UICollectionViewDataSource {
             self.listData[indexPath.row].isExpand = cell.isExpand
             collectionView.reloadItems(at: [indexPath])
         }
+        
+        cell.homeDetailPopUpView.dataBind(data: listData[indexPath.row].meeting)
         return cell
     }
 }

@@ -8,6 +8,6 @@
 import Foundation
 
 struct HomeListData {
-    let meeting: HomePinDetailResponseDTO
+    var meeting: HomePinDetailResponseDTO
     var isExpand: Bool
 }

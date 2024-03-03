@@ -22,6 +22,8 @@ final class HomeListDetailView: BaseView {
     var participantsButtonAction: (() -> Void) = {}
     var talkButtonAction: (() -> Void) = {}
     var meetingId: Int = 0
+    var currentParticipants: Int = 0
+    var maxParticipants: Int = 0
     
     // MARK: Component
     let topBackgroundView = UIView()
@@ -330,8 +332,8 @@ final class HomeListDetailView: BaseView {
         meetingId = data.id
         titleLabel.text = data.name
         nameLabel.text = data.ownerName
-        participantCountButton.currentParticipantsLabel.text = String(data.curParticipants)
-        participantCountButton.totalParticipantsLabel.text = String(data.maxParticipants)
+        currentParticipants = data.curParticipants
+        maxParticipants = data.maxParticipants
         dateLabel.text = data.date.convertToKoreanDate()
         locationLabel.text = data.location
         
@@ -366,8 +368,15 @@ final class HomeListDetailView: BaseView {
         titleLabel.textColor = badgeColor
         participantCountButton.currentParticipantsLabel.textColor = badgeColor
         
+        updateStyle()
+    }
+    
+    func updateStyle() {
+        participantCountButton.currentParticipantsLabel.text = String(currentParticipants)
+        participantCountButton.totalParticipantsLabel.text = String(maxParticipants)
+        
         /// 모집 완료 상태
-        if data.curParticipants == data.maxParticipants {
+        if currentParticipants == maxParticipants {
             participantCountButton.completeLabel.isHidden = false
             participantCountButton.countStackView.isHidden = true
             participantCountButton.participantsLabel.textColor = .grayscaleG06
@@ -380,11 +389,7 @@ final class HomeListDetailView: BaseView {
             participantCountButton.rightArrowImageView.image = UIImage(resource: .icParticipantArrowActivate)
             isFull = false
         }
-        
-        updateStyle()
-    }
-    
-    func updateStyle() {
+
         /// 대화하기 버튼 상태
         if isOwner {
             activateTalkButton()
@@ -410,7 +415,6 @@ final class HomeListDetailView: BaseView {
                 }
             }
         }
-        
     }
     
     private func activateTalkButton() {

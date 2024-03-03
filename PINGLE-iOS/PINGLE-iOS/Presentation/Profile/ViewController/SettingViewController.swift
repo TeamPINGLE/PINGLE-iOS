@@ -35,6 +35,11 @@ final class SettingViewController: BaseViewController {
         setTarget()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bindOrganizationName()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setTapBarHidden()
@@ -78,8 +83,11 @@ final class SettingViewController: BaseViewController {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
-        view.addSubviews(settingTitleLabel, userNameLabel, organizationButton,
-                              settingSelectView, warningToastView)
+        view.addSubviews(settingTitleLabel, 
+                         userNameLabel,
+                         organizationButton,
+                         settingSelectView,
+                         warningToastView)
         
         if let window = UIApplication.shared.keyWindow {
             window.addSubviews(dimmedView,
@@ -161,43 +169,43 @@ final class SettingViewController: BaseViewController {
     }
     
     // MARK: Objc Function
-    @objc func organizationButtonTapped() {
+    @objc private func organizationButtonTapped() {
         let myOrganizationViewController = MyOrganizationViewController()
         self.navigationController?.pushViewController(myOrganizationViewController, animated: true)
     }
     
-    @objc func contactButtonTapped() {
+    @objc private func contactButtonTapped() {
         guard let url = URL(string: "https://pinglepingle.notion.site/585c13c92e1842c7ada334e78b731303?pvs=4") else { return }
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true)
     }
     
-    @objc func noticeButtonTapped() {
+    @objc private func noticeButtonTapped() {
         guard let url = URL(string: "https://pinglepingle.notion.site/38d504b943a4479695b7ca9206c7b732?pvs=4") else { return }
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true)
     }
     
-    @objc func logoutButtonTapped() {
+    @objc private func logoutButtonTapped() {
         accountState = .logout
         accountPopUpView.SetAccountStateMode(state: .logout)
         dimmedView.isHidden = false
         accountPopUpView.isHidden = false
     }
     
-    @objc func deleteButtonTapped() {
+    @objc private func deleteButtonTapped() {
         accountState = .delete
         accountPopUpView.SetAccountStateMode(state: .delete)
         dimmedView.isHidden = false
         accountPopUpView.isHidden = false
     }
     
-    @objc func backButtonTapped() {
+    @objc private func backButtonTapped() {
         dimmedView.isHidden = true
         accountPopUpView.isHidden = true
     }
     
-    @objc func changeStateButtonTapped() {
+    @objc private func changeStateButtonTapped() {
         switch accountState {
         case .logout:
             postLogout()
@@ -214,7 +222,7 @@ final class SettingViewController: BaseViewController {
     }
     
     // MARK: WarningToastView Animation Function
-    func showWarningToastView(duration: TimeInterval = 2.0) {
+    private func showWarningToastView(duration: TimeInterval = 2.0) {
         warningToastView.fadeIn()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
@@ -223,7 +231,7 @@ final class SettingViewController: BaseViewController {
     }
     
     // MARK: Network Function
-    func postLogout() {
+    private func postLogout() {
         NetworkService.shared.profileService.logout() { [weak self] response in
             guard let self = self else { return }
             switch response {
@@ -240,7 +248,7 @@ final class SettingViewController: BaseViewController {
         }
     }
     
-    func deleteAppleID() {
+    private func deleteAppleID() {
         NetworkService.shared.profileService.deleteID { [weak self] response in
             guard let self = self else { return }
             switch response {
@@ -260,6 +268,11 @@ final class SettingViewController: BaseViewController {
                 print("login error")
             }
         }
+    }
+    
+    // MARK: Bind Function
+    private func bindOrganizationName() {
+        organizationButton.changeOrganizationName()
     }
 }
 

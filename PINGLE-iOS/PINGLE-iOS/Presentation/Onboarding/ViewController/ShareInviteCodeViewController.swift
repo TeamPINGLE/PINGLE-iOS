@@ -208,7 +208,7 @@ final class ShareInviteCodeViewController: BaseViewController {
     
     // MARK: Animation Function
     private func showWarningToastView(duration: TimeInterval = 2.0) {
-        warningToastView.changeWarningMessage(message: StringLiterals.ToastView.CompletedCopy, possible: true)
+        warningToastView.changeWarningMessage(message: StringLiterals.ToastView.completedCopy, possible: true)
         
         self.warningToastView.fadeIn()
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {

@@ -221,13 +221,14 @@ final class HomeViewController: BaseViewController {
     }
     
     @objc private func isChipButtonTapped(sender: ChipButton) {
-        /// 태그 선택 여부 반전
+        // 태그 선택 여부 반전
         sender.isButtonSelected.toggle()
-        
-        /// 서버 통신
+
+        // 서버 통신
         if sender.isButtonSelected {
-            homeMapViewController.pinList(category: sender.chipStatusString, q: "") { [weak self] result in
-                guard let self else { return }
+            let q = isSearchResult ? homeListViewController.searchText : ""
+            homeMapViewController.pinList(category: sender.chipStatusString, q: q) { [weak self] result in
+                guard let self = self else { return }
                 if result {
                     homeMapViewController.setMarker()
                 }
@@ -235,8 +236,9 @@ final class HomeViewController: BaseViewController {
             homeMapViewController.markerCategory = sender.chipStatusString
             homeListViewController.category = sender.chipStatusString
         } else {
-            homeMapViewController.pinList(category: "", q: "") { [weak self] result in
-                guard let self else { return }
+            let q = isSearchResult ? homeListViewController.searchText : ""
+            homeMapViewController.pinList(category: "", q: q) { [weak self] result in
+                guard let self = self else { return }
                 if result {
                     homeMapViewController.setMarker()
                 }
@@ -244,17 +246,17 @@ final class HomeViewController: BaseViewController {
             homeMapViewController.markerCategory = ""
             homeListViewController.category = ""
         }
-        
-        /// 태그 하나만 선택할 수 있도록
+
+        // 태그 하나만 선택할 수 있도록
         chipButtons.filter { $0 != sender }.forEach {
             $0.isButtonSelected = false
         }
-        
-        /// 모든 마커 (핀) 다 보이도록
+
+        // 모든 마커 (핀) 다 보이도록
         homeMapViewController.mapsView.homeMarkerList.forEach {
             $0.hidden = false
         }
-        
+
         homeMapViewController.hideSelectedPin()
         homeListViewController.getListData(
             text: homeListViewController.searchText,
@@ -262,6 +264,7 @@ final class HomeViewController: BaseViewController {
             order: homeListViewController.order
         ) {}
     }
+
     
     @objc private func searchButtonTapped() {
         let searchViewController = SearchPINGLEViewController()

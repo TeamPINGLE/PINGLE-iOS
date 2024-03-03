@@ -15,10 +15,13 @@ final class HomeViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     var isHomeMap = true
+    var isSearchResult = false
     
     // MARK: Component
     private let homeMapViewController = HomeMapViewController()
     private let homeListViewController = HomeListViewController()
+    private let searchListViewController = SearchListViewController()
+    private let searchMapViewController = SearchMapViewController()
     
     let chipStackView = UIStackView()
     
@@ -33,7 +36,11 @@ final class HomeViewController: BaseViewController {
                                           othersChipButton]
     
     private let homeGroupLabel = UILabel()
+    private let backButton = UIButton()
     private let searchButton = UIButton()
+    private let clearButton = UIButton()
+    private let searchView = UIView()
+    private let searchTextField = UITextField()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -41,6 +48,10 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         setAddTarget()
         setNavigation()
+        setTabBar()
+        if isSearchResult {
+            setResult()
+        }
     }
     
     // MARK: Target Helpers
@@ -72,6 +83,10 @@ final class HomeViewController: BaseViewController {
         }
         
         searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        
+        clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
+        
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Style Helpers
@@ -91,6 +106,31 @@ final class HomeViewController: BaseViewController {
             $0.setImage(UIImage(resource: .icSearch), for: .normal)
         }
         
+        backButton.do {
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
+            $0.isHidden = true
+        }
+        
+        searchView.do {
+            $0.backgroundColor = .grayscaleG10
+            $0.layer.cornerRadius = 8
+            $0.isHidden = true
+        }
+        
+        searchTextField.do {
+            $0.font = .bodyBodySemi14
+            $0.textColor = .white
+            $0.tintColor = .mainPingleGreen
+            $0.returnKeyType = .search
+            $0.enablesReturnKeyAutomatically = true
+            $0.isHidden = true
+        }
+        
+        clearButton.do {
+            $0.setImage(UIImage(resource: .btnClear), for: .normal)
+            $0.isHidden = true
+        }
+        
         chipStackView.do {
             $0.axis = .horizontal
             $0.spacing = 4.adjustedWidth
@@ -106,7 +146,11 @@ final class HomeViewController: BaseViewController {
                          homeListViewController.view,
                          homeGroupLabel,
                          searchButton,
-                         chipStackView)
+                         chipStackView,
+                         searchView,
+                         backButton)
+        
+        searchView.addSubviews(searchTextField, clearButton)
         
         chipButtons.forEach {
             chipStackView.addArrangedSubview($0)
@@ -137,6 +181,30 @@ final class HomeViewController: BaseViewController {
             $0.top.equalTo(homeGroupLabel.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
+        
+        backButton.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(60)
+            $0.leading.equalToSuperview().inset(18.adjusted)
+            $0.trailing.equalToSuperview().inset(333.adjusted)
+        }
+        
+        searchView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(50)
+            $0.leading.equalToSuperview().inset(49.adjusted)
+            $0.trailing.equalToSuperview().inset(24.adjusted)
+        }
+        
+        searchTextField.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview().inset(12)
+            $0.leading.equalToSuperview().inset(13.adjusted)
+            $0.trailing.equalToSuperview().inset(53.adjusted)
+        }
+        
+        clearButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(13.adjusted)
+            $0.centerY.equalToSuperview()
+            $0.height.width.equalTo(24.adjusted)
+        }
     }
     
     // MARK: @objc Func
@@ -152,7 +220,7 @@ final class HomeViewController: BaseViewController {
         
         /// 서버 통신
         if sender.isButtonSelected {
-            homeMapViewController.pinList(category: sender.chipStatusString) { [weak self] result in
+            homeMapViewController.pinList(category: sender.chipStatusString, q: "") { [weak self] result in
                 guard let self else { return }
                 if result {
                     homeMapViewController.setMarker()
@@ -161,7 +229,7 @@ final class HomeViewController: BaseViewController {
             homeMapViewController.markerCategory = sender.chipStatusString
             homeListViewController.category = sender.chipStatusString
         } else {
-            homeMapViewController.pinList(category: "") { [weak self] result in
+            homeMapViewController.pinList(category: "", q: "") { [weak self] result in
                 guard let self else { return }
                 if result {
                     homeMapViewController.setMarker()
@@ -203,6 +271,14 @@ final class HomeViewController: BaseViewController {
         }
     }
     
+    @objc private func clearButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: Custom Func
     private func pushParticipantsViewController(meetingId: Int) {
         let participantsListViewController = ParticipantsListViewController()
@@ -215,5 +291,28 @@ final class HomeViewController: BaseViewController {
     
     private func setNavigation() {
         navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func setTabBar() {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    func getHomeListViewController() -> HomeListViewController {
+        return homeListViewController
+    }
+    
+    func getHomeMapViewController() -> HomeMapViewController {
+        return homeMapViewController
+    }
+    
+    private func setResult() {
+        searchButton.isHidden = true
+        homeGroupLabel.isHidden = true
+        backButton.isHidden = false
+        searchView.isHidden = false
+        searchTextField.isHidden = false
+        searchTextField.text = homeListViewController.searchText
+        searchTextField.text = homeMapViewController.searchText
+        clearButton.isHidden = false
     }
 }

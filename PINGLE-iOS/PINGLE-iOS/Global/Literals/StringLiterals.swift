@@ -125,7 +125,7 @@ enum StringLiterals {
         }
         
         enum List {
-            static let sortRecent = "최신순"
+            static let sortRecent = "최신등록순"
             static let sortImminent = "날짜임박순"
             static let emptyList = "현재 개최된 핑글이 없어요.\n핑글을 직접 개최해보세요!"
         }

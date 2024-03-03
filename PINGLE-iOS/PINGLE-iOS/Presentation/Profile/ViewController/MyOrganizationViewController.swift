@@ -15,15 +15,7 @@ final class MyOrganizationViewController: BaseViewController {
     // MARK: Variables
     private var selectedOrganizationInfo: MyTeamsResponseDTO?
     private var currentOrganizationInviteCode: String?
-    // TO DO 샘플 그룹 정보 값은 네트워크 통신 이후에 받아올 예정
-    let myTeamsList: [MyTeamsResponseDTO] = [
-        MyTeamsResponseDTO(id: 4, keyword: "연합동아리", name: "엄청나게길게", meetingCount: 5, participantCount: 7, isOwner: true, code: "helpME"),
-        MyTeamsResponseDTO(id: 4, keyword: "연합동아리", name: "엄청나게길게쓴다고하면세상이달라질까", meetingCount: 5, participantCount: 7, isOwner: false, code: "helpME"),
-        MyTeamsResponseDTO(id: 4, keyword: "연합동아리", name: "엄청나게길게쓴다고하면세상이달라질까", meetingCount: 5, participantCount: 7, isOwner: true, code: "helpME"),
-        MyTeamsResponseDTO(id: 4, keyword: "연합동아리", name: "엄청나게길게쓴다고하면세상이달라질까 조약돌을 던져본다", meetingCount: 5, participantCount: 7, isOwner: false, code: "helpME"),
-        MyTeamsResponseDTO(id: 4, keyword: "연합동아리", name: "엄청나게길게쓴다고하면세상이달라질까 세상은 그대로일거야", meetingCount: 5, participantCount: 7, isOwner: false, code: "helpME"),
-        MyTeamsResponseDTO(id: 4, keyword: "연합동아리", name: "엄청나게길게쓴다고하면세상이달라질까그렇지만 조금씩 더 길게 써본다", meetingCount: 5, participantCount: 7, isOwner: true, code: "helpME")
-    ]
+    private var myTeamsList: [MyTeamsResponseDTO] = []
     
     // MARK: Component
     private let backButton = UIButton()
@@ -37,15 +29,18 @@ final class MyOrganizationViewController: BaseViewController {
     private let changeOrganizationPopUpView = AccountPopUpView()
     private let dimmedTapGesture = UITapGestureRecognizer()
     
+    private enum WarningToastMessage {
+        case clipBoardCopy
+        case changeOrganization
+    }
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
         setAddTarget()
         setRegister()
-        // To DO 아래 현재 유저 정보는 추후 전체 가입 단체 정보에서 갖고 있는 groupId와 같은 정보를 대입하여 정보를 변경할 예정입니다.
-        currentOrganizationView.bindData(data: myTeamsList[0])
-        shareInviteCodePopUpView.bindInviteCode(inviteCode: currentOrganizationInviteCode ?? "HELLOworld")
+        getMyTeams()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +69,6 @@ final class MyOrganizationViewController: BaseViewController {
         
         warningToastView.do {
             $0.alpha = 0.0
-            $0.changeWarningMessage(message: StringLiterals.ToastView.CompletedCopy, possible: true)
         }
         
         makeOrganizationButton.do {
@@ -241,7 +235,7 @@ final class MyOrganizationViewController: BaseViewController {
     @objc private func clipBoardCopyButtonTapped() {
         guard let inviteCode = currentOrganizationInviteCode else { return }
         UIPasteboard.general.string = inviteCode
-        showWarningToastView()
+        showWarningToastView(warningToastMessage: .clipBoardCopy)
     }
     
     /// 초대코드 공유 팝업창에서 공유하기 버튼을 클릭했을 때 호출되는 함수
@@ -276,14 +270,17 @@ final class MyOrganizationViewController: BaseViewController {
     
     /// 단체 정보 변경 팝업창에서 그룹 변경하기 버튼을 클릭했을 때 호출되는 함수
     @objc private func changeOrganizationTapped() {
-        // To DO: 실제 네트워킹 작업 이후 실제 그룹아이디, 그룹 이름으로 변경하기 위함.
-//        guard let userGroupId = selectedOrganizationInfo?.id,
-//              let userGroupName = selectedOrganizationInfo?.name else { return }
-//        
-//        KeychainHandler.shared.userGroupId = userGroupId
-//        KeychainHandler.shared.userGroupName = userGroupName
-//        guard let selectedOrganizationInfo = selectedOrganizationInfo else { return }
-//        currentOrganizationView.bindData(data: selectedOrganizationInfo)
+        guard let userGroupId = selectedOrganizationInfo?.id,
+              let userGroupName = selectedOrganizationInfo?.name else { return }
+        
+        KeychainHandler.shared.userGroupId = userGroupId
+        KeychainHandler.shared.userGroupName = userGroupName
+        
+        changeCurrentOrganization()
+        
+        dimmedView.isHidden = true
+        changeOrganizationPopUpView.isHidden = true
+        showWarningToastView(warningToastMessage: .changeOrganization)
     }
     
     /// 단체 정보 변경 팝업창에서 돌아가기 버튼을 클릭했을 때 호출되는 함수
@@ -292,11 +289,56 @@ final class MyOrganizationViewController: BaseViewController {
         changeOrganizationPopUpView.isHidden = true
     }
     
+    // MARK: Network Function
+    func getMyTeams() {
+        NetworkService.shared.profileService.myTeams() { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                myTeamsList = data
+                bindCurrentOrganizationView()
+                myOrganizationCollectionView.reloadData()
+            default:
+                print("myTeams error")
+            }
+        }
+    }
+    
+    // MARK: Bind Function
+    private func bindCurrentOrganizationView() {
+        guard let userGroupId = KeychainHandler.shared.userGroupId else { return }
+        
+        let myTeam = myTeamsList.first { $0.id == userGroupId }
+        guard let myTeam = myTeam else { return }
+        
+        currentOrganizationInviteCode = myTeam.code
+        currentOrganizationView.bindData(data: myTeam)
+        shareInviteCodePopUpView.bindInviteCode(inviteCode: myTeam.code)
+    }
+    
     // MARK: Animation Function
-    private func showWarningToastView(duration: TimeInterval = 2.0) {
+    private func showWarningToastView(warningToastMessage: WarningToastMessage, duration: TimeInterval = 2.0) {
+        switch warningToastMessage{
+        case .clipBoardCopy:
+            warningToastView.changeWarningMessage(message: StringLiterals.ToastView.completedCopy, possible: true)
+        case .changeOrganization:
+            warningToastView.changeWarningMessage(message: StringLiterals.ToastView.changeOrganization, possible: true)
+        }
+        
         warningToastView.fadeIn()
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             self.warningToastView.fadeOut()
+        }
+    }
+    
+    private func changeCurrentOrganization() {
+        guard let selectedOrganizationInfo = selectedOrganizationInfo else { return }
+        
+        currentOrganizationView.fadeOut()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.currentOrganizationView.fadeIn()
+            self.currentOrganizationView.bindData(data: selectedOrganizationInfo)
         }
     }
     

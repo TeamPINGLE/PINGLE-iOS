@@ -102,8 +102,7 @@
 		E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */; };
 		E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565EB562B4FC9B80001758C /* MeetingManager.swift */; };
 		E56D7CF12B933B1600B23738 /* PINGLESearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56D7CF02B933B1600B23738 /* PINGLESearchView.swift */; };
-		E56D7CF32B9344B800B23738 /* SearchMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56D7CF22B9344B800B23738 /* SearchMapViewController.swift */; };
-		E56D7CF52B9388CE00B23738 /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56D7CF42B9388CD00B23738 /* SearchListViewController.swift */; };
+		E5866E7F2B94F9E500E2DA9E /* SearchPINGLEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5866E7E2B94F9E300E2DA9E /* SearchPINGLEViewController.swift */; };
 		E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */; };
 		E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */; };
 		E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651EB2B4A982100676ED0 /* ExitModalView.swift */; };
@@ -273,8 +272,7 @@
 		E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultViewController.swift; sourceTree = "<group>"; };
 		E565EB562B4FC9B80001758C /* MeetingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManager.swift; sourceTree = "<group>"; };
 		E56D7CF02B933B1600B23738 /* PINGLESearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLESearchView.swift; sourceTree = "<group>"; };
-		E56D7CF22B9344B800B23738 /* SearchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapViewController.swift; sourceTree = "<group>"; };
-		E56D7CF42B9388CD00B23738 /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
+		E5866E7E2B94F9E300E2DA9E /* SearchPINGLEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPINGLEViewController.swift; sourceTree = "<group>"; };
 		E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePickerView.swift; sourceTree = "<group>"; };
 		E5A651EB2B4A982100676ED0 /* ExitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitModalView.swift; sourceTree = "<group>"; };
@@ -464,8 +462,7 @@
 				C30728332B42E06D00AA575B /* HomeMapViewController.swift */,
 				C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */,
 				E5FA3EBF2B57D35000A0AC47 /* ParticipantsListViewController.swift */,
-				E56D7CF22B9344B800B23738 /* SearchMapViewController.swift */,
-				E56D7CF42B9388CD00B23738 /* SearchListViewController.swift */,
+				E5866E7E2B94F9E300E2DA9E /* SearchPINGLEViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1397,7 +1394,6 @@
 				F1D452762B89CD2D00D8F50F /* KeywordSelectionViewController.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
 				E542B6822B840FD700B50B95 /* RankingView.swift in Sources */,
-				E56D7CF52B9388CE00B23738 /* SearchListViewController.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */,
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
@@ -1428,6 +1424,7 @@
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
 				F1239BC62B458CC20072A02A /* SearchCollectionViewCell.swift in Sources */,
+				E5866E7F2B94F9E500E2DA9E /* SearchPINGLEViewController.swift in Sources */,
 				F1239BD52B47D5530072A02A /* EnterInviteCodeViewController.swift in Sources */,
 				C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */,
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
@@ -1438,7 +1435,6 @@
 				C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */,
 				F19CE2C02B5417C500B8F9D0 /* MyOrganizationViewController.swift in Sources */,
 				F1D452822B8CF63600D8F50F /* MakeTeamsRequestBodyDTO.swift in Sources */,
-				E56D7CF32B9344B800B23738 /* SearchMapViewController.swift in Sources */,
 				E542B67A2B83D57C00B50B95 /* RankingCollectionViewCell.swift in Sources */,
 				F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,

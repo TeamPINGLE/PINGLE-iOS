@@ -14,7 +14,16 @@ final class PINGLESearchView: BaseView {
     
     // MARK: Property
     private let searchGraphicImageView = UIImageView()
-    private let searchExplainLabel = UILabel()
+    let searchExplainLabel = UILabel()
+    
+    var searchExplainLabelText: String {
+        get {
+            return searchExplainLabel.text ?? ""
+        }
+        set {
+            searchExplainLabel.text = newValue
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,8 +32,6 @@ final class PINGLESearchView: BaseView {
     init(searchExplainLabel: String) {
         super.init(frame: .zero)
         self.searchExplainLabel.text = searchExplainLabel
-        self.searchExplainLabel.asColorArray(targetStringList: ["지도", "리스트"],
-                                             color: .mainPingleGreen)
     }
     
     // MARK: UI

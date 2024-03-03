@@ -20,8 +20,6 @@ final class HomeViewController: BaseViewController {
     // MARK: Component
     private let homeMapViewController = HomeMapViewController()
     private let homeListViewController = HomeListViewController()
-    private let searchListViewController = SearchListViewController()
-    private let searchMapViewController = SearchMapViewController()
     
     let chipStackView = UIStackView()
     
@@ -50,6 +48,10 @@ final class HomeViewController: BaseViewController {
         setNavigation()
         setTabBar()
         setResult()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setTabBar()
     }
     
     // MARK: Target Helpers
@@ -263,11 +265,11 @@ final class HomeViewController: BaseViewController {
     }
     
     @objc private func searchButtonTapped() {
-        let searchViewController: UIViewController
+        let searchViewController = SearchPINGLEViewController()
         if isHomeMap {
-            searchViewController = SearchMapViewController()
+            searchViewController.isMap = true
         } else {
-            searchViewController = SearchListViewController()
+            searchViewController.isMap = false
         }
         self.navigationController?.pushViewController(searchViewController, animated: true)
     }

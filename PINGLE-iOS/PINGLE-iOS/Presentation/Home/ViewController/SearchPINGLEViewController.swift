@@ -1,8 +1,8 @@
 //
-//  SearchMapViewController.swift
+//  SearchPINGLEViewController.swift
 //  PINGLE-iOS
 //
-//  Created by 방민지 on 3/2/24.
+//  Created by 방민지 on 3/4/24.
 //
 
 import UIKit
@@ -10,15 +10,21 @@ import UIKit
 import SnapKit
 import Then
 
-final class SearchMapViewController: BaseViewController {
+class SearchPINGLEViewController: BaseViewController {
     
     // MARK: Property
     private let backButton = UIButton()
-    private let searchMapView = UIView()
-    private let searchMapTextField = UITextField()
+    private let searchView = UIView()
+    private let searchTextField = UITextField()
     private let searchButton = UIButton()
     private let clearButton = UIButton()
-    private let searchMapGraphic = PINGLESearchView(searchExplainLabel: StringLiterals.Home.Search.searchMapExplain)
+    private let searchGraphicView = PINGLESearchView(searchExplainLabel: "")
+    
+    var isMap: Bool = true {
+        didSet {
+            updateUIForCurrentMode()
+        }
+    }
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -28,6 +34,7 @@ final class SearchMapViewController: BaseViewController {
         clearTabBar()
         setDelegate()
         hideKeyboardWhenTappedAround()
+        clearTextField()
         setKeyBoard()
     }
     
@@ -50,24 +57,17 @@ final class SearchMapViewController: BaseViewController {
             $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
-        searchMapView.do {
+        searchView.do {
             $0.backgroundColor = .grayscaleG10
             $0.makeCornerRound(radius: 8)
         }
         
-        searchMapTextField.do {
+        searchTextField.do {
             $0.font = .bodyBodySemi14
             $0.textColor = .white
             $0.tintColor = .mainPingleGreen
             $0.returnKeyType = .search
             $0.enablesReturnKeyAutomatically = true
-            $0.attributedPlaceholder = NSAttributedString(
-                string: StringLiterals.Home.Search.searchMapPlaceHolder,
-                attributes: [
-                    .font: UIFont.bodyBodyMed14,
-                    .foregroundColor: UIColor.grayscaleG07
-                ]
-            )
         }
         
         searchButton.do {
@@ -81,12 +81,23 @@ final class SearchMapViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, 
-                              searchMapView,
-                              searchMapGraphic)
-        searchMapView.addSubviews(searchMapTextField, 
-                                  searchButton,
-                                  clearButton)
+        self.view.addSubviews(backButton,
+                              searchView,
+                              searchGraphicView)
+        searchView.addSubviews(searchTextField,
+                               searchButton,
+                               clearButton)
+        
+        searchGraphicView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(50)
+            if isMap {
+                $0.leading.equalToSuperview().inset(77.adjusted)
+                $0.trailing.equalToSuperview().inset(71.adjusted)
+            } else {
+                $0.leading.equalToSuperview().inset(68.adjusted)
+                $0.trailing.equalToSuperview().inset(67.adjusted)
+            }
+        }
         
         backButton.snp.makeConstraints {
             $0.top.equalToSuperview().inset(60)
@@ -94,22 +105,16 @@ final class SearchMapViewController: BaseViewController {
             $0.trailing.equalToSuperview().inset(333.adjusted)
         }
         
-        searchMapView.snp.makeConstraints {
+        searchView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(50)
             $0.leading.equalToSuperview().inset(49.adjusted)
             $0.trailing.equalToSuperview().inset(24.adjusted)
         }
         
-        searchMapTextField.snp.makeConstraints {
+        searchTextField.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(12)
             $0.leading.equalToSuperview().inset(13.adjusted)
             $0.trailing.equalToSuperview().inset(53.adjusted)
-        }
-        
-        searchMapGraphic.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(77.adjusted)
-            $0.trailing.equalToSuperview().inset(71.adjusted)
-            $0.centerY.equalToSuperview()
         }
         
         searchButton.snp.makeConstraints {
@@ -137,30 +142,44 @@ final class SearchMapViewController: BaseViewController {
         
         UIView.animate(withDuration: duration) {
             if keyboardY == self.view.frame.height {
-                ///키보드가 다시 내려갔을때 그래픽 위치 조정
-                self.searchMapGraphic.snp.updateConstraints {
+                /// 키보드가 다시 내려갔을 때 그래픽 위치 조정
+                self.searchGraphicView.snp.updateConstraints {
+                    if self.isMap {
+                        $0.leading.equalToSuperview().inset(77.adjusted)
+                        $0.trailing.equalToSuperview().inset(71.adjusted)
+                    } else {
+                        $0.leading.equalToSuperview().inset(68.adjusted)
+                        $0.trailing.equalToSuperview().inset(67.adjusted)
+                    }
                     $0.centerY.equalToSuperview()
                 }
             } else {
                 let keyboardHeight = self.view.frame.height - keyboardY
-                let remainingHeight = self.view.frame.height - self.searchMapView.frame.maxY
+                let remainingHeight = self.view.frame.height - self.searchView.frame.maxY
                 let centerYOffset = remainingHeight / 2
-                
-                self.searchMapGraphic.snp.updateConstraints {
+
+                self.searchGraphicView.snp.remakeConstraints {
+                    if self.isMap {
+                        $0.leading.equalToSuperview().inset(77.adjusted)
+                        $0.trailing.equalToSuperview().inset(71.adjusted)
+                    } else {
+                        $0.leading.equalToSuperview().inset(68.adjusted)
+                        $0.trailing.equalToSuperview().inset(67.adjusted)
+                    }
                     $0.centerY.equalToSuperview().offset(-centerYOffset + keyboardHeight)
                 }
             }
-            
+
             self.view.layoutIfNeeded()
         }
     }
     
-    @objc private func backToHomeViewController() {
+    @objc private func backToViewController() {
         navigationController?.popViewController(animated: true)
     }
     
     @objc func clearButtonTapped() {
-        searchMapTextField.text?.removeAll()
+        searchTextField.text?.removeAll()
         clearButton.isHidden = true
         searchButton.isHidden = false
     }
@@ -173,21 +192,21 @@ final class SearchMapViewController: BaseViewController {
     // MARK: - Func
     // MARK: Delegate
     override func setDelegate() {
-        searchMapTextField.delegate = self
+        searchTextField.delegate = self
     }
     
     // MARK: Function
     private func setTarget() {
-        NotificationCenter.default.addObserver(self, 
+        NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillChange(_:)),
                                                name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        searchMapTextField.addTarget(self, 
-                                     action: #selector(self.textFieldDidChange(_:)),
-                                     for: .editingChanged)
-        backButton.addTarget(self, 
-                             action: #selector(backToHomeViewController),
+        searchTextField.addTarget(self,
+                                  action: #selector(self.textFieldDidChange(_:)),
+                                  for: .editingChanged)
+        backButton.addTarget(self,
+                             action: #selector(backToViewController),
                              for: .touchUpInside)
-        clearButton.addTarget(self, 
+        clearButton.addTarget(self,
                               action: #selector(clearButtonTapped),
                               for: .touchUpInside)
     }
@@ -201,17 +220,55 @@ final class SearchMapViewController: BaseViewController {
     }
     
     private func clearTextField() {
-        self.searchMapTextField.text?.removeAll()
+        self.searchTextField.text?.removeAll()
+        if searchTextField.text?.isEmpty ?? true {
+            clearButton.isHidden = true
+            searchButton.isHidden = false
+        } else {
+            clearButton.isHidden = false
+            searchButton.isHidden = true
+        }
     }
     
     private func setKeyBoard() {
-        self.searchMapTextField.becomeFirstResponder()
+        self.searchTextField.becomeFirstResponder()
+    }
+    
+    // MARK: Additional Methods
+    private func updateUIForCurrentMode() {
+        if isMap {
+            searchGraphicView.searchExplainLabelText = StringLiterals.Home.Search.searchMapExplain
+            
+            searchGraphicView.searchExplainLabel.asColorArray(targetStringList: ["지도"],
+                                                 color: .mainPingleGreen)
+            
+            searchTextField.attributedPlaceholder = NSAttributedString(
+                string: StringLiterals.Home.Search.searchMapPlaceHolder,
+                attributes: [
+                    .font: UIFont.bodyBodyMed14,
+                    .foregroundColor: UIColor.grayscaleG07
+                ]
+            )
+        } else {
+            searchGraphicView.searchExplainLabelText = StringLiterals.Home.Search.searchListExplain
+            
+            searchGraphicView.searchExplainLabel.asColorArray(targetStringList: ["리스트"],
+                                                 color: .mainPingleGreen)
+
+            searchTextField.attributedPlaceholder = NSAttributedString(
+                string: StringLiterals.Home.Search.searchListPlaceHolder,
+                attributes: [
+                    .font: UIFont.bodyBodyMed14,
+                    .foregroundColor: UIColor.grayscaleG07
+                ]
+            )
+        }
     }
 }
 
 // MARK: - extension
 // MARK: UITextFieldDelegate
-extension SearchMapViewController: UITextFieldDelegate {
+extension SearchPINGLEViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if let search = textField.text, !search.isEmpty {
@@ -222,7 +279,7 @@ extension SearchMapViewController: UITextFieldDelegate {
             homeListViewController.searchText = search
             homeViewController.isSearchResult = true
             homeListViewController.isSearchResult = true
-            homeViewController.isHomeMap = true
+            homeViewController.isHomeMap = isMap
             navigationController?.pushViewController(homeViewController, animated: true)
         }
         return true

@@ -264,6 +264,18 @@ final class HomeListViewController: BaseViewController {
         order: String,
         completion: @escaping () -> Void
     ) {
+        /// isSearchResult가 true이고, 공백문자 입력시 처리
+        if isSearchResult && text.trimmingCharacters(in: .whitespaces).isEmpty {
+            resultCountLabel.isHidden = false
+            resultCountLabel.text = "총 0건"
+            emptyLabel.text = StringLiterals.Home.Search.searchEmptyLabel
+            emptyLabel.isHidden = false
+            listData = []
+            listCollectionView.reloadData()
+            completion()
+            return
+        }
+        
         if let userGroupId = KeychainHandler.shared.userGroupId {
             NetworkService.shared.homeService.listGet(
                 queryDTO: HomeListSearchRequestQueryDTO(

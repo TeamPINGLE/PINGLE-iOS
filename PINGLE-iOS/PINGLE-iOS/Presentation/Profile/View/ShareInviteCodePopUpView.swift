@@ -112,6 +112,7 @@ final class ShareInviteCodePopUpView: BaseView {
         
         shareButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(24)
+            $0.centerX.equalToSuperview()
             $0.width.equalTo(185)
             $0.height.equalTo(44)
         }

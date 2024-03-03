@@ -13,6 +13,9 @@ import Then
 final class MyOrganizationViewController: BaseViewController {
     
     // MARK: - Variables
+    private var selectedOrganizationInfo: MyTeamsResponseDTO?
+    private var currentOrganizationInviteCode: String?
+    // TO DO 샘플 그룹 정보 값은 네트워크 통신 이후에 받아올 예정
     let myTeamsList: [MyTeamsResponseDTO] = [
         MyTeamsResponseDTO(id: 4, keyword: "연합동아리", name: "엄청나게길게", meetingCount: 5, participantCount: 7, isOwner: true, code: "helpME"),
         MyTeamsResponseDTO(id: 4, keyword: "연합동아리", name: "엄청나게길게쓴다고하면세상이달라질까", meetingCount: 5, participantCount: 7, isOwner: false, code: "helpME"),
@@ -28,6 +31,11 @@ final class MyOrganizationViewController: BaseViewController {
     private let separationView = UIView()
     private let myOrganizationCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let makeOrganizationButton = UIButton()
+    private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.impossibleGroup)
+    private let dimmedView = UIView()
+    private let shareInviteCodePopUpView = ShareInviteCodePopUpView()
+    private let changeOrganizationPopUpView = AccountPopUpView()
+    private let dimmedTapGesture = UITapGestureRecognizer()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -35,7 +43,9 @@ final class MyOrganizationViewController: BaseViewController {
         setNavigation()
         setAddTarget()
         setRegister()
+        // To DO 아래 현재 유저 정보는 추후 전체 가입 단체 정보에서 갖고 있는 groupId와 같은 정보를 대입하여 정보를 변경할 예정입니다.
         currentOrganizationView.bindData(data: myTeamsList[0])
+        shareInviteCodePopUpView.bindInviteCode(inviteCode: currentOrganizationInviteCode ?? "HELLOworld")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,12 +77,32 @@ final class MyOrganizationViewController: BaseViewController {
             $0.showsHorizontalScrollIndicator = false
         }
         
+        warningToastView.do {
+            $0.alpha = 0.0
+            $0.changeWarningMessage(message: StringLiterals.ToastView.CompletedCopy, possible: true)
+        }
+        
         makeOrganizationButton.do {
             $0.setTitle(StringLiterals.Profile.ButtonTitle.makeOrganization, for: .normal)
             $0.titleLabel?.font = .captionCapSemi12
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.textAlignment = .center
             $0.layer.addBorder([.bottom], color: .white, width: 1.0, frameHeight: 17.0, framgeWidth: 124.0)
+        }
+        
+        dimmedView.do {
+            $0.backgroundColor = .black
+            $0.alpha = 0.7
+            $0.isHidden = true
+            $0.isUserInteractionEnabled = true
+        }
+        
+        shareInviteCodePopUpView.do {
+            $0.isHidden = true
+        }
+        
+        changeOrganizationPopUpView.do {
+            $0.isHidden = true
         }
     }
     
@@ -81,6 +111,13 @@ final class MyOrganizationViewController: BaseViewController {
                          separationView,
                          myOrganizationCollectionView,
                          makeOrganizationButton)
+        
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubviews(dimmedView,
+                               shareInviteCodePopUpView, 
+                               changeOrganizationPopUpView,
+                               warningToastView)
+        }
         
         currentOrganizationView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(12)
@@ -99,11 +136,28 @@ final class MyOrganizationViewController: BaseViewController {
             $0.bottom.equalTo(makeOrganizationButton.snp.top).offset(-18)
         }
         
+        warningToastView.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(52)
+            $0.centerX.equalToSuperview()
+        }
+        
         makeOrganizationButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(18)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(17)
             $0.width.equalTo(124)
+        }
+        
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        shareInviteCodePopUpView.snp.makeConstraints {
+            $0.center.equalTo(dimmedView)
+        }
+        
+        changeOrganizationPopUpView.snp.makeConstraints {
+            $0.center.equalTo(dimmedView)
         }
     }
     
@@ -131,6 +185,7 @@ final class MyOrganizationViewController: BaseViewController {
     override func setDelegate() {
         myOrganizationCollectionView.delegate = self
         myOrganizationCollectionView.dataSource = self
+        dimmedTapGesture.delegate = self
     }
     
     // MARK: Register
@@ -144,14 +199,101 @@ final class MyOrganizationViewController: BaseViewController {
         backButton.addTarget(self,
                              action: #selector(backButtonTapped),
                              for: .touchUpInside)
+        currentOrganizationView.lookInviteCodeButton.addTarget(self,
+                                                               action: #selector(lookInviteCodeButtonTapped),
+                                                               for: .touchUpInside)
+        shareInviteCodePopUpView.clipBoardCopyButton.addTarget(self,
+                                                               action: #selector(clipBoardCopyButtonTapped),
+                                                               for: .touchUpInside)
+        shareInviteCodePopUpView.shareButton.addTarget(self,
+                                                       action: #selector(shareButtonTapped),
+                                                       for: .touchUpInside)
+        changeOrganizationPopUpView.backButton.addTarget(self,
+                                                         action: #selector(changeOrganizationTapped),
+                                                         for: .touchUpInside)
+        changeOrganizationPopUpView.changeStateButton.addTarget(self,
+                                                                action: #selector(cancelButtonTapped),
+                                                                for: .touchUpInside)
+        dimmedView.addGestureRecognizer(dimmedTapGesture)
     }
     
     // MARK: Objc Function
-    @objc func backButtonTapped() {
+    /// 네비게이션 바 backButton 클릭되었을 때 pop 함수 호출
+    @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
     
+    /// 현재 선택된 단체의 초대코드 보기를 클릭되었을 때 호출되는 함수
+    @objc private func lookInviteCodeButtonTapped() {
+        dimmedView.isHidden = false
+        shareInviteCodePopUpView.isHidden = false
+    }
+    
+    /// 초대코드 공유 팝업창에서 클립보드 복사했을 때 호출되는 함수
+    @objc private func clipBoardCopyButtonTapped() {
+        guard let inviteCode = currentOrganizationInviteCode else { return }
+        UIPasteboard.general.string = inviteCode
+        showWarningToastView()
+    }
+    
+    /// 초대코드 공유 팝업창에서 공유하기 버튼을 클릭했을 때 호출되는 함수
+    @objc private func shareButtonTapped() {
+        guard let organizationName = KeychainHandler.shared.userGroupName,
+              let inviteCode = currentOrganizationInviteCode else { return }
+        let shareText: String = """
+                                Ready to PINGLE?
+                                구성원 모두를 위한 위치기반 네트워킹 서비스, PINGLE
+                                
+                                \(organizationName)에서 초대 메시지를 보냈습니다.
+                                핑글 앱을 다운받고, \(organizationName) 사람들을 만나보세요!
+                                
+                                초대코드 : \(inviteCode)
+                                https://apps.apple.com/kr/app/pingle-%ED%95%91%EA%B8%80/id6475423894?l=en-GB
+                                """
+        
+        let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+
+        activityViewController.excludedActivityTypes = [
+            .addToReadingList,
+            .airDrop,
+            .assignToContact,
+            .markupAsPDF,
+            .openInIBooks,
+            .print,
+            .saveToCameraRoll
+        ]
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    /// 단체 정보 변경 팝업창에서 그룹 변경하기 버튼을 클릭했을 때 호출되는 함수
+    @objc private func changeOrganizationTapped() {
+        // To DO: 실제 네트워킹 작업 이후 실제 그룹아이디, 그룹 이름으로 변경하기 위함.
+//        guard let userGroupId = selectedOrganizationInfo?.id,
+//              let userGroupName = selectedOrganizationInfo?.name else { return }
+//        
+//        KeychainHandler.shared.userGroupId = userGroupId
+//        KeychainHandler.shared.userGroupName = userGroupName
+//        guard let selectedOrganizationInfo = selectedOrganizationInfo else { return }
+//        currentOrganizationView.bindData(data: selectedOrganizationInfo)
+    }
+    
+    /// 단체 정보 변경 팝업창에서 돌아가기 버튼을 클릭했을 때 호출되는 함수
+    @objc private func cancelButtonTapped() {
+        dimmedView.isHidden = true
+        changeOrganizationPopUpView.isHidden = true
+    }
+    
+    // MARK: Animation Function
+    private func showWarningToastView(duration: TimeInterval = 2.0) {
+        warningToastView.fadeIn()
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            self.warningToastView.fadeOut()
+        }
+    }
+    
     // MARK: CalculateHeight Function
+    /// 가입된 단체 정보 Cell의 단체명에 따른 높이를 측정하기 위한 함수
     private func calculateDynamicHeight(placeNameText: String) -> CGFloat {
         let organizationNameLabel = UILabel().then {
             $0.setTextWithLineHeight(text: placeNameText, lineHeight: 28)
@@ -171,7 +313,13 @@ final class MyOrganizationViewController: BaseViewController {
 
 // MARK: UICollectionViewDelegate
 extension MyOrganizationViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        /// 변경하고자 하는 그룹의 정보를 local에 저장한 이후 그룹 변경 팝업창을 띄운다.
+        selectedOrganizationInfo = myTeamsList[indexPath.row]
+        changeOrganizationPopUpView.makeChangingOrganizationPopUp(organizationName: myTeamsList[indexPath.row].name)
+        dimmedView.isHidden = false
+        changeOrganizationPopUpView.isHidden = false
+    }
 }
 
 // MARK: UICollectionViewDataSource
@@ -198,5 +346,15 @@ extension MyOrganizationViewController: UICollectionViewDelegateFlowLayout {
         let cellHeight = 75 + calculateDynamicHeight(placeNameText: myTeamsList[indexPath.row].name)
         
         return CGSize(width: UIScreen.main.bounds.width - 48, height: cellHeight)
+    }
+}
+
+extension MyOrganizationViewController: UIGestureRecognizerDelegate {
+    /// 딤 뷰 탭 되었을 때 메소드
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        dimmedView.isHidden = true
+        shareInviteCodePopUpView.isHidden = true
+        changeOrganizationPopUpView.isHidden = true
+        return true
     }
 }

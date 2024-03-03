@@ -21,11 +21,10 @@ final class HomeListViewController: BaseViewController {
     private let sortMoreView = MoreView()
     let mapButton = UIButton()
     let emptyLabel = UILabel()
-    let emptyResultLabel = UILabel()
     
     private let refreshControl = UIRefreshControl()
     lazy var listCollectionView = UICollectionView(
-        frame: .zero, 
+        frame: .zero,
         collectionViewLayout: listCollectionViewFlowLayout
     )
     private let listCollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -70,18 +69,9 @@ final class HomeListViewController: BaseViewController {
         view.backgroundColor = .grayscaleG11
         
         emptyLabel.do {
-            $0.text = StringLiterals.Home.List.emptyList
             $0.font = .subtitleSubSemi18
             $0.textColor = .grayscaleG06
-            $0.setLineSpacing(spacing: 7)
             $0.numberOfLines = 0
-            $0.isHidden = true
-        }
-        
-        emptyResultLabel.do {
-            $0.text = StringLiterals.Home.Search.searchEmptyLabel
-            $0.font = .subtitleSubSemi18
-            $0.textColor = .grayscaleG06
             $0.isHidden = true
         }
         
@@ -158,7 +148,6 @@ final class HomeListViewController: BaseViewController {
                          mapButton,
                          sortMoreView,
                          emptyLabel,
-                         emptyResultLabel,
                          resultCountLabel)
         
         sortButton.addSubviews(sortTitleLabel,
@@ -197,13 +186,13 @@ final class HomeListViewController: BaseViewController {
         }
         
         emptyLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(sortButton.snp.bottom).offset(163.adjustedHeight)
-        }
-        
-        emptyResultLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(sortButton.snp.bottom).offset(218.adjustedHeight)
+            if isSearchResult {
+                $0.centerX.equalToSuperview()
+                $0.top.equalTo(sortButton.snp.bottom).offset(218.adjustedHeight)
+            } else {
+                $0.centerX.equalToSuperview()
+                $0.top.equalTo(sortButton.snp.bottom).offset(163.adjustedHeight)
+            }
         }
         
         resultCountLabel.snp.makeConstraints {
@@ -298,16 +287,12 @@ final class HomeListViewController: BaseViewController {
                         )
                     }
                     if let self = self {
-                        if self.isSearchResult {
-                            self.resultCountLabel.isHidden = false
-                            self.emptyLabel.isHidden = true
-                            self.emptyResultLabel.isHidden = self.listData.isEmpty ? false : true
-                        } else {
-                            self.resultCountLabel.isHidden = true
-                            self.emptyResultLabel.isHidden = true
-                            self.emptyLabel.isHidden = self.listData.isEmpty ? false : true
-                        }
+                        self.resultCountLabel.isHidden = !self.isSearchResult
+                        self.emptyLabel.text = self.isSearchResult ? StringLiterals.Home.Search.searchEmptyLabel : StringLiterals.Home.List.emptyList
+                        self.emptyLabel.setLineSpacing(spacing: 7)
+                        self.emptyLabel.isHidden = !self.listData.isEmpty
                     }
+                    
                     self?.listCollectionView.reloadData()
                     print(data)
                 default:

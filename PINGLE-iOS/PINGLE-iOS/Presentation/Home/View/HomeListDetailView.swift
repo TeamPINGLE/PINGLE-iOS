@@ -17,7 +17,7 @@ final class HomeListDetailView: BaseView {
     private var badgeColor: UIColor? = .subPingleOrange
     var isParticipating: Bool = false
     var isOwner: Bool = false
-    private var isFull: Bool = false
+    var isFull: Bool = false
     private var openChatURL: String?
     var participantsButtonAction: (() -> Void) = {}
     var talkButtonAction: (() -> Void) = {}

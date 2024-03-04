@@ -27,6 +27,7 @@ final class HomeListViewController: BaseViewController {
         collectionViewLayout: listCollectionViewFlowLayout
     )
     private let listCollectionViewFlowLayout = UICollectionViewFlowLayout()
+    let alreadyToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.alreadyMeeting)
     
     // MARK: Variables
     var listData: [HomeListData] = []
@@ -132,6 +133,13 @@ final class HomeListViewController: BaseViewController {
             $0.scrollDirection = .vertical
             $0.minimumLineSpacing = 12.adjustedWidth
         }
+        
+        alreadyToastView.do {
+            $0.alpha = 0.0
+            $0.backgroundColor = .grayscaleG02
+            $0.warningImageView.image = UIImage(resource: .icInfoBlack)
+            $0.warningLabel.textColor = .black
+        }
     }
     
     // MARK: Style Helpers
@@ -140,7 +148,8 @@ final class HomeListViewController: BaseViewController {
                          listCollectionView,
                          mapButton,
                          sortMoreView,
-                         emptyLabel)
+                         emptyLabel,
+                         alreadyToastView)
         
         sortButton.addSubviews(sortTitleLabel,
                                sortImageView)
@@ -180,6 +189,11 @@ final class HomeListViewController: BaseViewController {
         emptyLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(sortButton.snp.bottom).offset(163.adjustedHeight)
+        }
+        
+        alreadyToastView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(15)
         }
     }
     
@@ -301,9 +315,17 @@ final class HomeListViewController: BaseViewController {
     ) {
         NetworkService.shared.homeService.meetingJoin(meetingId: meetingId) { response in
             switch response {
-            case .success:
-                print("신청 완료")
-                completion(true)
+            case .success(let data):
+                if data.code == 201 {
+                    print("신청 완료")
+                    completion(true)
+                } else if data.code == 409 {
+                    self.alreadyToastView.fadeIn()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.alreadyToastView.fadeOut()
+                    }
+                    completion(false)
+                }
             default:
                 print("실패")
                 completion(false)
@@ -384,6 +406,9 @@ extension HomeListViewController: UICollectionViewDataSource {
                     cell.homeListDetailView.currentParticipants += 1
                     self.listData[indexPath.row].meeting.curParticipants += 1
 
+                    cell.homeListDetailView.updateStyle()
+                } else {
+                    cell.homeListDetailView.currentParticipants =  cell.homeListDetailView.maxParticipants
                     cell.homeListDetailView.updateStyle()
                 }
             }

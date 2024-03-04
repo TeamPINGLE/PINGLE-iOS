@@ -299,5 +299,6 @@ enum StringLiterals {
         static let impossibleEmail = "유효하지 않은 이메일입니다!"
         static let completedCopy = "초대코드가 복사되었습니다!"
         static let changeOrganization = "단체가 변경되었습니다!"
+        static let alreadySigned = "이미 가입된 단체입니다!"
     }
 }

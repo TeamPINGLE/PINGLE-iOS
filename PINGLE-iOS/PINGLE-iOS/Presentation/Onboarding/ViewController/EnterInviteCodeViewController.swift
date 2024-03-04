@@ -12,6 +12,9 @@ import Then
 
 final class EnterInviteCodeViewController: BaseViewController {
     
+    // MARK: Variables
+    var teamId: Int?
+    
     // MARK: Property
     private let backButton = UIButton()
     private let titleBackgroundView = UIView()
@@ -25,7 +28,11 @@ final class EnterInviteCodeViewController: BaseViewController {
     private let infoMessageLabel = UILabel()
     private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.enterTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.wrongCode)
-    var teamId: Int?
+    
+    private enum WarningToastMessage {
+        case invalidCode
+        case alreadySigned
+    }
     
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -206,23 +213,23 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     func postEnterInviteCode(code: EnterInviteCodeRequestBodyDTO) {
         guard let teamId = teamId else { return }
-        NetworkService.shared.onboardingService.enterInviteCode(teamId: teamId, bodyDTO: code) { [weak self] response in
+        NetworkService.shared.onboardingService.enterInviteCode(teamId: teamId, bodyDTO: code) { [weak self] result in
             guard let self = self else { return }
-            switch response {
+            switch result {
             case .success(let data):
                 /// data가 있다는 것은 초대코드가 유효하다는 뜻이다. 없다는 것은 초대코드가 유효하지 않아 그룹 정보를 보내지 않는다는 뜻이다.
-                if let data = data.data {
-                    /// 사용자가 가입한 팀명과 팀번호를  저장한다.
+                if data.code == 201 {
+                    guard let data = data.data else { return }
                     KeychainHandler.shared.userGroupId = data.id
                     KeychainHandler.shared.userGroupName = data.name
                     let entranceCompletedViewController = EntranceCompletedViewController()
                     navigationController?.pushViewController(entranceCompletedViewController, animated: true)
-                } else {
-                    showWarningToastView()
+                } else if data.code == 400 {
+                    showWarningToastView(warningToastMessage: .invalidCode)
+                } else if data.code == 409 {
+                    showWarningToastView(warningToastMessage: .alreadySigned)
                 }
             default:
-                /// 코드 틀렸을 경우 오류 메시지 창 출력
-                showWarningToastView()
                 print("error")
             }
         }
@@ -249,13 +256,21 @@ extension EnterInviteCodeViewController: UITextFieldDelegate {
 
 // MARK: Animation Function
 extension EnterInviteCodeViewController {
-    func showWarningToastView(duration: TimeInterval = 2.0) {
-        self.warningToastView.fadeIn()
+    // MARK: Animation Function
+    private func showWarningToastView(warningToastMessage: WarningToastMessage, duration: TimeInterval = 2.0) {
+        switch warningToastMessage{
+        case .invalidCode:
+            warningToastView.changeWarningMessage(message: StringLiterals.ToastView.wrongCode, possible: false)
+        case .alreadySigned:
+            warningToastView.changeWarningMessage(message: StringLiterals.ToastView.alreadySigned, possible: false)
+        }
         
+        warningToastView.fadeIn()
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             self.warningToastView.fadeOut()
         }
     }
+    
     // MARK: Objc Function
     @objc func keyboardWillShow(notification: Notification) {
         guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }

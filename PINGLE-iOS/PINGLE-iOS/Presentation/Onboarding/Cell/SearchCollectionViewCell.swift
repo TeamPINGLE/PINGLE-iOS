@@ -68,7 +68,10 @@ final class SearchCollectionViewCell: UICollectionViewCell {
     }
     
     func setLayout() {
-        addSubviews(keywordLabel, groupNameLabel, selectImageView, horizontalLineView)
+        addSubviews(keywordLabel, 
+                    groupNameLabel,
+                    selectImageView,
+                    horizontalLineView)
         
         keywordLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
@@ -76,7 +79,7 @@ final class SearchCollectionViewCell: UICollectionViewCell {
         }
         
         groupNameLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(71)
+            $0.leading.equalTo(keywordLabel.snp.trailing).offset(8)
             $0.trailing.equalToSuperview().inset(55)
             $0.centerY.equalToSuperview()
         }

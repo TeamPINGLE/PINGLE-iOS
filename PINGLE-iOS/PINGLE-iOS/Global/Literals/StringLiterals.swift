@@ -71,6 +71,7 @@ enum StringLiterals {
             static let searchOrganizationNavigation = "단체 입장하기"
             static let makeOrganizationNavigation = "신규 단체 개설하기"
             static let shareInviteCodeNavigation = "친구 초대하기"
+            static let myOrganizationViewController = "나의 단체"
         }
         
         enum SearchBarPlaceholder {
@@ -261,6 +262,10 @@ enum StringLiterals {
             static let deleteQuestionTitle = "정말로 탈퇴하실건가요?"
             static let logoutExplanation = "Apple 계정을 로그아웃합니다"
             static let deleteExplanation = "탈퇴 시 계정은 삭제되며 복구할 수 없어요"
+            static let meetingNumber = "개최된 핑글 수"
+            static let memberNumber = "참여자 수"
+            static let shareCodeTitle = "공유하고 더 많은 친구와 함께해보세요!"
+            static let questionChangeOrganization = "(으)로\n단체를 변경하시겠어요?"
         }
         
         enum ButtonTitle {
@@ -269,6 +274,11 @@ enum StringLiterals {
             static let logoutTitle = "로그아웃"
             static let deleteTitle = "탈퇴하기"
             static let backTitle = "돌아가기"
+            static let lookInviteCode = "초대코드 보기"
+            static let makeOrganization = "새로운 단체 추가하러 가기"
+            static let changeTitle = "변경하기"
+            static let copyInviteCode = "초대코드 복사하기"
+            static let shareTitle = "공유하기"
         }
     }
     
@@ -287,7 +297,8 @@ enum StringLiterals {
         static let possibleGroup = "등록 가능한 단체명입니다."
         static let impossibleGroup = "같은 이름을 가진 단체가 이미 존재합니다!"
         static let impossibleEmail = "유효하지 않은 이메일입니다!"
-        static let CompletedCopy = "초대코드가 복사되었습니다!"
         static let alreadyMeeting = "모집이 마감된 핑글이에요!"
+        static let completedCopy = "초대코드가 복사되었습니다!"
+        static let changeOrganization = "단체가 변경되었습니다!"
     }
 }

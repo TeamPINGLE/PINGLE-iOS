@@ -12,26 +12,37 @@ import Then
 
 final class OnboardingViewController: BaseViewController {
     
+    // MARK: Variables
+    private var isRootViewController: Bool {
+        return navigationController?.viewControllers.first == self
+    }
+    
     // MARK: Property
+    private let backButton = UIButton()
     private let titleLabel = UILabel()
     private let existingOrganizationButton = UIButton()
     private let makeOrganizationButton = UIButton()
     
     // MARK: Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNavigation()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTarget()
+        setNavigation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
     }
     
     // MARK: UI
     override func setStyle() {
         view.do {
             $0.backgroundColor = .grayscaleG11
+        }
+        
+        backButton.do {
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         titleLabel.do {
@@ -93,14 +104,27 @@ final class OnboardingViewController: BaseViewController {
     }
     
     // MARK: Navigation Function
+    private func setNavigationBar() {
+        if isRootViewController {
+            self.navigationController?.navigationBar.isHidden = true
+            self.navigationItem.hidesBackButton = true
+        } else {
+            self.navigationController?.navigationBar.isHidden = false
+            navigationController?.interactivePopGestureRecognizer?.delegate = self
+        }
+    }
+    
     private func setNavigation() {
-        self.navigationController?.navigationBar.isHidden = true
-        self.navigationItem.hidesBackButton = true
+        let customBackButton = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = customBackButton
     }
     
     // MARK: Target Function
     private func setTarget() {
-        existingOrganizationButton.addTarget(self, 
+        backButton.addTarget(self,
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
+        existingOrganizationButton.addTarget(self,
                                              action: #selector(existingOrganizationButtonDidTap),
                                              for: .touchUpInside)
         makeOrganizationButton.addTarget(self, 
@@ -109,13 +133,26 @@ final class OnboardingViewController: BaseViewController {
     }
     
     // MARK: Objc Function
+    /// 네비게이션 바 backButton 클릭되었을 때 pop 함수 호출
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    /// 기존 단체 입장 버튼 클릭되었을 때 호출되는 함수
     @objc func existingOrganizationButtonDidTap() {
         let searchOrganizationViewController = SearchOrganizationViewController()
         navigationController?.pushViewController(searchOrganizationViewController, animated: true)
     }
     
+    /// 새로운 단체 만들기 버튼 클릭되었을 때 호출되는 함수
     @objc func makeOrganizationButtonDidTap() {
         let enterOrganizationInfoViewController = EnterOrganizationInfoViewController()
         navigationController?.pushViewController(enterOrganizationInfoViewController, animated: true)
+    }
+}
+
+extension OnboardingViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

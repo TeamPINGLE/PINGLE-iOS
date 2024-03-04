@@ -12,6 +12,7 @@ import Alamofire
 enum ProfileTarget {
     case logout
     case deleteID
+    case myTeams
 }
 
 extension ProfileTarget: TargetType {
@@ -20,6 +21,8 @@ extension ProfileTarget: TargetType {
         case .logout:
             return .authorization
         case .deleteID:
+            return .authorization
+        case .myTeams:
             return .authorization
         }
     }
@@ -30,6 +33,8 @@ extension ProfileTarget: TargetType {
             return .hasToken
         case .deleteID:
             return .deleteAppleId
+        case .myTeams:
+            return .hasToken
         }
     }
     
@@ -39,6 +44,8 @@ extension ProfileTarget: TargetType {
             return .post
         case .deleteID:
             return .delete
+        case .myTeams:
+            return .get
         }
     }
     
@@ -48,6 +55,8 @@ extension ProfileTarget: TargetType {
             return "/v1/auth/logout"
         case .deleteID:
             return "/v1/users/leave"
+        case .myTeams:
+            return "/v1/users/me/teams"
         }
     }
     
@@ -56,6 +65,8 @@ extension ProfileTarget: TargetType {
         case .logout:
             return .requestPlain
         case .deleteID:
+            return .requestPlain
+        case .myTeams:
             return .requestPlain
         }
     }

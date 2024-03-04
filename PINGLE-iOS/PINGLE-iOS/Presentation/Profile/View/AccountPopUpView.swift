@@ -35,8 +35,11 @@ final class AccountPopUpView: BaseView {
         }
         
         questionLabel.do {
+            $0.setTextWithLineHeight(text: " ", lineHeight: 25)
             $0.font = .subtitleSubSemi18
             $0.textColor = .white
+            $0.numberOfLines = 3
+            $0.lineBreakMode = .byTruncatingTail
         }
         
         explanationLabel.do {
@@ -56,13 +59,21 @@ final class AccountPopUpView: BaseView {
             $0.titleLabel?.font = .captionCapSemi12
             $0.setTitleColor(.grayscaleG01, for: .normal)
             $0.titleLabel?.textAlignment = .center
-            $0.layer.addBorder([.bottom], color: .grayscaleG01, width: 1.0, frameHeight: 17.0, framgeWidth: 42.0.adjusted)
+            $0.layer.addBorder(
+                [.bottom],
+                color: .grayscaleG01,
+                width: 1.0,
+                frameHeight: 17.0,
+                framgeWidth: 42.0
+            )
         }
     }
     
     override func setLayout() {
-        addSubviews(questionLabel, explanationLabel, backButton,
-                         changeStateButton)
+        addSubviews(questionLabel, 
+                    explanationLabel,
+                    backButton,
+                    changeStateButton)
         
         snp.makeConstraints {
             $0.width.equalTo(UIScreen.main.bounds.size.width - 48.adjusted)
@@ -70,27 +81,27 @@ final class AccountPopUpView: BaseView {
         }
         
         questionLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(46)
-            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().inset(49)
+            $0.leading.trailing.equalToSuperview().inset(30)
         }
         
         explanationLabel.snp.makeConstraints {
-            $0.top.equalTo(self.questionLabel.snp.bottom).offset(4)
+            $0.top.equalTo(self.questionLabel.snp.bottom).offset(7)
             $0.centerX.equalToSuperview()
         }
         
         backButton.snp.makeConstraints {
-            $0.top.equalTo(self.explanationLabel.snp.bottom).offset(35)
+            $0.bottom.equalToSuperview().inset(58)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(185.adjustedWidth)
+            $0.width.equalTo(185)
             $0.height.equalTo(44)
         }
         
         changeStateButton.snp.makeConstraints {
-            $0.top.equalTo(self.backButton.snp.bottom).offset(12)
+            $0.bottom.equalToSuperview().inset(29)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(17)
-            $0.width.equalTo(42.adjusted)
+            $0.width.equalTo(42)
         }
     }
     
@@ -105,6 +116,22 @@ final class AccountPopUpView: BaseView {
             changeStateButton.setTitle(StringLiterals.Profile.ButtonTitle.deleteTitle, for: .normal)
             questionLabel.text = StringLiterals.Profile.ExplainTitle.deleteQuestionTitle
             explanationLabel.text = StringLiterals.Profile.ExplainTitle.deleteExplanation
+        }
+    }
+    
+    //MARK: Change Popup Function
+    func makeChangingOrganizationPopUp(organizationName: String) {
+        backButton.setTitle(StringLiterals.Profile.ButtonTitle.changeTitle, for: .normal)
+        changeStateButton.setTitle(StringLiterals.Profile.ButtonTitle.backTitle, for: .normal)
+        explanationLabel.isHidden = true
+        
+        questionLabel.text = "'\(organizationName)'" + StringLiterals.Profile.ExplainTitle.questionChangeOrganization
+        questionLabel.layoutIfNeeded()
+        
+        let viewHeight = 183 + min(questionLabel.countCurrentLines(), 3) * 25
+        
+        self.snp.updateConstraints {
+            $0.height.equalTo(viewHeight)
         }
     }
 }

@@ -14,7 +14,7 @@ class OrganizationButton: UIButton {
     
     // MARK: Property
     private let organizationTitleLabel = UILabel()
-    var organizationNameLabel = UILabel()
+    private var organizationNameLabel = UILabel()
     private let arrowRightImageView = UIImageView()
     
     // MARK: LifeCycle
@@ -22,6 +22,7 @@ class OrganizationButton: UIButton {
         super.init(frame: frame)
         setStyle()
         setLayout()
+        changeOrganizationName()
     }
     
     required init?(coder: NSCoder) {
@@ -41,38 +42,46 @@ class OrganizationButton: UIButton {
         }
         
         organizationNameLabel.do {
+            $0.setTextWithLineHeight(text: " ", lineHeight: 25)
             $0.font = .subtitleSubBold18
             $0.textColor = .grayscaleG01
+            $0.numberOfLines = 2
+            $0.textAlignment = .left
+            $0.lineBreakMode = .byTruncatingTail
         }
         
         arrowRightImageView.do {
             $0.image = UIImage(resource: .icArrowRight)
+            $0.tintColor = .white
         }
     }
     
     func setLayout() {
-        addSubviews(organizationTitleLabel, organizationNameLabel, arrowRightImageView)
+        addSubviews(organizationTitleLabel,
+                    organizationNameLabel,
+                    arrowRightImageView)
         
         self.snp.makeConstraints {
-            $0.width.equalTo(343.adjustedWidth)
+            $0.width.equalTo(UIScreen.main.bounds.size.width - 32)
             $0.height.equalTo(74)
         }
         
         organizationTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(14)
-            $0.leading.equalToSuperview().inset(21.adjusted)
+            $0.leading.equalToSuperview().inset(21)
         }
         
         organizationNameLabel.snp.makeConstraints {
-            $0.top.equalTo(organizationTitleLabel.snp.bottom).offset(4)
-            $0.leading.equalToSuperview().inset(21.adjusted)
+            $0.top.equalTo(organizationTitleLabel.snp.bottom).offset(7)
+            $0.leading.equalToSuperview().inset(21)
+            $0.trailing.equalToSuperview().inset(51)
         }
         
         arrowRightImageView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(16.adjusted)
+            $0.trailing.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
             $0.height.equalTo(22)
-            $0.width.equalTo(24.adjusted)
+            $0.width.equalTo(24)
         }
     }
     
@@ -80,5 +89,15 @@ class OrganizationButton: UIButton {
     func changeOrganizationName() {
         guard let userGroupName = KeychainHandler.shared.userGroupName else { return }
         organizationNameLabel.text = userGroupName
+        
+        organizationNameLabel.layoutIfNeeded()
+        
+        let viewHeight =
+            49 +
+            min(organizationNameLabel.countCurrentLines(), 2) * 25
+        
+        self.snp.updateConstraints {
+            $0.height.equalTo(viewHeight)
+        }
     }
 }

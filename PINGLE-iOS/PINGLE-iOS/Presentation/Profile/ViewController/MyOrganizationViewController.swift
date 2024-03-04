@@ -16,6 +16,7 @@ final class MyOrganizationViewController: BaseViewController {
     private var selectedOrganizationInfo: MyTeamsResponseDTO?
     private var currentOrganizationInviteCode: String?
     private var myTeamsList: [MyTeamsResponseDTO] = []
+    private var changeMyTeamsList: [MyTeamsResponseDTO] = []
     
     // MARK: Component
     private let backButton = UIButton()
@@ -296,7 +297,11 @@ final class MyOrganizationViewController: BaseViewController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
+                guard let userGroupId = KeychainHandler.shared.userGroupId else { return }
+                
                 myTeamsList = data
+                changeMyTeamsList = data.filter { $0.id != userGroupId }
+                
                 bindCurrentOrganizationView()
                 myOrganizationCollectionView.reloadData()
             default:
@@ -333,7 +338,11 @@ final class MyOrganizationViewController: BaseViewController {
     }
     
     private func changeCurrentOrganization() {
+        guard let userGroupId = KeychainHandler.shared.userGroupId else { return }
         guard let selectedOrganizationInfo = selectedOrganizationInfo else { return }
+        
+        changeMyTeamsList = myTeamsList.filter { $0.id != userGroupId }
+        myOrganizationCollectionView.reloadData()
         
         currentOrganizationView.fadeOut()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -365,8 +374,8 @@ final class MyOrganizationViewController: BaseViewController {
 extension MyOrganizationViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         /// 변경하고자 하는 그룹의 정보를 local에 저장한 이후 그룹 변경 팝업창을 띄운다.
-        selectedOrganizationInfo = myTeamsList[indexPath.row]
-        changeOrganizationPopUpView.makeChangingOrganizationPopUp(organizationName: myTeamsList[indexPath.row].name)
+        selectedOrganizationInfo = changeMyTeamsList[indexPath.row]
+        changeOrganizationPopUpView.makeChangingOrganizationPopUp(organizationName: changeMyTeamsList[indexPath.row].name)
         dimmedView.isHidden = false
         changeOrganizationPopUpView.isHidden = false
     }
@@ -375,7 +384,7 @@ extension MyOrganizationViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDataSource
 extension MyOrganizationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myTeamsList.count
+        return changeMyTeamsList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -384,7 +393,7 @@ extension MyOrganizationViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? MyOrganizationCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.bindData(data: myTeamsList[indexPath.row])
+        cell.bindData(data: changeMyTeamsList[indexPath.row])
         
         return cell
     }
@@ -393,7 +402,7 @@ extension MyOrganizationViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegateFlowLayout
 extension MyOrganizationViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellHeight = 75 + calculateDynamicHeight(placeNameText: myTeamsList[indexPath.row].name)
+        let cellHeight = 75 + calculateDynamicHeight(placeNameText: changeMyTeamsList[indexPath.row].name)
         
         return CGSize(width: UIScreen.main.bounds.width - 48, height: cellHeight)
     }

@@ -13,8 +13,8 @@ import Then
 final class PINGLEWarningToastView: BaseView {
     
     // MARK: Property
-    private let warningLabel = UILabel()
-    private let warningImageView = UIImageView()
+    let warningLabel = UILabel()
+    let warningImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

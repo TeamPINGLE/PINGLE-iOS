@@ -89,7 +89,7 @@ class SearchPINGLEViewController: BaseViewController {
                                clearButton)
         
         searchGraphicView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(50)
+            $0.bottom.equalToSuperview().inset(291)
             if isMap {
                 $0.leading.equalToSuperview().inset(77.adjusted)
                 $0.trailing.equalToSuperview().inset(71.adjusted)
@@ -157,7 +157,7 @@ class SearchPINGLEViewController: BaseViewController {
                 let keyboardHeight = self.view.frame.height - keyboardY
                 let remainingHeight = self.view.frame.height - self.searchView.frame.maxY
                 let centerYOffset = remainingHeight / 2
-
+                
                 self.searchGraphicView.snp.remakeConstraints {
                     if self.isMap {
                         $0.leading.equalToSuperview().inset(77.adjusted)
@@ -169,7 +169,7 @@ class SearchPINGLEViewController: BaseViewController {
                     $0.centerY.equalToSuperview().offset(-centerYOffset + keyboardHeight)
                 }
             }
-
+            
             self.view.layoutIfNeeded()
         }
     }
@@ -238,9 +238,8 @@ class SearchPINGLEViewController: BaseViewController {
     private func updateUIForCurrentMode() {
         if isMap {
             searchGraphicView.searchExplainLabelText = StringLiterals.Home.Search.searchMapExplain
-            
             searchGraphicView.searchExplainLabel.asColorArray(targetStringList: ["지도"],
-                                                 color: .mainPingleGreen)
+                                                              color: .mainPingleGreen)
             
             searchTextField.attributedPlaceholder = NSAttributedString(
                 string: StringLiterals.Home.Search.searchMapPlaceHolder,
@@ -251,10 +250,9 @@ class SearchPINGLEViewController: BaseViewController {
             )
         } else {
             searchGraphicView.searchExplainLabelText = StringLiterals.Home.Search.searchListExplain
-            
             searchGraphicView.searchExplainLabel.asColorArray(targetStringList: ["리스트"],
-                                                 color: .mainPingleGreen)
-
+                                                              color: .mainPingleGreen)
+            
             searchTextField.attributedPlaceholder = NSAttributedString(
                 string: StringLiterals.Home.Search.searchListPlaceHolder,
                 attributes: [

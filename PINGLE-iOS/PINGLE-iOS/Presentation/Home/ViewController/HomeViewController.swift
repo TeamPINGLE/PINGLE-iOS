@@ -82,15 +82,15 @@ final class HomeViewController: BaseViewController {
             self.pushParticipantsViewController(meetingId: self.homeListViewController.currentMeetingId)
         }
         
-        searchButton.addTarget(self, 
+        searchButton.addTarget(self,
                                action: #selector(searchButtonTapped),
                                for: .touchUpInside)
         
-        clearButton.addTarget(self, 
+        clearButton.addTarget(self,
                               action: #selector(clearButtonTapped),
                               for: .touchUpInside)
         
-        backButton.addTarget(self, 
+        backButton.addTarget(self,
                              action: #selector(backButtonTapped),
                              for: .touchUpInside)
     }
@@ -155,7 +155,7 @@ final class HomeViewController: BaseViewController {
                          searchView,
                          backButton)
         
-        searchView.addSubviews(searchTextField, 
+        searchView.addSubviews(searchTextField,
                                clearButton)
         
         chipButtons.forEach {
@@ -223,7 +223,7 @@ final class HomeViewController: BaseViewController {
     @objc private func isChipButtonTapped(sender: ChipButton) {
         // 태그 선택 여부 반전
         sender.isButtonSelected.toggle()
-
+        
         // 서버 통신
         if sender.isButtonSelected {
             let q = isSearchResult ? homeListViewController.searchText : ""
@@ -246,17 +246,17 @@ final class HomeViewController: BaseViewController {
             homeMapViewController.markerCategory = ""
             homeListViewController.category = ""
         }
-
+        
         // 태그 하나만 선택할 수 있도록
         chipButtons.filter { $0 != sender }.forEach {
             $0.isButtonSelected = false
         }
-
+        
         // 모든 마커 (핀) 다 보이도록
         homeMapViewController.mapsView.homeMarkerList.forEach {
             $0.hidden = false
         }
-
+        
         homeMapViewController.hideSelectedPin()
         homeListViewController.getListData(
             text: homeListViewController.searchText,
@@ -264,7 +264,7 @@ final class HomeViewController: BaseViewController {
             order: homeListViewController.order
         ) {}
     }
-
+    
     @objc private func searchButtonTapped() {
         let searchViewController = SearchPINGLEViewController()
         if isHomeMap {
@@ -273,6 +273,10 @@ final class HomeViewController: BaseViewController {
             searchViewController.isMap = false
         }
         self.navigationController?.pushViewController(searchViewController, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.resetChipSelected()
+        }
     }
     
     @objc private func clearButtonTapped() {
@@ -299,6 +303,12 @@ final class HomeViewController: BaseViewController {
     
     private func setTabBar() {
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    func resetChipSelected() {
+        chipButtons.forEach {
+            $0.isButtonSelected = false
+        }
     }
     
     func getHomeListViewController() -> HomeListViewController {

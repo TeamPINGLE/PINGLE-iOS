@@ -126,7 +126,7 @@ enum StringLiterals {
         }
         
         enum List {
-            static let sortRecent = "최신순"
+            static let sortRecent = "최신등록순"
             static let sortImminent = "날짜임박순"
             static let emptyList = "현재 개최된 핑글이 없어요.\n핑글을 직접 개최해보세요!"
         }
@@ -305,6 +305,7 @@ enum StringLiterals {
         static let possibleGroup = "등록 가능한 단체명입니다."
         static let impossibleGroup = "같은 이름을 가진 단체가 이미 존재합니다!"
         static let impossibleEmail = "유효하지 않은 이메일입니다!"
+        static let alreadyMeeting = "모집이 마감된 핑글이에요!"
         static let completedCopy = "초대코드가 복사되었습니다!"
         static let changeOrganization = "단체가 변경되었습니다!"
         static let alreadySigned = "이미 가입된 단체입니다!"

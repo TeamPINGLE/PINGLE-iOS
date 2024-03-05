@@ -28,6 +28,7 @@ final class HomeListViewController: BaseViewController {
         collectionViewLayout: listCollectionViewFlowLayout
     )
     private let listCollectionViewFlowLayout = UICollectionViewFlowLayout()
+    let alreadyToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.alreadyMeeting)
     
     // MARK: Variables
     var listData: [HomeListData] = []
@@ -139,6 +140,13 @@ final class HomeListViewController: BaseViewController {
             $0.scrollDirection = .vertical
             $0.minimumLineSpacing = 12.adjustedWidth
         }
+        
+        alreadyToastView.do {
+            $0.alpha = 0.0
+            $0.backgroundColor = .grayscaleG02
+            $0.warningImageView.image = UIImage(resource: .icInfoBlack)
+            $0.warningLabel.textColor = .black
+        }
     }
     
     // MARK: Style Helpers
@@ -148,6 +156,7 @@ final class HomeListViewController: BaseViewController {
                          mapButton,
                          sortMoreView,
                          emptyLabel,
+                         alreadyToastView,
                          resultCountLabel)
         
         sortButton.addSubviews(sortTitleLabel,
@@ -193,6 +202,11 @@ final class HomeListViewController: BaseViewController {
         resultCountLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(165)
             $0.leading.equalToSuperview().inset(24)
+        }
+        
+        alreadyToastView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(15)
         }
     }
     
@@ -335,9 +349,17 @@ final class HomeListViewController: BaseViewController {
     ) {
         NetworkService.shared.homeService.meetingJoin(meetingId: meetingId) { response in
             switch response {
-            case .success:
-                print("신청 완료")
-                completion(true)
+            case .success(let data):
+                if data.code == 201 {
+                    print("신청 완료")
+                    completion(true)
+                } else if data.code == 409 {
+                    self.alreadyToastView.fadeIn()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.alreadyToastView.fadeOut()
+                    }
+                    completion(false)
+                }
             default:
                 print("실패")
                 completion(false)
@@ -414,11 +436,14 @@ extension HomeListViewController: UICollectionViewDataSource {
                 guard let self else { return }
                 if result {
                     cell.homeListDetailView.isParticipating = true
-                    getListData(
-                        text: searchText,
-                        category: category,
-                        order: order
-                    ) {}
+                    self.listData[indexPath.row].meeting.isParticipating = true
+                    cell.homeListDetailView.currentParticipants += 1
+                    self.listData[indexPath.row].meeting.curParticipants += 1
+
+                    cell.homeListDetailView.updateStyle()
+                } else {
+                    cell.homeListDetailView.currentParticipants =  cell.homeListDetailView.maxParticipants
+                    cell.homeListDetailView.updateStyle()
                 }
             }
         }
@@ -440,18 +465,15 @@ extension HomeListViewController: UICollectionViewDataSource {
                     guard let self else { return }
                     if result {
                         cell.homeListDetailView.isParticipating = false
-                        getListData(
-                            text: searchText,
-                            category: category,
-                            order: order
-                        ) {}
+                        self.listData[indexPath.row].meeting.isParticipating = false
+                        cell.homeListDetailView.currentParticipants -= 1
+                        self.listData[indexPath.row].meeting.curParticipants -= 1
+
+                        cell.homeListDetailView.updateStyle()
                     }
                 }
             }
-            self.listCollectionView.reloadData()
         }
-        
-        cell.homeDetailPopUpView.dataBind(data: listData[indexPath.row].meeting)
         
         cell.memberButtonAction = {
             self.currentMeetingId = cell.homeListDetailView.meetingId
@@ -462,6 +484,8 @@ extension HomeListViewController: UICollectionViewDataSource {
             self.listData[indexPath.row].isExpand = cell.isExpand
             collectionView.reloadItems(at: [indexPath])
         }
+        
+        cell.homeDetailPopUpView.dataBind(data: listData[indexPath.row].meeting)
         return cell
     }
 }

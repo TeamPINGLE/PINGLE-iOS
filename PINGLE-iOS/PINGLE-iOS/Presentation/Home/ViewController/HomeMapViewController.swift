@@ -30,7 +30,8 @@ final class HomeMapViewController: BaseViewController {
     
     // MARK: Component
     let mapsView = HomeMapView()
-    
+    let alreadyToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.alreadyMeeting)
+
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -59,11 +60,26 @@ final class HomeMapViewController: BaseViewController {
     }
     
     // MARK: Layout Helpers
+    override func setStyle() {
+        alreadyToastView.do {
+            $0.alpha = 0.0
+            $0.backgroundColor = .grayscaleG02
+            $0.warningImageView.image = UIImage(resource: .icInfoBlack)
+            $0.warningLabel.textColor = .black
+        }
+    }
+    
     override func setLayout() {
-        view.addSubviews(mapsView)
+        view.addSubviews(mapsView,
+                         alreadyToastView)
         
         mapsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        alreadyToastView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(15)
         }
     }
     
@@ -208,12 +224,11 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 guard let self else { return }
                 if result {
                     cell.mapDetailView.isParticipating = true
-                    bindDetailViewData(
-                        id: markerId,
-                        category: markerCategory,
-                        q: searchText
-                    ) {}
                 }
+                bindDetailViewData(
+                    id: markerId,
+                    category: markerCategory
+                ) {}
             }
         }
         
@@ -480,9 +495,17 @@ extension HomeMapViewController {
     ) {
         NetworkService.shared.homeService.meetingJoin(meetingId: meetingId) { response in
             switch response {
-            case .success:
-                print("신청 완료")
-                completion(true)
+            case .success(let data):
+                if data.code == 201 {
+                    print("신청 완료")
+                    completion(true)
+                } else if data.code == 409 {
+                    self.alreadyToastView.fadeIn()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.alreadyToastView.fadeOut()
+                    }
+                    completion(false)
+               }
             default:
                 print("실패")
                 completion(false)

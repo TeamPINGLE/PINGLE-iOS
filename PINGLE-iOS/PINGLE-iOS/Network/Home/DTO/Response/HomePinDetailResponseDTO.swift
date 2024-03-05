@@ -17,8 +17,8 @@ struct HomePinDetailResponseDTO: Codable {
     let startAt: String
     let endAt: String
     let maxParticipants: Int
-    let curParticipants: Int
-    let isParticipating: Bool
+    var curParticipants: Int
+    var isParticipating: Bool
     let isOwner: Bool
     let chatLink: String
 }

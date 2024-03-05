@@ -218,7 +218,7 @@ final class EnterInviteCodeViewController: BaseViewController {
             switch result {
             case .success(let data):
                 /// data가 있다는 것은 초대코드가 유효하다는 뜻이다. 없다는 것은 초대코드가 유효하지 않아 그룹 정보를 보내지 않는다는 뜻이다.
-                if data.code == 201 {
+                if data.code == 200 {
                     guard let data = data.data else { return }
                     KeychainHandler.shared.userGroupId = data.id
                     KeychainHandler.shared.userGroupName = data.name

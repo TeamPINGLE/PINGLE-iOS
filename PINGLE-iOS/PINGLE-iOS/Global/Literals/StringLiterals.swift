@@ -130,6 +130,14 @@ enum StringLiterals {
             static let sortImminent = "날짜임박순"
             static let emptyList = "현재 개최된 핑글이 없어요.\n핑글을 직접 개최해보세요!"
         }
+        
+        enum Search {
+            static let searchMapExplain = "원하는 핑글을 지도에서 찾아보세요!"
+            static let searchListExplain = "원하는 핑글을 리스트에서 찾아보세요!"
+            static let searchMapPlaceHolder = "장소 이름 검색"
+            static let searchListPlaceHolder = "핑글 이름, 장소 이름 검색"
+            static let searchEmptyLabel = "검색 결과가 없어요"
+        }
     }
     
     enum Meeting {
@@ -300,5 +308,6 @@ enum StringLiterals {
         static let alreadyMeeting = "모집이 마감된 핑글이에요!"
         static let completedCopy = "초대코드가 복사되었습니다!"
         static let changeOrganization = "단체가 변경되었습니다!"
+        static let alreadySigned = "이미 가입된 단체입니다!"
     }
 }

@@ -292,6 +292,16 @@ extension EnterOrganizationInfoViewController: UITextFieldDelegate {
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let currentText = textField.text else { return true }
+        
+        let emojiLength = string.unicodeScalars.filter { $0.isEmoji }.count
+        let newLength = currentText.count + string.count - range.length + emojiLength
+        let maxLength = 20
+        
+        return newLength <= maxLength
+    }
+    
     // MARK: Objc Function
     @objc func textFieldDidChange(_ textField: UITextField) {
         let text = textField.text ?? ""

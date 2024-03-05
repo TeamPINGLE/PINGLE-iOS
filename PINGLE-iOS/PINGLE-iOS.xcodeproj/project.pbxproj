@@ -101,6 +101,8 @@
 		E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */; };
 		E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */; };
 		E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565EB562B4FC9B80001758C /* MeetingManager.swift */; };
+		E56D7CF12B933B1600B23738 /* PINGLESearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56D7CF02B933B1600B23738 /* PINGLESearchView.swift */; };
+		E5866E7F2B94F9E500E2DA9E /* SearchPINGLEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5866E7E2B94F9E300E2DA9E /* SearchPINGLEViewController.swift */; };
 		E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */; };
 		E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */; };
 		E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651EB2B4A982100676ED0 /* ExitModalView.swift */; };
@@ -273,6 +275,8 @@
 		E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryCardView.swift; sourceTree = "<group>"; };
 		E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultViewController.swift; sourceTree = "<group>"; };
 		E565EB562B4FC9B80001758C /* MeetingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManager.swift; sourceTree = "<group>"; };
+		E56D7CF02B933B1600B23738 /* PINGLESearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLESearchView.swift; sourceTree = "<group>"; };
+		E5866E7E2B94F9E300E2DA9E /* SearchPINGLEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPINGLEViewController.swift; sourceTree = "<group>"; };
 		E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePickerView.swift; sourceTree = "<group>"; };
 		E5A651EB2B4A982100676ED0 /* ExitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitModalView.swift; sourceTree = "<group>"; };
@@ -466,6 +470,7 @@
 				C30728332B42E06D00AA575B /* HomeMapViewController.swift */,
 				C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */,
 				E5FA3EBF2B57D35000A0AC47 /* ParticipantsListViewController.swift */,
+				E5866E7E2B94F9E300E2DA9E /* SearchPINGLEViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 				C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */,
 				E5FA3EBD2B57BB9000A0AC47 /* ParticipantsListView.swift */,
 				C384C1942B84E41D002B6F45 /* HomeListDetailView.swift */,
+				E56D7CF02B933B1600B23738 /* PINGLESearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1378,6 +1384,7 @@
 				F13E69222B90730900FCFBA3 /* MakeCompletedViewController.swift in Sources */,
 				C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
+				E56D7CF12B933B1600B23738 /* PINGLESearchView.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */,
 				C3BCA8712B57E293003C6996 /* MyPINGLEResponseDTO.swift in Sources */,
@@ -1440,6 +1447,7 @@
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
 				F13E69262B930BF800FCFBA3 /* CurrentOrganizationView.swift in Sources */,
 				F1239BC62B458CC20072A02A /* SearchCollectionViewCell.swift in Sources */,
+				E5866E7F2B94F9E500E2DA9E /* SearchPINGLEViewController.swift in Sources */,
 				F1239BD52B47D5530072A02A /* EnterInviteCodeViewController.swift in Sources */,
 				C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */,
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,

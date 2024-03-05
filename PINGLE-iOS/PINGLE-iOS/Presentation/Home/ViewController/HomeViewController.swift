@@ -15,6 +15,7 @@ final class HomeViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     var isHomeMap = true
+    var isSearchResult = false
     
     // MARK: Component
     private let homeMapViewController = HomeMapViewController()
@@ -33,13 +34,25 @@ final class HomeViewController: BaseViewController {
                                           othersChipButton]
     
     private let homeGroupLabel = UILabel()
+    private let backButton = UIButton()
     private let searchButton = UIButton()
+    private let clearButton = UIButton()
+    private let searchView = UIView()
+    private let searchTextField = UITextField()
     
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setAddTarget()
+        setNavigation()
+        setTabBar()
+        setResult()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setTabBar()
     }
     
     // MARK: Target Helpers
@@ -69,6 +82,18 @@ final class HomeViewController: BaseViewController {
         homeListViewController.participantsAction = {
             self.pushParticipantsViewController(meetingId: self.homeListViewController.currentMeetingId)
         }
+        
+        searchButton.addTarget(self,
+                               action: #selector(searchButtonTapped),
+                               for: .touchUpInside)
+        
+        clearButton.addTarget(self,
+                              action: #selector(clearButtonTapped),
+                              for: .touchUpInside)
+        
+        backButton.addTarget(self,
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
     }
     
     // MARK: Style Helpers
@@ -88,6 +113,30 @@ final class HomeViewController: BaseViewController {
             $0.setImage(UIImage(resource: .icSearch), for: .normal)
         }
         
+        backButton.do {
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
+            $0.isHidden = true
+        }
+        
+        searchView.do {
+            $0.backgroundColor = .grayscaleG10
+            $0.layer.cornerRadius = 8
+            $0.isHidden = true
+        }
+        
+        searchTextField.do {
+            $0.font = .bodyBodySemi14
+            $0.textColor = .white
+            $0.tintColor = .mainPingleGreen
+            $0.isUserInteractionEnabled = false
+            $0.isHidden = true
+        }
+        
+        clearButton.do {
+            $0.setImage(UIImage(resource: .btnClear), for: .normal)
+            $0.isHidden = true
+        }
+        
         chipStackView.do {
             $0.axis = .horizontal
             $0.spacing = 4.adjustedWidth
@@ -103,7 +152,12 @@ final class HomeViewController: BaseViewController {
                          homeListViewController.view,
                          homeGroupLabel,
                          searchButton,
-                         chipStackView)
+                         chipStackView,
+                         searchView,
+                         backButton)
+        
+        searchView.addSubviews(searchTextField,
+                               clearButton)
         
         chipButtons.forEach {
             chipStackView.addArrangedSubview($0)
@@ -134,6 +188,30 @@ final class HomeViewController: BaseViewController {
             $0.top.equalTo(homeGroupLabel.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
+        
+        backButton.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(60)
+            $0.leading.equalToSuperview().inset(18.adjusted)
+            $0.trailing.equalToSuperview().inset(333.adjusted)
+        }
+        
+        searchView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(50)
+            $0.leading.equalToSuperview().inset(49.adjusted)
+            $0.trailing.equalToSuperview().inset(24.adjusted)
+        }
+        
+        searchTextField.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview().inset(12)
+            $0.leading.equalToSuperview().inset(13.adjusted)
+            $0.trailing.equalToSuperview().inset(53.adjusted)
+        }
+        
+        clearButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(13.adjusted)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(24)
+        }
     }
     
     // MARK: @objc Func
@@ -144,13 +222,14 @@ final class HomeViewController: BaseViewController {
     }
     
     @objc private func isChipButtonTapped(sender: ChipButton) {
-        /// 태그 선택 여부 반전
+        // 태그 선택 여부 반전
         sender.isButtonSelected.toggle()
         
-        /// 서버 통신
+        // 서버 통신
         if sender.isButtonSelected {
-            homeMapViewController.pinList(category: sender.chipStatusString) { [weak self] result in
-                guard let self else { return }
+            let q = isSearchResult ? homeListViewController.searchText : ""
+            homeMapViewController.pinList(category: sender.chipStatusString, q: q) { [weak self] result in
+                guard let self = self else { return }
                 if result {
                     homeMapViewController.setMarker()
                 }
@@ -158,8 +237,9 @@ final class HomeViewController: BaseViewController {
             homeMapViewController.markerCategory = sender.chipStatusString
             homeListViewController.category = sender.chipStatusString
         } else {
-            homeMapViewController.pinList(category: "") { [weak self] result in
-                guard let self else { return }
+            let q = isSearchResult ? homeListViewController.searchText : ""
+            homeMapViewController.pinList(category: "", q: q) { [weak self] result in
+                guard let self = self else { return }
                 if result {
                     homeMapViewController.setMarker()
                 }
@@ -168,12 +248,12 @@ final class HomeViewController: BaseViewController {
             homeListViewController.category = ""
         }
         
-        /// 태그 하나만 선택할 수 있도록
+        // 태그 하나만 선택할 수 있도록
         chipButtons.filter { $0 != sender }.forEach {
             $0.isButtonSelected = false
         }
         
-        /// 모든 마커 (핀) 다 보이도록
+        // 모든 마커 (핀) 다 보이도록
         homeMapViewController.mapsView.homeMarkerList.forEach {
             $0.hidden = false
         }
@@ -186,6 +266,24 @@ final class HomeViewController: BaseViewController {
         ) {}
     }
     
+    @objc private func searchButtonTapped() {
+        let searchViewController = SearchPINGLEViewController()
+        searchViewController.isMap = isHomeMap
+        self.navigationController?.pushViewController(searchViewController, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.resetChipSelected()
+        }
+    }
+    
+    @objc private func clearButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: Custom Func
     private func pushParticipantsViewController(meetingId: Int) {
         let participantsListViewController = ParticipantsListViewController()
@@ -194,5 +292,59 @@ final class HomeViewController: BaseViewController {
             participantsListViewController,
             animated: true
         )
+    }
+    
+    private func setNavigation() {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func setTabBar() {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    func resetChipSelected() {
+        chipButtons.forEach {
+            $0.isButtonSelected = false
+        }
+        
+        homeMapViewController.mapsView.homeMarkerList.forEach {
+            $0.hidden = false
+        }
+        
+        // 여기서 모든 핀을 다시 표시하도록  처리
+        let q = isSearchResult ? homeListViewController.searchText : ""
+        homeMapViewController.pinList(category: "", q: q) { [weak self] result in
+            guard let self = self else { return }
+            if result {
+                self.homeMapViewController.setMarker()
+            }
+        }
+        homeMapViewController.markerCategory = ""
+        
+        homeListViewController.getListData(
+            text: homeListViewController.searchText,
+            category: "",
+            order: homeListViewController.order
+        ) {}
+    }
+
+    func getHomeListViewController() -> HomeListViewController {
+        return homeListViewController
+    }
+    
+    func getHomeMapViewController() -> HomeMapViewController {
+        return homeMapViewController
+    }
+    
+    private func setResult() {
+        if isSearchResult {
+            searchButton.isHidden = true
+            homeGroupLabel.isHidden = true
+            backButton.isHidden = false
+            searchView.isHidden = false
+            searchTextField.isHidden = false
+            searchTextField.text = isHomeMap ? homeMapViewController.searchText : homeListViewController.searchText
+            clearButton.isHidden = false
+        }
     }
 }

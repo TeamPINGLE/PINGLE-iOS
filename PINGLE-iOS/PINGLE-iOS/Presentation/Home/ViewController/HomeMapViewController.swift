@@ -18,10 +18,12 @@ final class HomeMapViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     private var shouldUpdateMap: Bool = true
+    var homePinList: [HomePinListResponseDTO] = []
     var homePinDetailList: [HomePinDetailResponseDTO] = []
     private var meetingId: [Int] = []
     private var markerId = 0
     var markerCategory: String = ""
+    var searchText: String = ""
     private var allowLocation = false
     var currentMeetingId: Int = 0
     var participantsAction: (() -> Void) = {}
@@ -37,6 +39,13 @@ final class HomeMapViewController: BaseViewController {
         setLocationManager()
         setAddTarget()
         setCollectionView()
+//        if searchText.isEmpty {
+//            /// searchText가 없으면 전체 핀 리스트를 받아옴
+//            loadPinList()
+//        } else {
+//            /// searchText가 있으면 해당 검색어에 대한 핀 리스트를 받아옴
+//            loadPinListWithSearchText()
+//        }
         loadPinList()
     }
     
@@ -230,7 +239,8 @@ extension HomeMapViewController: UICollectionViewDataSource {
                     if result {
                         bindDetailViewData(
                             id: markerId,
-                            category: markerCategory
+                            category: markerCategory,
+                            q: searchText
                         ) {}
                         mapsView.homeDetailCollectionView.isHidden = true
                         loadPinList()
@@ -243,7 +253,8 @@ extension HomeMapViewController: UICollectionViewDataSource {
                         cell.mapDetailView.isParticipating = false
                         bindDetailViewData(
                             id: markerId,
-                            category: markerCategory
+                            category: markerCategory,
+                            q: searchText
                         ) {}
                     }
                 }
@@ -339,9 +350,11 @@ extension HomeMapViewController {
         mapsView.homeMarkerList.forEach { marker in
             marker.touchHandler = { ( _: NMFOverlay) -> Bool in
                 let category = self.markerCategory.isEmpty ? "" : marker.meetingString
+                let searchText = self.searchText
                 self.bindDetailViewData(
                     id: marker.id,
-                    category: category
+                    category: category,
+                    q: searchText
                 ) {
                     /// 맨 처음 인덱스로 돌아오도록 스크롤
                     if !self.homePinDetailList.isEmpty {
@@ -363,11 +376,12 @@ extension HomeMapViewController {
     
     private func bindDetailViewData(
         id: Int,
-        category: String?,
+        category: String,
+        q: String,
         completion: @escaping () -> Void
     ) {
         // 추후 바뀐 그룹 받아오는 로직 작성 예정
-        pinDetail(pinId: id, category: category ?? "") { [weak self] result in
+        pinDetail(pinId: id, category: category, q: q) { [weak self] result in
             guard let self else { return }
             if result {
                 mapsView.homeDetailCollectionView.reloadData()
@@ -412,13 +426,14 @@ extension HomeMapViewController {
     
     // MARK: Server Function
     func pinList(
-        category: String?,
+        category: String,
+        q: String,
         completion: @escaping (Bool) -> Void
     ) {
         if let userGroupId = KeychainHandler.shared.userGroupId {
             NetworkService.shared.homeService.pinList(
                 teamId: userGroupId,
-                queryDTO: HomePinListRequestQueryDTO(category: category)
+                queryDTO: HomePinListRequestQueryDTO(category: category.isEmpty ? nil : category, q: q.isEmpty ? nil : q)
             ) { [weak self] response in
                 switch response {
                 case .success(let data):
@@ -436,7 +451,7 @@ extension HomeMapViewController {
     }
     
     private func loadPinList() {
-        pinList(category: markerCategory) {_ in
+        pinList(category: markerCategory, q: searchText) {_ in
             self.setMarker()
         }
     }
@@ -444,13 +459,14 @@ extension HomeMapViewController {
     private func pinDetail(
         pinId: Int,
         category: String,
+        q: String,
         completion: @escaping (Bool) -> Void
     ) {
         if let userGroupId = KeychainHandler.shared.userGroupId {
             NetworkService.shared.homeService.pinDetail(
                 pinId: pinId,
                 teamId: userGroupId,
-                queryDTO: HomePinListRequestQueryDTO(category: category.isEmpty ? nil : category)
+                queryDTO: HomePinListRequestQueryDTO(category: category.isEmpty ? nil : category, q: q.isEmpty ? nil : q)
             ) { [weak self] response in
                 switch response {
                 case .success(let data):

@@ -136,6 +136,7 @@ final class ManualViewController: BaseViewController {
     // MARK: objc Function
     /// pageControl을 통한 Cell 이동함수
     @objc func pageControlDidChange(sender: UIPageControl) {
+        skipButtonHidden(currentPage: sender.currentPage)
         manualCollectionView.isPagingEnabled = false
         let indexPath = IndexPath(item: sender.currentPage, section: 0)
         manualCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -152,6 +153,7 @@ final class ManualViewController: BaseViewController {
             let indexPath = IndexPath(item: manualPageControl.currentPage, section: 0)
             manualCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             manualCollectionView.isPagingEnabled = true
+            skipButtonHidden(currentPage: manualPageControl.currentPage)
         }
     }
     
@@ -176,6 +178,15 @@ final class ManualViewController: BaseViewController {
     // MARK: SetButton
     func changeButton() {
         self.bottomCTAButton.activateButton()
+    }
+    
+    // MARK: Hidden Funcion
+    private func skipButtonHidden(currentPage: Int) {
+        if manualPageControl.currentPage == 3 {
+            skipButton.isHidden = true
+        } else {
+            skipButton.isHidden = false
+        }
     }
 }
 
@@ -220,5 +231,6 @@ extension ManualViewController: UIScrollViewDelegate {
     /// 스크롤을 통한 cell 이동시 pageControl의 현재 페이지 나타내는 함수
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         manualPageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        skipButtonHidden(currentPage: manualPageControl.currentPage)
     }
 }

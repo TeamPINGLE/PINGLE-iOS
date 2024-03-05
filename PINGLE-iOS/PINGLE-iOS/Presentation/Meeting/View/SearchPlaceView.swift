@@ -108,7 +108,7 @@ final class SearchPlaceView: BaseView {
         clearButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(13.adjusted)
             $0.centerY.equalToSuperview()
-            $0.height.width.equalTo(24.adjusted)
+            $0.size.equalTo(24)
         }
         
         searchPlaceCollectionView.snp.makeConstraints {

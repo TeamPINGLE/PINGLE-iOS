@@ -16,6 +16,7 @@ final class HomeListViewController: BaseViewController {
     // MARK: Component
     private let sortButton = UIButton()
     private let sortTitleLabel = UILabel()
+    private let resultCountLabel = UILabel()
     private let sortImageView = UIImageView()
     private let sortMoreView = MoreView()
     let mapButton = UIButton()
@@ -23,7 +24,7 @@ final class HomeListViewController: BaseViewController {
     
     private let refreshControl = UIRefreshControl()
     lazy var listCollectionView = UICollectionView(
-        frame: .zero, 
+        frame: .zero,
         collectionViewLayout: listCollectionViewFlowLayout
     )
     private let listCollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -35,6 +36,8 @@ final class HomeListViewController: BaseViewController {
     var order: String = "NEW"
     var currentMeetingId: Int = 0
     var participantsAction: (() -> Void) = {}
+    var isSearchResult = false
+    var totalResult: Int = 0
     
     // MARK: - Function
     // MARK: Life Cycle
@@ -66,10 +69,8 @@ final class HomeListViewController: BaseViewController {
         view.backgroundColor = .grayscaleG11
         
         emptyLabel.do {
-            $0.text = StringLiterals.Home.List.emptyList
             $0.font = .subtitleSubSemi18
             $0.textColor = .grayscaleG06
-            $0.setLineSpacing(spacing: 7)
             $0.numberOfLines = 0
             $0.isHidden = true
         }
@@ -86,6 +87,12 @@ final class HomeListViewController: BaseViewController {
             $0.font = .bodyBodySemi14
             $0.textColor = .grayscaleG02
             $0.isUserInteractionEnabled = false
+        }
+        
+        resultCountLabel.do {
+            $0.font = .bodyBodyMed14
+            $0.textColor = .grayscaleG02
+            $0.isHidden = true
         }
         
         sortImageView.do {
@@ -140,7 +147,8 @@ final class HomeListViewController: BaseViewController {
                          listCollectionView,
                          mapButton,
                          sortMoreView,
-                         emptyLabel)
+                         emptyLabel,
+                         resultCountLabel)
         
         sortButton.addSubviews(sortTitleLabel,
                                sortImageView)
@@ -174,12 +182,17 @@ final class HomeListViewController: BaseViewController {
         mapButton.snp.makeConstraints {
             $0.width.height.equalTo(50.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(30.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(30)
         }
         
         emptyLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(sortButton.snp.bottom).offset(163.adjustedHeight)
+            $0.top.equalTo(sortButton.snp.bottom).offset( isSearchResult ? 218 : 163)
+        }
+        
+        resultCountLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(165)
+            $0.leading.equalToSuperview().inset(24)
         }
     }
     
@@ -246,6 +259,18 @@ final class HomeListViewController: BaseViewController {
         order: String,
         completion: @escaping () -> Void
     ) {
+        /// isSearchResult가 true이고, 공백문자 입력시 처리
+        if isSearchResult && text.trimmingCharacters(in: .whitespaces).isEmpty {
+            resultCountLabel.isHidden = false
+            resultCountLabel.text = "총 0건"
+            emptyLabel.text = StringLiterals.Home.Search.searchEmptyLabel
+            emptyLabel.isHidden = false
+            listData = []
+            listCollectionView.reloadData()
+            completion()
+            return
+        }
+        
         if let userGroupId = KeychainHandler.shared.userGroupId {
             NetworkService.shared.homeService.listGet(
                 queryDTO: HomeListSearchRequestQueryDTO(
@@ -259,13 +284,22 @@ final class HomeListViewController: BaseViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
                     
+                    self?.totalResult = data.searchCount
+                    self?.resultCountLabel.text = "총 \(self?.totalResult ?? 0)건"
+                    
                     self?.listData = data.meetings.map { meeting in
                         return HomeListData(
                             meeting: meeting,
                             isExpand: false
                         )
                     }
-                    self?.emptyLabel.isHidden = !data.meetings.isEmpty
+                    if let self = self {
+                        self.resultCountLabel.isHidden = !self.isSearchResult
+                        self.emptyLabel.text = self.isSearchResult ? StringLiterals.Home.Search.searchEmptyLabel : StringLiterals.Home.List.emptyList
+                        self.emptyLabel.setLineSpacing(spacing: 7)
+                        self.emptyLabel.isHidden = !self.listData.isEmpty
+                    }
+                    
                     self?.listCollectionView.reloadData()
                     print(data)
                 default:

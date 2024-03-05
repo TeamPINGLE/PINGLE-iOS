@@ -138,8 +138,11 @@ final class SearchOrganizationViewController: BaseViewController {
         backButton.addTarget(self, 
                              action: #selector(backButtonTapped),
                              for: .touchUpInside)
+        searchOrganizationView.searchTextField.addTarget(self,
+                                                          action: #selector(self.textFieldDidChange(_:)),
+                                                          for: .editingChanged)
         searchOrganizationView.searchButton.addTarget(self,
-                                                      action: #selector(searchButtonTapped),
+                                                      action: #selector(deleteButtonTapped),
                                                       for: .touchUpInside)
         makeOrganizationButton.addTarget(self, 
                                          action: #selector(makeOrganizationButtonTapped),
@@ -154,22 +157,15 @@ final class SearchOrganizationViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func searchButtonTapped() {
-        /// 검색하는 내용이 없을 경우 아무런 통신도 하지 않고 이전 상태를 유지합니다.
-        if let searchText = searchOrganizationView.searchTextField.text {
-            if !searchText.isEmpty {
-                searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
-                selectedCellIndex = nil
-                bottomCTAButton.disabledButton()
-            }
-        }
+    @objc func deleteButtonTapped() {
+        searchOrganizationView.searchTextField.text = ""
+        searchOrganizationView.searchButton.setImage(UIImage(resource: .icSearch), for: .normal)
         self.view.endEditing(true)
     }
     
     @objc func makeOrganizationButtonTapped() {
-        guard let url = URL(string: "https://docs.google.com/forms/d/10WxvEzSVRrRvRGXsYf9Z5oXv4HsNuAwG2QicB4bY0aY/edit") else { return }
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true)
+        let enterOrganizationInfoViewController = EnterOrganizationInfoViewController()
+        navigationController?.pushViewController(enterOrganizationInfoViewController, animated: true)
     }
     
     @objc func bottomCTAButtonTapped() {
@@ -199,6 +195,24 @@ final class SearchOrganizationViewController: BaseViewController {
             }
         }
     }
+    
+    // MARK: CalculateHeight Function
+    /// 검색된 단체 정보 Cell의 단체명에 따른 높이를 측정하기 위한 함수
+    private func calculateDynamicHeight(placeNameText: String) -> CGFloat {
+        let organizationNameLabel = UILabel().then {
+            $0.setTextWithLineHeight(text: placeNameText, lineHeight: 22)
+            $0.font = .bodyBodyMed16
+            $0.numberOfLines = 2
+            $0.preferredMaxLayoutWidth = 292.adjusted
+        }
+
+        let organizationNameSize = organizationNameLabel.sizeThatFits(
+            CGSize(width: 292.adjusted,
+                   height: CGFloat.greatestFiniteMagnitude)
+        )
+
+        return organizationNameSize.height
+    }
 }
 
 // MARK: - extension
@@ -220,6 +234,18 @@ extension SearchOrganizationViewController: UITextFieldDelegate {
         selectedCellIndex = nil
         bottomCTAButton.disabledButton()
         return true
+    }
+    
+    // MARK: Objc Function
+    /// 검색에 따른 버튼 이미지 수정 objc 함수입니다.
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let text = textField.text ?? ""
+        
+        if text.isEmpty {
+            searchOrganizationView.searchButton.setImage(UIImage(resource: .icSearch), for: .normal)
+        } else {
+            searchOrganizationView.searchButton.setImage(UIImage(resource: .btnClear), for: .normal)
+        }
     }
 }
 
@@ -265,7 +291,9 @@ extension SearchOrganizationViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width - 50.adjusted, height: 88)
+        let cellHeight = 66 + calculateDynamicHeight(placeNameText: searchOrganizationResponseDTO[indexPath.row].name)
+        
+        return CGSize(width: UIScreen.main.bounds.size.width - 50, height: cellHeight)
     }
 }
 

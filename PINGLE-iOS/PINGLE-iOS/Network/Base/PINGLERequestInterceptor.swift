@@ -12,7 +12,8 @@ import Alamofire
 final class PINGLERequestInterceptor: RequestInterceptor {
     
     private let maxRetryCount: Int = 3
-    var isrefreshed = false
+    private var isRefreshingToken = false
+    private var requestsToRetry: [(RetryResult) -> Void] = []
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         print("✋interceptor adapt 작동")
@@ -31,32 +32,34 @@ final class PINGLERequestInterceptor: RequestInterceptor {
         }
         if request.retryCount < maxRetryCount {
             switch response.statusCode {
-            case 500: /// 서버 내부 오류
-                if request.retryCount < maxRetryCount {
-                    completion(.retry)
-                } else {
-                    // 서버 점검 중 입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함.
-                    completion(.doNotRetry)
-                }
-            case 401: // unauthorized
-                refreshToken { isSuccess in
-                    if isSuccess {
-                        completion(.retry)
-                    } else {
-                        completion(.doNotRetry)
+            case 200..<300:
+                completion(.doNotRetry)
+            case 401:
+                requestsToRetry.append(completion)
+                if !isRefreshingToken {
+                    isRefreshingToken = true
+                    refreshToken { [weak self] isSuccess in
+                        guard let self = self else { return }
+                        
+                        self.isRefreshingToken = false
+                        self.requestsToRetry.forEach { $0(isSuccess ? .retry : .doNotRetry) }
+                        self.requestsToRetry.removeAll()
                     }
                 }
             case 404:
                 print("404에러로 사용자를 찾을 수 없습니다.❌")
                 completion(.doNotRetry)
                 self.logout()
+            case 500: /// 서버 내부 오류
+                if request.retryCount < maxRetryCount {
+                    completion(.retry)
+                } else {
+                    // TO DO: 서버 점검 중 입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함.
+                    completion(.doNotRetry)
+                }
             default:
                 completion(.doNotRetry)
             }
-        } else {
-            // 네트워크 에러입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함. + 로그아웃 시키겠습니다.
-            completion(.doNotRetry)
-            self.logout()
         }
         
     }
@@ -73,7 +76,6 @@ final class PINGLERequestInterceptor: RequestInterceptor {
                     print("리프레쉬 토큰을 사용하여 토큰을 재발행하여 저장했습니다. ✅")
                     KeychainHandler.shared.refreshToken = data.refreshToken
                     KeychainHandler.shared.accessToken = data.accessToken
-                    self.isrefreshed = true
                     completion(true)
                     return
                 } else if data.code == 404 {

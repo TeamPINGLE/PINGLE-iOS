@@ -51,6 +51,7 @@ final class HomeViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setTabBar()
     }
     
@@ -267,11 +268,7 @@ final class HomeViewController: BaseViewController {
     
     @objc private func searchButtonTapped() {
         let searchViewController = SearchPINGLEViewController()
-        if isHomeMap {
-            searchViewController.isMap = true
-        } else {
-            searchViewController.isMap = false
-        }
+        searchViewController.isMap = isHomeMap
         self.navigationController?.pushViewController(searchViewController, animated: true)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -309,8 +306,28 @@ final class HomeViewController: BaseViewController {
         chipButtons.forEach {
             $0.isButtonSelected = false
         }
+        
+        homeMapViewController.mapsView.homeMarkerList.forEach {
+            $0.hidden = false
+        }
+        
+        // 여기서 모든 핀을 다시 표시하도록  처리
+        let q = isSearchResult ? homeListViewController.searchText : ""
+        homeMapViewController.pinList(category: "", q: q) { [weak self] result in
+            guard let self = self else { return }
+            if result {
+                self.homeMapViewController.setMarker()
+            }
+        }
+        homeMapViewController.markerCategory = ""
+        
+        homeListViewController.getListData(
+            text: homeListViewController.searchText,
+            category: "",
+            order: homeListViewController.order
+        ) {}
     }
-    
+
     func getHomeListViewController() -> HomeListViewController {
         return homeListViewController
     }
@@ -326,8 +343,7 @@ final class HomeViewController: BaseViewController {
             backButton.isHidden = false
             searchView.isHidden = false
             searchTextField.isHidden = false
-            searchTextField.text = homeListViewController.searchText
-            searchTextField.text = homeMapViewController.searchText
+            searchTextField.text = isHomeMap ? homeMapViewController.searchText : homeListViewController.searchText
             clearButton.isHidden = false
         }
     }

@@ -90,13 +90,8 @@ class SearchPINGLEViewController: BaseViewController {
         
         searchGraphicView.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(291)
-            if isMap {
-                $0.leading.equalToSuperview().inset(77.adjusted)
-                $0.trailing.equalToSuperview().inset(71.adjusted)
-            } else {
-                $0.leading.equalToSuperview().inset(68.adjusted)
-                $0.trailing.equalToSuperview().inset(67.adjusted)
-            }
+            $0.leading.equalToSuperview().inset(isMap ? 77.adjusted : 68.adjusted)
+            $0.trailing.equalToSuperview().inset(isMap ? 71.adjusted : 67.adjusted)
         }
         
         backButton.snp.makeConstraints {

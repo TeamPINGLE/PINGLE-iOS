@@ -182,17 +182,12 @@ final class HomeListViewController: BaseViewController {
         mapButton.snp.makeConstraints {
             $0.width.height.equalTo(50.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(30.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(30)
         }
         
         emptyLabel.snp.makeConstraints {
-            if isSearchResult {
-                $0.centerX.equalToSuperview()
-                $0.top.equalTo(sortButton.snp.bottom).offset(218.adjustedHeight)
-            } else {
-                $0.centerX.equalToSuperview()
-                $0.top.equalTo(sortButton.snp.bottom).offset(163.adjustedHeight)
-            }
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(sortButton.snp.bottom).offset( isSearchResult ? 218 : 163)
         }
         
         resultCountLabel.snp.makeConstraints {

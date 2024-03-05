@@ -227,7 +227,8 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 }
                 bindDetailViewData(
                     id: markerId,
-                    category: markerCategory
+                    category: markerCategory,
+                    q: searchText
                 ) {}
             }
         }

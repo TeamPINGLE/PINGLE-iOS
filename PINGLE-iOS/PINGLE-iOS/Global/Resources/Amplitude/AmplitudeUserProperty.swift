@@ -9,5 +9,4 @@ import Foundation
 
 enum AmplitudeUserProperty {
     static let authType = "auth type"
-    static let test = "test_user_property"
 }

@@ -53,6 +53,7 @@
 		C333A55F2B96E26800AC6901 /* AmplitudeEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */; };
 		C333A5612B96E7F000AC6901 /* AmplitudePropertyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */; };
 		C333A5642B97089F00AC6901 /* AmplitudeInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */; };
+		C333A5662B97128400AC6901 /* AmplitudeUserProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5652B97128400AC6901 /* AmplitudeUserProperty.swift */; };
 		C33626D42B91CB3400CD8437 /* HomeListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33626D32B91CB3400CD8437 /* HomeListData.swift */; };
 		C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF3442B46E03400008653 /* PINGLEMarker.swift */; };
 		C3671F872B7DEC2E006E7C8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3671F862B7DEC2E006E7C8C /* HomeViewController.swift */; };
@@ -227,6 +228,7 @@
 		C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeEventType.swift; sourceTree = "<group>"; };
 		C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudePropertyType.swift; sourceTree = "<group>"; };
 		C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplitudeInstance.swift; sourceTree = "<group>"; };
+		C333A5652B97128400AC6901 /* AmplitudeUserProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeUserProperty.swift; sourceTree = "<group>"; };
 		C33626D32B91CB3400CD8437 /* HomeListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListData.swift; sourceTree = "<group>"; };
 		C33BF3442B46E03400008653 /* PINGLEMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEMarker.swift; sourceTree = "<group>"; };
 		C35857B72B7A980600C21AF2 /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */,
 				C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */,
 				C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */,
+				C333A5652B97128400AC6901 /* AmplitudeUserProperty.swift */,
 			);
 			path = Amplitude;
 			sourceTree = "<group>";
@@ -1449,6 +1452,7 @@
 				E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */,
 				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				F14F44AD2B50413400871E5A /* ProfileTarget.swift in Sources */,
+				C333A5662B97128400AC6901 /* AmplitudeUserProperty.swift in Sources */,
 				F117D5CD2B8E47940037CC37 /* MakeTeamsResponseDTO.swift in Sources */,
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
 				C3F095AE2B8A443C009A0819 /* HomeListSearchResponseDTO.swift in Sources */,

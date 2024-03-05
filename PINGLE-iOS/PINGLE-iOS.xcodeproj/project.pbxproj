@@ -49,6 +49,7 @@
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
 		C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A2DE42B4D89950063F84A /* ParticipantButton.swift */; };
 		C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33084BB2B47940300380E82 /* HomeMapDetailView.swift */; };
+		C333A5592B96D27100AC6901 /* AmplitudeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C333A5582B96D27100AC6901 /* AmplitudeSwift */; };
 		C33626D42B91CB3400CD8437 /* HomeListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33626D32B91CB3400CD8437 /* HomeListData.swift */; };
 		C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF3442B46E03400008653 /* PINGLEMarker.swift */; };
 		C3671F872B7DEC2E006E7C8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3671F862B7DEC2E006E7C8C /* HomeViewController.swift */; };
@@ -359,6 +360,7 @@
 				C30C91912B4CED43004EE026 /* SwiftKeychainWrapper in Frameworks */,
 				C39603212B3BF47A004BB2B8 /* Then in Frameworks */,
 				C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */,
+				C333A5592B96D27100AC6901 /* AmplitudeSwift in Frameworks */,
 				0AC59AF5D8907159E9CB1A4D /* Pods_PINGLE_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1232,6 +1234,7 @@
 				C39603262B3BF48E004BB2B8 /* Alamofire */,
 				C39603292B3BF497004BB2B8 /* Kingfisher */,
 				C30C91902B4CED43004EE026 /* SwiftKeychainWrapper */,
+				C333A5582B96D27100AC6901 /* AmplitudeSwift */,
 			);
 			productName = "PINGLE-iOS";
 			productReference = C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */;
@@ -1268,6 +1271,7 @@
 				C39603252B3BF48E004BB2B8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C39603282B3BF497004BB2B8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				C333A5572B96D27100AC6901 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */,
 			);
 			productRefGroup = C39602B52B3BEE06004BB2B8 /* Products */;
 			projectDirPath = "";
@@ -1873,6 +1877,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		C333A5572B96D27100AC6901 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-Swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		C396031F2B3BF47A004BB2B8 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -1912,6 +1924,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		C333A5582B96D27100AC6901 /* AmplitudeSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C333A5572B96D27100AC6901 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */;
+			productName = AmplitudeSwift;
 		};
 		C39603202B3BF47A004BB2B8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;

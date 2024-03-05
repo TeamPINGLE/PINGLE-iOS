@@ -50,6 +50,9 @@
 		C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A2DE42B4D89950063F84A /* ParticipantButton.swift */; };
 		C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33084BB2B47940300380E82 /* HomeMapDetailView.swift */; };
 		C333A5592B96D27100AC6901 /* AmplitudeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C333A5582B96D27100AC6901 /* AmplitudeSwift */; };
+		C333A55F2B96E26800AC6901 /* AmplitudeEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */; };
+		C333A5612B96E7F000AC6901 /* AmplitudePropertyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */; };
+		C333A5642B97089F00AC6901 /* AmplitudeInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */; };
 		C33626D42B91CB3400CD8437 /* HomeListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33626D32B91CB3400CD8437 /* HomeListData.swift */; };
 		C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF3442B46E03400008653 /* PINGLEMarker.swift */; };
 		C3671F872B7DEC2E006E7C8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3671F862B7DEC2E006E7C8C /* HomeViewController.swift */; };
@@ -221,6 +224,9 @@
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
 		C32A2DE42B4D89950063F84A /* ParticipantButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ParticipantButton.swift; path = "PINGLE-iOS/Presentation/Home/Components/ParticipantButton.swift"; sourceTree = SOURCE_ROOT; };
 		C33084BB2B47940300380E82 /* HomeMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapDetailView.swift; sourceTree = "<group>"; };
+		C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeEventType.swift; sourceTree = "<group>"; };
+		C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudePropertyType.swift; sourceTree = "<group>"; };
+		C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplitudeInstance.swift; sourceTree = "<group>"; };
 		C33626D32B91CB3400CD8437 /* HomeListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListData.swift; sourceTree = "<group>"; };
 		C33BF3442B46E03400008653 /* PINGLEMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEMarker.swift; sourceTree = "<group>"; };
 		C35857B72B7A980600C21AF2 /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
@@ -461,6 +467,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C333A5622B97082500AC6901 /* Amplitude */ = {
+			isa = PBXGroup;
+			children = (
+				C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */,
+				C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */,
+				C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */,
+			);
+			path = Amplitude;
+			sourceTree = "<group>";
+		};
 		C33BF3462B46E85200008653 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +619,7 @@
 				C39602C02B3BEE08004BB2B8 /* Assets.xcassets */,
 				C39602C52B3BEE08004BB2B8 /* Info.plist */,
 				C307282B2B4269A000AA575B /* Config.swift */,
+				C333A5622B97082500AC6901 /* Amplitude */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1376,6 +1393,7 @@
 				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
 				F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
+				C333A5612B96E7F000AC6901 /* AmplitudePropertyType.swift in Sources */,
 				C3C2621B2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift in Sources */,
 				E5CA99732B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift in Sources */,
 				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
@@ -1391,6 +1409,7 @@
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
 				F1DFF2912B849D65000AC100 /* EnterOrganizationInfoViewController.swift in Sources */,
+				C333A55F2B96E26800AC6901 /* AmplitudeEventType.swift in Sources */,
 				C33626D42B91CB3400CD8437 /* HomeListData.swift in Sources */,
 				C30D1E0A2B56FB7B00879258 /* CompleteViewController.swift in Sources */,
 				C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */,
@@ -1463,6 +1482,7 @@
 				F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */,
 				F1D452802B8CB23A00D8F50F /* KeywordResponseDTO.swift in Sources */,
 				C305D59B2B5176D3008993C3 /* SearchPlaceResponseDTO.swift in Sources */,
+				C333A5642B97089F00AC6901 /* AmplitudeInstance.swift in Sources */,
 				C30D1E062B56FAD700879258 /* MyPINGLESegmentControl.swift in Sources */,
 				F1D4527C2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,

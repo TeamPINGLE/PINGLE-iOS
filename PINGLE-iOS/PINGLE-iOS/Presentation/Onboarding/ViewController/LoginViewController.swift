@@ -27,6 +27,13 @@ final class LoginViewController: BaseViewController {
         setTarget()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AmplitudeInstance.shared.track(
+            eventType: .startSignup,
+            eventProperties: [AmplitudePropertyType.signupType : "apple"])
+    }
+    
     // MARK: UI
     override func setStyle() {
         view.do {
@@ -131,6 +138,7 @@ final class LoginViewController: BaseViewController {
                 guard let data = data.data else { return }
                 KeychainHandler.shared.accessToken = data.accessToken
                 KeychainHandler.shared.refreshToken = data.refreshToken
+                AmplitudeInstance.shared.track(eventType: .completeSignup)
                 
                 /// 사용자가 단체가 있는지 검사
                 self.getUserInfo()
@@ -149,7 +157,7 @@ final class LoginViewController: BaseViewController {
                     KeychainHandler.shared.userGroupId = groups.first?.id
                     KeychainHandler.shared.userGroupName = groups.first?.name
                 }
-                if KeychainHandler.shared.userGroupId == nil || KeychainHandler.shared.userGroupId == nil {
+                if KeychainHandler.shared.userGroupId == nil || KeychainHandler.shared.userGroupName == nil {
                     /// 유저가 가입한 단체가 없는 경우 - Onboarding 화면으로 이동하여 단체에 가입하도록 유도
                     let onboardingViewController = OnboardingViewController()
                     self.changeRootViewController(rootViewController: onboardingViewController)

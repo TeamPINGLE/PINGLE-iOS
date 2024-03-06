@@ -131,6 +131,7 @@ final class EntranceCompletedViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func bottomCTAButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickExistingGroupStart)
         let PINGLETabBarController = PINGLETabBarController()
         self.view.window?.rootViewController = PINGLETabBarController
         self.view.window?.makeKeyAndVisible()

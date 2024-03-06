@@ -49,6 +49,11 @@
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
 		C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A2DE42B4D89950063F84A /* ParticipantButton.swift */; };
 		C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33084BB2B47940300380E82 /* HomeMapDetailView.swift */; };
+		C333A5592B96D27100AC6901 /* AmplitudeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C333A5582B96D27100AC6901 /* AmplitudeSwift */; };
+		C333A55F2B96E26800AC6901 /* AmplitudeEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */; };
+		C333A5612B96E7F000AC6901 /* AmplitudePropertyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */; };
+		C333A5642B97089F00AC6901 /* AmplitudeInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */; };
+		C333A5662B97128400AC6901 /* AmplitudeUserProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5652B97128400AC6901 /* AmplitudeUserProperty.swift */; };
 		C33626D42B91CB3400CD8437 /* HomeListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33626D32B91CB3400CD8437 /* HomeListData.swift */; };
 		C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF3442B46E03400008653 /* PINGLEMarker.swift */; };
 		C3671F872B7DEC2E006E7C8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3671F862B7DEC2E006E7C8C /* HomeViewController.swift */; };
@@ -222,6 +227,10 @@
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
 		C32A2DE42B4D89950063F84A /* ParticipantButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ParticipantButton.swift; path = "PINGLE-iOS/Presentation/Home/Components/ParticipantButton.swift"; sourceTree = SOURCE_ROOT; };
 		C33084BB2B47940300380E82 /* HomeMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapDetailView.swift; sourceTree = "<group>"; };
+		C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeEventType.swift; sourceTree = "<group>"; };
+		C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudePropertyType.swift; sourceTree = "<group>"; };
+		C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplitudeInstance.swift; sourceTree = "<group>"; };
+		C333A5652B97128400AC6901 /* AmplitudeUserProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeUserProperty.swift; sourceTree = "<group>"; };
 		C33626D32B91CB3400CD8437 /* HomeListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListData.swift; sourceTree = "<group>"; };
 		C33BF3442B46E03400008653 /* PINGLEMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEMarker.swift; sourceTree = "<group>"; };
 		C35857B72B7A980600C21AF2 /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
@@ -363,6 +372,7 @@
 				C30C91912B4CED43004EE026 /* SwiftKeychainWrapper in Frameworks */,
 				C39603212B3BF47A004BB2B8 /* Then in Frameworks */,
 				C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */,
+				C333A5592B96D27100AC6901 /* AmplitudeSwift in Frameworks */,
 				0AC59AF5D8907159E9CB1A4D /* Pods_PINGLE_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +471,17 @@
 				C3BCA86E2B57D0FB003C6996 /* MoreView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C333A5622B97082500AC6901 /* Amplitude */ = {
+			isa = PBXGroup;
+			children = (
+				C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */,
+				C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */,
+				C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */,
+				C333A5652B97128400AC6901 /* AmplitudeUserProperty.swift */,
+			);
+			path = Amplitude;
 			sourceTree = "<group>";
 		};
 		C33BF3462B46E85200008653 /* ViewController */ = {
@@ -607,6 +628,7 @@
 				C39602C02B3BEE08004BB2B8 /* Assets.xcassets */,
 				C39602C52B3BEE08004BB2B8 /* Info.plist */,
 				C307282B2B4269A000AA575B /* Config.swift */,
+				C333A5622B97082500AC6901 /* Amplitude */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1238,6 +1260,7 @@
 				C39603262B3BF48E004BB2B8 /* Alamofire */,
 				C39603292B3BF497004BB2B8 /* Kingfisher */,
 				C30C91902B4CED43004EE026 /* SwiftKeychainWrapper */,
+				C333A5582B96D27100AC6901 /* AmplitudeSwift */,
 			);
 			productName = "PINGLE-iOS";
 			productReference = C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */;
@@ -1274,6 +1297,7 @@
 				C39603252B3BF48E004BB2B8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C39603282B3BF497004BB2B8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				C333A5572B96D27100AC6901 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */,
 			);
 			productRefGroup = C39602B52B3BEE06004BB2B8 /* Products */;
 			projectDirPath = "";
@@ -1378,6 +1402,7 @@
 				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
 				F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
+				C333A5612B96E7F000AC6901 /* AmplitudePropertyType.swift in Sources */,
 				C3C2621B2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift in Sources */,
 				E5CA99732B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift in Sources */,
 				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
@@ -1394,6 +1419,7 @@
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
 				F1DFF2912B849D65000AC100 /* EnterOrganizationInfoViewController.swift in Sources */,
+				C333A55F2B96E26800AC6901 /* AmplitudeEventType.swift in Sources */,
 				C33626D42B91CB3400CD8437 /* HomeListData.swift in Sources */,
 				C30D1E0A2B56FB7B00879258 /* CompleteViewController.swift in Sources */,
 				C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */,
@@ -1433,6 +1459,7 @@
 				E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */,
 				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				F14F44AD2B50413400871E5A /* ProfileTarget.swift in Sources */,
+				C333A5662B97128400AC6901 /* AmplitudeUserProperty.swift in Sources */,
 				F117D5CD2B8E47940037CC37 /* MakeTeamsResponseDTO.swift in Sources */,
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
 				C3F095AE2B8A443C009A0819 /* HomeListSearchResponseDTO.swift in Sources */,
@@ -1467,6 +1494,7 @@
 				F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */,
 				F1D452802B8CB23A00D8F50F /* KeywordResponseDTO.swift in Sources */,
 				C305D59B2B5176D3008993C3 /* SearchPlaceResponseDTO.swift in Sources */,
+				C333A5642B97089F00AC6901 /* AmplitudeInstance.swift in Sources */,
 				C30D1E062B56FAD700879258 /* MyPINGLESegmentControl.swift in Sources */,
 				F1D4527C2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,
@@ -1881,6 +1909,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		C333A5572B96D27100AC6901 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-Swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		C396031F2B3BF47A004BB2B8 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -1920,6 +1956,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		C333A5582B96D27100AC6901 /* AmplitudeSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C333A5572B96D27100AC6901 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */;
+			productName = AmplitudeSwift;
 		};
 		C39603202B3BF47A004BB2B8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;

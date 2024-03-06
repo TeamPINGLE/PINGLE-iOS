@@ -170,6 +170,7 @@ final class SettingViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc private func organizationButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .startMyGroup)
         let myOrganizationViewController = MyOrganizationViewController()
         self.navigationController?.pushViewController(myOrganizationViewController, animated: true)
     }
@@ -237,6 +238,7 @@ final class SettingViewController: BaseViewController {
             switch response {
             case .success(let data):
                 if data.code == 200 {
+                    AmplitudeInstance.shared.track(eventType: .logoutApp)
                     KeychainHandler.shared.logout()
                     guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                     sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
@@ -254,6 +256,7 @@ final class SettingViewController: BaseViewController {
             switch response {
             case .success(let data):
                 if data.code == 200 {
+                    AmplitudeInstance.shared.track(eventType: .withdrawApp)
                     KeychainHandler.shared.deleteID()
                     guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                     sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
@@ -290,7 +293,6 @@ extension SettingViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            let fullName = appleIDCredential.fullName
             
             if let authorizationCode = appleIDCredential.authorizationCode {
                 guard let authorizationCodeString = String(data: authorizationCode, encoding: .utf8) else { return }

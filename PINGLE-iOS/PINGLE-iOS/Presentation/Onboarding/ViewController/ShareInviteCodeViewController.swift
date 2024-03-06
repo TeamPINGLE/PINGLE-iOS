@@ -173,11 +173,13 @@ final class ShareInviteCodeViewController: BaseViewController {
     }
     
     @objc func clipBoardCopyButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickCreateGroupInviteCopy)
         UIPasteboard.general.string = inviteCode
         showWarningToastView()
     }
     
     @objc func bottomCTAButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickCreateGroupInviteShare)
         let organizationName = organizationName ?? ""
         let inviteCode = inviteCode ?? ""
         let shareText: String = """

@@ -151,6 +151,7 @@ final class KeywordSelectionViewController: BaseViewController {
     }
     
     @objc func infoButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep2Info)
         presentMakeGroupGuideViewController()
     }
     
@@ -168,7 +169,7 @@ final class KeywordSelectionViewController: BaseViewController {
     // MARK: Present Function
     private func presentMakeGroupGuideViewController() {
         let makeOrganizationGuideViewController = MakeOrganizationGuideViewController()
-        makeOrganizationGuideViewController.modalPresentationStyle = .fullScreen
+        makeOrganizationGuideViewController.modalPresentationStyle = .overFullScreen
         navigationController?.present(makeOrganizationGuideViewController, animated: true)
     }
     

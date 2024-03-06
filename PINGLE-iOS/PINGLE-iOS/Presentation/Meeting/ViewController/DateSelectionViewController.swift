@@ -259,12 +259,14 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func exitModalKeepButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep3CancelStay)
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
         dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep3CancelOut)
         exitModal.isHidden = true
         dimmedView.isHidden = true
         self.dismiss(animated: true)

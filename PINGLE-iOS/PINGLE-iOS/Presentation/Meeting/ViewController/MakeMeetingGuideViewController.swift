@@ -121,12 +121,14 @@ final class MakeMeetingGuideViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func entranceButtonPressed() {
+        AmplitudeInstance.shared.track(eventType: .startMeetingHold)
         selectCategoryViewController.unselectAllButtons()
         selectCategoryViewController.nextButton.disabledButton()
         navigationController?.pushViewController(selectCategoryViewController, animated: true)
         }
     
     @objc func exitButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickMeetingCancel)
         self.presentingViewController?.dismiss(animated: true)
     }
 }

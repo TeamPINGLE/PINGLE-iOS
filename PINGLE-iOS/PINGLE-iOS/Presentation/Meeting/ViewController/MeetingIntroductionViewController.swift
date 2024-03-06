@@ -169,12 +169,14 @@ class MeetingIntroductionViewController: BaseViewController {
     }
     
     @objc func exitModalKeepButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep2CancelStay)
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
         dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep2CancelOut)
         exitModal.isHidden = true
         dimmedView.isHidden = true
         self.dismiss(animated: true)

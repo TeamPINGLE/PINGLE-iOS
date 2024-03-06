@@ -151,6 +151,7 @@ final class KeywordSelectionViewController: BaseViewController {
     }
     
     @objc func infoButtonTapped() {
+        clickStep2Info()
         presentMakeGroupGuideViewController()
     }
     
@@ -185,6 +186,11 @@ final class KeywordSelectionViewController: BaseViewController {
                 print("error")
             }
         }
+    }
+    
+    // MARK: Amplitude Function
+    private func clickStep2Info() {
+        AmplitudeInstance.shared.track(eventType: .clickStep2Info)
     }
 }
 

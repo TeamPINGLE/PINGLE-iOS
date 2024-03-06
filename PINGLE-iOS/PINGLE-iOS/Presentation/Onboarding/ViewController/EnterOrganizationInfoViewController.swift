@@ -195,6 +195,7 @@ final class EnterOrganizationInfoViewController: BaseViewController {
     }
     
     @objc func infoButtonTapped() {
+        clickStep1Info()
         presentMakeGroupGuideViewController()
     }
     
@@ -214,6 +215,7 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         let representativeEmailText = representativeEmailTextFieldView.searchTextField.text ?? ""
         
         if representativeEmailText.isValidEmail() {
+            clickStep1Next(propertyValue: "유효성검사성공")
             let keywordSelectionViewController = KeywordSelectionViewController()
             
             keywordSelectionViewController.organizationName = organizationNameText
@@ -221,6 +223,7 @@ final class EnterOrganizationInfoViewController: BaseViewController {
             
             navigationController?.pushViewController(keywordSelectionViewController, animated: true)
         } else {
+            clickStep1Next(propertyValue: "유효성검사실패")
             showWarningToastView(message: .impossibleEmail)
         }
     }
@@ -263,6 +266,7 @@ final class EnterOrganizationInfoViewController: BaseViewController {
                 guard let data = data.data else { return }
                 if data.result {
                     /// 사용 가능한 팀명일 경우 중복확인 버튼 비활성화와 사용 가능 토스트 뷰를 띄우고 사용가능한 이름을 저장한다.
+                    completeDoubleCheck(propertyValue: parameterDTO.name)
                     organizationNameTextFieldView.impossibleDuplicationButton()
                     showWarningToastView(message: .possibleName)
                     teamName = parameterDTO.name
@@ -281,6 +285,23 @@ final class EnterOrganizationInfoViewController: BaseViewController {
                 showWarningToastView(message: .impossibleName)
             }
         }
+    }
+    
+    // MARK: Amplitude Function
+    private func completeDoubleCheck(propertyValue: String) {
+        AmplitudeInstance.shared.track(
+            eventType: .completeDoubleCheck,
+            eventProperties: [AmplitudePropertyType.groupName : propertyValue])
+    }
+    
+    private func clickStep1Next(propertyValue: String) {
+        AmplitudeInstance.shared.track(
+            eventType: .clickStep1Next,
+            eventProperties: [AmplitudePropertyType.status : propertyValue])
+    }
+    
+    private func clickStep1Info() {
+        AmplitudeInstance.shared.track(eventType: .clickStep1Info)
     }
 }
 

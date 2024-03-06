@@ -125,10 +125,12 @@ final class CheckOrganizationViewController: BaseViewController {
     }
     
     @objc func infoButtonTapped() {
+        clickStep3Info()
         presentMakeGroupGuideViewController()
     }
     
     @objc func bottomCTAButtonTapped() {
+        clickCreateGroupMake()
         guard let organizationName = organizationName,
               let representativeEmail = representativeEmail,
               let keywordName = keyword?.name else { return }
@@ -175,6 +177,7 @@ final class CheckOrganizationViewController: BaseViewController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
+                completeCreateGroup(grouName: data.name, email: data.email, keyword: keyword?.value ?? "")
                 KeychainHandler.shared.userGroupId = data.id
                 KeychainHandler.shared.userGroupName = data.name
                 inviteCode = data.code
@@ -192,6 +195,23 @@ final class CheckOrganizationViewController: BaseViewController {
         makeCompletedViewController.inviteCode = inviteCode
         
         navigationController?.pushViewController(makeCompletedViewController, animated: true)
+    }
+    
+    // MARK: Amplitude Function
+    private func clickStep3Info() {
+        AmplitudeInstance.shared.track(eventType: .clickStep3Info)
+    }
+    
+    private func clickCreateGroupMake() {
+        AmplitudeInstance.shared.track(eventType: .clickCreateGroupMake)
+    }
+    
+    private func completeCreateGroup(grouName: String, email: String, keyword: String) {
+        AmplitudeInstance.shared.track(
+            eventType: .completeCreateGroup,
+            eventProperties: [AmplitudePropertyType.groupName : grouName,
+                              AmplitudePropertyType.email : email,
+                              AmplitudePropertyType.keyword : keyword])
     }
 }
 

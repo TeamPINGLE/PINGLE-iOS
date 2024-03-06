@@ -29,4 +29,11 @@ public enum AmplitudeEventType: String {
     case clickCreateGroupStart = "click_creategroup_start"
     case clickCreateGroupInviteCopy = "click_creategroup_invite_copy"
     case clickCreateGroupInviteShare = "click_creategroup_invite_share"
+    case startMyGroup = "start_mygroup"
+    case clickInviteCode = "click_invitecode"
+    case clickInviteCodeCopy = "click_invitecode_copy"
+    case clickInviteCodeShare = "click_invitecode_share"
+    case clickOtherGroup = "click_othergroup"
+    case clickOtherGroupChange = "click_othergroup_change"
+    case clickNewGroup = "click_newgroup"
 }

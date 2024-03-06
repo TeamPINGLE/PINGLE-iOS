@@ -9,7 +9,9 @@ import Foundation
 
 public enum AmplitudeEventType: String {
     case openApp = "open_app"
-    
+    case closeApp = "close_app"
+    case logoutApp = "logout_app"
+    case withdrawApp = "withdraw_app"
     case startSignup = "start_signup"
     case completeSignup = "complete_signup"
     case clickMethodOption = "click_method_option"

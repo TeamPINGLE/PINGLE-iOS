@@ -191,7 +191,7 @@ final class HomeListViewController: BaseViewController {
         mapButton.snp.makeConstraints {
             $0.width.height.equalTo(50.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(30)
+            $0.bottom.equalToSuperview().inset(30.adjustedHeight)
         }
         
         emptyLabel.snp.makeConstraints {
@@ -289,7 +289,7 @@ final class HomeListViewController: BaseViewController {
             NetworkService.shared.homeService.listGet(
                 queryDTO: HomeListSearchRequestQueryDTO(
                     q: text.isEmpty ? nil : text,
-                    category: category,
+                    category: category.isEmpty ? nil : category,
                     teamId: userGroupId,
                     order: order
                 )

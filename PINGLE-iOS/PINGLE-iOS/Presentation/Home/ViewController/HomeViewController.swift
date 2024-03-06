@@ -14,7 +14,11 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Property
-    var isHomeMap = true
+    var isHomeMap = true {
+        didSet {
+            setMapState()
+        }
+    }
     var isSearchResult = false
     
     // MARK: Component
@@ -44,10 +48,10 @@ final class HomeViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setResult()
         setAddTarget()
         setNavigation()
         setTabBar()
-        setResult()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +85,11 @@ final class HomeViewController: BaseViewController {
         
         homeListViewController.participantsAction = {
             self.pushParticipantsViewController(meetingId: self.homeListViewController.currentMeetingId)
+        }
+        
+        homeMapViewController.updateIsHomeMapAction = {
+            [weak self]  in
+            self?.isHomeMap = false
         }
         
         searchButton.addTarget(self,
@@ -217,8 +226,6 @@ final class HomeViewController: BaseViewController {
     // MARK: @objc Func
     @objc private func mapListButtonTapped() {
         isHomeMap.toggle()
-        homeMapViewController.view.isHidden = !isHomeMap
-        homeListViewController.view.isHidden = isHomeMap
     }
     
     @objc private func isChipButtonTapped(sender: ChipButton) {
@@ -300,6 +307,11 @@ final class HomeViewController: BaseViewController {
     
     private func setTabBar() {
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func setMapState() {
+        homeMapViewController.view.isHidden = !isHomeMap
+        homeListViewController.view.isHidden = isHomeMap
     }
     
     func resetChipSelected() {

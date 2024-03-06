@@ -275,12 +275,7 @@ final class HomeListViewController: BaseViewController {
     ) {
         /// isSearchResult가 true이고, 공백문자 입력시 처리
         if isSearchResult && text.trimmingCharacters(in: .whitespaces).isEmpty {
-            resultCountLabel.isHidden = false
-            resultCountLabel.text = "총 0건"
-            emptyLabel.text = StringLiterals.Home.Search.searchEmptyLabel
-            emptyLabel.isHidden = false
-            listData = []
-            listCollectionView.reloadData()
+            setEmptyView()
             completion()
             return
         }
@@ -402,6 +397,15 @@ final class HomeListViewController: BaseViewController {
     
     private func participantCountButtonTapped() {
         participantsAction()
+    }
+    
+    func setEmptyView() {
+        resultCountLabel.isHidden = false
+        resultCountLabel.text = "총 0건"
+        emptyLabel.text = StringLiterals.Home.Search.searchEmptyLabel
+        emptyLabel.isHidden = false
+        listData = []
+        listCollectionView.reloadData()
     }
 }
 

@@ -9,4 +9,9 @@ import Foundation
 
 enum AmplitudePropertyType {
     static let signupType = "signup type"
+    static let option = "option"
+    static let keyword = "keyword"
+    static let groupName = "groupname"
+    static let status = "status"
+    static let email = "email"
 }

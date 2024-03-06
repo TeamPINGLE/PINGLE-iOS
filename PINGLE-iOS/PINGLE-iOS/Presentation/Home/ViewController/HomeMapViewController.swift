@@ -34,7 +34,6 @@ final class HomeMapViewController: BaseViewController {
     // MARK: Component
     let mapsView = HomeMapView()
     let alreadyToastView = PINGLEWarningToastView()
-    let homeListViewController = HomeListViewController()
 
     // MARK: - Function
     // MARK: LifeCycle
@@ -433,7 +432,6 @@ extension HomeMapViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.updateIsHomeMapAction()
             }
-            homeListViewController.setEmptyView()
             completion(false)
             return
         }

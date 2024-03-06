@@ -90,6 +90,7 @@ final class HomeViewController: BaseViewController {
         homeMapViewController.updateIsHomeMapAction = {
             [weak self]  in
             self?.isHomeMap = false
+            self?.homeListViewController.setEmptyView()
         }
         
         searchButton.addTarget(self,

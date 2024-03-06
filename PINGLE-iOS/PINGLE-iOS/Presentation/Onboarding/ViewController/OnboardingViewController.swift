@@ -140,23 +140,20 @@ final class OnboardingViewController: BaseViewController {
     
     /// 기존 단체 입장 버튼 클릭되었을 때 호출되는 함수
     @objc func existingOrganizationButtonDidTap() {
-        clickMethodOption(propertyValue: "existing_group")
+        AmplitudeInstance.shared.track(
+            eventType: .clickMethodOption,
+            eventProperties: [AmplitudePropertyType.option : "existing_group"])
         let searchOrganizationViewController = SearchOrganizationViewController()
         navigationController?.pushViewController(searchOrganizationViewController, animated: true)
     }
     
     /// 새로운 단체 만들기 버튼 클릭되었을 때 호출되는 함수
     @objc func makeOrganizationButtonDidTap() {
-        clickMethodOption(propertyValue: "create_group")
-        let enterOrganizationInfoViewController = EnterOrganizationInfoViewController()
-        navigationController?.pushViewController(enterOrganizationInfoViewController, animated: true)
-    }
-    
-    // MARK: Amplitude Function
-    private func clickMethodOption(propertyValue: String) {
         AmplitudeInstance.shared.track(
             eventType: .clickMethodOption,
-            eventProperties: [AmplitudePropertyType.option : propertyValue])
+            eventProperties: [AmplitudePropertyType.option : "create_group"])
+        let enterOrganizationInfoViewController = EnterOrganizationInfoViewController()
+        navigationController?.pushViewController(enterOrganizationInfoViewController, animated: true)
     }
 }
 

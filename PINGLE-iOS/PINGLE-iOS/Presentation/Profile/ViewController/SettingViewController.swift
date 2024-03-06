@@ -170,7 +170,7 @@ final class SettingViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc private func organizationButtonTapped() {
-        startMyGroup()
+        AmplitudeInstance.shared.track(eventType: .startMyGroup)
         let myOrganizationViewController = MyOrganizationViewController()
         self.navigationController?.pushViewController(myOrganizationViewController, animated: true)
     }
@@ -238,7 +238,7 @@ final class SettingViewController: BaseViewController {
             switch response {
             case .success(let data):
                 if data.code == 200 {
-                    logoutApp()
+                    AmplitudeInstance.shared.track(eventType: .logoutApp)
                     KeychainHandler.shared.logout()
                     guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                     sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
@@ -256,7 +256,7 @@ final class SettingViewController: BaseViewController {
             switch response {
             case .success(let data):
                 if data.code == 200 {
-                    withdrawApp()
+                    AmplitudeInstance.shared.track(eventType: .withdrawApp)
                     KeychainHandler.shared.deleteID()
                     guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                     sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
@@ -276,19 +276,6 @@ final class SettingViewController: BaseViewController {
     // MARK: Bind Function
     private func bindOrganizationName() {
         organizationButton.changeOrganizationName()
-    }
-    
-    // MARK: Amplitude Function
-    private func startMyGroup() {
-        AmplitudeInstance.shared.track(eventType: .startMyGroup)
-    }
-    
-    private func logoutApp() {
-        AmplitudeInstance.shared.track(eventType: .logoutApp)
-    }
-    
-    private func withdrawApp() {
-        AmplitudeInstance.shared.track(eventType: .withdrawApp)
     }
 }
 

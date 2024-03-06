@@ -131,7 +131,7 @@ final class EntranceCompletedViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func bottomCTAButtonTapped() {
-        clickExistingGroupStart()
+        AmplitudeInstance.shared.track(eventType: .clickExistingGroupStart)
         let PINGLETabBarController = PINGLETabBarController()
         self.view.window?.rootViewController = PINGLETabBarController
         self.view.window?.makeKeyAndVisible()
@@ -147,10 +147,5 @@ final class EntranceCompletedViewController: BaseViewController {
         if let userGroupName = KeychainHandler.shared.userGroupName {
             organizationNameLabel.text = userGroupName
         }
-    }
-    
-    // MARK: Amplitude Function
-    private func clickExistingGroupStart() {
-        AmplitudeInstance.shared.track(eventType: .clickExistingGroupStart)
     }
 }

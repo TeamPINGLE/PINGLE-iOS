@@ -15,7 +15,7 @@ public enum AmplitudeEventType: String {
     case startSignup = "start_signup"
     case completeSignup = "complete_signup"
     case clickMethodOption = "click_method_option"
-    case clickExistingGroupCreategroup = "clickExistinggroupCreategroup"
+    case clickExistingGroupCreategroup = "click_existinggroup_creategroup"
     case completeSearchGroup = "complete_search_group"
     case clickExistingGroupEnter = "click_existinggroup_enter"
     case completeExistingGroup = "complete_existinggroup"

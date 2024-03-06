@@ -155,7 +155,7 @@ final class MakeCompletedViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func bottomCTAButtonTapped() {
-        clickCreateGroupInvite()
+        AmplitudeInstance.shared.track(eventType: .clickCreateGroupInvite)
         let shareInviteCodeViewController = ShareInviteCodeViewController()
         shareInviteCodeViewController.organizationName = organizationName
         shareInviteCodeViewController.inviteCode = inviteCode
@@ -163,7 +163,7 @@ final class MakeCompletedViewController: BaseViewController {
     }
     
     @objc func homeButtonTapped() {
-        clickCreateGroupStart()
+        AmplitudeInstance.shared.track(eventType: .clickCreateGroupStart)
         let pingleTabBarController = PINGLETabBarController()
         let navigationController = UINavigationController(rootViewController: pingleTabBarController)
         navigationController.view.alpha = 0.0
@@ -174,14 +174,5 @@ final class MakeCompletedViewController: BaseViewController {
         UIView.animate(withDuration: 0.5) {
             navigationController.view.alpha = 1.0
         }
-    }
-    
-    // MARK: Amplitude Function
-    private func clickCreateGroupInvite() {
-        AmplitudeInstance.shared.track(eventType: .clickCreateGroupInvite)
-    }
-    
-    private func clickCreateGroupStart() {
-        AmplitudeInstance.shared.track(eventType: .clickCreateGroupStart)
     }
 }

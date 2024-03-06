@@ -222,21 +222,21 @@ final class MyOrganizationViewController: BaseViewController {
     
     /// 현재 선택된 단체의 초대코드 보기를 클릭되었을 때 호출되는 함수
     @objc private func lookInviteCodeButtonTapped() {
-        clickInviteCode()
+        AmplitudeInstance.shared.track(eventType: .clickInviteCode)
         dimmedView.isHidden = false
         shareInviteCodePopUpView.isHidden = false
     }
     
     /// 새로운 단체 추가하러 가기 버튼이 클릭되었을 때 호출되는 함수
     @objc private func makeOrganizationButtonTapped() {
-        clickNewGroup()
+        AmplitudeInstance.shared.track(eventType: .clickNewGroup)
         let onboardingViewController = OnboardingViewController()
         navigationController?.pushViewController(onboardingViewController, animated: true)
     }
     
     /// 초대코드 공유 팝업창에서 클립보드 복사했을 때 호출되는 함수
     @objc private func clipBoardCopyButtonTapped() {
-        clickInviteCodeCopy()
+        AmplitudeInstance.shared.track(eventType: .clickInviteCodeCopy)
         guard let inviteCode = currentOrganizationInviteCode else { return }
         UIPasteboard.general.string = inviteCode
         showWarningToastView(warningToastMessage: .clipBoardCopy)
@@ -244,7 +244,7 @@ final class MyOrganizationViewController: BaseViewController {
     
     /// 초대코드 공유 팝업창에서 공유하기 버튼을 클릭했을 때 호출되는 함수
     @objc private func shareButtonTapped() {
-        clickInviteCodeShare()
+        AmplitudeInstance.shared.track(eventType: .clickInviteCodeShare)
         guard let organizationName = KeychainHandler.shared.userGroupName,
               let inviteCode = currentOrganizationInviteCode else { return }
         let shareText: String = """
@@ -275,7 +275,7 @@ final class MyOrganizationViewController: BaseViewController {
     
     /// 단체 정보 변경 팝업창에서 그룹 변경하기 버튼을 클릭했을 때 호출되는 함수
     @objc private func changeOrganizationTapped() {
-        clickOtherGroupChange()
+        AmplitudeInstance.shared.track(eventType: .clickOtherGroupChange)
         guard let userGroupId = selectedOrganizationInfo?.id,
               let userGroupName = selectedOrganizationInfo?.name else { return }
         
@@ -373,38 +373,13 @@ final class MyOrganizationViewController: BaseViewController {
 
         return organizationNameSize.height
     }
-    
-    // MARK: Amplitude Function
-    private func clickInviteCode() {
-        AmplitudeInstance.shared.track(eventType: .clickInviteCode)
-    }
-    
-    private func clickInviteCodeCopy() {
-        AmplitudeInstance.shared.track(eventType: .clickInviteCodeCopy)
-    }
-    
-    private func clickInviteCodeShare() {
-        AmplitudeInstance.shared.track(eventType: .clickInviteCodeShare)
-    }
-    
-    private func clickOtherGroup() {
-        AmplitudeInstance.shared.track(eventType: .clickOtherGroup)
-    }
-    
-    private func clickOtherGroupChange() {
-        AmplitudeInstance.shared.track(eventType: .clickOtherGroupChange)
-    }
-    
-    private func clickNewGroup() {
-        AmplitudeInstance.shared.track(eventType: .clickNewGroup)
-    }
 }
 
 // MARK: UICollectionViewDelegate
 extension MyOrganizationViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         /// 변경하고자 하는 그룹의 정보를 local에 저장한 이후 그룹 변경 팝업창을 띄운다.
-        clickOtherGroup()
+        AmplitudeInstance.shared.track(eventType: .clickOtherGroup)
         selectedOrganizationInfo = changeMyTeamsList[indexPath.row]
         changeOrganizationPopUpView.makeChangingOrganizationPopUp(organizationName: changeMyTeamsList[indexPath.row].name)
         dimmedView.isHidden = false

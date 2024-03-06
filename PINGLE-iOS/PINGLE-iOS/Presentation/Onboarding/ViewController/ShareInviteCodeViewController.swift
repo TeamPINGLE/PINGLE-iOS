@@ -173,13 +173,13 @@ final class ShareInviteCodeViewController: BaseViewController {
     }
     
     @objc func clipBoardCopyButtonTapped() {
-        clickCreateGroupInviteCopy()
+        AmplitudeInstance.shared.track(eventType: .clickCreateGroupInviteCopy)
         UIPasteboard.general.string = inviteCode
         showWarningToastView()
     }
     
     @objc func bottomCTAButtonTapped() {
-        clickCreateGroupInviteShare()
+        AmplitudeInstance.shared.track(eventType: .clickCreateGroupInviteShare)
         let organizationName = organizationName ?? ""
         let inviteCode = inviteCode ?? ""
         let shareText: String = """
@@ -216,15 +216,6 @@ final class ShareInviteCodeViewController: BaseViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             self.warningToastView.fadeOut()
         }
-    }
-    
-    // MARK: Amplitude Function
-    private func clickCreateGroupInviteCopy() {
-        AmplitudeInstance.shared.track(eventType: .clickCreateGroupInviteCopy)
-    }
-    
-    private func clickCreateGroupInviteShare() {
-        AmplitudeInstance.shared.track(eventType: .clickCreateGroupInviteShare)
     }
 }
 

@@ -180,7 +180,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
-        clickExistingGroupEnter()
+        AmplitudeInstance.shared.track(eventType: .clickExistingGroupEnter)
         guard let inviteCodeText = inviteCodeTextFieldView.searchTextField.text else { return }
         postEnterInviteCode(code: EnterInviteCodeRequestBodyDTO(code: inviteCodeText))
     }
@@ -223,7 +223,9 @@ final class EnterInviteCodeViewController: BaseViewController {
                 /// data가 있다는 것은 초대코드가 유효하다는 뜻이다. 없다는 것은 초대코드가 유효하지 않아 그룹 정보를 보내지 않는다는 뜻이다.
                 if data.code == 200 {
                     guard let data = data.data else { return }
-                    completeExistingGroup(propertyValue: keyword ?? "")
+                    AmplitudeInstance.shared.track(
+                        eventType: .completeExistingGroup,
+                        eventProperties: [AmplitudePropertyType.keyword : keyword ?? ""])
                     KeychainHandler.shared.userGroupId = data.id
                     KeychainHandler.shared.userGroupName = data.name
                     let entranceCompletedViewController = EntranceCompletedViewController()
@@ -237,17 +239,6 @@ final class EnterInviteCodeViewController: BaseViewController {
                 print("error")
             }
         }
-    }
-    
-    // MARK: Amplitude Function
-    private func clickExistingGroupEnter() {
-        AmplitudeInstance.shared.track(eventType: .clickExistingGroupEnter)
-    }
-    
-    private func completeExistingGroup(propertyValue: String) {
-        AmplitudeInstance.shared.track(
-            eventType: .completeExistingGroup,
-            eventProperties: [AmplitudePropertyType.keyword : propertyValue])
     }
 }
 

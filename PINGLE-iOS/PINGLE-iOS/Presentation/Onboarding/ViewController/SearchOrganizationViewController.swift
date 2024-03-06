@@ -164,7 +164,7 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     @objc func makeOrganizationButtonTapped() {
-        clickExistingGroupCreategroup()
+        AmplitudeInstance.shared.track(eventType: .clickExistingGroupCreategroup)
         let enterOrganizationInfoViewController = EnterOrganizationInfoViewController()
         navigationController?.pushViewController(enterOrganizationInfoViewController, animated: true)
     }
@@ -182,7 +182,9 @@ final class SearchOrganizationViewController: BaseViewController {
             guard let self = self else { return }
             switch response {
             case .success(let data):
-                completeSearchGroup(propertyValue: name.name)
+                AmplitudeInstance.shared.track(
+                    eventType: .completeSearchGroup,
+                    eventProperties: [AmplitudePropertyType.keyword : name.name])
                 guard let data = data.data else { return }
                 /// 검색 결과가 없는 경우 "검색 결과가 없어요" 라벨이 나옵니다. 검색결과가 있는 경우 "검색 결과가 없어요" 라벨이 사라집니다.
                 if data.isEmpty {
@@ -248,17 +250,6 @@ extension SearchOrganizationViewController: UITextFieldDelegate {
         } else {
             searchOrganizationView.searchButton.setImage(UIImage(resource: .btnClear), for: .normal)
         }
-    }
-    
-    // MARK: Amplitude Function
-    private func clickExistingGroupCreategroup() {
-        AmplitudeInstance.shared.track(eventType: .clickExistingGroupCreategroup)
-    }
-    
-    private func completeSearchGroup(propertyValue: String) {
-        AmplitudeInstance.shared.track(
-            eventType: .completeSearchGroup,
-            eventProperties: [AmplitudePropertyType.keyword : propertyValue])
     }
 }
 

@@ -29,7 +29,9 @@ final class LoginViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        startSignUp()
+        AmplitudeInstance.shared.track(
+            eventType: .startSignup,
+            eventProperties: [AmplitudePropertyType.signupType : "apple"])
     }
     
     // MARK: UI
@@ -136,7 +138,7 @@ final class LoginViewController: BaseViewController {
                 guard let data = data.data else { return }
                 KeychainHandler.shared.accessToken = data.accessToken
                 KeychainHandler.shared.refreshToken = data.refreshToken
-                completeSignUp()
+                AmplitudeInstance.shared.track(eventType: .completeSignup)
                 
                 /// 사용자가 단체가 있는지 검사
                 self.getUserInfo()
@@ -175,17 +177,6 @@ final class LoginViewController: BaseViewController {
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
         sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         navigationController?.popToRootViewController(animated: true)
-    }
-    
-    // MARK: Amplitude Function
-    private func startSignUp() {
-        AmplitudeInstance.shared.track(
-            eventType: .startSignup,
-            eventProperties: [AmplitudePropertyType.signupType : "apple"])
-    }
-    
-    private func completeSignUp() {
-        AmplitudeInstance.shared.track(eventType: .completeSignup)
     }
 }
 

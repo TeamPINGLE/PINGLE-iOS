@@ -25,6 +25,7 @@ final class HomeMapViewController: BaseViewController {
     var markerCategory: String = ""
     var searchText: String = ""
     private var allowLocation = false
+    private var isFirstSearch = true
     var currentMeetingId: Int = 0
     var participantsAction: (() -> Void) = {}
     
@@ -441,6 +442,12 @@ extension HomeMapViewController {
                     guard let data = data.data else { return }
                     print(data)
                     self?.mapsView.homePinList = data
+                    if !q.isEmpty && !data.isEmpty && (self?.isFirstSearch ?? true) {
+                        self?.searchCameraMove(
+                            x: data[0].x,
+                            y: data[0].y)
+                        self?.isFirstSearch.toggle()
+                    }
                     completion(true)
                 default:
                     print("실패")
@@ -573,5 +580,16 @@ extension HomeMapViewController {
             return pingleMarker
         }
         setMarkerHandler()
+    }
+    
+    private func searchCameraMove(x: Double, y: Double) {
+            mapsView.cameraUpdate = NMFCameraUpdate(
+                scrollTo: NMGLatLng(
+                    lat: y,
+                    lng: x
+                )
+            )
+            mapsView.cameraUpdate.animation = .easeIn
+            mapsView.mapsView.mapView.moveCamera(mapsView.cameraUpdate)
     }
 }

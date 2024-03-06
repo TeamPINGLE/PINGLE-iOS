@@ -306,8 +306,13 @@ enum StringLiterals {
         static let impossibleGroup = "같은 이름을 가진 단체가 이미 존재합니다!"
         static let impossibleEmail = "유효하지 않은 이메일입니다!"
         static let alreadyMeeting = "모집이 마감된 핑글이에요!"
+        static let deleteMeeting = "삭제된 핑글이에요!"
         static let completedCopy = "초대코드가 복사되었습니다!"
         static let changeOrganization = "단체가 변경되었습니다!"
         static let alreadySigned = "이미 가입된 단체입니다!"
+    }
+    
+    enum ErrorMessage {
+        static let notFoundMeeting = "존재하지 않는 번개입니다"
     }
 }

@@ -31,7 +31,7 @@ final class HomeMapViewController: BaseViewController {
     
     // MARK: Component
     let mapsView = HomeMapView()
-    let alreadyToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.alreadyMeeting)
+    let alreadyToastView = PINGLEWarningToastView()
 
     // MARK: - Function
     // MARK: LifeCycle
@@ -508,12 +508,15 @@ extension HomeMapViewController {
                     print("신청 완료")
                     completion(true)
                 } else if data.code == 409 {
+                    self.alreadyToastView.warningLabel.text =  StringLiterals.ToastView.alreadyMeeting
                     self.alreadyToastView.fadeIn()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         self.alreadyToastView.fadeOut()
                     }
                     completion(false)
-               }
+                } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMeeting {
+                    self.meetingNotFound()
+                }
             default:
                 print("실패")
                 completion(false)
@@ -528,8 +531,13 @@ extension HomeMapViewController {
     ) {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
             switch response {
-            case .success:
-                completion(true)
+            case .success(let data):
+                if data.code == 201 {
+                    print("신청 완료")
+                    completion(true)
+                } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMeeting {
+                    self.meetingNotFound()
+                }
             default:
                 print("실패")
                 completion(false)
@@ -552,6 +560,16 @@ extension HomeMapViewController {
                 return
             }
         }
+    }
+    
+    private func meetingNotFound() {
+        self.alreadyToastView.warningLabel.text =  StringLiterals.ToastView.deleteMeeting
+        self.alreadyToastView.fadeIn()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.alreadyToastView.fadeOut()
+        }
+        self.loadPinList()
+        self.hideSelectedPin()
     }
     
     // MARK: Marker Function

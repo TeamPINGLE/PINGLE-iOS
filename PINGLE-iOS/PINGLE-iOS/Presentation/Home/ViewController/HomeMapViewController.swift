@@ -27,10 +27,13 @@ final class HomeMapViewController: BaseViewController {
     private var allowLocation = false
     var currentMeetingId: Int = 0
     var participantsAction: (() -> Void) = {}
+    var updateIsHomeMapAction: (() -> Void) = {}
+    var isSearchResult = false
     
     // MARK: Component
     let mapsView = HomeMapView()
     let alreadyToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.alreadyMeeting)
+    let homeListViewController = HomeListViewController()
 
     // MARK: - Function
     // MARK: LifeCycle
@@ -39,13 +42,6 @@ final class HomeMapViewController: BaseViewController {
         setLocationManager()
         setAddTarget()
         setCollectionView()
-//        if searchText.isEmpty {
-//            /// searchText가 없으면 전체 핀 리스트를 받아옴
-//            loadPinList()
-//        } else {
-//            /// searchText가 있으면 해당 검색어에 대한 핀 리스트를 받아옴
-//            loadPinListWithSearchText()
-//        }
         loadPinList()
     }
     
@@ -431,6 +427,16 @@ extension HomeMapViewController {
         q: String,
         completion: @escaping (Bool) -> Void
     ) {
+        /// isSearchResult가 true이고, 공백문자 입력시 처리
+        if isSearchResult && q.trimmingCharacters(in: .whitespaces).isEmpty {
+            DispatchQueue.main.async { [weak self] in
+                self?.updateIsHomeMapAction()
+            }
+            homeListViewController.setEmptyView()
+            completion(false)
+            return
+        }
+        
         if let userGroupId = KeychainHandler.shared.userGroupId {
             NetworkService.shared.homeService.pinList(
                 teamId: userGroupId,
@@ -439,6 +445,9 @@ extension HomeMapViewController {
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
+                    if data.isEmpty {
+                        self?.updateIsHomeMapAction()
+                    }
                     print(data)
                     self?.mapsView.homePinList = data
                     completion(true)

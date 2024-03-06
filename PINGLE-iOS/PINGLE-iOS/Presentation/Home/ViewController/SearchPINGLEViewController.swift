@@ -271,6 +271,7 @@ extension SearchPINGLEViewController: UITextFieldDelegate {
             homeMapViewController.searchText = search
             homeListViewController.searchText = search
             homeViewController.isSearchResult = true
+            homeMapViewController.isSearchResult = true
             homeListViewController.isSearchResult = true
             homeViewController.isHomeMap = isMap
             navigationController?.pushViewController(homeViewController, animated: true)

@@ -11,7 +11,6 @@ import Alamofire
 
 final class PINGLERequestInterceptor: RequestInterceptor {
     
-    private let maxRetryCount: Int = 3
     private var isRefreshingToken = false
     private var requestsToRetry: [(RetryResult) -> Void] = []
     
@@ -30,38 +29,23 @@ final class PINGLERequestInterceptor: RequestInterceptor {
             completion(.doNotRetryWithError(error))
             return
         }
-        if request.retryCount < maxRetryCount {
-            switch response.statusCode {
-            case 200..<300:
-                completion(.doNotRetry)
-            case 401:
-                requestsToRetry.append(completion)
-                if !isRefreshingToken {
-                    isRefreshingToken = true
-                    refreshToken { [weak self] isSuccess in
-                        guard let self = self else { return }
-                        
-                        self.isRefreshingToken = false
-                        self.requestsToRetry.forEach { $0(isSuccess ? .retry : .doNotRetry) }
-                        self.requestsToRetry.removeAll()
-                    }
-                }
-            case 404:
-                print("404에러로 사용자를 찾을 수 없습니다.❌")
-                completion(.doNotRetry)
-                self.logout()
-            case 500: /// 서버 내부 오류
-                if request.retryCount < maxRetryCount {
-                    completion(.retry)
-                } else {
-                    // TO DO: 서버 점검 중 입니다. 잠시 후 다시 실행해주세요 경고화면 출력추가해야함.
-                    completion(.doNotRetry)
-                }
-            default:
-                completion(.doNotRetry)
-            }
-        }
         
+        switch response.statusCode {
+        case 401:
+            requestsToRetry.append(completion)
+            if !isRefreshingToken {
+                isRefreshingToken = true
+                refreshToken { [weak self] isSuccess in
+                    guard let self = self else { return }
+                    
+                    self.isRefreshingToken = false
+                    self.requestsToRetry.forEach { $0(isSuccess ? .retry : .doNotRetry) }
+                    self.requestsToRetry.removeAll()
+                }
+            }
+        default:
+            completion(.doNotRetry)
+        }
     }
     
     func refreshToken(completion: @escaping (Bool) -> Void) {

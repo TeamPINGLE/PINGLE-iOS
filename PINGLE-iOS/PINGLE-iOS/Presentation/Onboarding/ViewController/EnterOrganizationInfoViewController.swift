@@ -195,6 +195,7 @@ final class EnterOrganizationInfoViewController: BaseViewController {
     }
     
     @objc func infoButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep1Info)
         presentMakeGroupGuideViewController()
     }
     
@@ -214,6 +215,9 @@ final class EnterOrganizationInfoViewController: BaseViewController {
         let representativeEmailText = representativeEmailTextFieldView.searchTextField.text ?? ""
         
         if representativeEmailText.isValidEmail() {
+            AmplitudeInstance.shared.track(
+                eventType: .clickStep1Next,
+                eventProperties: [AmplitudePropertyType.status : "유효성검사성공"])
             let keywordSelectionViewController = KeywordSelectionViewController()
             
             keywordSelectionViewController.organizationName = organizationNameText
@@ -221,6 +225,9 @@ final class EnterOrganizationInfoViewController: BaseViewController {
             
             navigationController?.pushViewController(keywordSelectionViewController, animated: true)
         } else {
+            AmplitudeInstance.shared.track(
+                eventType: .clickStep1Next,
+                eventProperties: [AmplitudePropertyType.status : "유효성검사실패"])
             showWarningToastView(message: .impossibleEmail)
         }
     }
@@ -263,6 +270,9 @@ final class EnterOrganizationInfoViewController: BaseViewController {
                 guard let data = data.data else { return }
                 if data.result {
                     /// 사용 가능한 팀명일 경우 중복확인 버튼 비활성화와 사용 가능 토스트 뷰를 띄우고 사용가능한 이름을 저장한다.
+                    AmplitudeInstance.shared.track(
+                        eventType: .completeDoubleCheck,
+                        eventProperties: [AmplitudePropertyType.groupName : parameterDTO.name])
                     organizationNameTextFieldView.impossibleDuplicationButton()
                     showWarningToastView(message: .possibleName)
                     teamName = parameterDTO.name

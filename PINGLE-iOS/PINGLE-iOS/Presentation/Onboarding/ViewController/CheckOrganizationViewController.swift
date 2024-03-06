@@ -125,10 +125,12 @@ final class CheckOrganizationViewController: BaseViewController {
     }
     
     @objc func infoButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep3Info)
         presentMakeGroupGuideViewController()
     }
     
     @objc func bottomCTAButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickCreateGroupMake)
         guard let organizationName = organizationName,
               let representativeEmail = representativeEmail,
               let keywordName = keyword?.name else { return }
@@ -145,7 +147,7 @@ final class CheckOrganizationViewController: BaseViewController {
     // MARK: Present Function
     private func presentMakeGroupGuideViewController() {
         let makeOrganizationGuideViewController = MakeOrganizationGuideViewController()
-        makeOrganizationGuideViewController.modalPresentationStyle = .fullScreen
+        makeOrganizationGuideViewController.modalPresentationStyle = .overFullScreen
         navigationController?.present(makeOrganizationGuideViewController, animated: true)
     }
     
@@ -175,6 +177,11 @@ final class CheckOrganizationViewController: BaseViewController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
+                AmplitudeInstance.shared.track(
+                    eventType: .completeCreateGroup,
+                    eventProperties: [AmplitudePropertyType.groupName : data.name,
+                                      AmplitudePropertyType.email : data.email,
+                                      AmplitudePropertyType.keyword : keyword?.value ?? ""])
                 KeychainHandler.shared.userGroupId = data.id
                 KeychainHandler.shared.userGroupName = data.name
                 inviteCode = data.code

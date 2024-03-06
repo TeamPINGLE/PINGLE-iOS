@@ -164,6 +164,7 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     @objc func makeOrganizationButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickExistingGroupCreategroup)
         let enterOrganizationInfoViewController = EnterOrganizationInfoViewController()
         navigationController?.pushViewController(enterOrganizationInfoViewController, animated: true)
     }
@@ -176,11 +177,14 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     // MARK: Network Function
-    func searchOrganization(data: SearchOrganizationRequestQueryDTO) {
-        NetworkService.shared.onboardingService.searchOrganization(queryDTO: data) { [weak self] response in
+    func searchOrganization(name: SearchOrganizationRequestQueryDTO) {
+        NetworkService.shared.onboardingService.searchOrganization(queryDTO: name) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let data):
+                AmplitudeInstance.shared.track(
+                    eventType: .completeSearchGroup,
+                    eventProperties: [AmplitudePropertyType.keyword : name.name])
                 guard let data = data.data else { return }
                 /// 검색 결과가 없는 경우 "검색 결과가 없어요" 라벨이 나옵니다. 검색결과가 있는 경우 "검색 결과가 없어요" 라벨이 사라집니다.
                 if data.isEmpty {
@@ -227,7 +231,7 @@ extension SearchOrganizationViewController: UITextFieldDelegate {
                 searchOrganizationView.searchCollectionView.reloadData()
                 searchOrganizationView.noResultLabel.isHidden = false
             } else {
-                searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
+                searchOrganization(name: SearchOrganizationRequestQueryDTO(name: searchText))
             }
         }
         /// 선택된 행 해제한 뒤, 다음으로 버튼 비활성화

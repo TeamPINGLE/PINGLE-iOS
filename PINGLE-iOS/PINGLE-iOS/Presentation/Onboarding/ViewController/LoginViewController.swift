@@ -27,6 +27,13 @@ final class LoginViewController: BaseViewController {
         setTarget()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AmplitudeInstance.shared.track(
+            eventType: .startSignup,
+            eventProperties: [AmplitudePropertyType.signupType : "apple"])
+    }
+    
     // MARK: UI
     override func setStyle() {
         view.do {
@@ -131,6 +138,7 @@ final class LoginViewController: BaseViewController {
                 guard let data = data.data else { return }
                 KeychainHandler.shared.accessToken = data.accessToken
                 KeychainHandler.shared.refreshToken = data.refreshToken
+                AmplitudeInstance.shared.track(eventType: .completeSignup)
                 
                 /// 사용자가 단체가 있는지 검사
                 self.getUserInfo()

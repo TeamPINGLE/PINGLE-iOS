@@ -14,6 +14,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     // MARK: Variables
     var teamId: Int?
+    private var keyword: String?
     
     // MARK: Property
     private let backButton = UIButton()
@@ -179,6 +180,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickExistingGroupEnter)
         guard let inviteCodeText = inviteCodeTextFieldView.searchTextField.text else { return }
         postEnterInviteCode(code: EnterInviteCodeRequestBodyDTO(code: inviteCodeText))
     }
@@ -203,6 +205,7 @@ final class EnterInviteCodeViewController: BaseViewController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
+                keyword = data.keyword
                 organizationInfoView.bindSearchData(data: data)
                 organizationInfoView.isHidden = false
             default:
@@ -220,6 +223,9 @@ final class EnterInviteCodeViewController: BaseViewController {
                 /// data가 있다는 것은 초대코드가 유효하다는 뜻이다. 없다는 것은 초대코드가 유효하지 않아 그룹 정보를 보내지 않는다는 뜻이다.
                 if data.code == 200 {
                     guard let data = data.data else { return }
+                    AmplitudeInstance.shared.track(
+                        eventType: .completeExistingGroup,
+                        eventProperties: [AmplitudePropertyType.keyword : keyword ?? ""])
                     KeychainHandler.shared.userGroupId = data.id
                     KeychainHandler.shared.userGroupName = data.name
                     let entranceCompletedViewController = EntranceCompletedViewController()

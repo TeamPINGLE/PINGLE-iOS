@@ -170,6 +170,7 @@ final class SettingViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc private func organizationButtonTapped() {
+        startMyGroup()
         let myOrganizationViewController = MyOrganizationViewController()
         self.navigationController?.pushViewController(myOrganizationViewController, animated: true)
     }
@@ -273,6 +274,11 @@ final class SettingViewController: BaseViewController {
     // MARK: Bind Function
     private func bindOrganizationName() {
         organizationButton.changeOrganizationName()
+    }
+    
+    // MARK: Amplitude Function
+    private func startMyGroup() {
+        AmplitudeInstance.shared.track(eventType: .startMyGroup)
     }
 }
 

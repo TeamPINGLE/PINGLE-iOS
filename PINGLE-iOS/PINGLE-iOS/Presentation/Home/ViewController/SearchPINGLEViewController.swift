@@ -275,6 +275,8 @@ extension SearchPINGLEViewController: UITextFieldDelegate {
             homeListViewController.isSearchResult = true
             homeViewController.isHomeMap = isMap
             navigationController?.pushViewController(homeViewController, animated: true)
+            AmplitudeInstance.shared.track(eventType: isMap ? .completeSearchMap : .completeSearchList,
+                                           eventProperties: [AmplitudePropertyType.keyword : search])
         }
         return true
     }

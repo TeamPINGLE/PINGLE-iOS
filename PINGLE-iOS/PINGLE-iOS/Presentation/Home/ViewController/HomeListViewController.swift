@@ -28,7 +28,7 @@ final class HomeListViewController: BaseViewController {
         collectionViewLayout: listCollectionViewFlowLayout
     )
     private let listCollectionViewFlowLayout = UICollectionViewFlowLayout()
-    let alreadyToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.alreadyMeeting)
+    let alreadyToastView = PINGLEWarningToastView()
     
     // MARK: Variables
     var listData: [HomeListData] = []
@@ -191,7 +191,7 @@ final class HomeListViewController: BaseViewController {
         mapButton.snp.makeConstraints {
             $0.width.height.equalTo(50.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(30)
+            $0.bottom.equalToSuperview().inset(30.adjustedHeight)
         }
         
         emptyLabel.snp.makeConstraints {
@@ -284,7 +284,7 @@ final class HomeListViewController: BaseViewController {
             NetworkService.shared.homeService.listGet(
                 queryDTO: HomeListSearchRequestQueryDTO(
                     q: text.isEmpty ? nil : text,
-                    category: category,
+                    category: category.isEmpty ? nil : category,
                     teamId: userGroupId,
                     order: order
                 )
@@ -349,10 +349,14 @@ final class HomeListViewController: BaseViewController {
                     print("신청 완료")
                     completion(true)
                 } else if data.code == 409 {
+                    self.alreadyToastView.warningLabel.text =  StringLiterals.ToastView.alreadyMeeting
                     self.alreadyToastView.fadeIn()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         self.alreadyToastView.fadeOut()
                     }
+                    completion(false)
+                } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMeeting {
+                    self.meetingNotFound()
                     completion(false)
                 }
             default:
@@ -369,7 +373,13 @@ final class HomeListViewController: BaseViewController {
     ) {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
             switch response {
-            case .success:
+            case .success(let data):
+                if data.code == 201 {
+                    print("신청 완료")
+                    completion(true)
+                } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMeeting {
+                    self.meetingNotFound()
+                }
                 completion(true)
             default:
                 print("실패")
@@ -397,6 +407,19 @@ final class HomeListViewController: BaseViewController {
     
     private func participantCountButtonTapped() {
         participantsAction()
+    }
+    
+    private func meetingNotFound() {
+        alreadyToastView.warningLabel.text =  StringLiterals.ToastView.deleteMeeting
+        alreadyToastView.fadeIn()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.alreadyToastView.fadeOut()
+        }
+        getListData(
+            text: searchText,
+            category: category,
+            order: order
+        ){}
     }
     
     func setEmptyView() {

@@ -25,6 +25,7 @@ final class HomeMapViewController: BaseViewController {
     var markerCategory: String = ""
     var searchText: String = ""
     private var allowLocation = false
+    private var isFirstSearch = true
     var currentMeetingId: Int = 0
     var participantsAction: (() -> Void) = {}
     var updateIsHomeMapAction: (() -> Void) = {}
@@ -32,8 +33,7 @@ final class HomeMapViewController: BaseViewController {
     
     // MARK: Component
     let mapsView = HomeMapView()
-    let alreadyToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.alreadyMeeting)
-    let homeListViewController = HomeListViewController()
+    let alreadyToastView = PINGLEWarningToastView()
 
     // MARK: - Function
     // MARK: LifeCycle
@@ -432,7 +432,6 @@ extension HomeMapViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.updateIsHomeMapAction()
             }
-            homeListViewController.setEmptyView()
             completion(false)
             return
         }
@@ -450,6 +449,12 @@ extension HomeMapViewController {
                     }
                     print(data)
                     self?.mapsView.homePinList = data
+                    if !q.isEmpty && !data.isEmpty && (self?.isFirstSearch ?? true) {
+                        self?.searchCameraMove(
+                            x: data[0].x,
+                            y: data[0].y)
+                        self?.isFirstSearch.toggle()
+                    }
                     completion(true)
                 default:
                     print("실패")
@@ -510,12 +515,15 @@ extension HomeMapViewController {
                     print("신청 완료")
                     completion(true)
                 } else if data.code == 409 {
+                    self.alreadyToastView.warningLabel.text =  StringLiterals.ToastView.alreadyMeeting
                     self.alreadyToastView.fadeIn()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         self.alreadyToastView.fadeOut()
                     }
                     completion(false)
-               }
+                } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMeeting {
+                    self.meetingNotFound()
+                }
             default:
                 print("실패")
                 completion(false)
@@ -530,8 +538,13 @@ extension HomeMapViewController {
     ) {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
             switch response {
-            case .success:
-                completion(true)
+            case .success(let data):
+                if data.code == 201 {
+                    print("신청 완료")
+                    completion(true)
+                } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMeeting {
+                    self.meetingNotFound()
+                }
             default:
                 print("실패")
                 completion(false)
@@ -554,6 +567,16 @@ extension HomeMapViewController {
                 return
             }
         }
+    }
+    
+    private func meetingNotFound() {
+        self.alreadyToastView.warningLabel.text =  StringLiterals.ToastView.deleteMeeting
+        self.alreadyToastView.fadeIn()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.alreadyToastView.fadeOut()
+        }
+        self.loadPinList()
+        self.hideSelectedPin()
     }
     
     // MARK: Marker Function
@@ -582,5 +605,16 @@ extension HomeMapViewController {
             return pingleMarker
         }
         setMarkerHandler()
+    }
+    
+    private func searchCameraMove(x: Double, y: Double) {
+            mapsView.cameraUpdate = NMFCameraUpdate(
+                scrollTo: NMGLatLng(
+                    lat: y,
+                    lng: x
+                )
+            )
+            mapsView.cameraUpdate.animation = .easeIn
+            mapsView.mapsView.mapView.moveCamera(mapsView.cameraUpdate)
     }
 }

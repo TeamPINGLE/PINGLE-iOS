@@ -138,7 +138,7 @@ class SearchPINGLEViewController: BaseViewController {
         UIView.animate(withDuration: duration) {
             if keyboardY == self.view.frame.height {
                 /// 키보드가 다시 내려갔을 때 그래픽 위치 조정
-                self.searchGraphicView.snp.updateConstraints {
+                self.searchGraphicView.snp.remakeConstraints {
                     if self.isMap {
                         $0.leading.equalToSuperview().inset(77.adjusted)
                         $0.trailing.equalToSuperview().inset(71.adjusted)

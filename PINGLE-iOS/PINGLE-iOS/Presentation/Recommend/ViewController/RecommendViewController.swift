@@ -133,7 +133,11 @@ final class RecommendViewController: BaseViewController {
 
 // MARK: - extension
 // MARK: UICollectionViewDelegate
-extension RecommendViewController: UICollectionViewDelegate {}
+extension RecommendViewController: UICollectionViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        AmplitudeInstance.shared.track(eventType: .scrollRanking)
+    }
+}
 
 // MARK: UICollectionViewDataSource
 extension RecommendViewController: UICollectionViewDataSource {

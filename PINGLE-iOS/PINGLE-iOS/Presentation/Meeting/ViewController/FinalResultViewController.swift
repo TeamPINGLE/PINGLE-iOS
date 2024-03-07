@@ -184,16 +184,25 @@ final class FinalResultViewController: BaseViewController {
     }
     
     func makeMeeting(data: MakeMeetingRequestBodyDTO) {
-           NetworkService.shared.meetingService.makeMeeting(bodyDTO: data) { [weak self] response in
-               guard let self = self else { return }
-               switch response {
-               case .success(let result):
-                   print("Meeting created successfully. Result: \(result)")
-               default:
-                   print("not Created")
-               }
-           }
-       }
+        NetworkService.shared.meetingService.makeMeeting(bodyDTO: data) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let result):
+                AmplitudeInstance.shared.track(eventType: .completeMeetingHold,
+                                               eventProperties: [AmplitudePropertyType.category: data.category,
+                                                                 AmplitudePropertyType.name: data.name,
+                                                                 AmplitudePropertyType.startAt: data.startAt,
+                                                                 AmplitudePropertyType.endAt: data.endAt,
+                                                                 AmplitudePropertyType.roadAddress: data.roadAddress,
+                                                                 AmplitudePropertyType.location: data.location,
+                                                                 AmplitudePropertyType.maxParticipants: data.maxParticipants
+                                                                ])
+                print("Meeting created successfully. Result: \(result)")
+            default:
+                print("not Created")
+            }
+        }
+    }
     
     private func dateFormat(date: Date) -> String {
         formatter.dateFormat = "yyyy-MM-dd"

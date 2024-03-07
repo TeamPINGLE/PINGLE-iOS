@@ -156,7 +156,11 @@ final class CompleteViewController: BaseViewController {
 
 // MARK: - extension
 // MARK: UICollectionViewDelegate
-extension CompleteViewController: UICollectionViewDelegate { }
+extension CompleteViewController: UICollectionViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        AmplitudeInstance.shared.track(eventType: .scrollDonepingle)
+    }
+}
 
 // MARK: UICollectionViewDataSource
 extension CompleteViewController: UICollectionViewDataSource {
@@ -184,6 +188,7 @@ extension CompleteViewController: UICollectionViewDataSource {
         cell.memberButtonAction = {
             self.meetingId = cell.meetingId
             self.pushToMemberViewController()
+            AmplitudeInstance.shared.track(eventType: .clickDonepingleParticipants)
         }
         return cell
     }

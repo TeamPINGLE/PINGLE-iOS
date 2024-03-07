@@ -27,7 +27,8 @@ import AmplitudeSwift
 ///                                      AmplitudePropertyType.keyword : self.groupType])
 
 public struct AmplitudeInstance {
-    static public let shared = Amplitude(configuration: Configuration(apiKey: Config.amplitudeKey))
+    static public let shared = Amplitude(configuration: Configuration(apiKey: Config.amplitudeKey, 
+                                                                      defaultTracking: DefaultTrackingOptions.ALL))
     
     private init() {}
 }

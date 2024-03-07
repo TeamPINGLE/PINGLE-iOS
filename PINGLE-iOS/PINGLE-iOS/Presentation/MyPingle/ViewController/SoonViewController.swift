@@ -178,6 +178,7 @@ final class SoonViewController: BaseViewController {
                     return
                 }
             }
+            AmplitudeInstance.shared.track(eventType: .clickSoonpingleMoreDelete)
         } else {
             NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
                 switch response {
@@ -190,12 +191,17 @@ final class SoonViewController: BaseViewController {
                     return
                 }
             }
+            AmplitudeInstance.shared.track(eventType: .clickSoonpingleMoreCancel)
         }
     }
 }
 // MARK: - extension
 // MARK: UICollectionViewDelegate
-extension SoonViewController: UICollectionViewDelegate { }
+extension SoonViewController: UICollectionViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        AmplitudeInstance.shared.track(eventType: .scrollSoonpingle)
+    }
+}
 
 // MARK: UICollectionViewDataSource
 extension SoonViewController: UICollectionViewDataSource {
@@ -221,6 +227,7 @@ extension SoonViewController: UICollectionViewDataSource {
         cell.memberButtonAction = {
             self.meetingId = cell.meetingId
             self.pushToMemberViewController()
+            AmplitudeInstance.shared.track(eventType: .clickSoonpingleParticipants)
         }
         
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
@@ -245,6 +252,7 @@ extension SoonViewController: UICollectionViewDataSource {
         
         cell.talkButtonAction = {
             self.connectTalkLink(urlString: cell.myPINGLECardView.openChatURL ?? "https://www.naver.com")
+            AmplitudeInstance.shared.track(eventType: .clickSoonpingleMoreChat)
         }
         return cell
     }

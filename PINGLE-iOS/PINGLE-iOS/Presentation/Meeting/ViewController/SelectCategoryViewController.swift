@@ -228,12 +228,14 @@ class SelectCategoryViewController: BaseViewController {
     }
     
     @objc func exitModalKeepButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep1CancelStay)
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
         dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep1CancelOut)
         exitModal.isHidden = true
         dimmedView.isHidden = true
         self.dismiss(animated: true) {

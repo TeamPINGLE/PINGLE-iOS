@@ -166,12 +166,14 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     @objc func exitModalKeepButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep6CancelStay)
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
         dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep6CancelOut)
         exitModal.isHidden = true
         dimmedView.isHidden = true
         self.dismiss(animated: true)

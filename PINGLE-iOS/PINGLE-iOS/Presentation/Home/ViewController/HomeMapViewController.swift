@@ -451,7 +451,7 @@ extension HomeMapViewController {
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
-                    if data.isEmpty {
+                    if data.isEmpty && !q.isEmpty {
                         self?.updateIsHomeMapAction()
                     }
                     print(data)

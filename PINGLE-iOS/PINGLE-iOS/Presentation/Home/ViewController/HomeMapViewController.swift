@@ -213,6 +213,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
         
         cell.mapDetailView.talkButtonAction = {
             self.connectTalkLink(urlString: self.homePinDetailList[indexPath.row].chatLink)
+            AmplitudeInstance.shared.track(eventType: .clickPinChat)
         }
         
         cell.homeDetailPopUpView.participantionButtonAction = {
@@ -226,6 +227,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
                     category: markerCategory,
                     q: searchText
                 ) {}
+                AmplitudeInstance.shared.track(eventType: .clickPinParticipate)
             }
         }
         
@@ -243,6 +245,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
                         loadPinList()
                     }
                 }
+                AmplitudeInstance.shared.track(eventType: .clickPinDelete)
             } else {
                 self.meetingCancel(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
                     guard let self else { return }
@@ -255,6 +258,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
                         ) {}
                     }
                 }
+                AmplitudeInstance.shared.track(eventType: .clickPinCancel)
             }
         }
         
@@ -263,6 +267,7 @@ extension HomeMapViewController: UICollectionViewDataSource {
         cell.memberButtonAction = {
             self.currentMeetingId = cell.mapDetailView.meetingId
             self.participantCountButtonTapped()
+            AmplitudeInstance.shared.track(eventType: .clickPinParticipants)
         }
         
         return cell
@@ -316,6 +321,7 @@ extension HomeMapViewController {
         if allowLocation {
             moveToCurrentLocation()
         }
+        AmplitudeInstance.shared.track(eventType: .clickCurrentlocation)
     }
     
     private func participantCountButtonTapped() {
@@ -366,6 +372,7 @@ extension HomeMapViewController {
                 self.mapsView.listButton.isHidden = true
                 self.markerTapped(marker: marker)
                 self.markerId = marker.id
+                AmplitudeInstance.shared.track(eventType: .clickPinMap)
                 return true
             }
         }

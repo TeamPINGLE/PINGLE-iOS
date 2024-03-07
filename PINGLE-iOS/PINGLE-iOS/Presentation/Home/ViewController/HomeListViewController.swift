@@ -253,6 +253,7 @@ final class HomeListViewController: BaseViewController {
         ) {}
         sortTitleLabel.text = StringLiterals.Home.List.sortRecent
         sortMoreView.isHidden = true
+        AmplitudeInstance.shared.track(eventType: .clickDatesoonarray)
     }
     
     @objc private func imminentButtonTapped() {
@@ -264,6 +265,7 @@ final class HomeListViewController: BaseViewController {
         ) {}
         sortTitleLabel.text = StringLiterals.Home.List.sortImminent
         sortMoreView.isHidden = true
+        AmplitudeInstance.shared.track(eventType: .clickRecentcreationarray)
     }
     
     // MARK: Network Helper
@@ -419,7 +421,7 @@ final class HomeListViewController: BaseViewController {
             text: searchText,
             category: category,
             order: order
-        ){}
+        ) {}
     }
     
     func setEmptyView() {
@@ -456,6 +458,7 @@ extension HomeListViewController: UICollectionViewDataSource {
         
         cell.homeListDetailView.talkButtonAction = {
             self.connectTalkLink(urlString: self.listData[indexPath.row].meeting.chatLink)
+            AmplitudeInstance.shared.track(eventType: .clickCardChat)
         }
         
         cell.homeDetailPopUpView.participantionButtonAction = {
@@ -473,6 +476,7 @@ extension HomeListViewController: UICollectionViewDataSource {
                     cell.homeListDetailView.updateStyle()
                 }
             }
+            AmplitudeInstance.shared.track(eventType: .clickCardParticipate)
         }
         
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
@@ -487,6 +491,7 @@ extension HomeListViewController: UICollectionViewDataSource {
                         ) {}
                     }
                 }
+                AmplitudeInstance.shared.track(eventType: .clickCardDelete)
             } else {
                 self.meetingCancel(meetingId: self.listData[indexPath.row].meeting.id) { [weak self] result in
                     guard let self else { return }
@@ -499,12 +504,14 @@ extension HomeListViewController: UICollectionViewDataSource {
                         cell.homeListDetailView.updateStyle()
                     }
                 }
+                AmplitudeInstance.shared.track(eventType: .clickCardCancel)
             }
         }
         
         cell.memberButtonAction = {
             self.currentMeetingId = cell.homeListDetailView.meetingId
             self.participantCountButtonTapped()
+            AmplitudeInstance.shared.track(eventType: .clickCardParticipants)
         }
         
         cell.toggleButtonAction = {

@@ -39,6 +39,7 @@ final class MyPINGLEViewController: BaseViewController {
                 animated: true,
                 completion: nil
             )
+            AmplitudeInstance.shared.track(eventType: currentPage == 0 ? .clickSoonpingle : .clickDonepingle)
         }
     }
     

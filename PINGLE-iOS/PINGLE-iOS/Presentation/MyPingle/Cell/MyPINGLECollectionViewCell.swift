@@ -174,6 +174,7 @@ extension MyPINGLECollectionViewCell {
     @objc private func backButtonTapped() {
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
+        AmplitudeInstance.shared.track(eventType: .clickSoonpingleMoreCancelBack)
     }
     
     @objc private func cancelButtonTapped() {
@@ -273,6 +274,7 @@ extension MyPINGLECollectionViewCell: UIGestureRecognizerDelegate {
     ) -> Bool {
         dimmedView.isHidden = true
         homeDetailCancelPopUpView.isHidden = true
+        AmplitudeInstance.shared.track(eventType: .clickSoonpingleMoreCancelBack)
         return true
     }
 }

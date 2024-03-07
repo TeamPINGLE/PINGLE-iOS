@@ -55,6 +55,7 @@ public enum AmplitudeEventType: String {
     case clickMeetingHold = "click_meetinghold"
     case completeMeetingHold = "complete_meetinghold"
     case scrollRanking = "scroll_ranking"
+    //
     case clickSearchMap = "click_search_map"
     case completeSearchMap = "complete_search_map"
     case clickCategoryMap = "click_category_map"
@@ -87,5 +88,4 @@ public enum AmplitudeEventType: String {
     case clickDonepingle = "click_donepingle"
     case scrollDonepingle = "scroll_donepingle"
     case clickDonepingleParticipants = "click_donepingle_participants"
-    
 }

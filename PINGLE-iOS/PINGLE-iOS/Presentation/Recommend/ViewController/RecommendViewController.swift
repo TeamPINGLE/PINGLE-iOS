@@ -15,7 +15,7 @@ final class RecommendViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     private let titleLabel = UILabel()
-    private let rankingView = RankingView()
+    let rankingView = RankingView()
     private let refreshControl = UIRefreshControl()
     private var meetingCount: Int?
     var rankingResponseDTO: [RankingResponseDTO.Location] = []
@@ -32,6 +32,7 @@ final class RecommendViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
+        rankingList()
     }
     
     private func setNavigationBar() {

@@ -53,6 +53,15 @@ final class HomeListViewController: BaseViewController {
         ) {}
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getListData(
+            text: searchText,
+            category: category,
+            order: order
+        ) {}
+    }
+    
     private func setCollectionView() {
         listCollectionView.do {
             $0.delegate = self

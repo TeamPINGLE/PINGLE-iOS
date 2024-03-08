@@ -15,7 +15,7 @@ final class RecommendViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     private let titleLabel = UILabel()
-    private let rankingView = RankingView()
+    let rankingView = RankingView()
     private let refreshControl = UIRefreshControl()
     private var meetingCount: Int?
     var rankingResponseDTO: [RankingResponseDTO.Location] = []

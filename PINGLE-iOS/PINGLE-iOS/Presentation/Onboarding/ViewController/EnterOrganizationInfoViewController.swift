@@ -307,7 +307,7 @@ extension EnterOrganizationInfoViewController: UITextFieldDelegate {
         
         let emojiLength = string.unicodeScalars.filter { $0.isEmoji }.count
         let newLength = currentText.count + string.count - range.length + emojiLength
-        let maxLength = 20
+        let maxLength = 21
         
         return newLength <= maxLength
     }

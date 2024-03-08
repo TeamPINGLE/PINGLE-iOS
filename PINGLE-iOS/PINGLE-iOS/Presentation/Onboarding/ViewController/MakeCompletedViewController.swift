@@ -49,6 +49,7 @@ final class MakeCompletedViewController: BaseViewController {
         
         backGroundImageView.do {
             $0.image = UIImage(resource: .imgGroupGraphic)
+            $0.contentMode = .scaleAspectFit
         }
         
         titleLabel.do {
@@ -92,10 +93,19 @@ final class MakeCompletedViewController: BaseViewController {
                          bottomCTAButton,
                          homeButton)
         
-        backGroundImageView.snp.makeConstraints {
-            $0.height.equalTo(303)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(164)
-            $0.leading.trailing.equalToSuperview()
+        if UIScreen.main.bounds.height > 667 {
+            backGroundImageView.snp.makeConstraints {
+                $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(164)
+                $0.trailing.equalToSuperview()
+                $0.height.equalTo(362)
+                $0.width.equalTo(448)
+            }
+        } else {
+            backGroundImageView.snp.makeConstraints {
+                $0.height.equalTo(303)
+                $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(164)
+                $0.leading.trailing.equalToSuperview()
+            }
         }
         
         titleLabel.snp.makeConstraints {
@@ -106,6 +116,7 @@ final class MakeCompletedViewController: BaseViewController {
         organizationLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(22)
             $0.leading.equalToSuperview().inset(24)
+            $0.width.lessThanOrEqualTo(181)
         }
         
         postpositionLabel.snp.makeConstraints {
@@ -166,13 +177,7 @@ final class MakeCompletedViewController: BaseViewController {
         AmplitudeInstance.shared.track(eventType: .clickCreateGroupStart)
         let pingleTabBarController = PINGLETabBarController()
         let navigationController = UINavigationController(rootViewController: pingleTabBarController)
-        navigationController.view.alpha = 0.0
-
         self.view.window?.rootViewController = navigationController
         self.view.window?.makeKeyAndVisible()
-
-        UIView.animate(withDuration: 0.5) {
-            navigationController.view.alpha = 1.0
-        }
     }
 }

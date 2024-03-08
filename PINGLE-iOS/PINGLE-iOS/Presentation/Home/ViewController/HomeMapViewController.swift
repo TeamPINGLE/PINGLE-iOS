@@ -384,7 +384,6 @@ extension HomeMapViewController {
         q: String,
         completion: @escaping () -> Void
     ) {
-        // 추후 바뀐 그룹 받아오는 로직 작성 예정
         pinDetail(pinId: id, category: category, q: q) { [weak self] result in
             guard let self else { return }
             if result {

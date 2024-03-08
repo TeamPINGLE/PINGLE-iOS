@@ -32,6 +32,7 @@ final class RecommendViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
+        rankingList()
     }
     
     private func setNavigationBar() {

@@ -202,8 +202,7 @@ final class SoonViewController: BaseViewController {
                     if data.code == 200 {
                         print("신청 취소 완료")
                         completion(true)
-                    } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMember
-                    {
+                    } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMember {
                        self.meetingNotFound()
                         completion(true)
                    }

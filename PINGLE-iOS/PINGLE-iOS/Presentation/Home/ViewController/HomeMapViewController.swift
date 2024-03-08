@@ -229,10 +229,12 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 ) {}
                 AmplitudeInstance.shared.track(eventType: .clickPinParticipate)
             }
-            NotificationCenter.default.post(
-                name: .updatePinAndList,
-                object: nil,
-                userInfo: nil)
+            if self.isSearchResult {
+                NotificationCenter.default.post(
+                    name: .updatePinAndList,
+                    object: nil,
+                    userInfo: nil)
+            }
         }
         
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
@@ -264,10 +266,12 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 }
                 AmplitudeInstance.shared.track(eventType: .clickPinCancel)
             }
-            NotificationCenter.default.post(
-                name: .updatePinAndList,
-                object: nil,
-                userInfo: nil)
+            if self.isSearchResult {
+                NotificationCenter.default.post(
+                    name: .updatePinAndList,
+                    object: nil,
+                    userInfo: nil)
+            }
         }
         
         cell.homeDetailPopUpView.dataBind(data: homePinDetailList[indexPath.row])
@@ -553,8 +557,8 @@ extension HomeMapViewController {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
             switch response {
             case .success(let data):
-                if data.code == 201 {
-                    print("신청 완료")
+                if data.code == 200 {
+                    print("취소 완료")
                     completion(true)
                 } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMember {
                     self.meetingNotFound()

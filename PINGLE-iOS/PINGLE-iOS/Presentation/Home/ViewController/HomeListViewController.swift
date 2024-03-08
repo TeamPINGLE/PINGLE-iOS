@@ -376,13 +376,13 @@ final class HomeListViewController: BaseViewController {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
             switch response {
             case .success(let data):
-                if data.code == 201 {
-                    print("신청 완료")
+                if data.code == 200 {
+                    print("취소 완료")
                     completion(true)
                 } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMember {
                     self.meetingNotFound()
+                    completion(false)
                 }
-                completion(true)
             default:
                 print("실패")
                 completion(false)
@@ -468,8 +468,6 @@ extension HomeListViewController: UICollectionViewDataSource {
                     cell.homeListDetailView.isParticipating = true
                     self.listData[indexPath.row].meeting.isParticipating = true
                     cell.homeListDetailView.currentParticipants += 1
-                    self.listData[indexPath.row].meeting.curParticipants += 1
-
                     cell.homeListDetailView.updateStyle()
                 } else {
                     cell.homeListDetailView.currentParticipants =  cell.homeListDetailView.maxParticipants
@@ -499,8 +497,6 @@ extension HomeListViewController: UICollectionViewDataSource {
                         cell.homeListDetailView.isParticipating = false
                         self.listData[indexPath.row].meeting.isParticipating = false
                         cell.homeListDetailView.currentParticipants -= 1
-                        self.listData[indexPath.row].meeting.curParticipants -= 1
-
                         cell.homeListDetailView.updateStyle()
                     }
                 }

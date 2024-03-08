@@ -18,6 +18,8 @@ final class SoonViewController: BaseViewController {
     private let myPINGLEFlowLayout = UICollectionViewFlowLayout()
     private let emptyLabel = UILabel()
     private let refreshControl = UIRefreshControl()
+    private let deleteToastView = PINGLEWarningToastView()
+    
     /// 참여 예정
     private let participant = false
     private var meetingId: Int = 0
@@ -88,13 +90,22 @@ final class SoonViewController: BaseViewController {
             $0.addTarget(self,
                          action: #selector(refreshCollection(refresh:)),
                          for: .valueChanged)
+        }  
+        
+        deleteToastView.do {
+            $0.alpha = 0.0
+            $0.backgroundColor = .grayscaleG02
+            $0.warningImageView.image = UIImage(resource: .icInfoBlack)
+            $0.warningLabel.textColor = .black
+            $0.warningLabel.text =  StringLiterals.ToastView.deleteMeeting
         }
     }
     
     // MARK: Layout Helpers
     override func setLayout() {
         view.addSubviews(myPINGLECollectionView,
-                         emptyLabel)
+                         emptyLabel,
+                         deleteToastView)
         
         emptyLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -102,6 +113,11 @@ final class SoonViewController: BaseViewController {
         
         myPINGLECollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        deleteToastView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(15)
         }
     }
     
@@ -182,9 +198,15 @@ final class SoonViewController: BaseViewController {
         } else {
             NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
                 switch response {
-                case .success:
-                    print("신청 취소 완료")
-                    completion(true)
+                case .success(let data):
+                    if data.code == 200 {
+                        print("신청 취소 완료")
+                        completion(true)
+                    } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMember
+                    {
+                       self.meetingNotFound()
+                        completion(true)
+                   }
                 default:
                     print("실패")
                     completion(false)
@@ -192,6 +214,13 @@ final class SoonViewController: BaseViewController {
                 }
             }
             AmplitudeInstance.shared.track(eventType: .clickSoonpingleMoreCancel)
+        }
+    }
+    
+    private func meetingNotFound() {
+        self.deleteToastView.fadeIn()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.deleteToastView.fadeOut()
         }
     }
 }

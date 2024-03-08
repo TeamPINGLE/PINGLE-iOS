@@ -379,7 +379,7 @@ final class HomeListViewController: BaseViewController {
                 if data.code == 201 {
                     print("신청 완료")
                     completion(true)
-                } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMeeting {
+                } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMember {
                     self.meetingNotFound()
                 }
                 completion(true)

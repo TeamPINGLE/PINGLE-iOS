@@ -314,5 +314,6 @@ enum StringLiterals {
     
     enum ErrorMessage {
         static let notFoundMeeting = "존재하지 않는 번개입니다"
+        static let notFoundMember = "존재하지 않는 유저미팅입니다."
     }
 }

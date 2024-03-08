@@ -57,6 +57,13 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setTabBar()
+        setGroupName()
+    }
+    
+    private func setGroupName() {
+        if let userGroupName = KeychainHandler.shared.userGroupName {
+            homeGroupLabel.text = userGroupName
+        }
     }
     
     // MARK: Target Helpers
@@ -104,6 +111,12 @@ final class HomeViewController: BaseViewController {
         backButton.addTarget(self,
                              action: #selector(backButtonTapped),
                              for: .touchUpInside)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updatePinAndList(_:)),
+            name: .updatePinAndList, object: nil
+        )
     }
     
     // MARK: Style Helpers
@@ -112,9 +125,6 @@ final class HomeViewController: BaseViewController {
         homeListViewController.view.isHidden = isHomeMap
         
         homeGroupLabel.do {
-            if let userGroupName = KeychainHandler.shared.userGroupName {
-                $0.text = userGroupName
-            }
             $0.font = .titleTitleSemi20
             $0.textColor = .white
         }
@@ -295,6 +305,19 @@ final class HomeViewController: BaseViewController {
     
     @objc private func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func updatePinAndList(_ notification: Notification) {
+        if !isSearchResult {
+            homeMapViewController.loadPinList()
+            homeMapViewController.hideSelectedPin()
+            
+            homeListViewController.getListData(
+                text: homeListViewController.searchText,
+                category: homeListViewController.category,
+                order: homeListViewController.order
+            ) {}
+        }
     }
     
     // MARK: Custom Func

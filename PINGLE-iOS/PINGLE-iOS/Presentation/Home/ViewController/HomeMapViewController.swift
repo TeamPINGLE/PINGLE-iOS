@@ -229,6 +229,12 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 ) {}
                 AmplitudeInstance.shared.track(eventType: .clickPinParticipate)
             }
+            if self.isSearchResult {
+                NotificationCenter.default.post(
+                    name: .updatePinAndList,
+                    object: nil,
+                    userInfo: nil)
+            }
         }
         
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
@@ -259,6 +265,12 @@ extension HomeMapViewController: UICollectionViewDataSource {
                     }
                 }
                 AmplitudeInstance.shared.track(eventType: .clickPinCancel)
+            }
+            if self.isSearchResult {
+                NotificationCenter.default.post(
+                    name: .updatePinAndList,
+                    object: nil,
+                    userInfo: nil)
             }
         }
         
@@ -384,7 +396,6 @@ extension HomeMapViewController {
         q: String,
         completion: @escaping () -> Void
     ) {
-        // 추후 바뀐 그룹 받아오는 로직 작성 예정
         pinDetail(pinId: id, category: category, q: q) { [weak self] result in
             guard let self else { return }
             if result {
@@ -451,7 +462,7 @@ extension HomeMapViewController {
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
-                    if data.isEmpty && !q.isEmpty {
+                    if data.isEmpty && !q.isEmpty && (self?.isFirstSearch ?? true) {
                         self?.updateIsHomeMapAction()
                     }
                     print(data)
@@ -472,7 +483,7 @@ extension HomeMapViewController {
         }
     }
     
-    private func loadPinList() {
+    func loadPinList() {
         pinList(category: markerCategory, q: searchText) {_ in
             self.setMarker()
         }
@@ -546,10 +557,10 @@ extension HomeMapViewController {
         NetworkService.shared.homeService.meetingCancel(meetingId: meetingId) { response in
             switch response {
             case .success(let data):
-                if data.code == 201 {
-                    print("신청 완료")
+                if data.code == 200 {
+                    print("취소 완료")
                     completion(true)
-                } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMeeting {
+                } else if data.code == 404 && data.message == StringLiterals.ErrorMessage.notFoundMember {
                     self.meetingNotFound()
                 }
             default:

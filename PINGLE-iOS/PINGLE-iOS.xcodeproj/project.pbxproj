@@ -45,6 +45,7 @@
 		C30D1E0E2B5700DB00879258 /* MyPINGLECollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D1E0D2B5700DB00879258 /* MyPINGLECollectionViewCell.swift */; };
 		C30D1E112B57033800879258 /* MyPINGLECardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D1E102B57033800879258 /* MyPINGLECardView.swift */; };
 		C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */; };
+		C31A05892B9AD15A00FC5E2B /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A05882B9AD15A00FC5E2B /* NotificationName+.swift */; };
 		C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */; };
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
 		C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A2DE42B4D89950063F84A /* ParticipantButton.swift */; };
@@ -223,6 +224,7 @@
 		C30D1E0D2B5700DB00879258 /* MyPINGLECollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLECollectionViewCell.swift; sourceTree = "<group>"; };
 		C30D1E102B57033800879258 /* MyPINGLECardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLECardView.swift; sourceTree = "<group>"; };
 		C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListResponseDTO.swift; sourceTree = "<group>"; };
+		C31A05882B9AD15A00FC5E2B /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
 		C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButtonStatus.swift; sourceTree = "<group>"; };
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
 		C32A2DE42B4D89950063F84A /* ParticipantButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ParticipantButton.swift; path = "PINGLE-iOS/Presentation/Home/Components/ParticipantButton.swift"; sourceTree = SOURCE_ROOT; };
@@ -605,6 +607,7 @@
 				F1239BCE2B468A0F0072A02A /* CALayer+.swift */,
 				C385453F2B4868860040E60D /* String+.swift */,
 				F1D4527B2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift */,
+				C31A05882B9AD15A00FC5E2B /* NotificationName+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1538,6 +1541,7 @@
 				F13E69242B92030B00FCFBA3 /* ShareInviteCodeViewController.swift in Sources */,
 				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,
 				E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */,
+				C31A05892B9AD15A00FC5E2B /* NotificationName+.swift in Sources */,
 				F1D4527E2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift in Sources */,
 				F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */,
 				E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */,

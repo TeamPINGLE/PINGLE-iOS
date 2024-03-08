@@ -229,6 +229,10 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 ) {}
                 AmplitudeInstance.shared.track(eventType: .clickPinParticipate)
             }
+            NotificationCenter.default.post(
+                name: .updatePinAndList,
+                object: nil,
+                userInfo: nil)
         }
         
         cell.homeDetailCancelPopUpView.cancelButtonAction = {
@@ -260,6 +264,10 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 }
                 AmplitudeInstance.shared.track(eventType: .clickPinCancel)
             }
+            NotificationCenter.default.post(
+                name: .updatePinAndList,
+                object: nil,
+                userInfo: nil)
         }
         
         cell.homeDetailPopUpView.dataBind(data: homePinDetailList[indexPath.row])
@@ -471,7 +479,7 @@ extension HomeMapViewController {
         }
     }
     
-    private func loadPinList() {
+    func loadPinList() {
         pinList(category: markerCategory, q: searchText) {_ in
             self.setMarker()
         }

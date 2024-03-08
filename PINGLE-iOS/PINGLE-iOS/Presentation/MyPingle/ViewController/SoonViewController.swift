@@ -188,6 +188,10 @@ final class SoonViewController: BaseViewController {
                 case .success:
                     print("핑글 삭제 완료")
                     completion(true)
+                    NotificationCenter.default.post(
+                        name: .updatePinAndList,
+                        object: nil,
+                        userInfo: nil)
                 default:
                     print("실패")
                     completion(false)

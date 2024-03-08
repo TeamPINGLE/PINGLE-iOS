@@ -111,6 +111,12 @@ final class HomeViewController: BaseViewController {
         backButton.addTarget(self,
                              action: #selector(backButtonTapped),
                              for: .touchUpInside)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updatePinAndList(_:)),
+            name: .updatePinAndList, object: nil
+        )
     }
     
     // MARK: Style Helpers
@@ -299,6 +305,19 @@ final class HomeViewController: BaseViewController {
     
     @objc private func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func updatePinAndList(_ notification: Notification) {
+        if !isSearchResult {
+            homeMapViewController.loadPinList()
+            homeMapViewController.hideSelectedPin()
+            
+            homeListViewController.getListData(
+                text: homeListViewController.searchText,
+                category: homeListViewController.category,
+                order: homeListViewController.order
+            ) {}
+        }
     }
     
     // MARK: Custom Func

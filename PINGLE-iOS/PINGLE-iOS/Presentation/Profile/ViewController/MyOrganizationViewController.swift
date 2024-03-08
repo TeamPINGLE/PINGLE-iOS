@@ -351,6 +351,7 @@ final class MyOrganizationViewController: BaseViewController {
         
         currentOrganizationView.fadeOut()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.bindCurrentOrganizationView()
             self.currentOrganizationView.fadeIn()
             self.currentOrganizationView.bindData(data: selectedOrganizationInfo)
         }

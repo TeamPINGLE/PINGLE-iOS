@@ -150,10 +150,6 @@ class RankingCollectionViewCell: UICollectionViewCell {
 }
 
 func convertToDateStr(dateComponents: [Int]) -> String? {
-    guard dateComponents.count == 6 else {
-        return nil
-    }
-
     let year = dateComponents[0]
     let month = dateComponents[1]
     let day = dateComponents[2]

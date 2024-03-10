@@ -55,7 +55,7 @@ final class RankingView: BaseView {
         }
         
         emptyRankingLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(201)
+            $0.top.equalToSuperview().inset(201.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(32.adjusted)
         }
     }

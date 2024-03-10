@@ -47,7 +47,7 @@ class RankingCollectionViewCell: UICollectionViewCell {
         }
         
         rankingLabel.do {
-            $0.font = .captionCapBold12
+            $0.font = .subtitleSubBold16
             $0.textColor = .white
         }
         
@@ -103,7 +103,7 @@ class RankingCollectionViewCell: UICollectionViewCell {
         
         meetingNumberLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(20.adjusted)
+            $0.trailing.equalToSuperview().inset(6.adjusted)
         }
         
         placeNameLabel.snp.makeConstraints {
@@ -132,6 +132,20 @@ class RankingCollectionViewCell: UICollectionViewCell {
         placeNameLabel.text = data.name
         meetingNumberLabel.text = "\(data.locationCount)"
         currentDateLabel.text = convertToDateStr(dateComponents: data.latestVisitedDate)
+        
+        if data.locationCount < 10 {
+            self.rankingPinView.addSubview(meetingNumberLabel)
+            meetingNumberLabel.snp.updateConstraints {
+                $0.centerY.equalToSuperview()
+                $0.trailing.equalToSuperview().inset(10.adjusted)
+            }
+        } else {
+            self.rankingPinView.addSubview(meetingNumberLabel)
+            meetingNumberLabel.snp.updateConstraints {
+                $0.centerY.equalToSuperview()
+                $0.trailing.equalToSuperview().inset(6.adjusted)
+            }
+        }
     }
 }
 

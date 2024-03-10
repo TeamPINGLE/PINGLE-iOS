@@ -94,7 +94,8 @@ final class PINGLETabBarController: UITabBarController {
     }
     
     @objc func goToAddPingle() {
-        let navigationController = UINavigationController(rootViewController: MakeMeetingGuideViewController())
+        let makeMeetingGuideViewController = MakeMeetingGuideViewController()
+        let navigationController = UINavigationController(rootViewController: makeMeetingGuideViewController)
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true, completion: nil)
     }

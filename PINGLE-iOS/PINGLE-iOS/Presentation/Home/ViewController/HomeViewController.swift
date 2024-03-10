@@ -257,7 +257,7 @@ final class HomeViewController: BaseViewController {
             homeListViewController.category = sender.chipStatusString
             
             AmplitudeInstance.shared.track(eventType: isHomeMap ? .clickCategoryMap : .clickCategoryList,
-                                           eventProperties: [AmplitudePropertyType.category : sender.chipStatusString])
+                                           eventProperties: [AmplitudePropertyType.category: sender.chipStatusString])
         } else {
             let q = isSearchResult ? homeListViewController.searchText : ""
             homeMapViewController.pinList(category: "", q: q) { [weak self] result in

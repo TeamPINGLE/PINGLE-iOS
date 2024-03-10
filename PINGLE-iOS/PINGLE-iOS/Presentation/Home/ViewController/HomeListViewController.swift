@@ -453,6 +453,14 @@ final class HomeListViewController: BaseViewController {
     private func scrollToTop() {
         listCollectionView.setContentOffset(.zero, animated: true)
     }
+    
+    func reloadList() {
+        getListData(
+            text: searchText,
+            category: category,
+            order: order
+        ) {}
+    }
 }
 
 // MARK: - extensions

@@ -159,13 +159,14 @@ final class HomeListCollectionViewCell: UICollectionViewCell {
         UIView.animate(withDuration: 0.3) {
             self.collapsedConstraint?.isActive = !self.isExpand
             self.expandedConstraint?.isActive = self.isExpand
-            let upsideDown = CGAffineTransform(rotationAngle: .pi * -1)
-            self.homeListDetailView.toggleButton.transform = self.isExpand ? upsideDown : .identity
-            self.homeListDetailView.toggleButton.snp.remakeConstraints {
-                $0.bottom.equalToSuperview().inset(self.isExpand ? 10 : 0)
-                $0.centerX.equalToSuperview()
-            }
             self.homeListDetailView.bottomBackgroundView.makeCornerRound(radius: self.isExpand ? 15 : 8)
+        }
+        
+        let upsideDown = CGAffineTransform(rotationAngle: .pi * -1)
+        self.homeListDetailView.toggleButton.transform = self.isExpand ? upsideDown : .identity
+        self.homeListDetailView.toggleButton.snp.remakeConstraints {
+            $0.bottom.equalToSuperview().inset(self.isExpand ? 10 : 0)
+            $0.centerX.equalToSuperview()
         }
     }
     

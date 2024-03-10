@@ -287,7 +287,7 @@ final class HomeListDetailView: BaseView {
         }
         
         talkButton.snp.makeConstraints {
-            $0.bottom.equalTo(toggleButton.snp.top).offset(-20)
+            $0.top.equalTo(locationLabel.snp.bottom).offset(37)
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
             $0.height.equalTo(44)
             $0.width.equalTo(100.adjustedWidth)

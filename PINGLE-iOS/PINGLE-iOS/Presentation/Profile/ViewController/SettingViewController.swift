@@ -282,7 +282,7 @@ final class SettingViewController: BaseViewController {
         let manualViewController = ManualViewController()
         manualViewController.view.alpha = 0.0
 
-        self.view.window?.rootViewController = manualViewController
+        self.view.window?.rootViewController = UINavigationController(rootViewController: manualViewController)
         self.view.window?.makeKeyAndVisible()
 
         UIView.animate(withDuration: 0.5) {

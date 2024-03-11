@@ -174,9 +174,14 @@ final class LoginViewController: BaseViewController {
     
     // MARK: Select RootViewController Function
     func changeRootViewController(rootViewController: UIViewController) {
-        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
-        navigationController?.popToRootViewController(animated: true)
+        rootViewController.view.alpha = 0.0
+
+        self.view.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+        self.view.window?.makeKeyAndVisible()
+
+        UIView.animate(withDuration: 0.5) {
+            rootViewController.view.alpha = 1.0
+        }
     }
 }
 

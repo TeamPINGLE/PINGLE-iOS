@@ -43,7 +43,7 @@ class OrganizationButton: UIButton {
         
         organizationNameLabel.do {
             $0.setTextWithLineHeight(text: " ", lineHeight: 25)
-            $0.font = .subtitleSubBold18
+            $0.font = .subtitleSubSemi18
             $0.textColor = .grayscaleG01
             $0.numberOfLines = 2
             $0.textAlignment = .left

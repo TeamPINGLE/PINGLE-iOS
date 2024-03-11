@@ -309,6 +309,10 @@ final class HomeViewController: BaseViewController {
     }
     
     @objc private func clearButtonTapped() {
+        NotificationCenter.default.post(
+            name: .clearTextField,
+            object: nil,
+            userInfo: nil)
         self.navigationController?.popViewController(animated: true)
     }
     

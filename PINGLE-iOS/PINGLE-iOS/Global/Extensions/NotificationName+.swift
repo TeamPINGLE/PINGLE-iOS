@@ -10,4 +10,5 @@ import Foundation
 extension Notification.Name {
     static let updatePinAndList = Notification.Name(rawValue: "updatePinAndList")
     static let updateRanking = Notification.Name(rawValue: "updateRanking")
+    static let clearTextField = Notification.Name(rawValue: "clearTextField")
 }

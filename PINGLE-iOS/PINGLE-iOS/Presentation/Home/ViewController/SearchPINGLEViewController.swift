@@ -204,6 +204,7 @@ class SearchPINGLEViewController: BaseViewController {
         clearButton.addTarget(self,
                               action: #selector(clearButtonTapped),
                               for: .touchUpInside)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearButtonTapped), name: .clearTextField, object: nil)
     }
     
     private func setNavigation() {
@@ -215,7 +216,6 @@ class SearchPINGLEViewController: BaseViewController {
     }
     
     private func clearTextField() {
-        self.searchTextField.text?.removeAll()
         if searchTextField.text?.isEmpty ?? true {
             clearButton.isHidden = true
             searchButton.isHidden = false

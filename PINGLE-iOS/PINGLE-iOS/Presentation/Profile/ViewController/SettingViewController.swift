@@ -207,6 +207,8 @@ final class SettingViewController: BaseViewController {
     }
     
     @objc private func changeStateButtonTapped() {
+        dimmedView.isHidden = true
+        accountPopUpView.isHidden = true
         switch accountState {
         case .logout:
             postLogout()
@@ -240,9 +242,7 @@ final class SettingViewController: BaseViewController {
                 if data.code == 200 {
                     AmplitudeInstance.shared.track(eventType: .logoutApp)
                     KeychainHandler.shared.logout()
-                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-                    self.navigationController?.popToRootViewController(animated: true)
+                    changeRootViewController()
                 }
             default:
                 print("login error")
@@ -258,9 +258,7 @@ final class SettingViewController: BaseViewController {
                 if data.code == 200 {
                     AmplitudeInstance.shared.track(eventType: .withdrawApp)
                     KeychainHandler.shared.deleteID()
-                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-                    self.navigationController?.popToRootViewController(animated: true)
+                    changeRootViewController()
                 } else if data.code == 400 {
                     // 탈퇴하는 사용자가 단체장일 경우 경고장 띄우고 탈퇴시키지 않음.
                     dimmedView.isHidden = true
@@ -276,6 +274,20 @@ final class SettingViewController: BaseViewController {
     // MARK: Bind Function
     private func bindOrganizationName() {
         organizationButton.changeOrganizationName()
+    }
+    
+    // MARK: ChangeRootViewController
+    func changeRootViewController() {
+        UserDefaults.standard.set(true, forKey: "isFirstTime")
+        let manualViewController = ManualViewController()
+        manualViewController.view.alpha = 0.0
+
+        self.view.window?.rootViewController = manualViewController
+        self.view.window?.makeKeyAndVisible()
+
+        UIView.animate(withDuration: 0.5) {
+            manualViewController.view.alpha = 1.0
+        }
     }
 }
 

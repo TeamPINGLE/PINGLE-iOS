@@ -175,9 +175,14 @@ final class MakeCompletedViewController: BaseViewController {
     
     @objc func homeButtonTapped() {
         AmplitudeInstance.shared.track(eventType: .clickCreateGroupStart)
-        let pingleTabBarController = PINGLETabBarController()
-        let navigationController = UINavigationController(rootViewController: pingleTabBarController)
-        self.view.window?.rootViewController = navigationController
+        let PINGLETabBarController = PINGLETabBarController()
+        PINGLETabBarController.view.alpha = 0.0
+
+        self.view.window?.rootViewController = UINavigationController(rootViewController: PINGLETabBarController)
         self.view.window?.makeKeyAndVisible()
+
+        UIView.animate(withDuration: 0.5) {
+            PINGLETabBarController.view.alpha = 1.0
+        }
     }
 }

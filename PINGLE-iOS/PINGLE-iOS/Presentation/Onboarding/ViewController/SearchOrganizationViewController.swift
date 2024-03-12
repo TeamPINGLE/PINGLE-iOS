@@ -225,14 +225,15 @@ extension SearchOrganizationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         /// 검색 결과가 없는 경우 "검색 결과가 없어요" 라벨이 나옵니다. 검색결과가 있는 경우 "검색 결과가 없어요" 라벨이 사라집니다.
-        if let searchText = textField.text {
-            if searchText.isEmpty {
-                searchOrganizationResponseDTO = []
-                searchOrganizationView.searchCollectionView.reloadData()
-                searchOrganizationView.noResultLabel.isHidden = false
-            } else {
-                searchOrganization(name: SearchOrganizationRequestQueryDTO(name: searchText))
-            }
+        let text = textField.text ?? ""
+        let searchText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if searchText.isEmpty {
+            searchOrganizationResponseDTO = []
+            searchOrganizationView.searchCollectionView.reloadData()
+            searchOrganizationView.noResultLabel.isHidden = false
+        } else {
+            searchOrganization(name: SearchOrganizationRequestQueryDTO(name: searchText))
         }
         /// 선택된 행 해제한 뒤, 다음으로 버튼 비활성화
         selectedCellIndex = nil

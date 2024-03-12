@@ -167,7 +167,7 @@ final class OrganizationInfoView: BaseView {
         }
         
         representativeEmailLabel.snp.makeConstraints {
-            $0.top.equalTo(representativeEmailTitleLabel)
+            $0.top.equalTo(representativeEmailTitleLabel).offset(-3)
             $0.leading.equalTo(representativeEmailTitleLabel.snp.trailing).offset(33)
             $0.trailing.equalToSuperview().inset(23)
         }

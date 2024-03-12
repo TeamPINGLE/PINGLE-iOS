@@ -278,15 +278,14 @@ final class SettingViewController: BaseViewController {
     
     // MARK: ChangeRootViewController
     func changeRootViewController() {
-        UserDefaults.standard.set(true, forKey: "isFirstTime")
-        let manualViewController = ManualViewController()
-        manualViewController.view.alpha = 0.0
+        let loginViewController = LoginViewController()
+        loginViewController.view.alpha = 0.0
 
-        self.view.window?.rootViewController = UINavigationController(rootViewController: manualViewController)
+        self.view.window?.rootViewController = UINavigationController(rootViewController: loginViewController)
         self.view.window?.makeKeyAndVisible()
 
         UIView.animate(withDuration: 0.5) {
-            manualViewController.view.alpha = 1.0
+            loginViewController.view.alpha = 1.0
         }
     }
 }

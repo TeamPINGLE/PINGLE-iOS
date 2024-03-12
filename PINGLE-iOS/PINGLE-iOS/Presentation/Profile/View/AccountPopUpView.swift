@@ -124,7 +124,7 @@ final class AccountPopUpView: BaseView {
         backButton.setTitle(StringLiterals.Profile.ButtonTitle.changeTitle, for: .normal)
         changeStateButton.setTitle(StringLiterals.Profile.ButtonTitle.backTitle, for: .normal)
         explanationLabel.isHidden = true
-        //・
+        
         if organizationName.count > 12 {
             let endIndex = organizationName.index(organizationName.startIndex, offsetBy: 12)
             let truncatedString = organizationName[..<endIndex] + "・・・"

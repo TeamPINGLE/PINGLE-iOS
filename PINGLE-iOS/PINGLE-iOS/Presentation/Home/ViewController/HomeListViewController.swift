@@ -33,8 +33,16 @@ final class HomeListViewController: BaseViewController {
     // MARK: Variables
     var listData: [HomeListData] = []
     var searchText: String = ""
-    var category: String = ""
-    var order: String = "NEW"
+    var category: String = "" {
+        didSet {
+            scrollToTop()
+        }
+    }
+    var order: String = "NEW" {
+        didSet {
+            scrollToTop()
+        }
+    }
     var currentMeetingId: Int = 0
     var participantsAction: (() -> Void) = {}
     var isSearchResult = false
@@ -440,6 +448,18 @@ final class HomeListViewController: BaseViewController {
         emptyLabel.isHidden = false
         listData = []
         listCollectionView.reloadData()
+    }
+    
+    private func scrollToTop() {
+        listCollectionView.setContentOffset(.zero, animated: true)
+    }
+    
+    func reloadList() {
+        getListData(
+            text: searchText,
+            category: category,
+            order: order
+        ) {}
     }
 }
 

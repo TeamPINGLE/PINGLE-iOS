@@ -93,7 +93,7 @@ final class LoginViewController: BaseViewController {
                               adviceLabel, authorizationButton)
         
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(63)
+            $0.top.equalToSuperview().offset(107)
             $0.leading.equalToSuperview().inset(32.adjusted)
             $0.height.equalTo(73)
             $0.width.equalTo(73)

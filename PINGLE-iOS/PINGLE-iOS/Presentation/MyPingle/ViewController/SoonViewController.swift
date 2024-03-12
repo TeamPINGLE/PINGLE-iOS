@@ -217,6 +217,10 @@ final class SoonViewController: BaseViewController {
                 }
             }
             AmplitudeInstance.shared.track(eventType: .clickSoonpingleMoreCancel)
+            NotificationCenter.default.post(
+                name: .updatePinAndList,
+                object: nil,
+                userInfo: nil)
         }
     }
     

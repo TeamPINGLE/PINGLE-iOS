@@ -125,7 +125,8 @@ extension PINGLETabBarController: UITabBarControllerDelegate {
         
         let selectedIndex = tabBarController.selectedIndex
         switch selectedIndex {
-        case 1: recommendViewController.rankingView.rankingCollectionView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
+        case 1:
+            recommendViewController.rankingView.rankingCollectionView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
         case 3:
             myPingleViewController.soonViewController.myPINGLECollectionView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
             myPingleViewController.completeViewController.myPINGLECompleteCollectionView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)

@@ -242,13 +242,10 @@ extension HomeMapViewController: UICollectionViewDataSource {
                 self.meetingDelete(meetingId: self.homePinDetailList[indexPath.row].id) { [weak self] result in
                     guard let self else { return }
                     if result {
-                        bindDetailViewData(
-                            id: markerId,
-                            category: markerCategory,
-                            q: searchText
-                        ) {}
-                        mapsView.homeDetailCollectionView.isHidden = true
                         loadPinList()
+                        mapsView.homeDetailCollectionView.isHidden = true
+                        mapsView.currentLocationButton.isHidden = false
+                        mapsView.listButton.isHidden = false
                     }
                 }
                 AmplitudeInstance.shared.track(eventType: .clickPinDelete)

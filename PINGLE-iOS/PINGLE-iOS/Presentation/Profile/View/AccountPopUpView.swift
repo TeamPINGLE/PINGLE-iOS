@@ -125,7 +125,15 @@ final class AccountPopUpView: BaseView {
         changeStateButton.setTitle(StringLiterals.Profile.ButtonTitle.backTitle, for: .normal)
         explanationLabel.isHidden = true
         
-        questionLabel.text = "'\(organizationName)'" + StringLiterals.Profile.ExplainTitle.questionChangeOrganization
+        if organizationName.count > 12 {
+            let endIndex = organizationName.index(organizationName.startIndex, offsetBy: 12)
+            let truncatedString = organizationName[..<endIndex] + "・・・"
+            
+            questionLabel.text = "'\(truncatedString)'" + StringLiterals.Profile.ExplainTitle.questionChangeOrganization
+        } else {
+            questionLabel.text = "'\(organizationName)'" + StringLiterals.Profile.ExplainTitle.questionChangeOrganization
+        }
+        
         questionLabel.layoutIfNeeded()
         
         let viewHeight = 183 + min(questionLabel.countCurrentLines(), 3) * 25

@@ -246,6 +246,9 @@ final class HomeViewController: BaseViewController {
     @objc private func mapListButtonTapped() {
         AmplitudeInstance.shared.track(eventType: isHomeMap ? .clickListMap : .clickMapList)
         isHomeMap.toggle()
+        if !isHomeMap {
+            homeListViewController.reloadList()
+        }
     }
     
     @objc private func isChipButtonTapped(sender: ChipButton) {
@@ -265,7 +268,7 @@ final class HomeViewController: BaseViewController {
             homeListViewController.category = sender.chipStatusString
             
             AmplitudeInstance.shared.track(eventType: isHomeMap ? .clickCategoryMap : .clickCategoryList,
-                                           eventProperties: [AmplitudePropertyType.category : sender.chipStatusString])
+                                           eventProperties: [AmplitudePropertyType.category: sender.chipStatusString])
         } else {
             let q = isSearchResult ? homeListViewController.searchText : ""
             homeMapViewController.pinList(category: "", q: q) { [weak self] result in
@@ -323,12 +326,7 @@ final class HomeViewController: BaseViewController {
         if !isSearchResult {
             homeMapViewController.loadPinList()
             homeMapViewController.hideSelectedPin()
-            
-            homeListViewController.getListData(
-                text: homeListViewController.searchText,
-                category: homeListViewController.category,
-                order: homeListViewController.order
-            ) {}
+            homeListViewController.reloadList()
         }
     }
     

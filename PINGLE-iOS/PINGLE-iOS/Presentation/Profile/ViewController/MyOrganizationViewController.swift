@@ -292,6 +292,11 @@ final class MyOrganizationViewController: BaseViewController {
             name: .updateRanking,
             object: nil,
             userInfo: nil)
+      
+        NotificationCenter.default.post(
+            name: .updatePinAndList,
+            object: nil,
+            userInfo: nil)
     }
     
     /// 단체 정보 변경 팝업창에서 돌아가기 버튼을 클릭했을 때 호출되는 함수

@@ -14,7 +14,13 @@ import Then
 
 final class LoginViewController: BaseViewController {
     
+    // MARK: Variables
+    private var isRootViewController: Bool {
+        return navigationController?.viewControllers.first == self
+    }
+    
     // MARK: Property
+    private let backButton = UIButton()
     private let logoImageView = UIImageView()
     private let authorizationButton = UIButton()
     private let loginTitleLabel = UILabel()
@@ -25,10 +31,12 @@ final class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTarget()
+        setNavigation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setNavigationBar()
         AmplitudeInstance.shared.track(
             eventType: .startSignup,
             eventProperties: [AmplitudePropertyType.signupType : "apple"])
@@ -38,6 +46,10 @@ final class LoginViewController: BaseViewController {
     override func setStyle() {
         view.do {
             $0.backgroundColor = .grayscaleG11
+        }
+        
+        backButton.do {
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         logoImageView.do {
@@ -110,14 +122,38 @@ final class LoginViewController: BaseViewController {
         }
     }
     
+    // MARK: Navigation Function
+    private func setNavigationBar() {
+        if isRootViewController {
+            self.navigationController?.navigationBar.isHidden = true
+            self.navigationItem.hidesBackButton = true
+        } else {
+            self.navigationController?.navigationBar.isHidden = false
+            navigationController?.interactivePopGestureRecognizer?.delegate = self
+        }
+    }
+    
+    private func setNavigation() {
+        let customBackButton = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = customBackButton
+    }
+    
     // MARK: Target Function
     private func setTarget() {
-        authorizationButton.addTarget(self, 
+        backButton.addTarget(self,
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
+        authorizationButton.addTarget(self,
                                       action: #selector(handleAuthorizationAppleIDButtonPress),
                                       for: .touchUpInside)
     }
     
     // MARK: Objc Function
+    /// 네비게이션 바 backButton 클릭되었을 때 pop 함수 호출
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc func handleAuthorizationAppleIDButtonPress() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
@@ -223,5 +259,12 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
     /// - Tag: provide_presentation_anchor
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
+    }
+}
+
+//MARK: UIGestureRecognizerDelegate
+extension LoginViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

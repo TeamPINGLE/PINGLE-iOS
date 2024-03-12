@@ -204,7 +204,10 @@ class SearchPINGLEViewController: BaseViewController {
         clearButton.addTarget(self,
                               action: #selector(clearButtonTapped),
                               for: .touchUpInside)
-        NotificationCenter.default.addObserver(self, selector: #selector(clearButtonTapped), name: .clearTextField, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(clearButtonTapped),
+                                               name: .clearTextField,
+                                               object: nil)
     }
     
     private func setNavigation() {

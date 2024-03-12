@@ -133,18 +133,10 @@ class RankingCollectionViewCell: UICollectionViewCell {
         meetingNumberLabel.text = "\(data.locationCount)"
         currentDateLabel.text = convertToDateStr(dateComponents: data.latestVisitedDate)
         
-        if data.locationCount < 10 {
-            self.rankingPinView.addSubview(meetingNumberLabel)
-            meetingNumberLabel.snp.updateConstraints {
-                $0.centerY.equalToSuperview()
-                $0.trailing.equalToSuperview().inset(10.adjusted)
-            }
-        } else {
-            self.rankingPinView.addSubview(meetingNumberLabel)
-            meetingNumberLabel.snp.updateConstraints {
-                $0.centerY.equalToSuperview()
-                $0.trailing.equalToSuperview().inset(6.adjusted)
-            }
+        self.rankingPinView.addSubview(meetingNumberLabel)
+        meetingNumberLabel.snp.updateConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(data.locationCount < 10 ? 10.adjusted : 6.adjusted)
         }
     }
 }

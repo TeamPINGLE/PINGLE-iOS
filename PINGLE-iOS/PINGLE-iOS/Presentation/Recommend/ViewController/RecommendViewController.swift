@@ -25,6 +25,7 @@ final class RecommendViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
+        setTarget()
         setRegister()
         rankingList()
     }
@@ -34,6 +35,10 @@ final class RecommendViewController: BaseViewController {
         setNavigationBar()
         rankingList()
     }
+    
+    deinit {
+            NotificationCenter.default.removeObserver(self, name: .updateRanking, object: nil)
+        }
     
     private func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = true
@@ -89,16 +94,26 @@ final class RecommendViewController: BaseViewController {
                                                         forCellWithReuseIdentifier: RankingCollectionViewCell.identifier)
     }
     
+    private func setTarget() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRankingViewNotification), name: .updateRanking, object: nil)
+    }
+    
     private func setupRefreshControl() {
         rankingList { _ in
             self.rankingView.rankingCollectionView.reloadData()
         }
-       }
-
+    }
+    
     @objc private func refreshRankingView(refresh: UIRefreshControl) {
         refresh.beginRefreshing()
         setupRefreshControl()
         refresh.endRefreshing()
+    }
+    
+    @objc private func handleRankingViewNotification() {
+        rankingList { _ in
+            self.rankingView.rankingCollectionView.reloadData()
+        }
     }
     
     func rankingList(completion: @escaping (Bool) -> Void = { _ in }) {

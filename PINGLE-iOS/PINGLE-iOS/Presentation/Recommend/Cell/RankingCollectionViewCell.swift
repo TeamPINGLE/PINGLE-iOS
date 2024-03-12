@@ -47,7 +47,7 @@ class RankingCollectionViewCell: UICollectionViewCell {
         }
         
         rankingLabel.do {
-            $0.font = .captionCapBold12
+            $0.font = .subtitleSubBold16
             $0.textColor = .white
         }
         
@@ -103,7 +103,7 @@ class RankingCollectionViewCell: UICollectionViewCell {
         
         meetingNumberLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(20.adjusted)
+            $0.trailing.equalToSuperview().inset(6.adjusted)
         }
         
         placeNameLabel.snp.makeConstraints {
@@ -132,14 +132,16 @@ class RankingCollectionViewCell: UICollectionViewCell {
         placeNameLabel.text = data.name
         meetingNumberLabel.text = "\(data.locationCount)"
         currentDateLabel.text = convertToDateStr(dateComponents: data.latestVisitedDate)
+        
+        self.rankingPinView.addSubview(meetingNumberLabel)
+        meetingNumberLabel.snp.updateConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(data.locationCount < 10 ? 10.adjusted : 6.adjusted)
+        }
     }
 }
 
 func convertToDateStr(dateComponents: [Int]) -> String? {
-    guard dateComponents.count == 6 else {
-        return nil
-    }
-
     let year = dateComponents[0]
     let month = dateComponents[1]
     let day = dateComponents[2]

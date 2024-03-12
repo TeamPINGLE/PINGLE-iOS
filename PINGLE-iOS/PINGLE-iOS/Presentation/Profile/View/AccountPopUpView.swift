@@ -130,11 +130,11 @@ final class AccountPopUpView: BaseView {
             let truncatedString = organizationName[..<endIndex] + "・・・"
             
             questionLabel.text = "'\(truncatedString)'" + StringLiterals.Profile.ExplainTitle.questionChangeOrganization
-            questionLabel.layoutIfNeeded()
         } else {
             questionLabel.text = "'\(organizationName)'" + StringLiterals.Profile.ExplainTitle.questionChangeOrganization
-            questionLabel.layoutIfNeeded()
         }
+        
+        questionLabel.layoutIfNeeded()
         
         let viewHeight = 183 + min(questionLabel.countCurrentLines(), 3) * 25
         

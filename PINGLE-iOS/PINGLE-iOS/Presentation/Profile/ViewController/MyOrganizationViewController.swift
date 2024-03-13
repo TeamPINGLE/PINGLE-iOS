@@ -294,7 +294,7 @@ final class MyOrganizationViewController: BaseViewController {
             userInfo: nil)
       
         NotificationCenter.default.post(
-            name: .updatePinAndList,
+            name: .changeGroupHome,
             object: nil,
             userInfo: nil)
     }

@@ -117,6 +117,12 @@ final class HomeViewController: BaseViewController {
             name: .updatePinAndList, object: nil
         )
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(changeGroupHome(_:)),
+            name: .changeGroupHome, object: nil
+        )
+        
         if isSearchResult {
             NotificationCenter.default.addObserver(
                 self,
@@ -328,6 +334,15 @@ final class HomeViewController: BaseViewController {
             homeMapViewController.hideSelectedPin()
             homeListViewController.reloadList()
         }
+    }
+    
+    @objc func changeGroupHome(_ notification: Notification) {
+        if isSearchResult {
+            navigationController?.popToRootViewController(animated: true)
+        }
+        isHomeMap = true
+        homeListViewController.category = ""
+        resetChipSelected()
     }
     
     @objc func keyboardWillShow() {

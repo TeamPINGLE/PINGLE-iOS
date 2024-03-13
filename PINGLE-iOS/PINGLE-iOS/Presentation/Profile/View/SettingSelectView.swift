@@ -52,7 +52,7 @@ final class SettingSelectView: BaseView {
             $0.text = StringLiterals.Profile.ButtonTitle.deleteTitle
             $0.font = .captionCapSemi12
             $0.textColor = .grayscaleG06
-            $0.layer.addBorder([.bottom], color: .grayscaleG06, width: 1.0, frameHeight: 17.0, framgeWidth: 42.0.adjusted)
+            $0.layer.addBorder([.bottom], color: .grayscaleG06, width: 1.0, frameHeight: 17.0, framgeWidth: 42.0)
         }
     }
     

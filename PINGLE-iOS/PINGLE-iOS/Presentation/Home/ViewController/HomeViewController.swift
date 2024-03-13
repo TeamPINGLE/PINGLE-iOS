@@ -97,7 +97,6 @@ final class HomeViewController: BaseViewController {
         homeMapViewController.updateIsHomeMapAction = {
             [weak self]  in
             self?.isHomeMap = false
-            self?.homeListViewController.setEmptyView()
         }
         
         searchButton.addTarget(self,
@@ -117,6 +116,15 @@ final class HomeViewController: BaseViewController {
             selector: #selector(updatePinAndList(_:)),
             name: .updatePinAndList, object: nil
         )
+        
+        if isSearchResult {
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(keyboardWillShow),
+                name: UIResponder.keyboardWillShowNotification,
+                object: nil
+            )
+        }
     }
     
     // MARK: Style Helpers
@@ -148,7 +156,7 @@ final class HomeViewController: BaseViewController {
             $0.font = .bodyBodySemi14
             $0.textColor = .white
             $0.tintColor = .mainPingleGreen
-            $0.isUserInteractionEnabled = false
+            $0.isUserInteractionEnabled = true
             $0.isHidden = true
         }
         
@@ -303,6 +311,10 @@ final class HomeViewController: BaseViewController {
     }
     
     @objc private func clearButtonTapped() {
+        NotificationCenter.default.post(
+            name: .clearTextField,
+            object: nil,
+            userInfo: nil)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -316,6 +328,10 @@ final class HomeViewController: BaseViewController {
             homeMapViewController.hideSelectedPin()
             homeListViewController.reloadList()
         }
+    }
+    
+    @objc func keyboardWillShow() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: Custom Func

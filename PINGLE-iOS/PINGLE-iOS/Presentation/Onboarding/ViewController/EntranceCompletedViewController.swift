@@ -133,8 +133,14 @@ final class EntranceCompletedViewController: BaseViewController {
     @objc func bottomCTAButtonTapped() {
         AmplitudeInstance.shared.track(eventType: .clickExistingGroupStart)
         let PINGLETabBarController = PINGLETabBarController()
-        self.view.window?.rootViewController = PINGLETabBarController
+        PINGLETabBarController.view.alpha = 0.0
+
+        self.view.window?.rootViewController = UINavigationController(rootViewController: PINGLETabBarController)
         self.view.window?.makeKeyAndVisible()
+
+        UIView.animate(withDuration: 0.5) {
+            PINGLETabBarController.view.alpha = 1.0
+        }
     }
     
     // MARK: SetButton

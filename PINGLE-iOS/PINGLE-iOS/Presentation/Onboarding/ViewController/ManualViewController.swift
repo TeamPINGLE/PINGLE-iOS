@@ -40,10 +40,14 @@ final class ManualViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigation()
         setRegister()
         setTarget()
         changeButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
     }
     
     // MARK: UI
@@ -104,7 +108,7 @@ final class ManualViewController: BaseViewController {
     }
     
     // MARK: Navigation Function
-    private func setNavigation() {
+    private func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -165,14 +169,7 @@ final class ManualViewController: BaseViewController {
     func changeRootViewController() {
         UserDefaults.standard.set(true, forKey: "isFirstTime")
         let loginViewController = LoginViewController()
-        loginViewController.view.alpha = 0.0
-
-        self.view.window?.rootViewController = loginViewController
-        self.view.window?.makeKeyAndVisible()
-
-        UIView.animate(withDuration: 0.5) {
-            loginViewController.view.alpha = 1.0
-        }
+        navigationController?.pushViewController(loginViewController, animated: true)
     }
     
     // MARK: SetButton

@@ -287,6 +287,12 @@ final class MyOrganizationViewController: BaseViewController {
         dimmedView.isHidden = true
         changeOrganizationPopUpView.isHidden = true
         showWarningToastView(warningToastMessage: .changeOrganization)
+        
+        NotificationCenter.default.post(
+            name: .updateRanking,
+            object: nil,
+            userInfo: nil)
+      
         NotificationCenter.default.post(
             name: .updatePinAndList,
             object: nil,

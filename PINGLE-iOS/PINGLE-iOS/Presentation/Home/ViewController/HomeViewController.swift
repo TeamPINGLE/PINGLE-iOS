@@ -341,6 +341,7 @@ final class HomeViewController: BaseViewController {
             navigationController?.popToRootViewController(animated: true)
         }
         isHomeMap = true
+        homeListViewController.category = ""
         resetChipSelected()
     }
     

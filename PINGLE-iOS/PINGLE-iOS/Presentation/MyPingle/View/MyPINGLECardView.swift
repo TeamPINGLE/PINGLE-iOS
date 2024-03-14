@@ -153,7 +153,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         memberArrow.do {
-            $0.image = UIImage(resource: .icArrowRight)
+            $0.image = UIImage(resource: .icMyPingleArrow)
             $0.isUserInteractionEnabled = false
         }
         
@@ -285,7 +285,7 @@ final class MyPINGLECardView: BaseView {
         
         memberArrow.snp.makeConstraints {
             $0.centerY.trailing.equalToSuperview()
-            $0.leading.equalTo(memberLabel.snp.trailing).offset(4.adjustedWidth)
+            $0.leading.equalTo(memberLabel.snp.trailing).offset(4)
         }
         
         myPingleImageView.snp.makeConstraints {

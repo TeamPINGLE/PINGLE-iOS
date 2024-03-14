@@ -131,11 +131,6 @@ final class HomeListViewController: BaseViewController {
                 UIImage(resource: .icMapMap),
                 for: .normal
             )
-            $0.makeShadow(
-                radius: 5,
-                offset: CGSize(width: 0, height: 0),
-                opacity: 0.25
-            )
             $0.makeCornerRound(radius: 25.adjusted)
         }
         

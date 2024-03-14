@@ -80,11 +80,6 @@ final class HomeMapView: BaseView {
                 UIImage(resource: .icMapHere),
                 for: .normal
             )
-            $0.makeShadow(
-                radius: 5,
-                offset: CGSize(width: 0, height: 0),
-                opacity: 0.25
-            )
             $0.makeCornerRound(radius: 25.adjusted)
         }
         
@@ -100,11 +95,6 @@ final class HomeMapView: BaseView {
             $0.setImage(
                 UIImage(resource: .icMapList),
                 for: .normal
-            )
-            $0.makeShadow(
-                radius: 5,
-                offset: CGSize(width: 0, height: 0),
-                opacity: 0.25
             )
             $0.makeCornerRound(radius: 25.adjusted)
         }

@@ -305,11 +305,15 @@ extension EnterOrganizationInfoViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let currentText = textField.text else { return true }
         
-        let emojiLength = string.unicodeScalars.filter { $0.isEmoji }.count
-        let newLength = currentText.count + string.count - range.length + emojiLength
-        let maxLength = 21
+        if textField == organizationNameTextFieldView.searchTextField {
+            let emojiLength = string.unicodeScalars.filter { $0.isEmoji }.count
+            let newLength = currentText.count + string.count - range.length + emojiLength
+            let maxLength = 21
+            
+            return newLength <= maxLength
+        }
         
-        return newLength <= maxLength
+        return true
     }
     
     // MARK: Objc Function

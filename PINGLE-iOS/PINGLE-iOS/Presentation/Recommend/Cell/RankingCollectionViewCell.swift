@@ -78,13 +78,13 @@ class RankingCollectionViewCell: UICollectionViewCell {
     }
     
     func setLayout() {
-        self.addSubviews(rankingLabel, 
+        self.addSubviews(rankingLabel,
                          rankingView)
-        rankingView.addSubviews(rankingPinView, 
+        rankingView.addSubviews(rankingPinView,
                                 placeNameLabel,
                                 currentVisitLabel,
-                                currentDateLabel)
-        rankingPinView.addSubview(meetingNumberLabel)
+                                currentDateLabel,
+                                meetingNumberLabel)
         
         rankingLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(19)
@@ -102,8 +102,8 @@ class RankingCollectionViewCell: UICollectionViewCell {
         }
         
         meetingNumberLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(20)
+            $0.centerY.equalTo(rankingPinView)
+            $0.leading.equalToSuperview().inset(40.adjusted)
         }
         
         placeNameLabel.snp.makeConstraints {
@@ -132,6 +132,12 @@ class RankingCollectionViewCell: UICollectionViewCell {
         placeNameLabel.text = data.name
         meetingNumberLabel.text = "\(data.locationCount)"
         currentDateLabel.text = convertToDateStr(dateComponents: data.latestVisitedDate)
+        rankingPinView.snp.remakeConstraints {
+            $0.top.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalTo(meetingNumberLabel).offset(6)
+            $0.height.equalTo(19)
+        }
     }
 }
 

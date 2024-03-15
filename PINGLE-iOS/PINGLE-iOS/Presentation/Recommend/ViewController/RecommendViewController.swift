@@ -167,20 +167,6 @@ extension RecommendViewController: UICollectionViewDataSource {
         let rankingData = rankingResponseDTO[indexPath.item]
         cell.bindData(data: rankingData, rankingLabel: indexPath.row + 1)
         
-        if rankingData.locationCount >= 1 && rankingData.locationCount < 10 {
-            cell.rankingPinView.snp.updateConstraints {
-                $0.width.equalTo(31)
-            }
-        } else if rankingData.locationCount >= 10 && rankingData.locationCount < 100 {
-            cell.rankingPinView.snp.updateConstraints {
-                $0.width.equalTo(37)
-            }
-        } else {
-            cell.rankingPinView.snp.updateConstraints {
-                $0.width.equalTo(44)
-            }
-        }
-        
         return cell
     }
 

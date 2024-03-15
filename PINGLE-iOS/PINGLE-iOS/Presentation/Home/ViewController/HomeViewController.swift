@@ -50,7 +50,6 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         setResult()
         setAddTarget()
-        setNavigation()
         setTabBar()
     }
     
@@ -58,6 +57,7 @@ final class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         setTabBar()
         setGroupName()
+        setNavigation()
     }
     
     private func setGroupName() {
@@ -173,7 +173,7 @@ final class HomeViewController: BaseViewController {
         
         chipStackView.do {
             $0.axis = .horizontal
-            $0.spacing = 4.adjustedWidth
+            $0.spacing = -4
         }
     }
     

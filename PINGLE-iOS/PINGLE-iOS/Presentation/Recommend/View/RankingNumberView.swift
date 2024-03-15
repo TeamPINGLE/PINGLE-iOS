@@ -37,7 +37,6 @@ final class RankingNumberView: BaseView {
         
         self.snp.makeConstraints {
             $0.height.equalTo(19)
-            $0.width.equalTo(39)
         }
         
         rankingIcon.snp.makeConstraints {

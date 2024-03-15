@@ -166,8 +166,10 @@ extension RecommendViewController: UICollectionViewDataSource {
                                                             for: indexPath) as? RankingCollectionViewCell else {return UICollectionViewCell()}
         let rankingData = rankingResponseDTO[indexPath.item]
         cell.bindData(data: rankingData, rankingLabel: indexPath.row + 1)
+        
         return cell
     }
+
 }
 
 // MARK: UICollectionViewDelegateFlowLayout

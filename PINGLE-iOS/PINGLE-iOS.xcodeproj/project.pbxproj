@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90476A84D658F8529383126E /* Pods_PINGLE_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4C2FEF64C9439656F53167 /* Pods_PINGLE_iOS.framework */; };
+		0AC59AF5D8907159E9CB1A4D /* Pods_PINGLE_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE2F49532D2FD4A477B2914 /* Pods_PINGLE_iOS.framework */; };
 		C305D5992B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305D5982B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift */; };
 		C305D59B2B5176D3008993C3 /* SearchPlaceResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305D59A2B5176D3008993C3 /* SearchPlaceResponseDTO.swift */; };
 		C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307280E2B414D4B00AA575B /* UITextField+.swift */; };
@@ -45,12 +45,20 @@
 		C30D1E0E2B5700DB00879258 /* MyPINGLECollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D1E0D2B5700DB00879258 /* MyPINGLECollectionViewCell.swift */; };
 		C30D1E112B57033800879258 /* MyPINGLECardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D1E102B57033800879258 /* MyPINGLECardView.swift */; };
 		C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */; };
+		C31A05892B9AD15A00FC5E2B /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A05882B9AD15A00FC5E2B /* NotificationName+.swift */; };
 		C31A47A52B44732800D3CD4B /* ChipButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */; };
 		C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A47A62B44761200D3CD4B /* ChipButton.swift */; };
 		C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A2DE42B4D89950063F84A /* ParticipantButton.swift */; };
-		C32A2DE72B4D934C0063F84A /* ParticipantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A2DE62B4D934C0063F84A /* ParticipantViewController.swift */; };
 		C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33084BB2B47940300380E82 /* HomeMapDetailView.swift */; };
+		C333A5592B96D27100AC6901 /* AmplitudeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C333A5582B96D27100AC6901 /* AmplitudeSwift */; };
+		C333A55F2B96E26800AC6901 /* AmplitudeEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */; };
+		C333A5612B96E7F000AC6901 /* AmplitudePropertyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */; };
+		C333A5642B97089F00AC6901 /* AmplitudeInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */; };
+		C333A5662B97128400AC6901 /* AmplitudeUserProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333A5652B97128400AC6901 /* AmplitudeUserProperty.swift */; };
+		C33626D42B91CB3400CD8437 /* HomeListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33626D32B91CB3400CD8437 /* HomeListData.swift */; };
 		C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF3442B46E03400008653 /* PINGLEMarker.swift */; };
+		C3671F872B7DEC2E006E7C8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3671F862B7DEC2E006E7C8C /* HomeViewController.swift */; };
+		C384C1952B84E41D002B6F45 /* HomeListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C384C1942B84E41D002B6F45 /* HomeListDetailView.swift */; };
 		C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385453B2B47C5AE0040E60D /* HomeDetailPopUpView.swift */; };
 		C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385453D2B4857D30040E60D /* HomePinDetailResponseDTO.swift */; };
 		C38545402B4868860040E60D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385453F2B4868860040E60D /* String+.swift */; };
@@ -58,10 +66,8 @@
 		C39602BA2B3BEE06004BB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602B92B3BEE06004BB2B8 /* SceneDelegate.swift */; };
 		C39602C12B3BEE08004BB2B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C39602C02B3BEE08004BB2B8 /* Assets.xcassets */; };
 		C39602C42B3BEE08004BB2B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39602C22B3BEE08004BB2B8 /* LaunchScreen.storyboard */; };
-		C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D02B3BF162004BB2B8 /* ImageLiterals.swift */; };
 		C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D22B3BF169004BB2B8 /* StringLiterals.swift */; };
 		C39602D72B3BF189004BB2B8 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602D62B3BF189004BB2B8 /* Font.swift */; };
-		C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DA2B3BF199004BB2B8 /* Color.swift */; };
 		C39602DD2B3BF1A8004BB2B8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */; };
 		C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E32B3BF203004BB2B8 /* BaseView.swift */; };
 		C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */; };
@@ -74,14 +80,16 @@
 		C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */; };
 		C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */; };
 		C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */; };
-		C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A0D9602B49866F00E817B5 /* FixView.swift */; };
 		C3A0D9652B49892500E817B5 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9642B49892500E817B5 /* SFProDisplay-Regular.otf */; };
 		C3A0D9672B49892900E817B5 /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A0D9662B49892800E817B5 /* SFProDisplay-Bold.otf */; };
 		C3BCA86F2B57D0FC003C6996 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCA86E2B57D0FB003C6996 /* MoreView.swift */; };
 		C3BCA8712B57E293003C6996 /* MyPINGLEResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCA8702B57E293003C6996 /* MyPINGLEResponseDTO.swift */; };
+		C3C2621B2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C2621A2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift */; };
 		C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */; };
 		C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */; };
 		C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC304E2B43E20600276E00 /* HomeMapView.swift */; };
+		C3F095AC2B8A433A009A0819 /* HomeListSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F095AB2B8A433A009A0819 /* HomeListSearchRequestQueryDTO.swift */; };
+		C3F095AE2B8A443C009A0819 /* HomeListSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F095AD2B8A443C009A0819 /* HomeListSearchResponseDTO.swift */; };
 		C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */; };
 		E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */; };
 		E50333632B50A64F0005AC0E /* MeetingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50333622B50A64F0005AC0E /* MeetingTarget.swift */; };
@@ -89,9 +97,18 @@
 		E50AA1F92B46BEA5005E854B /* MeetingExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */; };
 		E50AA1FC2B47EDDA005E854B /* MeetingIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */; };
 		E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */; };
+		E51D424B2B89E1A6000E0CCE /* RankingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D424A2B89E1A6000E0CCE /* RankingTarget.swift */; };
+		E51D424D2B89E1C2000E0CCE /* RankingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D424C2B89E1C2000E0CCE /* RankingService.swift */; };
+		E542B6782B83CB2900B50B95 /* RankingNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6772B83CB2900B50B95 /* RankingNumberView.swift */; };
+		E542B67A2B83D57C00B50B95 /* RankingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */; };
+		E542B6802B83F2B600B50B95 /* RankingResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B67F2B83F2B600B50B95 /* RankingResponseDTO.swift */; };
+		E542B6822B840FD700B50B95 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6812B840FD700B50B95 /* RankingView.swift */; };
+		E542B6842B84F5CA00B50B95 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E542B6832B84F5CA00B50B95 /* FixView.swift */; };
 		E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */; };
 		E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */; };
 		E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565EB562B4FC9B80001758C /* MeetingManager.swift */; };
+		E56D7CF12B933B1600B23738 /* PINGLESearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56D7CF02B933B1600B23738 /* PINGLESearchView.swift */; };
+		E5866E7F2B94F9E500E2DA9E /* SearchPINGLEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5866E7E2B94F9E300E2DA9E /* SearchPINGLEViewController.swift */; };
 		E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */; };
 		E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */; };
 		E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A651EB2B4A982100676ED0 /* ExitModalView.swift */; };
@@ -111,6 +128,7 @@
 		E5FA3EC02B57D35000A0AC47 /* ParticipantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA3EBF2B57D35000A0AC47 /* ParticipantsListViewController.swift */; };
 		E5FA3EC42B5867B800A0AC47 /* AddPingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA3EC32B5867B800A0AC47 /* AddPingleViewController.swift */; };
 		F111BE662B4E8606001D116C /* UserInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */; };
+		F117D5CD2B8E47940037CC37 /* MakeTeamsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117D5CC2B8E47940037CC37 /* MakeTeamsResponseDTO.swift */; };
 		F12181BD2B505F5800D22F55 /* AppleTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181BC2B505F5800D22F55 /* AppleTokenResponse.swift */; };
 		F12181BF2B510EFB00D22F55 /* PINGLERequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181BE2B510EFB00D22F55 /* PINGLERequestInterceptor.swift */; };
 		F12181C12B5110F500D22F55 /* TokenRefreshResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12181C02B5110F500D22F55 /* TokenRefreshResponseDTO.swift */; };
@@ -129,6 +147,12 @@
 		F125A1842B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F125A1832B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift */; };
 		F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F125A1852B4FC77800739C34 /* OrganizationDetailResponseDTO.swift */; };
 		F125A1882B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */; };
+		F13E69222B90730900FCFBA3 /* MakeCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69212B90730900FCFBA3 /* MakeCompletedViewController.swift */; };
+		F13E69242B92030B00FCFBA3 /* ShareInviteCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69232B92030B00FCFBA3 /* ShareInviteCodeViewController.swift */; };
+		F13E69262B930BF800FCFBA3 /* CurrentOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */; };
+		F13E69292B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E69282B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift */; };
+		F13E692B2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E692A2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift */; };
+		F13E692D2B9378AF00FCFBA3 /* ShareInviteCodePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E692C2B9378AF00FCFBA3 /* ShareInviteCodePopUpView.swift */; };
 		F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C642B4945E00049A9EE /* SettingViewController.swift */; };
 		F14F3C692B494FB10049A9EE /* OrganizationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C682B494FB10049A9EE /* OrganizationButton.swift */; };
 		F14F3C6B2B4981110049A9EE /* SettingSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */; };
@@ -144,12 +168,24 @@
 		F19CE2C02B5417C500B8F9D0 /* MyOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CE2BF2B5417C500B8F9D0 /* MyOrganizationViewController.swift */; };
 		F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */; };
 		F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */; };
+		F1D452722B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452712B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift */; };
+		F1D452742B89BB6000D8F50F /* CheckNameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452732B89BB6000D8F50F /* CheckNameResponseDTO.swift */; };
+		F1D452762B89CD2D00D8F50F /* KeywordSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452752B89CD2D00D8F50F /* KeywordSelectionViewController.swift */; };
+		F1D452782B8B5EE200D8F50F /* KeywordColletionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452772B8B5EE200D8F50F /* KeywordColletionViewCell.swift */; };
+		F1D4527C2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D4527B2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		F1D4527E2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D4527D2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift */; };
+		F1D452802B8CB23A00D8F50F /* KeywordResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D4527F2B8CB23A00D8F50F /* KeywordResponseDTO.swift */; };
+		F1D452822B8CF63600D8F50F /* MakeTeamsRequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D452812B8CF63600D8F50F /* MakeTeamsRequestBodyDTO.swift */; };
+		F1DFF2892B7B6E86000AC100 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */; };
+		F1DFF28C2B7B7449000AC100 /* ManualCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */; };
+		F1DFF28E2B83497F000AC100 /* ManualDummyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */; };
+		F1DFF2912B849D65000AC100 /* EnterOrganizationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF2902B849D65000AC100 /* EnterOrganizationInfoViewController.swift */; };
+		F1DFF2932B849E62000AC100 /* MakeOrganizationGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFF2922B849E62000AC100 /* MakeOrganizationGuideViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		03E71CF4ACFDF0B6A8554474 /* Pods-PINGLE-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.debug.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		5D4C2FEF64C9439656F53167 /* Pods_PINGLE_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PINGLE_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		99FA74A665E555FBFDA809A7 /* Pods-PINGLE-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.release.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		3EE2F49532D2FD4A477B2914 /* Pods_PINGLE_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PINGLE_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F9128192B0E4F1C066FA767 /* Pods-PINGLE-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.release.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C305D5982B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaceRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C305D59A2B5176D3008993C3 /* SearchPlaceResponseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchPlaceResponseDTO.swift; path = "PINGLE-iOS/Network/Meeting/DTO/Request/SearchPlaceResponseDTO.swift"; sourceTree = SOURCE_ROOT; };
 		C307280E2B414D4B00AA575B /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
@@ -188,13 +224,21 @@
 		C30D1E0D2B5700DB00879258 /* MyPINGLECollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLECollectionViewCell.swift; sourceTree = "<group>"; };
 		C30D1E102B57033800879258 /* MyPINGLECardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLECardView.swift; sourceTree = "<group>"; };
 		C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListResponseDTO.swift; sourceTree = "<group>"; };
+		C31A05882B9AD15A00FC5E2B /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
 		C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButtonStatus.swift; sourceTree = "<group>"; };
 		C31A47A62B44761200D3CD4B /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
 		C32A2DE42B4D89950063F84A /* ParticipantButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ParticipantButton.swift; path = "PINGLE-iOS/Presentation/Home/Components/ParticipantButton.swift"; sourceTree = SOURCE_ROOT; };
-		C32A2DE62B4D934C0063F84A /* ParticipantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantViewController.swift; sourceTree = "<group>"; };
 		C33084BB2B47940300380E82 /* HomeMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapDetailView.swift; sourceTree = "<group>"; };
+		C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeEventType.swift; sourceTree = "<group>"; };
+		C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudePropertyType.swift; sourceTree = "<group>"; };
+		C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplitudeInstance.swift; sourceTree = "<group>"; };
+		C333A5652B97128400AC6901 /* AmplitudeUserProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeUserProperty.swift; sourceTree = "<group>"; };
+		C33626D32B91CB3400CD8437 /* HomeListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListData.swift; sourceTree = "<group>"; };
 		C33BF3442B46E03400008653 /* PINGLEMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLEMarker.swift; sourceTree = "<group>"; };
+		C35857B72B7A980600C21AF2 /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
+		C3671F862B7DEC2E006E7C8C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C36761B02B541C9C0086AAE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		C384C1942B84E41D002B6F45 /* HomeListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListDetailView.swift; sourceTree = "<group>"; };
 		C385453B2B47C5AE0040E60D /* HomeDetailPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailPopUpView.swift; sourceTree = "<group>"; };
 		C385453D2B4857D30040E60D /* HomePinDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinDetailResponseDTO.swift; sourceTree = "<group>"; };
 		C385453F2B4868860040E60D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -204,10 +248,8 @@
 		C39602C02B3BEE08004BB2B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C39602C32B3BEE08004BB2B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C39602C52B3BEE08004BB2B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C39602D02B3BF162004BB2B8 /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		C39602D22B3BF169004BB2B8 /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		C39602D62B3BF189004BB2B8 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		C39602DA2B3BF199004BB2B8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C39602DC2B3BF1A8004BB2B8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		C39602E32B3BF203004BB2B8 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C39602E52B3BF20A004BB2B8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -216,24 +258,36 @@
 		C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePinListRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C3A0D95C2B49862B00E817B5 /* MyPINGLEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEViewController.swift; sourceTree = "<group>"; };
 		C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
-		C3A0D9602B49866F00E817B5 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
 		C3A0D9642B49892500E817B5 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
 		C3A0D9662B49892800E817B5 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
 		C3BCA86E2B57D0FB003C6996 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		C3BCA8702B57E293003C6996 /* MyPINGLEResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPINGLEResponseDTO.swift; sourceTree = "<group>"; };
+		C3C2621A2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewController.swift; sourceTree = "<group>"; };
 		C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCancelPopUpView.swift; sourceTree = "<group>"; };
 		C3EC304E2B43E20600276E00 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
+		C3F095AB2B8A433A009A0819 /* HomeListSearchRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListSearchRequestQueryDTO.swift; sourceTree = "<group>"; };
+		C3F095AD2B8A443C009A0819 /* HomeListSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListSearchResponseDTO.swift; sourceTree = "<group>"; };
 		C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC85F25EA90099E48F456523 /* Pods-PINGLE-iOS.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.dev.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.dev.xcconfig"; sourceTree = "<group>"; };
 		E503335D2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMeetingRequestBodyDTO.swift; sourceTree = "<group>"; };
 		E50333622B50A64F0005AC0E /* MeetingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTarget.swift; sourceTree = "<group>"; };
 		E50333642B50A65D0005AC0E /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		E50AA1F82B46BEA5005E854B /* MeetingExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingExitButton.swift; sourceTree = "<group>"; };
 		E50AA1FB2B47EDD9005E854B /* MeetingIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingIntroductionViewController.swift; sourceTree = "<group>"; };
 		E50AA1FD2B492B56005E854B /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
+		E51D424A2B89E1A6000E0CCE /* RankingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTarget.swift; sourceTree = "<group>"; };
+		E51D424C2B89E1C2000E0CCE /* RankingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingService.swift; sourceTree = "<group>"; };
+		E542B6772B83CB2900B50B95 /* RankingNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingNumberView.swift; sourceTree = "<group>"; };
+		E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCollectionViewCell.swift; sourceTree = "<group>"; };
+		E542B67F2B83F2B600B50B95 /* RankingResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingResponseDTO.swift; sourceTree = "<group>"; };
+		E542B6812B840FD700B50B95 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
+		E542B6832B84F5CA00B50B95 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
 		E54AAC062B4D2B80002A0AE9 /* FinalSummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryCardView.swift; sourceTree = "<group>"; };
 		E54AAC082B4D41A0002A0AE9 /* FinalResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultViewController.swift; sourceTree = "<group>"; };
 		E565EB562B4FC9B80001758C /* MeetingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManager.swift; sourceTree = "<group>"; };
+		E56D7CF02B933B1600B23738 /* PINGLESearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLESearchView.swift; sourceTree = "<group>"; };
+		E5866E7E2B94F9E300E2DA9E /* SearchPINGLEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPINGLEViewController.swift; sourceTree = "<group>"; };
 		E5A651E72B4973AB00676ED0 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		E5A651E92B4A381500676ED0 /* CustomTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePickerView.swift; sourceTree = "<group>"; };
 		E5A651EB2B4A982100676ED0 /* ExitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitModalView.swift; sourceTree = "<group>"; };
@@ -253,6 +307,7 @@
 		E5FA3EBF2B57D35000A0AC47 /* ParticipantsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsListViewController.swift; sourceTree = "<group>"; };
 		E5FA3EC32B5867B800A0AC47 /* AddPingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPingleViewController.swift; sourceTree = "<group>"; };
 		F111BE652B4E8606001D116C /* UserInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponseDTO.swift; sourceTree = "<group>"; };
+		F117D5CC2B8E47940037CC37 /* MakeTeamsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTeamsResponseDTO.swift; sourceTree = "<group>"; };
 		F12181BC2B505F5800D22F55 /* AppleTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTokenResponse.swift; sourceTree = "<group>"; };
 		F12181BE2B510EFB00D22F55 /* PINGLERequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINGLERequestInterceptor.swift; sourceTree = "<group>"; };
 		F12181C02B5110F500D22F55 /* TokenRefreshResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshResponseDTO.swift; sourceTree = "<group>"; };
@@ -272,6 +327,12 @@
 		F125A1832B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInviteCodeRequestBodyDTO.swift; sourceTree = "<group>"; };
 		F125A1852B4FC77800739C34 /* OrganizationDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationDetailResponseDTO.swift; sourceTree = "<group>"; };
 		F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInviteCodeResponseDTO.swift; sourceTree = "<group>"; };
+		F13E69212B90730900FCFBA3 /* MakeCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompletedViewController.swift; sourceTree = "<group>"; };
+		F13E69232B92030B00FCFBA3 /* ShareInviteCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInviteCodeViewController.swift; sourceTree = "<group>"; };
+		F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentOrganizationView.swift; sourceTree = "<group>"; };
+		F13E69282B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrganizationCollectionViewCell.swift; sourceTree = "<group>"; };
+		F13E692A2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamsResponseDTO.swift; sourceTree = "<group>"; };
+		F13E692C2B9378AF00FCFBA3 /* ShareInviteCodePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInviteCodePopUpView.swift; sourceTree = "<group>"; };
 		F14F3C642B4945E00049A9EE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F14F3C682B494FB10049A9EE /* OrganizationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationButton.swift; sourceTree = "<group>"; };
 		F14F3C6A2B4981110049A9EE /* SettingSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSelectButton.swift; sourceTree = "<group>"; };
@@ -287,6 +348,20 @@
 		F19CE2BF2B5417C500B8F9D0 /* MyOrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrganizationViewController.swift; sourceTree = "<group>"; };
 		F1A186162B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationResponseDTO.swift; sourceTree = "<group>"; };
 		F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrganizationRequestQueryDTO.swift; sourceTree = "<group>"; };
+		F1D452712B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNameRequestParameterDTO.swift; sourceTree = "<group>"; };
+		F1D452732B89BB6000D8F50F /* CheckNameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNameResponseDTO.swift; sourceTree = "<group>"; };
+		F1D452752B89CD2D00D8F50F /* KeywordSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSelectionViewController.swift; sourceTree = "<group>"; };
+		F1D452772B8B5EE200D8F50F /* KeywordColletionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordColletionViewCell.swift; sourceTree = "<group>"; };
+		F1D4527B2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		F1D4527D2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOrganizationViewController.swift; sourceTree = "<group>"; };
+		F1D4527F2B8CB23A00D8F50F /* KeywordResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordResponseDTO.swift; sourceTree = "<group>"; };
+		F1D452812B8CF63600D8F50F /* MakeTeamsRequestBodyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTeamsRequestBodyDTO.swift; sourceTree = "<group>"; };
+		F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
+		F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCollectionViewCell.swift; sourceTree = "<group>"; };
+		F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualDummyDTO.swift; sourceTree = "<group>"; };
+		F1DFF2902B849D65000AC100 /* EnterOrganizationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterOrganizationInfoViewController.swift; sourceTree = "<group>"; };
+		F1DFF2922B849E62000AC100 /* MakeOrganizationGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrganizationGuideViewController.swift; sourceTree = "<group>"; };
+		F6EDBC2AFCA823628BAA3CA6 /* Pods-PINGLE-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PINGLE-iOS.debug.xcconfig"; path = "Target Support Files/Pods-PINGLE-iOS/Pods-PINGLE-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,21 +374,14 @@
 				C30C91912B4CED43004EE026 /* SwiftKeychainWrapper in Frameworks */,
 				C39603212B3BF47A004BB2B8 /* Then in Frameworks */,
 				C39603242B3BF484004BB2B8 /* SnapKit in Frameworks */,
-				90476A84D658F8529383126E /* Pods_PINGLE_iOS.framework in Frameworks */,
+				C333A5592B96D27100AC6901 /* AmplitudeSwift in Frameworks */,
+				0AC59AF5D8907159E9CB1A4D /* Pods_PINGLE_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6DA39E68FB7CB811E21AAB96 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5D4C2FEF64C9439656F53167 /* Pods_PINGLE_iOS.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		C305D59C2B5176D6008993C3 /* Response */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +389,14 @@
 			);
 			name = Response;
 			path = Request;
+			sourceTree = "<group>";
+		};
+		C306A43DC02D601DED2E7055 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3EE2F49532D2FD4A477B2914 /* Pods_PINGLE_iOS.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C3074B192B591B4D009D2D0C /* DTO */ = {
@@ -399,13 +475,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C333A5622B97082500AC6901 /* Amplitude */ = {
+			isa = PBXGroup;
+			children = (
+				C333A5632B97089F00AC6901 /* AmplitudeInstance.swift */,
+				C333A55E2B96E26800AC6901 /* AmplitudeEventType.swift */,
+				C333A5602B96E7F000AC6901 /* AmplitudePropertyType.swift */,
+				C333A5652B97128400AC6901 /* AmplitudeUserProperty.swift */,
+			);
+			path = Amplitude;
+			sourceTree = "<group>";
+		};
 		C33BF3462B46E85200008653 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C3671F862B7DEC2E006E7C8C /* HomeViewController.swift */,
 				C30728332B42E06D00AA575B /* HomeMapViewController.swift */,
-				C32A2DE62B4D934C0063F84A /* ParticipantViewController.swift */,
 				C3E199E92B4A3C01009B54B8 /* HomeListViewController.swift */,
 				E5FA3EBF2B57D35000A0AC47 /* ParticipantsListViewController.swift */,
+				E5866E7E2B94F9E300E2DA9E /* SearchPINGLEViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -414,6 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				C31A47A42B44732700D3CD4B /* ChipButtonStatus.swift */,
+				C33626D32B91CB3400CD8437 /* HomeListData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -436,6 +525,8 @@
 				C385453B2B47C5AE0040E60D /* HomeDetailPopUpView.swift */,
 				C3E199EC2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift */,
 				E5FA3EBD2B57BB9000A0AC47 /* ParticipantsListView.swift */,
+				C384C1942B84E41D002B6F45 /* HomeListDetailView.swift */,
+				E56D7CF02B933B1600B23738 /* PINGLESearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -445,11 +536,12 @@
 			children = (
 				C307282E2B42707200AA575B /* .swiftlint.yml */,
 				C307282A2B42695400AA575B /* Config.xcconfig */,
+				C35857B72B7A980600C21AF2 /* Config_dev.xcconfig */,
 				C39602B62B3BEE06004BB2B8 /* PINGLE-iOS */,
 				C39602B52B3BEE06004BB2B8 /* Products */,
 				FF1E7173A2F29B75E917C196 /* Pods */,
-				6DA39E68FB7CB811E21AAB96 /* Frameworks */,
 				C3E199EB2B4A7BD0009B54B8 /* Recovered References */,
+				C306A43DC02D601DED2E7055 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -495,7 +587,6 @@
 		C39602CD2B3BF130004BB2B8 /* Literals */ = {
 			isa = PBXGroup;
 			children = (
-				C39602D02B3BF162004BB2B8 /* ImageLiterals.swift */,
 				C39602D22B3BF169004BB2B8 /* StringLiterals.swift */,
 			);
 			path = Literals;
@@ -515,6 +606,8 @@
 				C307281E2B41503100AA575B /* UIViewController+.swift */,
 				F1239BCE2B468A0F0072A02A /* CALayer+.swift */,
 				C385453F2B4868860040E60D /* String+.swift */,
+				F1D4527B2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift */,
+				C31A05882B9AD15A00FC5E2B /* NotificationName+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -535,10 +628,10 @@
 			children = (
 				C39602D52B3BF183004BB2B8 /* Font */,
 				C39602D62B3BF189004BB2B8 /* Font.swift */,
-				C39602DA2B3BF199004BB2B8 /* Color.swift */,
 				C39602C02B3BEE08004BB2B8 /* Assets.xcassets */,
 				C39602C52B3BEE08004BB2B8 /* Info.plist */,
 				C307282B2B4269A000AA575B /* Config.swift */,
+				C333A5622B97082500AC6901 /* Amplitude */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -584,10 +677,10 @@
 		C39602E72B3BF20D004BB2B8 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				F1239BC42B458C9F0072A02A /* Cell */,
 				C39602EE2B3BF26D004BB2B8 /* ViewController */,
 				C39602F12B3BF276004BB2B8 /* View */,
 				F14F3C712B4B19230049A9EE /* Component */,
+				F1DFF28A2B7B723B000AC100 /* Cell */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -616,8 +709,10 @@
 		C39602EA2B3BF22F004BB2B8 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
-				C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */,
-				C3A0D9602B49866F00E817B5 /* FixView.swift */,
+				E542B6762B83CB0300B50B95 /* Cell */,
+				E542B6742B83CADD00B50B95 /* ViewController */,
+				E542B6732B83CACB00B50B95 /* View */,
+				E542B6832B84F5CA00B50B95 /* FixView.swift */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";
@@ -640,6 +735,7 @@
 				F14F3C662B4946180049A9EE /* ViewController */,
 				F14F3C6C2B4988150049A9EE /* View */,
 				F14F3C672B494F6A0049A9EE /* Component */,
+				F13E69272B9351BE00FCFBA3 /* Cell */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -663,6 +759,13 @@
 				F1239BBE2B4557810072A02A /* SearchOrganizationViewController.swift */,
 				F1239BD42B47D5530072A02A /* EnterInviteCodeViewController.swift */,
 				F1239BD82B486B230072A02A /* EntranceCompletedViewController.swift */,
+				F1DFF2882B7B6E86000AC100 /* ManualViewController.swift */,
+				F1DFF2902B849D65000AC100 /* EnterOrganizationInfoViewController.swift */,
+				F1DFF2922B849E62000AC100 /* MakeOrganizationGuideViewController.swift */,
+				F1D452752B89CD2D00D8F50F /* KeywordSelectionViewController.swift */,
+				F1D4527D2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift */,
+				F13E69212B90730900FCFBA3 /* MakeCompletedViewController.swift */,
+				F13E69232B92030B00FCFBA3 /* ShareInviteCodeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -679,6 +782,7 @@
 		C39603002B3BF2A7004BB2B8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E542B67D2B83F28900B50B95 /* Recommend */,
 				C39603012B3BF2BF004BB2B8 /* Base */,
 				C39603092B3BF307004BB2B8 /* Onboarding */,
 				C39603082B3BF2F3004BB2B8 /* Home */,
@@ -749,7 +853,6 @@
 			isa = PBXGroup;
 			children = (
 				C39603102B3BF348004BB2B8 /* DTO */,
-				F14F3C752B4D36D20049A9EE /* Response */,
 				C39603122B3BF357004BB2B8 /* Router */,
 				C39603112B3BF34E004BB2B8 /* Service */,
 			);
@@ -760,6 +863,7 @@
 			isa = PBXGroup;
 			children = (
 				F14F3C722B4D35F90049A9EE /* Request */,
+				F14F3C752B4D36D20049A9EE /* Response */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -809,6 +913,7 @@
 			isa = PBXGroup;
 			children = (
 				C314F79C2B468F0B008EFFCA /* HomePinListResponseDTO.swift */,
+				C3F095AD2B8A443C009A0819 /* HomeListSearchResponseDTO.swift */,
 				C385453D2B4857D30040E60D /* HomePinDetailResponseDTO.swift */,
 				E5CA99722B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift */,
 			);
@@ -819,6 +924,7 @@
 			isa = PBXGroup;
 			children = (
 				C39B8D292B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift */,
+				C3F095AB2B8A433A009A0819 /* HomeListSearchRequestQueryDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -835,6 +941,7 @@
 			children = (
 				C3FE9F5F2B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift */,
 				E5FA3EBB2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift */,
+				C3C2621A2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -880,6 +987,65 @@
 				E5A651F92B4B2A6F00676ED0 /* RecruitButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		E51D42482B89E155000E0CCE /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E51D424A2B89E1A6000E0CCE /* RankingTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		E51D42492B89E15D000E0CCE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E51D424C2B89E1C2000E0CCE /* RankingService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E542B6732B83CACB00B50B95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E542B6772B83CB2900B50B95 /* RankingNumberView.swift */,
+				E542B6812B840FD700B50B95 /* RankingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E542B6742B83CADD00B50B95 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3A0D95E2B49863800E817B5 /* RecommendViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E542B6762B83CB0300B50B95 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E542B6792B83D57C00B50B95 /* RankingCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E542B67D2B83F28900B50B95 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				E51D42492B89E15D000E0CCE /* Service */,
+				E51D42482B89E155000E0CCE /* Router */,
+				E542B67E2B83F29400B50B95 /* DTO */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
+		E542B67E2B83F29400B50B95 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				E542B67F2B83F2B600B50B95 /* RankingResponseDTO.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		E565EB552B4FC9550001758C /* MeetingManager */ = {
@@ -949,14 +1115,15 @@
 			isa = PBXGroup;
 			children = (
 				F12181BC2B505F5800D22F55 /* AppleTokenResponse.swift */,
+				F13E692A2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
 		};
-		F1239BC42B458C9F0072A02A /* Cell */ = {
+		F13E69272B9351BE00FCFBA3 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */,
+				F13E69282B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -983,7 +1150,9 @@
 			isa = PBXGroup;
 			children = (
 				F14F3C6F2B49BEB60049A9EE /* AccountPopUpView.swift */,
+				F13E692C2B9378AF00FCFBA3 /* ShareInviteCodePopUpView.swift */,
 				F14F3C6D2B4988380049A9EE /* SettingSelectView.swift */,
+				F13E69252B930BF800FCFBA3 /* CurrentOrganizationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1002,6 +1171,8 @@
 				F14F3C732B4D36BB0049A9EE /* LoginRequestBodyDTO.swift */,
 				F1A186182B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift */,
 				F125A1832B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift */,
+				F1D452712B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift */,
+				F1D452812B8CF63600D8F50F /* MakeTeamsRequestBodyDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1015,6 +1186,10 @@
 				F125A1852B4FC77800739C34 /* OrganizationDetailResponseDTO.swift */,
 				F125A1872B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift */,
 				F12181C02B5110F500D22F55 /* TokenRefreshResponseDTO.swift */,
+				F1DFF28D2B83497F000AC100 /* ManualDummyDTO.swift */,
+				F1D452732B89BB6000D8F50F /* CheckNameResponseDTO.swift */,
+				F1D4527F2B8CB23A00D8F50F /* KeywordResponseDTO.swift */,
+				F117D5CC2B8E47940037CC37 /* MakeTeamsResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1043,11 +1218,22 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		F1DFF28A2B7B723B000AC100 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F1239BC52B458CC20072A02A /* SearchCollectionViewCell.swift */,
+				F1DFF28B2B7B7449000AC100 /* ManualCollectionViewCell.swift */,
+				F1D452772B8B5EE200D8F50F /* KeywordColletionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		FF1E7173A2F29B75E917C196 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				03E71CF4ACFDF0B6A8554474 /* Pods-PINGLE-iOS.debug.xcconfig */,
-				99FA74A665E555FBFDA809A7 /* Pods-PINGLE-iOS.release.xcconfig */,
+				F6EDBC2AFCA823628BAA3CA6 /* Pods-PINGLE-iOS.debug.xcconfig */,
+				CC85F25EA90099E48F456523 /* Pods-PINGLE-iOS.dev.xcconfig */,
+				6F9128192B0E4F1C066FA767 /* Pods-PINGLE-iOS.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1059,12 +1245,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C39602C82B3BEE08004BB2B8 /* Build configuration list for PBXNativeTarget "PINGLE-iOS" */;
 			buildPhases = (
-				1CA75F3B5258D5006614A784 /* [CP] Check Pods Manifest.lock */,
+				D25588A3ACE114904BFA51A4 /* [CP] Check Pods Manifest.lock */,
 				C39602B02B3BEE06004BB2B8 /* Sources */,
 				C39602B12B3BEE06004BB2B8 /* Frameworks */,
 				C39602B22B3BEE06004BB2B8 /* Resources */,
-				48BCDB9971105693A4122EDE /* [CP] Embed Pods Frameworks */,
 				C307282D2B42701B00AA575B /* ShellScript */,
+				19FC95BE50CDC1F679F870B3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1077,6 +1263,7 @@
 				C39603262B3BF48E004BB2B8 /* Alamofire */,
 				C39603292B3BF497004BB2B8 /* Kingfisher */,
 				C30C91902B4CED43004EE026 /* SwiftKeychainWrapper */,
+				C333A5582B96D27100AC6901 /* AmplitudeSwift */,
 			);
 			productName = "PINGLE-iOS";
 			productReference = C39602B42B3BEE06004BB2B8 /* PINGLE-iOS.app */;
@@ -1113,6 +1300,7 @@
 				C39603252B3BF48E004BB2B8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C39603282B3BF497004BB2B8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				C333A5572B96D27100AC6901 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */,
 			);
 			productRefGroup = C39602B52B3BEE06004BB2B8 /* Products */;
 			projectDirPath = "";
@@ -1142,29 +1330,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1CA75F3B5258D5006614A784 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PINGLE-iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48BCDB9971105693A4122EDE /* [CP] Embed Pods Frameworks */ = {
+		19FC95BE50CDC1F679F870B3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1199,6 +1365,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		D25588A3ACE114904BFA51A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PINGLE-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1207,6 +1395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E50333632B50A64F0005AC0E /* MeetingTarget.swift in Sources */,
+				F13E692B2B9367E100FCFBA3 /* MyTeamsResponseDTO.swift in Sources */,
 				F14F3C702B49BEB60049A9EE /* AccountPopUpView.swift in Sources */,
 				F125A1882B4FC82600739C34 /* EnterInviteCodeResponseDTO.swift in Sources */,
 				F12181C12B5110F500D22F55 /* TokenRefreshResponseDTO.swift in Sources */,
@@ -1216,32 +1405,45 @@
 				C3A0D95F2B49863800E817B5 /* RecommendViewController.swift in Sources */,
 				F14F3C7B2B4D38AD0049A9EE /* OnboardingService.swift in Sources */,
 				C39602D32B3BF169004BB2B8 /* StringLiterals.swift in Sources */,
+				C333A5612B96E7F000AC6901 /* AmplitudePropertyType.swift in Sources */,
+				C3C2621B2B7FC6DB00F7D436 /* HomeListCollectionViewCell.swift in Sources */,
 				E5CA99732B58D3B100FA0F76 /* ParticipantsListResponseDTO.swift in Sources */,
 				C30C918C2B4CECE2004EE026 /* TargetType.swift in Sources */,
+				F13E69222B90730900FCFBA3 /* MakeCompletedViewController.swift in Sources */,
 				C3FE9F602B4FBE1500BC53DE /* HomeDetailCollectionViewCell.swift in Sources */,
 				E5AD29942B454BB3005D1220 /* PINGLECTAButton.swift in Sources */,
+				E56D7CF12B933B1600B23738 /* PINGLESearchView.swift in Sources */,
 				C39602D72B3BF189004BB2B8 /* Font.swift in Sources */,
 				C3E199ED2B4A89B4009B54B8 /* HomeDetailCancelPopUpView.swift in Sources */,
 				C3BCA8712B57E293003C6996 /* MyPINGLEResponseDTO.swift in Sources */,
 				F1A186172B4FB0D10000BCF3 /* SearchOrganizationResponseDTO.swift in Sources */,
 				E565EB572B4FC9B80001758C /* MeetingManager.swift in Sources */,
+				E51D424B2B89E1A6000E0CCE /* RankingTarget.swift in Sources */,
 				E5AD29A02B46876E005D1220 /* SelectCategoryViewController.swift in Sources */,
 				C30C91992B4CEDAB004EE026 /* NetworkService.swift in Sources */,
+				F1DFF2912B849D65000AC100 /* EnterOrganizationInfoViewController.swift in Sources */,
+				C333A55F2B96E26800AC6901 /* AmplitudeEventType.swift in Sources */,
+				C33626D42B91CB3400CD8437 /* HomeListData.swift in Sources */,
 				C30D1E0A2B56FB7B00879258 /* CompleteViewController.swift in Sources */,
 				C39B8D2A2B4D057F008DCAC6 /* HomePinListRequestQueryDTO.swift in Sources */,
-				C39602D12B3BF162004BB2B8 /* ImageLiterals.swift in Sources */,
 				E5A651F62B4AF72500676ED0 /* SearchPlaceView.swift in Sources */,
 				C3074B1E2B591B75009D2D0C /* MyPINGLEService.swift in Sources */,
 				F1239BB82B43CABE0072A02A /* LoginViewController.swift in Sources */,
 				C3074B252B599406009D2D0C /* AppStoreCheck.swift in Sources */,
+				E51D424D2B89E1C2000E0CCE /* RankingService.swift in Sources */,
 				C30C91932B4CED84004EE026 /* APIEventLogger.swift in Sources */,
 				E5FA3EBC2B57179E00A0AC47 /* ParticipantsCollectionViewCell.swift in Sources */,
 				F14F3C6E2B4988380049A9EE /* SettingSelectView.swift in Sources */,
+				F1DFF28C2B7B7449000AC100 /* ManualCollectionViewCell.swift in Sources */,
+				F1D452722B89B3F900D8F50F /* CheckNameRequestParameterDTO.swift in Sources */,
 				E5A651EE2B4ADE6000676ED0 /* PlaceSelectionViewController.swift in Sources */,
 				C3A0D95D2B49862B00E817B5 /* MyPINGLEViewController.swift in Sources */,
 				C30D1E112B57033800879258 /* MyPINGLECardView.swift in Sources */,
 				F12181BF2B510EFB00D22F55 /* PINGLERequestInterceptor.swift in Sources */,
+				E542B6802B83F2B600B50B95 /* RankingResponseDTO.swift in Sources */,
+				F1D452762B89CD2D00D8F50F /* KeywordSelectionViewController.swift in Sources */,
 				C30728112B414D6500AA575B /* UILabel+.swift in Sources */,
+				E542B6822B840FD700B50B95 /* RankingView.swift in Sources */,
 				C307281B2B414FF900AA575B /* adjust+.swift in Sources */,
 				C385453E2B4857D30040E60D /* HomePinDetailResponseDTO.swift in Sources */,
 				E5AD299E2B467B2E005D1220 /* PINGLECategoryButton.swift in Sources */,
@@ -1251,6 +1453,7 @@
 				C30C918A2B4CEC32004EE026 /* NetworkResult.swift in Sources */,
 				F12181BD2B505F5800D22F55 /* AppleTokenResponse.swift in Sources */,
 				C33084BC2B47940300380E82 /* HomeMapDetailView.swift in Sources */,
+				F1D452782B8B5EE200D8F50F /* KeywordColletionViewCell.swift in Sources */,
 				E5A651F42B4AE53E00676ED0 /* PlaceSelectionCollectionViewCell.swift in Sources */,
 				E5AD299C2B455E20005D1220 /* MakeMeetingGuideViewController.swift in Sources */,
 				E5A651EC2B4A982200676ED0 /* ExitModalView.swift in Sources */,
@@ -1259,40 +1462,52 @@
 				E503335E2B50A6040005AC0E /* MakeMeetingRequestBodyDTO.swift in Sources */,
 				E54AAC072B4D2B81002A0AE9 /* FinalSummaryCardView.swift in Sources */,
 				F14F44AD2B50413400871E5A /* ProfileTarget.swift in Sources */,
+				C333A5662B97128400AC6901 /* AmplitudeUserProperty.swift in Sources */,
+				F117D5CD2B8E47940037CC37 /* MakeTeamsResponseDTO.swift in Sources */,
 				C39B8D242B4CFB70008DCAC6 /* HomeService.swift in Sources */,
+				C3F095AE2B8A443C009A0819 /* HomeListSearchResponseDTO.swift in Sources */,
 				C30D1E0E2B5700DB00879258 /* MyPINGLECollectionViewCell.swift in Sources */,
-				C32A2DE72B4D934C0063F84A /* ParticipantViewController.swift in Sources */,
+				F1DFF2892B7B6E86000AC100 /* ManualViewController.swift in Sources */,
 				F1239BBD2B444A250072A02A /* OnboardingViewController.swift in Sources */,
 				C385453C2B47C5AE0040E60D /* HomeDetailPopUpView.swift in Sources */,
+				F13E69292B93521000FCFBA3 /* MyOrganizationCollectionViewCell.swift in Sources */,
 				C30728172B414F6700AA575B /* UIImageView+.swift in Sources */,
 				F1239BD72B47D8F60072A02A /* OrganizationInfoView.swift in Sources */,
 				C39602E62B3BF20A004BB2B8 /* BaseViewController.swift in Sources */,
 				C307281D2B41500900AA575B /* UIColor+.swift in Sources */,
+				F13E69262B930BF800FCFBA3 /* CurrentOrganizationView.swift in Sources */,
 				F1239BC62B458CC20072A02A /* SearchCollectionViewCell.swift in Sources */,
+				E5866E7F2B94F9E500E2DA9E /* SearchPINGLEViewController.swift in Sources */,
 				F1239BD52B47D5530072A02A /* EnterInviteCodeViewController.swift in Sources */,
 				C30728322B42D0F900AA575B /* PINGLETabBarController.swift in Sources */,
 				C30728152B414F5800AA575B /* UIButton+.swift in Sources */,
+				C384C1952B84E41D002B6F45 /* HomeListDetailView.swift in Sources */,
 				C307281F2B41503100AA575B /* UIViewController+.swift in Sources */,
 				C314F79D2B468F0B008EFFCA /* HomePinListResponseDTO.swift in Sources */,
 				F1A186192B4FB2CE0000BCF3 /* SearchOrganizationRequestQueryDTO.swift in Sources */,
 				C3E199EA2B4A3C01009B54B8 /* HomeListViewController.swift in Sources */,
 				F19CE2C02B5417C500B8F9D0 /* MyOrganizationViewController.swift in Sources */,
+				F1D452822B8CF63600D8F50F /* MakeTeamsRequestBodyDTO.swift in Sources */,
+				E542B67A2B83D57C00B50B95 /* RankingCollectionViewCell.swift in Sources */,
 				F14F3C652B4945E00049A9EE /* SettingViewController.swift in Sources */,
 				C30728192B414FC800AA575B /* UIStackView+.swift in Sources */,
+				F1DFF2932B849E62000AC100 /* MakeOrganizationGuideViewController.swift in Sources */,
 				F1239BD32B4724900072A02A /* PINGLEWarningToastView.swift in Sources */,
 				F1239BBF2B4557810072A02A /* SearchOrganizationViewController.swift in Sources */,
 				F125A1862B4FC77800739C34 /* OrganizationDetailResponseDTO.swift in Sources */,
+				F1D452802B8CB23A00D8F50F /* KeywordResponseDTO.swift in Sources */,
 				C305D59B2B5176D3008993C3 /* SearchPlaceResponseDTO.swift in Sources */,
-				C39602DB2B3BF199004BB2B8 /* Color.swift in Sources */,
+				C333A5642B97089F00AC6901 /* AmplitudeInstance.swift in Sources */,
 				C30D1E062B56FAD700879258 /* MyPINGLESegmentControl.swift in Sources */,
+				F1D4527C2B8B70F400D8F50F /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				C39B8D222B4CFB68008DCAC6 /* HomeTarget.swift in Sources */,
 				F16BCA392B4E62760096A62F /* SplashViewController.swift in Sources */,
 				C307280F2B414D4B00AA575B /* UITextField+.swift in Sources */,
 				C31A47A72B44761200D3CD4B /* ChipButton.swift in Sources */,
 				C39602B82B3BEE06004BB2B8 /* AppDelegate.swift in Sources */,
 				C30C918E2B4CED0F004EE026 /* KeychainHandler.swift in Sources */,
+				C3671F872B7DEC2E006E7C8C /* HomeViewController.swift in Sources */,
 				C305D5992B5176C1008993C3 /* SearchPlaceRequestQueryDTO.swift in Sources */,
-				C3A0D9612B49866F00E817B5 /* FixView.swift in Sources */,
 				C32A2DE52B4D89960063F84A /* ParticipantButton.swift in Sources */,
 				C3074B1C2B591B67009D2D0C /* MyPINGLETarget.swift in Sources */,
 				C3EC304F2B43E20600276E00 /* HomeMapView.swift in Sources */,
@@ -1305,23 +1520,32 @@
 				F1239BD92B486B230072A02A /* EntranceCompletedViewController.swift in Sources */,
 				C307282C2B4269A000AA575B /* Config.swift in Sources */,
 				C30C91952B4CED93004EE026 /* BaseResponse.swift in Sources */,
+				C3F095AC2B8A433A009A0819 /* HomeListSearchRequestQueryDTO.swift in Sources */,
+				E542B6782B83CB2900B50B95 /* RankingNumberView.swift in Sources */,
 				E5A651F82B4B28C000676ED0 /* RecruitmentViewController.swift in Sources */,
 				E54AAC092B4D41A0002A0AE9 /* FinalResultViewController.swift in Sources */,
 				E5A651E82B4973AB00676ED0 /* DateSelectionViewController.swift in Sources */,
 				C3BCA86F2B57D0FC003C6996 /* MoreView.swift in Sources */,
 				F1239BCF2B468A0F0072A02A /* CALayer+.swift in Sources */,
+				F1D452742B89BB6000D8F50F /* CheckNameResponseDTO.swift in Sources */,
 				C30D1E082B56FB7300879258 /* SoonViewController.swift in Sources */,
+				F13E692D2B9378AF00FCFBA3 /* ShareInviteCodePopUpView.swift in Sources */,
 				E5A651FC2B4B834900676ED0 /* InsertOpenChatLinkViewController.swift in Sources */,
+				E542B6842B84F5CA00B50B95 /* FixView.swift in Sources */,
 				F14F44AB2B50411700871E5A /* ProfileService.swift in Sources */,
 				F125A1842B4FC6A500739C34 /* EnterInviteCodeRequestBodyDTO.swift in Sources */,
 				F1239BCB2B45D5CD0072A02A /* BasePaddingLabel.swift in Sources */,
 				C38545402B4868860040E60D /* String+.swift in Sources */,
 				E5A651FA2B4B2A6F00676ED0 /* RecruitButton.swift in Sources */,
 				F14F3C792B4D389E0049A9EE /* OnboardingTarget.swift in Sources */,
+				F13E69242B92030B00FCFBA3 /* ShareInviteCodeViewController.swift in Sources */,
 				C30728342B42E06D00AA575B /* HomeMapViewController.swift in Sources */,
 				E5A651EA2B4A381500676ED0 /* CustomTimePickerView.swift in Sources */,
+				C31A05892B9AD15A00FC5E2B /* NotificationName+.swift in Sources */,
+				F1D4527E2B8B9E6C00D8F50F /* CheckOrganizationViewController.swift in Sources */,
 				F1239BC12B45792D0072A02A /* SearchOrganizationView.swift in Sources */,
 				E50AA1FE2B492B56005E854B /* CustomDatePickerView.swift in Sources */,
+				F1DFF28E2B83497F000AC100 /* ManualDummyDTO.swift in Sources */,
 				C39602E42B3BF203004BB2B8 /* BaseView.swift in Sources */,
 				C33BF3452B46E03400008653 /* PINGLEMarker.swift in Sources */,
 				F14F3C692B494FB10049A9EE /* OrganizationButton.swift in Sources */,
@@ -1347,6 +1571,111 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C35857B52B7A97E700C21AF2 /* DEV */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C35857B72B7A980600C21AF2 /* Config_dev.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PINGLE;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = DEV;
+		};
+		C35857B62B7A97E700C21AF2 /* DEV */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC85F25EA90099E48F456523 /* Pods-PINGLE-iOS.dev.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_dev;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "PINGLE-iOS/PINGLE-iOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5YM44C4YT8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PINGLE-iOS/Global/Resources/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = PINGLE;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보는 사용자의 현재 위치, 주변 모임 정보, 주변 모임 검색을 제공하기 위해 사용됩니다.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PINGLE.iOS.dev;
+				PRODUCT_NAME = "$(TARGET_NAME).dev";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = DEV;
+		};
 		C39602C62B3BEE08004BB2B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C307282A2B42695400AA575B /* Config.xcconfig */;
@@ -1402,7 +1731,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = PINGLE;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1462,7 +1791,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = PINGLE;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1474,7 +1803,7 @@
 		};
 		C39602C92B3BEE08004BB2B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03E71CF4ACFDF0B6A8554474 /* Pods-PINGLE-iOS.debug.xcconfig */;
+			baseConfigurationReference = F6EDBC2AFCA823628BAA3CA6 /* Pods-PINGLE-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1495,12 +1824,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PINGLE.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1513,7 +1842,7 @@
 		};
 		C39602CA2B3BEE08004BB2B8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99FA74A665E555FBFDA809A7 /* Pods-PINGLE-iOS.release.xcconfig */;
+			baseConfigurationReference = 6F9128192B0E4F1C066FA767 /* Pods-PINGLE-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1534,12 +1863,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PINGLE.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1557,19 +1886,21 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C39602C62B3BEE08004BB2B8 /* Debug */,
+				C35857B52B7A97E700C21AF2 /* DEV */,
 				C39602C72B3BEE08004BB2B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = DEV;
 		};
 		C39602C82B3BEE08004BB2B8 /* Build configuration list for PBXNativeTarget "PINGLE-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C39602C92B3BEE08004BB2B8 /* Debug */,
+				C35857B62B7A97E700C21AF2 /* DEV */,
 				C39602CA2B3BEE08004BB2B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = DEV;
 		};
 /* End XCConfigurationList section */
 
@@ -1580,6 +1911,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.1;
+			};
+		};
+		C333A5572B96D27100AC6901 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-Swift";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		C396031F2B3BF47A004BB2B8 /* XCRemoteSwiftPackageReference "Then" */ = {
@@ -1621,6 +1960,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C30C918F2B4CED43004EE026 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		C333A5582B96D27100AC6901 /* AmplitudeSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C333A5572B96D27100AC6901 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */;
+			productName = AmplitudeSwift;
 		};
 		C39603202B3BF47A004BB2B8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;

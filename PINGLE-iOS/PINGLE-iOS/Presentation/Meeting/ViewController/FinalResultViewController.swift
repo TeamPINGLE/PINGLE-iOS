@@ -49,11 +49,11 @@ final class FinalResultViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         progressBar7.do {
-            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage7
+            $0.image = UIImage(resource: .imgProgressBar7)
             $0.contentMode = .scaleAspectFill
         }
         
@@ -166,11 +166,6 @@ final class FinalResultViewController: BaseViewController {
         
         print(meetingData)
         makeMeeting(data: meetingData)
-        self.dismiss(animated: true)
-        
-        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: PINGLETabBarController())
-        self.navigationController?.popToRootViewController(animated: true)
     }
     
     // MARK: Function
@@ -184,16 +179,30 @@ final class FinalResultViewController: BaseViewController {
     }
     
     func makeMeeting(data: MakeMeetingRequestBodyDTO) {
-           NetworkService.shared.meetingService.makeMeeting(bodyDTO: data) { [weak self] response in
-               guard let self = self else { return }
-               switch response {
-               case .success(let result):
-                   print("Meeting created successfully. Result: \(result)")
-               default:
-                   print("not Created")
-               }
-           }
-       }
+        NetworkService.shared.meetingService.makeMeeting(bodyDTO: data) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let result):
+                AmplitudeInstance.shared.track(eventType: .completeMeetingHold,
+                                               eventProperties: [AmplitudePropertyType.category: data.category,
+                                                                 AmplitudePropertyType.name: data.name,
+                                                                 AmplitudePropertyType.startAt: data.startAt,
+                                                                 AmplitudePropertyType.endAt: data.endAt,
+                                                                 AmplitudePropertyType.roadAddress: data.roadAddress,
+                                                                 AmplitudePropertyType.location: data.location,
+                                                                 AmplitudePropertyType.maxParticipants: data.maxParticipants
+                                                                ])
+                print("Meeting created successfully. Result: \(result)")
+                
+                self.dismiss(animated: true)
+                guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: PINGLETabBarController())
+                self.navigationController?.popToRootViewController(animated: true)
+            default:
+                print("not Created")
+            }
+        }
+    }
     
     private func dateFormat(date: Date) -> String {
         formatter.dateFormat = "yyyy-MM-dd"
@@ -206,3 +215,4 @@ final class FinalResultViewController: BaseViewController {
         return formatter.string(from: time)
     }
    }
+

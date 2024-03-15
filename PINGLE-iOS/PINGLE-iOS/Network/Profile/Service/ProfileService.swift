@@ -10,6 +10,7 @@ import Foundation
 protocol ProfileServiceProtocol {
     func logout(completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
     func deleteID(completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
+    func myTeams(completion: @escaping (NetworkResult<BaseResponse<[MyTeamsResponseDTO]>>) -> Void)
 }
 
 final class ProfileService: APIRequestLoader<ProfileTarget>, ProfileServiceProtocol {
@@ -20,5 +21,9 @@ final class ProfileService: APIRequestLoader<ProfileTarget>, ProfileServiceProto
     func deleteID(completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
         fetchData(target: .deleteID,
                   responseData: BaseResponse<String?>.self, completion: completion)
+    }
+    func myTeams(completion: @escaping (NetworkResult<BaseResponse<[MyTeamsResponseDTO]>>) -> Void) {
+        fetchData(target: .myTeams,
+                  responseData: BaseResponse<[MyTeamsResponseDTO]>.self, completion: completion)
     }
 }

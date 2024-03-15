@@ -16,6 +16,9 @@ enum OnboardingTarget {
     case organizationDetail(_ teamId: Int)
     case enterInviteCode(_ teamId: Int, _ bodyDTO: EnterInviteCodeRequestBodyDTO)
     case postRefreshToken
+    case checkName(_ parameterDTO: CheckNameRequestParameterDTO)
+    case keyword
+    case makeTeams(_ makeTeamsRequestBodyDTO: MakeTeamsRequestBodyDTO)
 }
 
 extension OnboardingTarget: TargetType {
@@ -33,6 +36,12 @@ extension OnboardingTarget: TargetType {
             return .authorization
         case .postRefreshToken:
             return .reAuthorization
+        case .checkName:
+            return .authorization
+        case .keyword:
+            return .authorization
+        case .makeTeams:
+            return .authorization
         }
     }
     
@@ -50,6 +59,12 @@ extension OnboardingTarget: TargetType {
             return .hasToken
         case .postRefreshToken:
             return .refreshToken
+        case .checkName:
+            return .hasToken
+        case .keyword:
+            return .hasToken
+        case .makeTeams:
+            return .hasToken
         }
     }
     
@@ -67,23 +82,35 @@ extension OnboardingTarget: TargetType {
             return .post
         case .postRefreshToken:
             return .post
+        case .checkName:
+            return .get
+        case .keyword:
+            return .get
+        case .makeTeams:
+            return .post
         }
     }
     
     var path: String {
         switch self {
         case .login:
-            return "/auth/login"
+            return "/v1/auth/login"
         case .userInfo:
-            return "/users/me"
+            return "/v1/users/me"
         case .searchOrganization:
-            return "/teams"
+            return "/v1/teams"
         case .organizationDetail(let teamId):
-            return "/teams/\(teamId)"
+            return "/v1/teams/\(teamId)"
         case .enterInviteCode(let teamId, _):
-            return "/teams/\(teamId)/register"
+            return "/v1/teams/\(teamId)/register"
         case .postRefreshToken:
-            return "/auth/reissue"
+            return "/v1/auth/reissue"
+        case .checkName:
+            return "/v1/teams/check-name"
+        case .keyword:
+            return "/v1/teams/keywords"
+        case .makeTeams:
+            return "/v1/teams"
         }
     }
     
@@ -101,6 +128,12 @@ extension OnboardingTarget: TargetType {
             return .requestWithBody(bodyDTO)
         case .postRefreshToken:
             return .requestPlain
+        case .checkName(let parameterDTO):
+            return .requestQuery(parameterDTO)
+        case .keyword:
+            return .requestPlain
+        case .makeTeams(let bodyDTO):
+            return .requestWithBody(bodyDTO)
         }
     }
 }

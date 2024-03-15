@@ -47,7 +47,11 @@ class APIRequestLoader<T: TargetType> {
                 let networkRequest = self.judgeStatus(by: statusCode, value, type: M.self)
                 completion(networkRequest)
             case .failure:
-                completion(.networkErr)
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return }
+                
+                let networkRequest = self.judgeStatus(by: statusCode, data, type: M.self)
+                completion(networkRequest)
             }
         }
     }

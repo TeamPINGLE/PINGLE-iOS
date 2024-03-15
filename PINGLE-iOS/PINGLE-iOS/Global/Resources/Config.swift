@@ -12,6 +12,7 @@ enum Config {
         enum Plist {
             static let baseURL = "BASE_URL"
             static let naverMapClientID = "NAVER_MAP_CLIENT_ID"
+            static let amplitudeKey = "AMPLITUDE_KEY"
         }
     }
     
@@ -33,7 +34,14 @@ extension Config {
     
     static let naverMapClientID: String = {
         guard let key = Config.infoDictionary[Keys.Plist.naverMapClientID] as? String else {
-            fatalError("metaAppID is not set in plist for this configuration.")
+            fatalError("naverMapClientID is not set in plist for this configuration.")
+        }
+        return key
+    }()
+    
+    static let amplitudeKey: String = {
+        guard let key = Config.infoDictionary[Keys.Plist.amplitudeKey] as? String else {
+            fatalError("amplitudeKey is not set in plist for this configuration.")
         }
         return key
     }()

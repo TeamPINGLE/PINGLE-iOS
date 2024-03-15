@@ -12,11 +12,15 @@ import Then
 
 final class EnterInviteCodeViewController: BaseViewController {
     
+    // MARK: Variables
+    var teamId: Int?
+    private var keyword: String?
+    
     // MARK: Property
     private let backButton = UIButton()
     private let titleBackgroundView = UIView()
     private let titleLabel = UILabel()
-    private let organizationInfoView = OrganizationInfoView()
+    private let organizationInfoView = OrganizationInfoView(type: .search)
     private let inviteCodeTextFieldView = PINGLETextFieldView(
         titleLabel: StringLiterals.Onboarding.ExplainTitle.inviteCodeTextFieldTitle,
         explainLabel: StringLiterals.Onboarding.SearchBarPlaceholder.inviteCodePlaceholder
@@ -25,7 +29,11 @@ final class EnterInviteCodeViewController: BaseViewController {
     private let infoMessageLabel = UILabel()
     private let bottomCTAButton = PINGLECTAButton(title: StringLiterals.CTAButton.enterTitle, buttonColor: .grayscaleG08, textColor: .grayscaleG10)
     private let warningToastView = PINGLEWarningToastView(warningLabel: StringLiterals.ToastView.wrongCode)
-    var teamId: Int?
+    
+    private enum WarningToastMessage {
+        case invalidCode
+        case alreadySigned
+    }
     
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -44,23 +52,23 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.backButton.do {
-            $0.setImage(ImageLiterals.Icon.imgArrowLeft, for: .normal)
+        backButton.do {
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
-        self.titleBackgroundView.do {
+        titleBackgroundView.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.organizationInfoView.do {
+        organizationInfoView.do {
             $0.isHidden = true
         }
         
-        self.titleLabel.do {
+        titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.inviteCodeTitle
             $0.setLineSpacing(spacing: 4)
             $0.font = .titleTitleSemi24
@@ -68,29 +76,29 @@ final class EnterInviteCodeViewController: BaseViewController {
             $0.numberOfLines = 0
         }
         
-        self.infoImageView.do {
-            $0.image = ImageLiterals.Icon.icInfo
+        infoImageView.do {
+            $0.image = UIImage(resource: .icInfo)
             $0.tintColor = .grayscaleG04
         }
         
-        self.infoMessageLabel.do {
+        infoMessageLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.infoMessage
             $0.font = .captionCapMed10
             $0.textColor = .grayscaleG04
         }
         
-        self.warningToastView.do {
+        warningToastView.do {
             $0.alpha = 0.0
         }
     }
     
     override func setLayout() {
-        self.view.addSubviews(organizationInfoView, inviteCodeTextFieldView, infoImageView,
+        view.addSubviews(organizationInfoView, inviteCodeTextFieldView, infoImageView,
                               infoMessageLabel, bottomCTAButton, warningToastView, titleBackgroundView)
-        self.titleBackgroundView.addSubviews(titleLabel)
+        titleBackgroundView.addSubviews(titleLabel)
         
         titleBackgroundView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(113)
         }
@@ -101,9 +109,8 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         organizationInfoView.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(25)
-            $0.leading.trailing.equalToSuperview().inset(24.adjusted)
-            $0.height.equalTo(157)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(25)
+            $0.centerX.equalToSuperview()
         }
         
         inviteCodeTextFieldView.snp.makeConstraints {
@@ -114,7 +121,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         infoImageView.snp.makeConstraints {
             $0.top.equalTo(inviteCodeTextFieldView.snp.bottom).offset(8)
             $0.leading.equalTo(inviteCodeTextFieldView)
-            $0.width.height.equalTo(10.adjusted)
+            $0.width.height.equalTo(14.adjusted)
         }
         
         infoMessageLabel.snp.makeConstraints {
@@ -123,7 +130,7 @@ final class EnterInviteCodeViewController: BaseViewController {
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(41.adjusted)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(41.adjusted)
             $0.centerX.equalToSuperview()
         }
         
@@ -156,9 +163,15 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        inviteCodeTextFieldView.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        bottomCTAButton.addTarget(self, action: #selector(bottomCTAButtonTapped), for: .touchUpInside)
+        backButton.addTarget(self, 
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
+        inviteCodeTextFieldView.searchTextField.addTarget(self, 
+                                                          action: #selector(self.textFieldDidChange(_:)),
+                                                          for: .editingChanged)
+        bottomCTAButton.addTarget(self, 
+                                  action: #selector(bottomCTAButtonTapped),
+                                  for: .touchUpInside)
     }
     
     // MARK: Objc Function
@@ -167,6 +180,7 @@ final class EnterInviteCodeViewController: BaseViewController {
     }
     
     @objc func bottomCTAButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickExistingGroupEnter)
         guard let inviteCodeText = inviteCodeTextFieldView.searchTextField.text else { return }
         postEnterInviteCode(code: EnterInviteCodeRequestBodyDTO(code: inviteCodeText))
     }
@@ -191,7 +205,8 @@ final class EnterInviteCodeViewController: BaseViewController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                organizationInfoView.bindData(data: data)
+                keyword = data.keyword
+                organizationInfoView.bindSearchData(data: data)
                 organizationInfoView.isHidden = false
             default:
                 print("login error")
@@ -201,24 +216,26 @@ final class EnterInviteCodeViewController: BaseViewController {
     
     func postEnterInviteCode(code: EnterInviteCodeRequestBodyDTO) {
         guard let teamId = teamId else { return }
-        NetworkService.shared.onboardingService.enterInviteCode(teamId: teamId, bodyDTO: code) { [weak self] response in
+        NetworkService.shared.onboardingService.enterInviteCode(teamId: teamId, bodyDTO: code) { [weak self] result in
             guard let self = self else { return }
-            switch response {
+            switch result {
             case .success(let data):
                 /// data가 있다는 것은 초대코드가 유효하다는 뜻이다. 없다는 것은 초대코드가 유효하지 않아 그룹 정보를 보내지 않는다는 뜻이다.
-                if let data = data.data {
-                    /// 이후 여러단체에 가입할 경우에 대비하여 사용자가 가입한 팀명과 팀번호를 배열의 첫번째에 저장한다.
-                    var userGroup: [UserGroup] = []
-                    userGroup.append(UserGroup(id: data.id, name: data.name))
-                    KeychainHandler.shared.userGroup = userGroup
+                if data.code == 200 {
+                    guard let data = data.data else { return }
+                    AmplitudeInstance.shared.track(
+                        eventType: .completeExistingGroup,
+                        eventProperties: [AmplitudePropertyType.keyword : keyword ?? ""])
+                    KeychainHandler.shared.userGroupId = data.id
+                    KeychainHandler.shared.userGroupName = data.name
                     let entranceCompletedViewController = EntranceCompletedViewController()
                     navigationController?.pushViewController(entranceCompletedViewController, animated: true)
-                } else {
-                    showWarningToastView()
+                } else if data.code == 400 {
+                    showWarningToastView(warningToastMessage: .invalidCode)
+                } else if data.code == 409 {
+                    showWarningToastView(warningToastMessage: .alreadySigned)
                 }
             default:
-                /// 코드 틀렸을 경우 오류 메시지 창 출력
-                showWarningToastView()
                 print("error")
             }
         }
@@ -245,13 +262,21 @@ extension EnterInviteCodeViewController: UITextFieldDelegate {
 
 // MARK: Animation Function
 extension EnterInviteCodeViewController {
-    func showWarningToastView(duration: TimeInterval = 2.0) {
-        self.warningToastView.fadeIn()
+    // MARK: Animation Function
+    private func showWarningToastView(warningToastMessage: WarningToastMessage, duration: TimeInterval = 2.0) {
+        switch warningToastMessage{
+        case .invalidCode:
+            warningToastView.changeWarningMessage(message: StringLiterals.ToastView.wrongCode, possible: false)
+        case .alreadySigned:
+            warningToastView.changeWarningMessage(message: StringLiterals.ToastView.alreadySigned, possible: false)
+        }
         
+        warningToastView.fadeIn()
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             self.warningToastView.fadeOut()
         }
     }
+    
     // MARK: Objc Function
     @objc func keyboardWillShow(notification: Notification) {
         guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }

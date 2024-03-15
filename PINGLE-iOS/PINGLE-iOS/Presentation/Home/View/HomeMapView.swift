@@ -21,27 +21,18 @@ final class HomeMapView: BaseView {
     var homePinList: [HomePinListResponseDTO] = []
     
     // MARK: Component
-    let chipStackView = UIStackView()
-    
-    let playChipButton = ChipButton(state: .play)
-    let studyChipButton = ChipButton(state: .study)
-    let multiChipButton = ChipButton(state: .multi)
-    let othersChipButton = ChipButton(state: .others)
-    
-    lazy var chipButtons: [ChipButton] = [playChipButton,
-                                          studyChipButton,
-                                          multiChipButton,
-                                          othersChipButton]
-    
     let mapsView = NMFNaverMapView()
-    lazy var homeDetailCollectionView = UICollectionView(frame: .zero,
-                                                         collectionViewLayout: homeDetailFlowLayout)
-    let homeDetailFlowLayout = UICollectionViewFlowLayout()
+    lazy var homeDetailCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: homeDetailFlowLayout
+    )
+    private let homeDetailFlowLayout = UICollectionViewFlowLayout()
     
     var locationManager = CLLocationManager()
-    lazy var cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: self.nowLat, lng: self.nowLng))
+    lazy var cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: nowLat,
+                                                                lng: nowLng))
     
-    let currentMarker = NMFMarker()
+    private let currentMarker = NMFMarker()
     
     let currentLocationButton = UIButton()
     let listButton = UIButton()
@@ -76,29 +67,40 @@ final class HomeMapView: BaseView {
             $0.animation = .easeIn
         }
         
-        chipStackView.do {
-            $0.axis = .horizontal
-            $0.spacing = 4.adjustedWidth
-        }
-        
         currentLocationButton.do {
-            $0.setBackgroundColor(.white, for: .normal)
-            $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
-            $0.setImage(ImageLiterals.Home.Map.icMapHere, for: .normal)
-            $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+            $0.setBackgroundColor(
+                .white,
+                for: .normal
+            )
+            $0.setBackgroundColor(
+                .grayscaleG04,
+                for: .highlighted
+            )
+            $0.setImage(
+                UIImage(resource: .icMapHere),
+                for: .normal
+            )
             $0.makeCornerRound(radius: 25.adjusted)
         }
         
         listButton.do {
-            $0.setBackgroundColor(.white, for: .normal)
-            $0.setBackgroundColor(.grayscaleG04, for: .highlighted)
-            $0.setImage(ImageLiterals.Home.Map.icMapList, for: .normal)
-            $0.makeShadow(radius: 5, offset: CGSize(width: 0, height: 0), opacity: 0.25)
+            $0.setBackgroundColor(
+                .white,
+                for: .normal
+            )
+            $0.setBackgroundColor(
+                .grayscaleG04,
+                for: .highlighted
+            )
+            $0.setImage(
+                UIImage(resource: .icMapList),
+                for: .normal
+            )
             $0.makeCornerRound(radius: 25.adjusted)
         }
         
         currentMarker.do {
-            $0.iconImage = NMFOverlayImage(image: ImageLiterals.Home.Map.icLocationOverlay)
+            $0.iconImage = NMFOverlayImage(image: UIImage(resource: .icLocationOverlay))
         }
         
         homeDetailCollectionView.do {
@@ -107,7 +109,12 @@ final class HomeMapView: BaseView {
             $0.isPagingEnabled = false
             $0.decelerationRate = .fast
             $0.contentInsetAdjustmentBehavior = .never
-            $0.contentInset = UIEdgeInsets(top: 0, left: 24.adjustedWidth, bottom: 0, right: 24.adjustedWidth)
+            $0.contentInset = UIEdgeInsets(
+                top: 0,
+                left: 24.adjustedWidth,
+                bottom: 0,
+                right: 24.adjustedWidth
+            )
             $0.decelerationRate = .fast
             $0.isHidden = true
         }
@@ -115,28 +122,22 @@ final class HomeMapView: BaseView {
         homeDetailFlowLayout.do {
             $0.scrollDirection = .horizontal
             $0.minimumLineSpacing = 8.adjustedWidth
-            $0.itemSize = CGSize(width: UIScreen.main.bounds.width - 48.adjustedWidth, height: 327)
+            $0.itemSize = CGSize(
+                width: UIScreen.main.bounds.width - 48.adjustedWidth,
+                height: 327
+            )
         }
     }
     
     // MARK: Layout Helpers
     override func setLayout() {
-        self.addSubviews(mapsView, chipStackView)
+        addSubviews(mapsView)
         mapsView.addSubviews(homeDetailCollectionView,
                              currentLocationButton,
                              listButton)
         
-        chipButtons.forEach {
-            chipStackView.addArrangedSubview($0)
-        }
-        
         mapsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-        }
-        
-        chipStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(66.adjustedHeight)
-            $0.centerX.equalToSuperview()
         }
         
         homeDetailCollectionView.snp.makeConstraints {
@@ -157,18 +158,17 @@ final class HomeMapView: BaseView {
             $0.bottom.equalTo(listButton.snp.top).offset(-8.adjustedHeight)
         }
     }
-    
     // MARK: Marker Function
     func setMarkerColor(category: String) -> UIImage {
         switch category {
         case "PLAY":
-            return ImageLiterals.Home.Map.imgMapPinPlay
+            return UIImage(resource: .imgMapPinPlay)
         case "STUDY":
-            return ImageLiterals.Home.Map.imgMapPinStudy
+            return UIImage(resource: .imgMapPinStudy)
         case "MULTI":
-            return ImageLiterals.Home.Map.imgMapPinMulti
+            return UIImage(resource: .imgMapPinMulti)
         default:
-            return ImageLiterals.Home.Map.imgMapPinOther
+            return UIImage(resource: .imgMapPinOther)
         }
     }
     

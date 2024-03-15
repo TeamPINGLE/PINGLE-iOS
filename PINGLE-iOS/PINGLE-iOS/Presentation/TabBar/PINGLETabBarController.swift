@@ -13,18 +13,9 @@ import Then
 final class PINGLETabBarController: UITabBarController {
     
     // MARK: - Variables
-    // MARK: Property
-    var isHomeMap = true {
-        didSet {
-            self.setTabs()
-            self.setTabBarItems()
-        }
-    }
-    
     private var tabs: [UIViewController] = []
     
-    let homeMapViewController = HomeMapViewController()
-    let homeListViewController = HomeListViewController()
+    let homeViewController = HomeViewController()
     let recommendViewController = RecommendViewController()
     let addPingleViewController = AddPingleViewController()
     let myPingleViewController = MyPINGLEViewController()
@@ -36,7 +27,6 @@ final class PINGLETabBarController: UITabBarController {
         super.viewDidLoad()
         setDelegate()
         setTabBarAppearance()
-        setAddTarget()
     }
     
     override func viewDidLayoutSubviews() {
@@ -70,8 +60,6 @@ final class PINGLETabBarController: UITabBarController {
     }
     
     func setTabs() {
-        let homeViewController = isHomeMap ? homeMapViewController : homeListViewController
-        
         tabs = [
             UINavigationController(rootViewController: homeViewController),
             UINavigationController(rootViewController: recommendViewController),
@@ -105,20 +93,10 @@ final class PINGLETabBarController: UITabBarController {
         }
     }
     
-    func setAddTarget() {
-        self.homeMapViewController.mapsView.listButton.addTarget(self,
-                                                                 action: #selector(mapListButtonTapped),
-                                                                 for: .touchUpInside)
-        self.homeListViewController.mapButton.addTarget(self, action: #selector(mapListButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc func mapListButtonTapped() {
-        self.isHomeMap.toggle()
-    }
-    
     @objc func goToAddPingle() {
-        let navigationController = UINavigationController(rootViewController: MakeMeetingGuideViewController())
-        navigationController.modalPresentationStyle = .fullScreen
+        let makeMeetingGuideViewController = MakeMeetingGuideViewController()
+        let navigationController = UINavigationController(rootViewController: makeMeetingGuideViewController)
+        navigationController.modalPresentationStyle = .overFullScreen
         self.present(navigationController, animated: true, completion: nil)
     }
 }
@@ -147,6 +125,8 @@ extension PINGLETabBarController: UITabBarControllerDelegate {
         
         let selectedIndex = tabBarController.selectedIndex
         switch selectedIndex {
+        case 1:
+            recommendViewController.rankingView.rankingCollectionView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
         case 3:
             myPingleViewController.soonViewController.myPINGLECollectionView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
             myPingleViewController.completeViewController.myPINGLECompleteCollectionView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)

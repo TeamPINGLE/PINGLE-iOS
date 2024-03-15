@@ -17,4 +17,12 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    var safeAreaHeight: CGFloat {
+        let window = UIApplication.shared.windows[0]
+        let safeTop = window.safeAreaInsets.top
+        let safeBottom = window.safeAreaInsets.bottom
+        let height = window.frame.height - (safeTop + safeBottom)
+        return height
+    }
 }

@@ -53,11 +53,11 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         progressBar6.do {
-            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage6
+            $0.image = UIImage(resource: .imgProgressBar6)
             $0.contentMode = .scaleAspectFill
         }
         
@@ -81,8 +81,8 @@ class InsertOpenChatLinkViewController: BaseViewController {
         }
         
         exitModal.do {
-                    $0.isHidden = true
-                }
+            $0.isHidden = true
+        }
         
         dimmedView.do {
             $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
@@ -91,9 +91,14 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, progressBar6,
-                              openChatTitle, openChatLinkTextField,
-                              nextButton, exitLabel, exitButton, dimmedView)
+        self.view.addSubviews(backButton, 
+                              progressBar6,
+                              openChatTitle, 
+                              openChatLinkTextField,
+                              nextButton, 
+                              exitLabel,
+                              exitButton,
+                              dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -161,22 +166,30 @@ class InsertOpenChatLinkViewController: BaseViewController {
     }
     
     @objc func exitModalKeepButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep6CancelStay)
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
         dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep6CancelOut)
         exitModal.isHidden = true
         dimmedView.isHidden = true
         self.dismiss(animated: true)
     }
-
+    
     @objc func textFieldDidChange(_ sender: Any?) {
         if let textField = sender as? UITextField {
-            if let newText = textField.text, !newText.isEmpty {
-                MeetingManager.shared.chatLink = newText
+            if let currentText = textField.text, !currentText.isEmpty {
+                let pattern = "https://open.kakao.com/o/[A-Za-z0-9]+"
+                /// URL 패턴 검사
+                if let matchedString = currentText.range(of: pattern, options: .regularExpression) {
+                    /// 패턴이 일치하는 경우 해당 부분만 추출하여 텍스트 필드에 붙여넣기
+                    textField.text = String(currentText[matchedString])
+                }
                 nextButton.activateButton()
+                MeetingManager.shared.chatLink = textField.text ?? " "
             } else {
                 nextButton.disabledButton()
             }
@@ -217,7 +230,7 @@ class InsertOpenChatLinkViewController: BaseViewController {
         })
         exitModal.isHidden = true
     }
-
+    
     override func setDelegate() {
         self.openChatLinkTextField.searchTextField.delegate = self
     }

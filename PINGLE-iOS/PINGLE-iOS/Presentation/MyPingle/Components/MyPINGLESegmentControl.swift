@@ -55,23 +55,40 @@ extension MyPINGLESegmentControl {
     }
     
     private func setLayout() {
-        self.addSubviews(
+        addSubviews(
             selectedUnderlineView
         )
         
-        let segmentWidth = self.bounds.width / CGFloat(self.numberOfSegments)
-        let underlineFinalXPosition = segmentWidth * CGFloat(self.selectedSegmentIndex)
-        selectedUnderlineView.frame = CGRect(x: underlineFinalXPosition + 25.5.adjustedWidth, y: self.bounds.size.height - 2.0, width: 117.adjustedWidth, height: 2.0)
+        let segmentWidth = bounds.width / CGFloat(numberOfSegments)
+        let underlineFinalXPosition = segmentWidth * CGFloat(selectedSegmentIndex)
+        selectedUnderlineView.frame = CGRect(x: underlineFinalXPosition + 25.5.adjustedWidth, y: bounds.size.height - 2.0, width: 117.adjustedWidth, height: 2.0)
         
-        self.layer.cornerRadius = 0
+        layer.cornerRadius = 0
     }
     
     // MARK: Custom Function
     private func removeBackgroundAndDivider() {
         let image = UIImage()
-        self.setBackgroundImage(image, for: .normal, barMetrics: .default)
-        self.setBackgroundImage(image, for: .selected, barMetrics: .default)
-        self.setBackgroundImage(image, for: .highlighted, barMetrics: .default)
-        self.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+        setBackgroundImage(
+            image,
+            for: .normal,
+            barMetrics: .default
+        )
+        setBackgroundImage(
+            image,
+            for: .selected,
+            barMetrics: .default
+        )
+        setBackgroundImage(
+            image,
+            for: .highlighted,
+            barMetrics: .default
+        )
+        setDividerImage(
+            image,
+            forLeftSegmentState: .selected,
+            rightSegmentState: .normal,
+            barMetrics: .default
+        )
     }
 }

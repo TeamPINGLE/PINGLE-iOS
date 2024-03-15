@@ -29,7 +29,7 @@ final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        selectImageView.image = ImageLiterals.Icon.imgCheckDefault
+        selectImageView.image = UIImage(resource: .imgCheckDefault)
     }
     
     required init?(coder: NSCoder) {
@@ -61,7 +61,7 @@ final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
         }
         
         self.selectImageView.do {
-            $0.image = ImageLiterals.Icon.imgCheckDefault
+            $0.image = UIImage(resource: .imgCheckDefault)
         }
         
         self.horizontalLineView.do {
@@ -99,7 +99,7 @@ final class PlaceSelectionCollectionViewCell: UICollectionViewCell {
     
     // MARK: Custom Function
     func changeSelectedImage() {
-        selectImageView.image = ImageLiterals.Icon.imgCheckSelected
+        selectImageView.image = UIImage(resource: .imgCheckSelected)
     }
     
     func bindData(data: SearchPlaceResponseDTO) {

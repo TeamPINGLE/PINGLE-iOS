@@ -41,15 +41,15 @@ final class SearchOrganizationViewController: BaseViewController {
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.backButton.do {
-            $0.setImage(ImageLiterals.Icon.imgArrowLeft, for: .normal)
+        backButton.do {
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
-        self.titleLabel.do {
+        titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.searchOrganization
             $0.setLineSpacing(spacing: 4)
             $0.font = .titleTitleSemi24
@@ -57,13 +57,13 @@ final class SearchOrganizationViewController: BaseViewController {
             $0.numberOfLines = 0
         }
         
-        self.bottomRequestLabel.do {
+        bottomRequestLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.bottomRequest
             $0.font = .captionCapSemi12
             $0.textColor = .white
         }
         
-        self.makeOrganizationButton.do {
+        makeOrganizationButton.do {
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.requestOrganization, for: .normal)
             $0.titleLabel?.font = .captionCapSemi12
             $0.setTitleColor(.white, for: .normal)
@@ -73,33 +73,33 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel, searchOrganizationView, bottomRequestLabel, makeOrganizationButton, bottomCTAButton)
+        view.addSubviews(titleLabel, searchOrganizationView, bottomRequestLabel, makeOrganizationButton, bottomCTAButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(32)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(32)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
         searchOrganizationView.snp.makeConstraints {
-            $0.top.equalTo(self.titleLabel.snp.bottom).offset(24)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(self.bottomRequestLabel.snp.top).offset(-18)
+            $0.bottom.equalTo(bottomRequestLabel.snp.top).offset(-18)
         }
         
         bottomRequestLabel.snp.makeConstraints {
-            $0.bottom.equalTo(self.bottomCTAButton.snp.top).offset(-20)
+            $0.bottom.equalTo(bottomCTAButton.snp.top).offset(-20)
             $0.leading.equalToSuperview().inset(77.adjusted)
         }
         
         makeOrganizationButton.snp.makeConstraints {
-            $0.centerY.equalTo(self.bottomRequestLabel)
-            $0.leading.equalTo(self.bottomRequestLabel.snp.trailing).offset(4.adjusted)
+            $0.centerY.equalTo(bottomRequestLabel)
+            $0.leading.equalTo(bottomRequestLabel.snp.trailing).offset(4.adjusted)
             $0.height.equalTo(17)
             $0.width.equalTo(121.adjusted)
         }
         
         bottomCTAButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(41)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(41)
             $0.centerX.equalToSuperview()
         }
     }
@@ -135,10 +135,21 @@ final class SearchOrganizationViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        searchOrganizationView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-        makeOrganizationButton.addTarget(self, action: #selector(makeOrganizationButtonTapped), for: .touchUpInside)
-        bottomCTAButton.addTarget(self, action: #selector(bottomCTAButtonTapped), for: .touchUpInside)
+        backButton.addTarget(self, 
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
+        searchOrganizationView.searchTextField.addTarget(self,
+                                                          action: #selector(self.textFieldDidChange(_:)),
+                                                          for: .editingChanged)
+        searchOrganizationView.searchButton.addTarget(self,
+                                                      action: #selector(deleteButtonTapped),
+                                                      for: .touchUpInside)
+        makeOrganizationButton.addTarget(self, 
+                                         action: #selector(makeOrganizationButtonTapped),
+                                         for: .touchUpInside)
+        bottomCTAButton.addTarget(self,
+                                  action: #selector(bottomCTAButtonTapped),
+                                  for: .touchUpInside)
     }
     
     // MARK: Objc Function
@@ -146,22 +157,16 @@ final class SearchOrganizationViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func searchButtonTapped() {
-        /// 검색하는 내용이 없을 경우 아무런 통신도 하지 않고 이전 상태를 유지합니다.
-        if let searchText = searchOrganizationView.searchTextField.text {
-            if !searchText.isEmpty {
-                searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
-                selectedCellIndex = nil
-                bottomCTAButton.disabledButton()
-            }
-        }
+    @objc func deleteButtonTapped() {
+        searchOrganizationView.searchTextField.text = ""
+        searchOrganizationView.searchButton.setImage(UIImage(resource: .icSearch), for: .normal)
         self.view.endEditing(true)
     }
     
     @objc func makeOrganizationButtonTapped() {
-        guard let url = URL(string: "https://docs.google.com/forms/d/10WxvEzSVRrRvRGXsYf9Z5oXv4HsNuAwG2QicB4bY0aY/edit") else { return }
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true)
+        AmplitudeInstance.shared.track(eventType: .clickExistingGroupCreategroup)
+        let enterOrganizationInfoViewController = EnterOrganizationInfoViewController()
+        navigationController?.pushViewController(enterOrganizationInfoViewController, animated: true)
     }
     
     @objc func bottomCTAButtonTapped() {
@@ -172,11 +177,14 @@ final class SearchOrganizationViewController: BaseViewController {
     }
     
     // MARK: Network Function
-    func searchOrganization(data: SearchOrganizationRequestQueryDTO) {
-        NetworkService.shared.onboardingService.searchOrganization(queryDTO: data) { [weak self] response in
+    func searchOrganization(name: SearchOrganizationRequestQueryDTO) {
+        NetworkService.shared.onboardingService.searchOrganization(queryDTO: name) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let data):
+                AmplitudeInstance.shared.track(
+                    eventType: .completeSearchGroup,
+                    eventProperties: [AmplitudePropertyType.keyword : name.name])
                 guard let data = data.data else { return }
                 /// 검색 결과가 없는 경우 "검색 결과가 없어요" 라벨이 나옵니다. 검색결과가 있는 경우 "검색 결과가 없어요" 라벨이 사라집니다.
                 if data.isEmpty {
@@ -191,6 +199,24 @@ final class SearchOrganizationViewController: BaseViewController {
             }
         }
     }
+    
+    // MARK: CalculateHeight Function
+    /// 검색된 단체 정보 Cell의 단체명에 따른 높이를 측정하기 위한 함수
+    private func calculateDynamicHeight(placeNameText: String) -> CGFloat {
+        let organizationNameLabel = UILabel().then {
+            $0.setTextWithLineHeight(text: placeNameText, lineHeight: 22)
+            $0.font = .bodyBodyMed16
+            $0.numberOfLines = 2
+            $0.preferredMaxLayoutWidth = 292.adjusted
+        }
+
+        let organizationNameSize = organizationNameLabel.sizeThatFits(
+            CGSize(width: 292.adjusted,
+                   height: CGFloat.greatestFiniteMagnitude)
+        )
+
+        return organizationNameSize.height
+    }
 }
 
 // MARK: - extension
@@ -199,19 +225,32 @@ extension SearchOrganizationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         /// 검색 결과가 없는 경우 "검색 결과가 없어요" 라벨이 나옵니다. 검색결과가 있는 경우 "검색 결과가 없어요" 라벨이 사라집니다.
-        if let searchText = textField.text {
-            if searchText.isEmpty {
-                searchOrganizationResponseDTO = []
-                searchOrganizationView.searchCollectionView.reloadData()
-                searchOrganizationView.noResultLabel.isHidden = false
-            } else {
-                searchOrganization(data: SearchOrganizationRequestQueryDTO(name: searchText))
-            }
+        let text = textField.text ?? ""
+        let searchText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if searchText.isEmpty {
+            searchOrganizationResponseDTO = []
+            searchOrganizationView.searchCollectionView.reloadData()
+            searchOrganizationView.noResultLabel.isHidden = false
+        } else {
+            searchOrganization(name: SearchOrganizationRequestQueryDTO(name: searchText))
         }
         /// 선택된 행 해제한 뒤, 다음으로 버튼 비활성화
         selectedCellIndex = nil
         bottomCTAButton.disabledButton()
         return true
+    }
+    
+    // MARK: Objc Function
+    /// 검색에 따른 버튼 이미지 수정 objc 함수입니다.
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let text = textField.text ?? ""
+        
+        if text.isEmpty {
+            searchOrganizationView.searchButton.setImage(UIImage(resource: .icSearch), for: .normal)
+        } else {
+            searchOrganizationView.searchButton.setImage(UIImage(resource: .btnClear), for: .normal)
+        }
     }
 }
 
@@ -257,7 +296,9 @@ extension SearchOrganizationViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width - 50.adjusted, height: 88)
+        let cellHeight = 66 + calculateDynamicHeight(placeNameText: searchOrganizationResponseDTO[indexPath.row].name)
+        
+        return CGSize(width: UIScreen.main.bounds.size.width - 50, height: cellHeight)
     }
 }
 

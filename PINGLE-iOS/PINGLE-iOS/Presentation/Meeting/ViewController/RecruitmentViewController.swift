@@ -57,11 +57,11 @@ final class RecruitmentViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         progressBar5.do {
-            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage5
+            $0.image = UIImage(resource: .imgProgressBar5)
             $0.contentMode = .scaleAspectFill
         }
         
@@ -264,12 +264,14 @@ final class RecruitmentViewController: BaseViewController {
     }
     
     @objc func exitModalKeepButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep5CancelStay)
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
         dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep5CancelOut)
         exitModal.isHidden = true
         dimmedView.isHidden = true
         self.dismiss(animated: true)

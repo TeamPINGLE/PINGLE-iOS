@@ -22,8 +22,10 @@ struct KeychainHandler {
     private let refreshTokenKey = "refreshToken"
     private let providerTokenKey = "providerToken"
     private let authorizationCodeKey = "authorizationCode"
+    private let userIDKey = "userID"
     private let userNameKey = "userName"
-    private let userGroupKey = "userGroup"
+    private let userGroupIdKey = "userGroupIdKey"
+    private let userGroupNameKey = "userGroupNameKey"
     
     var accessToken: String {
         get {
@@ -61,6 +63,15 @@ struct KeychainHandler {
         }
     }
     
+    var userID: String {
+        get {
+            return KeychainWrapper.standard.string(forKey: userIDKey) ?? ""
+        }
+        set {
+            KeychainWrapper.standard.set(newValue, forKey: userIDKey)
+        }
+    }
+    
     var userName: String {
         get {
             return KeychainWrapper.standard.string(forKey: userNameKey) ?? ""
@@ -70,22 +81,32 @@ struct KeychainHandler {
         }
     }
     
-    var userGroup: [UserGroup] {
+    var userGroupId: Int? {
         get {
-            return loadUserGroup()
+            return UserDefaults.standard.integer(forKey: userGroupIdKey)
         }
         set {
-            saveUserGroup(newValue)
+            UserDefaults.standard.setValue(newValue, forKey: userGroupIdKey)
+        }
+    }
+    
+    var userGroupName: String? {
+        get {
+            return UserDefaults.standard.string(forKey: userGroupNameKey)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: userGroupNameKey)
         }
     }
     
     mutating func logout() {
         accessToken = ""
         refreshToken = ""
-        userGroup = []
+        KeychainWrapper.standard.removeObject(forKey: userIDKey)
         KeychainWrapper.standard.removeObject(forKey: accessTokenKey)
         KeychainWrapper.standard.removeObject(forKey: refreshTokenKey)
-        UserDefaults.standard.removeObject(forKey: userGroupKey)
+        UserDefaults.standard.removeObject(forKey: userGroupIdKey)
+        UserDefaults.standard.removeObject(forKey: userGroupNameKey)
     }
     
     mutating func deleteID() {
@@ -94,28 +115,12 @@ struct KeychainHandler {
         providerToken = ""
         authorizationCode = ""
         
-        userGroup = []
+        KeychainWrapper.standard.removeObject(forKey: userIDKey)
         KeychainWrapper.standard.removeObject(forKey: accessTokenKey)
         KeychainWrapper.standard.removeObject(forKey: refreshTokenKey)
         KeychainWrapper.standard.removeObject(forKey: providerTokenKey)
         KeychainWrapper.standard.removeObject(forKey: authorizationCodeKey)
-        UserDefaults.standard.removeObject(forKey: userGroupKey)
-    }
-    
-    func saveUserGroup(_ userGroups: [UserGroup]) {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(userGroups) {
-            UserDefaults.standard.set(encoded, forKey: "userGroup")
-        }
-    }
-
-    func loadUserGroup() -> [UserGroup] {
-        if let data = UserDefaults.standard.data(forKey: "userGroup") {
-            let decoder = JSONDecoder()
-            if let userGroups = try? decoder.decode([UserGroup].self, from: data) {
-                return userGroups
-            }
-        }
-        return []
+        UserDefaults.standard.removeObject(forKey: userGroupIdKey)
+        UserDefaults.standard.removeObject(forKey: userGroupNameKey)
     }
 }

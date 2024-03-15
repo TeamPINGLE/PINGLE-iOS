@@ -54,11 +54,11 @@ class MeetingIntroductionViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         progressBar2.do {
-            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage2
+            $0.image = UIImage(resource: .imgProgressBar2)
             $0.contentMode = .scaleAspectFill
         }
         
@@ -169,12 +169,14 @@ class MeetingIntroductionViewController: BaseViewController {
     }
     
     @objc func exitModalKeepButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep2CancelStay)
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
         dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep2CancelOut)
         exitModal.isHidden = true
         dimmedView.isHidden = true
         self.dismiss(animated: true)

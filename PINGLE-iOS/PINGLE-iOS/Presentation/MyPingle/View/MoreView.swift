@@ -17,7 +17,7 @@ final class MoreView: BaseView {
     let talkTitleLabel = UILabel()
     let talkImageView = UIImageView()
     let talkButton = UIButton()
-    let moreSeparateView = UIView()
+    private let moreSeparateView = UIView()
     let deleteTitleLabel = UILabel()
     let deleteImageView = UIImageView()
     let deleteButton = UIButton()
@@ -28,7 +28,10 @@ final class MoreView: BaseView {
         self.do {
             $0.backgroundColor = .grayscaleG10
             $0.makeCornerRound(radius: 8)
-            $0.makeBorder(width: 1, color: .grayscaleG09)
+            $0.makeBorder(
+                width: 1,
+                color: .grayscaleG09
+            )
         }
         
         talkTitleLabel.do {
@@ -39,7 +42,7 @@ final class MoreView: BaseView {
         }
         
         talkImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icChat
+            $0.image = UIImage(resource: .icChat)
             $0.isUserInteractionEnabled = false
         }
         
@@ -55,15 +58,15 @@ final class MoreView: BaseView {
         }
         
         deleteImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icTrash
+            $0.image = UIImage(resource: .icTrash)
             $0.isUserInteractionEnabled = false
         }
     }
     
     override func setLayout() {
-        self.addSubviews(talkButton,
-                         moreSeparateView,
-                         deleteButton)
+        addSubviews(talkButton,
+                    moreSeparateView,
+                    deleteButton)
         
         talkButton.addSubviews(talkTitleLabel,
                                talkImageView)

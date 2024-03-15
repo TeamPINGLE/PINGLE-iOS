@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "all_ic_info_l.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}

@@ -14,16 +14,16 @@ final class HomeDetailPopUpView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    var badgeColor: UIColor? = .subPingleOrange
-    var isParticipating: Bool = false
+    private var badgeColor: UIColor? = .subPingleOrange
+    private var isParticipating: Bool = false
     
     // MARK: Component
-    let infoBackgroundView = UIView()
-    let badgeImageView = UIImageView()
-    let titleLabel = UILabel()
-    let nameLabel = UILabel()
+    private let infoBackgroundView = UIView()
+    private let badgeImageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let nameLabel = UILabel()
     
-    let askLabel = UILabel()
+    private let askLabel = UILabel()
     let participationButton = UIButton()
     
     var participantionButtonAction: (() -> Void) = {}
@@ -42,12 +42,15 @@ final class HomeDetailPopUpView: BaseView {
         }
         
         badgeImageView.do {
-            $0.image = ImageLiterals.Home.Detail.imgStudyBadge
+            $0.image = UIImage(resource: .imgStudyBadge)
             $0.contentMode = .scaleAspectFill
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "제목", lineHeight: 25)
+            $0.setTextWithLineHeight(
+                text: "제목",
+                lineHeight: 25
+            )
             $0.textColor = badgeColor
             $0.font = .subtitleSubSemi18
             $0.textAlignment = .center
@@ -71,17 +74,23 @@ final class HomeDetailPopUpView: BaseView {
         participationButton.do {
             $0.makeCornerRound(radius: 10)
             $0.backgroundColor = .white
-            $0.setTitle(StringLiterals.Home.Detail.participationButton, for: .normal)
-            $0.setTitleColor(.black, for: .normal)
+            $0.setTitle(
+                StringLiterals.Home.Detail.participationButton,
+                for: .normal
+            )
+            $0.setTitleColor(
+                .black,
+                for: .normal
+            )
             $0.titleLabel?.font = .bodyBodySemi14
         }
     }
     
     // MARK: Layout Helpers
     override func setLayout() {
-        self.addSubviews(infoBackgroundView,
-                         askLabel,
-                         participationButton)
+        addSubviews(infoBackgroundView,
+                    askLabel,
+                    participationButton)
         
         infoBackgroundView.addSubviews(badgeImageView,
                                        titleLabel,
@@ -131,19 +140,19 @@ final class HomeDetailPopUpView: BaseView {
         switch data.category {
         case "PLAY":
             badgeColor = .mainPingleGreen
-            badgeImageView.image = ImageLiterals.Home.Detail.imgPlayBadge
+            badgeImageView.image = UIImage(resource: .imgPlayBadge)
             
         case "STUDY":
             badgeColor = .subPingleOrange
-            badgeImageView.image = ImageLiterals.Home.Detail.imgStudyBadge
+            badgeImageView.image = UIImage(resource: .imgStudyBadge)
             
         case "MULTI":
             badgeColor = .subPingleYellow
-            badgeImageView.image = ImageLiterals.Home.Detail.imgMultiBadge
+            badgeImageView.image = UIImage(resource: .imgMultiBadge)
             
         case "OTHERS":
             badgeColor = .grayscaleG01
-            badgeImageView.image = ImageLiterals.Home.Detail.imgOthersBadge
+            badgeImageView.image = UIImage(resource: .imgOthersBadge)
             
         default:
             return

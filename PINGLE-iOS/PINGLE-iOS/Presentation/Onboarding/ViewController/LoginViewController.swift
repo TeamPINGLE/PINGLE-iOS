@@ -14,7 +14,13 @@ import Then
 
 final class LoginViewController: BaseViewController {
     
+    // MARK: Variables
+    private var isRootViewController: Bool {
+        return navigationController?.viewControllers.first == self
+    }
+    
     // MARK: Property
+    private let backButton = UIButton()
     private let logoImageView = UIImageView()
     private let authorizationButton = UIButton()
     private let loginTitleLabel = UILabel()
@@ -25,41 +31,54 @@ final class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTarget()
+        setNavigation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+        AmplitudeInstance.shared.track(
+            eventType: .startSignup,
+            eventProperties: [AmplitudePropertyType.signupType : "apple"])
     }
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.logoImageView.do {
-            $0.image = ImageLiterals.OnBoarding.imgApplogo
+        backButton.do {
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
-        self.loginTitleLabel.do {
+        logoImageView.do {
+            $0.image = UIImage(resource: .imgApplogo)
+        }
+        
+        loginTitleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.loginTitle
             $0.font = .titleTitleExtra40
             $0.textColor = .white
             $0.numberOfLines = 0
         }
         
-        self.introduceLabel.do {
+        introduceLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.loginIntroduce
             $0.font = .bodyBodyMed16
             $0.textColor = .grayscaleG02
         }
         
-        self.adviceLabel.do {
+        adviceLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.loginAdvice
             $0.font = .bodyBodyMed16
             $0.textColor = .grayscaleG02
         }
         
-        self.authorizationButton.do {
+        authorizationButton.do {
             $0.layer.cornerRadius = 12
             $0.backgroundColor = .white
-            $0.setImage(ImageLiterals.OnBoarding.imgApplelogo, for: .normal)
+            $0.setImage(UIImage(resource: .imgApplelogo), for: .normal)
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.appleLogin, for: .normal)
             $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
@@ -70,45 +89,71 @@ final class LoginViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(logoImageView, loginTitleLabel, introduceLabel,
+        view.addSubviews(logoImageView, loginTitleLabel, introduceLabel,
                               adviceLabel, authorizationButton)
         
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(63)
+            $0.top.equalToSuperview().offset(107)
             $0.leading.equalToSuperview().inset(32.adjusted)
             $0.height.equalTo(73)
             $0.width.equalTo(73)
         }
         
         loginTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.logoImageView.snp.bottom).offset(12)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(32.adjusted)
         }
         
         introduceLabel.snp.makeConstraints {
-            $0.top.equalTo(self.loginTitleLabel.snp.bottom).offset(12)
+            $0.top.equalTo(loginTitleLabel.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(32.adjusted)
         }
         
         adviceLabel.snp.makeConstraints {
-            $0.top.equalTo(self.introduceLabel.snp.bottom).offset(4)
+            $0.top.equalTo(introduceLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().inset(32.adjusted)
         }
         
         authorizationButton.snp.makeConstraints {
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(69)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(69)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(58)
             $0.width.equalTo(UIScreen.main.bounds.size.width - 32)
         }
     }
     
+    // MARK: Navigation Function
+    private func setNavigationBar() {
+        if isRootViewController {
+            self.navigationController?.navigationBar.isHidden = true
+            self.navigationItem.hidesBackButton = true
+        } else {
+            self.navigationController?.navigationBar.isHidden = false
+            navigationController?.interactivePopGestureRecognizer?.delegate = self
+        }
+    }
+    
+    private func setNavigation() {
+        let customBackButton = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = customBackButton
+    }
+    
     // MARK: Target Function
     private func setTarget() {
-        authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+        backButton.addTarget(self,
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
+        authorizationButton.addTarget(self,
+                                      action: #selector(handleAuthorizationAppleIDButtonPress),
+                                      for: .touchUpInside)
     }
     
     // MARK: Objc Function
+    /// 네비게이션 바 backButton 클릭되었을 때 pop 함수 호출
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc func handleAuthorizationAppleIDButtonPress() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
@@ -129,6 +174,7 @@ final class LoginViewController: BaseViewController {
                 guard let data = data.data else { return }
                 KeychainHandler.shared.accessToken = data.accessToken
                 KeychainHandler.shared.refreshToken = data.refreshToken
+                AmplitudeInstance.shared.track(eventType: .completeSignup)
                 
                 /// 사용자가 단체가 있는지 검사
                 self.getUserInfo()
@@ -144,20 +190,33 @@ final class LoginViewController: BaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 if let groups = data.groups {
-                    KeychainHandler.shared.userGroup = groups
+                    KeychainHandler.shared.userGroupId = groups.first?.id
+                    KeychainHandler.shared.userGroupName = groups.first?.name
                 }
-                if KeychainHandler.shared.userGroup.isEmpty {
-                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
-                    self.navigationController?.popToRootViewController(animated: true)
+                if KeychainHandler.shared.userGroupId == nil || KeychainHandler.shared.userGroupName == nil {
+                    /// 유저가 가입한 단체가 없는 경우 - Onboarding 화면으로 이동하여 단체에 가입하도록 유도
+                    let onboardingViewController = OnboardingViewController()
+                    self.changeRootViewController(rootViewController: onboardingViewController)
                 } else {
-                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: PINGLETabBarController())
-                    self.navigationController?.popToRootViewController(animated: true)
+                    /// 유저가 가입한 단체가 있는 경우 - 메인화면으로 이동
+                    let pingleTabBarController = PINGLETabBarController()
+                    self.changeRootViewController(rootViewController: pingleTabBarController)
                 }
             default:
                 print("getUserInfo error")
             }
+        }
+    }
+    
+    // MARK: Select RootViewController Function
+    func changeRootViewController(rootViewController: UIViewController) {
+        rootViewController.view.alpha = 0.0
+
+        self.view.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+        self.view.window?.makeKeyAndVisible()
+
+        UIView.animate(withDuration: 0.5) {
+            rootViewController.view.alpha = 1.0
         }
     }
 }
@@ -180,6 +239,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
             
             let userName = KeychainHandler.shared.userName
+            
+            KeychainHandler.shared.userID = appleIDCredential.user
+            
             self.login(data: LoginRequestBodyDTO(provider: "APPLE", name: userName))
             
         default:
@@ -197,5 +259,12 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
     /// - Tag: provide_presentation_anchor
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
+    }
+}
+
+//MARK: UIGestureRecognizerDelegate
+extension LoginViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

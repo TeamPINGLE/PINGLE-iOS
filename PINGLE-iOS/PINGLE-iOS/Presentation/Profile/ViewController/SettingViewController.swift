@@ -33,39 +33,48 @@ final class SettingViewController: BaseViewController {
         super.viewDidLoad()
         setNavigation()
         setTarget()
-        organizationButton.changeOrganizationName()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bindOrganizationName()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setTapBarHidden()
     }
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.settingTitleLabel.do {
+        settingTitleLabel.do {
             $0.text = StringLiterals.Profile.ExplainTitle.settingTitle
             $0.font = .subtitleSubSemi18
             $0.textColor = .white
         }
         
-        self.userNameLabel.do {
+        userNameLabel.do {
             $0.text = KeychainHandler.shared.userName
             $0.font = .subtitleSubSemi18
             $0.textColor = .white
         }
         
-        self.dimmedView.do {
+        dimmedView.do {
             $0.backgroundColor = .black
             $0.alpha = 0.7
             $0.isHidden = true
             $0.isUserInteractionEnabled = true
         }
         
-        self.accountPopUpView.do {
+        accountPopUpView.do {
             $0.isHidden = true
         }
         
-        self.warningToastView.do {
+        warningToastView.do {
             $0.alpha = 0.0
         }
     }
@@ -74,8 +83,11 @@ final class SettingViewController: BaseViewController {
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
-        self.view.addSubviews(settingTitleLabel, userNameLabel, organizationButton,
-                              settingSelectView, warningToastView)
+        view.addSubviews(settingTitleLabel, 
+                         userNameLabel,
+                         organizationButton,
+                         settingSelectView,
+                         warningToastView)
         
         if let window = UIApplication.shared.keyWindow {
             window.addSubviews(dimmedView,
@@ -84,21 +96,21 @@ final class SettingViewController: BaseViewController {
         
         settingTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(59)
-            $0.leading.equalTo(self.view).offset(16.adjusted)
+            $0.leading.equalTo(view).offset(16.adjusted)
         }
         
         userNameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.settingTitleLabel.snp.bottom).offset(36)
-            $0.leading.equalTo(self.view).offset(16.adjusted)
+            $0.top.equalTo(settingTitleLabel.snp.bottom).offset(36)
+            $0.leading.equalTo(view).offset(16.adjusted)
         }
         
         organizationButton.snp.makeConstraints {
-            $0.top.equalTo(self.userNameLabel.snp.bottom).offset(20)
+            $0.top.equalTo(userNameLabel.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
         }
         
         settingSelectView.snp.makeConstraints {
-            $0.top.equalTo(self.organizationButton.snp.bottom).offset(40)
+            $0.top.equalTo(organizationButton.snp.bottom).offset(40)
             $0.centerX.equalToSuperview()
         }
         
@@ -121,6 +133,10 @@ final class SettingViewController: BaseViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    private func setTapBarHidden() {
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     // MARK: Delegate Function
     override func setDelegate() {
         self.dimmedTapGesture.delegate = self
@@ -128,54 +144,71 @@ final class SettingViewController: BaseViewController {
     
     // MARK: Target Function
     private func setTarget() {
-        self.organizationButton.addTarget(self, action: #selector(organizationButtonTapped), for: .touchUpInside)
-        self.settingSelectView.contactButton.addTarget(self, action: #selector(contactButtonTapped), for: .touchUpInside)
-        self.settingSelectView.noticeButton.addTarget(self, action: #selector(noticeButtonTapped), for: .touchUpInside)
-        self.settingSelectView.logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-        self.settingSelectView.deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        self.accountPopUpView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        self.accountPopUpView.changeStateButton.addTarget(self, action: #selector(changeStateButtonTapped), for: .touchUpInside)
-        self.dimmedView.addGestureRecognizer(dimmedTapGesture)
+        organizationButton.addTarget(self,
+                                          action: #selector(organizationButtonTapped),
+                                          for: .touchUpInside)
+        settingSelectView.contactButton.addTarget(self,
+                                                       action: #selector(contactButtonTapped),
+                                                       for: .touchUpInside)
+        settingSelectView.noticeButton.addTarget(self,
+                                                      action: #selector(noticeButtonTapped),
+                                                      for: .touchUpInside)
+        settingSelectView.logoutButton.addTarget(self,
+                                                      action: #selector(logoutButtonTapped),
+                                                      for: .touchUpInside)
+        settingSelectView.deleteButton.addTarget(self,
+                                                      action: #selector(deleteButtonTapped),
+                                                      for: .touchUpInside)
+        accountPopUpView.backButton.addTarget(self,
+                                                   action: #selector(backButtonTapped),
+                                                   for: .touchUpInside)
+        accountPopUpView.changeStateButton.addTarget(self,
+                                                          action: #selector(changeStateButtonTapped),
+                                                          for: .touchUpInside)
+        dimmedView.addGestureRecognizer(dimmedTapGesture)
     }
     
     // MARK: Objc Function
-    @objc func organizationButtonTapped() {
+    @objc private func organizationButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .startMyGroup)
         let myOrganizationViewController = MyOrganizationViewController()
         self.navigationController?.pushViewController(myOrganizationViewController, animated: true)
     }
     
-    @objc func contactButtonTapped() {
+    @objc private func contactButtonTapped() {
         guard let url = URL(string: "https://pinglepingle.notion.site/585c13c92e1842c7ada334e78b731303?pvs=4") else { return }
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true)
     }
     
-    @objc func noticeButtonTapped() {
+    @objc private func noticeButtonTapped() {
         guard let url = URL(string: "https://pinglepingle.notion.site/38d504b943a4479695b7ca9206c7b732?pvs=4") else { return }
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true)
     }
     
-    @objc func logoutButtonTapped() {
+    @objc private func logoutButtonTapped() {
         accountState = .logout
         accountPopUpView.SetAccountStateMode(state: .logout)
         dimmedView.isHidden = false
         accountPopUpView.isHidden = false
     }
     
-    @objc func deleteButtonTapped() {
+    @objc private func deleteButtonTapped() {
         accountState = .delete
         accountPopUpView.SetAccountStateMode(state: .delete)
         dimmedView.isHidden = false
         accountPopUpView.isHidden = false
     }
     
-    @objc func backButtonTapped() {
+    @objc private func backButtonTapped() {
         dimmedView.isHidden = true
         accountPopUpView.isHidden = true
     }
     
-    @objc func changeStateButtonTapped() {
+    @objc private func changeStateButtonTapped() {
+        dimmedView.isHidden = true
+        accountPopUpView.isHidden = true
         switch accountState {
         case .logout:
             postLogout()
@@ -192,8 +225,8 @@ final class SettingViewController: BaseViewController {
     }
     
     // MARK: WarningToastView Animation Function
-    func showWarningToastView(duration: TimeInterval = 2.0) {
-        self.warningToastView.fadeIn()
+    private func showWarningToastView(duration: TimeInterval = 2.0) {
+        warningToastView.fadeIn()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             self.warningToastView.fadeOut()
@@ -201,16 +234,15 @@ final class SettingViewController: BaseViewController {
     }
     
     // MARK: Network Function
-    func postLogout() {
+    private func postLogout() {
         NetworkService.shared.profileService.logout() { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let data):
                 if data.code == 200 {
+                    AmplitudeInstance.shared.track(eventType: .logoutApp)
                     KeychainHandler.shared.logout()
-                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-                    self.navigationController?.popToRootViewController(animated: true)
+                    changeRootViewController()
                 }
             default:
                 print("login error")
@@ -218,25 +250,42 @@ final class SettingViewController: BaseViewController {
         }
     }
     
-    func deleteAppleID() {
+    private func deleteAppleID() {
         NetworkService.shared.profileService.deleteID { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let data):
                 if data.code == 200 {
+                    AmplitudeInstance.shared.track(eventType: .withdrawApp)
                     KeychainHandler.shared.deleteID()
-                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-                    self.navigationController?.popToRootViewController(animated: true)
+                    changeRootViewController()
+                } else if data.code == 400 {
+                    // 탈퇴하는 사용자가 단체장일 경우 경고장 띄우고 탈퇴시키지 않음.
+                    dimmedView.isHidden = true
+                    accountPopUpView.isHidden = true
+                    showWarningToastView()
                 }
-            case .networkErr:
-                /// 탈퇴하는 사용자가 단체장일 경우 경고장 띄우고 탈퇴시키지 않음.
-                dimmedView.isHidden = true
-                accountPopUpView.isHidden = true
-                showWarningToastView()
             default:
                 print("login error")
             }
+        }
+    }
+    
+    // MARK: Bind Function
+    private func bindOrganizationName() {
+        organizationButton.changeOrganizationName()
+    }
+    
+    // MARK: ChangeRootViewController
+    func changeRootViewController() {
+        let loginViewController = LoginViewController()
+        loginViewController.view.alpha = 0.0
+
+        self.view.window?.rootViewController = UINavigationController(rootViewController: loginViewController)
+        self.view.window?.makeKeyAndVisible()
+
+        UIView.animate(withDuration: 0.5) {
+            loginViewController.view.alpha = 1.0
         }
     }
 }
@@ -255,7 +304,6 @@ extension SettingViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            let fullName = appleIDCredential.fullName
             
             if let authorizationCode = appleIDCredential.authorizationCode {
                 guard let authorizationCodeString = String(data: authorizationCode, encoding: .utf8) else { return }

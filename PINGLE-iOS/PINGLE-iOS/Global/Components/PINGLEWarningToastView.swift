@@ -13,8 +13,8 @@ import Then
 final class PINGLEWarningToastView: BaseView {
     
     // MARK: Property
-    private let warningLabel = UILabel()
-    private let warningImageView = UIImageView()
+    let warningLabel = UILabel()
+    let warningImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,7 +33,7 @@ final class PINGLEWarningToastView: BaseView {
         }
         
         warningImageView.do {
-            $0.image = ImageLiterals.Icon.imgWarningNotice
+            $0.image = UIImage(resource: .icNotice)
         }
         
         warningLabel.do {
@@ -43,7 +43,7 @@ final class PINGLEWarningToastView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(warningImageView, warningLabel)
+        addSubviews(warningImageView, warningLabel)
         
         self.snp.makeConstraints {
             $0.width.equalTo(343.adjusted)
@@ -60,5 +60,19 @@ final class PINGLEWarningToastView: BaseView {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(warningImageView.snp.trailing).offset(8.adjusted)
         }
+    }
+    
+    func changeWarningMessage(message: String, possible: Bool) {
+        if possible {
+            self.backgroundColor = .white
+            warningImageView.image = UIImage(resource: .icCheckGray)
+            warningLabel.textColor = .black
+        } else {
+            self.backgroundColor = .systemRedAlert
+            warningImageView.image = UIImage(resource: .icNotice)
+            warningLabel.textColor = .white
+        }
+        
+        warningLabel.text = message
     }
 }

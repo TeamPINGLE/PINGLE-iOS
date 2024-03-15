@@ -7,35 +7,45 @@
 
 import UIKit
 
-import SafariServices
 import SnapKit
 import Then
 
 final class OnboardingViewController: BaseViewController {
     
+    // MARK: Variables
+    private var isRootViewController: Bool {
+        return navigationController?.viewControllers.first == self
+    }
+    
     // MARK: Property
+    private let backButton = UIButton()
     private let titleLabel = UILabel()
     private let existingOrganizationButton = UIButton()
     private let makeOrganizationButton = UIButton()
     
     // MARK: Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNavigation()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTarget()
+        setNavigation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
     }
     
     // MARK: UI
     override func setStyle() {
-        self.view.do {
+        view.do {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.titleLabel.do {
+        backButton.do {
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
+        }
+        
+        titleLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.onboarding
             $0.setLineSpacing(spacing: 4)
             $0.font = .titleTitleSemi30
@@ -43,11 +53,11 @@ final class OnboardingViewController: BaseViewController {
             $0.numberOfLines = 0
         }
         
-        self.existingOrganizationButton.do {
+        existingOrganizationButton.do {
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.existingOrganization, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
             $0.setTitleColor(.white, for: .normal)
-            $0.setImage(ImageLiterals.OnBoarding.imgSearchGraphic, for: .normal)
+            $0.setImage(UIImage(resource: .imgSearchGraphic), for: .normal)
             $0.alignTextBelow(spacing: 26)
             $0.titleLabel?.numberOfLines = 0
             $0.titleLabel?.textAlignment = .center
@@ -56,11 +66,11 @@ final class OnboardingViewController: BaseViewController {
             $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
         }
         
-        self.makeOrganizationButton.do {
+        makeOrganizationButton.do {
             $0.setTitle(StringLiterals.Onboarding.ButtonTitle.makeOrganization, for: .normal)
             $0.titleLabel?.font = .subtitleSubSemi16
             $0.setTitleColor(.white, for: .normal)
-            $0.setImage(ImageLiterals.OnBoarding.imgCreateGraphic, for: .normal)
+            $0.setImage(UIImage(resource: .imgCreateGraphic), for: .normal)
             $0.alignTextBelow(spacing: 26)
             $0.titleLabel?.numberOfLines = 0
             $0.titleLabel?.textAlignment = .center
@@ -71,10 +81,10 @@ final class OnboardingViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(titleLabel, existingOrganizationButton, makeOrganizationButton)
+        view.addSubviews(titleLabel, existingOrganizationButton, makeOrganizationButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(105)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(105)
             $0.leading.equalToSuperview().inset(26.adjusted)
         }
         
@@ -94,26 +104,61 @@ final class OnboardingViewController: BaseViewController {
     }
     
     // MARK: Navigation Function
+    private func setNavigationBar() {
+        if isRootViewController {
+            self.navigationController?.navigationBar.isHidden = true
+            self.navigationItem.hidesBackButton = true
+        } else {
+            self.navigationController?.navigationBar.isHidden = false
+            navigationController?.interactivePopGestureRecognizer?.delegate = self
+        }
+    }
+    
     private func setNavigation() {
-        self.navigationController?.navigationBar.isHidden = true
-        self.navigationItem.hidesBackButton = true
+        let customBackButton = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = customBackButton
     }
     
     // MARK: Target Function
     private func setTarget() {
-        existingOrganizationButton.addTarget(self, action: #selector(existingOrganizationButtonDidTap), for: .touchUpInside)
-        makeOrganizationButton.addTarget(self, action: #selector(makeOrganizationButtonDidTap), for: .touchUpInside)
+        backButton.addTarget(self,
+                             action: #selector(backButtonTapped),
+                             for: .touchUpInside)
+        existingOrganizationButton.addTarget(self,
+                                             action: #selector(existingOrganizationButtonDidTap),
+                                             for: .touchUpInside)
+        makeOrganizationButton.addTarget(self, 
+                                         action: #selector(makeOrganizationButtonDidTap),
+                                         for: .touchUpInside)
     }
     
     // MARK: Objc Function
+    /// 네비게이션 바 backButton 클릭되었을 때 pop 함수 호출
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    /// 기존 단체 입장 버튼 클릭되었을 때 호출되는 함수
     @objc func existingOrganizationButtonDidTap() {
+        AmplitudeInstance.shared.track(
+            eventType: .clickMethodOption,
+            eventProperties: [AmplitudePropertyType.option : "existing_group"])
         let searchOrganizationViewController = SearchOrganizationViewController()
         navigationController?.pushViewController(searchOrganizationViewController, animated: true)
     }
     
+    /// 새로운 단체 만들기 버튼 클릭되었을 때 호출되는 함수
     @objc func makeOrganizationButtonDidTap() {
-        guard let url = URL(string: "https://docs.google.com/forms/d/10WxvEzSVRrRvRGXsYf9Z5oXv4HsNuAwG2QicB4bY0aY/edit") else { return }
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true)
+        AmplitudeInstance.shared.track(
+            eventType: .clickMethodOption,
+            eventProperties: [AmplitudePropertyType.option : "create_group"])
+        let enterOrganizationInfoViewController = EnterOrganizationInfoViewController()
+        navigationController?.pushViewController(enterOrganizationInfoViewController, animated: true)
+    }
+}
+
+extension OnboardingViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

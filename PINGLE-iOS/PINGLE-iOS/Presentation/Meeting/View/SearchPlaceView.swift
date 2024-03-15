@@ -16,6 +16,7 @@ final class SearchPlaceView: BaseView {
     private let searchPlaceView = UIView()
     let searchTextField = UITextField()
     let searchButton = UIButton()
+    let clearButton = UIButton()
     let searchPlaceCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     let noPlaceResult = UILabel()
     let reSearch = UILabel()
@@ -30,12 +31,12 @@ final class SearchPlaceView: BaseView {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.searchPlaceView.do {
+        searchPlaceView.do {
             $0.backgroundColor = .grayscaleG10
             $0.layer.cornerRadius = 8.adjusted
         }
         
-        self.searchTextField.do {
+        searchTextField.do {
             $0.font = .bodyBodySemi14
             $0.textColor = .white
             $0.tintColor = .mainPingleGreen
@@ -50,22 +51,27 @@ final class SearchPlaceView: BaseView {
             )
         }
         
-        self.searchButton.do {
-            $0.setImage(ImageLiterals.Icon.imgSearchIcon, for: .normal)
+        searchButton.do {
+            $0.setImage(UIImage(resource: .icSearch), for: .normal)
         }
         
-        self.searchPlaceCollectionView.do {
+        clearButton.do {
+            $0.setImage(UIImage(resource: .btnClear), for: .normal)
+            $0.isHidden = true
+        }
+        
+        searchPlaceCollectionView.do {
             $0.backgroundColor = .clear
             $0.showsVerticalScrollIndicator = false
         }
         
-        self.noPlaceResult.do {
+        noPlaceResult.do {
             $0.text = StringLiterals.Meeting.SearhPlace.noPlaceResult
             $0.font = .subtitleSubSemi18
             $0.textColor = .grayscaleG06
         }
         
-        self.reSearch.do {
+        reSearch.do {
             $0.text = StringLiterals.Meeting.SearhPlace.reSearch
             $0.font = .captionCapMed12
             $0.textColor = .grayscaleG08
@@ -73,8 +79,13 @@ final class SearchPlaceView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(searchPlaceView, noPlaceResult, reSearch, searchPlaceCollectionView)
-        self.searchPlaceView.addSubviews(searchTextField, searchButton)
+        self.addSubviews(searchPlaceView, 
+                         noPlaceResult,
+                         reSearch,
+                         searchPlaceCollectionView)
+        searchPlaceView.addSubviews(searchTextField, 
+                                    searchButton,
+                                    clearButton)
         
         searchPlaceView.snp.makeConstraints {
             $0.top.equalTo(self.snp.top)
@@ -92,6 +103,12 @@ final class SearchPlaceView: BaseView {
             $0.trailing.equalToSuperview().inset(13.adjusted)
             $0.centerY.equalToSuperview()
             $0.height.width.equalTo(24.adjusted)
+        }
+        
+        clearButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(13.adjusted)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(24)
         }
         
         searchPlaceCollectionView.snp.makeConstraints {

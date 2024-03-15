@@ -15,35 +15,35 @@ final class MyPINGLECardView: BaseView {
     // MARK: - Variables
     // MARK: Property
     var badgeColor: UIColor? = .subPingleOrange
-    var isOwner: Bool = false
+    private var isOwner: Bool = false
     var openChatURL: String?
     
     // MARK: Component
-    let topBackgroundView = UIView()
+    private let topBackgroundView = UIView()
     let badgeImageView = UIImageView()
     let dDayLabel = UILabel()
     let dDayBackground = UIView()
-    let badgeGroupView = UIView()
+    private let badgeGroupView = UIView()
     let titleLabel = UILabel()
     let nameLabel = UILabel()
-    let topStackView = UIStackView()
+    private let topStackView = UIStackView()
     let moreButton = UIButton()
     
-    let separateView = UIView()
-    let bottomBackgroundView = UIView()
-    let dateImageView = UIImageView()
+    private let separateView = UIView()
+    private let bottomBackgroundView = UIView()
+    private let dateImageView = UIImageView()
     let dateLabel = UILabel()
-    let dateSeparateView = UIView()
+    private let dateSeparateView = UIView()
     let timeLabel = UILabel()
-    let dateStackView = UIStackView()
+    private let dateStackView = UIStackView()
     let myPingleImageView = UIImageView()
     
-    let locationImageView = UIImageView()
+    private let locationImageView = UIImageView()
     let locationLabel = UILabel()
-    let memberImageView = UIImageView()
+    private let memberImageView = UIImageView()
     let memberButton = UIButton()
     let memberLabel = UILabel()
-    let memberArrow = UIImageView()
+    private let memberArrow = UIImageView()
     
     // MARK: - Function
     // MARK: Style Helpers
@@ -54,7 +54,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         badgeImageView.do {
-            $0.image = ImageLiterals.Home.Detail.imgStudyBadge
+            $0.image = UIImage(resource: .imgStudyBadge)
             $0.contentMode = .scaleAspectFill
         }
         
@@ -91,7 +91,10 @@ final class MyPINGLECardView: BaseView {
         }
         
         moreButton.do {
-            $0.setImage(ImageLiterals.MyPingle.Icon.btnMyPingleMore, for: .normal)
+            $0.setImage(
+                UIImage(resource: .btnMyPingleMore),
+                for: .normal
+            )
         }
         
         separateView.do {
@@ -104,7 +107,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         dateImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icCalendar
+            $0.image = UIImage(resource: .icCalendar)
         }
         
         dateLabel.do {
@@ -129,7 +132,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         locationImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icLocation
+            $0.image = UIImage(resource: .icLocation)
         }
         
         locationLabel.do {
@@ -139,7 +142,7 @@ final class MyPINGLECardView: BaseView {
         }
         
         memberImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icUser
+            $0.image = UIImage(resource: .icUser)
         }
         
         memberLabel.do {
@@ -150,19 +153,19 @@ final class MyPINGLECardView: BaseView {
         }
         
         memberArrow.do {
-            $0.image = ImageLiterals.MyPingle.Icon.icRightArrow
+            $0.image = UIImage(resource: .icMyPingleArrow)
             $0.isUserInteractionEnabled = false
         }
         
         myPingleImageView.do {
-            $0.image = ImageLiterals.MyPingle.Icon.imgMyPingle
+            $0.image = UIImage(resource: .imgMyPingle)
             $0.isHidden = false
         }
     }
     
     override func setLayout() {
-        self.addSubviews(topBackgroundView,
-                         bottomBackgroundView)
+        addSubviews(topBackgroundView,
+                    bottomBackgroundView)
         
         topBackgroundView.addSubviews(topStackView,
                                       moreButton,
@@ -282,7 +285,7 @@ final class MyPINGLECardView: BaseView {
         
         memberArrow.snp.makeConstraints {
             $0.centerY.trailing.equalToSuperview()
-            $0.leading.equalTo(memberLabel.snp.trailing).offset(4.adjustedWidth)
+            $0.leading.equalTo(memberLabel.snp.trailing).offset(4)
         }
         
         myPingleImageView.snp.makeConstraints {

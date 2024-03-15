@@ -48,16 +48,16 @@ final class FinalSummaryCardView: BaseView {
             $0.contentMode = .scaleAspectFill
             switch MeetingManager.shared.category {
             case "PLAY":
-                badgeImageView.image = ImageLiterals.Meeting.Category.Badge.playBadge
+                badgeImageView.image = UIImage(resource: .imgPlayBadge)
                 
             case "STUDY":
-                badgeImageView.image = ImageLiterals.Meeting.Category.Badge.studyBadge
+                badgeImageView.image = UIImage(resource: .imgStudyBadge)
                 
             case "MULTI":
-                badgeImageView.image = ImageLiterals.Meeting.Category.Badge.multiBadge
+                badgeImageView.image = UIImage(resource: .imgMultiBadge)
                 
             case "OTHERS":
-                badgeImageView.image = ImageLiterals.Meeting.Category.Badge.othersBadge
+                badgeImageView.image = UIImage(resource: .imgOthersBadge)
                 
             default:
                 return
@@ -104,7 +104,7 @@ final class FinalSummaryCardView: BaseView {
         }
         
         dateTimeImageView.do {
-            $0.image = ImageLiterals.Meeting.Icon.icCalendar
+            $0.image = UIImage(resource: .icCalendar)
         }
         
         dateTimeTitleLabel.do {
@@ -129,7 +129,7 @@ final class FinalSummaryCardView: BaseView {
         }
         
         locationImageView.do {
-            $0.image = ImageLiterals.Home.Detail.icLocation
+            $0.image = UIImage(resource: .icLocation)
         }
         
         locationTitleLabel.do {
@@ -147,7 +147,7 @@ final class FinalSummaryCardView: BaseView {
         }
         
         recruitNumberImageView.do {
-            $0.image = ImageLiterals.Meeting.Icon.icUser
+            $0.image = UIImage(resource: .icUser)
         }
         
         recruitNumberTitleLabel.do {

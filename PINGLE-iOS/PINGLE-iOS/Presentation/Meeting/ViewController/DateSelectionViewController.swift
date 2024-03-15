@@ -69,11 +69,11 @@ class DateSelectionViewController: BaseViewController {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         progressBar3.do {
-            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage3
+            $0.image = UIImage(resource: .imgProgressBar3)
             $0.contentMode = .scaleAspectFill
         }
         
@@ -259,12 +259,14 @@ class DateSelectionViewController: BaseViewController {
     }
     
     @objc func exitModalKeepButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep3CancelStay)
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
         dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep3CancelOut)
         exitModal.isHidden = true
         dimmedView.isHidden = true
         self.dismiss(animated: true)

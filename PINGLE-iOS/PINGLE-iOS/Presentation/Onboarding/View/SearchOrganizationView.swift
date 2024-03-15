@@ -29,13 +29,13 @@ final class SearchOrganizationView: BaseView {
             $0.backgroundColor = .grayscaleG11
         }
         
-        self.searchView.do {
+        searchView.do {
             $0.backgroundColor = .grayscaleG10
             $0.layer.cornerRadius = 8.adjusted
             $0.layer.backgroundColor = UIColor.grayscaleG10.cgColor
         }
         
-        self.searchTextField.do {
+        searchTextField.do {
             $0.font = .bodyBodySemi14
             $0.textColor = .white
             $0.tintColor = .mainPingleGreen
@@ -50,16 +50,16 @@ final class SearchOrganizationView: BaseView {
             )
         }
         
-        self.searchButton.do {
-            $0.setImage(ImageLiterals.Icon.imgSearchIcon, for: .normal)
+        searchButton.do {
+            $0.setImage(UIImage(resource: .icSearch), for: .normal)
         }
         
-        self.searchCollectionView.do {
+        searchCollectionView.do {
             $0.backgroundColor = .clear
             $0.showsVerticalScrollIndicator = false
         }
         
-        self.noResultLabel.do {
+        noResultLabel.do {
             $0.text = StringLiterals.Onboarding.ExplainTitle.noResult
             $0.font = .subtitleSubSemi18
             $0.textColor = .grayscaleG06
@@ -68,8 +68,8 @@ final class SearchOrganizationView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(searchView, noResultLabel, searchCollectionView)
-        self.searchView.addSubviews(searchTextField, searchButton)
+        addSubviews(searchView, noResultLabel, searchCollectionView)
+        searchView.addSubviews(searchTextField, searchButton)
         
         searchView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -90,7 +90,7 @@ final class SearchOrganizationView: BaseView {
         }
         
         searchCollectionView.snp.makeConstraints {
-            $0.top.equalTo(self.searchView.snp.bottom).offset(21)
+            $0.top.equalTo(searchView.snp.bottom).offset(21)
             $0.leading.trailing.equalToSuperview().inset(25.adjusted)
             $0.bottom.equalToSuperview()
         }

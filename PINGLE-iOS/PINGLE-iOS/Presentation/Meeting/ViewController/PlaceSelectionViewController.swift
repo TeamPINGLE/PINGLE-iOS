@@ -54,11 +54,11 @@ class PlaceSelectionViewController: BaseViewController {
         }
         
         self.backButton.do {
-            $0.setImage(ImageLiterals.Meeting.Icon.icBack, for: .normal)
+            $0.setImage(UIImage(resource: .icArrowLeft), for: .normal)
         }
         
         progressBar4.do {
-            $0.image = ImageLiterals.Meeting.ProgressBar.progressBarImage4
+            $0.image = UIImage(resource: .imgProgressBar4)
             $0.contentMode = .scaleAspectFill
         }
         
@@ -78,8 +78,8 @@ class PlaceSelectionViewController: BaseViewController {
         }
         
         exitModal.do {
-                    $0.isHidden = true
-                }
+            $0.isHidden = true
+        }
         
         dimmedView.do {
             $0.backgroundColor = .grayscaleG11.withAlphaComponent(0.7)
@@ -88,7 +88,14 @@ class PlaceSelectionViewController: BaseViewController {
     }
     
     override func setLayout() {
-        self.view.addSubviews(backButton, progressBar4, placeSelectionTitle, searchPlaceView, nextButton, exitLabel, exitButton, dimmedView)
+        self.view.addSubviews(backButton,
+                              progressBar4,
+                              placeSelectionTitle,
+                              searchPlaceView,
+                              nextButton,
+                              exitLabel,
+                              exitButton,
+                              dimmedView)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(16.adjusted)
@@ -112,7 +119,7 @@ class PlaceSelectionViewController: BaseViewController {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(nextButton.snp.top).offset(-15.adjusted)
         }
-
+        
         nextButton.snp.makeConstraints {
             $0.bottom.equalTo(exitLabel.snp.top).offset(-14.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
@@ -147,7 +154,7 @@ class PlaceSelectionViewController: BaseViewController {
     // MARK: Register
     func setRegister() {
         self.searchPlaceView.searchPlaceCollectionView.register(PlaceSelectionCollectionViewCell.self,
-                                                                  forCellWithReuseIdentifier: PlaceSelectionCollectionViewCell.identifier)
+                                                                forCellWithReuseIdentifier: PlaceSelectionCollectionViewCell.identifier)
     }
     
     // MARK: Navigation Function
@@ -163,6 +170,8 @@ class PlaceSelectionViewController: BaseViewController {
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         searchPlaceView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        searchPlaceView.clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
+        searchPlaceView.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
         exitModal.exitButton.addTarget(self, action: #selector(exitModalExitButtonTapped), for: .touchUpInside)
@@ -193,6 +202,12 @@ class PlaceSelectionViewController: BaseViewController {
         }
     }
     
+    @objc func clearButtonTapped() {
+        searchPlaceView.searchTextField.text?.removeAll()
+        searchPlaceView.clearButton.isHidden = true
+        searchPlaceView.searchButton.isHidden = false
+    }
+    
     @objc func nextButtonTapped() {
         guard let selectedPlaceRow = selectedPlace?.row else { return }
         MeetingManager.shared.address = searchPlaceResponseDTO[selectedPlaceRow].address
@@ -202,7 +217,7 @@ class PlaceSelectionViewController: BaseViewController {
         MeetingManager.shared.y = searchPlaceResponseDTO[selectedPlaceRow].y
         let recruitmentViewController = RecruitmentViewController()
         navigationController?.pushViewController(recruitmentViewController, animated: true)
-        }
+    }
     
     @objc func exitButtonTapped() {
         self.view.addSubview(exitModal)
@@ -215,15 +230,22 @@ class PlaceSelectionViewController: BaseViewController {
     }
     
     @objc func exitModalKeepButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep4CancelStay)
         exitModal.isHidden = true
         exitModal.removeFromSuperview()
         dimmedView.isHidden = true
     }
     
     @objc func exitModalExitButtonTapped() {
+        AmplitudeInstance.shared.track(eventType: .clickStep4CancelOut)
         exitModal.isHidden = true
         dimmedView.isHidden = true
         self.dismiss(animated: true)
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        searchPlaceView.clearButton.isHidden = textField.text?.isEmpty ?? true
+        searchPlaceView.searchButton.isHidden = !searchPlaceView.clearButton.isHidden
     }
     
     @objc func dimmedViewTapped() {
@@ -276,6 +298,12 @@ extension PlaceSelectionViewController: UITextFieldDelegate {
         }
         selectedPlace = nil
         nextButton.disabledButton()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        searchPlaceView.clearButton.isHidden = textField.text?.isEmpty ?? true
+        searchPlaceView.searchButton.isHidden = !searchPlaceView.clearButton.isHidden
         return true
     }
 }
@@ -345,5 +373,5 @@ extension PlaceSelectionViewController: UICollectionViewDelegateFlowLayout {
         
         return placeNameSize.height + placeAddressSize.height
     }
-
+    
 }

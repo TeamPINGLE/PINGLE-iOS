@@ -166,11 +166,6 @@ final class FinalResultViewController: BaseViewController {
         
         print(meetingData)
         makeMeeting(data: meetingData)
-        self.dismiss(animated: true)
-        
-        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: PINGLETabBarController())
-        self.navigationController?.popToRootViewController(animated: true)
     }
     
     // MARK: Function
@@ -198,6 +193,11 @@ final class FinalResultViewController: BaseViewController {
                                                                  AmplitudePropertyType.maxParticipants: data.maxParticipants
                                                                 ])
                 print("Meeting created successfully. Result: \(result)")
+                
+                self.dismiss(animated: true)
+                guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: PINGLETabBarController())
+                self.navigationController?.popToRootViewController(animated: true)
             default:
                 print("not Created")
             }
@@ -215,3 +215,4 @@ final class FinalResultViewController: BaseViewController {
         return formatter.string(from: time)
     }
    }
+

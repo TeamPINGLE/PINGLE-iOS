@@ -121,10 +121,19 @@ extension UILabel {
             style.maximumLineHeight = lineHeight
             style.minimumLineHeight = lineHeight
             
-            let attributes: [NSAttributedString.Key: Any] = [
-                .paragraphStyle: style,
-                .baselineOffset: (lineHeight - font.lineHeight) / 2
-            ]
+            var attributes: [NSAttributedString.Key: Any] = [:]
+            if ProcessInfo.processInfo.isOperatingSystemAtLeast(
+                OperatingSystemVersion(majorVersion: 16, minorVersion: 4, patchVersion: 0)) {
+                attributes = [
+                    .paragraphStyle: style,
+                    .baselineOffset: (lineHeight - font.lineHeight) / 2
+                ]
+            } else {
+                attributes = [
+                    .paragraphStyle: style,
+                    .baselineOffset: (lineHeight - font.lineHeight) / 4
+                ]
+            }
             
             let attrString = NSAttributedString(string: text,
                                                 attributes: attributes)
